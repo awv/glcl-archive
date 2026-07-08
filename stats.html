@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Season Standings & Overview — GLCL Archive</title>
+    
+    <!-- Tailwind Engine -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7fa',
+                            100: '#e1eff5',
+                            500: '#1F6C93',
+                            600: '#185474',
+                            700: '#14435d'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- External Style Sheets -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- Core Datasets & Shared JavaScript Logic Bundles -->
+    <script src="data.js" defer></script>
+    <script src="assets/js/stats-engine.js" defer></script>
+    <script src="site-layout.js" defer></script>
+</head>
+<body class="text-slate-300 font-sans antialiased bg-slate-950">
+
+    <!-- Global Dynamic Injected Header -->
+    <div id="global-header"></div>
+
+    <main class="max-w-[1400px] mx-auto px-4 mt-8">
+        
+        <!-- Section Header Title -->
+        <div class="border-b border-slate-800 pb-4 mb-8">
+            <h1 class="text-3xl font-black text-slate-100 tracking-tight uppercase">
+                2025/2026 Cross Country Season
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-400 font-medium mt-1">
+                Macro analysis, league fixture matrices, and running club aggregation profiles.
+            </p>
+        </div>
+
+        <!-- IDEA 2: THE FIXTURE DIRECTORY MATRIX GRID -->
+        <h3 class="text-xs font-black tracking-widest text-slate-400 uppercase mb-4">
+            Fixture Navigation Matrix
+        </h3>
+        <div id="fixture-matrix-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-10">
+            <!-- Dynamic Matrix Blocks Generate Here -->
+        </div>
+
+        <!-- CATEGORY CHAMPIONSHIP AWARDS PODIUMS -->
+        <div class="mb-10">
+            <h3 class="text-xs font-black tracking-widest text-slate-400 uppercase mb-4">
+                Championship Standings — Top 3 per Age Category
+            </h3>
+            <div id="category-podiums-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+                <!-- Injected automatically by the updated Stats Engine -->
+            </div>
+        </div>
+
+        <!-- SPLIT SIDE-BY-SIDE ANALYTICS BLOCKS -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- IDEA 3: THE ALL-TIME INDIVIDUAL DOMINATORS -->
+            <div>
+                <h3 class="text-xs font-black tracking-widest text-slate-400 uppercase mb-4">
+                    Individual Fixture Victories
+                </h3>
+                <div class="leaderboard-box rounded-xl overflow-hidden shadow-xl">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-900 border-b border-slate-800 text-xs font-black tracking-wider text-slate-400 uppercase">
+                                <th class="py-3 px-4">Runner</th>
+                                <th class="py-3 px-4">Club</th>
+                                <th class="py-3 px-4 text-right w-24">Wins</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dominators-rows" class="divide-y divide-slate-800/40 text-sm font-medium">
+                            <!-- Injected by Stats Engine -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- IDEA 1: CLUB MOBILISATION & PERFORMANCE SCORES -->
+            <div>
+                <h3 class="text-xs font-black tracking-widest text-slate-400 uppercase mb-4">
+                    Club Engagement & Strength Metrics
+                </h3>
+                <div class="leaderboard-box rounded-xl overflow-hidden shadow-xl">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-900 border-b border-slate-800 text-xs font-black tracking-wider text-slate-400 uppercase">
+                                <th class="py-3 px-4">Club Entity</th>
+                                <th class="py-3 px-4 text-center w-32">Total Turnout</th>
+                                <th class="py-3 px-4 text-right w-36">Top 10 Finishes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="club-stats-rows" class="divide-y divide-slate-800/40 text-sm font-medium">
+                            <!-- Injected by Stats Engine -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Global Dynamic Injected Footer -->
+    <div id="global-footer"></div>
+
+</body>
+</html>

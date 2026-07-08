@@ -1,0 +1,173 @@
+# VENUE: Oldfield Farm
+# DATE: 2026-01-04
+# DISTANCE: 4.04 Miles
+1 1380 Jonathan FORD 7046618 M V35 Fairwater Runners 00:25:00 1 1
+2 1297 Dane WILLIAMS 3970440 M Senior Parc Bryn Bach Rc 00:25:19 2 1
+3 1473 Daniel BODMAN 7021903 M V35 Parc Bryn Bach Rc 00:25:54 3 2
+4 8 Tim BATCHELOR 4003003 M V40 Chepstow Harriers 00:26:09 4 1
+5 692 Huw EVANS 2713167 M V50 Parc Bryn Bach Rc 00:26:23 5 1
+6 620 Adam GREY 7025566 M Senior Pont-Y-Pwl & District Runners 00:26:27 6 2
+7 755 Adam ROBERTS 7045130 M V35 Parc Bryn Bach Rc 00:26:30 7 3
+8 770 Paul WHITE 7035487 M V45 Parc Bryn Bach Rc 00:26:32 8 1
+9 1039 Lee DREW 7047275 M V35 Lliswerry Runners 00:26:43 9 4
+10 1508 Ashley MIDDLEWICK 3449021 M V35 Parc Bryn Bach Rc 00:26:54 10 5
+11 1470 Jed WHERLOCK 3863254 M Senior Lliswerry Runners 00:26:54 11 3
+12 1504 Mark HOBBS 7045676 M V35 Pont-Y-Pwl & District Runners 00:27:05 12 6
+13 860 Thomas WADE 4124855 M Senior Parc Bryn Bach Rc 00:27:16 13 4
+14 858 Sam JONES 7035151 M V40 Parc Bryn Bach Rc 00:27:18 14 2
+15 1471 Jeff WHERLOCK 7045883 M V55 Lliswerry Runners 00:27:25 15 1
+16 1102 Jack ROWLAND 7041325 M V35 Lliswerry Runners 00:27:37 16 7
+17 1482 Andrei ARCANA 4143324 M Senior Pont-Y-Pwl & District Runners 00:27:49 17 5
+18 1296 Martin THOMAS 7047529 M V35 Parc Bryn Bach Rc 00:27:53 18 8
+19 428 Eddie CAMPBELL-ADAMS 3321376 M V50 Lliswerry Runners 00:28:11 19 2
+20 779 Ryan WORLOCK-MORGAN 3970812 M Senior Parc Bryn Bach Rc 00:28:34 20 6
+21 1432 Dean JOHNSON 7034456 M V40 Caerleon Running Club 00:28:41 21 3
+22 546 Antoinette ROSE 7030068 F Senior Lliswerry Runners 00:28:48 1 1
+23 304 Shaun STYLES 7039281 M Senior Griffithstown Harriers 00:29:00 22 7
+24 658 Ricci WATTS 7030625 M V35 Pont-Y-Pwl & District Runners 00:29:00 23 9
+25 67 Tony MARSHALL 7047069 M V60 Chepstow Harriers 00:29:07 24 1
+26 14 Douglas BRIGGS 7039867 M V55 Chepstow Harriers 00:29:08 25 2
+27 490 Martin JOHNS 3890849 M V35 Lliswerry Runners 00:29:12 26 10
+28 1125 Saul COOKE-BLACK 4059153 M Senior Pont-Y-Pwl & District Runners 00:29:13 27 8
+29 1337 Christopher MARTEY 4084830 M V35 Chepstow Harriers 00:29:14 28 11
+30 1075 Ben SAUNDERS 4163318 M V40 Spirit Of Monmouth Rc 00:29:22 29 4
+31 1096 Daniel PRICE 7051254 M V40 Parc Bryn Bach Rc 00:29:32 30 5
+32 19 Jonathan CARTER 7034459 M V55 Chepstow Harriers 00:30:06 31 3
+33 1512 James ROBINSON 4211070 M V45 Spirit Of Monmouth Rc 00:30:18 32 2
+34 1489 Iestyn RHODES 7028978 M V45 Pont-Y-Pwl & District Runners 00:30:31 33 3
+35 1120 James KING 7021689 M V50 Fairwater Runners 00:30:37 34 3
+36 94 James TUCKER 7034614 M V45 Chepstow Harriers 00:30:38 35 4
+37 705 Kani HINSHELWOOD 3754942 F Senior Parc Bryn Bach Rc 00:30:41 2 2
+38 1507 Joseph WALBYOFF 4212016 M Senior Pont-Y-Pwl & District Runners 00:30:54 36 9
+39 756 Ethan SAYCE 7044485 M Senior Parc Bryn Bach Rc 00:31:09 37 10
+40 863 Nathan MALONEY 7034437 M V45 Pont-Y-Pwl & District Runners 00:31:12 38 5
+41 433 Sandra CHIPPER 7022353 F V50 Lliswerry Runners 00:31:13 3 1
+42 599 Emma WOOKEY 7022783 F Senior Lliswerry Runners 00:31:22 4 3
+43 33 Paul DODD 7026056 M V65 Chepstow Harriers 00:31:25 39 1
+44 1077 Matthew VISSER 4163320 M Senior Spirit Of Monmouth Rc 00:31:39 40 11
+45 1493 Lloyd DOWDEN 4202265 M V35 Caerleon Running Club 00:31:43 41 12
+46 31 Stephen DILLEY 2809193 M V45 Chepstow Harriers 00:31:44 42 6
+47 864 Katerina ADAMS 3919519 F V45 Spirit Of Monmouth Rc 00:31:45 5 1
+48 1113 Nicky TUDOR 4172454 M V40 Griffithstown Harriers 00:31:54 43 6
+49 634 Adrian MURKIN 7045744 M V55 Pont-Y-Pwl & District Runners 00:32:01 44 4
+50 1335 Jason LEWIS 4055071 M V40 Parc Bryn Bach Rc 00:32:09 45 7
+51 610 Ashley COLE 4067249 M Senior Pont-Y-Pwl & District Runners 00:32:16 46 12
+52 798 Kirk HILL 7026970 M V50 Spirit Of Monmouth Rc 00:32:17 47 4
+53 1474 Martin CHAMMINGS 7020737 M V45 Parc Bryn Bach Rc 00:32:25 48 7
+54 534 Christopher POTTER 7045880 M V60 Lliswerry Runners 00:32:34 49 2
+55 1095 Clare PATTERSON 7045895 F V45 Parc Bryn Bach Rc 00:32:53 6 2
+56 70 Niki MORGAN 7018521 F V55 Chepstow Harriers 00:32:57 7 1
+57 751 Kimberley PRICE 7040770 F V40 Parc Bryn Bach Rc 00:33:08 8 1
+58 809 Vicky ROBERTS 7043635 F V35 Spirit Of Monmouth Rc 00:33:20 9 1
+59 787 Lee DAVIES 4116990 M V45 Spirit Of Monmouth Rc 00:33:22 50 8
+60 1498 Chris O'BRIEN 7035705 M V50 Lliswerry Runners 00:33:34 51 5
+61 622 Lee HARVEY 4092018 M V55 Pont-Y-Pwl & District Runners 00:33:47 52 5
+62 302 Andrew STAMP 4066920 M V50 Griffithstown Harriers 00:33:55 53 6
+63 1503 Connor THURSTON 4218060 M Senior Parc Bryn Bach Rc 00:33:58 54 13
+64 1475 Scott GREAVES 4128643 M Senior Parc Bryn Bach Rc 00:34:00 55 14
+65 943 Paul JARMAN 4147472 M V50 Parc Bryn Bach Rc 00:34:01 56 7
+66 276 Jon LEWIS 7050903 M V50 Griffithstown Harriers 00:34:09 57 8
+67 1111 Charlotte HOLLAND WRIGHT 3210708 F V40 Griffithstown Harriers 00:34:10 10 2
+68 995 Spencer CLEASE 4155102 M V50 Parc Bryn Bach Rc 00:34:15 58 9
+69 1458 Christopher GUY 7050007 M V50 Lliswerry Runners 00:34:21 59 10
+70 249 Marc CROSS 7050902 M V40 Griffithstown Harriers 00:34:22 60 8
+71 681 Ian DAVIES 7042049 M V60 Parc Bryn Bach Rc 00:34:25 61 3
+72 865 Martin BLAKEBROUGH 3275618 M V60 Spirit Of Monmouth Rc 00:34:32 62 4
+73 144 Jason PRITCHARD 7037460 M V50 Caerleon Running Club 00:34:58 63 11
+74 1063 Karl COUGHLIN 3909552 M V45 Parc Bryn Bach Rc 00:35:06 64 9
+75 1485 Sean CLARKE 4217833 M V35 Pont-Y-Pwl & District Runners 00:35:25 65 13
+76 59 Lisa JEFFREY 7035108 F V50 Chepstow Harriers 00:35:30 11 2
+77 318 Colin WILMOTT 7029680 M V65 Griffithstown Harriers 00:35:33 66 2
+78 509 Phillip LEE 7050488 M V50 Lliswerry Runners 00:35:36 67 12
+79 1144 Rob BEVES 7029271 M V60 Chepstow Harriers 00:35:39 68 5
+80 830 Richard JONES 4054409 M V50 Griffithstown Harriers 00:35:41 69 13
+81 147 Liz RICHARDS 7024649 F V60 Caerleon Running Club 00:35:44 12 1
+82 43 Charlotte GILES 4033039 F Senior Chepstow Harriers 00:35:47 13 4
+83 790 James EXTON 7049220 M V50 Spirit Of Monmouth Rc 00:35:50 70 14
+84 719 Sian JONES 7035152 F Senior Parc Bryn Bach Rc 00:36:01 14 5
+85 146 Michael REEVES 7036539 M V40 Caerleon Running Club 00:36:10 71 9
+86 1486 Amelia DAVIES 7051772 F Senior Pont-Y-Pwl & District Runners 00:36:13 15 6
+87 388 Neil PROFIT 7041230 M V45 Islwyn Rc 00:36:15 72 10
+88 1098 Andrew SMITH 7041104 M V45 Griffithstown Harriers 00:36:17 73 11
+89 1139 Mark WALSH 2708143 M V60 Caerleon Running Club 00:36:20 74 6
+90 345 Dai HAMM 4123867 M V55 Islwyn Rc 00:36:23 75 6
+91 1289 Sarah JEREMIAH 7043980 F V50 Parc Bryn Bach Rc 00:36:30 16 3
+92 173 Phillip ALLSOPP 4044553 M V65 Fairwater Runners 00:37:11 76 3
+93 71 Jan MORRIS 7018254 F V55 Chepstow Harriers 00:37:20 17 2
+94 122 Gareth HART 7024651 M V55 Caerleon Running Club 00:37:34 77 7
+95 35 Caroline DUDER 3971520 F V45 Chepstow Harriers 00:37:52 18 3
+96 1079 Mike VISSER 4166055 M V60 Spirit Of Monmouth Rc 00:38:03 78 7
+97 84 Jane ROSCOE 2765012 F V55 Chepstow Harriers 00:38:16 19 3
+98 1135 Christian FORD 7047372 M Senior Caerleon Running Club 00:38:26 79 15
+99 1294 Justin PEARCE 4184507 M V45 Parc Bryn Bach Rc 00:38:37 80 12
+100 1244 Sarah KEMBREY 7036563 F V45 Lliswerry Runners 00:38:47 20 4
+101 1227 Jamie FRASER 7049846 M V45 Lliswerry Runners 00:38:48 81 13
+102 175 Andy BAKER 7049323 M V50 Fairwater Runners 00:38:51 82 15
+103 867 Renske BOUWENS 3929031 F V50 Spirit Of Monmouth Rc 00:38:51 21 4
+104 251 Keith DAVIES 4072717 M V55 Griffithstown Harriers 00:38:54 83 8
+105 174 Emma BAGLEY 3504213 F V50 Fairwater Runners 00:39:08 22 5
+106 789 Brian EVANS 3387609 M V50 Spirit Of Monmouth Rc 00:39:25 84 16
+107 314 Peter WELBIRG 7021146 M V70 Griffithstown Harriers 00:39:31 85 1
+108 1434 Mark POTTER 4212101 M V45 Caerleon Running Club 00:39:36 86 14
+109 1145 Gary BURLEY 3838510 M V60 Chepstow Harriers 00:39:40 87 8
+110 725 Tony LEWIS 7037480 M V55 Parc Bryn Bach Rc 00:39:43 88 9
+111 73 Richard NEWHOUSE 3304714 M V55 Chepstow Harriers 00:39:44 89 10
+112 1028 Andy BARRY 7036579 M V60 Lliswerry Runners 00:39:59 90 9
+113 151 Elizabeth SIMS 4064817 F V60 Caerleon Running Club 00:40:06 23 2
+114 1452 Rachel DOREL 7030159 F V40 Lliswerry Runners 00:40:19 24 3
+115 654 Martin STARK 3474546 M V55 Pont-Y-Pwl & District Runners 00:40:36 91 11
+116 30 Bridget DAVIES 7046709 F V55 Chepstow Harriers 00:40:54 25 4
+117 721 Joanne KILBY 3917223 F V50 Parc Bryn Bach Rc 00:41:02 26 6
+118 97 Andrew WALL 3205114 M V55 Chepstow Harriers 00:41:14 92 12
+119 108 Michelle CLABON 7040914 F V60 Caerleon Running Club 00:41:24 27 3
+120 1012 Hattie JENKINS 4153588 F V35 Caerleon Running Club 00:41:33 28 2
+121 1138 Daniel PHILLIPS 4148005 M V40 Caerleon Running Club 00:41:40 93 10
+122 76 Stephen OWEN 7036635 M V70 Chepstow Harriers 00:41:43 94 2
+123 203 Martyn JENKINS 7026165 M V65 Fairwater Runners 00:41:50 95 4
+124 1285 Matthew HARVEY-KNOWLES 4142389 M V35 Parc Bryn Bach Rc 00:41:58 96 14
+125 328 Sheryl CLARK 7045432 F V50 Islwyn Rc 00:42:05 29 7
+126 91 Pamela SUTER 7043214 F V50 Chepstow Harriers 00:42:26 30 8
+127 607 Marisa BENJAMIN 7041103 F V40 Pont-Y-Pwl & District Runners 00:42:33 31 4
+128 791 Sian FIELDING 4132178 F V55 Spirit Of Monmouth Rc 00:42:51 32 5
+129 813 Rachel WATERS 3966004 F V35 Spirit Of Monmouth Rc 00:42:53 33 3
+130 37 Stuart DUNCAN 7027376 M V65 Chepstow Harriers 00:43:03 97 5
+131 970 Martin DAVIES 7020100 M V65 Lliswerry Runners 00:43:05 98 6
+132 198 Adrian GWILLIAM 7022939 M V55 Fairwater Runners 00:43:11 99 13
+133 1511 Kirsty RHODES 7035190 F V40 Pont-Y-Pwl & District Runners 00:43:13 34 5
+134 333 Keith DAVIES 7039536 M V65 Islwyn Rc 00:43:16 100 7
+135 619 Michelle GOOCH 7034935 F V55 Pont-Y-Pwl & District Runners 00:43:23 35 6
+136 62 Mark JONES 4014334 M V55 Chepstow Harriers 00:43:25 101 14
+137 220 Mark PROSSER 7040886 M V50 Fairwater Runners 00:43:40 102 17
+138 1334 Gulesh KUMAR 4193399 M Senior Caerleon Running Club 00:43:47 103 16
+139 1089 Sam SKELTON 4032052 M Senior Caerleon Running Club 00:43:47 104 17
+140 410 Howard ATTWOOD 7020095 M V75 Lliswerry Runners 00:43:58 105 1
+141 1072 Cathy FLETCHER 3758136 F V50 Spirit Of Monmouth Rc 00:44:02 36 9
+142 409 Tracey ARTHUR 3985348 F V45 Lliswerry Runners 00:44:22 37 5
+143 66 Barbara MADDISON 3419961 F V65 Chepstow Harriers 00:44:24 38 1
+144 1483 Louise BRIGHT 7033959 F V45 Pont-Y-Pwl & District Runners 00:44:41 39 6
+145 495 Cheryl JONES 4037123 F V40 Lliswerry Runners 00:45:34 40 6
+146 50 Paul GRIFFITHS 3171750 M V70 Chepstow Harriers 00:46:02 106 3
+147 614 Michele DEAL 7035147 F V60 Pont-Y-Pwl & District Runners 00:47:03 41 4
+148 32 Alan DOBBS 7032011 M V45 Chepstow Harriers 00:47:30 107 15
+149 748 Laura PINNEY 4092262 F Senior Parc Bryn Bach Rc 00:48:01 42 7
+150 185 Alison DAVIS 7048725 F V60 Fairwater Runners 00:48:06 43 5
+151 609 Nicola BRUNNOCK 7034377 F V55 Pont-Y-Pwl & District Runners 00:48:37 44 7
+152 1457 Ken GOODGER 2660673 M V70 Lliswerry Runners 00:49:14 108 4
+153 184 John DAVIES 4093697 M V55 Fairwater Runners 00:49:19 109 15
+154 289 Jo PALING 7052695 F V45 Griffithstown Harriers 00:49:54 45 7
+155 5 Brenda AVERY 7018422 F V75+ Chepstow Harriers 00:50:05 46 1
+156 135 Aisling MORGAN 7036265 F V35 Caerleon Running Club 00:50:32 47 4
+157 1351 Sharron BURRIDGE 7044085 F V50 Chepstow Harriers 00:51:21 48 10
+158 949 Deborah FRANKLIN 4022501 F V60 Chepstow Harriers 00:51:36 49 6
+159 9 Jane BAYLISS 7018203 F V70 Chepstow Harriers 00:51:50 50 1
+160 1438 Charlie MATTHEWS 4207189 F Senior Fairwater Runners 00:52:15 51 8
+161 627 Susan LAWRENCE 3057122 F V70 Pont-Y-Pwl & District Runners 00:55:25 52 2
+162 179 Helen BROWN 4012636 F V65 Fairwater Runners 00:56:09 53 2
+163 38 Gill ELLIS 7018962 F V65 Chepstow Harriers 00:56:43 54 3
+164 993 Anne JENNER 7018257 F V60 Chepstow Harriers 00:56:54 55 7
+165 99 Jacqueline WEBB 7027125 F V60 Chepstow Harriers 00:57:14 56 8
+166 233 Suzanne WILLAMS 7034050 F V55 Fairwater Runners 00:58:59 57 8
+167 34 Elizabeth DOWNHAM 7041688 F V55 Chepstow Harriers 01:01:37 58 9
+168 92 Corinna TANNIAN 2873465 F V50 Chepstow Harriers 01:01:38 59 11
+169 49 Marg GRIFFITHS 3998405 F V70 Chepstow Harriers 01:04:13 60 3
+170 1309 Julie GEE 4118896 F V55 Spirit Of Monmouth Rc 01:04:16 61 10
