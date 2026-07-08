@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
- // 1. GENERATE FIXTURE NAVIGATION MATRIX & PER-RACE TURNOUT
+    // 1. GENERATE FIXTURE NAVIGATION MATRIX & PER-RACE TURNOUT
     const fixturesMap = {};
     records.forEach(row => {
         if (!row.discipline || !row.race_number) return;
@@ -25,7 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 date: row.date || '',
                 discipline: row.discipline,
                 race_number: row.race_number,
+                distance: row.distance || 'Unknown Distance',
                 runnersCount: 0,
+                menCount: 0,
+                womenCount: 0,
                 menWinner: 'N/A',
                 womenWinner: 'N/A',
                 status: row.status || 'Confirmed',
@@ -36,6 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Only count fields and stats if the fixture actually went ahead
         if (fixturesMap[key].status !== 'Cancelled' && row.pos > 0) {
             fixturesMap[key].runnersCount++;
+            
+            if (row.sex === 'M') fixturesMap[key].menCount++;
+            if (row.sex === 'F') fixturesMap[key].womenCount++;
             
             if (row.club) {
                 fixturesMap[key].clubTurnout[row.club] = (fixturesMap[key].clubTurnout[row.club] || 0) + 1;
@@ -97,6 +103,22 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
 
+                // Parse out split distances if they exist
+                let menDistance = fix.distance;
+                let womenDistance = fix.distance;
+                
+                if (fix.distance.toUpperCase().includes('MEN:') || fix.distance.toUpperCase().includes('WOMEN:')) {
+                    const distParts = fix.distance.split(',');
+                    distParts.forEach(part => {
+                        if (part.toUpperCase().includes('MEN:')) {
+                            menDistance = part.replace(/MEN\s*:/i, '').trim();
+                        }
+                        if (part.toUpperCase().includes('WOMEN:')) {
+                            womenDistance = part.replace(/WOMEN\s*:/i, '').trim();
+                        }
+                    });
+                }
+
                 const cardHtml = `
                     <div class="stat-card p-5 rounded-xl shadow-md flex flex-col justify-between border border-slate-800 hover:border-brand-500 transition-all">
                         <div>
@@ -121,9 +143,20 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <span class="block text-[10px] font-black uppercase tracking-wider text-slate-500">Women's Winner</span>
                                 <span class="text-xs font-bold text-slate-200 block mt-0.5">${fix.womenWinner}</span>
                             </div>
-                            <div class="flex justify-between pt-2 font-mono text-[11px] text-slate-400 border-t border-slate-800/40">
-                                <span>Total Field</span>
-                                <span class="font-bold text-slate-300">${fix.runnersCount} Finishers</span>
+                            
+                            <div class="pt-2 border-t border-slate-800/40 font-mono text-[10px] text-slate-400 space-y-0.5">
+                                <div class="flex justify-between text-[11px] text-slate-300 font-bold mb-1">
+                                    <span>Total Field</span>
+                                    <span>${fix.runnersCount} Finishers</span>
+                                </div>
+                                <div class="flex justify-between text-slate-500">
+                                    <span>Men's Race (${menDistance})</span>
+                                    <span>${fix.menCount} Ran</span>
+                                </div>
+                                <div class="flex justify-between text-slate-500">
+                                    <span>Women's Race (${womenDistance})</span>
+                                    <span>${fix.womenCount} Ran</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -136,7 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2. COMPILE INDIVIDUAL WINS (HALL OF FAME)
     const individualWins = {};
     records.forEach(row => {
-        if (parseInt(row.gender_pos, 10) === 1) {
+        if (row.status === 'Cancelled') return;
+        if (parseInt(row.gender_pos, 10) === 1 && row.pos > 0) {
             if (!individualWins[row.name]) {
                 individualWins[row.name] = { name: row.name, club: row.club, wins: 0, sex: row.sex };
             }
@@ -161,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. AGGREGATE CLUB MOBILISATION STATS
     const clubStats = {};
     records.forEach(row => {
-        if (!row.club) return;
+        if (!row.club || row.status === 'Cancelled' || row.pos === 0) return;
         if (!clubStats[row.club]) {
             clubStats[row.club] = { name: row.club, totalTurnout: 0, topTenFinishes: 0 };
         }
@@ -185,10 +219,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-// 4. CALCULATE AGE CATEGORY SEASON AWARDS (TOP 3) - SEPARATED BY GENDER
+    // 4. CALCULATE AGE CATEGORY SEASON AWARDS (TOP 3) - SEPARATED BY GENDER
     const categoryGroups = {};
     records.forEach(row => {
-        if (!row.age_cat || !row.cat_pos || !row.sex || row.status === 'Cancelled') return;
+        if (!row.age_cat || !row.cat_pos || !row.sex || row.status === 'Cancelled' || row.pos === 0) return;
         
         const catKey = `${row.sex.toUpperCase()}_${row.age_cat.toUpperCase()}`;
         
@@ -207,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 name: row.name,
                 club: row.club,
                 bestPos: currentPos,
-                posHistory: [currentPos] // Track all finishes to break ties
+                posHistory: [currentPos]
             };
         } else {
             categoryGroups[catKey].runners[row.name].posHistory.push(currentPos);
@@ -226,15 +260,10 @@ document.addEventListener("DOMContentLoaded", () => {
             
             const runnersInCat = Object.values(group.runners)
                 .sort((a, b) => {
-                    // 1. Sort primarily by best position achieved
                     if (a.bestPos !== b.bestPos) return a.bestPos - b.bestPos;
-                    
-                    // 2. Tie-breaker: Count how many times they achieved that best position
                     const aCount = a.posHistory.filter(p => p === a.bestPos).length;
                     const bCount = b.posHistory.filter(p => p === b.bestPos).length;
-                    if (aCount !== bCount) return bCount - aCount; // More wins wins
-                    
-                    // 3. Second tie-breaker: Total races completed (reward consistency)
+                    if (aCount !== bCount) return bCount - aCount;
                     return b.posHistory.length - a.posHistory.length;
                 })
                 .slice(0, 3);
