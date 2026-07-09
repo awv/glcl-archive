@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLCL Archive — Club Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="data.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#0066cc' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #030712; }
+        .hero-gradient { background: linear-gradient(to top, #030712 0%, rgba(3, 7, 18, 0.4) 60%, rgba(3, 7, 18, 0.1) 100%); }
+        .stat-card { background-color: #090d16; }
+    </style>
+</head>
+<body class="text-slate-300 font-sans antialiased">
+
+    <!-- GLOBAL NAVIGATION CONTAINER -->
+    <nav id="global-nav" class="border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <!-- Injected automatically via nav component script -->
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative h-[45vh] flex items-end overflow-hidden border-b border-slate-900">
+        <!-- Background Banner Photo -->
+        <img id="club-banner-img" src="assets/images/hero_placeholder.jpg" alt="Club Training Grid" class="absolute inset-0 w-full h-full object-cover object-top transform scale-105 filter brightness-[0.65] contrast-125">
+        <div class="absolute inset-0 hero-gradient"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-6 w-full pb-10 z-10">
+            <div class="flex items-center space-x-3 mb-3">
+                <div class="bg-brand-500 text-white font-black px-2.5 py-0.5 rounded text-xs tracking-tighter">CLUB PROFILE</div>
+                <span class="text-xs font-mono tracking-widest text-slate-400 uppercase">GLCL Member Group</span>
+            </div>
+            <h1 id="club-title" class="text-3xl md:text-5xl font-black text-slate-100 tracking-tight uppercase max-w-4xl">
+                Loading Club Profile...
+            </h1>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 space-y-16">
+
+        <!-- MACRO PERFORMANCE COUNTERS -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="stat-card p-6 rounded-xl border border-slate-800 shadow-xl">
+                <span class="block text-[10px] font-black uppercase tracking-widest text-slate-500">Total Race Appearances</span>
+                <span id="stat-turnout" class="text-3xl font-black text-slate-200 block mt-1">0</span>
+                <span class="text-[11px] text-slate-500 mt-0.5 block font-medium">Total multi-fixture scoring cards filled</span>
+            </div>
+            <div class="stat-card p-6 rounded-xl border border-slate-800 shadow-xl">
+                <span class="block text-[10px] font-black uppercase tracking-widest text-slate-500">Overall Fixture Wins</span>
+                <span id="stat-wins" class="text-3xl font-black text-amber-400 block mt-1">0</span>
+                <span class="text-[11px] text-slate-500 mt-0.5 block font-medium">Recorded outright 1st position finishes</span>
+            </div>
+            <div class="stat-card p-6 rounded-xl border border-slate-800 shadow-xl">
+                <span class="block text-[10px] font-black uppercase tracking-widest text-slate-500">Age Division Gold Badges</span>
+                <span id="stat-cat-wins" class="text-3xl font-black text-brand-500 block mt-1">0</span>
+                <span class="text-[11px] text-slate-500 mt-0.5 block font-medium">1st place finishes within age categories</span>
+            </div>
+        </section>
+
+        <!-- SQUAD LEADERBOARDS SPLIT -->
+        <section class="space-y-4">
+            <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Squad Leaderboards — Core Active Standings</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- MEN'S DIVISION PANEL -->
+                <div class="space-y-3">
+                    <h3 class="text-xs font-black tracking-wider text-sky-400 uppercase flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span> Men's Internal Roster
+                    </h3>
+                    <div class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-xl">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="border-b border-slate-900 font-black uppercase tracking-wider text-slate-500 bg-slate-900/40 text-[10px]">
+                                    <th class="py-3 px-4">Athlete Name</th>
+                                    <th class="py-3 px-4 text-center">Races Run</th>
+                                    <th class="py-3 px-4 text-right pr-6">Best Position</th>
+                                </tr>
+                            </thead>
+                            <tbody id="men-squad-rows" class="divide-y divide-slate-900/40">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- WOMEN'S DIVISION PANEL -->
+                <div class="space-y-3">
+                    <h3 class="text-xs font-black tracking-wider text-pink-400 uppercase flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-pink-400"></span> Women's Internal Roster
+                    </h3>
+                    <div class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-xl">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="border-b border-slate-900 font-black uppercase tracking-wider text-slate-500 bg-slate-900/40 text-[10px]">
+                                    <th class="py-3 px-4">Athlete Name</th>
+                                    <th class="py-3 px-4 text-center">Races Run</th>
+                                    <th class="py-3 px-4 text-right pr-6">Best Position</th>
+                                </tr>
+                            </thead>
+                            <tbody id="women-squad-rows" class="divide-y divide-slate-900/40">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CORE PROCESSING SCRIPTER -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Fetch shared navigation content block
+            fetch('components/nav.html')
+                .then(response => response.text())
+                .then(data => { document.getElementById('global-nav').innerHTML = data; })
+                .catch(err => console.error('Error loading navbar:', err));
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetClub = urlParams.get('name');
+
+            if (!targetClub) {
+                document.getElementById('club-title').textContent = "No Club Selected";
+                return;
+            }
+
+            // 1. Format the club name to lowercase-hyphenated string for the asset path
+            const clubSlug = targetClub.toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '') // Strip out special characters or punctuation
+                .trim()
+                .replace(/\s+/g, '-');        // Swap spaces out for clean hyphens
+
+            const bannerImg = document.getElementById('club-banner-img');
+            if (bannerImg) {
+                const customSrc = `assets/images/clubs/${clubSlug}.jpg`;
+                
+                // 2. Pre-flight check the image path; if it 404s, keep our default hero asset intact
+                const imgCheck = new Image();
+                imgCheck.src = customSrc;
+                imgCheck.onload = () => { bannerImg.src = customSrc; };
+            }
+
+            document.getElementById('club-title').textContent = targetClub;
+
+            const allRecords = window.glclResults || [];
+            
+            // Filter all historic data entries matching this specific club
+            const clubRecords = allRecords.filter(row => 
+                row.club && row.club.trim().toLowerCase() === targetClub.trim().toLowerCase() && row.pos > 0
+            );
+
+            // Compute high-level milestone metrics
+            let totalWins = 0;
+            let totalCatWins = 0;
+            const athleteMap = {};
+
+            clubRecords.forEach(row => {
+                if (parseInt(row.gender_pos, 10) === 1) totalWins++;
+                if (parseInt(row.cat_pos, 10) === 1) totalCatWins++;
+
+                // Build aggregate maps for the internal squad rosters
+                if (!athleteMap[row.name]) {
+                    athleteMap[row.name] = {
+                        name: row.name,
+                        sex: row.sex.toUpperCase(),
+                        racesRun: 0,
+                        bestPos: parseInt(row.pos, 10)
+                    };
+                }
+                
+                athleteMap[row.name].racesRun++;
+                const currentPos = parseInt(row.pos, 10);
+                if (currentPos < athleteMap[row.name].bestPos) {
+                    athleteMap[row.name].bestPos = currentPos;
+                }
+            });
+
+            // Write standard performance summaries
+            document.getElementById('stat-turnout').textContent = clubRecords.length;
+            document.getElementById('stat-wins').textContent = totalWins;
+            document.getElementById('stat-cat-wins').textContent = totalCatWins;
+
+            // Sort internal club rosters by total race involvement
+            const sortedSquad = Object.values(athleteMap).sort((a, b) => b.racesRun - a.racesRun);
+
+            const menContainer = document.getElementById('men-squad-rows');
+            const womenContainer = document.getElementById('women-squad-rows');
+
+            menContainer.innerHTML = '';
+            womenContainer.innerHTML = '';
+
+            sortedSquad.forEach(athlete => {
+                const trHtml = `
+                    <tr class="hover:bg-slate-900/20 transition-colors">
+                        <td class="py-3 px-4 font-bold text-slate-200">
+                            <a href="athlete.html?name=${encodeURIComponent(athlete.name)}" class="hover:text-brand-500 transition-colors">
+                                ${athlete.name}
+                            </a>
+                        </td>
+                        <td class="py-3 px-4 text-center font-mono text-slate-400 font-bold">${athlete.racesRun}</td>
+                        <td class="py-3 px-4 text-right font-mono pr-6 text-brand-500 font-bold">Pos ${athlete.bestPos}</td>
+                    </tr>
+                `;
+
+                if (athlete.sex === 'M') {
+                    menContainer.insertAdjacentHTML('beforeend', trHtml);
+                } else if (athlete.sex === 'F') {
+                    womenContainer.insertAdjacentHTML('beforeend', trHtml);
+                }
+            });
+
+            // Fallback for empty squads
+            if (menContainer.children.length === 0) {
+                menContainer.innerHTML = '<tr><td colspan="3" class="py-4 text-center text-slate-600">No male records logged.</td></tr>';
+            }
+            if (womenContainer.children.length === 0) {
+                womenContainer.innerHTML = '<tr><td colspan="3" class="py-4 text-center text-slate-600">No female records logged.</td></tr>';
+            }
+        });
+    </script>
+</body>
+</html>

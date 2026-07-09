@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 }
 
-const cardHtml = `
+                const cardHtml = `
                     <a href="results.html?season=${rawSeasonParam || '2025_2026'}&discipline=${disciplineParam}&race=${fix.race_number}" class="stat-card p-5 rounded-xl shadow-md flex flex-col justify-between border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all block group">
                         <div>
                             <div class="flex justify-between items-start mb-2">
@@ -207,7 +207,12 @@ const cardHtml = `
         topWinners.forEach(runner => {
             winnersContainer.insertAdjacentHTML('beforeend', `
                 <tr class="hover:bg-slate-900/20 transition-colors">
-                    <td class="py-3 px-4 font-bold text-slate-100">${runner.name} <span class="text-xs font-mono text-slate-500 ml-1">(${runner.sex})</span></td>
+                    <td class="py-3 px-4 font-bold text-slate-100">
+                        <a href="athlete.html?name=${encodeURIComponent(runner.name)}" class="hover:text-brand-500 transition-colors">
+                            ${runner.name}
+                        </a>
+                        <span class="text-xs font-mono text-slate-500 ml-1">(${runner.sex})</span>
+                    </td>
                     <td class="py-3 px-4 text-slate-400 text-xs font-semibold">${runner.club}</td>
                     <td class="py-3 px-4 text-right font-mono font-bold text-brand-500">${runner.wins}</td>
                 </tr>
@@ -298,7 +303,11 @@ const cardHtml = `
                     <div class="flex justify-between items-center text-xs py-1.5 ${idx !== 2 ? 'border-b border-slate-800/30' : ''}">
                         <div class="truncate pr-2">
                             <span class="mr-1.5">${medals[idx]}</span>
-                            <span class="font-bold text-slate-200">${runner.name}</span>
+                            <span class="font-bold text-slate-200">
+                                <a href="athlete.html?name=${encodeURIComponent(runner.name)}" class="hover:text-brand-500 transition-colors">
+                                    ${runner.name}
+                                </a>
+                            </span>
                             <span class="block text-[10px] text-slate-500 truncate font-semibold">${runner.club}</span>
                         </div>
                         <span class="font-mono text-slate-400 text-[11px] shrink-0">Pos ${idx + 1}</span>

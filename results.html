@@ -227,7 +227,7 @@
                         </td>
                         <td class="py-3 px-4 text-center font-black ${sexColor}">${row.sex}</td>
                         <td class="py-3 px-4 uppercase tracking-tight text-slate-400 font-medium">${row.age_cat || 'SEN'}</td>
-                        <td class="py-3 px-4 font-medium">${row.club}</td>
+                        <td class="py-3 px-4 font-medium"><a href="club.html?name=${encodeURIComponent(row.club)}" class="hover:text-brand-500 transition-colors">${row.club}</a></td>
                         <td class="py-2 px-4 text-center">${catPosHtml}</td>
                         <td class="py-3 px-4 text-center font-mono text-slate-400">Pos ${row.gender_pos}</td>
                         <td class="py-3 px-4 text-right font-mono font-bold pr-6 text-brand-500">${row.time}</td>
