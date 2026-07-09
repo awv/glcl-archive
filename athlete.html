@@ -23,7 +23,7 @@
 </head>
 <body class="text-slate-300 font-sans antialiased">
 
-        <!-- GLOBAL NAVIGATION CONTAINER -->
+    <!-- GLOBAL NAVIGATION CONTAINER -->
     <nav id="global-nav" class="border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
         <!-- Injected automatically -->
     </nav>
@@ -33,19 +33,43 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('global-nav').innerHTML = data;
-                // Fire a custom event to notify our page scripts that the nav bar is ready
                 window.dispatchEvent(new Event('navLoaded'));
             })
             .catch(err => console.error('Error loading navigation header:', err));
     </script>
 
-    <!-- PROFILE HERO BANNER -->
-    <header class="max-w-7xl mx-auto px-6 pt-10 pb-8 border-b border-slate-900">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-            <div>
-                <span id="athlete-club" class="text-xs font-mono font-bold text-brand-400 uppercase tracking-widest block">Club Runner</span>
-                <h1 id="athlete-name" class="text-3xl font-black text-slate-100 tracking-tight uppercase mt-1">Loading Athlete...</h1>
-                <p id="athlete-gender" class="text-xs font-semibold text-slate-500 mt-1 uppercase tracking-wider">Historical Career Analysis</p>
+    <!-- ATHLETE HERO BANNER WITH PURE CSS MESH PATTERN -->
+    <header class="relative w-full h-[220px] overflow-hidden border-b border-slate-900 bg-slate-950 flex items-end">
+        
+        <!-- Fine-grain CSS Dot Matrix Pattern -->
+        <div class="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#0066cc_1.5px,transparent_1.5px)] [background-size:20px_20px]"></div>
+        
+        <!-- Subtle deep blue ambient glow focused behind the text layout -->
+        <div class="absolute left-12 -bottom-24 w-96 h-96 bg-brand-500/10 rounded-full blur-[100px] pointer-events-none select-none"></div>
+        
+        <!-- Bottom Smooth Fade Transition -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent"></div>
+
+        <!-- Text Content Overlay Layer -->
+        <div class="relative max-w-7xl w-full mx-auto px-6 pb-6 z-10 space-y-1.5">
+            
+            <span id="athlete-club" class="text-xs font-black tracking-widest text-brand-500 uppercase block">
+                <!-- Injected by script -->
+            </span>
+            
+            <!-- Flex Wrapper to Keep Name and Badges Cleanly Aligned Inline -->
+            <div class="flex flex-wrap items-center gap-3">
+                <h1 id="athlete-name" class="text-3xl font-black text-slate-100 tracking-tight uppercase drop-shadow-md">
+                    <!-- Injected by script -->
+                </h1>
+                <div id="athlete-badges" class="flex flex-wrap gap-1.5"></div>
+            </div>
+            
+            <!-- Secondary Meta Target -->
+            <div class="flex items-center space-x-3 text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider">
+                <span id="athlete-gender">GENDER: —</span>
+                <span class="text-slate-800">•</span>
+                <span id="athlete-age-cat">AGE DIVISION PROFILE</span>
             </div>
         </div>
     </header>
@@ -99,7 +123,7 @@
                             </tr>
                         </thead>
                         <tbody id="history-rows" class="divide-y divide-slate-900/40 text-slate-300">
-                            <!-- Populated dynamically via script below -->
+                            <!-- Populated dynamically -->
                         </tbody>
                     </table>
                 </div>
@@ -120,11 +144,9 @@
 
             const allRecords = window.glclResults || [];
             
-            // Extract records for this specific athlete where they actually finished (pos > 0)
             const history = allRecords.filter(row => 
                 row.name && row.name.toLowerCase() === targetAthlete.toLowerCase() && row.pos > 0
             ).sort((a, b) => {
-                // Sort by season descending, then by race number descending
                 if (a.season !== b.season) return b.season.localeCompare(a.season);
                 return b.race_number - a.race_number;
             });
@@ -138,12 +160,14 @@
             const meta = history[0];
             document.getElementById('athlete-name').textContent = meta.name;
             document.getElementById('athlete-club').textContent = meta.club || "Unattached";
-            document.getElementById('athlete-gender').textContent = `Gender: ${meta.sex === 'M' ? 'Male' : 'Female'} • Age Division Profile`;
+            document.getElementById('athlete-gender').textContent = `Gender: ${meta.sex === 'M' ? 'Male' : 'Female'}`;
+            document.getElementById('athlete-age-cat').textContent = meta.age_cat ? `Category: ${meta.age_cat.toUpperCase()}` : "Age Division Profile";
 
             // Aggregation Computations
             let xcCount = 0;
             let roadCount = 0;
             let catWins = 0;
+            let overallWins = 0;
             let bestXcPos = Infinity;
             let bestRoadPos = Infinity;
             const venuesSet = new Set();
@@ -163,6 +187,10 @@
                 if (parseInt(row.cat_pos, 10) === 1) {
                     catWins++;
                 }
+
+                if (parseInt(row.gender_pos, 10) === 1) {
+                    overallWins++;
+                }
             });
 
             // Update Metric Text Blocks
@@ -177,7 +205,7 @@
             const tableBody = document.getElementById('history-rows');
             tableBody.innerHTML = '';
 
-history.forEach(row => {
+            history.forEach(row => {
                 const isXc = (row.discipline || '').toLowerCase() === 'xc';
                 const typeBadge = isXc 
                     ? '<span class="text-[10px] font-mono font-bold bg-brand-500/10 text-brand-400 px-2 py-0.5 rounded">XC</span>' 
@@ -196,7 +224,6 @@ history.forEach(row => {
                 if (catPosNum === 2) catPosHtml = '<span class="text-slate-300 font-bold">🥈 Pos 2</span>';
                 if (catPosNum === 3) catPosHtml = '<span class="text-amber-600 font-bold">🥉 Pos 3</span>';
 
-                // URL format mapping back to the results grid
                 const paramSeason = row.season.replace('/', '_');
                 const resultsUrl = `results.html?season=${paramSeason}&discipline=${row.discipline.toLowerCase()}&race=${row.race_number}`;
 
@@ -205,7 +232,6 @@ history.forEach(row => {
                         <td class="py-3 px-4 font-mono text-slate-400">${row.season}</td>
                         <td class="py-3 px-4">${typeBadge}</td>
                         <td class="py-3 px-4">
-                            <!-- Clickable fixture name deep-linking back to the full race results -->
                             <a href="${resultsUrl}" class="font-bold text-slate-200 uppercase tracking-tight hover:text-brand-500 transition-colors">
                                 Fixture ${row.race_number} — ${row.venue}
                             </a>
@@ -219,6 +245,58 @@ history.forEach(row => {
                 `;
                 tableBody.insertAdjacentHTML('beforeend', trHtml);
             });
+
+            // WIRE DYNAMIC MILESTONE BADGES UP TO COMPUTED DATA
+            const badgeContainer = document.getElementById('athlete-badges');
+            if (badgeContainer) {
+                badgeContainer.innerHTML = '';
+                
+                // 1. Outright Race Winner Badge (Highest Priority)
+                if (overallWins > 0) {
+                    badgeContainer.insertAdjacentHTML('beforeend', `
+                        <span class="inline-flex items-center text-[10px] font-mono font-black bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded uppercase tracking-wider animate-pulse">
+                            👑 Race Winner (${overallWins})
+                        </span>
+                    `);
+                }
+                
+                // 2. Category Wins Logic
+                if (catWins > 0) {
+                    if (catWins >= 5) {
+                        badgeContainer.insertAdjacentHTML('beforeend', `
+                            <span class="inline-flex items-center text-[10px] font-mono font-black bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded uppercase tracking-wider">
+                                🥇 Cat Dominator (${catWins})
+                            </span>
+                        `);
+                    } else {
+                        badgeContainer.insertAdjacentHTML('beforeend', `
+                            <span class="inline-flex items-center text-[10px] font-mono font-black bg-yellow-600/10 text-yellow-500 border border-yellow-600/20 px-2 py-0.5 rounded uppercase tracking-wider">
+                                🏅 Cat Winner
+                            </span>
+                        `);
+                    }
+                }
+
+                // 3. Loyalty Aggregation
+                const totalRaces = xcCount + roadCount;
+                if (totalRaces >= 10) {
+                    badgeContainer.insertAdjacentHTML('beforeend', `
+                        <span class="inline-flex items-center text-[10px] font-mono font-black bg-brand-500/10 text-brand-400 border border-brand-500/20 px-2 py-0.5 rounded uppercase tracking-wider">
+                            🛡️ League Veteran
+                        </span>
+                    `);
+                }
+
+                // 4. Peak Finisher Position Aggregation
+                const bestOverallPos = Math.min(bestXcPos, bestRoadPos);
+                if (bestOverallPos > 0 && bestOverallPos <= 10) {
+                    badgeContainer.insertAdjacentHTML('beforeend', `
+                        <span class="inline-flex items-center text-[10px] font-mono font-black bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2 py-0.5 rounded uppercase tracking-wider">
+                            ⚡ Top 10 Finisher
+                        </span>
+                    `);
+                }
+            }
         });
     </script>
 </body>

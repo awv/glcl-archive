@@ -67,6 +67,13 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
                 <!-- Properties Label Column (Hidden on Mobile) -->
                 <div class="hidden md:flex flex-col justify-between text-[10px] font-mono font-black uppercase tracking-wider text-slate-500 py-6 pl-4">
+                    
+                    <!-- MATCHING HEADER SPACER (Absorbs the club title layout height) -->
+                    <div class="text-sm uppercase tracking-tight font-sans text-transparent select-none pointer-events-none mb-4">
+                        Spacer Layout Alignment
+                    </div>
+
+                    <!-- Active Label Tracks -->
                     <div class="h-12 flex items-center">Active Squad Footprint</div>
                     <div class="h-12 flex items-center border-t border-slate-900">Total Race Finishes</div>
                     <div class="h-12 flex items-center border-t border-slate-900">The Packing Factor</div>
@@ -118,8 +125,45 @@
             </div>
         </section>
 
+        <!-- SECTION 3: REINSTATED SQUAD DEPTH & MOBILISATION BALANCE MODULE -->
+        <section class="space-y-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-900 pb-2">
+                <div>
+                    <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Club Demographics</h2>
+                    <h3 class="text-xl font-black text-slate-200 tracking-tight mt-0.5">Squad Depth & Mobilisation Balance</h3>
+                </div>
+                <p class="text-[11px] font-medium text-slate-500 md:text-right mt-1 font-mono">
+                    Proportional breakdowns of active race registrations by gender and age categories.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Female Mobilisation Card Block -->
+                <div class="bg-slate-950/40 border border-slate-900 rounded-xl p-6 shadow-md space-y-6">
+                    <div>
+                        <h4 class="text-xs font-black text-slate-200 uppercase tracking-wide">Female Mobilisation Leaders</h4>
+                        <p class="text-[11px] text-slate-500 font-medium mt-0.5">Clubs sorted by highest percentage of active female race finishes.</p>
+                    </div>
+                    <div id="female-leaderboard-rows" class="space-y-4">
+                        <!-- Populated dynamically via controller -->
+                    </div>
+                </div>
+
+                <!-- Veterans Split Card Block -->
+                <div class="bg-slate-950/40 border border-slate-900 rounded-xl p-6 shadow-md space-y-6">
+                    <div>
+                        <h4 class="text-xs font-black text-slate-200 uppercase tracking-wide">Veteran vs Senior Composition</h4>
+                        <p class="text-[11px] text-slate-500 font-medium mt-0.5">Proportional split between Master/Vet classes (V35+) and Senior categories.</p>
+                    </div>
+                    <div id="vets-leaderboard-rows" class="space-y-4">
+                        <!-- Populated dynamically via controller -->
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <!-- CONTROLLER SCRIPT -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             // Navigation Fetcher
@@ -320,6 +364,61 @@
 
                 selectA.addEventListener('change', (e) => updateComparisonCard(e.target.value, 'a'));
                 selectB.addEventListener('change', (e) => updateComparisonCard(e.target.value, 'b'));
+            }
+
+ // 4. Render Dynamic Demographic Leaderboard Rows for ALL Clubs
+            const clubList = Object.values(clubProfiles).filter(c => c.finishesCount >= 1);
+
+            // A. Render ALL Female Mobilisation Row Elements
+            const femaleContainer = document.getElementById('female-leaderboard-rows');
+            if (femaleContainer) {
+                femaleContainer.innerHTML = '';
+                const sortedByFemale = [...clubList].sort((a, b) => {
+                    const pctA = a.femaleCount / a.finishesCount;
+                    const pctB = b.femaleCount / b.finishesCount;
+                    return pctB - pctA;
+                }); // Removed .slice(0, 5) to output everything
+
+                sortedByFemale.forEach(club => {
+                    const pct = Math.round((club.femaleCount / club.finishesCount) * 100);
+                    femaleContainer.insertAdjacentHTML('beforeend', `
+                        <div class="space-y-1 font-mono text-xs">
+                            <div class="flex justify-between font-bold text-slate-300">
+                                <span class="font-sans font-extrabold tracking-tight">${club.name}</span>
+                                <span><span class="text-pink-500">${pct}%</span> <span class="text-[10px] text-slate-600 uppercase font-sans font-normal">Female</span></span>
+                            </div>
+                            <div class="w-full h-2 rounded bg-sky-500 overflow-hidden flex">
+                                <div class="bg-pink-500 h-full" style="width: ${pct}%"></div>
+                            </div>
+                        </div>
+                    `);
+                });
+            }
+
+            // B. Render ALL Veteran vs Senior Row Elements
+            const vetsContainer = document.getElementById('vets-leaderboard-rows');
+            if (vetsContainer) {
+                vetsContainer.innerHTML = '';
+                const sortedByVets = [...clubList].sort((a, b) => {
+                    const pctA = a.vetsCount / a.finishesCount;
+                    const pctB = b.vetsCount / b.finishesCount;
+                    return pctB - pctA;
+                }); // Removed .slice(0, 5) to output everything
+
+                sortedByVets.forEach(club => {
+                    const pct = Math.round((club.vetsCount / club.finishesCount) * 100);
+                    vetsContainer.insertAdjacentHTML('beforeend', `
+                        <div class="space-y-1 font-mono text-xs">
+                            <div class="flex justify-between font-bold text-slate-300">
+                                <span class="font-sans font-extrabold tracking-tight">${club.name}</span>
+                                <span><span class="text-brand-500">${pct}%</span> <span class="text-[10px] text-slate-600 uppercase font-sans font-normal">Vets</span></span>
+                            </div>
+                            <div class="w-full h-2 rounded bg-slate-800 overflow-hidden flex">
+                                <div class="bg-brand-500 h-full" style="width: ${pct}%"></div>
+                            </div>
+                        </div>
+                    `);
+                });
             }
         });
     </script>
