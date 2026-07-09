@@ -12,18 +12,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. FILTER MASTER RECORDS TO THE EXACT CAMPAIGN SERIES
     const allRecords = window.glclResults || [];
-    const records = allRecords.filter(row => 
+    let records = allRecords.filter(row => 
         row.season === selectedSeason && 
         row.discipline.toLowerCase() === disciplineParam.toLowerCase()
     );
     
     console.log(`Stats Engine loaded. Filtered to ${selectedSeason} (${disciplineParam.toUpperCase()}). Processing ${records.length} records.`);
     
-    // Dynamically update headings
+    // Dynamically update headings and hero banner photography paths
     const dashboardTitle = document.getElementById('dashboard-title');
+    const dashboardHeroBg = document.getElementById('dashboard-hero-bg');
+    
     if (dashboardTitle) {
-        const displayDiscipline = disciplineParam.toUpperCase() === 'XC' ? 'CROSS COUNTRY' : 'ROAD';
+        const displayDiscipline = disciplineParam.toLowerCase() === 'xc' ? 'CROSS COUNTRY' : 'ROAD';
         dashboardTitle.textContent = `${selectedSeason} ${displayDiscipline} SEASON`;
+        
+        // Match path configuration variables to your folder assets:
+        if (dashboardHeroBg) {
+            const cleanSeason = selectedSeason.replace('/', '_'); // e.g., "2025_2026"
+            const disciplineType = disciplineParam.toLowerCase(); // e.g., "xc" or "road"
+            
+            // Expected folder lookup: assets/images/banners/2025_2026_xc.jpg
+            dashboardHeroBg.src = `assets/images/banners/${cleanSeason}_${disciplineType}.jpg`;
+            
+            // Graceful fallback if a specific image file isn't uploaded yet
+            dashboardHeroBg.onerror = () => {
+                dashboardHeroBg.src = 'assets/images/banners/default.jpg';
+            };
+        }
     }
     
     // Elements
@@ -32,7 +48,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const clubContainer = document.getElementById('club-stats-rows');
     const podiumsContainer = document.getElementById('category-podiums-grid');
 
+    // Safe clear function for UI elements
+    const clearUIContainers = () => {
+        if (fixtureGrid) fixtureGrid.innerHTML = '';
+        if (winnersContainer) winnersContainer.innerHTML = '';
+        if (clubContainer) clubContainer.innerHTML = '';
+        if (podiumsContainer) podiumsContainer.innerHTML = '';
+    };
+
+    // Handle an empty campaign year cleanly without breaking or rewriting URLs
     if (records.length === 0) {
+        clearUIContainers();
+        if (fixtureGrid) {
+            fixtureGrid.innerHTML = `
+                <div class="col-span-full stat-card p-8 rounded-xl border border-slate-800 text-center space-y-2">
+                    <p class="text-sm font-bold text-slate-400 uppercase tracking-wide">No Fixture Results Found</p>
+                    <p class="text-xs text-slate-500 font-medium max-w-md mx-auto">
+                        There are currently no recorded ${disciplineParam.toUpperCase()} fixtures or results compiled for the ${selectedSeason} campaign.
+                    </p>
+                </div>
+            `;
+        }
         return;
     }
 
@@ -59,7 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
             };
         }
         
-        // Only count fields and stats if the fixture actually went ahead
         if (fixturesMap[key].status !== 'Cancelled' && row.pos > 0) {
             fixturesMap[key].runnersCount++;
             
@@ -90,7 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            // Render logic based on cancellation state
             if (fix.status === 'Cancelled') {
                 const cancelledHtml = `
                     <div class="stat-card p-5 rounded-xl shadow-md flex flex-col justify-between border border-red-900/30 bg-red-950/5 relative overflow-hidden opacity-60">
@@ -102,12 +136,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             <h4 class="text-base font-black text-slate-400 tracking-tight uppercase line-through">${fix.venue}</h4>
                             <p class="text-xs font-medium text-slate-600 mt-0.5">${formattedDate}</p>
                         </div>
-                        
                         <div class="mt-8 mb-4 text-center py-4 border border-dashed border-red-900/20 rounded-lg">
                             <span class="text-[11px] font-bold text-red-400/80 uppercase tracking-wider block">Fixture Cancelled</span>
-                            <span class="text-[10px] text-slate-500 block mt-0.5 font-medium">Weather / Safety conditions</span>
                         </div>
-                        
                         <div class="pt-2 font-mono text-[11px] text-slate-600 border-t border-slate-900/20 flex justify-between">
                             <span>Total Field</span>
                             <span class="font-bold">0 Finishers</span>
@@ -116,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 `;
                 fixtureGrid.insertAdjacentHTML('beforeend', cancelledHtml);
             } else {
-                // Standard Confirmed Card Output
                 let topClubStr = 'None';
                 let maxClubCount = 0;
                 Object.entries(fix.clubTurnout).forEach(([clubName, count]) => {
@@ -126,7 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
 
-                // Parse out split distances if they exist
                 let menDistance = fix.distance;
                 let womenDistance = fix.distance;
                 
@@ -143,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 const cardHtml = `
-                    <a href="results.html?season=${rawSeasonParam || '2025_2026'}&discipline=${disciplineParam}&race=${fix.race_number}" class="stat-card p-5 rounded-xl shadow-md flex flex-col justify-between border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all block group">
+                   <a href="results.html?season=${selectedSeason.replace('/', '_')}&discipline=${disciplineParam.toLowerCase()}&race=${fix.race_number}" class="stat-card p-5 rounded-xl shadow-md flex flex-col justify-between border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all block group">
                         <div>
                             <div class="flex justify-between items-start mb-2">
                                 <span class="text-[10px] font-black tracking-widest text-slate-400 uppercase">Fixture ${fix.race_number}</span>
@@ -166,19 +195,10 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <span class="block text-[10px] font-black uppercase tracking-wider text-slate-500">Women's Winner</span>
                                 <span class="text-xs font-bold text-slate-200 block mt-0.5">${fix.womenWinner}</span>
                             </div>
-                            
                             <div class="pt-2 border-t border-slate-800/40 font-mono text-[10px] text-slate-400 space-y-0.5">
                                 <div class="flex justify-between text-[11px] text-slate-300 font-bold mb-1">
                                     <span>Total Field</span>
                                     <span>${fix.runnersCount} Finishers</span>
-                                </div>
-                                <div class="flex justify-between text-slate-500">
-                                    <span>Men's Race (${menDistance})</span>
-                                    <span>${fix.menCount} Ran</span>
-                                </div>
-                                <div class="flex justify-between text-slate-500">
-                                    <span>Women's Race (${womenDistance})</span>
-                                    <span>${fix.womenCount} Ran</span>
                                 </div>
                             </div>
                         </div>
@@ -211,7 +231,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <a href="athlete.html?name=${encodeURIComponent(runner.name)}" class="hover:text-brand-500 transition-colors">
                             ${runner.name}
                         </a>
-                        <span class="text-xs font-mono text-slate-500 ml-1">(${runner.sex})</span>
                     </td>
                     <td class="py-3 px-4 text-slate-400 text-xs font-semibold">${runner.club}</td>
                     <td class="py-3 px-4 text-right font-mono font-bold text-brand-500">${runner.wins}</td>
@@ -247,13 +266,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 4. CALCULATE AGE CATEGORY SEASON AWARDS (TOP 3) - SEPARATED BY GENDER
+    // 4. CALCULATE AGE CATEGORY SEASON AWARDS
     const categoryGroups = {};
     records.forEach(row => {
         if (!row.age_cat || !row.cat_pos || !row.sex || row.status === 'Cancelled' || row.pos === 0) return;
         
         const catKey = `${row.sex.toUpperCase()}_${row.age_cat.toUpperCase()}`;
-        
         if (!categoryGroups[catKey]) {
             categoryGroups[catKey] = {
                 displayCat: row.age_cat.toUpperCase(),
@@ -263,7 +281,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         const currentPos = parseInt(row.cat_pos, 10);
-        
         if (!categoryGroups[catKey].runners[row.name]) {
             categoryGroups[catKey].runners[row.name] = {
                 name: row.name,
@@ -281,17 +298,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (podiumsContainer) {
         podiumsContainer.innerHTML = '';
-        const sortedKeys = Object.keys(categoryGroups).sort((a, b) => a.localeCompare(b));
-
-        sortedKeys.forEach(key => {
+        Object.keys(categoryGroups).sort().forEach(key => {
             const group = categoryGroups[key];
-            
             const runnersInCat = Object.values(group.runners)
                 .sort((a, b) => {
                     if (a.bestPos !== b.bestPos) return a.bestPos - b.bestPos;
-                    const aCount = a.posHistory.filter(p => p === a.bestPos).length;
-                    const bCount = b.posHistory.filter(p => p === b.bestPos).length;
-                    if (aCount !== bCount) return bCount - aCount;
                     return b.posHistory.length - a.posHistory.length;
                 })
                 .slice(0, 3);
@@ -303,12 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="flex justify-between items-center text-xs py-1.5 ${idx !== 2 ? 'border-b border-slate-800/30' : ''}">
                         <div class="truncate pr-2">
                             <span class="mr-1.5">${medals[idx]}</span>
-                            <span class="font-bold text-slate-200">
-                                <a href="athlete.html?name=${encodeURIComponent(runner.name)}" class="hover:text-brand-500 transition-colors">
-                                    ${runner.name}
-                                </a>
-                            </span>
-                            <span class="block text-[10px] text-slate-500 truncate font-semibold">${runner.club}</span>
+                            <span class="font-bold text-slate-200">${runner.name}</span>
                         </div>
                         <span class="font-mono text-slate-400 text-[11px] shrink-0">Pos ${idx + 1}</span>
                     </div>
@@ -316,21 +322,14 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             const genderBadgeColor = group.gender === 'Men' ? 'text-sky-400 bg-sky-500/10' : 'text-pink-400 bg-pink-500/10';
-
             const blockHtml = `
                 <div class="leaderboard-box p-4 rounded-xl shadow-md border border-slate-800 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-center border-b border-slate-800 pb-2 mb-2">
-                            <h4 class="text-xs font-black text-brand-500 uppercase tracking-widest">
-                                Category ${group.displayCat}
-                            </h4>
-                            <span class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded ${genderBadgeColor}">
-                                ${group.gender}
-                            </span>
+                            <h4 class="text-xs font-black text-brand-500 uppercase tracking-widest">Category ${group.displayCat}</h4>
+                            <span class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded ${genderBadgeColor}">${group.gender}</span>
                         </div>
-                        <div class="space-y-1">
-                            ${rowsHtml}
-                        </div>
+                        <div class="space-y-1">${rowsHtml}</div>
                     </div>
                 </div>
             `;
