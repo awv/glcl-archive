@@ -110,26 +110,52 @@
         </section>
 
 
-        <!-- 2024/2025 SEASON CAMPAIGN ROW -->
-        <section class="space-y-4">
+        <!-- 2024/2025 CAMPAIGN SECTION -->
+        <div class="space-y-4">
             <div class="border-b border-slate-900 pb-2">
-                <span class="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase">Season Campaign</span>
-                <h3 class="text-lg font-black text-slate-400 uppercase tracking-tight">2024 / 2025</h3>
+                <span class="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase block">Season Campaign</span>
+                <h3 class="text-xl font-black text-slate-200 tracking-tight">2024 / 2025</h3>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Season Card 2024/2025 Placeholder -->
-                <div class="group block bg-slate-950 border border-slate-900 rounded-xl overflow-hidden shadow-xl opacity-40 relative">
-                    <div class="h-44 bg-slate-900 relative overflow-hidden border-b border-slate-900 flex items-center justify-center">
-                        <span class="text-[10px] font-mono font-bold text-slate-400 bg-slate-900 border border-slate-800 px-2 py-1 rounded tracking-wider uppercase z-10">Archive Pending</span>
+            <!-- GRID CONTAINER -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                
+                <!-- CROSS COUNTRY CARD -->
+                <a href="season.html?season=2024_2025&discipline=xc" class="stat-card rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all flex flex-col justify-between group h-full">
+                    <div>
+                        <!-- Changed h-48 to h-64 to match the top row image aspect ratio -->
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="assets/images/seasons/2024_2025/xc_card.jpg" alt="2024/25 Cross Country" class="w-full h-full object-cover object-top filter brightness-[0.65] contrast-110 group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h4 class="font-black text-slate-100 tracking-tight uppercase group-hover:text-brand-500 transition-colors text-sm md:text-base">Cross Country Series</h4>
+                                <p class="text-xs text-slate-500 mt-1 font-medium">Mud, spikes, and team turnout matrices across all fixtures.</p>
+                            </div>
+                            <span class="text-[10px] font-mono font-bold tracking-wider text-brand-500 bg-brand-500/10 px-2 py-0.5 rounded shrink-0 mt-0.5">XC</span>
+                        </div>
                     </div>
-                    <div class="p-5 space-y-1">
-                        <h4 class="text-base font-black text-slate-400 uppercase">Series Archives</h4>
-                        <p class="text-xs text-slate-600 font-medium">Historical text compilation pending folder upload.</p>
+                </a>
+
+                <!-- ROAD RUNNING CARD -->
+                <a href="season.html?season=2024_2025&discipline=road" class="stat-card rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all flex flex-col justify-between group h-full">
+                    <div>
+                        <!-- Changed h-48 to h-64 to match the top row image aspect ratio -->
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="assets/images/seasons/2024_2025/road_card.jpg" alt="2024/25 Road Running" class="w-full h-full object-cover object-top filter brightness-[0.65] contrast-110 group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h4 class="font-black text-slate-100 tracking-tight uppercase group-hover:text-brand-500 transition-colors text-sm md:text-base">Road Running Series</h4>
+                                <p class="text-xs text-slate-500 mt-1 font-medium">Tarmac standings, flat out pacing profiles, and road club mobilisation metrics.</p>
+                            </div>
+                            <span class="text-[10px] font-mono font-bold tracking-wider text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded shrink-0 mt-0.5">ROAD</span>
+                        </div>
                     </div>
-                </div>
+                </a>
+
             </div>
-        </section>
+        </div>
 
     </main>
 </body>
