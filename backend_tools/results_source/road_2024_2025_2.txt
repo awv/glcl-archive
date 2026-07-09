@@ -12,7 +12,7 @@
 7 8 Tim BATCHELOR 4003003 M V40 Chepstow Harriers 00:30:00 7 2
 8 525 Martin NORTON 7037293 M Senior Lliswerry Runners 00:30:09 8 3
 9 455 Lee DREW 7047275 M Senior Lliswerry Runners 00:30:15 9 4
-10 492 †† Richard JONES 7036850 M V50 Lliswerry Runners 00:30:22 10 1
+10 492 Richard JONES 7036850 M V50 Lliswerry Runners 00:30:22 10 1
 11 770 Paul WHITE 7035487 M V45 Parc Bryn Bach Rc 00:30:44 11 1
 12 893 William CARTER 3895886 M Senior Chepstow Harriers 00:30:47 12 5
 13 860 Thomas WADE 4124855 M Senior Parc Bryn Bach Rc 00:30:49 13 6

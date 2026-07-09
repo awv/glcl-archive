@@ -118,6 +118,63 @@
                 </div>
             </div>
         </section>
+
+<!-- THE PROGRESSION INDEX (MOST IMPROVED SQUAD MEMBERS) -->
+        <section class="space-y-6 pt-6 border-t border-slate-900">
+            <div>
+                <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">The Progression Index</h2>
+                <h3 class="text-xl font-black text-slate-200 tracking-tight mt-0.5">Most Improved Athletes</h3>
+                <p class="text-[11px] font-medium text-slate-500 mt-0.5 font-mono">
+                    Calculated by tracking the increase in the percentage of the field an athlete beats between their debut and career peak.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- CROSS COUNTRY IMPROVERS -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-black tracking-wider text-brand-400 uppercase flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span> Cross Country Climbers
+                    </h4>
+                    <div class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-xl">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="border-b border-slate-900 font-black uppercase tracking-wider text-slate-500 bg-slate-900/40 text-[10px]">
+                                    <th class="py-3 px-4">Athlete Name</th>
+                                    <th class="py-3 px-4 text-center">Debut Fit</th>
+                                    <th class="py-3 px-4 text-center">Peak Fit</th>
+                                    <th class="py-3 px-4 text-right pr-6">Field Gain</th>
+                                </tr>
+                            </thead>
+                            <tbody id="xc-improvement-rows" class="divide-y divide-slate-900/40 text-slate-300">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ROAD IMPROVERS -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-black tracking-wider text-amber-500 uppercase flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Road Climbers
+                    </h4>
+                    <div class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-xl">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="border-b border-slate-900 font-black uppercase tracking-wider text-slate-500 bg-slate-900/40 text-[10px]">
+                                    <th class="py-3 px-4">Athlete Name</th>
+                                    <th class="py-3 px-4 text-center">Debut Fit</th>
+                                    <th class="py-3 px-4 text-center">Peak Fit</th>
+                                    <th class="py-3 px-4 text-right pr-6">Field Gain</th>
+                                </tr>
+                            </thead>
+                            <tbody id="road-improvement-rows" class="divide-y divide-slate-900/40 text-slate-300">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- CORE PROCESSING SCRIPTER -->
@@ -137,17 +194,15 @@
                 return;
             }
 
-            // 1. Format the club name to lowercase-hyphenated string for the asset path
             const clubSlug = targetClub.toLowerCase()
-                .replace(/[^a-z0-9\s-]/g, '') // Strip out special characters or punctuation
+                .replace(/[^a-z0-9\s-]/g, '')
                 .trim()
-                .replace(/\s+/g, '-');        // Swap spaces out for clean hyphens
+                .replace(/\s+/g, '-');
 
             const bannerImg = document.getElementById('club-banner-img');
             if (bannerImg) {
                 const customSrc = `assets/images/clubs/${clubSlug}.jpg`;
                 
-                // 2. Pre-flight check the image path; if it 404s, keep our default hero asset intact
                 const imgCheck = new Image();
                 imgCheck.src = customSrc;
                 imgCheck.onload = () => { bannerImg.src = customSrc; };
@@ -157,15 +212,14 @@
 
             const allRecords = window.glclResults || [];
             
-            // Filter all historic data entries matching this specific club
             const clubRecords = allRecords.filter(row => 
                 row.club && row.club.trim().toLowerCase() === targetClub.trim().toLowerCase() && row.pos > 0
             );
 
-            // Compute high-level milestone metrics
             let totalWins = 0;
             let totalCatWins = 0;
             const athleteMap = {};
+            const runnerHistory = {};
 
             clubRecords.forEach(row => {
                 if (parseInt(row.gender_pos, 10) === 1) totalWins++;
@@ -178,7 +232,7 @@
                         sex: row.sex.toUpperCase(),
                         racesRun: 0,
                         bestPos: parseInt(row.pos, 10),
-                        bestGenderPos: parseInt(row.gender_pos, 10) // Track gender position
+                        bestGenderPos: parseInt(row.gender_pos, 10)
                     };
                 }
                 
@@ -193,6 +247,15 @@
                 if (currentGenderPos < athleteMap[row.name].bestGenderPos) {
                     athleteMap[row.name].bestGenderPos = currentGenderPos;
                 }
+
+                // Track chronological timeline arrays for improvement indexes
+                if (!runnerHistory[row.name]) {
+                    runnerHistory[row.name] = [];
+                }
+                runnerHistory[row.name].push({
+                    pos: currentPos,
+                    sortKey: `${row.season}_${row.race_number}`
+                });
             });
 
             // Write standard performance summaries
@@ -210,7 +273,6 @@
             womenContainer.innerHTML = '';
 
             sortedSquad.forEach(athlete => {
-                // Generate the row with both overall and gender-specific columns
                 const trHtml = `
                     <tr class="hover:bg-slate-900/20 transition-colors">
                         <td class="py-3 px-4 font-bold text-slate-200">
@@ -230,6 +292,121 @@
                     womenContainer.insertAdjacentHTML('beforeend', trHtml);
                 }
             });
+
+// 1. Calculate the total size of every individual race to serve as our percentage denominator
+            const raceSizes = {};
+            allRecords.forEach(row => {
+                if (!row.pos || parseInt(row.pos, 10) === 0) return;
+                const raceKey = `${row.season}_${row.discipline.toLowerCase()}_${row.race_number}`;
+                raceSizes[raceKey] = (raceSizes[raceKey] || 0) + 1;
+            });
+
+            // 2. Separate athlete history collections by discipline tracker
+            const xcHistory = {};
+            const roadHistory = {};
+
+            clubRecords.forEach(row => {
+                const disc = (row.discipline || '').toLowerCase();
+                if (disc !== 'xc' && disc !== 'road') return;
+
+                const raceKey = `${row.season}_${disc}_${row.race_number}`;
+                const totalField = raceSizes[raceKey] || 0;
+                if (totalField === 0) return;
+
+                // Mathematical Formula: Percentage of field beaten by this runner
+                // e.g., Finished 10th out of 100 = ((100 - 10) / 99) * 100 = 90.9% of the field beaten
+                const currentPos = parseInt(row.pos, 10);
+                const fieldBeatenPct = totalField > 1 
+                    ? ((totalField - currentPos) / (totalField - 1)) * 100 
+                    : 100;
+
+                const targetMap = (disc === 'xc') ? xcHistory : roadHistory;
+                if (!targetMap[row.name]) {
+                    targetMap[row.name] = [];
+                }
+
+                targetMap[row.name].push({
+                    pos: currentPos,
+                    fieldSize: totalField,
+                    score: fieldBeatenPct,
+                    sortKey: `${row.season}_${row.race_number}`
+                });
+            });
+
+            // 3. Helper processor to compile and sort improvers mathematically
+            function processDisciplineImprovers(historyMap) {
+                const list = [];
+
+                Object.entries(historyMap).forEach(([athleteName, finishes]) => {
+                    // Require at least 3 appearances in that specific discipline for an authentic trend
+                    if (finishes.length < 3) return;
+
+                    // Order chronologically oldest to newest
+                    finishes.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+
+                    const debutScore = finishes[0].score;
+                    const debutPos = finishes[0].pos;
+                    const debutField = finishes[0].fieldSize;
+
+                    // Find their highest ever field beating percentage performance
+                    let peakPerformance = finishes[0];
+                    finishes.forEach(f => {
+                        if (f.score > peakPerformance.score) {
+                            peakPerformance = f;
+                        }
+                    });
+
+                    const netGainPct = peakPerformance.score - debutScore;
+
+                    // Only push if they genuinely improved their relative field standing
+                    if (netGainPct > 0.5) {
+                        list.push({
+                            name: athleteName,
+                            debutDisplay: `Pos ${debutPos}/${debutField}`,
+                            peakDisplay: `Pos ${peakPerformance.pos}/${peakPerformance.fieldSize}`,
+                            gained: Math.round(netGainPct)
+                        });
+                    }
+                });
+
+                // Sort largest percentage gainers to the top
+                return list.sort((a, b) => b.gained - a.gained).slice(0, 10);
+            }
+
+            const topXcImprovers = processDisciplineImprovers(xcHistory);
+            const topRoadImprovers = processDisciplineImprovers(roadHistory);
+
+            // 4. Render Layout Rows to the browser nodes
+            function renderImproversTable(dataList, containerId) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+
+                container.innerHTML = '';
+                if (dataList.length === 0) {
+                    container.innerHTML = `<tr><td colspan="4" class="py-4 text-center text-slate-600 font-mono">No multi-race progression trends recorded.</td></tr>`;
+                    return;
+                }
+
+                dataList.forEach(athlete => {
+                    container.insertAdjacentHTML('beforeend', `
+                        <tr class="hover:bg-slate-900/20 transition-colors">
+                            <td class="py-3 px-4 font-bold text-slate-200">
+                                <a href="athlete.html?name=${encodeURIComponent(athlete.name)}" class="hover:text-brand-500 transition-colors">
+                                    ${athlete.name}
+                                </a>
+                            </td>
+                            <td class="py-3 px-4 text-center font-mono text-slate-500">${athlete.debutDisplay}</td>
+                            <td class="py-3 px-4 text-center font-mono text-emerald-400 font-bold">${athlete.peakDisplay}</td>
+                            <td class="py-3 px-4 text-right font-mono font-black pr-6 text-brand-500">
+                                📈 +${athlete.gained}% field
+                            </td>
+                        </tr>
+                    `);
+                });
+            }
+
+            renderImproversTable(topXcImprovers, 'xc-improvement-rows');
+            renderImproversTable(topRoadImprovers, 'road-improvement-rows');
         });
     </script>
 </body>

@@ -258,7 +258,11 @@ document.addEventListener("DOMContentLoaded", () => {
         rankedClubs.forEach(club => {
             clubContainer.insertAdjacentHTML('beforeend', `
                 <tr class="hover:bg-slate-900/20 transition-colors">
-                    <td class="py-3 px-4 font-bold text-slate-100">${club.name}</td>
+                    <td class="py-3 px-4 font-bold text-slate-100">
+                        <a href="club.html?name=${encodeURIComponent(club.name)}" class="hover:text-brand-500 transition-colors">
+                            ${club.name}
+                        </a>
+                    </td>
                     <td class="py-3 px-4 text-center font-mono text-slate-300">${club.totalTurnout}</td>
                     <td class="py-3 px-4 text-right font-mono font-bold text-slate-400">${club.topTenFinishes}</td>
                 </tr>
@@ -314,7 +318,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="flex justify-between items-center text-xs py-1.5 ${idx !== 2 ? 'border-b border-slate-800/30' : ''}">
                         <div class="truncate pr-2">
                             <span class="mr-1.5">${medals[idx]}</span>
-                            <span class="font-bold text-slate-200">${runner.name}</span>
+                            <!-- LINK ADDED HERE FOR DEEP-LINKING BACK TO ATHLETE PROFILES -->
+                            <a href="athlete.html?name=${encodeURIComponent(runner.name)}" class="font-bold text-slate-200 hover:text-brand-500 transition-colors">
+                                ${runner.name}
+                            </a>
                         </div>
                         <span class="font-mono text-slate-400 text-[11px] shrink-0">Pos ${idx + 1}</span>
                     </div>

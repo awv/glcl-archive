@@ -23066,7 +23066,7 @@ window.glclResults = [
     {
         "pos": 10,
         "bib": "492",
-        "name": "†† Richard JONES",
+        "name": "Richard JONES",
         "age": 7036850,
         "sex": "M",
         "age_cat": "V50",
