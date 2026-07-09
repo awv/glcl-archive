@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLCL Archive — Athlete Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="data.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#0066cc' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #030712; }
+    </style>
+</head>
+<body class="text-slate-300 font-sans antialiased">
+
+    <!-- NAV BAR -->
+    <nav class="border-b border-slate-900 bg-slate-950/60 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <button onclick="history.back()" class="text-slate-400 hover:text-slate-200 transition-colors text-xs font-bold uppercase tracking-wider">
+                ← Go Back
+            </button>
+            <div class="bg-slate-900 border border-slate-800 px-2 py-1 rounded text-[10px] font-mono font-bold text-slate-400">
+                ATHLETE PROFILE INDEX
+            </div>
+        </div>
+    </nav>
+
+    <!-- PROFILE HERO BANNER -->
+    <header class="max-w-7xl mx-auto px-6 pt-10 pb-8 border-b border-slate-900">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+            <div>
+                <span id="athlete-club" class="text-xs font-mono font-bold text-brand-400 uppercase tracking-widest block">Club Runner</span>
+                <h1 id="athlete-name" class="text-3xl font-black text-slate-100 tracking-tight uppercase mt-1">Loading Athlete...</h1>
+                <p id="athlete-gender" class="text-xs font-semibold text-slate-500 mt-1 uppercase tracking-wider">Historical Career Analysis</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 space-y-12">
+        
+        <!-- MACRO OVERVIEW METRICS GRID -->
+        <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div class="bg-slate-950 border border-slate-900 p-4 rounded-xl shadow-md">
+                <span class="block text-[10px] font-black text-slate-500 uppercase tracking-wider">XC Races</span>
+                <span id="stat-xc-count" class="text-2xl font-black text-slate-200 block mt-1">0</span>
+            </div>
+            <div class="bg-slate-950 border border-slate-900 p-4 rounded-xl shadow-md">
+                <span class="block text-[10px] font-black text-slate-500 uppercase tracking-wider">Road Races</span>
+                <span id="stat-road-count" class="text-2xl font-black text-slate-200 block mt-1">0</span>
+            </div>
+            <div class="bg-slate-950 border border-slate-900 p-4 rounded-xl shadow-md">
+                <span class="block text-[10px] font-black text-slate-500 uppercase tracking-wider">Unique Venues</span>
+                <span id="stat-venues" class="text-2xl font-black text-slate-200 block mt-1">0</span>
+            </div>
+            <div class="bg-slate-950 border border-slate-900 p-4 rounded-xl shadow-md">
+                <span class="block text-[10px] font-black text-slate-500 uppercase tracking-wider">Category Wins</span>
+                <span id="stat-cat-wins" class="text-2xl font-black text-amber-400 block mt-1">0</span>
+            </div>
+            <div class="bg-slate-950 border border-slate-900 p-4 rounded-xl shadow-md">
+                <span class="block text-[10px] font-black text-slate-500 tracking-wider uppercase">Best XC Pos</span>
+                <span id="stat-best-xc" class="text-2xl font-black text-sky-400 block mt-1">-</span>
+            </div>
+            <div class="bg-slate-950 border border-slate-900 p-4 rounded-xl shadow-md">
+                <span class="block text-[10px] font-black text-slate-500 tracking-wider uppercase">Best Road Pos</span>
+                <span id="stat-best-road" class="text-2xl font-black text-amber-500 block mt-1">-</span>
+            </div>
+        </section>
+
+        <!-- CHRONOLOGICAL CAREER TIMELINE -->
+        <section class="space-y-4">
+            <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Complete Race History</h2>
+            <div class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="border-b border-slate-900 font-black uppercase tracking-wider text-slate-500 bg-slate-900/40 text-[10px]">
+                                <th class="py-3 px-4">Season</th>
+                                <th class="py-3 px-4 w-24">Series</th>
+                                <th class="py-3 px-4">Fixture / Venue</th>
+                                <th class="py-3 px-4">Date</th>
+                                <th class="py-3 px-4 text-center w-24">Overall Pos</th>
+                                <th class="py-3 px-4 text-center w-24">Cat Pos</th>
+                                <th class="py-3 px-4 text-center w-24">Gender Pos</th>
+                                <th class="py-3 px-4 text-right pr-6 w-24">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-rows" class="divide-y divide-slate-900/40 text-slate-300">
+                            <!-- Populated dynamically via script below -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CONTROLLER SCRIPT -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetAthlete = urlParams.get('name');
+
+            if (!targetAthlete) {
+                document.getElementById('athlete-name').textContent = "No Athlete Specified";
+                return;
+            }
+
+            const allRecords = window.glclResults || [];
+            
+            // Extract records for this specific athlete where they actually finished (pos > 0)
+            const history = allRecords.filter(row => 
+                row.name && row.name.toLowerCase() === targetAthlete.toLowerCase() && row.pos > 0
+            ).sort((a, b) => {
+                // Sort by season descending, then by race number descending
+                if (a.season !== b.season) return b.season.localeCompare(a.season);
+                return b.race_number - a.race_number;
+            });
+
+            if (history.length === 0) {
+                document.getElementById('athlete-name').textContent = "Athlete Not Found";
+                return;
+            }
+
+            // Identify Base Info from most recent finish row
+            const meta = history[0];
+            document.getElementById('athlete-name').textContent = meta.name;
+            document.getElementById('athlete-club').textContent = meta.club || "Unattached";
+            document.getElementById('athlete-gender').textContent = `Gender: ${meta.sex === 'M' ? 'Male' : 'Female'} • Age Division Profile`;
+
+            // Aggregation Computations
+            let xcCount = 0;
+            let roadCount = 0;
+            let catWins = 0;
+            let bestXcPos = Infinity;
+            let bestRoadPos = Infinity;
+            const venuesSet = new Set();
+
+            history.forEach(row => {
+                const disc = (row.discipline || '').toLowerCase();
+                venuesSet.add(row.venue);
+
+                if (disc === 'xc') {
+                    xcCount++;
+                    if (row.pos < bestXcPos) bestXcPos = row.pos;
+                } else if (disc === 'road') {
+                    roadCount++;
+                    if (row.pos < bestRoadPos) bestRoadPos = row.pos;
+                }
+
+                if (parseInt(row.cat_pos, 10) === 1) {
+                    catWins++;
+                }
+            });
+
+            // Update Metric Text Blocks
+            document.getElementById('stat-xc-count').textContent = xcCount;
+            document.getElementById('stat-road-count').textContent = roadCount;
+            document.getElementById('stat-venues').textContent = venuesSet.size;
+            document.getElementById('stat-cat-wins').textContent = catWins;
+            document.getElementById('stat-best-xc').textContent = bestXcPos === Infinity ? '-' : `Pos ${bestXcPos}`;
+            document.getElementById('stat-best-road').textContent = bestRoadPos === Infinity ? '-' : `Pos ${bestRoadPos}`;
+
+            // Render History Table Rows
+            const tableBody = document.getElementById('history-rows');
+            tableBody.innerHTML = '';
+
+history.forEach(row => {
+                const isXc = (row.discipline || '').toLowerCase() === 'xc';
+                const typeBadge = isXc 
+                    ? '<span class="text-[10px] font-mono font-bold bg-brand-500/10 text-brand-400 px-2 py-0.5 rounded">XC</span>' 
+                    : '<span class="text-[10px] font-mono font-bold bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">ROAD</span>';
+                
+                let dateStr = row.date || '';
+                if (dateStr.includes('-')) {
+                    const parts = dateStr.split('-');
+                    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    if (parts.length === 3) dateStr = `${parseInt(parts[2], 10)} ${months[parseInt(parts[1], 10) - 1]} ${parts[0]}`;
+                }
+
+                const catPosNum = parseInt(row.cat_pos, 10);
+                let catPosHtml = `<span class="text-slate-400">Pos ${row.cat_pos}</span>`;
+                if (catPosNum === 1) catPosHtml = '<span class="text-amber-400 font-bold">🥇 Pos 1</span>';
+                if (catPosNum === 2) catPosHtml = '<span class="text-slate-300 font-bold">🥈 Pos 2</span>';
+                if (catPosNum === 3) catPosHtml = '<span class="text-amber-600 font-bold">🥉 Pos 3</span>';
+
+                // URL format mapping back to the results grid
+                const paramSeason = row.season.replace('/', '_');
+                const resultsUrl = `results.html?season=${paramSeason}&discipline=${row.discipline.toLowerCase()}&race=${row.race_number}`;
+
+                const trHtml = `
+                    <tr class="hover:bg-slate-900/10 transition-colors">
+                        <td class="py-3 px-4 font-mono text-slate-400">${row.season}</td>
+                        <td class="py-3 px-4">${typeBadge}</td>
+                        <td class="py-3 px-4">
+                            <!-- Clickable fixture name deep-linking back to the full race results -->
+                            <a href="${resultsUrl}" class="font-bold text-slate-200 uppercase tracking-tight hover:text-brand-500 transition-colors">
+                                Fixture ${row.race_number} — ${row.venue}
+                            </a>
+                        </td>
+                        <td class="py-3 px-4 text-slate-500 font-medium">${dateStr}</td>
+                        <td class="py-3 px-4 text-center font-mono text-slate-400 font-bold">Pos ${row.pos}</td>
+                        <td class="py-3 px-4 text-center font-mono">${catPosHtml}</td>
+                        <td class="py-3 px-4 text-center font-mono text-slate-400">Pos ${row.gender_pos}</td>
+                        <td class="py-3 px-4 text-right font-mono font-bold pr-6 text-brand-500">${row.time}</td>
+                    </tr>
+                `;
+                tableBody.insertAdjacentHTML('beforeend', trHtml);
+            });
+        });
+    </script>
+</body>
+</html>

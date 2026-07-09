@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLCL Archive — Season Overview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="data.js"></script>
+    <script src="assets/js/stats-engine.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            500: '#0066cc',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #030712; }
+        .stat-card, .leaderboard-box { background-color: #090d16; }
+    </style>
+</head>
+<body class="text-slate-300 font-sans antialiased">
+
+    <!-- NAV BAR -->
+    <nav class="border-b border-slate-900 bg-slate-950/60 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2 text-slate-400 hover:text-slate-200 transition-colors text-xs font-bold uppercase tracking-wider">
+                <span>← Back to Seasons</span>
+            </a>
+            <div class="flex items-center space-x-2">
+                <div class="bg-brand-500/10 text-brand-400 font-black px-2 py-0.5 rounded text-xs tracking-tighter">GLCL ARCHIVE</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SEASON TITLE HEADER -->
+    <header class="max-w-7xl mx-auto px-6 pt-10 pb-6 border-b border-slate-900">
+        <!-- The JavaScript stats-engine will target this ID and swap the content dynamically -->
+        <h1 id="dashboard-title" class="text-3xl font-black text-slate-100 tracking-tight uppercase">
+            Loading Campaign Standings...
+        </h1>
+        <p class="text-xs font-semibold text-slate-500 mt-1 uppercase tracking-wider">
+            Macro analysis, fixture tracking matrices, and divisional aggregation profiles.
+        </p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 space-y-16">
+
+        <!-- FIXTURE NAV MATRIX SECTION -->
+        <section class="space-y-4">
+            <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Fixture Navigation Matrix</h2>
+            <div id="fixture-matrix-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+                <!-- Dynamically populated by assets/js/stats-engine.js -->
+            </div>
+        </section>
+
+        <!-- AGGREGATE STATS TABLES GRID -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- HALL OF FAME TABLE -->
+            <section class="space-y-4 lg:col-span-1">
+                <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Individual Wins (Hall of Fame)</h2>
+                <div class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-xl">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-900 text-[10px] font-black uppercase tracking-wider text-slate-500 bg-slate-900/40">
+                                <th class="py-3 px-4">Runner</th>
+                                <th class="py-3 px-4">Club</th>
+                                <th class="py-3 px-4 text-right">Wins</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dominators-rows" class="divide-y divide-slate-900/50">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- CLUB TURNOUT MOBILISATION TABLE -->
+            <section class="space-y-4 lg:col-span-2">
+                <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Club Mobilisation Index</h2>
+                <div class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-xl">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-900 text-[10px] font-black uppercase tracking-wider text-slate-500 bg-slate-900/40">
+                                <th class="py-3 px-4">Running Club</th>
+                                <th class="py-3 px-4 text-center">Total Volume (Runners)</th>
+                                <th class="py-3 px-4 text-right">Top 10 Gender Finishes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="club-stats-rows" class="divide-y divide-slate-900/50">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- AGE DIVISION PODIUMS SECTION -->
+        <section class="space-y-4">
+            <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Championship Standings — Top 3 Per Age Category</h2>
+            <div id="category-podiums-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Populated dynamically -->
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>

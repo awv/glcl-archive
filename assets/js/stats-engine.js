@@ -1,7 +1,30 @@
 // assets/js/stats-engine.js
 document.addEventListener("DOMContentLoaded", () => {
-    const records = window.glclResults || [];
-    console.log(`Stats Engine loaded. Processing ${records.length} records.`);
+    // 1. READ URL PARAMETERS FOR SELECTED SEASON & DISCIPLINE
+    const urlParams = new URLSearchParams(window.location.search);
+    const rawSeasonParam = urlParams.get('season'); 
+    const disciplineParam = urlParams.get('discipline') || 'xc'; // Default to xc if omitted
+    
+    let selectedSeason = "2025/2026"; 
+    if (rawSeasonParam) {
+        selectedSeason = rawSeasonParam.replace('_', '/');
+    }
+
+    // 2. FILTER MASTER RECORDS TO THE EXACT CAMPAIGN SERIES
+    const allRecords = window.glclResults || [];
+    const records = allRecords.filter(row => 
+        row.season === selectedSeason && 
+        row.discipline.toLowerCase() === disciplineParam.toLowerCase()
+    );
+    
+    console.log(`Stats Engine loaded. Filtered to ${selectedSeason} (${disciplineParam.toUpperCase()}). Processing ${records.length} records.`);
+    
+    // Dynamically update headings
+    const dashboardTitle = document.getElementById('dashboard-title');
+    if (dashboardTitle) {
+        const displayDiscipline = disciplineParam.toUpperCase() === 'XC' ? 'CROSS COUNTRY' : 'ROAD';
+        dashboardTitle.textContent = `${selectedSeason} ${displayDiscipline} SEASON`;
+    }
     
     // Elements
     const fixtureGrid = document.getElementById('fixture-matrix-grid');
@@ -119,14 +142,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 }
 
-                const cardHtml = `
-                    <div class="stat-card p-5 rounded-xl shadow-md flex flex-col justify-between border border-slate-800 hover:border-brand-500 transition-all">
+const cardHtml = `
+                    <a href="results.html?season=${rawSeasonParam || '2025_2026'}&discipline=${disciplineParam}&race=${fix.race_number}" class="stat-card p-5 rounded-xl shadow-md flex flex-col justify-between border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all block group">
                         <div>
                             <div class="flex justify-between items-start mb-2">
                                 <span class="text-[10px] font-black tracking-widest text-slate-400 uppercase">Fixture ${fix.race_number}</span>
-                                <span class="text-xs font-mono font-bold text-brand-500 bg-brand-500/10 px-2 py-0.5 rounded">${fix.discipline.toUpperCase()}</span>
+                                <span class="text-xs font-mono font-bold text-brand-500 bg-brand-500/10 px-2 py-0.5 rounded group-hover:bg-brand-500 group-hover:text-white transition-all">${fix.discipline.toUpperCase()}</span>
                             </div>
-                            <h4 class="text-base font-black text-slate-100 tracking-tight uppercase">${fix.venue}</h4>
+                            <h4 class="text-base font-black text-slate-100 tracking-tight uppercase group-hover:text-brand-500 transition-colors">${fix.venue}</h4>
                             <p class="text-xs font-medium text-slate-500 mt-0.5">${formattedDate}</p>
                         </div>
                         
@@ -159,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 `;
                 fixtureGrid.insertAdjacentHTML('beforeend', cardHtml);
             }
