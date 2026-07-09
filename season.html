@@ -27,17 +27,21 @@
 </head>
 <body class="text-slate-300 font-sans antialiased">
 
-    <!-- NAV BAR -->
-    <nav class="border-b border-slate-900 bg-slate-950/60 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center space-x-2 text-slate-400 hover:text-slate-200 transition-colors text-xs font-bold uppercase tracking-wider">
-                <span>← Back to Seasons</span>
-            </a>
-            <div class="flex items-center space-x-2">
-                <div class="bg-brand-500/10 text-brand-400 font-black px-2 py-0.5 rounded text-xs tracking-tighter">GLCL ARCHIVE</div>
-            </div>
-        </div>
+    <!-- GLOBAL NAVIGATION CONTAINER -->
+    <nav id="global-nav" class="border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <!-- Injected automatically -->
     </nav>
+
+    <script>
+        fetch('components/nav.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('global-nav').innerHTML = data;
+                // Fire a custom event to notify our page scripts that the nav bar is ready
+                window.dispatchEvent(new Event('navLoaded'));
+            })
+            .catch(err => console.error('Error loading navigation header:', err));
+    </script>
 
     <!-- SEASON TITLE HEADER -->
     <header class="max-w-7xl mx-auto px-6 pt-10 pb-6 border-b border-slate-900">

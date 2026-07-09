@@ -24,15 +24,21 @@
 </head>
 <body class="text-slate-300 font-sans antialiased">
 
-    <!-- NAV -->
-    <nav class="border-b border-slate-900 bg-slate-950/60 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a id="back-link" href="#" class="text-slate-400 hover:text-slate-200 transition-colors text-xs font-bold uppercase tracking-wider">
-                ← Back to Season Summary
-            </a>
-            <span class="text-[10px] font-mono font-bold bg-slate-900 border border-slate-800 px-2 py-1 rounded tracking-wider text-slate-400">FIXTURE COMPILATION</span>
-        </div>
+    <!-- GLOBAL NAVIGATION CONTAINER -->
+    <nav id="global-nav" class="border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <!-- Injected automatically -->
     </nav>
+
+    <script>
+        fetch('components/nav.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('global-nav').innerHTML = data;
+                // Fire a custom event to notify our page scripts that the nav bar is ready
+                window.dispatchEvent(new Event('navLoaded'));
+            })
+            .catch(err => console.error('Error loading navigation header:', err));
+    </script>
 
     <!-- HEADER -->
     <header class="max-w-7xl mx-auto px-6 pt-10 pb-6 border-b border-slate-900 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
@@ -105,7 +111,15 @@
 
             const selectedSeason = rawSeason.replace('_', '/');
             
-            document.getElementById('back-link').href = `season.html?season=${rawSeason}&discipline=${discipline}`;
+            // SAFE LINK UPDATE: Wait for asynchronous navbar load before manipulating its DOM properties
+            window.addEventListener('navLoaded', () => {
+                const navBack = document.getElementById('nav-back-link');
+                if (navBack) {
+                    navBack.removeAttribute('onclick'); 
+                    navBack.href = `season.html?season=${rawSeason}&discipline=${discipline}`;
+                    navBack.textContent = `← Back to Season Summary`;
+                }
+            });
 
             const allRecords = window.glclResults || [];
             const filtered = allRecords.filter(row => 
@@ -122,7 +136,7 @@
 
             const meta = filtered[0];
             document.getElementById('fixture-title').textContent = meta.venue;
-            document.getElementById('fixture-meta').textContent = `Fixture ${raceNum} — ${discipline.toUpperCase()}`;
+            document.getElementById('fixture-meta').textContent = `Fixture ${raceNum} — GLCL ${discipline.toUpperCase()}`;
             document.getElementById('fixture-sub').textContent = `${meta.date} • Course Distance: ${meta.distance || 'N/A'}`;
 
             // Totals
@@ -133,7 +147,6 @@
             document.getElementById('count-women').textContent = womenCount;
 
             // Compute Age Category Winners
-            // Explicit list of core targets to generate cards for
             const targetedCategories = ['SENIOR', 'V35', 'V40', 'V45', 'V50', 'V55', 'V60', 'V65', 'V70', 'V75+'];
             const catWinnersMap = {};
             
@@ -145,7 +158,6 @@
                 if (!row.age_cat || parseInt(row.cat_pos, 10) !== 1) return;
                 
                 let normCat = row.age_cat.toUpperCase();
-                // Group any older categories like V75, V80 into the requested V75+ card if needed
                 if (normCat.startsWith('V75') || normCat.startsWith('V80') || normCat.startsWith('V85')) {
                     normCat = 'V75+';
                 }

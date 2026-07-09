@@ -27,6 +27,19 @@
     </style>
 </head>
 <body class="text-slate-300 font-sans antialiased">
+    <!-- GLOBAL NAVIGATION CONTAINER -->
+    <nav id="global-nav" class="border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <!-- Injected automatically via script below -->
+    </nav>
+    <script>
+    // Asynchronously fetch and inject the global navbar layout
+    fetch('components/nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('global-nav').innerHTML = data;
+        })
+        .catch(err => console.error('Error loading navigation header:', err));
+    </script>
 
     <!-- HERO SECTION WITH FEATURED PHOTO -->
     <header class="relative h-[60vh] flex items-end overflow-hidden border-b border-slate-900">
@@ -34,21 +47,22 @@
         <img src="/assets/images/hero_placeholder.jpg" alt="Gwent League Cross Country Action" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 filter brightness-50 contrast-125">
         <div class="absolute inset-0 hero-gradient"></div>
         
-        <div class="relative max-w-6xl mx-auto px-6 w-full pb-12 z-10">
+        <!-- Changed max-w-6xl to max-w-7xl to align with the rest of the site layout -->
+        <div class="relative max-w-7xl mx-auto px-6 w-full pb-12 z-10">
             <div class="flex items-center space-x-3 mb-4">
                 <div class="bg-brand-500 text-white font-black p-2 rounded-lg text-sm tracking-tighter">GLCL</div>
-                <span class="text-xs font-mono tracking-widest text-slate-400 uppercase">Gwent League Archive</span>
+                <span class="text-xs font-mono tracking-widest text-slate-400 uppercase">GLCL Archive</span>
             </div>
             <h1 class="text-4xl md:text-5xl font-black text-slate-100 tracking-tight uppercase max-w-3xl">
                 Mud, Miles, and Club Mobilisation
             </h1>
             <p class="text-sm md:text-base text-slate-400 font-medium mt-2 max-w-2xl">
-                The definitive historical database of the Gwent League Cross Country & Road running series. Tracking finishers, category battles, and team turnouts across the decades.
+                The definitive historical database of the Gwent Leisure Centre League Cross Country & Road running series.
             </p>
         </div>
     </header>
 
-<main class="max-w-6xl mx-auto px-6 py-12 space-y-16">
+<main class="max-w-7xl mx-auto px-6 py-12 space-y-16">
         
         <div>
             <h2 class="text-xs font-black tracking-widest text-brand-500 uppercase">Select a Season</h2>
