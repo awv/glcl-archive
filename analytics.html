@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLCL Archive — League Insights</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="data.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#0066cc' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #030712; }
+        .stat-card { background-color: #090d16; }
+    </style>
+</head>
+<body class="text-slate-300 font-sans antialiased">
+
+    <!-- GLOBAL NAVIGATION CONTAINER -->
+    <nav id="global-nav" class="border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <!-- Injected automatically -->
+    </nav>
+
+    <header class="max-w-7xl mx-auto px-6 pt-10 pb-6 border-b border-slate-900">
+        <h1 class="text-3xl font-black text-slate-100 tracking-tight uppercase">
+            League Insights & Analytics
+        </h1>
+        <p class="text-xs font-semibold text-slate-500 mt-1 uppercase tracking-wider">
+            Deep-dive aggregate statistics, longevity indexes, and historical campaign matrices.
+        </p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 space-y-12">
+        
+        <!-- SECTION 1: CONSISTENCY INDEX -->
+        <section class="space-y-4">
+            <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-900 pb-2">
+                <div>
+                    <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">The Consistency Index</h2>
+                    <h3 class="text-xl font-black text-slate-200 tracking-tight mt-0.5">League Stalwarts & Streaks</h3>
+                </div>
+                <p class="text-xs text-slate-500 font-medium mt-1 md:mt-0">
+                    Celebrating runners with the highest absolute appearances and perfect campaign sequences.
+                </p>
+            </div>
+
+            <div class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-xl">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="border-b border-slate-900 font-black uppercase tracking-wider text-slate-500 bg-slate-900/40 text-[10px]">
+                            <th class="py-3 px-4">Athlete Name</th>
+                            <th class="py-3 px-4">Club</th>
+                            <th class="py-3 px-4 text-center">Total Appearances</th>
+                            <th class="py-3 px-4 text-right pr-6">Streak Milestones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="consistency-rows" class="divide-y divide-slate-900/40">
+                        <!-- Populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <!-- SECTION 2: INTRA-CLUB RIVALRY MATRIX -->
+        <section class="space-y-4">
+            <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-900 pb-2">
+                <div>
+                    <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Intra-Club Rivalry Matrix</h2>
+                    <h3 class="text-xl font-black text-slate-200 tracking-tight mt-0.5">Internal Squad Dynamics</h3>
+                </div>
+                <div class="mt-2 md:mt-0">
+                    <select id="club-selector" class="bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-200 focus:outline-none focus:border-brand-500 min-w-[200px]">
+                        <option value="">Select a Running Club...</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="rivalry-display" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Squad Packing Factor & Summary -->
+                <div class="lg:col-span-1 space-y-4">
+                    <div class="stat-card p-6 rounded-xl border border-slate-800 shadow-xl">
+                        <span class="block text-[10px] font-black uppercase tracking-widest text-slate-500">The Packing Factor</span>
+                        <span id="rivalry-packing-factor" class="text-3xl font-black text-brand-500 block mt-1">-</span>
+                        <span class="text-[11px] text-slate-500 mt-0.5 block font-medium">Avg position gap between 1st & 4th scoring runners. Lower means a tighter pack.</span>
+                    </div>
+                    <div class="stat-card p-6 rounded-xl border border-slate-800 shadow-xl">
+                        <span class="block text-[10px] font-black uppercase tracking-widest text-slate-500">Active Squad Size</span>
+                        <span id="rivalry-squad-size" class="text-2xl font-black text-slate-200 block mt-1">0 Runners</span>
+                        <span class="text-[11px] text-slate-500 mt-0.5 block font-medium">Total distinct athletes representing this group in the archive.</span>
+                    </div>
+                </div>
+
+                <!-- Internal Point Scorers Leaderboard -->
+                <div class="lg:col-span-2">
+                    <div class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-xl">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="border-b border-slate-900 font-black uppercase tracking-wider text-slate-500 bg-slate-900/40 text-[10px]">
+                                    <th class="py-3 px-4">Club Rank</th>
+                                    <th class="py-3 px-4">Athlete Name</th>
+                                    <th class="py-3 px-4 text-center">Races Run</th>
+                                    <th class="py-3 px-4 text-right pr-6">Average Finisher Position</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rivalry-rows" class="divide-y divide-slate-900/40">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="rivalry-placeholder" class="stat-card p-12 text-center border border-dashed border-slate-800 rounded-xl text-slate-500 font-medium text-xs uppercase tracking-wider">
+                Select a club from the drop-down menu above to generate internal metrics.
+            </div>
+        </section>
+        <!-- SECTION 3: THE CLIMBERS (MOST IMPROVED) -->
+        <section class="space-y-4">
+            <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-900 pb-2">
+                <div>
+                    <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">The Climbers</h2>
+                    <h3 class="text-xl font-black text-slate-200 tracking-tight mt-0.5">Most Improved Athletes</h3>
+                </div>
+                <p class="text-xs text-slate-500 font-medium mt-1 md:mt-0">
+                    Athletes who dropped the most average positions between the 2024/25 and 2025/26 campaigns.
+                </p>
+            </div>
+
+            <div class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-xl">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="border-b border-slate-900 font-black uppercase tracking-wider text-slate-500 bg-slate-900/40 text-[10px]">
+                            <th class="py-3 px-4">Rank</th>
+                            <th class="py-3 px-4">Athlete Name</th>
+                            <th class="py-3 px-4">Club</th>
+                            <th class="py-3 px-4 text-center">2024/25 Avg</th>
+                            <th class="py-3 px-4 text-center">2025/26 Avg</th>
+                            <th class="py-3 px-4 text-right pr-6">Field Progress</th>
+                        </tr>
+                    </thead>
+                    <tbody id="climbers-rows" class="divide-y divide-slate-900/40">
+                        <!-- Populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <!-- SECTION 4: CLUB DEMOGRAPHICS & SQUAD DEPTH -->
+        <section class="space-y-4">
+            <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-900 pb-2">
+                <div>
+                    <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Club Demographics</h2>
+                    <h3 class="text-xl font-black text-slate-200 tracking-tight mt-0.5">Squad Depth & Mobilisation Balance</h3>
+                </div>
+                <p class="text-xs text-slate-500 font-medium mt-1 md:mt-0">
+                    Proportional breakdowns of active race registrations by gender and age categories.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- GENDER BALANCER CARD -->
+                <div class="stat-card p-6 rounded-xl border border-slate-800 shadow-xl space-y-4">
+                    <div>
+                        <h4 class="text-sm font-black text-slate-200 uppercase tracking-tight">Female Mobilisation Leaders</h4>
+                        <p class="text-[11px] text-slate-500 mt-0.5 font-medium">Clubs sorted by highest percentage of active female race finishes.</p>
+                    </div>
+                    <!-- Added max-h and overflow scrolling -->
+                    <div id="gender-demographics-container" class="space-y-3.5 pt-2 max-h-[400px] overflow-y-auto pr-2">
+                        <!-- Populated dynamically via JS -->
+                    </div>
+                </div>
+
+                <!-- AGE BALANCE CARD -->
+                <div class="stat-card p-6 rounded-xl border border-slate-800 shadow-xl space-y-4">
+                    <div>
+                        <h4 class="text-sm font-black text-slate-200 uppercase tracking-tight">Veteran vs Senior Composition</h4>
+                        <p class="text-[11px] text-slate-500 mt-0.5 font-medium">Proportional split between Master/Vet classes (V35+) and Senior categories.</p>
+                    </div>
+                    <!-- Added max-h and overflow scrolling -->
+                    <div id="age-demographics-container" class="space-y-3.5 pt-2 max-h-[400px] overflow-y-auto pr-2">
+                        <!-- Populated dynamically via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Navigation Fetcher
+            fetch('components/nav.html')
+                .then(response => response.text())
+                .then(data => { document.getElementById('global-nav').innerHTML = data; })
+                .catch(err => console.error('Error loading navbar:', err));
+
+            const allRecords = window.glclResults || [];
+
+            // 1. Map out the actual confirmed fixture counts per season/discipline
+            // This bypasses cancelled events automatically so 4/4 counts as a streak
+            const campaignMaxes = {};
+            allRecords.forEach(row => {
+                if (row.status && row.status.toLowerCase() === 'cancelled') return;
+                if (row.pos === 0 || !row.name) return; // Skip structural placeholders
+
+                const key = `${row.season}_${row.discipline.toLowerCase()}`;
+                if (!campaignMaxes[key]) {
+                    campaignMaxes[key] = new Set();
+                }
+                campaignMaxes[key].add(row.race_number);
+            });
+
+            // Convert set sizes to raw integers
+            Object.keys(campaignMaxes).forEach(key => {
+                campaignMaxes[key] = campaignMaxes[key].size;
+            });
+
+            // 2. Aggregate aggregate appearances and streaks per individual runner
+            const athleteMetrics = {};
+
+            allRecords.forEach(row => {
+                if (row.pos === 0 || !row.name) return; // Skip cancelled row placeholders
+
+                const name = row.name;
+                if (!athleteMetrics[name]) {
+                    athleteMetrics[name] = {
+                        name: name,
+                        club: row.club || 'Independent',
+                        totalAppearances: 0,
+                        campaignBreakdown: {}
+                    };
+                }
+
+                athleteMetrics[name].totalAppearances++;
+
+                // Track matches inside specific campaign blocks
+                const campaignKey = `${row.season}_${row.discipline.toLowerCase()}`;
+                if (!athleteMetrics[name].campaignBreakdown[campaignKey]) {
+                    athleteMetrics[name].campaignBreakdown[campaignKey] = 0;
+                }
+                athleteMetrics[name].campaignBreakdown[campaignKey]++;
+            });
+
+            // 3. Render and Sort by raw appearance magnitude
+            const sortedStalwarts = Object.values(athleteMetrics).sort((a, b) => b.totalAppearances - a.totalAppearances);
+            const container = document.getElementById('consistency-rows');
+            container.innerHTML = '';
+
+            sortedStalwarts.slice(0, 50).forEach(athlete => { // Displaying top 50
+                let badgeHtml = '';
+                
+                // Inspect campaign subsets to see if they completed 100% of the active events
+                Object.entries(athlete.campaignBreakdown).forEach(([campaignKey, count]) => {
+                    const maxPossible = campaignMaxes[campaignKey] || 0;
+                    if (maxPossible > 0 && count === maxPossible) {
+                        const displayLabel = campaignKey.replace('_', ' ').toUpperCase();
+                        badgeHtml += `
+                            <span class="inline-block text-[9px] font-mono font-black tracking-tight bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded shadow-sm">
+                                ✨ STREAK (${displayLabel})
+                            </span>
+                        `;
+                    }
+                });
+
+                const trHtml = `
+                    <tr class="hover:bg-slate-900/20 transition-colors">
+                        <td class="py-3 px-4 font-bold text-slate-200">
+                            <a href="athlete.html?name=${encodeURIComponent(athlete.name)}" class="hover:text-brand-500 transition-colors">
+                                ${athlete.name}
+                            </a>
+                        </td>
+                        <td class="py-3 px-4 text-slate-400 font-semibold">${athlete.club}</td>
+                        <td class="py-3 px-4 text-center font-mono font-black text-slate-300 text-sm">${athlete.totalAppearances}</td>
+                        <td class="py-3 px-4 text-right pr-6 space-x-1.5 space-y-1">${badgeHtml || '<span class="text-slate-600 font-mono text-[10px]">-</span>'}</td>
+                    </tr>
+                `;
+                container.insertAdjacentHTML('beforeend', trHtml);
+            });
+            // ==========================================
+            // INTRA-CLUB RIVALRY MATRIX LOGIC
+            // ==========================================
+            const clubSelector = document.getElementById('club-selector');
+            const rivalryDisplay = document.getElementById('rivalry-display');
+            const rivalryPlaceholder = document.getElementById('rivalry-placeholder');
+            
+            // 1. Extract all unique club names to fill the selector dynamically
+            const uniqueClubs = [...new Set(allRecords.map(row => row.club).filter(Boolean))].sort();
+            uniqueClubs.forEach(club => {
+                const opt = document.createElement('option');
+                opt.value = club;
+                opt.textContent = club;
+                clubSelector.appendChild(opt);
+            });
+
+            // 2. Setup drop-down change handler
+            clubSelector.addEventListener('change', (e) => {
+                const selectedClub = e.target.value;
+                if (!selectedClub) {
+                    rivalryDisplay.classList.add('hidden');
+                    rivalryPlaceholder.classList.remove('hidden');
+                    return;
+                }
+
+                rivalryDisplay.classList.remove('hidden');
+                rivalryPlaceholder.classList.add('hidden');
+
+                // Filter data to only this club's finishers
+                const clubEntries = allRecords.filter(row => row.club === selectedClub && row.pos > 0);
+
+                // Calculate internal leaderboard (grouping items by runner)
+                const internalSquad = {};
+                clubEntries.forEach(row => {
+                    if (!internalSquad[row.name]) {
+                        internalSquad[row.name] = { name: row.name, count: 0, totalPos: 0 };
+                    }
+                    internalSquad[row.name].count++;
+                    internalSquad[row.name].totalPos += parseInt(row.pos, 10);
+                });
+
+                // Calculate averages and sort by lowest average placement position
+                const sortedInternal = Object.values(internalSquad)
+                    .map(runner => ({
+                        name: runner.name,
+                        count: runner.count,
+                        avgPos: Math.round(runner.totalPos / runner.count)
+                    }))
+                    .sort((a, b) => a.avgPos - b.avgPos);
+
+                // Render Internal Squad Table Rows
+                const rivalryRows = document.getElementById('rivalry-rows');
+                rivalryRows.innerHTML = '';
+                sortedInternal.forEach((runner, index) => {
+                    const rowHtml = `
+                        <tr class="hover:bg-slate-900/20 transition-colors">
+                            <td class="py-3 px-4 font-mono text-slate-500 font-bold"># ${index + 1}</td>
+                            <td class="py-3 px-4 font-bold text-slate-200">
+                                <a href="athlete.html?name=${encodeURIComponent(runner.name)}" class="hover:text-brand-500 transition-colors">
+                                    ${runner.name}
+                                </a>
+                            </td>
+                            <td class="py-3 px-4 text-center font-mono text-slate-400 font-bold">${runner.count}</td>
+                            <td class="py-3 px-4 text-right font-mono pr-6 text-brand-500 font-bold">Pos ${runner.avgPos}</td>
+                        </tr>
+                    `;
+                    rivalryRows.insertAdjacentHTML('beforeend', rowHtml);
+                });
+
+                // Update basic stats counters
+                document.getElementById('rivalry-squad-size').textContent = `${Object.keys(internalSquad).length} Runners`;
+
+                // 3. Calculate Packing Factor (Gap between 1st and 4th finisher across fixtures)
+                const packingMap = {};
+                clubEntries.forEach(row => {
+                    const raceKey = `${row.season}_${row.discipline}_${row.race_number}`;
+                    if (!packingMap[raceKey]) packingMap[raceKey] = [];
+                    packingMap[raceKey].push(parseInt(row.pos, 10));
+                });
+
+                let totalGaps = 0;
+                let validRacesCount = 0;
+
+                Object.values(packingMap).forEach(positions => {
+                    if (positions.length >= 4) {
+                        positions.sort((a, b) => a - b);
+                        const gap = positions[3] - positions[0]; // 4th minus 1st
+                        totalGaps += gap;
+                        validRacesCount++;
+                    }
+                });
+
+                const packingFactorElement = document.getElementById('rivalry-packing-factor');
+                if (validRacesCount > 0) {
+                    const avgPackingFactor = Math.round(totalGaps / validRacesCount);
+                    packingFactorElement.textContent = `± ${avgPackingFactor} Positions`;
+                } else {
+                    packingFactorElement.textContent = "N/A";
+                }
+            });
+            // ==========================================
+            // THE CLIMBERS (PERCENTILE-BASED PROGRESSION)
+            // ==========================================
+            const fixtureSizes = {};
+            const athleteSeasons = {};
+
+            // 1. First pass: Compute total finishers for each specific race key
+            allRecords.forEach(row => {
+                if (row.pos === 0 || !row.name) return;
+                const raceKey = `${row.season}_${row.discipline.toLowerCase()}_${row.race_number}`;
+                
+                if (!fixtureSizes[raceKey]) {
+                    fixtureSizes[raceKey] = 0;
+                }
+                fixtureSizes[raceKey]++;
+            });
+
+            // 2. Second pass: Group position percentiles by athlete and season
+            allRecords.forEach(row => {
+                if (row.pos === 0 || !row.name) return;
+                
+                const name = row.name;
+                const raceKey = `${row.season}_${row.discipline.toLowerCase()}_${row.race_number}`;
+                const totalField = fixtureSizes[raceKey] || 1;
+
+                // Calculate where they sat inside this specific field (0% to 100%)
+                const percentile = (parseInt(row.pos, 10) / totalField) * 100;
+
+                if (!athleteSeasons[name]) {
+                    athleteSeasons[name] = {
+                        name: name,
+                        club: row.club || 'Independent',
+                        '2024/2025': { totalPercentile: 0, count: 0, rawPositions: [] },
+                        '2025/2026': { totalPercentile: 0, count: 0, rawPositions: [] }
+                    };
+                }
+
+                if (row.season === '2024/2025' || row.season === '2025/2026') {
+                    athleteSeasons[name][row.season].totalPercentile += percentile;
+                    athleteSeasons[name][row.season].count++;
+                    athleteSeasons[name][row.season].rawPositions.push(parseInt(row.pos, 10));
+                }
+            });
+
+            // 3. Third pass: Evaluate genuine progress shifts
+            const improvedList = [];
+
+            Object.values(athleteSeasons).forEach(athlete => {
+                // Ensure they ran at least one race in both seasons for a valid comparison
+                if (athlete['2024/2025'].count > 0 && athlete['2025/2026'].count > 0) {
+                    const avgPercentile24 = athlete['2024/2025'].totalPercentile / athlete['2024/2025'].count;
+                    const avgPercentile25 = athlete['2025/2026'].totalPercentile / athlete['2025/2026'].count;
+                    
+                    // A drop in percentile means they climbed closer to the front of the pack
+                    const percentileGained = avgPercentile24 - avgPercentile25;
+
+                    if (percentileGained > 0) {
+                        // Calculate simple raw averages just for display purposes on the card UI
+                        const displayRaw24 = Math.round(athlete['2024/2025'].rawPositions.reduce((a,b)=>a+b, 0) / athlete['2024/2025'].count);
+                        const displayRaw25 = Math.round(athlete['2025/2026'].rawPositions.reduce((a,b)=>a+b, 0) / athlete['2025/2026'].count);
+
+                        improvedList.push({
+                            name: athlete.name,
+                            club: athlete.club,
+                            avg24: displayRaw24,
+                            avg25: displayRaw25,
+                            gained: percentileGained
+                        });
+                    }
+                }
+            });
+
+            // 4. Sort by the highest percentile gain magnitude and slice top 15
+            improvedList.sort((a, b) => b.gained - a.gained);
+
+            const climbersRows = document.getElementById('climbers-rows');
+            climbersRows.innerHTML = '';
+
+            improvedList.slice(0, 15).forEach((athlete, index) => {
+                trHtml = `
+                    <tr class="hover:bg-slate-900/20 transition-colors">
+                        <td class="py-3 px-4 font-mono text-slate-500 font-bold"># ${index + 1}</td>
+                        <td class="py-3 px-4 font-bold text-slate-200">
+                            <a href="athlete.html?name=${encodeURIComponent(athlete.name)}" class="hover:text-brand-500 transition-colors">
+                                ${athlete.name}
+                            </a>
+                        </td>
+                        <td class="py-3 px-4 text-slate-400 font-semibold">${athlete.club}</td>
+                        <td class="py-3 px-4 text-center font-mono text-slate-500">Pos ${athlete.avg24}</td>
+                        <td class="py-3 px-4 text-center font-mono text-slate-300 font-bold">Pos ${athlete.avg25}</td>
+                        <td class="py-3 px-4 text-right font-mono pr-6 text-emerald-400 font-black text-sm">
+                            ▲ ${Math.round(athlete.gained)}%
+                        </td>
+                    </tr>
+                `;
+                climbersRows.insertAdjacentHTML('beforeend', trHtml);
+            });
+
+            if (improvedList.length === 0) {
+                climbersRows.innerHTML = '<tr><td colspan="6" class="py-4 text-center text-slate-600">Insufficient cross-season comparison data found.</td></tr>';
+            }
+            // ==========================================
+            // CLUB DEMOGRAPHICS & MOBILISATION LOGIC
+            // ==========================================
+            const clubDemographics = {};
+
+            // 1. Process and aggregate categories per club
+            allRecords.forEach(row => {
+                if (row.pos === 0 || !row.club) return;
+
+                const club = row.club.trim();
+                if (!clubDemographics[club]) {
+                    clubDemographics[club] = {
+                        name: club,
+                        total: 0,
+                        male: 0,
+                        female: 0,
+                        senior: 0,
+                        vets: 0
+                    };
+                }
+
+                const metrics = clubDemographics[club];
+                metrics.total++;
+
+                // Track gender alignment
+                if (row.sex && row.sex.toUpperCase() === 'F') metrics.female++;
+                else if (row.sex && row.sex.toUpperCase() === 'M') metrics.male++;
+
+                // Track age category taxonomy
+                if (row.age_cat && row.age_cat.toUpperCase().startsWith('V')) metrics.vets++;
+                else metrics.senior++;
+            });
+
+            // Convert to array and filter out clubs with negligible turnout (< 5 entries) to keep trends meaningful
+            const demographicArray = Object.values(clubDemographics).filter(c => c.total >= 5);
+
+            // 2. Generate Gender Mobilisation Layout Bars
+            const genderSorted = [...demographicArray].sort((a, b) => (b.female / b.total) - (a.female / a.total));
+            const genderContainer = document.getElementById('gender-demographics-container');
+            genderContainer.innerHTML = '';
+
+            // Removed .slice(0, 5) to process every club found in the dataset
+            genderSorted.forEach(club => {
+                const femalePct = Math.round((club.female / club.total) * 100);
+                const malePct = 100 - femalePct;
+
+                const progressRow = `
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs font-bold">
+                            <span class="text-slate-300 truncate max-w-[220px]">${club.name}</span>
+                            <span class="text-pink-400 font-mono text-[11px]">${femalePct}% <span class="text-slate-600 font-normal">Female</span></span>
+                        </div>
+                        <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden flex">
+                            <div class="h-full bg-pink-500 rounded-l-full" style="width: ${femalePct}%"></div>
+                            <div class="h-full bg-sky-500 rounded-r-full" style="width: ${malePct}%"></div>
+                        </div>
+                    </div>
+                `;
+                genderContainer.insertAdjacentHTML('beforeend', progressRow);
+            });
+
+            // 3. Generate Age Breakdown Progress Bars
+            const ageSorted = [...demographicArray].sort((a, b) => b.total - a.total); 
+            const ageContainer = document.getElementById('age-demographics-container');
+            ageContainer.innerHTML = '';
+
+            // Removed .slice(0, 5) to process every club found in the dataset
+            ageSorted.forEach(club => {
+                const vetPct = Math.round((club.vets / club.total) * 100);
+                const seniorPct = 100 - vetPct;
+
+                const progressRow = `
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs font-bold">
+                            <span class="text-slate-300 truncate max-w-[220px]">${club.name}</span>
+                            <span class="text-brand-500 font-mono text-[11px]">${vetPct}% <span class="text-slate-500 font-normal">Vets</span></span>
+                        </div>
+                        <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden flex">
+                            <div class="h-full bg-brand-500 rounded-l-full" style="width: ${vetPct}%"></div>
+                            <div class="h-full bg-slate-700 rounded-r-full" style="width: ${seniorPct}%"></div>
+                        </div>
+                    </div>
+                `;
+                ageContainer.insertAdjacentHTML('beforeend', progressRow);
+            });
+        });
+    </script>
+</body>
+</html>
