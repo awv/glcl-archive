@@ -1,5 +1,4 @@
-// Auto-generated database file. Do not edit directly.
-const GCL_DATA = [
+[
   {
     "season": "2019/2020",
     "discipline": "XC",
@@ -960,4 +959,4 @@ const GCL_DATA = [
     "cat_pos": 2,
     "time": ""
   }
-];
+]
