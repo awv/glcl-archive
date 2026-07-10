@@ -1,5 +1,5 @@
 # VENUE: Chepstow
-# DATE: 2024-05-04=7
+# DATE: 2024-05-07
 # DISTANCE: 5.01 Miles
 # STATUS: Confirmed
 

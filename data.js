@@ -14243,7 +14243,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14262,7 +14262,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14281,7 +14281,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14300,7 +14300,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14319,7 +14319,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14338,7 +14338,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14357,7 +14357,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14376,7 +14376,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14395,7 +14395,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14414,7 +14414,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14433,7 +14433,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14452,7 +14452,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14471,7 +14471,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14490,7 +14490,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14509,7 +14509,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14528,7 +14528,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14547,7 +14547,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14566,7 +14566,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14585,7 +14585,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14604,7 +14604,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14623,7 +14623,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14642,7 +14642,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14661,7 +14661,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14680,7 +14680,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14699,7 +14699,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14718,7 +14718,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14737,7 +14737,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14756,7 +14756,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14775,7 +14775,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14794,7 +14794,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14813,7 +14813,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14832,7 +14832,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14851,7 +14851,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14870,7 +14870,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14889,7 +14889,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14908,7 +14908,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14927,7 +14927,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14946,7 +14946,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14965,7 +14965,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -14984,7 +14984,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15003,7 +15003,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15022,7 +15022,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15041,7 +15041,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15060,7 +15060,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15079,7 +15079,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15098,7 +15098,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15117,7 +15117,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15136,7 +15136,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15155,7 +15155,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15174,7 +15174,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15193,7 +15193,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15212,7 +15212,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15231,7 +15231,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15250,7 +15250,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15269,7 +15269,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15288,7 +15288,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15307,7 +15307,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15326,7 +15326,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15345,7 +15345,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15364,7 +15364,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15383,7 +15383,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15402,7 +15402,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15421,7 +15421,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15440,7 +15440,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15459,7 +15459,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15478,7 +15478,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15497,7 +15497,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15516,7 +15516,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15535,7 +15535,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15554,7 +15554,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15573,7 +15573,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15592,7 +15592,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15611,7 +15611,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15630,7 +15630,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15649,7 +15649,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15668,7 +15668,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15687,7 +15687,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15706,7 +15706,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15725,7 +15725,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15744,7 +15744,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15763,7 +15763,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15782,7 +15782,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15801,7 +15801,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15820,7 +15820,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15839,7 +15839,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15858,7 +15858,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15877,7 +15877,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15896,7 +15896,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15915,7 +15915,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15934,7 +15934,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15953,7 +15953,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15972,7 +15972,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -15991,7 +15991,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16010,7 +16010,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16029,7 +16029,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16048,7 +16048,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16067,7 +16067,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16086,7 +16086,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16105,7 +16105,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16124,7 +16124,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16143,7 +16143,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16162,7 +16162,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16181,7 +16181,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16200,7 +16200,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16219,7 +16219,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16238,7 +16238,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16257,7 +16257,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16276,7 +16276,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16295,7 +16295,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16314,7 +16314,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16333,7 +16333,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16352,7 +16352,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16371,7 +16371,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16390,7 +16390,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16409,7 +16409,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16428,7 +16428,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16447,7 +16447,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16466,7 +16466,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16485,7 +16485,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16504,7 +16504,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16523,7 +16523,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16542,7 +16542,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16561,7 +16561,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16580,7 +16580,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16599,7 +16599,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16618,7 +16618,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16637,7 +16637,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16656,7 +16656,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16675,7 +16675,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16694,7 +16694,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16713,7 +16713,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16732,7 +16732,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16751,7 +16751,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16770,7 +16770,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16789,7 +16789,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16808,7 +16808,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16827,7 +16827,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16846,7 +16846,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16865,7 +16865,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16884,7 +16884,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16903,7 +16903,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16922,7 +16922,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16941,7 +16941,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16960,7 +16960,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16979,7 +16979,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -16998,7 +16998,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17017,7 +17017,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17036,7 +17036,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17055,7 +17055,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17074,7 +17074,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17093,7 +17093,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17112,7 +17112,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17131,7 +17131,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17150,7 +17150,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17169,7 +17169,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17188,7 +17188,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17207,7 +17207,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17226,7 +17226,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17245,7 +17245,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17264,7 +17264,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17283,7 +17283,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17302,7 +17302,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17321,7 +17321,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17340,7 +17340,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17359,7 +17359,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17378,7 +17378,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17397,7 +17397,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17416,7 +17416,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17435,7 +17435,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17454,7 +17454,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17473,7 +17473,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17492,7 +17492,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17511,7 +17511,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17530,7 +17530,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17549,7 +17549,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17568,7 +17568,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17587,7 +17587,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17606,7 +17606,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17625,7 +17625,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17644,7 +17644,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17663,7 +17663,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17682,7 +17682,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17701,7 +17701,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17720,7 +17720,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17739,7 +17739,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17758,7 +17758,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17777,7 +17777,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17796,7 +17796,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17815,7 +17815,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17834,7 +17834,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17853,7 +17853,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17872,7 +17872,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17891,7 +17891,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17910,7 +17910,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17929,7 +17929,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17948,7 +17948,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17967,7 +17967,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -17986,7 +17986,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18005,7 +18005,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18024,7 +18024,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18043,7 +18043,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18062,7 +18062,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18081,7 +18081,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18100,7 +18100,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18119,7 +18119,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18138,7 +18138,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18157,7 +18157,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18176,7 +18176,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18195,7 +18195,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18214,7 +18214,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18233,7 +18233,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18252,7 +18252,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18271,7 +18271,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18290,7 +18290,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18309,7 +18309,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18328,7 +18328,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18347,7 +18347,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18366,7 +18366,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18385,7 +18385,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18404,7 +18404,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18423,7 +18423,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18442,7 +18442,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18461,7 +18461,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18480,7 +18480,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18499,7 +18499,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18518,7 +18518,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18537,7 +18537,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18556,7 +18556,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18575,7 +18575,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18594,7 +18594,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18613,7 +18613,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18632,7 +18632,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18651,7 +18651,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18670,7 +18670,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18689,7 +18689,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18708,7 +18708,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18727,7 +18727,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18746,7 +18746,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18765,7 +18765,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18784,7 +18784,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18803,7 +18803,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18822,7 +18822,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18841,7 +18841,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18860,7 +18860,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18879,7 +18879,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18898,7 +18898,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18917,7 +18917,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18936,7 +18936,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18955,7 +18955,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18974,7 +18974,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -18993,7 +18993,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19012,7 +19012,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19031,7 +19031,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19050,7 +19050,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19069,7 +19069,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19088,7 +19088,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19107,7 +19107,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19126,7 +19126,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19145,7 +19145,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19164,7 +19164,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19183,7 +19183,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19202,7 +19202,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19221,7 +19221,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19240,7 +19240,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19259,7 +19259,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19278,7 +19278,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19297,7 +19297,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19316,7 +19316,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19335,7 +19335,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19354,7 +19354,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19373,7 +19373,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19392,7 +19392,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19411,7 +19411,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19430,7 +19430,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19449,7 +19449,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19468,7 +19468,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19487,7 +19487,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19506,7 +19506,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19525,7 +19525,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19544,7 +19544,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19563,7 +19563,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19582,7 +19582,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19601,7 +19601,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19620,7 +19620,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19639,7 +19639,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19658,7 +19658,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19677,7 +19677,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19696,7 +19696,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19715,7 +19715,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19734,7 +19734,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19753,7 +19753,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19772,7 +19772,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19791,7 +19791,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19810,7 +19810,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19829,7 +19829,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19848,7 +19848,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19867,7 +19867,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19886,7 +19886,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19905,7 +19905,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19924,7 +19924,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19943,7 +19943,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19962,7 +19962,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -19981,7 +19981,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20000,7 +20000,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20019,7 +20019,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20038,7 +20038,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20057,7 +20057,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20076,7 +20076,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20095,7 +20095,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20114,7 +20114,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20133,7 +20133,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20152,7 +20152,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20171,7 +20171,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20190,7 +20190,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20209,7 +20209,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20228,7 +20228,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20247,7 +20247,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20266,7 +20266,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20285,7 +20285,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20304,7 +20304,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20323,7 +20323,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20342,7 +20342,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20361,7 +20361,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20380,7 +20380,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20399,7 +20399,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20418,7 +20418,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20437,7 +20437,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20456,7 +20456,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20475,7 +20475,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20494,7 +20494,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20513,7 +20513,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20532,7 +20532,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20551,7 +20551,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20570,7 +20570,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20589,7 +20589,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20608,7 +20608,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20627,7 +20627,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20646,7 +20646,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20665,7 +20665,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20684,7 +20684,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20703,7 +20703,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20722,7 +20722,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20741,7 +20741,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20760,7 +20760,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20779,7 +20779,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20798,7 +20798,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20817,7 +20817,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20836,7 +20836,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20855,7 +20855,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20874,7 +20874,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20893,7 +20893,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20912,7 +20912,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20931,7 +20931,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20950,7 +20950,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20969,7 +20969,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -20988,7 +20988,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21007,7 +21007,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21026,7 +21026,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21045,7 +21045,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21064,7 +21064,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21083,7 +21083,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21102,7 +21102,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21121,7 +21121,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21140,7 +21140,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21159,7 +21159,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21178,7 +21178,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21197,7 +21197,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21216,7 +21216,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21235,7 +21235,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21254,7 +21254,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21273,7 +21273,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21292,7 +21292,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21311,7 +21311,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21330,7 +21330,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21349,7 +21349,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21368,7 +21368,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21387,7 +21387,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21406,7 +21406,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21425,7 +21425,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21444,7 +21444,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21463,7 +21463,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21482,7 +21482,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21501,7 +21501,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21520,7 +21520,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21539,7 +21539,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21558,7 +21558,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21577,7 +21577,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21596,7 +21596,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21615,7 +21615,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21634,7 +21634,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21653,7 +21653,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21672,7 +21672,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21691,7 +21691,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21710,7 +21710,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21729,7 +21729,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21748,7 +21748,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21767,7 +21767,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21786,7 +21786,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21805,7 +21805,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21824,7 +21824,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21843,7 +21843,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21862,7 +21862,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21881,7 +21881,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21900,7 +21900,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21919,7 +21919,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21938,7 +21938,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21957,7 +21957,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21976,7 +21976,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -21995,7 +21995,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22014,7 +22014,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22033,7 +22033,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22052,7 +22052,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22071,7 +22071,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22090,7 +22090,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22109,7 +22109,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22128,7 +22128,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22147,7 +22147,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22166,7 +22166,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22185,7 +22185,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22204,7 +22204,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22223,7 +22223,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22242,7 +22242,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22261,7 +22261,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22280,7 +22280,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22299,7 +22299,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22318,7 +22318,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22337,7 +22337,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22356,7 +22356,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22375,7 +22375,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22394,7 +22394,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22413,7 +22413,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22432,7 +22432,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22451,7 +22451,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22470,7 +22470,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22489,7 +22489,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22508,7 +22508,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22527,7 +22527,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22546,7 +22546,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22565,7 +22565,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22584,7 +22584,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22603,7 +22603,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22622,7 +22622,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22641,7 +22641,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22660,7 +22660,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22679,7 +22679,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22698,7 +22698,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22717,7 +22717,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22736,7 +22736,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22755,7 +22755,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22774,7 +22774,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22793,7 +22793,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22812,7 +22812,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22831,7 +22831,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22850,7 +22850,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22869,7 +22869,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
@@ -22888,7 +22888,7 @@ window.glclResults = [
         "discipline": "road",
         "season": "2024/2025",
         "venue": "Chepstow",
-        "date": "2024-05-04=7",
+        "date": "2024-05-07",
         "distance": "5.01 Miles",
         "status": "Confirmed"
     },
