@@ -376,16 +376,14 @@
                         document.getElementById('insight-card-title').textContent = "Overall Progress";
                         document.getElementById('insight-card-value').textContent = `↑ ${delta} Places`;
                         document.getElementById('insight-card-value').className = "text-2xl font-black text-emerald-400 block mt-2";
-                        document.getElementById('insight-card-subtext').textContent = `Incredible upward curve! This athlete has advanced past ${delta} runners in the field since their league debut (moving from Pos ${firstPos} down to Pos ${lastPos}).`;
+                        // FIXED: Changed "down to Pos" to "up to Pos"
+                        document.getElementById('insight-card-subtext').textContent = `Incredible upward curve! This athlete has advanced past ${delta} runners in the field since their league debut (moving from Pos ${firstPos} up to Pos ${lastPos}).`;
                     } else if (delta < 0) {
                         document.getElementById('insight-card-title').textContent = "Overall Progress";
                         document.getElementById('insight-card-value').textContent = `↓ ${Math.abs(delta)} Places`;
                         document.getElementById('insight-card-value').className = "text-2xl font-black text-slate-400 block mt-2";
-                        document.getElementById('insight-card-subtext').textContent = `Field variance position tracking shows a minor adjustments offset of ${Math.abs(delta)} placement positions relative to debut fields.`;
-                    } else {
-                        document.getElementById('insight-card-title').textContent = "League Status";
-                        document.getElementById('insight-card-value').textContent = "Stable Form";
-                        document.getElementById('insight-card-subtext').textContent = `Maintaining incredibly robust consistency across configurations over multiple consecutive competition calendar seasons.`;
+                        // FIXED: Clarified that a negative delta means drifting down the field
+                        document.getElementById('insight-card-subtext').textContent = `Field variance position tracking shows a minor shift down the field by ${Math.abs(delta)} placement positions relative to debut fields.`;
                     }
 
                     // 2. Generate Inverted SVG Sparkline Coordinates
