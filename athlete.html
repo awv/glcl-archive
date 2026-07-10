@@ -338,11 +338,22 @@
                 const nameToDisplay = row.originalName || row.name;
                 const activeClubForFixture = getClubForSeason(row.season, row.club || "Unattached");
 
-                // Only show name changes if the historical name is actually different from the current profile name
+                // 1. Only format club details if the runner actually has an explicit club history entry
+                let clubDetailsHtml = '';
+                if (clubHistoryKey) {
+                    clubDetailsHtml = `RAN FOR ${activeClubForFixture}`;
+                }
+
+                // 2. Only show name changes if the historical name is actually different from the current profile name
                 let nameChangeHtml = '';
                 if (nameToDisplay.toLowerCase() !== targetAthlete.toLowerCase()) {
-                    nameChangeHtml = ` <span class="text-slate-700 font-sans px-1">•</span> Competed as: ${nameToDisplay}`;
+                    // If we already printed club details, append a spacer bullet point
+                    const spacer = clubDetailsHtml ? ' <span class="text-slate-700 font-sans px-1">•</span> ' : '';
+                    nameChangeHtml = `${spacer}Competed as: ${nameToDisplay}`;
                 }
+
+                // 3. Combine them cleanly (if both are blank, the span stays empty/hidden)
+                const metaRowText = `${clubDetailsHtml}${nameChangeHtml}`;
 
                 const trHtml = `
                     <tr class="hover:bg-slate-900/10 transition-colors">
@@ -353,7 +364,7 @@
                                 Fixture ${row.race_number} — ${row.venue}
                             </a>
                             <span class="block text-[10px] text-slate-500 font-mono font-bold uppercase mt-0.5">
-                                Ran for ${activeClubForFixture}${nameChangeHtml}
+                                ${metaRowText}
                             </span>
                         </td>
                         <td class="py-3 px-4 text-slate-500 font-medium">${dateStr}</td>
