@@ -53,7 +53,7 @@
         <!-- Bottom Smooth Fade Transition -->
         <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent"></div>
 
-        <!-- Text Content Overlay Layer (Width-aligned to match the 1400px layout baseline grid) -->
+        <!-- Text Content Overlay Layer -->
         <div class="relative max-w-[1400px] w-full mx-auto px-4 pb-6 z-10 space-y-1.5">
             
             <span id="athlete-club" class="text-xs font-black tracking-widest text-brand-500 uppercase block">
@@ -107,6 +107,53 @@
             <div class="bg-slate-950 border border-slate-900 p-4 rounded-xl shadow-md">
                 <span class="block text-[10px] font-black text-slate-500 tracking-wider uppercase">Best Road Pos</span>
                 <span id="stat-best-road" class="text-2xl font-black text-amber-500 block mt-1">-</span>
+            </div>
+        </section>
+
+        <!-- DYNAMIC INSIGHTS & HISTORICAL TREND SEGMENT -->
+        <section id="insights-section" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Dynamic Trend Insights Card -->
+            <div class="bg-slate-950 border border-slate-900 p-6 rounded-xl shadow-md flex flex-col justify-between">
+                <div>
+                    <span id="insight-card-title" class="block text-[10px] font-black text-slate-500 uppercase tracking-wider">Career Projection</span>
+                    <span id="insight-card-value" class="text-2xl font-black text-slate-200 block mt-2">—</span>
+                </div>
+                <p id="insight-card-subtext" class="text-xs text-slate-500 mt-4 font-medium leading-relaxed">—</p>
+            </div>
+
+            <!-- Historical Form Sparkline Chart -->
+            <div id="trend-chart-container" class="bg-slate-950 border border-slate-900 p-6 rounded-xl shadow-md flex flex-col justify-between lg:col-span-2">
+                <div class="flex items-center justify-between">
+                    <span class="block text-[10px] font-black text-slate-500 uppercase tracking-wider">Gender Position Form Trend</span>
+                    <span class="text-[9px] font-mono font-bold text-slate-600 uppercase tracking-wider">Oldest ➔ Recent</span>
+                </div>
+                <!-- Mini inline SVG Line Chart layout canvas -->
+                <div class="w-full h-16 mt-4 flex items-center justify-center">
+                    <svg class="w-full h-full overflow-visible" viewBox="0 0 300 60" preserveAspectRatio="none">
+                        <path id="trend-sparkline-path" fill="none" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Repeating Course Progress Table Component -->
+            <div id="course-progress-container" class="lg:col-span-3 space-y-3 pt-2">
+                <h3 class="text-xs font-black tracking-widest text-slate-500 uppercase">Repeating Course Progress Breakdown</h3>
+                <div class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-xl">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="border-b border-slate-900 font-black uppercase tracking-wider text-slate-500 bg-slate-900/40 text-[10px]">
+                                <th class="py-3 px-4">Venue</th>
+                                <th class="py-3 px-4 w-24">Series</th>
+                                <th class="py-3 px-4">Historical Debut</th>
+                                <th class="py-3 px-4">Recent Outing</th>
+                                <th class="py-3 px-4 text-right pr-6 w-36">Net Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody id="course-progress-rows" class="divide-y divide-slate-900/40 text-slate-300">
+                            <!-- Populated dynamically via script logic -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
@@ -169,11 +216,11 @@
             const getClubForSeason = (seasonStr, defaultClub) => {
                 if (!clubHistoryKey || !corrections.clubHistory[clubHistoryKey]) return defaultClub;
                 
-                const currentYear = parseInt(seasonStr.split('/')[0], 10); // e.g., 2024 from "2024/2025"
+                const currentYear = parseInt(seasonStr.split('/')[0], 10);
                 let resolvedClub = defaultClub;
 
                 corrections.clubHistory[clubHistoryKey].forEach(hist => {
-                    const range = hist.seasons.replace(/\s+/g, '').split(/[—–-]/); // Split on any dash variant
+                    const range = hist.seasons.replace(/\s+/g, '').split(/[—–-]/);
                     
                     let startYear = 0;
                     let endYear = Infinity;
@@ -307,6 +354,118 @@
             document.getElementById('stat-best-xc').textContent = bestXcPos === Infinity ? '-' : `Pos ${bestXcPos}`;
             document.getElementById('stat-best-road').textContent = bestRoadPos === Infinity ? '-' : `Pos ${bestRoadPos}`;
 
+            // ==========================================
+            // UNIVERSAL ATHLETE INSIGHTS CORE PIPELINE
+            // ==========================================
+            const MIN_RACES_FOR_TREND = 3;
+            // Create true chronologically sorted array for trends (oldest to newest)
+            const chronologicalHistory = [...history].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            if (chronologicalHistory.length >= MIN_RACES_FOR_TREND) {
+                // 1. Calculate Gender Position Deltas
+                const validGenderPositions = chronologicalHistory
+                    .map(r => parseInt(r.gender_pos, 10))
+                    .filter(pos => !isNaN(pos));
+
+                if (validGenderPositions.length >= 2) {
+                    const firstPos = validGenderPositions[0];
+                    const lastPos = validGenderPositions[validGenderPositions.length - 1];
+                    const delta = firstPos - lastPos; // Positive values indicate advancement toward the front field
+
+                    if (delta > 0) {
+                        document.getElementById('insight-card-title').textContent = "Overall Progress";
+                        document.getElementById('insight-card-value').textContent = `↑ ${delta} Places`;
+                        document.getElementById('insight-card-value').className = "text-2xl font-black text-emerald-400 block mt-2";
+                        document.getElementById('insight-card-subtext').textContent = `Incredible upward curve! This athlete has advanced past ${delta} runners in the field since their league debut (moving from Pos ${firstPos} down to Pos ${lastPos}).`;
+                    } else if (delta < 0) {
+                        document.getElementById('insight-card-title').textContent = "Overall Progress";
+                        document.getElementById('insight-card-value').textContent = `↓ ${Math.abs(delta)} Places`;
+                        document.getElementById('insight-card-value').className = "text-2xl font-black text-slate-400 block mt-2";
+                        document.getElementById('insight-card-subtext').textContent = `Field variance position tracking shows a minor adjustments offset of ${Math.abs(delta)} placement positions relative to debut fields.`;
+                    } else {
+                        document.getElementById('insight-card-title').textContent = "League Status";
+                        document.getElementById('insight-card-value').textContent = "Stable Form";
+                        document.getElementById('insight-card-subtext').textContent = `Maintaining incredibly robust consistency across configurations over multiple consecutive competition calendar seasons.`;
+                    }
+
+                    // 2. Generate Inverted SVG Sparkline Coordinates
+                    const width = 300;
+                    const height = 60;
+                    const padding = 6;
+                    
+                    const minPos = Math.min(...validGenderPositions);
+                    const maxPos = Math.max(...validGenderPositions);
+                    const posRange = maxPos - minPos || 1;
+
+                    const points = validGenderPositions.map((pos, index) => {
+                        const x = padding + (index / (validGenderPositions.length - 1)) * (width - padding * 2);
+                        // Invert Y: Better finish results (minPos) map to top of visual canvas window
+                        const y = padding + ((pos - minPos) / posRange) * (height - padding * 2);
+                        return `${x.toFixed(1)},${y.toFixed(1)}`;
+                    });
+                    document.getElementById('trend-sparkline-path').setAttribute('d', `M ${points.join(' L ')}`);
+                }
+
+                // 3. Compute Repeating Venue Variations
+                const venueGroups = {};
+                chronologicalHistory.forEach(race => {
+                    if (!race.venue || race.venue === "Unknown") return;
+                    if (!venueGroups[race.venue]) venueGroups[race.venue] = [];
+                    venueGroups[race.venue].push(race);
+                });
+
+                const progressRowsArray = [];
+                Object.keys(venueGroups).forEach(venueName => {
+                    const group = venueGroups[venueName];
+                    if (group.length >= 2) {
+                        const debut = group[0];
+                        const recent = group[group.length - 1];
+                        
+                        const debutPos = parseInt(debut.pos, 10);
+                        const recentPos = parseInt(recent.pos, 10);
+                        const delta = debutPos - recentPos;
+
+                        if (!isNaN(debutPos) && !isNaN(recentPos)) {
+                            progressRowsArray.push({
+                                venue: venueName,
+                                discipline: debut.discipline,
+                                debutStr: `Pos ${debutPos} (${debut.season.split('/')[0]})`,
+                                recentStr: `Pos ${recentPos} (${recent.season.split('/')[0]})`,
+                                delta: delta,
+                                progressHtml: delta > 0 
+                                    ? `<span class="text-emerald-400 font-bold">↑ ${delta} places</span>` 
+                                    : delta < 0 ? `<span class="text-slate-500">↓ ${Math.abs(delta)} places</span>` : '<span class="text-slate-400">Stable</span>'
+                            });
+                        }
+                    }
+                });
+
+                // Render Venue Comparative rows
+                const progressTbody = document.getElementById('course-progress-rows');
+                if (progressRowsArray.length > 0) {
+                    // Sort table to present largest improvements first
+                    progressRowsArray.sort((a, b) => b.delta - a.delta);
+                    progressTbody.innerHTML = progressRowsArray.map(v => `
+                        <tr class="hover:bg-slate-900/10 transition-colors">
+                            <td class="py-3 px-4 font-bold text-slate-200 uppercase">${v.venue}</td>
+                            <td class="py-3 px-4">${v.discipline === 'XC' ? '<span class="text-[10px] font-mono font-bold bg-brand-500/10 text-brand-400 px-2 py-0.5 rounded">XC</span>' : '<span class="text-[10px] font-mono font-bold bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">ROAD</span>'}</td>
+                            <td class="py-3 px-4 text-slate-400 font-mono">${v.debutStr}</td>
+                            <td class="py-3 px-4 text-slate-400 font-mono">${v.recentStr}</td>
+                            <td class="py-3 px-4 text-right pr-6 font-mono">${v.progressHtml}</td>
+                        </tr>
+                    `).join('');
+                } else {
+                    document.getElementById('course-progress-container').style.display = 'none';
+                }
+            } else {
+                // Under-threshold Fallback Block for low-data debuts
+                document.getElementById('insight-card-title').textContent = "League Status";
+                document.getElementById('insight-card-value').textContent = "Rising Star";
+                document.getElementById('insight-card-subtext').textContent = `Welcome to the league! Complete ${MIN_RACES_FOR_TREND - chronologicalHistory.length} more fixtures to unlock comprehensive history trend analytics components.`;
+                document.getElementById('trend-chart-container').style.display = 'none';
+                document.getElementById('course-progress-container').style.display = 'none';
+            }
+
             // Render History Table Rows
             const tableBody = document.getElementById('history-rows');
             tableBody.innerHTML = '';
@@ -333,26 +492,20 @@
                 const paramSeason = row.season.replace('/', '_');
                 const resultsUrl = `results.html?season=${paramSeason}&discipline=${row.discipline.toLowerCase()}&race=${row.race_number}`;
 
-                // Resolve name and correct seasonal club assignment
-                // Extract the cached original name string from the raw row entry
                 const nameToDisplay = row.originalName || row.name;
                 const activeClubForFixture = getClubForSeason(row.season, row.club || "Unattached");
 
-                // 1. Only format club details if the runner actually has an explicit club history entry
                 let clubDetailsHtml = '';
                 if (clubHistoryKey) {
                     clubDetailsHtml = `RAN FOR ${activeClubForFixture}`;
                 }
 
-                // 2. Only show name changes if the historical name is actually different from the current profile name
                 let nameChangeHtml = '';
                 if (nameToDisplay.toLowerCase() !== targetAthlete.toLowerCase()) {
-                    // If we already printed club details, append a spacer bullet point
                     const spacer = clubDetailsHtml ? ' <span class="text-slate-700 font-sans px-1">•</span> ' : '';
                     nameChangeHtml = `${spacer}Competed as: ${nameToDisplay}`;
                 }
 
-                // 3. Combine them cleanly (if both are blank, the span stays empty/hidden)
                 const metaRowText = `${clubDetailsHtml}${nameChangeHtml}`;
 
                 const trHtml = `

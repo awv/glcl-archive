@@ -1,16 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 
-function generateDataJs() {
+function generateLegacyJson() {
     const jsonFolder = path.join(__dirname, '..', 'backend_tools', 'processed_json');
-    const outputPath = path.join(__dirname, '..', 'data.js');
+    const outputPath = path.join(__dirname, '..', 'legacy-combined.json');
 
     if (!fs.existsSync(jsonFolder)) {
         console.error(`Error: The folder ${jsonFolder} does not exist yet.`);
         return;
     }
 
-    // 1. Read all processed JSON files
     const files = fs.readdirSync(jsonFolder).filter(file => file.endsWith('.json'));
     let allResults = [];
 
@@ -26,24 +25,16 @@ function generateDataJs() {
         }
     });
 
-    // 2. Sort by Season (e.g., "2014/2015" before "2019/2020")
-    // If seasons match, it sub-sorts by discipline and race number to keep it clean.
+    // Sort legacy entries by season cleanly
     allResults.sort((a, b) => {
-        if (a.season !== b.season) {
-            return a.season.localeCompare(b.season);
-        }
-        if (a.discipline !== b.discipline) {
-            return a.discipline.localeCompare(b.discipline);
-        }
+        if (a.season !== b.season) return a.season.localeCompare(b.season);
+        if (a.discipline !== b.discipline) return a.discipline.localeCompare(b.discipline);
         return a.race_number - b.race_number;
     });
 
-    // 3. Write out to the root data.js file
-    // Using a standard global variable assignment compatible with plain HTML templates
-    const fileContent = `// Auto-generated database file. Do not edit directly.\nconst GCL_DATA = ${JSON.stringify(allResults, null, 2)};\n`;
-
-    fs.writeFileSync(outputPath, fileContent, 'utf-8');
-    console.log(`Success! Combined and sorted ${allResults.length} records into root data.js`);
+    // Writes safely to a side-file, leaving your main data.js completely untouched
+    fs.writeFileSync(outputPath, JSON.stringify(allResults, null, 2), 'utf-8');
+    console.log(`Success! Combined ${allResults.length} legacy records into legacy-combined.json`);
 }
 
-generateDataJs();
+generateLegacyJson();
