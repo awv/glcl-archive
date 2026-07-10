@@ -121,7 +121,7 @@
 116 953 Richard BAKER 4150234 M V50 Chepstow Harriers 00:38:25 85 20
 117 159 Abbie THOMAS 4101647 F Senior Caerleon Running Club 00:38:26 32 8
 118 654 Martin STARK 3474546 M V55 Pont-Y-Pwl & District Runners 00:38:36 86 15
-119 324 Alysha BUNSTOB 4006956 F Senior Islwyn Rc 00:38:43 33 9
+119 324 Alysha BUNSTON 4006956 F Senior Islwyn Rc 00:38:43 33 9
 120 27 Nicola Louise CROCKETT 7030883 F V55 Chepstow Harriers 00:38:48 34 10
 121 1018 Meghan BRICKLEY 4165844 F Senior Fairwater Runners 00:39:03 35 10
 122 487 Kate HUMPHREY 4125521 F V40 Lliswerry Runners 00:39:38 36 5

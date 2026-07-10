@@ -170,7 +170,7 @@
 165 454 Rachel DOREL 7030159 F V40 Lliswerry Runners 00:41:52 49 7
 166 264 Thomas GUY 7022398 M V50 Griffithstown Harriers 00:42:00 117 30
 167 151 Elizabeth SIMS 4064817 F V60 Caerleon Running Club 00:42:06 50 2
-168 324 Alysha BUNSTOB 4006956 F Senior Islwyn Rc 00:42:13 51 11
+168 324 Alysha BUNSTON 4006956 F Senior Islwyn Rc 00:42:13 51 11
 169 290 Barrie PARHAM 7021161 M V75 Griffithstown Harriers 00:42:20 118 1
 170 37 Stuart DUNCAN 7027376 M V60 Chepstow Harriers 00:42:40 119 10
 171 626 Keith LANGLEY 7031731 M V65 Pont-Y-Pwl & District Runners 00:42:41 120 6
