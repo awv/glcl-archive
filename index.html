@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en-GB" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GLCL Archive — Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="data.js"></script>
+    <script src="site-layout.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -24,9 +25,13 @@
         .hero-gradient {
             background: linear-gradient(to bottom, rgba(3,7,18,0.3) 0%, rgba(3,7,18,1) 100%);
         }
+        .stat-card { background-color: #090d16; }
     </style>
 </head>
-<body class="text-slate-300 font-sans antialiased">
+<body class="text-slate-300 font-sans antialiased flex flex-col min-h-full">
+
+
+
     <!-- GLOBAL NAVIGATION CONTAINER -->
     <nav id="global-nav" class="border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
         <!-- Injected automatically via script below -->
@@ -42,13 +47,13 @@
     </script>
 
     <!-- HERO SECTION WITH FEATURED PHOTO -->
-    <header class="relative h-[60vh] flex items-end overflow-hidden border-b border-slate-900">
+    <header class="relative h-[60vh] flex items-end overflow-hidden border-b border-slate-900 w-full">
         <!-- Background Image Placement -->
         <img src="assets/images/hero_placeholder.jpg" alt="Gwent League Cross Country Action" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 filter brightness-85 contrast-125">
         <div class="absolute inset-0 hero-gradient"></div>
         
-        <!-- Changed max-w-6xl to max-w-7xl to align with the rest of the site layout -->
-        <div class="relative max-w-7xl mx-auto px-6 w-full pb-12 z-10">
+        <!-- Text container width-aligned to match global specifications -->
+        <div class="relative max-w-[1400px] mx-auto px-4 w-full z-10 pb-12">
             <div class="flex items-center space-x-3 mb-4">
                 <div class="bg-brand-500 text-white font-black p-2 rounded-lg text-sm tracking-tighter">GLCL</div>
                 <span class="text-xs font-mono tracking-widest text-slate-400 uppercase">GLCL Archive</span>
@@ -62,7 +67,8 @@
         </div>
     </header>
 
-<main class="max-w-7xl mx-auto px-6 py-12 space-y-16">
+    <!-- MAIN CONTENT MODULE CONTAINER -->
+    <main class="max-w-[1400px] mx-auto px-4 py-12 space-y-16 w-full flex-grow">
         
         <div>
             <h2 class="text-xs font-black tracking-widest text-brand-500 uppercase">Select a Season</h2>
@@ -79,7 +85,6 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Cross Country Series Card -->
                 <a href="season.html?season=2025_2026&discipline=xc" class="group block bg-slate-950 border border-slate-900 rounded-xl overflow-hidden hover:border-brand-500 transition-all shadow-xl">
-                    <!-- Changed from h-44 to h-80 for a taller portrait frame -->
                     <div class="h-80 bg-slate-900 relative overflow-hidden border-b border-slate-900">
                         <img src="assets/images/seasons/2025_2026/xc_card.jpg" alt="2025/2026 Cross Country" class="w-full h-full object-cover filter brightness-75 group-hover:scale-105 transition-transform duration-300">
                     </div>
@@ -94,7 +99,6 @@
 
                 <!-- Road Series Card -->
                 <a href="season.html?season=2025_2026&discipline=road" class="group block bg-slate-950 border border-slate-900 rounded-xl overflow-hidden hover:border-brand-500 transition-all shadow-xl">
-                    <!-- Changed from h-44 to h-80 for a taller portrait frame -->
                     <div class="h-80 bg-slate-900 relative overflow-hidden border-b border-slate-900">
                         <img src="assets/images/seasons/2025_2026/road_card.jpg" alt="2026 Road Series" class="w-full h-full object-cover filter brightness-75 group-hover:scale-105 transition-transform duration-300">
                     </div>
@@ -109,21 +113,17 @@
             </div>
         </section>
 
-
         <!-- 2024/2025 CAMPAIGN SECTION -->
-        <div class="space-y-4">
+        <section class="space-y-4">
             <div class="border-b border-slate-900 pb-2">
                 <span class="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase block">Season Campaign</span>
                 <h3 class="text-xl font-black text-slate-200 tracking-tight">2024 / 2025</h3>
             </div>
             
-            <!-- GRID CONTAINER -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-                
                 <!-- CROSS COUNTRY CARD -->
                 <a href="season.html?season=2024_2025&discipline=xc" class="stat-card rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all flex flex-col justify-between group h-full">
                     <div>
-                        <!-- Changed h-48 to h-64 to match the top row image aspect ratio -->
                         <div class="h-64 overflow-hidden relative">
                             <img src="assets/images/seasons/2024_2025/xc_card.jpg" alt="2024/25 Cross Country" class="w-full h-full object-cover object-top filter brightness-[0.65] contrast-110 group-hover:scale-105 transition-transform duration-500">
                         </div>
@@ -140,7 +140,6 @@
                 <!-- ROAD RUNNING CARD -->
                 <a href="season.html?season=2024_2025&discipline=road" class="stat-card rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all flex flex-col justify-between group h-full">
                     <div>
-                        <!-- Changed h-48 to h-64 to match the top row image aspect ratio -->
                         <div class="h-64 overflow-hidden relative">
                             <img src="assets/images/seasons/2024_2025/road_card.jpg" alt="2024/25 Road Running" class="w-full h-full object-cover object-top filter brightness-[0.65] contrast-110 group-hover:scale-105 transition-transform duration-500">
                         </div>
@@ -153,25 +152,23 @@
                         </div>
                     </div>
                 </a>
-
             </div>
-        </div>
-                <!-- 2023/2024 CAMPAIGN SECTION -->
-        <div class="space-y-4">
+        </section>
+
+        <!-- 2023/2024 CAMPAIGN SECTION -->
+        <section class="space-y-4">
             <div class="border-b border-slate-900 pb-2">
                 <span class="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase block">Season Campaign</span>
-                <h3 class="text-xl font-black text-slate-200 tracking-tight">2024 / 2025</h3>
+                <!-- Fixed typo from 2024/2025 to 2023/2024 -->
+                <h3 class="text-xl font-black text-slate-200 tracking-tight">2023 / 2024</h3>
             </div>
             
-            <!-- GRID CONTAINER -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-                
                 <!-- CROSS COUNTRY CARD -->
                 <a href="season.html?season=2023_2024&discipline=xc" class="stat-card rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all flex flex-col justify-between group h-full">
                     <div>
-                        <!-- Changed h-48 to h-64 to match the top row image aspect ratio -->
                         <div class="h-64 overflow-hidden relative">
-                            <img src="assets/images/seasons/2023_2024/xc_card.jpg" alt="2024/25 Cross Country" class="w-full h-full object-cover object-top filter brightness-[0.65] contrast-110 group-hover:scale-105 transition-transform duration-500">
+                            <img src="assets/images/seasons/2023_2024/xc_card.jpg" alt="2023/24 Cross Country" class="w-full h-full object-cover object-top filter brightness-[0.65] contrast-110 group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="p-5 flex justify-between items-start gap-4">
                             <div>
@@ -186,7 +183,6 @@
                 <!-- ROAD RUNNING CARD -->
                 <a href="season.html?season=2023_2024&discipline=road" class="stat-card rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all flex flex-col justify-between group h-full">
                     <div>
-                        <!-- Changed h-48 to h-64 to match the top row image aspect ratio -->
                         <div class="h-64 overflow-hidden relative">
                             <img src="assets/images/seasons/2023_2024/road_card.jpg" alt="2023/24 Road Running" class="w-full h-full object-cover object-top filter brightness-[0.65] contrast-110 group-hover:scale-105 transition-transform duration-500">
                         </div>
@@ -199,10 +195,13 @@
                         </div>
                     </div>
                 </a>
-
             </div>
-        </div>
+        </section>
 
     </main>
+
+    <!-- INJECTED GLOBAL FOOTER CONTAINER -->
+    <div id="global-footer"></div>
+
 </body>
 </html>

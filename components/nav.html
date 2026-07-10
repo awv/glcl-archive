@@ -1,18 +1,21 @@
-<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-    <!-- Logo & Brand Link -->
-    <a href="index.html" class="flex items-center space-x-3 group">
-        <div class="bg-brand-500 text-white font-black px-2.5 py-1 rounded-lg text-xs tracking-tighter group-hover:bg-brand-600 transition-colors">
-            GLCL
+<!-- Outer wrapper spans full width -->
+<div class="w-full bg-slate-950/80 backdrop-blur">
+    <!-- Inner container restricts text content to your layout baseline grid -->
+    <div class="max-w-[1400px] mx-auto px-4 py-4 flex justify-between items-center">
+        
+        <!-- Left: Logo Area -->
+        <div class="flex items-center space-x-3">
+            <div class="bg-brand-500 text-white font-black px-2 py-0.5 rounded text-xs tracking-tighter">GLCL</div>
+            <div>
+                <h1 class="text-xs font-black text-slate-100 tracking-wider uppercase">Gwent Leisure Centre League</h1>
+                <p class="text-[9px] text-slate-500 font-mono font-bold tracking-widest uppercase">Historical Archive</p>
+            </div>
         </div>
-        <div class="hidden sm:block">
-            <span class="text-xs font-black text-slate-200 uppercase tracking-tight block">Gwent Leisure Centre League</span>
-            <span class="text-[9px] font-mono font-bold text-slate-500 uppercase tracking-widest block -mt-0.5">Historical Archive</span>
-        </div>
-    </a>
 
-    <!-- Global Navigation Items -->
-    <div class="flex items-center space-x-6 text-xs font-bold uppercase tracking-wider">
-        <a href="index.html" class="text-slate-400 hover:text-slate-200 transition-colors">Seasons</a>
-        <a id="nav-back-link" href="#" onclick="history.back(); return false;" class="text-slate-500 hover:text-slate-300 transition-colors hidden xs:block">← Back</a>
+        <!-- Right: Links Area -->
+        <div class="text-xs font-black tracking-widest text-slate-400 uppercase space-x-6">
+            <a href="index.html" class="hover:text-brand-500 transition-colors">Seasons</a>
+        </div>
+
     </div>
 </div>
