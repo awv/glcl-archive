@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en-GB" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GLCL Archive — Athlete Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="data.js"></script>
+    <!-- Combined corrections data overlay mapping profile configurations -->
+    <script src="assets/js/corrections.js"></script>
     <script src="site-layout.js"></script>
     <script>
         tailwind.config = {
@@ -22,7 +24,7 @@
         body { background-color: #030712; }
     </style>
 </head>
-<body class="text-slate-300 font-sans antialiased">
+<body class="text-slate-300 font-sans antialiased flex flex-col min-h-full">
 
     <!-- GLOBAL NAVIGATION CONTAINER -->
     <nav id="global-nav" class="border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
@@ -40,7 +42,7 @@
     </script>
 
     <!-- ATHLETE HERO BANNER WITH PURE CSS MESH PATTERN -->
-    <header class="relative w-full h-[220px] overflow-hidden border-b border-slate-900 bg-slate-950 flex items-end">
+    <header class="relative w-full h-[240px] overflow-hidden border-b border-slate-900 bg-slate-950 flex items-end">
         
         <!-- Fine-grain CSS Dot Matrix Pattern -->
         <div class="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#0066cc_1.5px,transparent_1.5px)] [background-size:20px_20px]"></div>
@@ -51,8 +53,8 @@
         <!-- Bottom Smooth Fade Transition -->
         <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent"></div>
 
-        <!-- Text Content Overlay Layer -->
-        <div class="relative max-w-7xl w-full mx-auto px-6 pb-6 z-10 space-y-1.5">
+        <!-- Text Content Overlay Layer (Width-aligned to match the 1400px layout baseline grid) -->
+        <div class="relative max-w-[1400px] w-full mx-auto px-4 pb-6 z-10 space-y-1.5">
             
             <span id="athlete-club" class="text-xs font-black tracking-widest text-brand-500 uppercase block">
                 <!-- Injected by script -->
@@ -72,10 +74,13 @@
                 <span class="text-slate-800">•</span>
                 <span id="athlete-age-cat">AGE DIVISION PROFILE</span>
             </div>
+
+            <!-- Dynamic Historical Meta Flags Injection Node -->
+            <div id="athlete-meta-history" class="space-y-2 pt-1"></div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-12 space-y-12">
+    <main class="max-w-[1400px] w-full mx-auto px-4 py-12 space-y-12 flex-grow">
         
         <!-- MACRO OVERVIEW METRICS GRID -->
         <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -136,7 +141,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const targetAthlete = urlParams.get('name');
+            let targetAthlete = urlParams.get('name');
 
             if (!targetAthlete) {
                 document.getElementById('athlete-name').textContent = "No Athlete Specified";
@@ -144,11 +149,74 @@
             }
 
             const allRecords = window.glclResults || [];
+            const corrections = window.glclCorrections || { nameChanges: {}, clubHistory: {} };
+
+            // 1. CASE-INSENSITIVE IDENTITY ALIGNMENT INTERCEPTION
+            let masterName = targetAthlete;
+            Object.entries(corrections.nameChanges).forEach(([legacyName, data]) => {
+                if (legacyName.toLowerCase() === targetAthlete.toLowerCase() || data.primaryName.toLowerCase() === targetAthlete.toLowerCase()) {
+                    masterName = data.primaryName; 
+                }
+            });
+            targetAthlete = masterName; 
+
+            // Find a matching key case-insensitively in clubHistory
+            const clubHistoryKey = Object.keys(corrections.clubHistory).find(key => 
+                key.toLowerCase() === targetAthlete.toLowerCase()
+            );
+
+            // Helper function to resolve which club they represented for a given season
+            const getClubForSeason = (seasonStr, defaultClub) => {
+                if (!clubHistoryKey || !corrections.clubHistory[clubHistoryKey]) return defaultClub;
+                
+                const currentYear = parseInt(seasonStr.split('/')[0], 10); // e.g., 2024 from "2024/2025"
+                let resolvedClub = defaultClub;
+
+                corrections.clubHistory[clubHistoryKey].forEach(hist => {
+                    const range = hist.seasons.replace(/\s+/g, '').split(/[—–-]/); // Split on any dash variant
+                    
+                    let startYear = 0;
+                    let endYear = Infinity;
+
+                    if (range[0].toLowerCase() !== 'debut') {
+                        startYear = parseInt(range[0].split('/')[0], 10);
+                    }
+                    if (range[1] && range[1].toLowerCase() !== 'present') {
+                        endYear = parseInt(range[1].split('/')[0], 10);
+                    }
+
+                    if (currentYear >= startYear && currentYear <= endYear) {
+                        resolvedClub = hist.club;
+                    }
+                });
+
+                return resolvedClub;
+            };
+
+            // Map records, cache original strings, and unify names
+            const correctedRecords = allRecords.map(row => {
+                let updatedRow = { ...row };
+                updatedRow.originalName = row.name || '';
+
+                if (row.name) {
+                    const match = Object.entries(corrections.nameChanges).find(([legacyName]) => 
+                        legacyName.toLowerCase() === row.name.toLowerCase()
+                    );
+                    if (match) {
+                        updatedRow.name = match[1].primaryName;
+                    }
+                }
+                return updatedRow;
+            });
             
-            const history = allRecords.filter(row => 
-                row.name && row.name.toLowerCase() === targetAthlete.toLowerCase() && row.pos > 0
-            ).sort((a, b) => {
-                if (a.season !== b.season) return b.season.localeCompare(a.season);
+            // Filter history rows matching primary identity key
+            const history = correctedRecords.filter(row => {
+                if (!row.name || row.pos <= 0) return false;
+                return row.name.toLowerCase() === targetAthlete.toLowerCase();
+            }).sort((a, b) => {
+                const cleanA = (a.season || '').replace(/[-_]/g, '/');
+                const cleanB = (b.season || '').replace(/[-_]/g, '/');
+                if (cleanA !== cleanB) return cleanB.localeCompare(cleanA);
                 return b.race_number - a.race_number;
             });
 
@@ -159,10 +227,47 @@
 
             // Identify Base Info from most recent finish row
             const meta = history[0];
-            document.getElementById('athlete-name').textContent = meta.name;
-            document.getElementById('athlete-club').textContent = meta.club || "Unattached";
+            document.getElementById('athlete-name').textContent = targetAthlete; 
             document.getElementById('athlete-gender').textContent = `Gender: ${meta.sex === 'M' ? 'Male' : 'Female'}`;
             document.getElementById('athlete-age-cat').textContent = meta.age_cat ? `Category: ${meta.age_cat.toUpperCase()}` : "Age Division Profile";
+
+            // Set top club dynamically from clubHistory if present, otherwise fall back to dataset row
+            let initialClubFallback = meta.club || "Unattached";
+            if (clubHistoryKey) {
+                const presentClubEntry = corrections.clubHistory[clubHistoryKey].find(h => h.seasons.toLowerCase().includes('present'));
+                if (presentClubEntry) initialClubFallback = presentClubEntry.club;
+            }
+            document.getElementById('athlete-club').textContent = initialClubFallback;
+
+            // 2. RENDERING METADATA TIMELINE NOTICES
+            const metaContainer = document.getElementById('athlete-meta-history');
+            if (metaContainer) {
+                let metaNoticeHtml = '';
+
+                Object.entries(corrections.nameChanges).forEach(([legacyName, data]) => {
+                    if (data.primaryName.toLowerCase() === targetAthlete.toLowerCase()) {
+                        metaNoticeHtml += `
+                            <p class="text-[11px] font-mono text-slate-400 font-semibold uppercase tracking-wider mt-1 bg-brand-500/5 border border-brand-500/10 px-3 py-1.5 rounded inline-block">
+                                ℹ️ Note: ${data.note} (Effective ${data.effectiveSeason})
+                            </p>
+                        `;
+                    }
+                });
+
+                if (clubHistoryKey) {
+                    let historyRows = '';
+                    corrections.clubHistory[clubHistoryKey].forEach(hist => {
+                        historyRows += `
+                            <span class="inline-block bg-slate-900 border border-slate-800 text-[10px] font-mono font-bold text-slate-400 px-2 py-1 rounded">
+                                🏃‍♂️ ${hist.club} (${hist.seasons})
+                            </span>
+                        `;
+                    });
+                    metaNoticeHtml += `<div class="flex flex-wrap gap-2 pt-1">${historyRows}</div>`;
+                }
+
+                metaContainer.innerHTML = metaNoticeHtml;
+            }
 
             // Aggregation Computations
             let xcCount = 0;
@@ -228,6 +333,17 @@
                 const paramSeason = row.season.replace('/', '_');
                 const resultsUrl = `results.html?season=${paramSeason}&discipline=${row.discipline.toLowerCase()}&race=${row.race_number}`;
 
+                // Resolve name and correct seasonal club assignment
+                // Extract the cached original name string from the raw row entry
+                const nameToDisplay = row.originalName || row.name;
+                const activeClubForFixture = getClubForSeason(row.season, row.club || "Unattached");
+
+                // Only show name changes if the historical name is actually different from the current profile name
+                let nameChangeHtml = '';
+                if (nameToDisplay.toLowerCase() !== targetAthlete.toLowerCase()) {
+                    nameChangeHtml = ` <span class="text-slate-700 font-sans px-1">•</span> Competed as: ${nameToDisplay}`;
+                }
+
                 const trHtml = `
                     <tr class="hover:bg-slate-900/10 transition-colors">
                         <td class="py-3 px-4 font-mono text-slate-400">${row.season}</td>
@@ -236,6 +352,9 @@
                             <a href="${resultsUrl}" class="font-bold text-slate-200 uppercase tracking-tight hover:text-brand-500 transition-colors">
                                 Fixture ${row.race_number} — ${row.venue}
                             </a>
+                            <span class="block text-[10px] text-slate-500 font-mono font-bold uppercase mt-0.5">
+                                Ran for ${activeClubForFixture}${nameChangeHtml}
+                            </span>
                         </td>
                         <td class="py-3 px-4 text-slate-500 font-medium">${dateStr}</td>
                         <td class="py-3 px-4 text-center font-mono text-slate-400 font-bold">Pos ${row.pos}</td>
@@ -252,16 +371,14 @@
             if (badgeContainer) {
                 badgeContainer.innerHTML = '';
                 
-                // 1. Outright Race Winner Badge (Highest Priority)
                 if (overallWins > 0) {
                     badgeContainer.insertAdjacentHTML('beforeend', `
-                        <span class="inline-flex items-center text-[10px] font-mono font-black bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded uppercase tracking-wider animate-pulse">
+                        <span class="inline-flex items-center text-[10px] font-mono font-black bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded uppercase tracking-wider">
                             👑 Race Winner (${overallWins})
                         </span>
                     `);
                 }
                 
-                // 2. Category Wins Logic
                 if (catWins > 0) {
                     if (catWins >= 5) {
                         badgeContainer.insertAdjacentHTML('beforeend', `
@@ -278,7 +395,6 @@
                     }
                 }
 
-                // 3. Loyalty Aggregation
                 const totalRaces = xcCount + roadCount;
                 if (totalRaces >= 10) {
                     badgeContainer.insertAdjacentHTML('beforeend', `
@@ -288,7 +404,6 @@
                     `);
                 }
 
-                // 4. Peak Finisher Position Aggregation
                 const bestOverallPos = Math.min(bestXcPos, bestRoadPos);
                 if (bestOverallPos > 0 && bestOverallPos <= 10) {
                     badgeContainer.insertAdjacentHTML('beforeend', `
@@ -300,6 +415,8 @@
             }
         });
     </script>
+    
+    <!-- INJECTED GLOBAL FOOTER CONTAINER -->
     <div id="global-footer"></div>
 </body>
 </html>

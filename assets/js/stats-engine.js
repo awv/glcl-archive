@@ -12,7 +12,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. FILTER MASTER RECORDS TO THE EXACT CAMPAIGN SERIES
     const allRecords = window.glclResults || [];
-    let records = allRecords.filter(row => 
+    const corrections = window.glclCorrections || { nameChanges: {} };
+
+    // Intercept and merge historical identity metrics in memory before filtering
+    const correctedRecords = allRecords.map(row => {
+        let updatedRow = { ...row };
+        
+        // Cache the true raw database name value before mapping overrides
+        updatedRow.originalName = row.name;
+
+        if (corrections.nameChanges[updatedRow.name]) {
+            updatedRow.name = corrections.nameChanges[updatedRow.name].primaryName;
+        }
+        return updatedRow;
+    });
+
+    // Filter using the corrected in-memory array rather than raw entries
+    let records = correctedRecords.filter(row => 
         row.season === selectedSeason && 
         row.discipline.toLowerCase() === disciplineParam.toLowerCase()
     );
