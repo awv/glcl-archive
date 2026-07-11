@@ -263,8 +263,19 @@
             }).sort((a, b) => {
                 const cleanA = (a.season || '').replace(/[-_]/g, '/');
                 const cleanB = (b.season || '').replace(/[-_]/g, '/');
+                
+                // 1. Sort by season descending (newest first)
                 if (cleanA !== cleanB) return cleanB.localeCompare(cleanA);
-                return b.race_number - a.race_number;
+                
+                // 2. Sort by fixture race number descending (Fixture 5 before Fixture 4)
+                if (b.race_number !== a.race_number) {
+                    return b.race_number - a.race_number;
+                }
+                
+                // 3. If both are Fixture 5, put ROAD (Summer) before XC (Winter)
+                const discA = (a.discipline || '').toUpperCase();
+                const discB = (b.discipline || '').toUpperCase();
+                return discA.localeCompare(discB); // "ROAD" comes before "XC" alphabetically
             });
 
             if (history.length === 0) {
@@ -376,14 +387,16 @@
                         document.getElementById('insight-card-title').textContent = "Overall Progress";
                         document.getElementById('insight-card-value').textContent = `↑ ${delta} Places`;
                         document.getElementById('insight-card-value').className = "text-2xl font-black text-emerald-400 block mt-2";
-                        // FIXED: Changed "down to Pos" to "up to Pos"
                         document.getElementById('insight-card-subtext').textContent = `Incredible upward curve! This athlete has advanced past ${delta} runners in the field since their league debut (moving from Pos ${firstPos} up to Pos ${lastPos}).`;
                     } else if (delta < 0) {
                         document.getElementById('insight-card-title').textContent = "Overall Progress";
                         document.getElementById('insight-card-value').textContent = `↓ ${Math.abs(delta)} Places`;
                         document.getElementById('insight-card-value').className = "text-2xl font-black text-slate-400 block mt-2";
-                        // FIXED: Clarified that a negative delta means drifting down the field
                         document.getElementById('insight-card-subtext').textContent = `Field variance position tracking shows a minor shift down the field by ${Math.abs(delta)} placement positions relative to debut fields.`;
+                    } else {
+                        document.getElementById('insight-card-title').textContent = "League Status";
+                        document.getElementById('insight-card-value').textContent = "Stable Form";
+                        document.getElementById('insight-card-subtext').textContent = `Maintaining incredibly robust consistency across configurations over multiple consecutive competition calendar seasons.`;
                     }
 
                     // 2. Generate Inverted SVG Sparkline Coordinates
@@ -404,28 +417,31 @@
                     document.getElementById('trend-sparkline-path').setAttribute('d', `M ${points.join(' L ')}`);
                 }
 
-                // 3. Compute Repeating Venue Variations
+                // 3. Compute Repeating Venue Variations (Isolated Strictly by Discipline)
                 const venueGroups = {};
                 chronologicalHistory.forEach(race => {
                     if (!race.venue || race.venue === "Unknown") return;
-                    if (!venueGroups[race.venue]) venueGroups[race.venue] = [];
-                    venueGroups[race.venue].push(race);
+                    
+                    // Construct isolated keys ensuring cross-country and road configurations don't cross-contaminate paths
+                    const disciplineKey = `${race.venue}_${race.discipline.toUpperCase()}`;
+                    if (!venueGroups[disciplineKey]) venueGroups[disciplineKey] = [];
+                    venueGroups[disciplineKey].push(race);
                 });
 
                 const progressRowsArray = [];
-                Object.keys(venueGroups).forEach(venueName => {
-                    const group = venueGroups[venueName];
+                Object.keys(venueGroups).forEach(key => {
+                    const group = venueGroups[key];
                     if (group.length >= 2) {
                         const debut = group[0];
                         const recent = group[group.length - 1];
                         
                         const debutPos = parseInt(debut.pos, 10);
                         const recentPos = parseInt(recent.pos, 10);
-                        const delta = debutPos - recentPos;
+                        const delta = debutPos - recentPos; // Positive value = progressed up towards position 1
 
                         if (!isNaN(debutPos) && !isNaN(recentPos)) {
                             progressRowsArray.push({
-                                venue: venueName,
+                                venue: debut.venue,
                                 discipline: debut.discipline,
                                 debutStr: `Pos ${debutPos} (${debut.season.split('/')[0]})`,
                                 recentStr: `Pos ${recentPos} (${recent.season.split('/')[0]})`,
@@ -438,20 +454,27 @@
                     }
                 });
 
-                // Render Venue Comparative rows
+                // Render Venue Comparative rows with dynamic text verification assertions
                 const progressTbody = document.getElementById('course-progress-rows');
                 if (progressRowsArray.length > 0) {
                     // Sort table to present largest improvements first
                     progressRowsArray.sort((a, b) => b.delta - a.delta);
-                    progressTbody.innerHTML = progressRowsArray.map(v => `
-                        <tr class="hover:bg-slate-900/10 transition-colors">
-                            <td class="py-3 px-4 font-bold text-slate-200 uppercase">${v.venue}</td>
-                            <td class="py-3 px-4">${v.discipline === 'XC' ? '<span class="text-[10px] font-mono font-bold bg-brand-500/10 text-brand-400 px-2 py-0.5 rounded">XC</span>' : '<span class="text-[10px] font-mono font-bold bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">ROAD</span>'}</td>
-                            <td class="py-3 px-4 text-slate-400 font-mono">${v.debutStr}</td>
-                            <td class="py-3 px-4 text-slate-400 font-mono">${v.recentStr}</td>
-                            <td class="py-3 px-4 text-right pr-6 font-mono">${v.progressHtml}</td>
-                        </tr>
-                    `).join('');
+                    progressTbody.innerHTML = progressRowsArray.map(v => {
+                        const isCrossCountry = v.discipline.toUpperCase() === 'XC';
+                        const seriesBadge = isCrossCountry 
+                            ? '<span class="text-[10px] font-mono font-bold bg-brand-500/10 text-brand-400 px-2 py-0.5 rounded">XC</span>' 
+                            : '<span class="text-[10px] font-mono font-bold bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">ROAD</span>';
+
+                        return `
+                            <tr class="hover:bg-slate-900/10 transition-colors">
+                                <td class="py-3 px-4 font-bold text-slate-200 uppercase">${v.venue}</td>
+                                <td class="py-3 px-4">${seriesBadge}</td>
+                                <td class="py-3 px-4 text-slate-400 font-mono">${v.debutStr}</td>
+                                <td class="py-3 px-4 text-slate-400 font-mono">${v.recentStr}</td>
+                                <td class="py-3 px-4 text-right pr-6 font-mono">${v.progressHtml}</td>
+                            </tr>
+                        `;
+                    }).join('');
                 } else {
                     document.getElementById('course-progress-container').style.display = 'none';
                 }

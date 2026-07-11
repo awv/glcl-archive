@@ -70,10 +70,59 @@
     <!-- MAIN CONTENT MODULE CONTAINER -->
     <main class="max-w-[1400px] mx-auto px-4 py-12 space-y-16 w-full flex-grow">
         
+    <!-- SEARCH & FILTER SYSTEM MODULE -->
+    <section class="space-y-6">
         <div>
-            <h2 class="text-xs font-black tracking-widest text-brand-500 uppercase">Select a Season</h2>
-            <h3 class="text-xl font-black text-slate-100 uppercase tracking-tight mt-1">Available Archives</h3>
+            <h2 class="text-xs font-black tracking-widest text-brand-500 uppercase">Search the Database</h2>
+            <h3 class="text-xl font-black text-slate-100 uppercase tracking-tight mt-1">Runners, Clubs & Seasons</h3>
         </div>
+
+        <!-- Interface Controls Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-slate-950 border border-slate-900 p-4 rounded-xl shadow-xl">
+            
+            <!-- Runner Autocomplete Field -->
+            <div class="md:col-span-2 relative">
+                <label for="runner-search" class="block text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase mb-1.5">Search Runner Name</label>
+                <div class="relative">
+                    <input type="text" id="runner-search" placeholder="e.g., John Doe..." autocomplete="off" 
+                        class="w-full bg-slate-900 border border-slate-800 text-slate-100 placeholder-slate-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-500 font-medium transition-colors">
+                    
+                    <!-- Autocomplete Dropdown Menu Container -->
+                    <div id="autocomplete-results" class="hidden absolute left-0 right-0 mt-1 bg-slate-900 border border-slate-800 rounded-lg shadow-2xl z-50 max-h-60 overflow-y-auto divide-y divide-slate-950">
+                        <!-- Dynamic results injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Club Navigation Filter -->
+            <div>
+                <label for="club-filter" class="block text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase mb-1.5">Filter by Club</label>
+                <select id="club-filter" 
+                    class="w-full bg-slate-900 border border-slate-800 text-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-500 font-medium transition-colors appearance-none cursor-pointer">
+                    <option value="">Choose a Club...</option>
+                    <!-- Dynamically populated or static club list -->
+                    <option value="parc-bryn-bach">Parc Bryn Bach RC</option>
+                    <option value="newport-harriers">Newport Harriers</option>
+                    <option value="fairwater-runners">Fairwater Runners</option>
+                </select>
+            </div>
+
+            <!-- Season Navigation Filter -->
+            <div>
+                <label for="season-filter" class="block text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase mb-1.5">Filter by Season</label>
+                <select id="season-filter" 
+                    class="w-full bg-slate-900 border border-slate-800 text-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-500 font-medium transition-colors appearance-none cursor-pointer">
+                    <option value="">Choose a Season...</option>
+                    <option value="2025_2026">2025 / 2026</option>
+                    <option value="2024_2025">2024 / 2025</option>
+                    <option value="2023_2024">2023 / 2024</option>
+                    <option value="2022_2023">2022 / 2023</option>
+                    <option value="2021_2022">2021 / 2022</option>
+                </select>
+            </div>
+
+        </div>
+    </section>
 
         <!-- 2025/2026 SEASON CAMPAIGN ROW -->
         <section class="space-y-4">
@@ -282,6 +331,120 @@
 
     <!-- INJECTED GLOBAL FOOTER CONTAINER -->
     <div id="global-footer"></div>
+    <script>
+    <!-- Front-End Routing & Autocomplete Logic -->
+ document.addEventListener('DOMContentLoaded', () => {
+    const clubFilter = document.getElementById('club-filter');
+    const seasonFilter = document.getElementById('season-filter');
+    const searchInput = document.getElementById('runner-search');
+    const resultsContainer = document.getElementById('autocomplete-results');
 
+    // Default arrays to populate from the data
+    let uniqueRunners = [];
+
+    // Check if the dataset is loaded successfully
+    if (typeof window.glclResults !== 'undefined' && Array.isArray(window.glclResults)) {
+        
+    // 1. Extract unique clubs and populate dropdown
+    const clubsSet = new Set();
+    window.glclResults.forEach(item => {
+        if (item.club) {
+            // Normalise 'And' to '&' and fix spacing/casing anomalies
+            let cleanedClub = item.club.trim()
+                .replace(/\bAnd\b/gi, '&')
+                .replace(/\bRc\b/gi, 'RC');
+            
+            clubsSet.add(cleanedClub);
+        }
+    });
+
+    // Sort alphabetically and clean up option strings
+    const sortedClubs = Array.from(clubsSet).sort();
+    clubFilter.innerHTML = '<option value="">Choose a Club...</option>';
+    sortedClubs.forEach(clubName => {
+        const option = document.createElement('option');
+        
+        // Pass the clean string value for the query parameter (e.g. "Parc Bryn Bach RC")
+        option.value = clubName;
+        option.textContent = clubName;
+        
+        clubFilter.appendChild(option);
+    });
+
+        // 2. Extract unique runners paired with their most recent club
+        const runnersMap = new Map();
+        window.glclResults.forEach(item => {
+            if (item.name) {
+                const standardizedName = item.name.trim();
+                // Map names to their club so it always pulls the latest entry
+                if (!runnersMap.has(standardizedName)) {
+                    runnersMap.set(standardizedName, item.club || '');
+                }
+            }
+        });
+
+        uniqueRunners = Array.from(runnersMap).map(([name, club]) => ({ name, club }));
+    }
+
+    // 3. Dropdown Navigation Routing Setup
+    clubFilter.addEventListener('change', (e) => {
+        if (e.target.value) {
+            window.location.href = `club.html?name=${encodeURIComponent(e.target.value)}`;
+        }
+    });
+
+    seasonFilter.addEventListener('change', (e) => {
+        if (e.target.value) {
+            // Routes to your existing working page matching your card setup
+            window.location.href = `season.html?season=${e.target.value}&discipline=xc`;
+        }
+    });
+
+    // 4. Live Autocomplete Search Action
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        resultsContainer.innerHTML = '';
+
+        if (query.length < 2) {
+            resultsContainer.classList.add('hidden');
+            return;
+        }
+
+        // Filter against the newly mapped unique runner dataset
+        const filtered = uniqueRunners.filter(runner => 
+            runner.name.toLowerCase().includes(query)
+        ).slice(0, 10); // Limit dropdown view list size for cleaner UI
+
+        if (filtered.length === 0) {
+            resultsContainer.classList.add('hidden');
+            return;
+        }
+
+        filtered.forEach(runner => {
+            const item = document.createElement('div');
+            item.className = 'px-3 py-2.5 hover:bg-slate-800/50 cursor-pointer flex justify-between items-center transition-colors';
+            item.innerHTML = `
+                <span class="text-sm font-bold text-slate-200">${runner.name}</span>
+                <span class="text-[10px] font-mono tracking-wider text-slate-500 uppercase">${runner.club}</span>
+            `;
+            
+            item.addEventListener('click', () => {
+                window.location.href = `athlete.html?name=${encodeURIComponent(runner.name)}`;
+            });
+            
+            resultsContainer.appendChild(item);
+        });
+
+        resultsContainer.classList.remove('hidden');
+    });
+
+    // Dismiss search overlay box when picking background targets
+    document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !resultsContainer.contains(e.target)) {
+            resultsContainer.classList.add('hidden');
+        }
+    });
+});
+</script>
 </body>
 </html>
