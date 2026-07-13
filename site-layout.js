@@ -9,63 +9,67 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- NAVIGATION LOGIC ---
     if (navEl) {
-    const navComponentPath = isSubFolderPage ? '../components/nav.html' : 'components/nav.html';
+        const navComponentPath = isSubFolderPage ? '../components/nav.html' : 'components/nav.html';
 
-    console.log(`Site-Layout: Attempting nav fetch from target path: ${navComponentPath}`);
+        console.log(`Site-Layout: Attempting nav fetch from target path: ${navComponentPath}`);
 
-    fetch(navComponentPath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.text();
-        })
- .then(data => {
-            navEl.innerHTML = data;
-            console.log("Global navigation rendered successfully.");
+        fetch(navComponentPath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                navEl.innerHTML = data;
+                console.log("Global navigation rendered successfully.");
 
-            // Dedicated function to bind the toggle once the elements are guaranteed to exist
-            const bindMobileMenu = () => {
-                const toggleBtn = document.getElementById('mobile-menu-toggle');
-                const menuPanel = document.getElementById('mobile-menu-panel');
-                const hbgIcon = document.getElementById('hamburger-icon');
-                const clsIcon = document.getElementById('close-icon');
+                // Dedicated function to bind the toggle once the elements are guaranteed to exist
+                const bindMobileMenu = () => {
+                    const toggleBtn = document.getElementById('mobile-menu-toggle');
+                    const menuPanel = document.getElementById('mobile-menu-panel');
+                    const hbgIcon = document.getElementById('hamburger-icon');
+                    const clsIcon = document.getElementById('close-icon');
 
-            if (toggleBtn && menuPanel) {
-                toggleBtn.replaceWith(toggleBtn.cloneNode(true));
-                const cleanToggleBtn = document.getElementById('mobile-menu-toggle');
+                    if (toggleBtn && menuPanel) {
+                        // If we already marked this button as active, exit immediately
+                        if (toggleBtn.dataset.menuBound === "true") return true;
 
-                // pointerdown handles touch and click identically without double-firing
-                cleanToggleBtn.addEventListener('pointerdown', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation(); // Prevents the event from bubbling up
-                    
-                    const isHidden = menuPanel.classList.contains('hidden');
-                    menuPanel.classList.toggle('hidden', !isHidden);
-                    
-                    if (hbgIcon) hbgIcon.classList.toggle('hidden', isHidden);
-                    if (clsIcon) clsIcon.classList.toggle('hidden', !isHidden);
-                });
-                
-                return true; 
-            }
-                return false;
-            };
+                        // Unified clean click handler
+                        const handleToggle = (e) => {
+                            e.preventDefault();
+                            e.stopPropagation(); // Prevents the event from bubbling up
+                            
+                            const isHidden = menuPanel.classList.contains('hidden');
+                            menuPanel.classList.toggle('hidden', !isHidden);
+                            
+                            if (hbgIcon) hbgIcon.classList.toggle('hidden', isHidden);
+                            if (clsIcon) clsIcon.classList.toggle('hidden', !isHidden);
+                        };
 
-            // Run immediately, fallback to a brief retry loop if DevTools layout is lagging
-            if (!bindMobileMenu()) {
-                const retryInterval = setInterval(() => {
-                    if (bindMobileMenu()) clearInterval(retryInterval);
-                }, 50);
-                setTimeout(() => clearInterval(retryInterval), 2000); // Guard timeout
-            }
+                        // Use standard click but explicitly flag it to prevent dual attachments
+                        toggleBtn.addEventListener('click', handleToggle);
+                        toggleBtn.dataset.menuBound = "true";
+                        
+                        return true; 
+                    }
+                    return false;
+                };
 
-            // Notify individual pages that the navigation is ready
-            window.dispatchEvent(new Event('navLoaded'));
-        })
-        .catch(err => {
-            console.error('Error loading global navigation component:', err);
-        });
+                // Run immediately, fallback to a brief retry loop if DevTools layout is lagging
+                if (!bindMobileMenu()) {
+                    const retryInterval = setInterval(() => {
+                        if (bindMobileMenu()) clearInterval(retryInterval);
+                    }, 50);
+                    setTimeout(() => clearInterval(retryInterval), 2000); // Guard timeout
+                }
+
+                // Notify individual pages that the navigation is ready
+                window.dispatchEvent(new Event('navLoaded'));
+            })
+            .catch(err => {
+                console.error('Error loading global navigation component:', err);
+            });
     }
 
     // --- FOOTER LOGIC ---
