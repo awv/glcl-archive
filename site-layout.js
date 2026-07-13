@@ -1,35 +1,82 @@
 // site-layout.js (Located in root)
 document.addEventListener("DOMContentLoaded", () => {
-    const headerEl = document.getElementById('global-header');
+    // Look for the new global-nav ID (fallback to global-header just in case)
+    const navEl = document.getElementById('global-nav') || document.getElementById('global-header');
     const footerEl = document.getElementById('global-footer');
 
-    if (headerEl) {
-        headerEl.innerHTML = `
-            <header class="bg-slate-900 border-b border-slate-800 py-5 shadow-lg">
-                <div class="max-w-[1400px] mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <div class="flex items-center gap-3">
-                        <div class="h-10 w-10 rounded-lg flex items-center justify-center font-black text-white text-xl shadow-md" style="background-color: #1F6C93;">
-                            G
-                        </div>
-                        <div>
-                            <h1 class="text-xl font-black text-slate-100 tracking-tight uppercase">GLCL Archive</h1>
-                            <p class="text-xs text-slate-400 font-medium tracking-wider uppercase">Gwent League Cross Country & Road</p>
-                        </div>
-                    </div>
-                </div>
-            </header>
-        `;
+    // Determine the correct relative path baseline depending on page depth
+    const isSubFolderPage = window.location.pathname.split('/').filter(Boolean).length > 1;
+
+    // --- NAVIGATION LOGIC ---
+    if (navEl) {
+    const navComponentPath = isSubFolderPage ? '../components/nav.html' : 'components/nav.html';
+
+    console.log(`Site-Layout: Attempting nav fetch from target path: ${navComponentPath}`);
+
+    fetch(navComponentPath)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.text();
+        })
+ .then(data => {
+            navEl.innerHTML = data;
+            console.log("Global navigation rendered successfully.");
+
+            // Dedicated function to bind the toggle once the elements are guaranteed to exist
+            const bindMobileMenu = () => {
+                const toggleBtn = document.getElementById('mobile-menu-toggle');
+                const menuPanel = document.getElementById('mobile-menu-panel');
+                const hbgIcon = document.getElementById('hamburger-icon');
+                const clsIcon = document.getElementById('close-icon');
+
+                if (toggleBtn && menuPanel) {
+                    // Remove any old ghost listeners before binding a fresh one
+                    toggleBtn.replaceWith(toggleBtn.cloneNode(true));
+                    const cleanToggleBtn = document.getElementById('mobile-menu-toggle');
+
+                    // Consolidated click and touch event handler
+                    const handleToggle = (e) => {
+                        e.preventDefault();
+                        const isHidden = menuPanel.classList.contains('hidden');
+                        menuPanel.classList.toggle('hidden', !isHidden);
+                        if (hbgIcon) hbgIcon.classList.toggle('hidden', isHidden);
+                        if (clsIcon) clsIcon.classList.toggle('hidden', !isHidden);
+                    };
+
+                    // Bind both standard clicks and mobile touch starts for DevTools
+                    cleanToggleBtn.addEventListener('click', handleToggle);
+                    cleanToggleBtn.addEventListener('touchstart', handleToggle, { passive: true });
+                    
+                    return true; // Bound successfully
+                }
+                return false;
+            };
+
+            // Run immediately, fallback to a brief retry loop if DevTools layout is lagging
+            if (!bindMobileMenu()) {
+                const retryInterval = setInterval(() => {
+                    if (bindMobileMenu()) clearInterval(retryInterval);
+                }, 50);
+                setTimeout(() => clearInterval(retryInterval), 2000); // Guard timeout
+            }
+
+            // Notify individual pages that the navigation is ready
+            window.dispatchEvent(new Event('navLoaded'));
+        })
+        .catch(err => {
+            console.error('Error loading global navigation component:', err);
+        });
     }
 
+    // --- FOOTER LOGIC ---
     if (footerEl) {
-        // Determine the correct relative path baseline depending on page depth
-        // If the current window path includes a deeper slash, step back to the root baseline
-        const isSubFolderPage = window.location.pathname.split('/').filter(Boolean).length > 1;
-        const componentPath = isSubFolderPage ? '../components/footer.html' : 'components/footer.html';
+        const footerComponentPath = isSubFolderPage ? '../components/footer.html' : 'components/footer.html';
 
-        console.log(`Site-Layout: Attempting footer fetch from target path: ${componentPath}`);
+        console.log(`Site-Layout: Attempting footer fetch from target path: ${footerComponentPath}`);
 
-        fetch(componentPath)
+        fetch(footerComponentPath)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
