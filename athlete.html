@@ -41,17 +41,16 @@
             .catch(err => console.error('Error loading navigation header:', err));
     </script>
 
-    <!-- ATHLETE HERO BANNER WITH PURE CSS MESH PATTERN -->
-    <header class="relative w-full h-[240px] overflow-hidden border-b border-slate-900 bg-slate-950 flex items-end">
+    <!-- ATHLETE HERO BANNER WITH CONDITIONAL IMAGE BACKGROUND -->
+<header id="athlete-header-container" class="relative w-full h-[240px] overflow-hidden border-b border-slate-900 bg-slate-950 flex items-end transition-all duration-300">        
+        <!-- Default fine-grain CSS Dot Matrix Pattern -->
+        <div id="header-mesh" class="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#0066cc_1.5px,transparent_1.5px)] [background-size:20px_20px]"></div>
         
-        <!-- Fine-grain CSS Dot Matrix Pattern -->
-        <div class="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#0066cc_1.5px,transparent_1.5px)] [background-size:20px_20px]"></div>
+        <!-- Default deep blue ambient glow behind text layout -->
+        <div id="header-glow" class="absolute left-12 -bottom-24 w-96 h-96 bg-brand-500/10 rounded-full blur-[100px] pointer-events-none select-none"></div>
         
-        <!-- Subtle deep blue ambient glow focused behind the text layout -->
-        <div class="absolute left-12 -bottom-24 w-96 h-96 bg-brand-500/10 rounded-full blur-[100px] pointer-events-none select-none"></div>
-        
-        <!-- Bottom Smooth Fade Transition -->
-        <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent"></div>
+        <!-- Bottom / Immersive Gradient Overlay (Blends image nicely and ensures text readability) -->
+        <div id="header-gradient" class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent"></div>
 
         <!-- Text Content Overlay Layer -->
         <div class="relative max-w-[1400px] w-full mx-auto px-4 pb-6 z-10 space-y-1.5">
@@ -62,7 +61,7 @@
             
             <!-- Flex Wrapper to Keep Name and Badges Cleanly Aligned Inline -->
             <div class="flex flex-wrap items-center gap-3">
-                <h1 id="athlete-name" class="text-3xl font-black text-slate-100 tracking-tight uppercase drop-shadow-md">
+                <h1 id="athlete-name" class="text-3xl md:text-4xl font-black text-slate-100 tracking-tight uppercase drop-shadow-md">
                     <!-- Injected by script -->
                 </h1>
                 <div id="athlete-badges" class="flex flex-wrap gap-1.5"></div>
@@ -101,11 +100,11 @@
                 <span id="stat-cat-wins" class="text-2xl font-black text-amber-400 block mt-1">0</span>
             </div>
             <div class="bg-slate-950 border border-slate-900 p-4 rounded-xl shadow-md">
-                <span class="block text-[10px] font-black text-slate-500 tracking-wider uppercase">Best XC Pos</span>
+                <span id="label-best-xc" class="block text-[10px] font-black text-slate-500 tracking-wider uppercase">Best XC Pos</span>
                 <span id="stat-best-xc" class="text-2xl font-black text-sky-400 block mt-1">-</span>
             </div>
             <div class="bg-slate-950 border border-slate-900 p-4 rounded-xl shadow-md">
-                <span class="block text-[10px] font-black text-slate-500 tracking-wider uppercase">Best Road Pos</span>
+                <span id="label-best-road" class="block text-[10px] font-black text-slate-500 tracking-wider uppercase">Best Road Pos</span>
                 <span id="stat-best-road" class="text-2xl font-black text-amber-500 block mt-1">-</span>
             </div>
         </section>
@@ -121,17 +120,35 @@
                 <p id="insight-card-subtext" class="text-xs text-slate-500 mt-4 font-medium leading-relaxed">—</p>
             </div>
 
-            <!-- Historical Form Sparkline Chart -->
+<!-- Historical Form Sparkline Chart -->
             <div id="trend-chart-container" class="bg-slate-950 border border-slate-900 p-6 rounded-xl shadow-md flex flex-col justify-between lg:col-span-2">
                 <div class="flex items-center justify-between">
                     <span class="block text-[10px] font-black text-slate-500 uppercase tracking-wider">Gender Position Form Trend</span>
                     <span class="text-[9px] font-mono font-bold text-slate-600 uppercase tracking-wider">Oldest ➔ Recent</span>
                 </div>
-                <!-- Mini inline SVG Line Chart layout canvas -->
-                <div class="w-full h-16 mt-4 flex items-center justify-center">
-                    <svg class="w-full h-full overflow-visible" viewBox="0 0 300 60" preserveAspectRatio="none">
-                        <path id="trend-sparkline-path" fill="none" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="" />
-                    </svg>
+                
+                <!-- Chart Container with Y-Axis and Background Gridlines -->
+                <div class="flex h-20 mt-4">
+                    <!-- Y-Axis Labels (Best at top, lowest at bottom) -->
+                    <div class="flex flex-col justify-between text-[9px] font-mono font-bold text-slate-600 pr-3 border-r border-slate-900/60 select-none text-right min-w-[55px]">
+                        <span id="chart-y-max">Best</span>
+                        <span id="chart-y-mid" class="text-slate-800">Mid</span>
+                        <span id="chart-y-min">Lowest</span>
+                    </div>
+                    
+                    <!-- SVG Chart Canvas Area with dashed guides -->
+                    <div class="flex-grow h-full pl-3 relative">
+                        <!-- Horizontal dashed guide-lines for visual reference -->
+                        <div class="absolute inset-y-0 left-3 right-0 flex flex-col justify-between pointer-events-none opacity-40">
+                            <div class="w-full border-t border-dashed border-slate-900"></div>
+                            <div class="w-full border-t border-dashed border-slate-900"></div>
+                            <div class="w-full border-t border-dashed border-slate-900"></div>
+                        </div>
+                        
+                        <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 300 60" preserveAspectRatio="none">
+                            <path id="trend-sparkline-path" fill="none" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="" />
+                        </svg>
+                    </div>
                 </div>
             </div>
 
@@ -206,6 +223,39 @@
                 }
             });
             targetAthlete = masterName; 
+
+            // Dynamic background photo loader hook
+            const loadProfilePhoto = (name) => {
+                const formattedName = name.toLowerCase().replace(/\s+/g, '-');
+                const photoSrc = `assets/images/athletes/${formattedName}.jpg`;
+                
+                const imgCheck = new Image();
+                imgCheck.src = photoSrc;
+                imgCheck.onload = () => {
+                const header = document.getElementById('athlete-header-container');
+                const mesh = document.getElementById('header-mesh');
+                const glow = document.getElementById('header-glow');
+                const gradient = document.getElementById('header-gradient');
+
+                if (header) {
+                    // Dynamically increase the height only when we have a photo
+                    header.style.height = '350px';
+
+                    // Apply rich background banner styling
+                    header.style.backgroundImage = `url('${photoSrc}')`;
+                    header.style.backgroundSize = 'cover';
+                    header.style.backgroundPosition = 'top';
+                    header.style.backgroundRepeat = 'no-repeat';
+
+                    if (mesh) mesh.style.display = 'none';
+                    if (glow) glow.style.display = 'none';
+
+                    if (gradient) {
+                        gradient.className = "absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-black/20";
+                    }
+                }
+            };
+            };
 
             // Find a matching key case-insensitively in clubHistory
             const clubHistoryKey = Object.keys(corrections.clubHistory).find(key => 
@@ -289,6 +339,9 @@
             document.getElementById('athlete-gender').textContent = `Gender: ${meta.sex === 'M' ? 'Male' : 'Female'}`;
             document.getElementById('athlete-age-cat').textContent = meta.age_cat ? `Category: ${meta.age_cat.toUpperCase()}` : "Age Division Profile";
 
+            // Trigger dynamic profile check safely inside core configuration timeline
+            loadProfilePhoto(targetAthlete);
+
             // Set top club dynamically from clubHistory if present, otherwise fall back to dataset row
             let initialClubFallback = meta.club || "Unattached";
             if (clubHistoryKey) {
@@ -327,7 +380,7 @@
                 metaContainer.innerHTML = metaNoticeHtml;
             }
 
-            // Aggregation Computations
+ // Aggregation Computations
             let xcCount = 0;
             let roadCount = 0;
             let catWins = 0;
@@ -340,12 +393,21 @@
                 const disc = (row.discipline || '').toLowerCase();
                 venuesSet.add(row.venue);
 
+                // Convert gender_pos to integer for comparison
+                const genderPosVal = parseInt(row.gender_pos, 10);
+
                 if (disc === 'xc') {
                     xcCount++;
-                    if (row.pos < bestXcPos) bestXcPos = row.pos;
+                    // Track their best position relative strictly to their own gender
+                    if (!isNaN(genderPosVal) && genderPosVal < bestXcPos) {
+                        bestXcPos = genderPosVal;
+                    }
                 } else if (disc === 'road') {
                     roadCount++;
-                    if (row.pos < bestRoadPos) bestRoadPos = row.pos;
+                    // Track their best position relative strictly to their own gender
+                    if (!isNaN(genderPosVal) && genderPosVal < bestRoadPos) {
+                        bestRoadPos = genderPosVal;
+                    }
                 }
 
                 if (parseInt(row.cat_pos, 10) === 1) {
@@ -365,41 +427,51 @@
             document.getElementById('stat-best-xc').textContent = bestXcPos === Infinity ? '-' : `Pos ${bestXcPos}`;
             document.getElementById('stat-best-road').textContent = bestRoadPos === Infinity ? '-' : `Pos ${bestRoadPos}`;
 
+            // Dynamically rename the labels based on the athlete's gender
+            const genderLabel = meta.sex === 'M' ? 'Male' : 'Female';
+            document.getElementById('label-best-xc').textContent = `Best ${genderLabel} XC Pos`;
+            document.getElementById('label-best-road').textContent = `Best ${genderLabel} Road Pos`;
+
             // ==========================================
             // UNIVERSAL ATHLETE INSIGHTS CORE PIPELINE
             // ==========================================
             const MIN_RACES_FOR_TREND = 3;
             // Create true chronologically sorted array for trends (oldest to newest)
-            const chronologicalHistory = [...history].sort((a, b) => new Date(a.date) - new Date(b.date));
+            const chronologicalHistory = [...history].reverse();
 
             if (chronologicalHistory.length >= MIN_RACES_FOR_TREND) {
-                // 1. Calculate Gender Position Deltas
+                // 1. Calculate Smoothed Gender Position Deltas (Averages of First 3 vs Last 3)
                 const validGenderPositions = chronologicalHistory
                     .map(r => parseInt(r.gender_pos, 10))
                     .filter(pos => !isNaN(pos));
 
                 if (validGenderPositions.length >= 2) {
-                    const firstPos = validGenderPositions[0];
-                    const lastPos = validGenderPositions[validGenderPositions.length - 1];
-                    const delta = firstPos - lastPos; // Positive values indicate advancement toward the front field
+                    // Smooth the anomalies by using 3-race averaging windows
+                    const sampleSize = Math.min(3, validGenderPositions.length);
+                    const firstRaces = validGenderPositions.slice(0, sampleSize);
+                    const lastRaces = validGenderPositions.slice(-sampleSize);
+
+                    const firstAvg = Math.round(firstRaces.reduce((a, b) => a + b, 0) / sampleSize);
+                    const lastAvg = Math.round(lastRaces.reduce((a, b) => a + b, 0) / sampleSize);
+                    const delta = firstAvg - lastAvg; // Positive value represents improvement
 
                     if (delta > 0) {
                         document.getElementById('insight-card-title').textContent = "Overall Progress";
                         document.getElementById('insight-card-value').textContent = `↑ ${delta} Places`;
                         document.getElementById('insight-card-value').className = "text-2xl font-black text-emerald-400 block mt-2";
-                        document.getElementById('insight-card-subtext').textContent = `Incredible upward curve! This athlete has advanced past ${delta} runners in the field since their league debut (moving from Pos ${firstPos} up to Pos ${lastPos}).`;
+                        document.getElementById('insight-card-subtext').textContent = `Excellent upward curve! This athlete's average finishing position has advanced past ${delta} runners in the field compared to their debut season (moving from a starting average of Pos ${firstAvg} down to Pos ${lastAvg} recently).`;
                     } else if (delta < 0) {
                         document.getElementById('insight-card-title').textContent = "Overall Progress";
                         document.getElementById('insight-card-value').textContent = `↓ ${Math.abs(delta)} Places`;
                         document.getElementById('insight-card-value').className = "text-2xl font-black text-slate-400 block mt-2";
-                        document.getElementById('insight-card-subtext').textContent = `Field variance position tracking shows a minor shift down the field by ${Math.abs(delta)} placement positions relative to debut fields.`;
+                        document.getElementById('insight-card-subtext').textContent = `Finishing averages show a minor adjustment of ${Math.abs(delta)} positions down the field compared to their debut outings (moving from a starting average of Pos ${firstAvg} to Pos ${lastAvg} recently).`;
                     } else {
                         document.getElementById('insight-card-title').textContent = "League Status";
                         document.getElementById('insight-card-value').textContent = "Stable Form";
-                        document.getElementById('insight-card-subtext').textContent = `Maintaining incredibly robust consistency across configurations over multiple consecutive competition calendar seasons.`;
+                        document.getElementById('insight-card-subtext').textContent = `Maintaining robust, consistent racing form with an average placement of Pos ${lastAvg} across consecutive calendar seasons.`;
                     }
 
-                    // 2. Generate Inverted SVG Sparkline Coordinates
+                    // 2. Generate Inverted SVG Sparkline Coordinates with dynamic Y-Axis labels
                     const width = 300;
                     const height = 60;
                     const padding = 6;
@@ -408,9 +480,14 @@
                     const maxPos = Math.max(...validGenderPositions);
                     const posRange = maxPos - minPos || 1;
 
+                    // Set dynamic labels on the Y-Axis
+                    document.getElementById('chart-y-max').textContent = `Pos ${minPos}`;
+                    document.getElementById('chart-y-mid').textContent = `Pos ${Math.round((minPos + maxPos) / 2)}`;
+                    document.getElementById('chart-y-min').textContent = `Pos ${maxPos}`;
+
                     const points = validGenderPositions.map((pos, index) => {
                         const x = padding + (index / (validGenderPositions.length - 1)) * (width - padding * 2);
-                        // Invert Y: Better finish results (minPos) map to top of visual canvas window
+                        // Inverted Y: Lower position numbers (better finishes) render at the top of the SVG frame
                         const y = padding + ((pos - minPos) / posRange) * (height - padding * 2);
                         return `${x.toFixed(1)},${y.toFixed(1)}`;
                     });
