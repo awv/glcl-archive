@@ -32,24 +32,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 const clsIcon = document.getElementById('close-icon');
 
                 if (toggleBtn && menuPanel) {
-                    // Remove any old ghost listeners before binding a fresh one
                     toggleBtn.replaceWith(toggleBtn.cloneNode(true));
                     const cleanToggleBtn = document.getElementById('mobile-menu-toggle');
 
-                    // Consolidated click and touch event handler
-                    const handleToggle = (e) => {
+                    // Standard single listener handles mobile tap and desktop click cleanly
+                    cleanToggleBtn.addEventListener('click', (e) => {
                         e.preventDefault();
                         const isHidden = menuPanel.classList.contains('hidden');
                         menuPanel.classList.toggle('hidden', !isHidden);
                         if (hbgIcon) hbgIcon.classList.toggle('hidden', isHidden);
                         if (clsIcon) clsIcon.classList.toggle('hidden', !isHidden);
-                    };
-
-                    // Bind both standard clicks and mobile touch starts for DevTools
-                    cleanToggleBtn.addEventListener('click', handleToggle);
-                    cleanToggleBtn.addEventListener('touchstart', handleToggle, { passive: true });
+                    });
                     
-                    return true; // Bound successfully
+                    return true; 
                 }
                 return false;
             };
