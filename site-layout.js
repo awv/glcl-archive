@@ -31,21 +31,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 const hbgIcon = document.getElementById('hamburger-icon');
                 const clsIcon = document.getElementById('close-icon');
 
-                if (toggleBtn && menuPanel) {
-                    toggleBtn.replaceWith(toggleBtn.cloneNode(true));
-                    const cleanToggleBtn = document.getElementById('mobile-menu-toggle');
+            if (toggleBtn && menuPanel) {
+                toggleBtn.replaceWith(toggleBtn.cloneNode(true));
+                const cleanToggleBtn = document.getElementById('mobile-menu-toggle');
 
-                    // Standard single listener handles mobile tap and desktop click cleanly
-                    cleanToggleBtn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const isHidden = menuPanel.classList.contains('hidden');
-                        menuPanel.classList.toggle('hidden', !isHidden);
-                        if (hbgIcon) hbgIcon.classList.toggle('hidden', isHidden);
-                        if (clsIcon) clsIcon.classList.toggle('hidden', !isHidden);
-                    });
+                // pointerdown handles touch and click identically without double-firing
+                cleanToggleBtn.addEventListener('pointerdown', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation(); // Prevents the event from bubbling up
                     
-                    return true; 
-                }
+                    const isHidden = menuPanel.classList.contains('hidden');
+                    menuPanel.classList.toggle('hidden', !isHidden);
+                    
+                    if (hbgIcon) hbgIcon.classList.toggle('hidden', isHidden);
+                    if (clsIcon) clsIcon.classList.toggle('hidden', !isHidden);
+                });
+                
+                return true; 
+            }
                 return false;
             };
 
