@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLCL Archive — Internal Roster & Banner Status</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="data.js"></script>
+    <script src="assets/js/corrections.js"></script>
+    <script src="site-layout.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#0066cc' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #030712; }
+    </style>
+</head>
+<body class="text-slate-300 font-sans antialiased flex flex-col min-h-full">
+
+    <!-- GLOBAL NAVIGATION CONTAINER -->
+    <nav id="global-nav" class="border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <!-- Injected automatically -->
+    </nav>
+
+    <script>
+        fetch('components/nav.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('global-nav').innerHTML = data;
+                window.dispatchEvent(new Event('navLoaded'));
+            })
+            .catch(err => console.error('Error loading navigation header:', err));
+    </script>
+
+    <!-- STATUS BANNER -->
+    <header class="relative w-full h-[180px] overflow-hidden border-b border-slate-900 bg-slate-950 flex items-end">
+        <div class="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#0066cc_1.5px,transparent_1.5px)] [background-size:20px_20px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent"></div>
+
+        <div class="relative max-w-[1400px] w-full mx-auto px-4 pb-6 z-10 space-y-1">
+            <span class="text-xs font-black tracking-widest text-brand-500 uppercase block">
+                ADMIN UTILITIES
+            </span>
+            <h1 class="text-3xl font-black text-slate-100 tracking-tight uppercase">
+                Roster & Banner Status
+            </h1>
+            <p class="text-xs text-slate-500 font-mono uppercase tracking-wider">
+                Internal Audit of All Registered Competitors and Image Assets
+            </p>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-[1400px] w-full mx-auto px-4 py-8 flex-grow space-y-6">
+        
+        <!-- AUDIT METRICS & FILTERS -->
+        <section class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-slate-950 border border-slate-900 p-4 rounded-xl shadow-xl">
+            <div class="p-2">
+                <span class="block text-[10px] font-black text-slate-500 uppercase tracking-wider">Total Athletes</span>
+                <span id="metric-total" class="text-2xl font-black text-slate-100 font-mono mt-1 block">-</span>
+            </div>
+            <div class="p-2">
+                <span class="block text-[10px] font-black text-slate-500 uppercase tracking-wider">Banners Available</span>
+                <span id="metric-banners" class="text-2xl font-black text-emerald-400 font-mono mt-1 block">-</span>
+            </div>
+            <div class="p-2">
+                <span class="block text-[10px] font-black text-slate-500 uppercase tracking-wider">Missing Banners</span>
+                <span id="metric-missing" class="text-2xl font-black text-amber-500 font-mono mt-1 block">-</span>
+            </div>
+            <!-- Live filter control -->
+            <div class="flex items-center">
+                <select id="status-filter" class="w-full bg-slate-900 border border-slate-800 text-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-500 font-medium cursor-pointer">
+                    <option value="all">Show All Athletes</option>
+                    <option value="has-banner">Only With Banner Images</option>
+                    <option value="no-banner">Missing Banner Images</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- AUDIT ROSTER TABLE -->
+        <section class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-xl">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="border-b border-slate-900 font-black uppercase tracking-wider text-slate-500 bg-slate-900/40 text-[10px]">
+                            <th class="py-3 px-6">Athlete Name</th>
+                            <th class="py-3 px-6">Current Represented Club</th>
+                            <th class="py-3 px-6 w-44">Gender / Category</th>
+                            <th class="py-3 px-6 text-center w-40">Banner Asset Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="status-rows" class="divide-y divide-slate-900/40 text-slate-300">
+                        <tr>
+                            <td colspan="4" class="py-8 text-center text-slate-500 font-medium">Scanning local assets, please wait...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const allRecords = window.glclResults || [];
+            const corrections = window.glclCorrections || { nameChanges: {}, clubHistory: {} };
+
+            // 1. Map and Unify Athlete Identities
+            const athletesMap = new Map();
+
+            allRecords.forEach(row => {
+                if (!row.name) return;
+                
+                let primaryName = row.name.trim();
+                // Check if this name has been modified or unified via corrections
+                Object.entries(corrections.nameChanges).forEach(([legacyName, data]) => {
+                    if (legacyName.toLowerCase() === row.name.toLowerCase() || data.primaryName.toLowerCase() === row.name.toLowerCase()) {
+                        primaryName = data.primaryName; 
+                    }
+                });
+
+                // Set initial record
+                if (!athletesMap.has(primaryName)) {
+                    athletesMap.set(primaryName, {
+                        name: primaryName,
+                        club: row.club || "Unattached",
+                        sex: row.sex || "—",
+                        age_cat: row.age_cat || "—",
+                        hasBanner: false
+                    });
+                }
+            });
+
+            const athletes = Array.from(athletesMap.values()).sort((a, b) => a.name.localeCompare(b.name));
+            
+            // 2. Perform Dynamic Image Availability Checks on Mount
+            let checkedCount = 0;
+            let bannerCount = 0;
+
+            const tableBody = document.getElementById('status-rows');
+            const selectFilter = document.getElementById('status-filter');
+
+            const updateDashboardMetrics = () => {
+                document.getElementById('metric-total').textContent = athletes.length;
+                document.getElementById('metric-banners').textContent = bannerCount;
+                document.getElementById('metric-missing').textContent = athletes.length - bannerCount;
+            };
+
+            const renderTable = () => {
+                const filterValue = selectFilter.value;
+                
+                const filteredAthletes = athletes.filter(athlete => {
+                    if (filterValue === 'has-banner') return athlete.hasBanner;
+                    if (filterValue === 'no-banner') return !athlete.hasBanner;
+                    return true;
+                });
+
+                if (filteredAthletes.length === 0) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="4" class="py-8 text-center text-slate-600 font-mono">No matching records found.</td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                tableBody.innerHTML = filteredAthletes.map(athlete => {
+                    const statusBadge = athlete.hasBanner
+                        ? `<span class="inline-flex items-center text-[10px] font-mono font-black bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded uppercase tracking-wider">✔ Available</span>`
+                        : `<span class="inline-flex items-center text-[10px] font-mono font-black bg-slate-900 text-slate-600 border border-slate-800 px-2 py-0.5 rounded uppercase tracking-wider">✖ Missing</span>`;
+
+                    const profileUrl = `athlete.html?name=${encodeURIComponent(athlete.name)}`;
+                    const clubUrl = athlete.club !== "Unattached" && athlete.club !== "Independent"
+                        ? `club.html?name=${encodeURIComponent(athlete.club)}`
+                        : null;
+
+                    const clubHtml = clubUrl
+                        ? `<a href="${clubUrl}" class="hover:underline hover:text-brand-500 transition-colors">${athlete.club.toUpperCase()}</a>`
+                        : athlete.club.toUpperCase();
+
+                    return `
+                        <tr class="hover:bg-slate-900/15 transition-colors">
+                            <td class="py-3 px-6 font-bold text-slate-200">
+                                <a href="${profileUrl}" class="hover:text-brand-500 hover:underline transition-colors">${athlete.name}</a>
+                            </td>
+                            <td class="py-3 px-6 text-slate-400 font-semibold">${clubHtml}</td>
+                            <td class="py-3 px-6 text-slate-500 font-mono uppercase font-bold">${athlete.sex} / ${athlete.age_cat}</td>
+                            <td class="py-3 px-6 text-center font-mono">${statusBadge}</td>
+                        </tr>
+                    `;
+                }).join('');
+            };
+
+            // Trigger asynchronous image validation checks
+            athletes.forEach(athlete => {
+                const formattedName = athlete.name.toLowerCase().replace(/\s+/g, '-');
+                const imgUrl = `assets/images/athletes/${formattedName}.jpg`;
+
+                const img = new Image();
+                img.src = imgUrl;
+
+                img.onload = () => {
+                    athlete.hasBanner = true;
+                    bannerCount++;
+                    checkedCount++;
+                    if (checkedCount === athletes.length) {
+                        updateDashboardMetrics();
+                        renderTable();
+                    }
+                };
+
+                img.onerror = () => {
+                    athlete.hasBanner = false;
+                    checkedCount++;
+                    if (checkedCount === athletes.length) {
+                        updateDashboardMetrics();
+                        renderTable();
+                    }
+                };
+            });
+
+            // Listen to select filter adjustments
+            selectFilter.addEventListener('change', renderTable);
+        });
+    </script>
+
+    <!-- FOOTER CONTAINER -->
+    <div id="global-footer"></div>
+</body>
+</html>

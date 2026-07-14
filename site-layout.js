@@ -107,3 +107,175 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 });
+
+// GLOBAL COMMAND PALETTE SYSTEM INTERCEPTOR
+(() => {
+    let uniqueAthletes = [];
+
+    // 1. Inject the search markup context dynamically directly into the document body 
+    const injectSearchModalMarkup = () => {
+        if (document.getElementById('global-search-modal')) return;
+
+        const modalDiv = document.createElement('div');
+        modalDiv.id = 'global-search-modal';
+        modalDiv.className = 'hidden fixed inset-0 z-[9999] flex items-start justify-center pt-[10vh] px-4';
+        modalDiv.innerHTML = `
+            <!-- Backdrop Blur -->
+            <div id="search-modal-backdrop" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+
+            <!-- Search Panel Box -->
+            <div class="relative w-full max-w-xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[70vh] z-10" id="search-modal-panel">
+                
+                <!-- Search Field Header -->
+                <div class="flex items-center px-4 border-b border-slate-800">
+                    <svg class="w-5 h-5 text-slate-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input type="text" id="modal-search-input" placeholder="Search runners, clubs, or categories..." autocomplete="off"
+                        class="w-full bg-transparent border-0 text-slate-100 placeholder-slate-600 px-3 py-4 text-sm focus:outline-none focus:ring-0 font-medium">
+                    
+                    <!-- Close Button -->
+                    <button id="nav-search-close" class="text-[10px] font-mono font-bold bg-slate-800 hover:bg-slate-700 text-slate-400 px-2 py-1 rounded transition-colors shrink-0">
+                        ESC
+                    </button>
+                </div>
+
+                <!-- Scrollable Results Tray -->
+                <div id="modal-search-results" class="overflow-y-auto divide-y divide-slate-950 max-h-[50vh] p-2 empty:hidden"></div>
+
+                <!-- Hotkey Hint Footer -->
+                <div class="bg-slate-950/60 px-4 py-2 border-t border-slate-800/60 flex justify-between items-center text-[9px] font-mono font-bold text-slate-500 tracking-wider">
+                    <span>TIP: SELECT AN ATHLETE TO BROWSE PROFILE</span>
+                    <span>ESC TO CLOSE</span>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modalDiv);
+    };
+
+    const initDataset = () => {
+        if (uniqueAthletes.length > 0) return;
+        const dataset = window.glclResults || window.glclData || [];
+        if (Array.isArray(dataset) && dataset.length > 0) {
+            const runnersMap = new Map();
+            dataset.forEach(item => {
+                if (item && item.name) {
+                    const cleanName = item.name.trim();
+                    if (!runnersMap.has(cleanName)) {
+                        runnersMap.set(cleanName, {
+                            name: cleanName,
+                            club: item.club || 'Independent',
+                            sex: item.sex || '—',
+                            age_cat: item.age_cat || '—'
+                        });
+                    }
+                }
+            });
+            uniqueAthletes = Array.from(runnersMap.values());
+        }
+    };
+
+    const openSearch = () => {
+        injectSearchModalMarkup();
+        initDataset();
+        
+        const modal = document.getElementById('global-search-modal');
+        const input = document.getElementById('modal-search-input');
+        
+        if (!modal) return;
+
+        modal.classList.remove('hidden');
+        if (input) {
+            input.value = '';
+            input.focus();
+        }
+        document.body.classList.add('overflow-hidden');
+    };
+
+    const closeSearch = () => {
+        const modal = document.getElementById('global-search-modal');
+        const input = document.getElementById('modal-search-input');
+        const resultsContainer = document.getElementById('modal-search-results');
+
+        if (!modal) return;
+
+        modal.classList.add('hidden');
+        if (input) input.value = '';
+        if (resultsContainer) resultsContainer.innerHTML = '';
+        document.body.classList.remove('overflow-hidden');
+    };
+
+    // 2. Document-wide click delegation loops
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('#nav-search-trigger')) {
+            e.preventDefault();
+            openSearch();
+        } else if (e.target.closest('#nav-search-close') || e.target.id === 'search-modal-backdrop') {
+            e.preventDefault();
+            closeSearch();
+        }
+    });
+
+    // 3. Document-wide input typing listener
+    document.addEventListener('input', (e) => {
+        if (e.target && e.target.id === 'modal-search-input') {
+            const resultsContainer = document.getElementById('modal-search-results');
+            if (!resultsContainer) return;
+
+            const query = e.target.value.toLowerCase().trim();
+            resultsContainer.innerHTML = '';
+
+            if (query.length < 2) return;
+            if (uniqueAthletes.length === 0) initDataset();
+
+            const filtered = uniqueAthletes.filter(athlete => 
+                athlete.name.toLowerCase().includes(query) ||
+                athlete.club.toLowerCase().includes(query)
+            ).slice(0, 15);
+
+            if (filtered.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="px-4 py-3.5 text-slate-500 font-mono text-[10px] text-center tracking-wider">
+                        NO ATHLETES FOUND MATCHING "${query.toUpperCase()}"
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(athlete => {
+                const item = document.createElement('a');
+                item.href = `athlete.html?name=${encodeURIComponent(athlete.name)}`;
+                item.className = 'flex justify-between items-center px-4 py-3 hover:bg-slate-800/40 rounded-xl transition-all cursor-pointer group';
+                item.innerHTML = `
+                    <div class="space-y-0.5 text-left">
+                        <span class="text-sm font-bold text-slate-200 group-hover:text-brand-400 transition-colors block">${athlete.name}</span>
+                        <span class="text-[10px] font-mono font-bold text-slate-500 group-hover:text-slate-400 transition-colors uppercase block">${athlete.club}</span>
+                    </div>
+                    <span class="text-[9px] font-mono font-bold bg-slate-950 text-slate-400 px-2.5 py-1 rounded-md border border-slate-800 uppercase tracking-wider">
+                        ${athlete.sex} / ${athlete.age_cat}
+                    </span>
+                `;
+                resultsContainer.appendChild(item);
+            });
+        }
+    });
+
+    // 4. Hotkey selection event listeners
+    document.addEventListener('keydown', (e) => {
+        const modal = document.getElementById('global-search-modal');
+        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+            closeSearch();
+        }
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+    });
+
+    // Initial injection setup on clean load entry
+    if (document.body) {
+        injectSearchModalMarkup();
+    } else {
+        document.addEventListener('DOMContentLoaded', injectSearchModalMarkup);
+    }
+})();

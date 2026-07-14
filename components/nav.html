@@ -1,42 +1,69 @@
-<div class="max-w-[1400px] mx-auto px-4">
-    <div class="flex items-center justify-between h-16">
-        
-        <!-- LOGO BRAND IDENTITY -->
-        <div class="flex items-center">
-            <a href="index.html" class="flex items-center space-x-4 group">
-                <!-- Custom Graphic Asset Logo -->
-                <img src="/assets/images/logo.jpg" alt="GLCL Logo" class="h-10 w-auto object-contain" onerror="this.style.display='none'">
-                <div class="leading-none">
-                    <span class="text-sm font-black tracking-wider text-slate-100 block uppercase">Gwent Leisure Centre League</span>
-                    <span class="text-[10px] font-mono font-bold text-slate-500 tracking-widest block uppercase mt-1">Historical Archive</span>
-                </div>
-            </a>
+<div class="max-w-[1400px] mx-auto px-4 h-16 flex items-center justify-between relative">
+    <!-- Left: Brand Logo & Title -->
+    <a href="index.html" class="flex items-center space-x-3 group z-50">
+        <img src="assets/images/logo.jpg" class="h-10 w-auto transition-transform group-hover:scale-105" alt="GLCL Logo">
+        <div>
+            <span class="text-sm font-black text-slate-100 tracking-tight uppercase block group-hover:text-brand-400 transition-colors">GLCL Archive</span>
+            <span class="text-[9px] font-mono font-bold text-slate-500 uppercase tracking-widest block -mt-1">Historical database</span>
         </div>
+    </a>
 
-        <!-- DESKTOP NAVIGATION -->
-        <div id="desktop-nav-links" class="hidden md:flex items-center space-x-8 text-xs font-black tracking-widest uppercase">
-            <a href="season.html" id="nav-season" class="text-slate-400 hover:text-slate-100 transition-colors py-2 border-b-2 border-transparent">Seasons</a>
-            <a href="clubs.html" id="nav-clubs" class="text-slate-400 hover:text-slate-100 transition-colors py-2 border-b-2 border-transparent">Clubs</a>
-            <a href="analytics.html" id="nav-analytics" class="text-slate-400 hover:text-slate-100 transition-colors py-2 border-b-2 border-transparent">Analytics</a>
-        </div>
+    <!-- Right: Desktop Nav Links & Interface Toggles -->
+    <div class="flex items-center space-x-2 md:space-x-6 z-50">
+        <!-- Desktop Text Navigation: Visible on medium screens and up -->
+        <nav class="hidden md:flex items-center space-x-6 text-xs font-mono font-bold tracking-wider text-slate-400 uppercase">
+            <a href="index.html" class="hover:text-slate-100 transition-colors">Seasons</a>
+            <a href="clubs.html" class="hover:text-slate-100 transition-colors">Clubs</a>
+            <a href="analytics.html" class="hover:text-slate-100 transition-colors">Analytics</a>
+        </nav>
 
-        <!-- MOBILE MENU TRIGGER BUTTON -->
-        <div class="flex md:hidden">
-            <button id="mobile-menu-toggle" type="button" class="text-slate-400 hover:text-slate-100 p-2 focus:outline-none" aria-label="Toggle navigation menu">
-                <svg id="hamburger-icon" class="w-6 h-6 block" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-                <svg id="close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
+        <!-- Global Search Trigger (Visible on all viewports) -->
+        <button id="nav-search-trigger" aria-label="Search database" class="p-2 text-slate-400 hover:text-slate-100 hover:bg-slate-900 rounded-lg transition-all focus:outline-none focus:ring-1 focus:ring-brand-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+        </button>
+
+        <!-- Mobile Burger Button: Hidden on desktop, toggles dropdown via inline script below -->
+        <button onclick="window.__glclToggleMobileMenu()" aria-label="Toggle navigation menu" class="md:hidden p-2 text-slate-400 hover:text-slate-100 hover:bg-slate-900 rounded-lg transition-all focus:outline-none">
+            <svg id="burger-icon" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="burger-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile Dropdown Tray: Injected directly below the header boundary line -->
+    <div id="mobile-menu-tray" class="hidden absolute top-16 left-0 right-0 bg-slate-950/95 backdrop-blur-md border-b border-slate-900 flex flex-col p-4 space-y-3 font-mono font-bold text-xs uppercase tracking-wider shadow-2xl z-40 md:hidden animate-fade-in">
+        <a href="index.html" class="px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-900/60 rounded-lg transition-colors">Seasons</a>
+        <a href="clubs.html" class="px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-900/60 rounded-lg transition-colors">Clubs</a>
+        <a href="analytics.html" class="px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-900/60 rounded-lg transition-colors">Analytics</a>
     </div>
 </div>
 
-<!-- DYNAMIC MOBILE MENU PANEL -->
-<div id="mobile-menu-panel" class="hidden md:hidden absolute top-16 left-0 w-full border-b border-slate-900 bg-slate-950/95 backdrop-blur-lg px-4 py-4 space-y-2 shadow-2xl z-50">
-    <a href="season.html" id="mobile-nav-season" class="block text-xs font-black tracking-widest text-slate-400 hover:text-slate-100 uppercase py-2.5 px-3 rounded-lg hover:bg-slate-900/50 transition-all border border-transparent">Seasons</a>
-    <a href="clubs.html" id="mobile-nav-clubs" class="block text-xs font-black tracking-widest text-slate-400 hover:text-slate-100 uppercase py-2.5 px-3 rounded-lg hover:bg-slate-900/50 transition-all border border-transparent">Clubs</a>
-    <a href="analytics.html" id="mobile-nav-analytics" class="block text-xs font-black tracking-widest text-slate-400 hover:text-slate-100 uppercase py-2.5 px-3 rounded-lg hover:bg-slate-900/50 transition-all border border-transparent">Analytics</a>
-</div>
+<script>
+// Mobile toggle execution context attached explicitly to window object context to bypass fetch constraints
+(() => {
+    window.__glclToggleMobileMenu = () => {
+        const tray = document.getElementById('mobile-menu-tray');
+        const openIcon = document.getElementById('burger-icon');
+        const closeIcon = document.getElementById('burger-close-icon');
+
+        if (!tray || !openIcon || !closeIcon) return;
+
+        const isHidden = tray.classList.contains('hidden');
+
+        if (isHidden) {
+            tray.classList.remove('hidden');
+            openIcon.classList.add('hidden');
+            closeIcon.classList.remove('hidden');
+        } else {
+            tray.classList.add('hidden');
+            openIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+        }
+    };
+})();
+</script>
