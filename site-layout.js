@@ -1,4 +1,3 @@
-// site-layout.js (Located in root)
 document.addEventListener("DOMContentLoaded", () => {
     // Look for the new global-nav ID (fallback to global-header just in case)
     const navEl = document.getElementById('global-nav') || document.getElementById('global-header');
@@ -206,12 +205,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Document-wide click delegation loops
     document.addEventListener('click', (e) => {
+        // Global Search Triggers
         if (e.target.closest('#nav-search-trigger')) {
             e.preventDefault();
             openSearch();
         } else if (e.target.closest('#nav-search-close') || e.target.id === 'search-modal-backdrop') {
             e.preventDefault();
             closeSearch();
+        }
+
+        // Mobile Burger Menu Delegation Trigger
+        if (e.target.closest('#mobile-burger-btn')) {
+            e.preventDefault();
+            
+            const tray = document.getElementById('mobile-menu-tray');
+            const openIcon = document.getElementById('burger-icon');
+            const closeIcon = document.getElementById('burger-close-icon');
+
+            if (tray && openIcon && closeIcon) {
+                const isHidden = tray.classList.contains('hidden');
+                if (isHidden) {
+                    tray.classList.remove('hidden');
+                    openIcon.classList.add('hidden');
+                    closeIcon.classList.remove('hidden');
+                } else {
+                    tray.classList.add('hidden');
+                    openIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                }
+            }
         }
     });
 
@@ -277,11 +299,11 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         document.addEventListener('DOMContentLoaded', injectSearchModalMarkup);
     }
-    // Add this inside the IIFE or at the bottom of site-layout.js:
+
+    // Direct bridge to trigger search modal via custom event
     document.addEventListener('glclOpenSearch', () => {
         if (typeof openSearch === 'function') {
             openSearch();
         }
     });
 })();
-
