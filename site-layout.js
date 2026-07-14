@@ -278,4 +278,11 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         document.addEventListener('DOMContentLoaded', injectSearchModalMarkup);
     }
+    // Add this inside the IIFE or at the bottom of site-layout.js:
+    document.addEventListener('glclOpenSearch', () => {
+        if (typeof openSearch === 'function') {
+            openSearch();
+        }
+    });
 })();
+

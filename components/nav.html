@@ -17,14 +17,14 @@
             <a href="analytics.html" class="hover:text-slate-100 transition-colors">Analytics</a>
         </nav>
 
-        <!-- Global Search Trigger (Visible on all viewports) -->
-        <button id="nav-search-trigger" aria-label="Search database" class="p-2 text-slate-400 hover:text-slate-100 hover:bg-slate-900 rounded-lg transition-all focus:outline-none focus:ring-1 focus:ring-brand-500">
+        <!-- Global Search Trigger (Direct fallback inline click handler added) -->
+        <button id="nav-search-trigger" onclick="window.__glclOpenGlobalSearch ? window.__glclOpenGlobalSearch() : console.log('Search script loading...')" aria-label="Search database" class="p-2 text-slate-400 hover:text-slate-100 hover:bg-slate-900 rounded-lg transition-all focus:outline-none focus:ring-1 focus:ring-brand-500">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
         </button>
 
-        <!-- Mobile Burger Button: Hidden on desktop, toggles dropdown via inline script below -->
+        <!-- Mobile Burger Button -->
         <button onclick="window.__glclToggleMobileMenu()" aria-label="Toggle navigation menu" class="md:hidden p-2 text-slate-400 hover:text-slate-100 hover:bg-slate-900 rounded-lg transition-all focus:outline-none">
             <svg id="burger-icon" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -35,8 +35,8 @@
         </button>
     </div>
 
-    <!-- Mobile Dropdown Tray: Injected directly below the header boundary line -->
-    <div id="mobile-menu-tray" class="hidden absolute top-16 left-0 right-0 bg-slate-950/95 backdrop-blur-md border-b border-slate-900 flex flex-col p-4 space-y-3 font-mono font-bold text-xs uppercase tracking-wider shadow-2xl z-40 md:hidden animate-fade-in">
+    <!-- Mobile Dropdown Tray -->
+    <div id="mobile-menu-tray" class="hidden absolute top-16 left-0 right-0 bg-slate-950/95 backdrop-blur-md border-b border-slate-900 flex flex-col p-4 space-y-3 font-mono font-bold text-xs uppercase tracking-wider shadow-2xl z-40 md:hidden">
         <a href="index.html" class="px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-900/60 rounded-lg transition-colors">Seasons</a>
         <a href="clubs.html" class="px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-900/60 rounded-lg transition-colors">Clubs</a>
         <a href="analytics.html" class="px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-900/60 rounded-lg transition-colors">Analytics</a>
@@ -44,8 +44,9 @@
 </div>
 
 <script>
-// Mobile toggle execution context attached explicitly to window object context to bypass fetch constraints
+// Fully self-contained interactions inside the fetched template file
 (() => {
+    // 1. Mobile burger toggle
     window.__glclToggleMobileMenu = () => {
         const tray = document.getElementById('mobile-menu-tray');
         const openIcon = document.getElementById('burger-icon');
@@ -53,9 +54,7 @@
 
         if (!tray || !openIcon || !closeIcon) return;
 
-        const isHidden = tray.classList.contains('hidden');
-
-        if (isHidden) {
+        if (tray.classList.contains('hidden')) {
             tray.classList.remove('hidden');
             openIcon.classList.add('hidden');
             closeIcon.classList.remove('hidden');
@@ -64,6 +63,13 @@
             openIcon.classList.remove('hidden');
             closeIcon.classList.add('hidden');
         }
+    };
+
+    // 2. Direct bridge to trigger the search modal setup in site-layout.js
+    window.__glclOpenGlobalSearch = () => {
+        // Trigger a custom event that site-layout.js is listening for
+        const event = new CustomEvent('glclOpenSearch');
+        document.dispatchEvent(event);
     };
 })();
 </script>
