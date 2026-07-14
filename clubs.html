@@ -64,7 +64,7 @@
             <div class="flex items-center space-x-3 text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider">
                 <span>GWENT LEISURE CENTRE LEAGUE</span>
                 <span class="text-slate-800">•</span>
-                <span>HISTORICAL ROSTER ANALYSIS</span>
+                <span>HISTORICAL RUNNER ANALYSIS</span>
             </div>
         </div>
     </header>
@@ -101,10 +101,18 @@ document.addEventListener("DOMContentLoaded", () => {
         "Griffithstown Harriers": "griffithstown-harriers.jpg",
         "Islwyn RC": "islwyn-rc.jpg",
         "Lliswerry Runners": "lliswerry-runners.jpg",
-        "Parc Bryn Bach RC": "parc-bryn-bach-rc.jpg",         // Updated to match club.html
+        "Parc Bryn Bach RC": "parc-bryn-bach-rc.jpg",         
         "Pont-Y-Pwl & District Runners": "pont-y-pwl-district-runners.jpg",
-        "Spirit Of Monmouth RC": "spirit-of-monmouth-rc.jpg"   // Updated to match club.html
+        "Spirit Of Monmouth RC": "spirit-of-monmouth-rc.jpg"   
     };
+
+    // 1. DYNAMICALLY ISOLATE THE LATEST REGISTERED CAMPAIGN SEASON
+    const seasons = allRecords
+        .map(row => row.season)
+        .filter(Boolean)
+        .sort((a, b) => b.localeCompare(a)); // Sort descending so newest is at position 0
+    
+    const latestSeason = seasons[0] || "";
 
     const gridContainer = document.getElementById('clubs-grid');
     gridContainer.innerHTML = '';
@@ -117,7 +125,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Aggregate basic telemetry
         const totalFinishes = clubRecords.length;
-        const uniqueAthletes = new Set(clubRecords.map(row => row.name?.toUpperCase())).size;
+
+        // 2. FILTER FOR ACTIVE ROSTERS EXCLUSIVELY FROM THE LATEST CAMPAIGN SEASON
+        const activeSeasonRecords = clubRecords.filter(row => row.season === latestSeason);
+        const uniqueAthletes = new Set(activeSeasonRecords.map(row => row.name?.toUpperCase())).size;
 
         const clubUrl = `club.html?name=${encodeURIComponent(clubName)}`;
         
@@ -164,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <span class="text-xl font-black text-slate-100 font-mono mt-0.5 block drop-shadow-md">${totalFinishes}</span>
                             </div>
                             <div>
-                                <span class="block text-[9px] font-black text-slate-400 uppercase tracking-wider">Active Rosters</span>
+                                <span class="block text-[9px] font-black text-slate-400 uppercase tracking-wider">Active Runners</span>
                                 <span class="text-xl font-black text-slate-100 font-mono mt-0.5 block drop-shadow-md">${uniqueAthletes}</span>
                             </div>
                         </div>
