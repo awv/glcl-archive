@@ -107,8 +107,15 @@ for pdf_path in pdf_files:
                 
                 words = name_club_block.split()
                 surname_idx = -1
+                
                 for i in range(len(words) - 1, -1, -1):
-                    if words[i].isupper() and re.match(r'^[A-Z\-\']+$', words[i]):
+                    word = words[i]
+                    
+                    # Check if the word is a valid surname (all uppercase OR Mc/Mac surname like McLOUGHLIN)
+                    is_caps_surname = re.match(r'^[A-Z\-\']+$', word) is not None
+                    is_mc_surname = re.match(r'^(?:Mc|Mac)[A-Z][A-Z\-\']*$', word) is not None
+                    
+                    if is_caps_surname or is_mc_surname:
                         surname_idx = i
                         break
                 

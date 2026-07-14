@@ -1,4 +1,4 @@
-# VENUE: Chespstow
+# VENUE: Chepstow
 # DATE: 2026-05-05
 # DISTANCE: 5 Miles
 # STATUS: Confirmed
@@ -156,7 +156,7 @@
 151 0 Caitlin OWEN 0 F Senior Lliswerry Runners 00:36:05 33 10
 152 0 Paul MASON 0 M V40 Griffithstown Harriers 00:36:20 119 22
 153 0 Michael SKYRME 0 M V55 Fairwater Runners 00:36:28 120 8
-154 0 James McLOUGHLIN Lliswerry Runners 0 M V55 Unknown 00:36:35 121 9
+154 0 James McLOUGHLIN 0 M V55 Lliswerry Runners 00:36:35 121 9
 155 0 Stephen OWEN 0 M V70 Chepstow Harriers 00:36:36 122 1
 156 0 Stephen WILES 0 M V45 Parc Bryn Bach Rc 00:36:38 123 18
 157 0 Neil THORPE 0 M V50 Islwyn Rc 00:36:44 124 12
@@ -388,7 +388,7 @@
 383 0 Paul GRAINGER JONES 0 M V50 Pont-Y-Pwl & District Runners 00:47:07 248 27
 384 0 Kyle GREENHALF 0 M V35 Pont-Y-Pwl & District Runners 00:47:10 249 29
 385 0 Angela BARNETT 0 F V65 Chepstow Harriers 00:47:17 136 2
-386 0 Edward McDAID Caerleon Running Club 0 M V70 Unknown 00:47:20 250 9
+386 0 Edward McDAID 0 M V70 Caerleon Running Club 00:47:20 250 9
 387 0 Hattie JENKINS 0 F V35 Caerleon Running Club 00:47:28 137 11
 388 0 Nicola PATERSON 0 F V50 Islwyn Rc 00:47:31 138 23
 389 0 Neill PARKER 0 M V55 Islwyn Rc 00:47:34 251 34
@@ -422,8 +422,8 @@
 417 0 Alison DAVIS 0 F V60 Fairwater Runners 00:49:35 157 14
 418 0 Robert SOUTHGATE 0 M V60 Pont-Y-Pwl & District Runners 00:49:36 261 15
 419 0 Alison SHEEDY 0 F V60 Lliswerry Runners 00:49:44 158 15
-420 0 Alison McMENEMY Spirit Of Monmouth Rc 0 F V65 Unknown 00:49:50 159 3
-421 0 Stephen McMENEMY Spirit Of Monmouth Rc 0 M V65 Unknown 00:49:52 262 14
+420 0 Alison McMENEMY 0 F V65 Spirit Of Monmouth Rc 00:49:50 159 3
+421 0 Stephen McMENEMY 0 M V65 Spirit Of Monmouth Rc 00:49:52 262 14
 422 0 Jaye PRICE 0 F V35 Parc Bryn Bach Rc 00:49:59 160 13
 423 0 Sian DENMAN 0 F V45 Caerleon Running Club 00:50:03 161 23
 424 0 Hayley NOWELL 0 F V50 Griffithstown Harriers 00:50:23 162 26
@@ -441,7 +441,7 @@
 436 0 Katy SHOESMITH 0 F V40 Caerleon Running Club 00:51:22 173 30
 437 0 Nikki HANCOX 0 F V50 Griffithstown Harriers 00:51:30 174 27
 438 0 Maixent GAILLARD 0 M V45 Spirit Of Monmouth Rc 00:51:38 264 31
-439 0 Laura McLOUGHLIN Spirit Of Monmouth Rc 0 F V35 Unknown 00:51:48 175 15
+439 0 Laura McLOUGHLIN 0 F V35 Spirit Of Monmouth Rc 00:51:48 175 15
 440 0 Lowri HAWROT 0 F V40 Lliswerry Runners 00:51:50 176 31
 441 0 Paula CHURCH 0 F V50 Lliswerry Runners 00:51:55 177 28
 442 0 Tim WRIGHT 0 M V60 Lliswerry Runners 00:51:55 265 16

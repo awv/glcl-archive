@@ -184,7 +184,7 @@
 180 0 Jamie FRASER 0 M V45 Lliswerry Runners 00:37:45 139 22
 181 0 Gulesh KUMAR 0 M Senior Caerleon Running Club 00:37:48 140 38
 182 0 Julia BAJJADA 0 F V55 Chepstow Harriers 00:37:50 35 6
-183 0 James McLOUGHLIN Lliswerry Runners 0 M V55 Unknown 00:37:55 141 18
+183 0 James McLOUGHLIN 0 M V55 Lliswerry Runners 00:37:55 141 18
 184 0 Hannah LIDGETT 0 F Senior Chepstow Harriers 00:38:01 36 11
 185 0 Vincent GREGORY 0 M V35 Parc Bryn Bach Rc 00:38:07 142 18
 186 0 Leonie ROBERTS 0 F V45 Fairwater Runners 00:38:11 37 5
@@ -329,7 +329,7 @@
 325 0 Robert SOUTHGATE 0 M V60 Pont-Y-Pwl & District Runners 00:46:54 210 15
 326 0 Joanne PALING 0 F V45 Griffithstown Harriers 00:46:57 107 16
 327 0 Cj LEWIS 0 M Senior Griffithstown Harriers 00:47:04 211 47
-328 0 Edward McDAID Caerleon Running Club 0 M V70 Unknown 00:47:09 212 9
+328 0 Edward McDAID 0 M V70 Caerleon Running Club 00:47:09 212 9
 329 0 Trudy HURFORD 0 F V50 Lliswerry Runners 00:47:12 108 17
 330 0 Jane DERRICK 0 F V45 Caerleon Running Club 00:47:23 109 17
 331 0 Megan STARK 0 F Senior Pont-Y-Pwl & District Runners 00:47:38 110 26
@@ -355,8 +355,8 @@
 351 0 Emma BLACKBURN 0 F Senior Islwyn Rc 00:49:41 125 27
 352 0 Shelly PRICE-STEPHENS 0 F V40 Islwyn Rc 00:49:42 126 23
 353 0 Pat RICHARDSON 0 F V75 Islwyn Rc 00:49:42 127 1
-354 0 Alison McMENEMY Spirit Of Monmouth Rc 0 F V65 Unknown 00:49:50 128 2
-355 0 Stephen McMENEMY Spirit Of Monmouth Rc 0 M V65 Unknown 00:49:51 218 8
+354 0 Alison McMENEMY 0 F V65 Spirit Of Monmouth Rc 00:49:50 128 2
+355 0 Stephen McMENEMY 0 M V65 Spirit Of Monmouth Rc 00:49:51 218 8
 356 0 Cheryl FRANCIS 0 F V45 Islwyn Rc 00:50:02 129 21
 357 0 Sian JAMES 0 F V50 Islwyn Rc 00:50:03 130 19
 358 0 Nigel DAVIS 0 M V55 Lliswerry Runners 00:50:13 219 29
