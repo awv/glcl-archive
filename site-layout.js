@@ -131,8 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <svg class="w-5 h-5 text-slate-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
-                    <input type="text" id="modal-search-input" placeholder="Search runners, clubs, or categories..." autocomplete="off"
-                        class="w-full bg-transparent border-0 text-slate-100 placeholder-slate-600 px-3 py-4 text-sm focus:outline-none focus:ring-0 font-medium">
+                    <input type="text" id="modal-search-input" placeholder="Search runners, clubs, or categories..." autocomplete="off" class="w-full bg-transparent border-0 text-slate-100 placeholder-slate-600 px-3 py-4 text-base focus:outline-none focus:ring-0 font-medium">
                     
                     <!-- Close Button -->
                     <button id="nav-search-close" class="text-[10px] font-mono font-bold bg-slate-800 hover:bg-slate-700 text-slate-400 px-2 py-1 rounded transition-colors shrink-0">
