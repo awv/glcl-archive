@@ -46,22 +46,22 @@
         .catch(err => console.error('Error loading navigation header:', err));
     </script>
 
-    <!-- HERO SECTION WITH FEATURED PHOTO -->
-    <header class="relative h-[60vh] flex items-end overflow-hidden border-b border-slate-900 w-full">
-        <!-- Background Image Placement -->
+    <!-- HERO SECTION WITH FEATURED PHOTO (Height reduced by 30-40% from 60vh to 40vh/30vh) -->
+    <header class="relative h-[30vh] md:h-[40vh] flex items-end overflow-hidden border-b border-slate-900 w-full">
+        <!-- Background Image Placement (Centered and cropped proportionally) -->
         <img src="assets/images/hero_placeholder.jpg" alt="Gwent League Cross Country Action" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 filter brightness-85 contrast-125">
         <div class="absolute inset-0 hero-gradient"></div>
         
         <!-- Text container width-aligned to match global specifications -->
-        <div class="relative max-w-[1400px] mx-auto px-4 w-full z-10 pb-12">
-            <div class="flex items-center space-x-3 mb-4">
+        <div class="relative max-w-[1400px] mx-auto px-4 w-full z-10 pb-8">
+            <div class="flex items-center space-x-3 mb-2">
                 <div class="bg-brand-500 text-white font-black p-2 rounded-lg text-sm tracking-tighter">GLCL</div>
                 <span class="text-xs font-mono tracking-widest text-slate-400 uppercase">XC & Road</span>
             </div>
-            <h1 class="text-4xl md:text-5xl font-black text-slate-100 tracking-tight uppercase max-w-3xl">
+            <h1 class="text-3xl md:text-4xl font-black text-slate-100 tracking-tight uppercase max-w-3xl">
                 GLCL Archives
             </h1>
-            <p class="text-sm md:text-base text-slate-400 font-medium mt-2 max-w-2xl">
+            <p class="text-xs md:text-sm text-slate-400 font-medium mt-1 max-w-2xl">
                 The definitive historical database of the Gwent Leisure Centre League Cross Country & Road running series.
             </p>
         </div>
@@ -84,7 +84,7 @@
             <div class="md:col-span-2 relative">
                 <label for="runner-search" class="block text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase mb-1.5">Search Runner Name</label>
                 <div class="relative">
-                    <input type="text" id="runner-search" placeholder="e.g., John Doe..." autocomplete="off" 
+                    <input type="text" id="runner-search" placeholder="e.g., Lee Aherne..." autocomplete="off" 
                         class="w-full bg-slate-900 border border-slate-800 text-slate-100 placeholder-slate-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-500 font-medium transition-colors">
                     
                     <!-- Autocomplete Dropdown Menu Container -->
@@ -400,6 +400,11 @@
         }
     });
 
+    // Helper: Safely route to a given athlete page
+    const routeToAthlete = (name) => {
+        window.location.href = `athlete.html?name=${encodeURIComponent(name)}`;
+    };
+
     // 4. Live Autocomplete Search Action
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase().trim();
@@ -429,13 +434,31 @@
             `;
             
             item.addEventListener('click', () => {
-                window.location.href = `athlete.html?name=${encodeURIComponent(runner.name)}`;
+                routeToAthlete(runner.name);
             });
             
             resultsContainer.appendChild(item);
         });
 
         resultsContainer.classList.remove('hidden');
+    });
+
+    // Keydown Listener: If user presses Enter on empty search, trigger default target "Lee Aherne"
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const query = searchInput.value.trim();
+            if (query.length === 0) {
+                routeToAthlete("Lee Aherne");
+            } else {
+                // If they typed something but didn't click, default to first matched result
+                const firstMatch = uniqueRunners.find(runner => 
+                    runner.name.toLowerCase().includes(query.toLowerCase())
+                );
+                if (firstMatch) {
+                    routeToAthlete(firstMatch.name);
+                }
+            }
+        }
     });
 
     // Dismiss search overlay box when picking background targets
