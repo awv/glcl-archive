@@ -39,7 +39,7 @@
         </p>
     </header>
 
-    <main class="max-w-[1400px] w-full mx-auto px-4 py-12 space-y-12 flex-grow">
+    <main class="max-w-[1400px] w-full mx-auto px-4 py-12 space-y-16 flex-grow">
         
         <!-- CLUB COMPARISON MATRIX (PRIMARY MODULE) -->
         <section class="space-y-6">
@@ -69,7 +69,7 @@
                 <!-- Properties Label Column (Hidden on Mobile) -->
                 <div class="hidden md:flex flex-col justify-between text-[10px] font-mono font-black uppercase tracking-wider text-slate-500 py-6 pl-4">
                     
-                    <!-- MATCHING HEADER SPACER (Absorbs the club title layout height) -->
+                    <!-- MATCHING HEADER SPACER -->
                     <div class="text-sm uppercase tracking-tight font-sans text-transparent select-none pointer-events-none mb-4">
                         Spacer Layout Alignment
                     </div>
@@ -101,16 +101,101 @@
             </div>
         </section>
 
-        <!-- SECTION 2: THE CONSISTENCY INDEX (SECONDARY MODULE) -->
+        <!-- RUNNER COMPARISON MATRIX -->
+        <section class="space-y-6">
+            <div class="border-b border-slate-900 pb-2">
+                <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Rivalry Analysis</h2>
+                <h3 class="text-xl font-black text-slate-200 tracking-tight mt-0.5">Runner Comparison Matrix</h3>
+            </div>
+
+            <!-- ATHLETE SEARCH SELECTOR GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-950 p-4 rounded-xl border border-slate-900">
+                <!-- Search Input A -->
+                <div class="space-y-1 relative">
+                    <label class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 block">Runner Alpha</label>
+                    <input type="text" id="runner-search-a" placeholder="Search and select Runner A..." autocomplete="off"
+                        class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs font-bold text-slate-200 focus:outline-none focus:border-brand-500">
+                    <div id="runner-results-a" class="hidden absolute left-0 right-0 mt-1 bg-slate-900 border border-slate-800 rounded-lg shadow-2xl z-50 max-h-48 overflow-y-auto divide-y divide-slate-950">
+                        <!-- Autocomplete Suggestions -->
+                    </div>
+                </div>
+                <!-- Search Input B -->
+                <div class="space-y-1 relative">
+                    <label class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 block">Runner Beta</label>
+                    <input type="text" id="runner-search-b" placeholder="Search and select Runner B..." autocomplete="off"
+                        class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs font-bold text-slate-200 focus:outline-none focus:border-brand-500">
+                    <div id="runner-results-b" class="hidden absolute left-0 right-0 mt-1 bg-slate-900 border border-slate-800 rounded-lg shadow-2xl z-50 max-h-48 overflow-y-auto divide-y divide-slate-950">
+                        <!-- Autocomplete Suggestions -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- RUNNER MATRIX DISPLAY GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+                <!-- Properties Label Column (Hidden on Mobile) -->
+                <div class="hidden md:flex flex-col justify-between text-[10px] font-mono font-black uppercase tracking-wider text-slate-500 py-6 pl-4">
+                    
+                    <!-- MATCHING HEADER SPACER -->
+                    <div class="text-xs uppercase tracking-tight font-sans text-transparent select-none pointer-events-none mb-4 h-12">
+                        Spacer Layout Alignment
+                    </div>
+
+                    <!-- Active Label Tracks -->
+                    <div class="h-12 flex items-center">Running Club</div>
+                    <div class="h-12 flex items-center border-t border-slate-900">Head-to-Head Wins</div>
+                    <div class="h-12 flex items-center border-t border-slate-900">XC Finishes / Best</div>
+                    <div class="h-12 flex items-center border-t border-slate-900">Road Finishes / Best</div>
+                    <div class="h-12 flex items-center border-t border-slate-900">Average Gender Placement</div>
+                    <div class="h-12 flex items-center border-t border-slate-900">Age Category Wins</div>
+                </div>
+
+                <!-- Runner A Card Container -->
+                <div id="runner-card-a" class="stat-card p-6 rounded-xl border border-slate-800 shadow-xl flex flex-col justify-between space-y-4 text-center opacity-40 transition-opacity">
+                    <!-- Standardized height Header to lock name alignments -->
+                    <div class="h-12 flex flex-col justify-end">
+                        <div id="runner-rivalry-badge-container-a" class="h-5 mb-1">
+                            <span id="runner-rivalry-badge-a" class="hidden text-[9px] font-mono font-black tracking-wider bg-emerald-500/10 text-emerald-400 px-2.5 py-0.5 rounded uppercase inline-block">Leading Rivalry</span>
+                        </div>
+                        <h4 id="runner-name-a" class="font-black text-slate-400 tracking-tight uppercase text-sm">No Selection</h4>
+                    </div>
+                    <div id="runner-metrics-a" class="space-y-4 text-xs font-mono font-bold text-slate-400 hidden">
+                        <!-- Dynamic rows -->
+                    </div>
+                </div>
+
+                <!-- Runner B Card Container -->
+                <div id="runner-card-b" class="stat-card p-6 rounded-xl border border-slate-800 shadow-xl flex flex-col justify-between space-y-4 text-center opacity-40 transition-opacity">
+                    <!-- Standardized height Header to lock name alignments -->
+                    <div class="h-12 flex flex-col justify-end">
+                        <div id="runner-rivalry-badge-container-b" class="h-5 mb-1">
+                            <span id="runner-rivalry-badge-b" class="hidden text-[9px] font-mono font-black tracking-wider bg-emerald-500/10 text-emerald-400 px-2.5 py-0.5 rounded uppercase inline-block">Leading Rivalry</span>
+                        </div>
+                        <h4 id="runner-name-b" class="font-black text-slate-400 tracking-tight uppercase text-sm">No Selection</h4>
+                    </div>
+                    <div id="runner-metrics-b" class="space-y-4 text-xs font-mono font-bold text-slate-400 hidden">
+                        <!-- Dynamic rows -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: THE CONSISTENCY INDEX (SWIPE INDICATOR ADDED) -->
         <section class="space-y-4">
-            <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-900 pb-2">
+            <div class="flex justify-between items-end border-b border-slate-900 pb-2">
                 <div>
                     <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">The Consistency Index</h2>
                     <h3 class="text-xl font-black text-slate-200 tracking-tight mt-0.5">League Stalwarts & Streaks</h3>
                 </div>
+                <!-- Mobile Scroll Indicator Badge -->
+                <div class="flex items-center space-x-1 text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider md:hidden bg-slate-950 border border-slate-900 px-2 py-1 rounded">
+                    <span>Swipe</span>
+                    <svg class="w-3 h-3 text-brand-500 animate-pulse" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                    </svg>
+                </div>
             </div>
-            <div class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-xl max-h-[420px] overflow-y-auto pr-1">
-                <table class="w-full text-left border-collapse text-xs">
+            <div class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-xl max-h-[420px] overflow-y-auto overflow-x-auto pr-1">
+                <table class="w-full text-left border-collapse text-xs min-w-[600px]">
                     <thead>
                         <tr class="border-b border-slate-900 font-black uppercase tracking-wider text-slate-500 bg-slate-900/40 text-[10px] sticky top-0 z-10 backdrop-blur">
                             <th class="py-3 px-4">Athlete Name</th>
@@ -126,7 +211,7 @@
             </div>
         </section>
 
-        <!-- SECTION 3: REINSTATED SQUAD DEPTH & MOBILISATION BALANCE MODULE -->
+        <!-- SECTION 3: SQUAD DEPTH MODULE -->
         <section class="space-y-6">
             <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-900 pb-2">
                 <div>
@@ -173,12 +258,13 @@
             const campaignMaxes = {};
             const athleteMetrics = {};
             const clubProfiles = {};
+            const runnerProfiles = {};
 
             // 1. Single unified loop to parse all dataset structures cleanly
             allRecords.forEach(row => {
                 if (row.pos === 0 || !row.name) return;
 
-                const name = row.name;
+                const name = row.name.trim();
                 const club = row.club ? row.club.trim() : 'Independent';
                 const campaignKey = `${row.season}_${row.discipline.toLowerCase()}`;
                 const raceKey = `${row.season}_${row.discipline.toLowerCase()}_${row.race_number}`;
@@ -232,6 +318,77 @@
                     if (!cp.packingMap[raceKey]) cp.packingMap[raceKey] = [];
                     cp.packingMap[raceKey].push(parseInt(row.pos, 10));
                 }
+
+                // D. Build Runner Profiles for head-to-head comparison
+                if (!runnerProfiles[name]) {
+                    runnerProfiles[name] = {
+                        name: name,
+                        club: club,
+                        xcFinishes: 0,
+                        xcBest: Infinity,
+                        roadFinishes: 0,
+                        roadBest: Infinity,
+                        genderPositions: [],
+                        catWins: 0,
+                        headToHeadMatches: {}
+                    };
+                }
+
+                const rp = runnerProfiles[name];
+                rp.club = club;
+                const isXC = row.discipline.toLowerCase() === 'xc';
+                const genderPos = parseInt(row.gender_pos, 10);
+                const catPos = parseInt(row.cat_pos, 10);
+
+                if (!isNaN(genderPos)) {
+                    rp.genderPositions.push(genderPos);
+                }
+
+                if (isXC) {
+                    rp.xcFinishes++;
+                    if (genderPos < rp.xcBest) rp.xcBest = genderPos;
+                } else {
+                    rp.roadFinishes++;
+                    if (genderPos < rp.roadBest) rp.roadBest = genderPos;
+                }
+
+                if (catPos === 1) {
+                    rp.catWins++;
+                }
+            });
+
+            // Calculate Head-to-Head Wins by searching matching race files
+            const racesGroup = {};
+            allRecords.forEach(row => {
+                if (!row.name || row.pos <= 0) return;
+                const raceKey = `${row.season}_${row.discipline.toLowerCase()}_${row.race_number}`;
+                if (!racesGroup[raceKey]) racesGroup[raceKey] = [];
+                racesGroup[raceKey].push({ name: row.name.trim(), genderPos: parseInt(row.gender_pos, 10) });
+            });
+
+            Object.values(racesGroup).forEach(runnersInRace => {
+                if (runnersInRace.length < 2) return;
+                for (let i = 0; i < runnersInRace.length; i++) {
+                    for (let j = i + 1; j < runnersInRace.length; j++) {
+                        const runnerA = runnersInRace[i];
+                        const runnerB = runnersInRace[j];
+
+                        if (isNaN(runnerA.genderPos) || isNaN(runnerB.genderPos)) continue;
+
+                        if (!runnerProfiles[runnerA.name].headToHeadMatches[runnerB.name]) {
+                            runnerProfiles[runnerA.name].headToHeadMatches[runnerB.name] = 0;
+                        }
+                        if (!runnerProfiles[runnerB.name].headToHeadMatches[runnerA.name]) {
+                            runnerProfiles[runnerB.name].headToHeadMatches[runnerA.name] = 0;
+                        }
+
+                        if (runnerA.genderPos < runnerB.genderPos) {
+                            runnerProfiles[runnerA.name].headToHeadMatches[runnerB.name]++;
+                        } else if (runnerB.genderPos < runnerA.genderPos) {
+                            runnerProfiles[runnerB.name].headToHeadMatches[runnerA.name]++;
+                        }
+                    }
+                }
             });
 
             // Convert max sets to explicit lengths
@@ -276,7 +433,7 @@
                 });
             }
 
-            // 3. Initialize Comparison Dropdowns and Selector Events
+            // 3. Initialize Club Comparison
             const selectA = document.getElementById('comp-select-a');
             const selectB = document.getElementById('comp-select-b');
 
@@ -362,7 +519,162 @@
                 selectB.addEventListener('change', (e) => updateComparisonCard(e.target.value, 'b'));
             }
 
- // 4. Render Dynamic Demographic Leaderboard Rows for ALL Clubs
+            // 3B. Initialize Searchable Autocomplete Runner Comparison
+            const runnerSearchA = document.getElementById('runner-search-a');
+            const runnerSearchB = document.getElementById('runner-search-b');
+            const runnerResultsA = document.getElementById('runner-results-a');
+            const runnerResultsB = document.getElementById('runner-results-b');
+
+            let selectedRunnerA = "";
+            let selectedRunnerB = "";
+
+            const selectRunnersList = Object.keys(runnerProfiles).sort();
+
+            function configureAutocomplete(inputElement, resultsContainer, selectionCallback) {
+                inputElement.addEventListener('input', (e) => {
+                    const query = e.target.value.toLowerCase().trim();
+                    resultsContainer.innerHTML = '';
+
+                    if (query.length === 0) {
+                        resultsContainer.classList.add('hidden');
+                        return;
+                    }
+
+                    const filtered = selectRunnersList.filter(runner => 
+                        runner.toLowerCase().includes(query)
+                    ).slice(0, 10);
+
+                    if (filtered.length === 0) {
+                        resultsContainer.classList.add('hidden');
+                        return;
+                    }
+
+                    filtered.forEach(runner => {
+                        const item = document.createElement('div');
+                        item.className = 'px-3 py-2 hover:bg-slate-800 cursor-pointer text-xs font-bold text-slate-200 transition-colors';
+                        item.textContent = runner;
+                        
+                        item.addEventListener('click', () => {
+                            inputElement.value = runner;
+                            resultsContainer.classList.add('hidden');
+                            selectionCallback(runner);
+                        });
+                        
+                        resultsContainer.appendChild(item);
+                    });
+
+                    resultsContainer.classList.remove('hidden');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!inputElement.contains(e.target) && !resultsContainer.contains(e.target)) {
+                        resultsContainer.classList.add('hidden');
+                    }
+                });
+            }
+
+            function updateRunnerComparison() {
+                const cardA = document.getElementById('runner-card-a');
+                const cardB = document.getElementById('runner-card-b');
+                const titleA = document.getElementById('runner-name-a');
+                const titleB = document.getElementById('runner-name-b');
+                const metricsA = document.getElementById('runner-metrics-a');
+                const metricsB = document.getElementById('runner-metrics-b');
+                const badgeA = document.getElementById('runner-rivalry-badge-a');
+                const badgeB = document.getElementById('runner-rivalry-badge-b');
+
+                badgeA.classList.add('hidden');
+                badgeB.classList.add('hidden');
+
+                const displayCard = (name, profile, targetCard, targetTitle, targetMetrics, opponentName) => {
+                    if (!name || !profile) {
+                        targetCard.classList.add('opacity-40', 'border-slate-800');
+                        targetCard.classList.remove('border-brand-500/40');
+                        targetTitle.textContent = "No Selection";
+                        targetTitle.classList.replace('text-slate-200', 'text-slate-400');
+                        targetMetrics.classList.add('hidden');
+                        return;
+                    }
+
+                    targetCard.classList.remove('opacity-40', 'border-slate-800');
+                    targetCard.classList.add('border-brand-500/40');
+                    targetTitle.textContent = profile.name;
+                    targetTitle.classList.replace('text-slate-400', 'text-slate-200');
+
+                    const headWins = opponentName ? (profile.headToHeadMatches[opponentName] || 0) : 0;
+                    const avgPosVal = profile.genderPositions.length > 0 
+                        ? Math.round(profile.genderPositions.reduce((s,v)=>s+v,0) / profile.genderPositions.length)
+                        : 'N/A';
+
+                    const bestXc = profile.xcBest === Infinity ? '-' : `Pos ${profile.xcBest}`;
+                    const bestRoad = profile.roadBest === Infinity ? '-' : `Pos ${profile.roadBest}`;
+
+                    targetMetrics.innerHTML = `
+                        <div class="h-12 flex flex-col justify-center border-t border-slate-900/60 md:border-none">
+                            <span class="text-[9px] text-slate-500 md:hidden uppercase font-sans">Club</span>
+                            <span class="text-slate-200 text-sm font-black uppercase truncate max-w-[220px] mx-auto">${profile.club}</span>
+                        </div>
+                        <div class="h-12 flex flex-col justify-center border-t border-slate-900/60 text-brand-500 font-black">
+                            <span class="text-[9px] text-slate-500 md:hidden uppercase font-sans">Direct Wins</span>
+                            <span class="text-lg">${headWins} <span class="text-xs text-slate-500 font-normal">Wins</span></span>
+                        </div>
+                        <div class="h-12 flex flex-col justify-center border-t border-slate-900/60">
+                            <span class="text-[9px] text-slate-500 md:hidden uppercase font-sans">XC Records</span>
+                            <span class="text-slate-300 text-sm">${profile.xcFinishes} <span class="text-slate-600 font-normal">Runs</span> <span class="text-slate-700">/</span> <span class="text-sky-400 font-bold">${bestXc}</span></span>
+                        </div>
+                        <div class="h-12 flex flex-col justify-center border-t border-slate-900/60">
+                            <span class="text-[9px] text-slate-500 md:hidden uppercase font-sans">Road Records</span>
+                            <span class="text-slate-300 text-sm">${profile.roadFinishes} <span class="text-slate-600 font-normal">Runs</span> <span class="text-slate-700">/</span> <span class="text-amber-500 font-bold">${bestRoad}</span></span>
+                        </div>
+                        <div class="h-12 flex flex-col justify-center border-t border-slate-900/60">
+                            <span class="text-[9px] text-slate-500 md:hidden uppercase font-sans">Avg Field Finish</span>
+                            <span class="text-slate-300">Pos ${avgPosVal}</span>
+                        </div>
+                        <div class="h-12 flex flex-col justify-center border-t border-slate-900/60 text-amber-400 text-sm font-black">
+                            <span class="text-[9px] text-slate-500 md:hidden uppercase font-sans">Category Victories</span>
+                            <span>${profile.catWins} 🏆</span>
+                        </div>
+                    `;
+                    targetMetrics.classList.remove('hidden');
+                };
+
+                const profileA = runnerProfiles[selectedRunnerA];
+                const profileB = runnerProfiles[selectedRunnerB];
+
+                displayCard(selectedRunnerA, profileA, cardA, titleA, metricsA, selectedRunnerB);
+                displayCard(selectedRunnerB, profileB, cardB, titleB, metricsB, selectedRunnerA);
+
+                if (profileA && profileB) {
+                    const winsA = profileA.headToHeadMatches[selectedRunnerB] || 0;
+                    const winsB = profileB.headToHeadMatches[selectedRunnerA] || 0;
+                    
+                    if (winsA > winsB) {
+                        badgeA.textContent = `Leads ${winsA} - ${winsB}`;
+                        badgeA.classList.remove('hidden');
+                    } else if (winsB > winsA) {
+                        badgeB.textContent = `Leads ${winsB} - ${winsA}`;
+                        badgeB.classList.remove('hidden');
+                    } else if (winsA === winsB && winsA > 0) {
+                        badgeA.textContent = `Tied ${winsA} - ${winsB}`;
+                        badgeB.textContent = `Tied ${winsB} - ${winsA}`;
+                        badgeA.classList.remove('hidden');
+                        badgeB.classList.remove('hidden');
+                    }
+                }
+            }
+
+            if (runnerSearchA && runnerSearchB) {
+                configureAutocomplete(runnerSearchA, runnerResultsA, (selectedName) => {
+                    selectedRunnerA = selectedName;
+                    updateRunnerComparison();
+                });
+                configureAutocomplete(runnerSearchB, runnerResultsB, (selectedName) => {
+                    selectedRunnerB = selectedName;
+                    updateRunnerComparison();
+                });
+            }
+
+            // 4. Render Dynamic Demographic Leaderboard Rows for ALL Clubs
             const clubList = Object.values(clubProfiles).filter(c => c.finishesCount >= 1);
 
             // A. Render ALL Female Mobilisation Row Elements
@@ -373,7 +685,7 @@
                     const pctA = a.femaleCount / a.finishesCount;
                     const pctB = b.femaleCount / b.finishesCount;
                     return pctB - pctA;
-                }); // Removed .slice(0, 5) to output everything
+                });
 
                 sortedByFemale.forEach(club => {
                     const pct = Math.round((club.femaleCount / club.finishesCount) * 100);
@@ -399,7 +711,7 @@
                     const pctA = a.vetsCount / a.finishesCount;
                     const pctB = b.vetsCount / b.finishesCount;
                     return pctB - pctA;
-                }); // Removed .slice(0, 5) to output everything
+                });
 
                 sortedByVets.forEach(club => {
                     const pct = Math.round((club.vetsCount / club.finishesCount) * 100);
