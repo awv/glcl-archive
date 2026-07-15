@@ -67,8 +67,8 @@
                 <div id="athlete-badges" class="flex flex-wrap gap-1.5"></div>
             </div>
             
-            <!-- Secondary Meta Target -->
-            <div class="flex items-center space-x-3 text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider mt-2.5">
+            <!-- Secondary Meta Target (Margin adjusted to prevent mobile badge collisions) -->
+            <div class="flex items-center space-x-3 text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider mt-5 md:mt-2.5">
                 <span id="athlete-gender">GENDER: —</span>
                 <span class="text-slate-800">•</span>
                 <span id="athlete-age-cat">AGE DIVISION PROFILE</span>
@@ -631,7 +631,7 @@
                                 <td class="py-3 px-4">${seriesBadge}</td>
                                 <td class="py-3 px-4 text-slate-400 font-mono">${v.debutStr}</td>
                                 <td class="py-3 px-4 text-slate-400 font-mono">${v.recentStr}</td>
-                                <td class="py-3 px-4 text-right pr-6 font-mono">${v.progressHtml}</td>
+                                <td class="py-3 px-4 text-right pr-6 w-36">${v.progressHtml}</td>
                             </tr>
                         `;
                     }).join('');
