@@ -49,7 +49,7 @@
             <!-- Centralized Prominent Search Field (Runner Search Focused) -->
             <div class="max-w-xl mx-auto relative">
                 <div class="relative">
-                    <input type="text" id="runner-search" placeholder="Search for a runner..." autocomplete="off" 
+                    <input type="text" id="runner-search" placeholder="Search runner names..." autocomplete="off" 
                         class="w-full bg-slate-950/90 backdrop-blur border-2 border-slate-800 text-slate-100 placeholder-slate-500 rounded-xl px-5 py-4 text-base md:text-lg focus:outline-none focus:border-brand-500 font-medium transition-colors shadow-2xl">
                     <div class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none hidden md:block">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
@@ -62,6 +62,11 @@
                 <div id="autocomplete-results" class="hidden absolute left-0 right-0 mt-2 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl z-50 max-h-64 overflow-y-auto divide-y divide-slate-950 text-left">
                     <!-- Dynamic search suggestions injected here -->
                 </div>
+
+                <!-- Database Era Disclaimer Text -->
+                <p class="text-[10px] md:text-[11px] font-mono text-slate-500 uppercase tracking-widest mt-4">
+                    Note: Database records currently cover campaigns from 2021 to 2026.
+                </p>
             </div>
         </div>
     </header>
@@ -115,14 +120,14 @@
         // - cancelled: true (marks card as cancelled, overriding live/pending layouts)
         fixtures: [
             { name: "Glebelands",    date: "19 Oct 2025", discipline: "xc",   live: true,  cancelled: false },
-            { name: "Rogerstone",    date: "23 Nov 2025", discipline: "xc", live: true,  cancelled: false },
+            { name: "Rogerstone",    date: "23 Nov 2025", discipline: "road", live: true,  cancelled: false },
             { name: "Oldfield Farm", date: "04 Jan 2026", discipline: "xc",   live: true,  cancelled: false },
             { name: "Parc Bryn Bach",date: "01 Feb 2026", discipline: "xc",   live: false, cancelled: true },
             { name: "Risca",         date: "08 Mar 2026", discipline: "xc",   live: true,  cancelled: false },
             { name: "Chepstow",      date: "05 May 2026", discipline: "road", live: true,  cancelled: false },
-            { name: "Blaenavon",     date: "19 May 2026", discipline: "road",   live: true,  cancelled: false },
+            { name: "Blaenavon",     date: "19 May 2026", discipline: "xc",   live: true,  cancelled: false },
             { name: "Parc Penallta", date: "02 Jun 2026", discipline: "road", live: true,  cancelled: false },
-            { name: "Cwmbran",       date: "30 Jun 2026", discipline: "road",   live: true,  cancelled: false },
+            { name: "Cwmbran",       date: "30 Jun 2026", discipline: "xc",   live: true,  cancelled: false },
             { name: "Parc Bryn Bach",date: "04 Aug 2026", discipline: "road", live: false, cancelled: false }
         ]
     };
