@@ -126,5 +126,50 @@
 
     </main>
     <div id="global-footer"></div>
+
+    <!-- DATE INTERCEPTOR FOR STATS ENGINE -->
+    <script>
+        // Globally patch raw dataset dates to prevent YYYY-DD-MM parser failure before stats-engine runs
+        (() => {
+            const patchDateStr = (dateStr) => {
+                if (!dateStr || typeof dateStr !== 'string') return dateStr;
+                const parts = dateStr.split('-');
+                if (parts.length === 3) {
+                    const year = parts[0];
+                    let month = parseInt(parts[1], 10);
+                    let day = parseInt(parts[2], 10);
+                    
+                    // If the month segment is greater than 12, it is actually YYYY-DD-MM
+                    if (month > 12) {
+                        const temp = month;
+                        month = day;
+                        day = temp;
+                        
+                        // Pad numbers to standard ISO strings
+                        const cleanMonth = String(month).padStart(2, '0');
+                        const cleanDay = String(day).padStart(2, '0');
+                        return `${year}-${cleanMonth}-${cleanDay}`;
+                    }
+                }
+                return dateStr;
+            };
+
+            // Intercept data fixtures array prior to calculations if defined
+            if (typeof window.glclResults !== 'undefined' && Array.isArray(window.glclResults)) {
+                window.glclResults.forEach(item => {
+                    if (item && item.date) {
+                        item.date = patchDateStr(item.date);
+                    }
+                });
+            }
+            if (typeof window.glclData !== 'undefined' && Array.isArray(window.glclData)) {
+                window.glclData.forEach(item => {
+                    if (item && item.date) {
+                        item.date = patchDateStr(item.date);
+                    }
+                });
+            }
+        })();
+    </script>
 </body>
 </html>

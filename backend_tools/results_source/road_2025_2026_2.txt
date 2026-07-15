@@ -286,7 +286,7 @@
 282 0 Grahame VINER 0 M V65 Caerleon Running Club 00:48:17 174 6
 283 0 Mia HAEFFNER 0 F Senior Chepstow Harriers 00:48:24 90 22
 284 0 Hilary PREECE 0 F V55 Islwyn Rc 00:48:30 91 11
-285 0 Edward McDAID Caerleon Running Club 0 M V70 Unknown 00:48:31 175 8
+285 0 Edward McDAID 0 M V70 Caerleon Running Club 00:48:31 175 8
 286 0 Sarah TUCKER 0 F V50 Islwyn Rc 00:48:36 92 16
 287 0 Dawn DAVIS 0 F V50 Lliswerry Runners 00:48:43 93 17
 288 0 Dirkje FRASER 0 F V50 Lliswerry Runners 00:48:44 94 18
@@ -326,12 +326,12 @@
 322 0 Nick WILLIAMS 0 M V35 Fairwater Runners 00:53:10 187 31
 323 0 Sian JAMES 0 F V50 Islwyn Rc 00:53:29 115 21
 324 0 Sarah PRICE 0 F V35 Fairwater Runners 00:53:32 116 12
-325 0 Alison McMENEMY Spirit Of Monmouth Rc 0 F V65 Unknown 00:53:35 117 1
-326 0 Stephen McMENEMY Spirit Of Monmouth Rc 0 M V65 Unknown 00:53:36 188 9
+325 0 Alison McMENEMY 0 F V65 Spirit Of Monmouth Rc 00:53:35 117 1
+326 0 Stephen McMENEMY 0 M V65 Spirit Of Monmouth Rc 00:53:36 188 9
 327 0 Charlotte MARSHALL 0 F Senior Islwyn Rc 00:53:42 118 26
 328 0 Jake HOWE 0 M Senior Islwyn Rc 00:53:42 189 45
 329 0 Charlie MATTHEWS 0 F V35 Fairwater Runners 00:53:46 119 13
-330 0 Laura McLOUGHLIN Spirit Of Monmouth Rc 0 F V35 Unknown 00:53:49 120 14
+330 0 Laura McLOUGHLIN 0 F V35 Spirit Of Monmouth Rc 00:53:49 120 14
 331 0 Maixent GAILLARD 0 M V45 Spirit Of Monmouth Rc 00:54:25 190 25
 332 0 Fay VISSER 0 F V60 Spirit Of Monmouth Rc 00:54:31 121 8
 333 0 Isabelle WILKINSON 0 F Senior Griffithstown Harriers 00:54:36 122 27

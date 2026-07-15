@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLCL Archive — Seasons Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="site-layout.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            500: '#0066cc',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #030712; }
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(3,7,18,0.3) 0%, rgba(3,7,18,1) 100%);
+        }
+        .stat-card { background-color: #090d16; }
+    </style>
+</head>
+<body class="text-slate-300 font-sans antialiased flex flex-col min-h-full">
+
+    <!-- GLOBAL NAVIGATION CONTAINER -->
+    <nav id="global-nav" class="border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <!-- Injected automatically via site-layout.js -->
+    </nav>
+
+    <!-- CINEMATIC HEADER BANNER -->
+    <header class="relative h-[25vh] md:h-[30vh] flex items-end overflow-hidden border-b border-slate-900 w-full">
+        <!-- Background Image -->
+        <img src="assets/images/hero_placeholder.jpg" alt="Gwent League Cross Country Action" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 filter brightness-50 contrast-125">
+        <div class="absolute inset-0 hero-gradient"></div>
+        
+        <div class="relative max-w-[1400px] mx-auto px-4 w-full z-10 pb-8">
+            <span class="text-xs font-mono tracking-widest text-brand-500 uppercase font-bold block mb-1">Campaign Archive</span>
+            <h1 class="text-3xl md:text-4xl font-black text-slate-100 tracking-tight uppercase max-w-3xl">
+                The Seasons Overview
+            </h1>
+            <p class="text-xs md:text-sm text-slate-400 font-medium mt-1 max-w-2xl">
+                Browse through historical standings, individual fixtures, and full team turnout metrics across past campaigns.
+            </p>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT MODULE CONTAINER -->
+    <main class="max-w-[1400px] mx-auto px-4 py-12 space-y-16 w-full flex-grow">
+
+        <!-- 2025/2026 SEASON CAMPAIGN ROW -->
+        <section class="space-y-4">
+            <div class="border-b border-slate-900 pb-2">
+                <span class="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase">Season Campaign</span>
+                <h3 class="text-lg font-black text-slate-100 uppercase tracking-tight">2025 / 2026</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Cross Country Series Card -->
+                <a href="season.html?season=2025_2026&discipline=xc" class="group block bg-slate-950 border border-slate-900 rounded-xl overflow-hidden hover:border-brand-500 transition-all shadow-xl">
+                    <div class="h-80 bg-slate-900 relative overflow-hidden border-b border-slate-900">
+                        <img src="assets/images/seasons/2025_2026/xc_card.jpg" alt="2025/2026 Cross Country" class="w-full h-full object-cover filter brightness-75 group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="p-5 space-y-1">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-base font-black text-slate-100 group-hover:text-brand-500 transition-colors uppercase">Cross Country Series</h4>
+                            <span class="text-[10px] font-mono font-bold bg-brand-500/10 text-brand-400 px-2 py-0.5 rounded">XC</span>
+                        </div>
+                        <p class="text-xs text-slate-500 font-medium">Mud, spikes, and team turnout matrices across all five classic fixtures.</p>
+                    </div>
+                </a>
+
+                <!-- Road Series Card -->
+                <a href="season.html?season=2025_2026&discipline=road" class="group block bg-slate-950 border border-slate-900 rounded-xl overflow-hidden hover:border-brand-500 transition-all shadow-xl">
+                    <div class="h-80 bg-slate-900 relative overflow-hidden border-b border-slate-900">
+                        <img src="assets/images/seasons/2025_2026/road_card.jpg" alt="2026 Road Series" class="w-full h-full object-cover filter brightness-75 group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="p-5 space-y-1">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-base font-black text-slate-100 group-hover:text-brand-500 transition-colors uppercase">Road Running Series</h4>
+                            <span class="text-[10px] font-mono font-bold bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">ROAD</span>
+                        </div>
+                        <p class="text-xs text-slate-500 font-medium">Tarmac standings, flat out pacing profiles, and road club mobilisation metrics.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 2024/2025 CAMPAIGN SECTION -->
+        <section class="space-y-4">
+            <div class="border-b border-slate-900 pb-2">
+                <span class="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase block">Season Campaign</span>
+                <h3 class="text-xl font-black text-slate-200 tracking-tight">2024 / 2025</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                <!-- CROSS COUNTRY CARD -->
+                <a href="season.html?season=2024_2025&discipline=xc" class="stat-card rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all flex flex-col justify-between group h-full">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="assets/images/seasons/2024_2025/xc_card.jpg" alt="2024/25 Cross Country" class="w-full h-full object-cover object-top filter brightness-[0.65] contrast-110 group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h4 class="font-black text-slate-100 tracking-tight uppercase group-hover:text-brand-500 transition-colors text-sm md:text-base">Cross Country Series</h4>
+                                <p class="text-xs text-slate-500 mt-1 font-medium">Mud, spikes, and team turnout matrices across all fixtures.</p>
+                            </div>
+                            <span class="text-[10px] font-mono font-bold tracking-wider text-brand-500 bg-brand-500/10 px-2 py-0.5 rounded shrink-0 mt-0.5">XC</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- ROAD RUNNING CARD -->
+                <a href="season.html?season=2024_2025&discipline=road" class="stat-card rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all flex flex-col justify-between group h-full">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="assets/images/seasons/2024_2025/road_card.jpg" alt="2024/25 Road Running" class="w-full h-full object-cover object-top filter brightness-[0.65] contrast-110 group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h4 class="font-black text-slate-100 tracking-tight uppercase group-hover:text-brand-500 transition-colors text-sm md:text-base">Road Running Series</h4>
+                                <p class="text-xs text-slate-500 mt-1 font-medium">Tarmac standings, flat out pacing profiles, and road club mobilisation metrics.</p>
+                            </div>
+                            <span class="text-[10px] font-mono font-bold tracking-wider text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded shrink-0 mt-0.5">ROAD</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 2023/2024 CAMPAIGN SECTION -->
+        <section class="space-y-4">
+            <div class="border-b border-slate-900 pb-2">
+                <span class="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase block">Season Campaign</span>
+                <h3 class="text-xl font-black text-slate-200 tracking-tight">2023 / 2024</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                <!-- CROSS COUNTRY CARD -->
+                <a href="season.html?season=2023_2024&discipline=xc" class="stat-card rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all flex flex-col justify-between group h-full">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="assets/images/seasons/2023_2024/xc_card.jpg" alt="2023/24 Cross Country" class="w-full h-full object-cover object-top filter brightness-[0.65] contrast-110 group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h4 class="font-black text-slate-100 tracking-tight uppercase group-hover:text-brand-500 transition-colors text-sm md:text-base">Cross Country Series</h4>
+                                <p class="text-xs text-slate-500 mt-1 font-medium">Mud, spikes, and team turnout matrices across all fixtures.</p>
+                            </div>
+                            <span class="text-[10px] font-mono font-bold tracking-wider text-brand-500 bg-brand-500/10 px-2 py-0.5 rounded shrink-0 mt-0.5">XC</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- ROAD RUNNING CARD -->
+                <a href="season.html?season=2023_2024&discipline=road" class="stat-card rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all flex flex-col justify-between group h-full">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="assets/images/seasons/2023_2024/road_card.jpg" alt="2023/24 Road Running" class="w-full h-full object-cover object-top filter brightness-[0.65] contrast-110 group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h4 class="font-black text-slate-100 tracking-tight uppercase group-hover:text-brand-500 transition-colors text-sm md:text-base">Road Running Series</h4>
+                                <p class="text-xs text-slate-500 mt-1 font-medium">Tarmac standings, flat out pacing profiles, and road club mobilisation metrics.</p>
+                            </div>
+                            <span class="text-[10px] font-mono font-bold tracking-wider text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded shrink-0 mt-0.5">ROAD</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 2022/2023 CAMPAIGN SECTION -->
+        <section class="space-y-4">
+            <div class="border-b border-slate-900 pb-2">
+                <span class="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase block">Season Campaign</span>
+                <h3 class="text-xl font-black text-slate-200 tracking-tight">2022 / 2023</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                <!-- CROSS COUNTRY CARD -->
+                <a href="season.html?season=2022_2023&discipline=xc" class="stat-card rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all flex flex-col justify-between group h-full">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="assets/images/seasons/2022_2023/xc_card.jpg" alt="2022/2023 Cross Country" class="w-full h-full object-cover object-top filter brightness-[0.65] contrast-110 group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h4 class="font-black text-slate-100 tracking-tight uppercase group-hover:text-brand-500 transition-colors text-sm md:text-base">Cross Country Series</h4>
+                                <p class="text-xs text-slate-500 mt-1 font-medium">Mud, spikes, and team turnout matrices across all fixtures.</p>
+                            </div>
+                            <span class="text-[10px] font-mono font-bold tracking-wider text-brand-500 bg-brand-500/10 px-2 py-0.5 rounded shrink-0 mt-0.5">XC</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- ROAD RUNNING CARD -->
+                <a href="season.html?season=2022_2023&discipline=road" class="stat-card rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all flex flex-col justify-between group h-full">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="assets/images/seasons/2022_2023/road_card.jpg" alt="2022/2023 Road Running" class="w-full h-full object-cover object-top filter brightness-[0.65] contrast-110 group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h4 class="font-black text-slate-100 tracking-tight uppercase group-hover:text-brand-500 transition-colors text-sm md:text-base">Road Running Series</h4>
+                                <p class="text-xs text-slate-500 mt-1 font-medium">Tarmac standings, flat out pacing profiles, and road club mobilisation metrics.</p>
+                            </div>
+                            <span class="text-[10px] font-mono font-bold tracking-wider text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded shrink-0 mt-0.5">ROAD</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 2021/2022 CAMPAIGN SECTION -->
+        <section class="space-y-4">
+            <div class="border-b border-slate-900 pb-2">
+                <span class="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase block">Season Campaign</span>
+                <h3 class="text-xl font-black text-slate-200 tracking-tight">2021 / 2022</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                <!-- CROSS COUNTRY CARD -->
+                <a href="season.html?season=2021_2022&discipline=xc" class="stat-card rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all flex flex-col justify-between group h-full">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="assets/images/seasons/2021_2022/xc_card.jpg" alt="2021/2022 Cross Country" class="w-full h-full object-cover object-top filter brightness-[0.65] contrast-110 group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h4 class="font-black text-slate-100 tracking-tight uppercase group-hover:text-brand-500 transition-colors text-sm md:text-base">Cross Country Series</h4>
+                                <p class="text-xs text-slate-500 mt-1 font-medium">Mud, spikes, and team turnout matrices across all fixtures.</p>
+                            </div>
+                            <span class="text-[10px] font-mono font-bold tracking-wider text-brand-500 bg-brand-500/10 px-2 py-0.5 rounded shrink-0 mt-0.5">XC</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- ROAD RUNNING CARD -->
+                <a href="season.html?season=2021_2022&discipline=road" class="stat-card rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-500 hover:scale-[1.01] transition-all flex flex-col justify-between group h-full">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="assets/images/seasons/2021_2022/road_card.jpg" alt="2021/2022 Road Running" class="w-full h-full object-cover object-top filter brightness-[0.65] contrast-110 group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h4 class="font-black text-slate-100 tracking-tight uppercase group-hover:text-brand-500 transition-colors text-sm md:text-base">Road Running Series</h4>
+                                <p class="text-xs text-slate-500 mt-1 font-medium">Tarmac standings, flat out pacing profiles, and road club mobilisation metrics.</p>
+                            </div>
+                            <span class="text-[10px] font-mono font-bold tracking-wider text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded shrink-0 mt-0.5">ROAD</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- INJECTED GLOBAL FOOTER CONTAINER -->
+    <div id="global-footer"></div>
+
+</body>
+</html>
