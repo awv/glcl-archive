@@ -1,3 +1,26 @@
+// ==========================================
+// 📊 GOOGLE ANALYTICS GLOBAL INJECTION
+// ==========================================
+(function() {
+    const TRACKING_ID = 'G-L5RC85ZX8G'; // Replace with your actual ID
+
+    // 1. Create and inject the async GA source script tag
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`;
+    document.head.appendChild(gaScript);
+
+    // 2. Create and inject the local configuration initialization script tag
+    const gaInitScript = document.createElement('script');
+    gaInitScript.text = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${TRACKING_ID}', { 'anonymize_ip': true });
+    `;
+    document.head.appendChild(gaInitScript);
+})();
+
 document.addEventListener("DOMContentLoaded", () => {
     // Look for the new global-nav ID (fallback to global-header just in case)
     const navEl = document.getElementById('global-nav') || document.getElementById('global-header');
