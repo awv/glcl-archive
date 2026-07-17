@@ -259,7 +259,13 @@
 
             // Dynamic background photo loader hook
             const loadProfilePhoto = (name) => {
-                const formattedName = name.toLowerCase().replace(/\s+/g, '-');
+                // Replaces spaces and apostrophes/punctuation with clean dashes
+                const formattedName = name.toLowerCase()
+                    .replace(/['’]/g, '-')  // Converts curly or straight apostrophes to dashes
+                    .replace(/[^a-z0-9]+/g, '-') // Conduits any remaining special characters
+                    .replace(/-+/g, '-')    // Collapses consecutive dashes down to a single one
+                    .replace(/^-|-$/g, ''); // Trims trailing or leading dashes cleanly
+
                 const photoSrc = `assets/images/athletes/${formattedName}.jpg`;
                 
                 const imgCheck = new Image();
@@ -271,14 +277,10 @@
                     const gradient = document.getElementById('header-gradient');
                     
                     if (header) {
-                        // Remove the static height styles and let Tailwind handle the responsive scaling
                         header.style.height = ''; 
-                        
-                        // Dynamically swap height classes: 350px on mobile, 500px on desktop (md: and up)
                         header.classList.remove('h-[240px]', 'md:h-[400px]');
                         header.classList.add('h-[350px]', 'md:h-[500px]');
                         
-                        // Apply rich background banner styling
                         header.style.backgroundImage = `url('${photoSrc}')`;
                         header.style.backgroundSize = 'cover';
                         header.style.backgroundPosition = 'top';
@@ -351,18 +353,15 @@
                 const cleanA = (a.season || '').replace(/[-_]/g, '/');
                 const cleanB = (b.season || '').replace(/[-_]/g, '/');
                 
-                // 1. Sort by season descending (newest first)
                 if (cleanA !== cleanB) return cleanB.localeCompare(cleanA);
                 
-                // 2. Sort by fixture race number descending (Fixture 5 before Fixture 4)
                 if (b.race_number !== a.race_number) {
                     return b.race_number - a.race_number;
                 }
                 
-                // 3. If both are Fixture 5, put ROAD (Summer) before XC (Winter)
                 const discA = (a.discipline || '').toUpperCase();
                 const discB = (b.discipline || '').toUpperCase();
-                return discA.localeCompare(discB); // "ROAD" comes before "XC" alphabetically
+                return discA.localeCompare(discB);
             });
 
             if (history.length === 0) {
@@ -444,23 +443,28 @@
             let bestXcPos = Infinity;
             let bestRoadPos = Infinity;
             const venuesSet = new Set();
+            
+            // Build unique clubs list specifically for this runner to check for history variations
+            const uniqueClubsRaced = new Set();
 
             history.forEach(row => {
                 const disc = (row.discipline || '').toLowerCase();
                 venuesSet.add(row.venue);
 
-                // Convert gender_pos to integer for comparison
+                const activeClubForFixture = getClubForSeason(row.season, row.club || "Unattached");
+                if (activeClubForFixture) {
+                    uniqueClubsRaced.add(activeClubForFixture.trim().toLowerCase());
+                }
+
                 const genderPosVal = parseInt(row.gender_pos, 10);
 
                 if (disc === 'xc') {
                     xcCount++;
-                    // Track their best position relative strictly to their own gender
                     if (!isNaN(genderPosVal) && genderPosVal < bestXcPos) {
                         bestXcPos = genderPosVal;
                     }
                 } else if (disc === 'road') {
                     roadCount++;
-                    // Track their best position relative strictly to their own gender
                     if (!isNaN(genderPosVal) && genderPosVal < bestRoadPos) {
                         bestRoadPos = genderPosVal;
                     }
@@ -475,6 +479,9 @@
                 }
             });
 
+            // Determine if this runner actually has a multi-club history footprints
+            const isMultiClubRunner = uniqueClubsRaced.size > 1;
+
             // Update Metric Text Blocks
             document.getElementById('stat-xc-count').textContent = xcCount;
             document.getElementById('stat-road-count').textContent = roadCount;
@@ -483,7 +490,6 @@
             document.getElementById('stat-best-xc').textContent = bestXcPos === Infinity ? '-' : `Pos ${bestXcPos}`;
             document.getElementById('stat-best-road').textContent = bestRoadPos === Infinity ? '-' : `Pos ${bestRoadPos}`;
 
-            // Dynamically rename the labels based on the athlete's gender
             const genderLabel = meta.sex === 'M' ? 'Male' : 'Female';
             document.getElementById('label-best-xc').textContent = `Best ${genderLabel} XC Pos`;
             document.getElementById('label-best-road').textContent = `Best ${genderLabel} Road Pos`;
@@ -492,24 +498,21 @@
             // UNIVERSAL ATHLETE INSIGHTS CORE PIPELINE
             // ==========================================
             const MIN_RACES_FOR_TREND = 3;
-            // Create true chronologically sorted array for trends (oldest to newest)
             const chronologicalHistory = [...history].reverse();
 
             if (chronologicalHistory.length >= MIN_RACES_FOR_TREND) {
-               // 1. Calculate Smoothed Gender Position Deltas (Averages of First 3 vs Last 3)
                 const validGenderPositions = chronologicalHistory
                     .map(r => parseInt(r.gender_pos, 10))
                     .filter(pos => !isNaN(pos));
 
                 if (validGenderPositions.length >= 2) {
-                    // Smooth the anomalies by using 3-race averaging windows
                     const sampleSize = Math.min(3, validGenderPositions.length);
                     const firstRaces = validGenderPositions.slice(0, sampleSize);
                     const lastRaces = validGenderPositions.slice(-sampleSize);
 
                     const firstAvg = Math.round(firstRaces.reduce((a, b) => a + b, 0) / sampleSize);
                     const lastAvg = Math.round(lastRaces.reduce((a, b) => a + b, 0) / sampleSize);
-                    const delta = firstAvg - lastAvg; // Positive value represents improvement
+                    const delta = firstAvg - lastAvg;
 
                     if (delta > 0) {
                         document.getElementById('insight-card-title').textContent = "Overall Progress";
@@ -527,7 +530,6 @@
                         document.getElementById('insight-card-subtext').textContent = `Maintaining robust, consistent racing form with an average placement of Pos ${lastAvg} across consecutive calendar seasons.`;
                     }
 
-                    // 2. Separate into XC and Road streams while maintaining chronological spacing
                     const xcPointsData = [];
                     const roadPointsData = [];
                     
@@ -544,17 +546,14 @@
                         }
                     });
 
-                    // Use the absolute max/min across all races to scale the Y-axis consistently
                     const minPos = Math.min(...validGenderPositions);
                     const maxPos = Math.max(...validGenderPositions);
                     const posRange = maxPos - minPos || 1;
 
-                    // Update Y-Axis Labels
                     document.getElementById('chart-y-max').textContent = `Pos ${minPos}`;
                     document.getElementById('chart-y-mid').textContent = `Pos ${Math.round((minPos + maxPos) / 2)}`;
                     document.getElementById('chart-y-min').textContent = `Pos ${maxPos}`;
 
-                    // Helper to generate SVG coordinate paths
                     const width = 300;
                     const height = 60;
                     const padding = 6;
@@ -564,14 +563,11 @@
                         if (pointsList.length < 1) return "";
                         
                         const coords = pointsList.map(pt => {
-                            // X-coordinate spaces points proportionally across their historical timeline sequence
                             const x = padding + (pt.index / totalSteps) * (width - padding * 2);
-                            // Inverted Y-coordinate (better finishes climb to the top of the grid)
                             const y = padding + ((pt.pos - minPos) / posRange) * (height - padding * 2);
                             return `${x.toFixed(1)},${y.toFixed(1)}`;
                         });
                         
-                        // If there's only one race in a discipline, represent it as a tiny dot line
                         if (coords.length === 1) {
                             const [x, y] = coords[0].split(',');
                             return `M ${x},${y} L ${(parseFloat(x) + 0.1).toFixed(1)},${y}`;
@@ -580,23 +576,19 @@
                         return `M ${coords.join(' L ')}`;
                     };
 
-                    // Draw the split trend lines
                     document.getElementById('trend-sparkline-path').setAttribute('d', generatePathD(xcPointsData));
                     document.getElementById('trend-road-path').setAttribute('d', generatePathD(roadPointsData));
                 }
 
-                // 3. Compute Repeating Venue Variations (Isolated Strictly by Discipline)
                 const venueGroups = {};
                 chronologicalHistory.forEach(race => {
                     if (!race.venue || race.venue === "Unknown") return;
                     
-                    // Construct isolated keys ensuring cross-country and road configurations don't cross-contaminate paths
                     const disciplineKey = `${race.venue}_${(race.discipline || '').toUpperCase()}`;
                     if (!venueGroups[disciplineKey]) venueGroups[disciplineKey] = [];
                     venueGroups[disciplineKey].push(race);
                 });
 
-                // Locate this block in athlete.html (around line 380)
                 const progressRowsArray = [];
                 Object.keys(venueGroups).forEach(key => {
                     const group = venueGroups[key];
@@ -609,14 +601,13 @@
                         const delta = debutPos - recentPos; 
 
                         if (!isNaN(debutPos) && !isNaN(recentPos)) {
-                            // Generate the url targeting the most recent fixture's results
                             const paramSeason = recent.season.replace('/', '_');
                             const recentUrl = `results.html?season=${paramSeason}&discipline=${(recent.discipline || '').toLowerCase()}&race=${recent.race_number}`;
 
                             progressRowsArray.push({
                                 venue: debut.venue,
                                 discipline: debut.discipline || 'XC',
-                                recentUrl: recentUrl, // Save the URL here
+                                recentUrl: recentUrl,
                                 debutStr: `Pos ${debutPos} (${debut.season.split('/')[0]})`,
                                 recentStr: `Pos ${recentPos} (${recent.season.split('/')[0]})`,
                                 delta: delta,
@@ -628,7 +619,6 @@
                     }
                 });
 
-                // Locate the progressTbody.innerHTML generator block
                 const progressTbody = document.getElementById('course-progress-rows');
                 if (progressRowsArray.length > 0) {
                     progressRowsArray.sort((a, b) => b.delta - a.delta);
@@ -640,7 +630,6 @@
 
                         return `
                             <tr class="hover:bg-slate-900/10 transition-colors">
-                                <!-- Wrap the venue name in a hoverable link -->
                                 <td class="py-3 px-4 font-bold text-slate-200 uppercase">
                                     <a href="${v.recentUrl}" class="hover:text-brand-500 hover:underline decoration-brand-500/30 transition-all">
                                         ${v.venue}
@@ -657,7 +646,6 @@
                     document.getElementById('course-progress-container').style.display = 'none';
                 }
             } else {
-                // Under-threshold Fallback Block for low-data debuts
                 document.getElementById('insight-card-title').textContent = "League Status";
                 document.getElementById('insight-card-value').textContent = "Rising Star";
                 document.getElementById('insight-card-subtext').textContent = `Welcome to the league! Complete ${MIN_RACES_FOR_TREND - chronologicalHistory.length} more fixtures to unlock comprehensive history trend analytics components.`;
@@ -687,17 +675,14 @@
                         
                         let day, monthIdx;
                         
-                        // If the middle number is greater than 12, it's YYYY-DD-MM
                         if (part1 > 12) {
                             day = part1;
                             monthIdx = part2 - 1;
                         } else {
-                            // Otherwise, treat it as standard YYYY-MM-DD
                             day = part2;
                             monthIdx = part1 - 1;
                         }
                         
-                        // Fallback check to avoid undefined if the source has typos
                         const monthName = months[monthIdx] || 'Unknown';
                         dateStr = `${day} ${monthName} ${year}`;
                     }
@@ -715,12 +700,15 @@
                 const nameToDisplay = row.originalName || row.name;
                 const activeClubForFixture = getClubForSeason(row.season, row.club || "Unattached");
 
+                // Evaluate subtext conditions cleanly: only render club details if they have a multi-club history profile
                 let clubDetailsHtml = '';
-                if (activeClubForFixture && activeClubForFixture !== "Unattached" && activeClubForFixture !== "Independent") {
-                    const clubUrl = `club.html?name=${encodeURIComponent(activeClubForFixture)}`;
-                    clubDetailsHtml = `RAN FOR <a href="${clubUrl}" class="underline decoration-slate-800 hover:decoration-brand-500 hover:text-brand-500 transition-colors">${activeClubForFixture.toUpperCase()}</a>`;
-                } else {
-                    clubDetailsHtml = `RAN FOR ${activeClubForFixture.toUpperCase()}`;
+                if (isMultiClubRunner) {
+                    if (activeClubForFixture && activeClubForFixture !== "Unattached" && activeClubForFixture !== "Independent") {
+                        const clubUrl = `club.html?name=${encodeURIComponent(activeClubForFixture)}`;
+                        clubDetailsHtml = `RAN FOR <a href="${clubUrl}" class="underline decoration-slate-800 hover:decoration-brand-500 hover:text-brand-500 transition-colors">${activeClubForFixture.toUpperCase()}</a>`;
+                    } else {
+                        clubDetailsHtml = `RAN FOR ${activeClubForFixture.toUpperCase()}`;
+                    }
                 }
 
                 let nameChangeHtml = '';
@@ -731,6 +719,11 @@
 
                 const metaRowText = `${clubDetailsHtml}${nameChangeHtml}`;
 
+                // Only evaluate meta block structure if text strings exist inside nodes
+                const metaBlockWrapper = metaRowText.trim().length > 0 
+                    ? `<span class="block text-[10px] text-slate-500 font-mono font-bold uppercase mt-0.5">${metaRowText}</span>`
+                    : '';
+
                 const trHtml = `
                     <tr class="hover:bg-slate-900/10 transition-colors">
                         <td class="py-3 px-4 font-mono text-slate-400">${row.season}</td>
@@ -739,9 +732,7 @@
                             <a href="${resultsUrl}" class="font-bold text-slate-200 uppercase tracking-tight hover:text-brand-500 transition-colors">
                                 Fixture ${row.race_number} — ${row.venue}
                             </a>
-                            <span class="block text-[10px] text-slate-500 font-mono font-bold uppercase mt-0.5">
-                                ${metaRowText}
-                            </span>
+                            ${metaBlockWrapper}
                         </td>
                         <td class="py-3 px-4 text-slate-500 font-medium">${dateStr}</td>
                         <td class="py-3 px-4 text-center font-mono text-slate-400 font-bold">Pos ${row.pos}</td>
