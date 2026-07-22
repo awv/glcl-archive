@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
             };
         }
         
-        if (fixturesMap[key].status !== 'Cancelled' && row.pos > 0) {
+        if (fixturesMap[key].status !== 'Cancelled' && fixturesMap[key].status !== 'Results Missing' && row.pos > 0) {
             fixturesMap[key].runnersCount++;
             
             if (row.sex === 'M') fixturesMap[key].menCount++;
@@ -143,13 +143,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (fix.status === 'Cancelled') {
                 const cancelledHtml = `
-                    <div class="stat-card p-5 rounded-xl shadow-md flex flex-col justify-between border border-red-900/30 bg-red-950/5 relative overflow-hidden opacity-60">
+                    <a href="results.html?season=${selectedSeason.replace('/', '_')}&discipline=${disciplineParam.toLowerCase()}&race=${fix.race_number}" class="stat-card p-5 rounded-xl shadow-md flex flex-col justify-between border border-red-900/30 bg-red-950/5 hover:border-red-500 transition-all block group relative overflow-hidden">
                         <div>
                             <div class="flex justify-between items-start mb-2">
                                 <span class="text-[10px] font-black tracking-widest text-slate-500 uppercase">Fixture ${fix.race_number}</span>
                                 <span class="text-xs font-mono font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded">CANCELLED</span>
                             </div>
-                            <h4 class="text-base font-black text-slate-400 tracking-tight uppercase line-through">${fix.venue}</h4>
+                            <h4 class="text-base font-black text-slate-400 tracking-tight uppercase line-through group-hover:text-red-400 transition-colors">${fix.venue}</h4>
                             <p class="text-xs font-medium text-slate-600 mt-0.5">${formattedDate}</p>
                         </div>
                         <div class="mt-8 mb-4 text-center py-4 border border-dashed border-red-900/20 rounded-lg">
@@ -159,9 +159,30 @@ document.addEventListener("DOMContentLoaded", () => {
                             <span>Total Field</span>
                             <span class="font-bold">0 Finishers</span>
                         </div>
-                    </div>
+                    </a>
                 `;
                 fixtureGrid.insertAdjacentHTML('beforeend', cancelledHtml);
+            } else if (fix.status === 'Results Missing') {
+                const missingHtml = `
+                    <a href="results.html?season=${selectedSeason.replace('/', '_')}&discipline=${disciplineParam.toLowerCase()}&race=${fix.race_number}" class="stat-card p-5 rounded-xl shadow-md flex flex-col justify-between border border-amber-900/30 bg-amber-950/5 hover:border-amber-500 transition-all block group relative overflow-hidden">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="text-[10px] font-black tracking-widest text-slate-500 uppercase">Fixture ${fix.race_number}</span>
+                                <span class="text-xs font-mono font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">MISSING</span>
+                            </div>
+                            <h4 class="text-base font-black text-slate-300 tracking-tight uppercase group-hover:text-amber-400 transition-colors">${fix.venue}</h4>
+                            <p class="text-xs font-medium text-slate-500 mt-0.5">${formattedDate}</p>
+                        </div>
+                        <div class="mt-8 mb-4 text-center py-4 border border-dashed border-amber-900/20 rounded-lg">
+                            <span class="text-[11px] font-bold text-amber-400/80 uppercase tracking-wider block">Results Missing</span>
+                        </div>
+                        <div class="pt-2 font-mono text-[11px] text-slate-500 border-t border-slate-900/20 flex justify-between">
+                            <span>Total Field</span>
+                            <span class="font-bold">N/A</span>
+                        </div>
+                    </a>
+                `;
+                fixtureGrid.insertAdjacentHTML('beforeend', missingHtml);
             } else {
                 let topClubStr = 'None';
                 let maxClubCount = 0;
@@ -228,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2. COMPILE INDIVIDUAL WINS (HALL OF FAME)
     const individualWins = {};
     records.forEach(row => {
-        if (row.status === 'Cancelled') return;
+        if (row.status === 'Cancelled' || row.status === 'Results Missing') return;
         if (parseInt(row.gender_pos, 10) === 1 && row.pos > 0) {
             if (!individualWins[row.name]) {
                 individualWins[row.name] = { name: row.name, club: row.club, wins: 0, sex: row.sex };
@@ -258,7 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. AGGREGATE CLUB MOBILISATION STATS
     const clubStats = {};
     records.forEach(row => {
-        if (!row.club || row.status === 'Cancelled' || row.pos === 0) return;
+        if (!row.club || row.status === 'Cancelled' || row.status === 'Results Missing' || row.pos === 0) return;
         if (!clubStats[row.club]) {
             clubStats[row.club] = { name: row.club, totalTurnout: 0, topTenFinishes: 0 };
         }
@@ -289,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 4. CALCULATE AGE CATEGORY SEASON AWARDS
     const categoryGroups = {};
     records.forEach(row => {
-        if (!row.age_cat || !row.cat_pos || !row.sex || row.status === 'Cancelled' || row.pos === 0) return;
+        if (!row.age_cat || !row.cat_pos || !row.sex || row.status === 'Cancelled' || row.status === 'Results Missing' || row.pos === 0) return;
         
         const catKey = `${row.sex.toUpperCase()}_${row.age_cat.toUpperCase()}`;
         if (!categoryGroups[catKey]) {

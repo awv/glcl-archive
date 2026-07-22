@@ -6,6 +6,16 @@ window.glclCorrections = {
             primaryName: "Antoinette Rose", // The new master profile name
             effectiveSeason: "2024/2025", 
             note: "Formerly competed as Antoinette Dumayne"
+        },
+        "Nicola Gething": {
+            primaryName: "Nicola Jukes", // The new master profile name
+            effectiveSeason: "2016/2017", 
+            note: "Formerly competed as Nicola Gething"
+        },
+        "Sam Lewis-Jones": {
+            primaryName: "Sam Jones", // The new master profile name
+            effectiveSeason: "2017/2018", 
+            note: "Formerly competed as Sam Lewis Jones"
         }
     },
     

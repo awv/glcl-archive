@@ -1,0 +1,4 @@
+# VENUE: Parc Bryn Bach
+# DATE: 2026-08-04
+# DISTANCE: 5.14 Miles
+# STATUS: Pending

@@ -67,38 +67,27 @@
     <main class="max-w-[1400px] w-full mx-auto px-4 py-12 space-y-12 flex-grow">
 
         <!-- CATEGORY WINNERS GRID SECTION -->
-        <section class="space-y-4">
+        <section id="category-winners-section" class="space-y-4">
             <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Age Category Winners</h2>
             <div id="category-winners-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 <!-- Dynamically populated with category cards -->
             </div>
         </section>
-        
-        <!-- RESULTS MAIN CONTAINER -->
-        <section class="space-y-4">
-            <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Full Field Standings</h2>
-            <div class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-2xl">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-xs">
-                        <thead>
-                            <tr class="border-b border-slate-900 font-black uppercase tracking-wider text-slate-500 bg-slate-900/40 text-[10px]">
-                                <th class="py-3 px-4 w-16 text-center">Pos</th>
-                                <th class="py-3 px-4 w-16 text-center">Bib</th>
-                                <th class="py-3 px-4">Athlete Name</th>
-                                <th class="py-3 px-4 w-16 text-center">Sex</th>
-                                <th class="py-3 px-4">Age Category</th>
-                                <th class="py-3 px-4">Club</th>
-                                <th class="py-3 px-4 text-center w-24">Cat Pos</th>
-                                <th class="py-3 px-4 text-center w-24">Gender Pos</th>
-                                <th class="py-3 px-4 text-right pr-6 w-24">Time</th>
-                            </tr>
-                        </thead>
-                        <tbody id="results-rows" class="divide-y divide-slate-900/40 text-slate-300">
-                            <!-- Filled by JS script below -->
-                        </tbody>
-                    </table>
+
+        <!-- HISTORICAL FIXTURE NOTES CONTAINER -->
+        <section id="fixture-notes-container" class="hidden">
+            <div class="border border-brand-500/20 bg-brand-500/5 rounded-xl p-4 flex gap-3 items-start">
+                <span class="text-brand-500 font-mono font-bold text-sm select-none">ℹ️</span>
+                <div class="space-y-1">
+                    <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Historical Note</h3>
+                    <p id="fixture-notes-text" class="text-xs text-slate-400 leading-relaxed"></p>
                 </div>
             </div>
+        </section>
+        
+        <!-- RESULTS MAIN CONTAINER (DYNAMIC SECTION TABLES INJECTED HERE) -->
+        <section id="results-sections-container" class="space-y-10">
+            <!-- Dynamically populated with single or multi-table standings -->
         </section>
     </main>
 
@@ -123,22 +112,67 @@
             });
 
             const allRecords = window.glclResults || [];
-            const filtered = allRecords.filter(row => 
+            
+            // Filter matches both runner records and status placeholders (pos === 0)
+            const allMatched = allRecords.filter(row => 
                 row.season === selectedSeason && 
                 row.discipline.toLowerCase() === discipline.toLowerCase() && 
-                parseInt(row.race_number, 10) === raceNum &&
-                row.pos > 0
-            ).sort((a, b) => a.pos - b.pos);
+                parseInt(row.race_number, 10) === raceNum
+            );
 
-            if (filtered.length === 0) {
+            if (allMatched.length === 0) {
                 document.getElementById('fixture-title').textContent = "No Records Found";
                 return;
             }
 
-            const meta = filtered[0];
+            const meta = allMatched[0];
             document.getElementById('fixture-title').textContent = meta.venue;
             document.getElementById('fixture-meta').textContent = `Fixture ${raceNum} — GLCL ${discipline.toUpperCase()}`;
             document.getElementById('fixture-sub').textContent = `${meta.date} • Course Distance: ${meta.distance || 'N/A'}`;
+
+            const resultsContainer = document.getElementById('results-sections-container');
+            const winnersSection = document.getElementById('category-winners-section');
+            const notesContainer = document.getElementById('fixture-notes-container');
+            const notesText = document.getElementById('fixture-notes-text');
+
+            // Render Historical Notes if available
+            if (meta.notes && meta.notes.trim() !== '') {
+                notesText.textContent = meta.notes;
+                notesContainer.classList.remove('hidden');
+            } else {
+                notesContainer.classList.add('hidden');
+            }
+
+            // Handle Missing Results State
+            if (meta.status === 'Results Missing') {
+                if (winnersSection) winnersSection.style.display = 'none';
+                resultsContainer.innerHTML = `
+                    <div class="border border-amber-500/20 bg-amber-500/5 rounded-xl p-8 text-center space-y-2">
+                        <h3 class="text-lg font-bold text-amber-400">Results Missing</h3>
+                        <p class="text-xs text-slate-400 max-w-md mx-auto">
+                            The results for this fixture are currently missing from the archive documentation.
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Handle Cancelled State
+            if (meta.status === 'Cancelled') {
+                if (winnersSection) winnersSection.style.display = 'none';
+                resultsContainer.innerHTML = `
+                    <div class="border border-red-500/20 bg-red-500/5 rounded-xl p-8 text-center space-y-2">
+                        <h3 class="text-lg font-bold text-red-400">Fixture Cancelled</h3>
+                        <p class="text-xs text-slate-400 max-w-md mx-auto">
+                            This fixture was cancelled and no race took place.
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Filter for valid finisher rows
+            const filtered = allMatched.filter(row => row.pos > 0).sort((a, b) => a.pos - b.pos);
 
             // Totals
             const menCount = filtered.filter(r => r.sex === 'M').length;
@@ -200,41 +234,92 @@
                 winnersGrid.insertAdjacentHTML('beforeend', cardHtml);
             });
 
-            // Render Main Results Rows
-            const tableBody = document.getElementById('results-rows');
-            tableBody.innerHTML = '';
-
+            // --- MULTI-SECTION DYNAMIC TABLE RENDERING ---
+            
+            // Group records by race_section
+            const sectionsMap = {};
             filtered.forEach(row => {
-                const sexColor = row.sex === 'M' ? 'text-sky-400' : 'text-pink-400';
-                const podiumRowBg = row.pos <= 3 ? 'bg-brand-500/5 font-semibold text-slate-100' : 'hover:bg-slate-900/10';
-                
-                const catPosNum = parseInt(row.cat_pos, 10);
-                let catPosHtml = `<span class="text-slate-400">Pos ${row.cat_pos}</span>`;
-                
-                if (catPosNum === 1) {
-                    catPosHtml = `<span class="inline-block font-mono font-bold text-[10px] text-amber-400 bg-amber-400/10 border border-amber-500/20 px-1.5 py-0.5 rounded">🥇 Pos 1</span>`;
-                } else if (catPosNum === 2) {
-                    catPosHtml = `<span class="inline-block font-mono font-bold text-[10px] text-slate-300 bg-slate-300/10 border border-slate-400/20 px-1.5 py-0.5 rounded">🥈 Pos 2</span>`;
-                } else if (catPosNum === 3) {
-                    catPosHtml = `<span class="inline-block font-mono font-bold text-[10px] text-amber-600 bg-amber-600/10 border border-amber-700/20 px-1.5 py-0.5 rounded">🥉 Pos 3</span>`;
+                const secName = row.race_section || "Main";
+                if (!sectionsMap[secName]) {
+                    sectionsMap[secName] = [];
                 }
-                
-                const trHtml = `
-                    <tr class="transition-colors ${podiumRowBg}">
-                        <td class="py-3 px-4 text-center font-mono font-bold text-slate-400">${row.pos}</td>
-                        <td class="py-3 px-4 text-center font-mono text-slate-500">${row.bib || '-'}</td>
-                        <td class="py-3 px-4 font-bold text-slate-200">
-                            <a href="athlete.html?name=${encodeURIComponent(row.name)}" class="hover:text-brand-500 transition-colors">${row.name}</a>
-                        </td>
-                        <td class="py-3 px-4 text-center font-black ${sexColor}">${row.sex}</td>
-                        <td class="py-3 px-4 uppercase tracking-tight text-slate-400 font-medium">${row.age_cat || 'SEN'}</td>
-                        <td class="py-3 px-4 font-medium"><a href="club.html?name=${encodeURIComponent(row.club)}" class="hover:text-brand-500 transition-colors">${row.club}</a></td>
-                        <td class="py-2 px-4 text-center">${catPosHtml}</td>
-                        <td class="py-3 px-4 text-center font-mono text-slate-400">Pos ${row.gender_pos}</td>
-                        <td class="py-3 px-4 text-right font-mono font-bold pr-6 text-brand-500">${row.time}</td>
-                    </tr>
+                sectionsMap[secName].push(row);
+            });
+
+            resultsContainer.innerHTML = '';
+
+            const sectionNames = Object.keys(sectionsMap);
+
+            sectionNames.forEach(secName => {
+                const sectionRows = sectionsMap[secName];
+                const sectionTitle = (sectionNames.length === 1 && secName === "Main") 
+                    ? "Full Field Standings" 
+                    : `${secName} Standings`;
+
+                // Helper function to build row HTML
+                const buildRowsHtml = (rows) => {
+                    return rows.map(row => {
+                        const sexColor = row.sex === 'M' ? 'text-sky-400' : 'text-pink-400';
+                        const podiumRowBg = row.pos <= 3 ? 'bg-brand-500/5 font-semibold text-slate-100' : 'hover:bg-slate-900/10';
+                        
+                        const catPosNum = parseInt(row.cat_pos, 10);
+                        let catPosHtml = `<span class="text-slate-400">Pos ${row.cat_pos}</span>`;
+                        
+                        if (catPosNum === 1) {
+                            catPosHtml = `<span class="inline-block font-mono font-bold text-[10px] text-amber-400 bg-amber-400/10 border border-amber-500/20 px-1.5 py-0.5 rounded">🥇 Pos 1</span>`;
+                        } else if (catPosNum === 2) {
+                            catPosHtml = `<span class="inline-block font-mono font-bold text-[10px] text-slate-300 bg-slate-300/10 border border-slate-400/20 px-1.5 py-0.5 rounded">🥈 Pos 2</span>`;
+                        } else if (catPosNum === 3) {
+                            catPosHtml = `<span class="inline-block font-mono font-bold text-[10px] text-amber-600 bg-amber-600/10 border border-amber-700/20 px-1.5 py-0.5 rounded">🥉 Pos 3</span>`;
+                        }
+
+                        return `
+                            <tr class="transition-colors ${podiumRowBg}">
+                                <td class="py-3 px-4 text-center font-mono font-bold text-slate-400">${row.pos}</td>
+                                <td class="py-3 px-4 text-center font-mono text-slate-500">${row.bib || '-'}</td>
+                                <td class="py-3 px-4 font-bold text-slate-200">
+                                    <a href="athlete.html?name=${encodeURIComponent(row.name)}" class="hover:text-brand-500 transition-colors">${row.name}</a>
+                                </td>
+                                <td class="py-3 px-4 text-center font-black ${sexColor}">${row.sex}</td>
+                                <td class="py-3 px-4 uppercase tracking-tight text-slate-400 font-medium">${row.age_cat || 'SEN'}</td>
+                                <td class="py-3 px-4 font-medium"><a href="club.html?name=${encodeURIComponent(row.club)}" class="hover:text-brand-500 transition-colors">${row.club}</a></td>
+                                <td class="py-2 px-4 text-center">${catPosHtml}</td>
+                                <td class="py-3 px-4 text-center font-mono text-slate-400">Pos ${row.gender_pos}</td>
+                                <td class="py-3 px-4 text-right font-mono font-bold pr-6 text-brand-500">${row.time}</td>
+                            </tr>
+                        `;
+                    }).join('');
+                };
+
+                const sectionBlockHtml = `
+                    <div class="space-y-4">
+                        <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">${sectionTitle}</h2>
+                        <div class="border border-slate-900 bg-slate-950 rounded-xl overflow-hidden shadow-2xl">
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse text-xs">
+                                    <thead>
+                                        <tr class="border-b border-slate-900 font-black uppercase tracking-wider text-slate-500 bg-slate-900/40 text-[10px]">
+                                            <th class="py-3 px-4 w-16 text-center">Pos</th>
+                                            <th class="py-3 px-4 w-16 text-center">Bib</th>
+                                            <th class="py-3 px-4">Athlete Name</th>
+                                            <th class="py-3 px-4 w-16 text-center">Sex</th>
+                                            <th class="py-3 px-4">Age Category</th>
+                                            <th class="py-3 px-4">Club</th>
+                                            <th class="py-3 px-4 text-center w-24">Cat Pos</th>
+                                            <th class="py-3 px-4 text-center w-24">Gender Pos</th>
+                                            <th class="py-3 px-4 text-right pr-6 w-24">Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-900/40 text-slate-300">
+                                        ${buildRowsHtml(sectionRows)}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 `;
-                tableBody.insertAdjacentHTML('beforeend', trHtml);
+
+                resultsContainer.insertAdjacentHTML('beforeend', sectionBlockHtml);
             });
         });
     </script>

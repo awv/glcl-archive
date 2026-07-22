@@ -1,0 +1,87 @@
+# VENUE: Islwyn
+# DATE: 2006-10-08
+# DISTANCE: Unknown
+# STATUS: Confirmed
+
+# SECTION: Men
+# DISTANCE: Unknown
+
+1 219 Lee AHERNE M Club69 O/40 1
+2 327 Dave HUMPHRIES M Lliswerry SENIOR 1
+3 130 Stuart PENNY M Chepstow O/40 2
+4 150 Calum CHESHIRE M Chepstow SENIOR 2
+5 207 Simon LEWIS M Club69 O/40 3
+6 678 Dimitri Vorrés M GRIFFITHSTOWN O/40 4
+7 719 Dafydd LAMBETH M Islwyn SENIOR 3
+8 750 Stephen EDWARDS M Islwyn SENIOR 4
+9 194 Mark HARVEY M Chepstow SENIOR 5
+10 201 David WILLIAMS M Club69 SENIOR 6
+11 205 Damian WILLIAMS M Club69 O/40 5
+12 661 Thomas Guy M GRIFFITHSTOWN SENIOR 7
+13 143 Luke MALARZ M Chepstow SENIOR 8
+14 211 Phillip MILES M Club69 O/55 1
+15 666 Adrian Orringe M GRIFFITHSTOWN O/50 1
+16 71 Jim KING M Caerleon SENIOR 9
+17 759 Ade WHITE M Islwyn O/40 6
+18 540 Alun WILLIAMS M Fairwater O/40 7
+19 506 Andrew SPENCER M Fairwater O/40 8
+20 686 Mark WILLIAMS M Griffithstown O/40 9
+21 2 Howard MASON M Caerleon O/40 10
+22 522 Grant LEWIS M Fairwater SENIOR 10
+23 682 Mike Barne M GRIFFITHSTOWN SENIOR 11
+24 762 Calvin THOMAS M Islwyn O/55 2
+25 671 Peter Rodger M GRIFFITHSTOWN O/50 2
+26 656 Mike Griffin M GRIFFITHSTOWN O/40 11
+27 225 Gerwyn WILLIAMS M Club69 O/40 12
+28 541 John WILLIAMS M Fairwater SENIOR 12
+29 743 Michael BUNSTON M Islwyn SENIOR 13
+30 307 Neil CHIPPER M Lliswerry O/45 1
+31 215 Brian PHILLIPS M Club69 O/40 13
+32 317 Paul DAY M Lliswerry O/55 3
+33 37 Peter THOMAS M Caerleon O/45 2
+34 523 Paul LEWIS M Fairwater O/50 3
+35 508 Mark FRY M Fairwater O/40 14
+36 224 Tim WILLIAMS M Club69 O/45 3
+37 315 Paul DURSLEY M Lliswerry O/50 4
+38 716 Steve JONES M Islwyn O/45 4
+39 778 Patrick SULLIVAN M Islwyn O/40 15
+40 700 Simon FOSTER M Islwyn O/40 16
+41 732 Sean BIRCH M Islwyn SENIOR 14
+42 198 Kevin MCENTEE M Chepstow O/50 5
+43 543 Gary WOODS M Fairwater O/45 5
+44 119 Dick FINCH M Chepstow O/60 1
+45 675 Peter Roberts M GRIFFITHSTOWN O/45 6
+46 796 Martin WALKER M Islwyn O/45 7
+47 59 Nigel JENKINS M Caerleon O/40 17
+48 329 Howard ATTWOOD M Lliswerry O/55 4
+49 170 Syd WHEELER M Chepstow O/60 2
+50 1 Andrew TAYLOR M Caerleon O/50 6
+51 713 Glyn HICKS M Islwyn O/55 5
+52 55 Robert WARD M Caerleon SENIOR 15
+53 126 Geoff CRAM M Chepstow O/60 3
+54 105 Geoff BAYLISS M Chepstow O/60 4
+55 66 Les AINSCOUGH M CAERLEON O/45 8
+56 196 Brett REGULSKI M Chepstow O/45 9
+57 780 Peter PAYTON M Islwyn O/55 6
+58 721 Malcom PARKER M Islwyn O/60 5
+
+# SECTION: Women
+# DISTANCE: Unknown
+
+1 733 Helen LODDER F Islwyn O/35 1
+2 726 Mandy JONES F Islwyn O/45 1
+3 57 Alision SCRIVENS F Caerleon O/35 2
+4 601 Emma Bayliss F GRIFFITHSTOWN SENIOR 1
+5 209 Anne Marie EVANS F Club69 O/35 3
+6 551 Daniela WOODBRIDGE F Fairwater O/35 4
+7 609 Stella Nowell F GRIFFITHSTOWN SENIOR 2
+8 602 Julie Birchell F GRIFFITHSTOWN O/35 5
+9 729 Jackie JONES F Islwyn O/35 6
+10 51 Helen THOMAS F Caerleon O/45 2
+11 615 Christine Vorres F GRIFFITHSTOWN O/45 3
+12 761 Fiona GLEN F Islwyn SENIOR 3
+13 19 Gwyn HOWELLS F Caerleon O/50 1
+14 547 Marianne BURRIDGE F Fairwater O/45 4
+15 539 Tracy TOWNSEND F Fairwater O/35 7
+16 529 Sue LLOYD F Fairwater O/50 2
+17 533 Julie MORGAN F Fairwater O/35 8
