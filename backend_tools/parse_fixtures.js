@@ -5,6 +5,40 @@ const path = require('path');
 const sourceDir = path.join(__dirname, 'results_source');
 const rootDataPath = path.join(__dirname, '../data.js');
 
+// --- MASTER CLUB ALIAS MAPPER ---
+// Add any historical variations or shorthands here
+const clubAliases = {
+    "pontypool": "Pont-Y-Pwl & District Runners",
+    "pont-y-pwl": "Pont-Y-Pwl & District Runners",
+    "pont-y-pwl & district runners": "Pont-Y-Pwl & District Runners",
+    "pont-y-pwl rc": "Pont-Y-Pwl & District Runners",
+
+    "parc bryn bach": "Parc Bryn Bach RC",
+    "parc bryn bach rc": "Parc Bryn Bach RC",
+    "pbb": "Parc Bryn Bach RC",
+
+    "lliswerry": "Lliswerry Runners",
+    "lliswerry runners": "Lliswerry Runners",
+
+    "chepstow": "Chepstow Harriers",
+    "chepstow harriers": "Chepstow Harriers",
+
+    "fairwater": "Fairwater Runners",
+    "fairwater runners": "Fairwater Runners",
+
+    "monmouth": "Spirit of Monmouth RC",
+    "monmouth harriers": "Spirit of Monmouth RC",
+
+    "caerleon": "Caerleon RC",
+    "caerleon running club": "Caerleon RC"
+};
+
+function normalizeClub(rawClub) {
+    if (!rawClub) return "Unattached";
+    const key = rawClub.trim().toLowerCase();
+    return clubAliases[key] || rawClub.trim();
+}
+
 // 1. Current format regex (with Bib, Age, Time, etc.)
 const standardRowRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+(\d+)\s+([MF])\s+(Senior|V\d+\+?)\s+(.+?)\s+(\d{2}:\d{2}:\d{2})\s+(\d+)\s+(\d+)\r?$/i;
 
@@ -119,7 +153,7 @@ files.forEach(filename => {
                 age: parseInt(standardMatch[4], 10),
                 sex: standardMatch[5],
                 age_cat: standardMatch[6],
-                club: standardMatch[7].trim(),
+                club: normalizeClub(standardMatch[7]),
                 time: standardMatch[8],
                 gender_pos: parseInt(standardMatch[9], 10),
                 cat_pos: parseInt(standardMatch[10], 10),
@@ -143,13 +177,13 @@ files.forEach(filename => {
             
             const words = nameAndClub.trim().split(' ');
             let name = "";
-            let club = "";
+            let rawClub = "";
 
-            if (nameAndClub.includes("Parc Bryn Bach")) { club = "Parc Bryn Bach Rc"; name = nameAndClub.replace("Parc Bryn Bach", "").trim(); }
-            else if (nameAndClub.includes("Pont-y-Pwl")) { club = "Pont-Y-Pwl & District Runners"; name = nameAndClub.replace("Pont-y-Pwl", "").trim(); }
-            else if (nameAndClub.includes("Lliswerry")) { club = "Lliswerry Runners"; name = nameAndClub.replace("Lliswerry", "").trim(); }
-            else if (nameAndClub.includes("Chepstow")) { club = "Chepstow Harriers"; name = nameAndClub.replace("Chepstow", "").trim(); }
-            else { club = words[words.length - 1]; name = words.slice(0, -1).join(' '); }
+            if (nameAndClub.includes("Parc Bryn Bach")) { rawClub = "Parc Bryn Bach RC"; name = nameAndClub.replace("Parc Bryn Bach", "").trim(); }
+            else if (nameAndClub.includes("Pont-y-Pwl") || nameAndClub.includes("Pont-Y-Pwl")) { rawClub = "Pont-Y-Pwl & District Runners"; name = nameAndClub.replace(/Pont-[yY]-Pwl/g, "").trim(); }
+            else if (nameAndClub.includes("Lliswerry")) { rawClub = "Lliswerry Runners"; name = nameAndClub.replace("Lliswerry", "").trim(); }
+            else if (nameAndClub.includes("Chepstow")) { rawClub = "Chepstow Harriers"; name = nameAndClub.replace("Chepstow", "").trim(); }
+            else { rawClub = words[words.length - 1]; name = words.slice(0, -1).join(' '); }
 
             let ageCat = "Senior";
             const catDigits = rawCat.match(/\d+/);
@@ -164,7 +198,7 @@ files.forEach(filename => {
                 age: 0,
                 sex: rawGender.toUpperCase() === 'MEN' ? 'M' : 'F',
                 age_cat: ageCat,
-                club: club,
+                club: normalizeClub(rawClub),
                 time: "N/A",
                 gender_pos: parseInt(genderPos, 10),
                 cat_pos: parseInt(catPos, 10),
@@ -188,17 +222,16 @@ files.forEach(filename => {
 
             const words = nameAndClub.trim().split(' ');
             let name = "";
-            let club = "";
+            let rawClub = "";
 
-            if (nameAndClub.includes("Parc Bryn Bach")) { club = "Parc Bryn Bach Rc"; name = nameAndClub.replace("Parc Bryn Bach", "").trim(); }
-            else if (nameAndClub.includes("Pont-Y-Pwl")) { club = "Pont-Y-Pwl & District Runners"; name = nameAndClub.replace("Pont-Y-Pwl", "").trim(); }
-            else if (nameAndClub.includes("Pont-y-Pwl")) { club = "Pont-Y-Pwl & District Runners"; name = nameAndClub.replace("Pont-y-Pwl", "").trim(); }
-            else if (nameAndClub.includes("Lliswerry")) { club = "Lliswerry Runners"; name = nameAndClub.replace("Lliswerry", "").trim(); }
-            else if (nameAndClub.includes("Chepstow")) { club = "Chepstow Harriers"; name = nameAndClub.replace("Chepstow", "").trim(); }
-            else if (nameAndClub.includes("Monmouth")) { club = "Monmouth Harriers"; name = nameAndClub.replace("Monmouth", "").trim(); }
-            else if (nameAndClub.includes("Caerleon")) { club = "Caerleon RC"; name = nameAndClub.replace("Caerleon", "").trim(); }
-            else if (nameAndClub.includes("Fairwater")) { club = "Fairwater Runners"; name = nameAndClub.replace("Fairwater", "").trim(); }
-            else { club = words[words.length - 1]; name = words.slice(0, -1).join(' '); }
+            if (nameAndClub.includes("Parc Bryn Bach")) { rawClub = "Parc Bryn Bach RC"; name = nameAndClub.replace("Parc Bryn Bach", "").trim(); }
+            else if (nameAndClub.includes("Pont-Y-Pwl") || nameAndClub.includes("Pont-y-Pwl")) { rawClub = "Pont-Y-Pwl & District Runners"; name = nameAndClub.replace(/Pont-[yY]-Pwl/g, "").trim(); }
+            else if (nameAndClub.includes("Lliswerry")) { rawClub = "Lliswerry Runners"; name = nameAndClub.replace("Lliswerry", "").trim(); }
+            else if (nameAndClub.includes("Chepstow")) { rawClub = "Chepstow Harriers"; name = nameAndClub.replace("Chepstow", "").trim(); }
+            else if (nameAndClub.includes("Monmouth")) { rawClub = "Monmouth Harriers"; name = nameAndClub.replace("Monmouth", "").trim(); }
+            else if (nameAndClub.includes("Caerleon")) { rawClub = "Caerleon RC"; name = nameAndClub.replace("Caerleon", "").trim(); }
+            else if (nameAndClub.includes("Fairwater")) { rawClub = "Fairwater Runners"; name = nameAndClub.replace("Fairwater", "").trim(); }
+            else { rawClub = words[words.length - 1]; name = words.slice(0, -1).join(' '); }
 
             const isFemale = rawCat.toUpperCase().startsWith('F');
             const sex = isFemale ? 'F' : 'M';
@@ -225,7 +258,7 @@ files.forEach(filename => {
                 age: 0,
                 sex: sex,
                 age_cat: ageCat,
-                club: club,
+                club: normalizeClub(rawClub),
                 time: "N/A",
                 gender_pos: computedGenderPos,
                 cat_pos: parseInt(rawCatPos, 10),
@@ -249,15 +282,15 @@ files.forEach(filename => {
 
             const words = nameAndClub.trim().split(' ');
             let name = "";
-            let club = "";
+            let rawClub = "";
 
-            if (nameAndClub.includes("Parc Bryn Bach")) { club = "Parc Bryn Bach Rc"; name = nameAndClub.replace("Parc Bryn Bach", "").trim(); }
-            else if (nameAndClub.includes("Pont-y-Pwl")) { club = "Pont-Y-Pwl & District Runners"; name = nameAndClub.replace("Pont-y-Pwl", "").trim(); }
-            else if (nameAndClub.includes("Lliswerry")) { club = "Lliswerry Runners"; name = nameAndClub.replace("Lliswerry", "").trim(); }
-            else if (nameAndClub.includes("Chepstow")) { club = "Chepstow Harriers"; name = nameAndClub.replace("Chepstow", "").trim(); }
-            else if (nameAndClub.includes("Monmouth")) { club = "Monmouth Harriers"; name = nameAndClub.replace("Monmouth", "").trim(); }
-            else if (nameAndClub.includes("Caerleon")) { club = "Caerleon RC"; name = nameAndClub.replace("Caerleon", "").trim(); }
-            else { club = words[words.length - 1]; name = words.slice(0, -1).join(' '); }
+            if (nameAndClub.includes("Parc Bryn Bach")) { rawClub = "Parc Bryn Bach RC"; name = nameAndClub.replace("Parc Bryn Bach", "").trim(); }
+            else if (nameAndClub.includes("Pont-y-Pwl") || nameAndClub.includes("Pont-Y-Pwl")) { rawClub = "Pont-Y-Pwl & District Runners"; name = nameAndClub.replace(/Pont-[yY]-Pwl/g, "").trim(); }
+            else if (nameAndClub.includes("Lliswerry")) { rawClub = "Lliswerry Runners"; name = nameAndClub.replace("Lliswerry", "").trim(); }
+            else if (nameAndClub.includes("Chepstow")) { rawClub = "Chepstow Harriers"; name = nameAndClub.replace("Chepstow", "").trim(); }
+            else if (nameAndClub.includes("Monmouth")) { rawClub = "Monmouth Harriers"; name = nameAndClub.replace("Monmouth", "").trim(); }
+            else if (nameAndClub.includes("Caerleon")) { rawClub = "Caerleon RC"; name = nameAndClub.replace("Caerleon", "").trim(); }
+            else { rawClub = words[words.length - 1]; name = words.slice(0, -1).join(' '); }
 
             const isFemale = rawCat.toUpperCase().startsWith('F');
             const sex = isFemale ? 'F' : 'M';
@@ -289,7 +322,7 @@ files.forEach(filename => {
                 age: 0,
                 sex: sex,
                 age_cat: ageCat,
-                club: club,
+                club: normalizeClub(rawClub),
                 time: "N/A", // Keeps timing consistent across legacy fixtures
                 gender_pos: computedGenderPos,
                 cat_pos: catPosVal,

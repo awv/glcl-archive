@@ -53,25 +53,28 @@
         <div id="header-gradient" class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent"></div>
 
         <!-- Text Content Overlay Layer -->
-        <div class="relative max-w-[1400px] w-full mx-auto px-4 pb-6 z-10 space-y-1.5">
+        <div class="relative max-w-[1400px] w-full mx-auto px-4 pb-6 z-10 space-y-2">
             
+            <!-- Club Subtitle -->
             <div id="athlete-club" class="text-xs font-black tracking-widest text-brand-500 uppercase block">
                 <!-- Injected by script -->
             </div>
             
-            <!-- Flex Wrapper to Keep Name and Badges Cleanly Aligned Inline -->
-            <div class="flex flex-wrap items-center gap-3">
-                <h1 id="athlete-name" class="text-3xl md:text-4xl font-black text-slate-100 tracking-tight uppercase drop-shadow-md">
-                    <!-- Injected by script -->
-                </h1>
-                <div id="athlete-badges" class="flex flex-wrap gap-1.5"></div>
-            </div>
+            <!-- Athlete Name -->
+            <h1 id="athlete-name" class="text-3xl md:text-5xl font-black text-slate-100 tracking-tight uppercase drop-shadow-md">
+                <!-- Injected by script -->
+            </h1>
+
+            <!-- Badges Container (Now on its own line below the name) -->
+            <div id="athlete-badges" class="flex flex-wrap gap-1.5 pt-1"></div>
             
-            <!-- Secondary Meta Target (Margin adjusted to prevent mobile badge collisions) -->
-            <div class="flex items-center space-x-3 text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider mt-5 md:mt-2.5">
+            <!-- Secondary Meta Target -->
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider pt-1">
                 <span id="athlete-gender">GENDER: —</span>
                 <span class="text-slate-800">•</span>
                 <span id="athlete-age-cat">AGE DIVISION PROFILE</span>
+                <span class="text-slate-800">•</span>
+                <span id="athlete-career-span" class="text-brand-400">ACTIVE: —</span>
             </div>
 
             <!-- Dynamic Historical Meta Flags Injection Node -->
@@ -121,7 +124,7 @@
             </div>
 
             <!-- Historical Form Sparkline Chart -->
-            <div id="trend-chart-container" class="bg-slate-950 border border-slate-900 p-6 rounded-xl shadow-md flex flex-col justify-between lg:col-span-2">
+            <div id="trend-chart-container" class="bg-slate-950 border border-slate-900 p-6 rounded-xl shadow-md flex flex-col justify-between lg:col-span-2 relative">
                 <div class="flex items-center justify-between">
                     <span class="block text-[10px] font-black text-slate-500 uppercase tracking-wider">Gender Position Form Trend</span>
                     
@@ -140,17 +143,16 @@
                 </div>
                 
                 <!-- Chart Container with Y-Axis and Background Gridlines -->
-                <div class="flex h-20 mt-4">
-                    <!-- Y-Axis Labels (Best at top, lowest at bottom) -->
+                <div class="flex h-20 mt-4 relative">
+                    <!-- Y-Axis Labels -->
                     <div class="flex flex-col justify-between text-[9px] font-mono font-bold text-slate-600 pr-3 border-r border-slate-900/60 select-none text-right min-w-[55px]">
                         <span id="chart-y-max">Best</span>
                         <span id="chart-y-mid" class="text-slate-800">Mid</span>
                         <span id="chart-y-min">Lowest</span>
                     </div>
                     
-                    <!-- SVG Chart Canvas Area with dashed guides -->
+                    <!-- SVG Chart Canvas Area -->
                     <div class="flex-grow h-full pl-3 relative">
-                        <!-- Horizontal dashed guide-lines for visual reference -->
                         <div class="absolute inset-y-0 left-3 right-0 flex flex-col justify-between pointer-events-none opacity-40">
                             <div class="w-full border-t border-dashed border-slate-900"></div>
                             <div class="w-full border-t border-dashed border-slate-900"></div>
@@ -158,12 +160,20 @@
                         </div>
                         
                         <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 300 60" preserveAspectRatio="none">
-                            <!-- Blue path for Cross Country (XC) -->
                             <path id="trend-sparkline-path" fill="none" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="" />
-                            <!-- Amber path for Road Series -->
                             <path id="trend-road-path" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="" />
+                            
+                            <!-- Interactive Hover Circles Node -->
+                            <g id="sparkline-points"></g>
                         </svg>
                     </div>
+                </div>
+
+                <!-- FLOATING TOOLTIP ELEMENT -->
+                <div id="chart-tooltip" class="absolute hidden pointer-events-none z-50 bg-slate-900/95 border border-slate-800 text-slate-200 p-2.5 rounded-lg shadow-2xl text-[10px] font-mono space-y-0.5 transform -translate-x-1/2 -translate-y-full -mt-2 backdrop-blur">
+                    <div id="tooltip-title" class="font-bold text-slate-100 uppercase border-b border-slate-800 pb-1 mb-1"></div>
+                    <div id="tooltip-meta" class="text-slate-400"></div>
+                    <div id="tooltip-pos" class="font-black text-brand-400"></div>
                 </div>
             </div>
 
@@ -259,12 +269,11 @@
 
             // Dynamic background photo loader hook
             const loadProfilePhoto = (name) => {
-                // Replaces spaces and apostrophes/punctuation with clean dashes
                 const formattedName = name.toLowerCase()
-                    .replace(/['’]/g, '-')  // Converts curly or straight apostrophes to dashes
-                    .replace(/[^a-z0-9]+/g, '-') // Conduits any remaining special characters
-                    .replace(/-+/g, '-')    // Collapses consecutive dashes down to a single one
-                    .replace(/^-|-$/g, ''); // Trims trailing or leading dashes cleanly
+                    .replace(/['’]/g, '-')
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/-+/g, '-')
+                    .replace(/^-|-$/g, '');
 
                 const photoSrc = `assets/images/athletes/${formattedName}.jpg`;
                 
@@ -368,6 +377,14 @@
                 document.getElementById('athlete-name').textContent = "Athlete Not Found";
                 return;
             }
+
+            const debutSeason = history[history.length - 1].season;
+            const latestSeason = history[0].season;
+            const debutYear = parseInt(debutSeason.split('/')[0], 10);
+            const latestYear = parseInt(latestSeason.split('/')[0], 10);
+            const totalSpanYears = (latestYear - debutYear) + 1;
+
+            document.getElementById('athlete-career-span').textContent = `ACTIVE: ${debutSeason} – ${latestSeason} (${totalSpanYears} YRS)`;
 
             // Identify Base Info from most recent finish row
             const meta = history[0];
@@ -500,6 +517,13 @@
             const MIN_RACES_FOR_TREND = 3;
             const chronologicalHistory = [...history].reverse();
 
+            // Scope data points for hover rendering
+            let xcPointsData = [];
+            let roadPointsData = [];
+            let minPos = 1;
+            let maxPos = 100;
+            let posRange = 99;
+
             if (chronologicalHistory.length >= MIN_RACES_FOR_TREND) {
                 const validGenderPositions = chronologicalHistory
                     .map(r => parseInt(r.gender_pos, 10))
@@ -530,9 +554,6 @@
                         document.getElementById('insight-card-subtext').textContent = `Maintaining robust, consistent racing form with an average placement of Pos ${lastAvg} across consecutive calendar seasons.`;
                     }
 
-                    const xcPointsData = [];
-                    const roadPointsData = [];
-                    
                     chronologicalHistory.forEach((race, index) => {
                         const posVal = parseInt(race.gender_pos, 10);
                         if (isNaN(posVal)) return;
@@ -546,9 +567,9 @@
                         }
                     });
 
-                    const minPos = Math.min(...validGenderPositions);
-                    const maxPos = Math.max(...validGenderPositions);
-                    const posRange = maxPos - minPos || 1;
+                    minPos = Math.min(...validGenderPositions);
+                    maxPos = Math.max(...validGenderPositions);
+                    posRange = maxPos - minPos || 1;
 
                     document.getElementById('chart-y-max').textContent = `Pos ${minPos}`;
                     document.getElementById('chart-y-mid').textContent = `Pos ${Math.round((minPos + maxPos) / 2)}`;
@@ -559,13 +580,18 @@
                     const padding = 6;
                     const totalSteps = chronologicalHistory.length - 1 || 1;
 
+                    const getCoords = (pt) => {
+                        const x = padding + (pt.index / totalSteps) * (width - padding * 2);
+                        const y = padding + ((pt.pos - minPos) / posRange) * (height - padding * 2);
+                        return { x: x.toFixed(1), y: y.toFixed(1) };
+                    };
+
                     const generatePathD = (pointsList) => {
                         if (pointsList.length < 1) return "";
                         
                         const coords = pointsList.map(pt => {
-                            const x = padding + (pt.index / totalSteps) * (width - padding * 2);
-                            const y = padding + ((pt.pos - minPos) / posRange) * (height - padding * 2);
-                            return `${x.toFixed(1)},${y.toFixed(1)}`;
+                            const c = getCoords(pt);
+                            return `${c.x},${c.y}`;
                         });
                         
                         if (coords.length === 1) {
@@ -578,6 +604,62 @@
 
                     document.getElementById('trend-sparkline-path').setAttribute('d', generatePathD(xcPointsData));
                     document.getElementById('trend-road-path').setAttribute('d', generatePathD(roadPointsData));
+
+                    // --- RENDER INTERACTIVE SPARKLINE HOVER POINTS ---
+                    const pointsContainer = document.getElementById('sparkline-points');
+                    const tooltip = document.getElementById('chart-tooltip');
+                    const tooltipTitle = document.getElementById('tooltip-title');
+                    const tooltipMeta = document.getElementById('tooltip-meta');
+                    const tooltipPos = document.getElementById('tooltip-pos');
+                    const chartContainer = document.getElementById('trend-chart-container');
+
+                    if (pointsContainer) {
+                        pointsContainer.innerHTML = '';
+
+                        const allPoints = [
+                            ...xcPointsData.map(p => ({ ...p, discipline: 'XC', color: '#0066cc' })),
+                            ...roadPointsData.map(p => ({ ...p, discipline: 'ROAD', color: '#f59e0b' }))
+                        ];
+
+                        allPoints.forEach(pt => {
+                            const c = getCoords(pt);
+                            const raceData = chronologicalHistory[pt.index];
+
+                            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                            circle.setAttribute('cx', c.x);
+                            circle.setAttribute('cy', c.y);
+                            circle.setAttribute('r', '5');
+                            circle.setAttribute('fill', pt.color);
+                            circle.setAttribute('class', 'opacity-0 hover:opacity-100 cursor-pointer transition-opacity duration-150 stroke-2 stroke-slate-950');
+
+                            circle.addEventListener('mouseenter', () => {
+                                const discTag = pt.discipline === 'XC' 
+                                    ? '<span class="text-brand-400 font-bold">XC</span>' 
+                                    : '<span class="text-amber-400 font-bold">ROAD</span>';
+
+                                tooltipTitle.innerHTML = `${discTag} — ${raceData.venue}`;
+                                tooltipMeta.textContent = `Season ${raceData.season} • Fixture ${raceData.race_number}`;
+                                tooltipPos.textContent = `Gender Pos: ${raceData.gender_pos} (Overall: ${raceData.pos})`;
+
+                                tooltip.classList.remove('hidden');
+                            });
+
+                            circle.addEventListener('mousemove', (e) => {
+                                const rect = chartContainer.getBoundingClientRect();
+                                const x = e.clientX - rect.left;
+                                const y = e.clientY - rect.top;
+
+                                tooltip.style.left = `${x}px`;
+                                tooltip.style.top = `${y}px`;
+                            });
+
+                            circle.addEventListener('mouseleave', () => {
+                                tooltip.classList.add('hidden');
+                            });
+
+                            pointsContainer.appendChild(circle);
+                        });
+                    }
                 }
 
                 const venueGroups = {};
@@ -700,7 +782,6 @@
                 const nameToDisplay = row.originalName || row.name;
                 const activeClubForFixture = getClubForSeason(row.season, row.club || "Unattached");
 
-                // Evaluate subtext conditions cleanly: only render club details if they have a multi-club history profile
                 let clubDetailsHtml = '';
                 if (isMultiClubRunner) {
                     if (activeClubForFixture && activeClubForFixture !== "Unattached" && activeClubForFixture !== "Independent") {
@@ -719,7 +800,6 @@
 
                 const metaRowText = `${clubDetailsHtml}${nameChangeHtml}`;
 
-                // Only evaluate meta block structure if text strings exist inside nodes
                 const metaBlockWrapper = metaRowText.trim().length > 0 
                     ? `<span class="block text-[10px] text-slate-500 font-mono font-bold uppercase mt-0.5">${metaRowText}</span>`
                     : '';
@@ -753,6 +833,14 @@
                     badgeContainer.insertAdjacentHTML('beforeend', `
                         <span class="inline-flex items-center text-[10px] font-mono font-black bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded uppercase tracking-wider">
                             👑 Race Winner (${overallWins})
+                        </span>
+                    `);
+                }
+
+                if (totalSpanYears >= 10) {
+                    badgeContainer.insertAdjacentHTML('beforeend', `
+                        <span class="inline-flex items-center text-[10px] font-mono font-black bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded uppercase tracking-wider">
+                            ⏳ ${totalSpanYears} Year Veteran
                         </span>
                     `);
                 }

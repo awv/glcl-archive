@@ -1,6 +1,6 @@
-window.glclCorrections = {
+window.glclCorrections = window.glclCorrections || {
     // 1. MARRIAGE & SURNAME MERGES WITH EFFECTIVE YEAR
-        nameChanges: {
+    nameChanges: {
         // The key MUST be the old name that sits in your legacy dataset rows
         "Antoinette Dumayne": {
             primaryName: "Antoinette Rose", // The new master profile name
@@ -26,5 +26,39 @@ window.glclCorrections = {
             { club: "Lliswerry Runners", seasons: "Debut — 2023/2024" },
             { club: "Parc Bryn Bach Rc", seasons: "2024/2025 — Present" }
         ]
+    },
+
+    // 3. CLUB ALIASES & REBRANDING MAPPING
+    // Maps legacy, shorthand, or misspelled names to the master canonical name
+    clubAliases: {
+        "pont-y-pwl": "Pont-Y-Pwl & District Runners",
+        "pont-y-pwl & district runners": "Pont-Y-Pwl & District Runners",
+        "pontypool": "Pont-Y-Pwl & District Runners",
+        
+        "parc bryn bach": "Parc Bryn Bach RC",
+        "parc bryn bach rc": "Parc Bryn Bach RC",
+        "pbb": "Parc Bryn Bach RC",
+        
+        "lliswerry": "Lliswerry Runners",
+        "lliswerry runners": "Lliswerry Runners",
+        
+        "chepstow": "Chepstow Harriers",
+        "chepstow harriers": "Chepstow Harriers",
+        
+        "fairwater": "Fairwater Runners",
+        "fairwater runners": "Fairwater Runners",
+        
+        "monmouth": "Monmouth Harriers",
+        "caerleon": "Caerleon RC"
     }
+};
+
+// Global helper utility to resolve any club variation to its canonical name
+window.getCanonicalClub = function(rawClubName) {
+    if (!rawClubName) return "Unattached";
+    
+    const cleanKey = rawClubName.trim().toLowerCase();
+    const aliases = window.glclCorrections?.clubAliases || {};
+    
+    return aliases[cleanKey] || rawClubName.trim();
 };

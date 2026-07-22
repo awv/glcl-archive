@@ -69,6 +69,21 @@
             </div>
         </section>
 
+            <!-- CLUB STALWARTS (LONGEST SERVING ACTIVE MEMBERS) -->
+        <section class="space-y-6 pt-6 border-t border-slate-900">
+            <div>
+                <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Loyalty Index</h2>
+                <h3 class="text-xl font-black text-slate-200 tracking-tight mt-0.5">Club Stalwarts</h3>
+                <p class="text-[11px] font-medium text-slate-500 mt-0.5 font-mono">
+                    Active runners in the current campaign who have represented the club across the longest span of historical seasons.
+                </p>
+            </div>
+
+            <div id="stalwarts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Dynamically populated with Stalwart Cards -->
+            </div>
+        </section>
+
         <!-- SQUAD LEADERBOARDS SPLIT -->
         <section class="space-y-4">
             <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Squad Leaderboards — Core Active Standings</h2>
@@ -408,6 +423,99 @@
 
             renderImproversTable(topXcImprovers, 'xc-improvement-rows');
             renderImproversTable(topRoadImprovers, 'road-improvement-rows');
+            
+
+            // --- CALCULATE CLUB STALWARTS ---
+// 1. Determine the latest season present in the dataset (current season)
+const seasonsSet = new Set(allRecords.map(r => r.season).filter(Boolean));
+const sortedSeasons = Array.from(seasonsSet).sort();
+const currentSeason = sortedSeasons[sortedSeasons.length - 1]; // e.g. "2025/2026"
+
+// 2. Aggregate history for runners in this club
+const stalwartsMap = {};
+
+clubRecords.forEach(row => {
+    const year = parseInt(row.season.split('/')[0], 10);
+    
+    if (!stalwartsMap[row.name]) {
+        stalwartsMap[row.name] = {
+            name: row.name,
+            firstSeasonYear: year,
+            firstSeasonStr: row.season,
+            lastSeasonStr: row.season,
+            totalRaces: 0,
+            activeInCurrent: false
+        };
+    }
+
+    stalwartsMap[row.name].totalRaces++;
+    
+    // Check if they debuted earlier than recorded
+    if (year < stalwartsMap[row.name].firstSeasonYear) {
+        stalwartsMap[row.name].firstSeasonYear = year;
+        stalwartsMap[row.name].firstSeasonStr = row.season;
+    }
+
+    // Mark as active if they ran in the current season
+    if (row.season === currentSeason) {
+        stalwartsMap[row.name].activeInCurrent = true;
+    }
+});
+
+// 3. Filter for active runners only, then sort by earliest debut year, then total races
+const topStalwarts = Object.values(stalwartsMap)
+    .filter(runner => runner.activeInCurrent)
+    .sort((a, b) => {
+        if (a.firstSeasonYear !== b.firstSeasonYear) {
+            return a.firstSeasonYear - b.firstSeasonYear; // Earliest debut first
+        }
+        return b.totalRaces - a.totalRaces; // Tie-breaker: most races run
+    })
+    .slice(0, 4); // Display top 4 featured stalwarts
+
+    // Render Stalwart Cards
+    const stalwartsContainer = document.getElementById('stalwarts-grid');
+    if (stalwartsContainer) {
+        stalwartsContainer.innerHTML = '';
+
+        if (topStalwarts.length === 0) {
+            stalwartsContainer.innerHTML = `<div class="col-span-full font-mono text-xs text-slate-500">No active stalwarts recorded.</div>`;
+        } else {
+            const currentYearNum = parseInt(currentSeason.split('/')[0], 10);
+
+            topStalwarts.forEach(runner => {
+                const spanYears = (currentYearNum - runner.firstSeasonYear) + 1;
+                
+                const cardHtml = `
+                    <div class="stat-card p-5 rounded-xl border border-slate-800 flex flex-col justify-between shadow-lg relative overflow-hidden group hover:border-brand-500/50 transition-all">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-start">
+                                <span class="text-[9px] font-mono font-bold text-brand-400 bg-brand-500/10 border border-brand-500/20 px-2 py-0.5 rounded uppercase">
+                                    Debut ${runner.firstSeasonStr}
+                                </span>
+                                <span class="text-[10px] font-mono text-slate-500 font-bold">
+                                    ${spanYears} Yr Span
+                                </span>
+                            </div>
+                            <div>
+                                <h4 class="text-base font-black text-slate-100 group-hover:text-brand-500 transition-colors uppercase tracking-tight">
+                                    <a href="athlete.html?name=${encodeURIComponent(runner.name)}">${runner.name}</a>
+                                </h4>
+                                <p class="text-[11px] font-mono text-slate-500">
+                                    Continuous Active Member
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-slate-900 flex justify-between items-center text-xs font-mono">
+                            <span class="text-slate-500">Total Appearances</span>
+                            <span class="font-bold text-slate-200">${runner.totalRaces} Races</span>
+                        </div>
+                    </div>
+                `;
+                stalwartsContainer.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        }
+    }
         });
     </script>
     <div id="global-footer"></div>
