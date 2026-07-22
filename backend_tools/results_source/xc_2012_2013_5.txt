@@ -1,4 +1,160 @@
-# VENUE: Unknown
-# DATE: Unkownn
+# VENUE: Lliswerry
+# DATE: 2013-03-24
 # DISTANCE: Unknown
 # STATUS: Confirmed
+
+# SECTION: Men
+# DISTANCE: Unknown
+
+1 530 Daryll BARNBY Fairwater M1739 1
+2 31 Leighton RAWLINSON Caerleon M1739 2
+3 397 James ELGAR Lliswerry M1739 3
+4 201 Simon A LEWIS Parc Bryn Bach M1739 4
+5 870 Michael GRIFFITHS Lliswerry M1739 5
+6 142 Mike LOVELL Chepstow M1739 6
+7 516 Sean TAYLOR Fairwater M1739 7
+8 828 Miles THOMAS Lliswerry M1739 8
+9 194 Mark HARVEY (jr) Chepstow M1739 9
+10 741 Richard JOHNSTONE, Islwyn M4044 1
+11 706 Mike DURY Islwyn M1739 10
+12 951 Adrian WOODS Pont-Y-Pwl M5054 1
+13 207 Simon LEWIS Parc Bryn Bach M4549 1
+14 719 Dafydd LAMBETH Islwyn M1739 11
+15 522 Grant LEWIS Fairwater M1739 12
+16 799 Haydn HARTNELL Islwyn M5054 2
+17 226 Scott MORRIS Parc Bryn Bach M1739 13
+18 71 Jim KING Caerleon M1739 14
+19 956 Steve DAVIES Pont-Y-Pwl M5054 3
+20 509 Richard LLOYD Fairwater M1739 15
+21 955 Ray MORGAN Pont-Y-Pwl M1739 16
+22 111 Paul LIDGETT Chepstow M4549 2
+23 444 Paul DODD Chepstow M5054 4
+24 135 Mathew LAWSON Chepstow M4044 2
+25 214 Daman JUKES Parc Bryn Bach M4044 3
+26 710 Philip WILLIAMS Islwyn M1739 17
+27 386 Matt CREED Lliswerry M1739 18
+28 884 Simon GILL Lliswerry M1739 19
+29 7715 Steve EDWARDS Islwyn M1739 20
+30 377 Steve HARRHY Lliswerry M4549 3
+31 666 Colin WILMOTT Griffithstown M5054 5
+32 M21 Russell FINCH Monmouth M4549 4
+33 759 Ade WHITE Islwyn M4549 5
+34 950 Dimitri VORRÉS Pont-Y-Pwl M5054 6
+35 7701 Gary JONES Islwyn M5054 7
+36 676 Andrew THOMPSON Griffithstown M5559 1
+37 791 Mark SAUNDERS Islwyn M5054 8
+38 882 James FOULKES-NOCK Lliswerry M1739 21
+39 7711 Martin JONES Islwyn M1739 22
+40 724 Kim WEHDEN Islwyn M5054 9
+41 350 Christopher JONES Lliswerry M5054 10
+42 2 Howard MASON Caerleon M4549 6
+43 326 Tony FIDO Lliswerry M5559 2
+44 37 Peter THOMAS Caerleon M5054 11
+45 830 Paul HARMES Lliswerry M4549 7
+46 753 Johnathan DAVIES Islwyn M4044 4
+47 143 Luke MALARZ Chepstow M1739 23
+48 739 Russel DOBBS Islwyn M1739 24
+49 527 Roger MILLS Fairwater M4044 5
+50 354 Christopher MATTHEWS Lliswerry M4549 8
+51 238 David SMOUT Parc Bryn Bach M6064 1
+52 98 Graeme VINER Caerleon M5054 12
+53 968 Andrew DICKENS Pont-Y-Pwl M4044 6
+54 44 Peter RODGER Caerleon M5559 3
+55 966 Stewart THOMSON Pont-Y-Pwl M5054 13
+56 539 Adrian GWILLIAM Fairwater M4549 9
+57 725 Kerry PRICE Islwyn M5054 14
+58 205 Adrian TAYLOR Parc Bryn Bach M5054 15
+59 775 Terry LEWIS Islwyn M5054 16
+60 198 Kevin MCENTEE Chepstow M5559 4
+61 101 Gerry ASHTON Chepstow M5559 5
+62 959 Iestyn RHODES Pont-Y-Pwl M1739 25
+63 535 Rob SYMONS Fairwater M4549 10
+64 545 Martyn JENKINS Fairwater M5054 17
+65 722 Neil PARKER Islwyn M4549 11
+66 23 Sean DAVEY Caerleon M4549 12
+67 760 Andrew DAVIES Islwyn M4549 13
+68 730 Chris GAPPER Islwyn M1739 26
+69 863 Richard ELGAR Lliswerry M1739 27
+70 743 Michael BUNSTON Islwyn M4044 7
+71 7716 David WATERS Islwyn M1739 28
+72 M50 Luke BLAKEBROUGH Monmouth M1739 29
+73 M47 Martin BLAKEBROUGH Monmouth M4549 14
+74 525 Richard BOWIE Fairwater M5054 18
+75 541 Jon WILLIAMS Fairwater M4044 8
+76 M37 David MATHER Monmouth M4549 15
+77 708 Jason DIXON Islwyn M4044 9
+78 543 Garry WOODS Fairwater M5054 19
+79 437 Mike EVANS Chepstow M5559 6
+80 846 Nick DAVIES Lliswerry M5054 20
+81 329 Howard ATTWOOD Lliswerry M6064 2
+82 M38 Jeremy CREASEY Monmouth M4549 16
+83 881 Nigel FOULKES-NOCK Lliswerry M4044 10
+84 964 Dave TIMSON Pont-Y-Pwl M4549 17
+85 1 Andrew TAYLOR Caerleon M5559 7
+86 713 Glyn HICKS Islwyn M6064 3
+87 879 Michael BONNETT Lliswerry M5559 8
+88 307 Neil CHIPPER Lliswerry M5054 21
+89 859 Nick JACKSON Lliswerry M4549 18
+90 969 Lee DURKEE Pont-Y-Pwl M1739 30
+91 322 Chris CHOULS Lliswerry M4044 11
+92 108 Andy BRAY Chepstow M5559 9
+
+# SECTION: Over 70 Male
+# DISTANCE: Unknown
+
+1 367 Rob ANDERSON Lliswerry
+2 170 Syd WHEELER Chepstow
+
+# SECTION: Women
+# DISTANCE: Unknown
+
+1 414 Jane HORLER Chepstow F4044 1
+2 215 Nichola GETHING Parc Bryn Bach F4044 2
+3 136 Vanessa LAWSON Chepstow F4044 3
+4 418 Louise SUMMERS Chepstow F4549 1
+5 915 Samantha TOOP Pont-Y-Pwl F1734 1
+6 871 Louise HOWELLS Lliswerry F1734 2
+7 330 Antoinette DUMAYNE Lliswerry F1734 3
+8 746 Alice BEDWELL Islwyn F5054 1
+9 885 Sarah LAUDER Lliswerry F1734 4
+10 916 Emma SOWREY Pont-Y-Pwl F3539 1
+11 222 Susan TAGG Parc Bryn Bach F4549 2
+12 927 Maria RICHARDS Pont-Y-Pwl F3539 2
+13 305 Sandra CHIPPER Lliswerry F4044 4
+14 901 Sharon WOODS Pont-Y-Pwl F5054 2
+15 202 Lauri COWDELL Parc Bryn Bach F1734 5
+16 538 Rebecca REYNOLDS Fairwater F1734 6
+17 734 Ruth TREHARNE Islwyn F4549 3
+18 M01 Emma KING Monmouth F1734 7
+19 13 Liz RICHARDS Caerleon F4549 4
+20 M18 Emma DAVIES Monmouth F4044 5
+21 765 Kelly WAITE Islwyn F1734 8
+22 758 Lowri WILLIAMS Islwyn F1734 9
+23 52 Shelagh ADKINS Caerleon F6099 1
+24 703 Julie LEWIS Islwyn F4549 5
+25 515 Jeanette JENKINS, Fairwater F5054 3
+26 51 Helen THOMAS Caerleon F5054 4
+27 875 Leanne PHILLIPS Lliswerry F4044 6
+28 886 Ruth OVEY Lliswerry F3539 3
+29 114 Joc DODD Chepstow F5559 1
+30 795 Claire BARNET Islwyn F3539 4
+31 502 Julie ROCHE Fairwater F4044 7
+32 218 Kelly COLLINS Parc Bryn Bach F1734 10
+33 511 Stella SYMONS Fairwater F4549 6
+34 100 Roberta HAVERS Chepstow F1734 11
+35 729 Jackie LAMBETH Islwyn F4044 8
+36 749 Stephanie DAVIES Islwyn F1734 12
+37 7712 Mel SENIOR Islwyn F4044 9
+38 523 Helen GWILLIAM Fairwater F4549 7
+39 920 Fiona CROSS Pont-Y-Pwl F1734 13
+40 429 Jane RYMER Chepstow F4549 8
+41 817 Linda SPILLANE Lliswerry F6099 2
+42 216 Michelle JAYNE Parc Bryn Bach F3539 5
+43 900 Christine VORRÉS Pont-Y-Pwl F5054 5
+44 761 Paula DAVIES Islwyn F4044 10
+45 28 Katie CREE Caerleon F1734 14
+46 302 Yvonne FORSEY Lliswerry F5054 6
+47 19 Gwyn HOWELLS Caerleon F6099 3
+48 731 Elaine HICKS Islwyn F5559 2
+49 865 Tracy BURTON Lliswerry F6099 4
+50 3 Debbie CUMMING Caerleon F4549 9
