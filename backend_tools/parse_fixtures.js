@@ -70,12 +70,15 @@ function extractNameAndClub(rawStr) {
 }
 
 // REGEX MATCHERS
+// 1. Current format regex
 const standardRowRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+(\d+)\s+([MF])\s+(Senior|V\d+\+?)\s+(.+?)\s+(\d{2}:\d{2}:\d{2})\s+(\d+)\s+(\d+)/i;
+
+// 2. Legacy pre-COVID format regex (with explicit gender place)
 const legacyRowRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4}|[MF]\d+)\s+(MEN|LADIES)\s+(\d+)\s+(\d+)/i;
 
-// Flexible legacy matchers without trailing $ to accommodate extra spaces or missing columns
-const legacyNoGenderPosRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4}|[MF]\d+|\b[MF]\b)(?:\s+(\d+))?/i;
-const legacyTokenRegex = /^(\d+)\s+(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4}|[MF]\d+|\b[MF]\b)(?:\s+(\d+))?/i;
+// 3. Legacy format with Points at end: Pos Token Bib NameAndClub Cat CatPos Points Score
+// Example: "1 24 4603 Jamie PARRY Parc Bryn Bach M1739 1 1000 100"
+const legacyPointsRegex = /^(\d+)\s+(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4}|[MF]\d+|\b[MF]\b)\s+(\d+)(?:\s+\d+)+/i;
 
 const unknownRowRegex = /^\s*(\d+)\s+([A-Z0-9]+)?\s*(UNKNOWN|GUEST|ANON)\b/i;
 
@@ -198,32 +201,73 @@ files.forEach(filename => {
             return;
         }
 
-        // RULE 3: LEGACY 2-NUMBER FORMAT (Pos Bib NameClub Cat CatPos)
-        // Checks whether token 2 is a Bib vs Token
+        // RULE 3: LEGACY WITH SCORE/POINTS AT END
+        const pointsMatch = cleanLine.match(legacyPointsRegex);
+        if (pointsMatch) {
+            const [_, overallPos, finishToken, realBib, rawNameAndClub, rawCat, rawCatPos] = pointsMatch;
+            const { name, rawClub } = extractNameAndClub(rawNameAndClub);
+
+            const isFemale = rawCat.toUpperCase().startsWith('F');
+            const sex = isFemale ? 'F' : 'M';
+            let computedGenderPos = isFemale ? ++femaleCount : ++maleCount;
+
+            let ageCat = "Senior";
+            const catDigits = rawCat.match(/\d+/);
+            if (catDigits && catDigits[0].substring(0, 2) !== '17' && catDigits[0].substring(0, 2) !== '14') {
+                ageCat = `V${catDigits[0].substring(0, 2)}`;
+            }
+
+            parsedResults.push({
+                pos: parseInt(overallPos, 10),
+                bib: realBib,
+                name: name,
+                age: 0,
+                sex: sex,
+                age_cat: ageCat,
+                club: normalizeClub(rawClub),
+                time: "N/A",
+                gender_pos: computedGenderPos,
+                cat_pos: parseInt(rawCatPos, 10),
+                race_number, discipline, season, venue, date, distance, status, notes, race_section
+            });
+            return;
+        }
+
+        // RULE 4: GENERAL TOKEN-BASED FALLBACK
         const tokenSplit = cleanLine.split(/\s+/);
         if (tokenSplit.length >= 4 && !isNaN(tokenSplit[0])) {
             const overallPos = parseInt(tokenSplit[0], 10);
             
-            // If line starts with 3 numbers (Pos, Token, Bib) vs 2 numbers (Pos, Bib)
             let realBib = tokenSplit[1];
             let nameClubStartIdx = 2;
 
             if (tokenSplit.length >= 5 && !isNaN(tokenSplit[1]) && !isNaN(tokenSplit[2])) {
-                // Rule 4: Pos, Token, Bib
                 realBib = tokenSplit[2];
                 nameClubStartIdx = 3;
             }
 
-            // Extract Category from end of row if available
-            let rawCat = tokenSplit[tokenSplit.length - 2];
-            let rawCatPos = tokenSplit[tokenSplit.length - 1];
-
-            if (isNaN(rawCatPos)) {
-                rawCat = tokenSplit[tokenSplit.length - 1];
-                rawCatPos = "0";
+            // Find category token (e.g., M1739, M4044, F5054, Senior)
+            let catIndex = -1;
+            for (let i = tokenSplit.length - 1; i >= nameClubStartIdx; i--) {
+                if (/^([MF]\d+|\b[MF]\b|Senior|V\d+)/i.test(tokenSplit[i])) {
+                    catIndex = i;
+                    break;
+                }
             }
 
-            const rawNameAndClub = tokenSplit.slice(nameClubStartIdx, tokenSplit.length - (isNaN(tokenSplit[tokenSplit.length - 1]) ? 1 : 2)).join(' ');
+            let rawCat = "Senior";
+            let rawCatPos = "0";
+            let nameClubEndIdx = tokenSplit.length;
+
+            if (catIndex !== -1) {
+                rawCat = tokenSplit[catIndex];
+                nameClubEndIdx = catIndex;
+                if (catIndex + 1 < tokenSplit.length && !isNaN(tokenSplit[catIndex + 1])) {
+                    rawCatPos = tokenSplit[catIndex + 1];
+                }
+            }
+
+            const rawNameAndClub = tokenSplit.slice(nameClubStartIdx, nameClubEndIdx).join(' ');
             const { name, rawClub } = extractNameAndClub(rawNameAndClub);
 
             const isFemale = rawCat.toUpperCase().startsWith('F');
