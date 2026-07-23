@@ -169,27 +169,32 @@
         <section class="space-y-6">
             <div class="border-b border-slate-900 pb-3">
                 <h2 class="text-2xl md:text-3xl font-black text-slate-100 uppercase tracking-tight">Interactive Head-to-Head Club Comparison</h2>
-                <p class="text-xs text-slate-500 font-mono mt-1">Select any two clubs to compare historical turnout and longevity side-by-side</p>
+                <p class="text-xs text-slate-500 font-mono mt-1">Select any two clubs to compare historical turnout, longevity, and race wins side-by-side</p>
             </div>
 
             <div class="bg-slate-950 border border-slate-900 p-6 rounded-2xl shadow-2xl space-y-6">
+                <!-- Dropdown Selectors -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-[10px] font-mono font-bold text-brand-400 uppercase tracking-wider mb-2">Select Club A</label>
                         <select id="compare-club-a" class="w-full bg-slate-900 border border-slate-800 text-slate-200 text-xs font-mono rounded-lg p-2.5 focus:border-brand-500 focus:outline-none">
+                            <!-- Populated dynamically -->
                         </select>
                     </div>
                     <div>
                         <label class="block text-[10px] font-mono font-bold text-amber-400 uppercase tracking-wider mb-2">Select Club B</label>
                         <select id="compare-club-b" class="w-full bg-slate-900 border border-slate-800 text-slate-200 text-xs font-mono rounded-lg p-2.5 focus:border-brand-500 focus:outline-none">
+                            <!-- Populated dynamically -->
                         </select>
                     </div>
                 </div>
 
+                <!-- Comparison Cards Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                    <!-- Club A Display -->
                     <div class="bg-slate-900/50 border border-brand-500/20 p-5 rounded-xl space-y-4">
                         <h3 id="club-a-name" class="text-lg font-black text-slate-100 uppercase tracking-tight text-brand-400">—</h3>
-                        <div class="grid grid-cols-3 gap-2 text-center font-mono">
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center font-mono">
                             <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-900">
                                 <span class="text-[9px] text-slate-500 uppercase block">Finishes</span>
                                 <span id="club-a-finishes" class="text-base font-black text-slate-200 mt-1 block">0</span>
@@ -199,15 +204,24 @@
                                 <span id="club-a-seasons" class="text-base font-black text-slate-200 mt-1 block">0</span>
                             </div>
                             <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-900">
-                                <span class="text-[9px] text-slate-500 uppercase block">Avg / Season</span>
+                                <span class="text-[9px] text-slate-500 uppercase block">Avg/Season</span>
                                 <span id="club-a-avg" class="text-base font-black text-brand-400 mt-1 block">0</span>
+                            </div>
+                            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-900">
+                                <span class="text-[9px] text-slate-500 uppercase block">Race Wins</span>
+                                <span id="club-a-wins" class="text-base font-black text-rose-400 mt-1 block">0</span>
+                            </div>
+                            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-900">
+                                <span class="text-[9px] text-slate-500 uppercase block">Cat Wins</span>
+                                <span id="club-a-catwins" class="text-base font-black text-amber-400 mt-1 block">0</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Club B Display -->
                     <div class="bg-slate-900/50 border border-amber-500/20 p-5 rounded-xl space-y-4">
                         <h3 id="club-b-name" class="text-lg font-black text-slate-100 uppercase tracking-tight text-amber-400">—</h3>
-                        <div class="grid grid-cols-3 gap-2 text-center font-mono">
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center font-mono">
                             <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-900">
                                 <span class="text-[9px] text-slate-500 uppercase block">Finishes</span>
                                 <span id="club-b-finishes" class="text-base font-black text-slate-200 mt-1 block">0</span>
@@ -217,8 +231,16 @@
                                 <span id="club-b-seasons" class="text-base font-black text-slate-200 mt-1 block">0</span>
                             </div>
                             <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-900">
-                                <span class="text-[9px] text-slate-500 uppercase block">Avg / Season</span>
+                                <span class="text-[9px] text-slate-500 uppercase block">Avg/Season</span>
                                 <span id="club-b-avg" class="text-base font-black text-amber-400 mt-1 block">0</span>
+                            </div>
+                            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-900">
+                                <span class="text-[9px] text-slate-500 uppercase block">Race Wins</span>
+                                <span id="club-b-wins" class="text-base font-black text-rose-400 mt-1 block">0</span>
+                            </div>
+                            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-900">
+                                <span class="text-[9px] text-slate-500 uppercase block">Cat Wins</span>
+                                <span id="club-b-catwins" class="text-base font-black text-amber-400 mt-1 block">0</span>
                             </div>
                         </div>
                     </div>
@@ -347,10 +369,20 @@
                 // Club Stats
                 if (canonicalClub && canonicalClub !== 'Unattached') {
                     if (!clubStats[canonicalClub]) {
-                        clubStats[canonicalClub] = { name: canonicalClub, finishes: 0, seasons: new Set() };
+                        clubStats[canonicalClub] = { 
+                            name: canonicalClub, 
+                            finishes: 0, 
+                            seasons: new Set(),
+                            overallWins: 0,
+                            catWins: 0
+                        };
                     }
                     clubStats[canonicalClub].finishes++;
                     clubStats[canonicalClub].seasons.add(r.season);
+
+                    // Track wins per club
+                    if (parseInt(r.gender_pos, 10) === 1) clubStats[canonicalClub].overallWins++;
+                    if (parseInt(r.cat_pos, 10) === 1) clubStats[canonicalClub].catWins++;
                 }
 
                 // Runner Stats
@@ -529,15 +561,21 @@
 
                 if (!clubA || !clubB) return;
 
+                // Update Club A
                 document.getElementById('club-a-name').textContent = clubA.name;
                 document.getElementById('club-a-finishes').textContent = clubA.finishes.toLocaleString();
                 document.getElementById('club-a-seasons').textContent = clubA.seasons.size;
                 document.getElementById('club-a-avg').textContent = Math.round(clubA.finishes / clubA.seasons.size);
+                document.getElementById('club-a-wins').textContent = clubA.overallWins.toLocaleString();
+                document.getElementById('club-a-catwins').textContent = clubA.catWins.toLocaleString();
 
+                // Update Club B
                 document.getElementById('club-b-name').textContent = clubB.name;
                 document.getElementById('club-b-finishes').textContent = clubB.finishes.toLocaleString();
                 document.getElementById('club-b-seasons').textContent = clubB.seasons.size;
                 document.getElementById('club-b-avg').textContent = Math.round(clubB.finishes / clubB.seasons.size);
+                document.getElementById('club-b-wins').textContent = clubB.overallWins.toLocaleString();
+                document.getElementById('club-b-catwins').textContent = clubB.catWins.toLocaleString();
             };
 
             selectA.addEventListener('change', updateComparison);
