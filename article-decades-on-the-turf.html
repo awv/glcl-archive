@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decades on the Turf & Tarmac — GLCL Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="site-layout.js"></script>
+    <script src="data.js"></script>
+    <script src="assets/js/corrections.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#0066cc', 400: '#3385ff' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #030712; }
+    </style>
+</head>
+<body class="text-slate-300 font-sans antialiased flex flex-col min-h-full">
+
+    <!-- GLOBAL NAVIGATION CONTAINER -->
+    <nav id="global-nav" class="border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <!-- Injected automatically -->
+    </nav>
+    <script>
+        fetch('components/nav.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('global-nav').innerHTML = data;
+                window.dispatchEvent(new Event('navLoaded'));
+            })
+            .catch(err => console.error('Error loading nav:', err));
+    </script>
+
+    <!-- ARTICLE HERO HEADER -->
+    <header class="relative w-full py-20 md:py-32 overflow-hidden border-b border-slate-900 bg-slate-950 flex items-center">
+        <div class="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#0066cc_1.5px,transparent_1.5px)] [background-size:20px_20px]"></div>
+        <div class="absolute left-1/2 -top-24 -translate-x-1/2 w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="relative max-w-4xl mx-auto px-6 text-center space-y-6 z-10">
+            <div class="inline-flex items-center space-x-2 bg-brand-500/10 border border-brand-500/20 px-3 py-1 rounded-full text-[11px] font-mono font-bold text-brand-400 uppercase tracking-widest">
+                <span>Historical League Analysis</span>
+                <span>•</span>
+                <span id="hero-season-count">Loading Seasons...</span>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-black text-slate-100 tracking-tight uppercase leading-tight drop-shadow-lg">
+                Decades on the <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-sky-400">Turf & Tarmac</span>
+            </h1>
+            
+            <p class="text-base md:text-lg text-slate-400 font-medium leading-relaxed max-w-2xl mx-auto">
+                Analyzing <span id="hero-total-finishes" class="text-slate-200 font-bold">...</span> finishes across league history: how regional running boomed, club rivalries evolved, and local stalwarts built extraordinary careers.
+            </p>
+
+            <div class="pt-4 flex items-center justify-center space-x-6 text-xs font-mono text-slate-500 uppercase tracking-wider">
+                <span>Published: GLCL Archive</span>
+                <span>•</span>
+                <span id="hero-date-span">Data Archive Live</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ARTICLE BODY CONTENT -->
+    <main class="max-w-5xl w-full mx-auto px-6 py-16 space-y-20 flex-grow">
+
+        <!-- MACRO METRICS STAT BARS -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-slate-950 border border-slate-900 p-5 rounded-2xl shadow-xl text-center">
+                <span class="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider block">Total Finishes</span>
+                <span id="stat-total-finishes" class="text-3xl font-black text-slate-100 block mt-1">...</span>
+            </div>
+            <div class="bg-slate-950 border border-slate-900 p-5 rounded-2xl shadow-xl text-center">
+                <span class="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider block">Peak Season</span>
+                <span id="stat-peak-count" class="text-3xl font-black text-brand-400 block mt-1">...</span>
+                <span id="stat-peak-season" class="text-[9px] font-mono text-slate-600 uppercase mt-0.5 block">Loading...</span>
+            </div>
+            <div class="bg-slate-950 border border-slate-900 p-5 rounded-2xl shadow-xl text-center">
+                <span class="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider block">Top Turnout Club</span>
+                <span id="stat-top-club-name" class="text-2xl font-black text-slate-100 block mt-1 truncate">...</span>
+                <span id="stat-top-club-count" class="text-[9px] font-mono text-slate-600 uppercase mt-0.5 block">Loading...</span>
+            </div>
+            <div class="bg-slate-950 border border-slate-900 p-5 rounded-2xl shadow-xl text-center">
+                <span class="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider block">Most Cat Wins</span>
+                <span id="stat-top-catwins-count" class="text-3xl font-black text-amber-400 block mt-1">...</span>
+                <span id="stat-top-catwins-runner" class="text-[9px] font-mono text-slate-600 uppercase mt-0.5 block">Loading...</span>
+            </div>
+        </section>
+
+        <!-- SECTION 1: PARTICIPATION TRENDS & DYNAMIC BAR CHART -->
+        <section class="space-y-8">
+            <div class="space-y-3 max-w-3xl">
+                <h2 class="text-2xl md:text-3xl font-black text-slate-100 uppercase tracking-tight">1. Participation Trends</h2>
+                <p class="text-slate-400 text-sm md:text-base leading-relaxed">
+                    Analyzing turnout volume across each campaign in the database. Watch how field sizes grew as recreational running expanded across Gwent.
+                </p>
+            </div>
+
+            <!-- SEASON PARTICIPATION DYNAMIC BAR CHART -->
+            <div class="bg-slate-950 border border-slate-900 p-6 md:p-8 rounded-2xl shadow-2xl space-y-6">
+                <div class="flex justify-between items-center border-b border-slate-900 pb-4">
+                    <h3 class="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest">Season Finishers Progression</h3>
+                    <div class="flex items-center space-x-4 text-[10px] font-mono text-slate-500 uppercase">
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-brand-500 inline-block"></span> Total Finishers</span>
+                    </div>
+                </div>
+
+                <div id="chart-seasons-container" class="space-y-3 font-mono text-xs">
+                    <!-- Injected dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- DYNAMIC DISCIPLINE SPLIT -->
+        <section class="space-y-6">
+            <div class="space-y-3 max-w-3xl">
+                <h3 class="text-xl md:text-2xl font-black text-slate-100 uppercase tracking-tight">Discipline Split: Road vs. Cross Country</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Comparison of total finisher volume recorded across both road and cross country disciplines.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-950 border border-slate-900 p-6 rounded-2xl flex items-center space-x-6 shadow-xl">
+                    <div class="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center flex-shrink-0 text-amber-400 font-mono font-black text-xl">
+                        ROAD
+                    </div>
+                    <div>
+                        <span class="block text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider">Road Discipline Total</span>
+                        <span id="disc-road-count" class="text-3xl font-black text-slate-100 block mt-0.5">...</span>
+                        <span id="disc-road-pct" class="text-[11px] font-mono text-amber-400 mt-1 block">...</span>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-900 p-6 rounded-2xl flex items-center space-x-6 shadow-xl">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center flex-shrink-0 text-brand-400 font-mono font-black text-xl">
+                        XC
+                    </div>
+                    <div>
+                        <span class="block text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider">Cross Country Total</span>
+                        <span id="disc-xc-count" class="text-3xl font-black text-slate-100 block mt-0.5">...</span>
+                        <span id="disc-xc-pct" class="text-[11px] font-mono text-brand-400 mt-1 block">...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: DYNAMIC FEATURED CLUB CARDS -->
+        <section class="space-y-8">
+            <div class="space-y-3 max-w-3xl">
+                <h2 class="text-2xl md:text-3xl font-black text-slate-100 uppercase tracking-tight">2. Turnout Powerhouses & Regional Strength</h2>
+                <p class="text-slate-400 text-sm md:text-base leading-relaxed">
+                    A core group of clubs mobilizes massive numbers season after season. Here are the top three turnout giants in league history.
+                </p>
+            </div>
+
+            <div id="top-clubs-cards-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Injected dynamically -->
+            </div>
+        </section>
+
+        <!-- INTERACTIVE SECTION: HEAD-TO-HEAD CLUB COMPARISON TOOL -->
+        <section class="space-y-6">
+            <div class="border-b border-slate-900 pb-3">
+                <h2 class="text-2xl md:text-3xl font-black text-slate-100 uppercase tracking-tight">Interactive Head-to-Head Club Comparison</h2>
+                <p class="text-xs text-slate-500 font-mono mt-1">Select any two clubs to compare historical turnout and longevity side-by-side</p>
+            </div>
+
+            <div class="bg-slate-950 border border-slate-900 p-6 rounded-2xl shadow-2xl space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[10px] font-mono font-bold text-brand-400 uppercase tracking-wider mb-2">Select Club A</label>
+                        <select id="compare-club-a" class="w-full bg-slate-900 border border-slate-800 text-slate-200 text-xs font-mono rounded-lg p-2.5 focus:border-brand-500 focus:outline-none">
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-mono font-bold text-amber-400 uppercase tracking-wider mb-2">Select Club B</label>
+                        <select id="compare-club-b" class="w-full bg-slate-900 border border-slate-800 text-slate-200 text-xs font-mono rounded-lg p-2.5 focus:border-brand-500 focus:outline-none">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                    <div class="bg-slate-900/50 border border-brand-500/20 p-5 rounded-xl space-y-4">
+                        <h3 id="club-a-name" class="text-lg font-black text-slate-100 uppercase tracking-tight text-brand-400">—</h3>
+                        <div class="grid grid-cols-3 gap-2 text-center font-mono">
+                            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-900">
+                                <span class="text-[9px] text-slate-500 uppercase block">Finishes</span>
+                                <span id="club-a-finishes" class="text-base font-black text-slate-200 mt-1 block">0</span>
+                            </div>
+                            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-900">
+                                <span class="text-[9px] text-slate-500 uppercase block">Seasons</span>
+                                <span id="club-a-seasons" class="text-base font-black text-slate-200 mt-1 block">0</span>
+                            </div>
+                            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-900">
+                                <span class="text-[9px] text-slate-500 uppercase block">Avg / Season</span>
+                                <span id="club-a-avg" class="text-base font-black text-brand-400 mt-1 block">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/50 border border-amber-500/20 p-5 rounded-xl space-y-4">
+                        <h3 id="club-b-name" class="text-lg font-black text-slate-100 uppercase tracking-tight text-amber-400">—</h3>
+                        <div class="grid grid-cols-3 gap-2 text-center font-mono">
+                            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-900">
+                                <span class="text-[9px] text-slate-500 uppercase block">Finishes</span>
+                                <span id="club-b-finishes" class="text-base font-black text-slate-200 mt-1 block">0</span>
+                            </div>
+                            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-900">
+                                <span class="text-[9px] text-slate-500 uppercase block">Seasons</span>
+                                <span id="club-b-seasons" class="text-base font-black text-slate-200 mt-1 block">0</span>
+                            </div>
+                            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-900">
+                                <span class="text-[9px] text-slate-500 uppercase block">Avg / Season</span>
+                                <span id="club-b-avg" class="text-base font-black text-amber-400 mt-1 block">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DYNAMIC LOYALIST TABLE -->
+        <section class="space-y-4">
+            <div class="flex justify-between items-center border-b border-slate-900 pb-3">
+                <div>
+                    <h3 class="text-lg font-black text-slate-100 uppercase tracking-tight">The League Loyalists</h3>
+                    <p class="text-xs text-slate-500 font-mono mt-0.5">Top athletes ranked by total races completed across all recorded seasons</p>
+                </div>
+            </div>
+
+            <div class="border border-slate-900 bg-slate-950 rounded-2xl overflow-hidden shadow-xl">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="border-b border-slate-900 font-black uppercase tracking-wider text-slate-500 bg-slate-900/40 text-[10px]">
+                            <th class="py-3.5 px-4">Athlete Name</th>
+                            <th class="py-3.5 px-4">Primary Club</th>
+                            <th class="py-3.5 px-4 text-center">Span (Seasons)</th>
+                            <th class="py-3.5 px-4 text-center">Races Run</th>
+                            <th class="py-3.5 px-4 text-center">Overall Wins</th>
+                            <th class="py-3.5 px-4 text-right pr-6">Cat Wins</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-loyalists-body" class="divide-y divide-slate-900/40 font-mono">
+                        <!-- Injected dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- COMPLETE ALL-TIME CLUB TURNOUT TABLE -->
+        <section class="space-y-4">
+            <div class="border-b border-slate-900 pb-3">
+                <h3 class="text-lg font-black text-slate-100 uppercase tracking-tight">All-Time Club Participation Table</h3>
+                <p class="text-xs text-slate-500 font-mono mt-0.5">Ranked by total recorded finisher appearances across all seasons</p>
+            </div>
+
+            <div class="border border-slate-900 bg-slate-950 rounded-2xl overflow-hidden shadow-xl">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="border-b border-slate-900 font-black uppercase tracking-wider text-slate-500 bg-slate-900/40 text-[10px]">
+                            <th class="py-3.5 px-4 w-12 text-center">Rank</th>
+                            <th class="py-3.5 px-4">Club Name</th>
+                            <th class="py-3.5 px-4 text-center">Seasons Active</th>
+                            <th class="py-3.5 px-4 text-right pr-6">Total Finishes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-all-clubs-body" class="divide-y divide-slate-900/40 font-mono">
+                        <!-- Injected dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION: "DID YOU KNOW?" TRIVIA STRIP -->
+        <section class="space-y-4">
+            <div class="border-b border-slate-900 pb-3">
+                <h2 class="text-2xl md:text-3xl font-black text-slate-100 uppercase tracking-tight">Did You Know?</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono">
+                <div class="bg-slate-950 border border-slate-900 p-5 rounded-xl space-y-2">
+                    <span class="text-2xl">📈</span>
+                    <h4 class="text-xs font-bold text-slate-200 uppercase">Dynamic Database</h4>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">All metrics on this page update automatically whenever new fixture source files are parsed.</p>
+                </div>
+                <div class="bg-slate-950 border border-slate-900 p-5 rounded-xl space-y-2">
+                    <span class="text-2xl">⚡</span>
+                    <h4 class="text-xs font-bold text-slate-200 uppercase">Longevity Tracking</h4>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">Athlete categories are calculated based on their latest appearance, correctly capturing age bracket progressions over time.</p>
+                </div>
+                <div class="bg-slate-950 border border-slate-900 p-5 rounded-xl space-y-2">
+                    <span class="text-2xl">🏃‍♂️</span>
+                    <h4 class="text-xs font-bold text-slate-200 uppercase">Unified Club Mapping</h4>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">Historical rebrands and shorthand variations are merged into canonical master clubs at source.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- INJECTED GLOBAL FOOTER CONTAINER -->
+    <div id="global-footer"></div>
+
+    <!-- MAIN DYNAMIC DATA PROCESSING ENGINE -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const rawResults = window.glclResults || [];
+            if (!rawResults.length) return;
+
+            // Global club alias resolution
+            const getCanonicalClub = window.getCanonicalClub || function(name) { return name; };
+
+            // 1. PROCESS ALL RAW RESULTS
+            const seasonStats = {};
+            const clubStats = {};
+            const runnerStats = {};
+            let roadFinishes = 0;
+            let xcFinishes = 0;
+
+            rawResults.forEach(r => {
+                if (!r.season || !r.name || r.name === 'Unknown Runner') return;
+
+                const canonicalClub = getCanonicalClub(r.club);
+
+                // Season Stats
+                if (!seasonStats[r.season]) {
+                    seasonStats[r.season] = { total: 0, road: 0, xc: 0 };
+                }
+                seasonStats[r.season].total++;
+                
+                const disc = (r.discipline || '').toLowerCase();
+                if (disc === 'xc') {
+                    seasonStats[r.season].xc++;
+                    xcFinishes++;
+                } else {
+                    seasonStats[r.season].road++;
+                    roadFinishes++;
+                }
+
+                // Club Stats
+                if (canonicalClub && canonicalClub !== 'Unattached') {
+                    if (!clubStats[canonicalClub]) {
+                        clubStats[canonicalClub] = { name: canonicalClub, finishes: 0, seasons: new Set() };
+                    }
+                    clubStats[canonicalClub].finishes++;
+                    clubStats[canonicalClub].seasons.add(r.season);
+                }
+
+                // Runner Stats
+                if (!runnerStats[r.name]) {
+                    runnerStats[r.name] = {
+                        name: r.name,
+                        races: 0,
+                        seasons: new Set(),
+                        overallWins: 0,
+                        catWins: 0,
+                        club: canonicalClub,
+                        latestSeason: r.season,
+                        latestCat: r.age_cat || 'Senior'
+                    };
+                }
+                runnerStats[r.name].races++;
+                runnerStats[r.name].seasons.add(r.season);
+                
+                if (parseInt(r.gender_pos, 10) === 1) runnerStats[r.name].overallWins++;
+                if (parseInt(r.cat_pos, 10) === 1) runnerStats[r.name].catWins++;
+
+                // Track most recent season & category for runner
+                if (r.season >= runnerStats[r.name].latestSeason) {
+                    runnerStats[r.name].latestSeason = r.season;
+                    if (r.age_cat && r.age_cat !== 'N/A') runnerStats[r.name].latestCat = r.age_cat;
+                    if (canonicalClub) runnerStats[r.name].club = canonicalClub;
+                }
+            });
+
+            // 2. HERO & MACRO STATS
+            const totalFinishes = rawResults.length;
+            const seasonsList = Object.keys(seasonStats).sort();
+            const peakSeason = seasonsList.reduce((max, s) => seasonStats[s].total > seasonStats[max].total ? s : max, seasonsList[0]);
+
+            const sortedClubs = Object.values(clubStats).sort((a, b) => b.finishes - a.finishes);
+            const topClub = sortedClubs[0];
+
+            const sortedRunnersByCatWins = Object.values(runnerStats).sort((a, b) => b.catWins - a.catWins);
+            const topCatWinRunner = sortedRunnersByCatWins[0];
+
+            document.getElementById('hero-season-count').textContent = `${seasonsList.length} Seasons Examined`;
+            document.getElementById('hero-total-finishes').textContent = totalFinishes.toLocaleString();
+            document.getElementById('hero-date-span').textContent = `Data Period: ${seasonsList[0]} – ${seasonsList[seasonsList.length - 1]}`;
+
+            document.getElementById('stat-total-finishes').textContent = totalFinishes.toLocaleString();
+            document.getElementById('stat-peak-count').textContent = seasonStats[peakSeason].total.toLocaleString();
+            document.getElementById('stat-peak-season').textContent = `${peakSeason} Campaign`;
+            
+            document.getElementById('stat-top-club-name').textContent = topClub.name;
+            document.getElementById('stat-top-club-count').textContent = `${topClub.finishes.toLocaleString()} Total Finishes`;
+            
+            document.getElementById('stat-top-catwins-count').textContent = topCatWinRunner.catWins;
+            document.getElementById('stat-top-catwins-runner').textContent = `${topCatWinRunner.name} (${topCatWinRunner.club})`;
+
+            // 3. SEASON PROGRESSION BAR CHART
+            const chartContainer = document.getElementById('chart-seasons-container');
+            const maxSeasonTotal = seasonStats[peakSeason].total;
+
+            seasonsList.reverse().forEach(s => {
+                const count = seasonStats[s].total;
+                const pct = ((count / maxSeasonTotal) * 100).toFixed(1);
+                
+                const row = document.createElement('div');
+                row.innerHTML = `
+                    <div class="flex justify-between text-[11px] text-slate-400 mb-1">
+                        <span>${s} ${s === peakSeason ? '<span class="text-brand-400 font-bold">(All-time Peak)</span>' : ''}</span>
+                        <span class="font-bold text-slate-200">${count.toLocaleString()}</span>
+                    </div>
+                    <div class="w-full bg-slate-900 rounded-full h-3 overflow-hidden">
+                        <div class="bg-brand-500 h-full rounded-full transition-all duration-500" style="width: ${pct}%;"></div>
+                    </div>
+                `;
+                chartContainer.appendChild(row);
+            });
+
+            // 4. DISCIPLINE SPLIT
+            const totalDisc = roadFinishes + xcFinishes;
+            document.getElementById('disc-road-count').textContent = roadFinishes.toLocaleString();
+            document.getElementById('disc-road-pct').textContent = `${((roadFinishes / totalDisc) * 100).toFixed(1)}% of All League Finishes`;
+            
+            document.getElementById('disc-xc-count').textContent = xcFinishes.toLocaleString();
+            document.getElementById('disc-xc-pct').textContent = `${((xcFinishes / totalDisc) * 100).toFixed(1)}% of All League Finishes`;
+
+            // 5. TOP 3 FEATURED CLUB CARDS
+            const cardsContainer = document.getElementById('top-clubs-cards-container');
+            const imageSlugMap = {
+                "Lliswerry Runners": "lliswerry-runners.jpg",
+                "Chepstow Harriers": "chepstow-harriers.jpg",
+                "Parc Bryn Bach RC": "parc-bryn-bach-rc.jpg",
+                "Pont-Y-Pwl & District Runners": "pont-y-pwl-district-runners.jpg",
+                "Caerleon RC": "caerleon-running-club.jpg",
+                "Fairwater Runners": "fairwater-runners.jpg",
+                "Spirit of Monmouth RC": "spirit-of-monmouth-rc.jpg",
+                "Griffithstown Harriers": "griffithstown-harriers.jpg",
+                "Islwyn RC": "islwyn-rc.jpg"
+            };
+
+            sortedClubs.slice(0, 3).forEach((club, idx) => {
+                const slug = imageSlugMap[club.name] || `${club.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.jpg`;
+                const card = document.createElement('a');
+                card.href = `club.html?name=${encodeURIComponent(club.name)}`;
+                card.className = "group bg-slate-950 border border-slate-900 rounded-2xl overflow-hidden hover:border-brand-500/50 transition-all duration-300 shadow-xl flex flex-col";
+                card.innerHTML = `
+                    <div class="h-44 bg-slate-900 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent z-10"></div>
+                        <img src="assets/images/clubs/${slug}" onError="this.style.display='none'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${club.name}">
+                        <span class="absolute top-3 left-3 z-20 bg-brand-500 text-slate-950 font-mono font-black text-[10px] px-2 py-0.5 rounded uppercase">Rank #${idx + 1} Turnout</span>
+                    </div>
+                    <div class="p-5 space-y-3 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-black text-slate-100 uppercase tracking-tight group-hover:text-brand-400 transition-colors">${club.name}</h3>
+                            <p class="text-xs text-slate-500 mt-1 font-mono">${club.finishes.toLocaleString()} Finishes • ${club.seasons.size} Seasons</p>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Averaging ${Math.round(club.finishes / club.seasons.size)} finishes per active campaign.
+                        </p>
+                    </div>
+                `;
+                cardsContainer.appendChild(card);
+            });
+
+            // 6. LOYALISTS TABLE
+            const loyalistsBody = document.getElementById('table-loyalists-body');
+            const sortedLoyalists = Object.values(runnerStats).sort((a, b) => b.races - a.races).slice(0, 10);
+
+            sortedLoyalists.forEach(r => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-900/20 transition-colors";
+                tr.innerHTML = `
+                    <td class="py-3 px-4 font-bold text-slate-200">
+                        <a href="athlete.html?name=${encodeURIComponent(r.name)}" class="hover:text-brand-400 transition-colors">${r.name}</a>
+                        <span class="text-[9px] text-amber-400 ml-1.5 font-normal">(${r.latestCat})</span>
+                    </td>
+                    <td class="py-3 px-4 text-slate-400">${r.club}</td>
+                    <td class="py-3 px-4 text-center text-slate-400">${r.seasons.size}</td>
+                    <td class="py-3 px-4 text-center font-bold text-slate-200">${r.races}</td>
+                    <td class="py-3 px-4 text-center text-rose-400 font-bold">${r.overallWins}</td>
+                    <td class="py-3 px-4 text-right pr-6 text-amber-400 font-bold">${r.catWins}</td>
+                `;
+                loyalistsBody.appendChild(tr);
+            });
+
+            // 7. ALL CLUBS TABLE
+            const allClubsBody = document.getElementById('table-all-clubs-body');
+            sortedClubs.forEach((club, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-900/20 transition-colors";
+                tr.innerHTML = `
+                    <td class="py-3 px-4 text-center font-bold ${idx < 3 ? 'text-brand-400' : 'text-slate-500'}">#${idx + 1}</td>
+                    <td class="py-3 px-4 font-bold text-slate-200">
+                        <a href="club.html?name=${encodeURIComponent(club.name)}" class="hover:text-brand-400 transition-colors">${club.name}</a>
+                    </td>
+                    <td class="py-3 px-4 text-center text-slate-400">${club.seasons.size}</td>
+                    <td class="py-3 px-4 text-right pr-6 font-bold text-slate-100">${club.finishes.toLocaleString()}</td>
+                `;
+                allClubsBody.appendChild(tr);
+            });
+
+            // 8. HEAD-TO-HEAD COMPARISON TOOL CONTROLLER
+            const selectA = document.getElementById('compare-club-a');
+            const selectB = document.getElementById('compare-club-b');
+
+            sortedClubs.forEach((c, idx) => {
+                selectA.add(new Option(c.name, idx));
+                selectB.add(new Option(c.name, idx));
+            });
+
+            if (sortedClubs.length > 1) {
+                selectA.value = 0;
+                selectB.value = 1;
+            }
+
+            const updateComparison = () => {
+                const clubA = sortedClubs[selectA.value];
+                const clubB = sortedClubs[selectB.value];
+
+                if (!clubA || !clubB) return;
+
+                document.getElementById('club-a-name').textContent = clubA.name;
+                document.getElementById('club-a-finishes').textContent = clubA.finishes.toLocaleString();
+                document.getElementById('club-a-seasons').textContent = clubA.seasons.size;
+                document.getElementById('club-a-avg').textContent = Math.round(clubA.finishes / clubA.seasons.size);
+
+                document.getElementById('club-b-name').textContent = clubB.name;
+                document.getElementById('club-b-finishes').textContent = clubB.finishes.toLocaleString();
+                document.getElementById('club-b-seasons').textContent = clubB.seasons.size;
+                document.getElementById('club-b-avg').textContent = Math.round(clubB.finishes / clubB.seasons.size);
+            };
+
+            selectA.addEventListener('change', updateComparison);
+            selectB.addEventListener('change', updateComparison);
+            updateComparison();
+        });
+    </script>
+</body>
+</html>

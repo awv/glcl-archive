@@ -87,7 +87,7 @@
 82 665 Chris WREFORD 7052349 M Senior Caerleon Running Club 00:38:35 68 20
 83 68 Stephen OWEN 7036635 M V65 Chepstow Harriers 00:38:38 69 2
 84 413 Annette SANFORD 7048338 F V55 Griffithstown Harriers 00:38:40 15 2
-85 195 Kim WHEDEN 7018069 M V55 Islwyn Rc 00:38:51 70 8
+85 195 Kim WEHDEN 7018069 M V55 Islwyn Rc 00:38:51 70 8
 86 2459 Ross WALKER 7041105 M V40 Chepstow Harriers 00:39:00 71 10
 87 445 Christian FORD 7047372 M Senior Caerleon Running Club 00:39:00 72 21
 88 693 Toby WALES 3305913 M V50 Pont-Y-Pwl & District Runners 00:39:03 73 7

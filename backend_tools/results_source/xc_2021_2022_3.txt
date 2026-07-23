@@ -48,7 +48,7 @@
 43 703 David BRAWN 3520467 M V40 Griffithstown Harriers 00:32:22 37 6
 44 673 Brian JONES 7048724 M V40 Griffithstown Harriers 00:32:24 38 7
 45 295 Chris MORGAN 7051860 M V45 Lliswerry Runners 00:32:27 39 4
-46 195 Kim WHEDEN 7018069 M V55 Islwyn Rc 00:32:38 40 4
+46 195 Kim WEHDEN 7018069 M V55 Islwyn Rc 00:32:38 40 4
 47 700 Daniel LANE M V45 Griffithstown Harriers 00:32:40 41 5
 48 490 Barry BURNS 7052151 M V50 Spirit Of Monmouth Rc 00:32:41 42 4
 49 116 Lubica FORD 7037442 F V35 Pont-Y-Pwl & District Runners 00:32:41 7 1

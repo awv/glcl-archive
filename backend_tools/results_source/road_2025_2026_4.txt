@@ -192,7 +192,7 @@
 188 0 Sarah DAVIES 0 F V50 Islwyn Rc 00:43:15 43 5
 189 0 Ieuan KINGSTON 0 M V45 Fairwater Runners 00:43:17 143 27
 190 0 Coral PUTMAN 0 F V50 Islwyn Rc 00:43:21 44 6
-191 0 Kim WHEDEN 0 M V60 Islwyn Rc 00:43:23 144 8
+191 0 Kim WEHDEN 0 M V60 Islwyn Rc 00:43:23 144 8
 192 0 Karen DAY 0 F V40 Lliswerry Runners 00:43:25 45 6
 193 0 Samantha BILLS 0 F V35 Parc Bryn Bach Rc 00:43:27 46 5
 194 0 Bob WATSON 0 M V55 Lliswerry Runners 00:43:28 145 14

@@ -26,7 +26,7 @@
 21 12 Sarah BELL 7034615 F V40 Chepstow Harriers 00:32:43 2 1
 22 620 Ethan SAYCE 7044485 M Senior Parc Bryn Bach Rc 00:33:04 20 8
 23 243 Antoinette DUMAYNE 7030068 F Senior Lliswerry Runners 00:33:16 3 1
-24 195 Kim WHEDEN 7018069 M V55 Islwyn Rc 00:33:22 21 4
+24 195 Kim WEHDEN 7018069 M V55 Islwyn Rc 00:33:22 21 4
 25 697 Dewi LLOYD 7036279 M Senior Islwyn Rc 00:33:27 22 9
 26 90 Ross WALKER 7041105 M V40 Chepstow Harriers 00:33:38 23 3
 27 430 Colin WILMOTT 7029680 M V60 Griffithstown Harriers 00:33:40 24 3
