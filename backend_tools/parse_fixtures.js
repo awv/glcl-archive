@@ -6,7 +6,6 @@ const sourceDir = path.join(__dirname, 'results_source');
 const rootDataPath = path.join(__dirname, '../data.js');
 
 // --- MASTER CLUB ALIAS MAPPER ---
-// Add any historical variations or shorthands here
 const clubAliases = {
     "pontypool": "Pont-Y-Pwl & District Runners",
     "pont-y-pwl": "Pont-Y-Pwl & District Runners",
@@ -32,7 +31,6 @@ const clubAliases = {
     "spirit of monmouth rc": "Spirit of Monmouth RC",
 
     "caerleon": "Caerleon RC",
-    "caerleon rc": "Caerleon RC",
     "caerleon running club": "Caerleon RC",
 
     "islwyn": "Islwyn RC",
@@ -47,7 +45,6 @@ function normalizeClub(rawClub) {
 
 // Shared extraction helper for legacy Name and Club combinations
 function extractNameAndClub(rawStr) {
-    // Strip trailing or internal commas left over from legacy text formats
     let cleanStr = rawStr.replace(/,/g, '').trim();
 
     let rawClub = "";
@@ -65,29 +62,22 @@ function extractNameAndClub(rawStr) {
     else if (cleanStr.includes("Islwyn")) { rawClub = "Islwyn RC"; name = cleanStr.replace("Islwyn", "").trim(); }
     else {
         const words = cleanStr.split(/\s+/);
-        rawClub = words[words.length - 1];
+        rawClub = words[words.length - 1] || "";
         name = words.slice(0, -1).join(' ');
     }
 
     return { name: name.trim(), rawClub: rawClub.trim() };
 }
 
-// 1. Current format regex (with Bib, Age, Time, etc.)
-const standardRowRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+(\d+)\s+([MF])\s+(Senior|V\d+\+?)\s+(.+?)\s+(\d{2}:\d{2}:\d{2})\s+(\d+)\s+(\d+)\r?$/i;
+// REGEX MATCHERS
+const standardRowRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+(\d+)\s+([MF])\s+(Senior|V\d+\+?)\s+(.+?)\s+(\d{2}:\d{2}:\d{2})\s+(\d+)\s+(\d+)/i;
+const legacyRowRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4}|[MF]\d+)\s+(MEN|LADIES)\s+(\d+)\s+(\d+)/i;
 
-// 2. Legacy pre-COVID format regex (with explicit gender place column)
-const legacyRowRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4})\s+(MEN|LADIES)\s+(\d+)\s+(\d+)\r?$/i;
+// Flexible legacy matchers without trailing $ to accommodate extra spaces or missing columns
+const legacyNoGenderPosRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4}|[MF]\d+|\b[MF]\b)(?:\s+(\d+))?/i;
+const legacyTokenRegex = /^(\d+)\s+(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4}|[MF]\d+|\b[MF]\b)(?:\s+(\d+))?/i;
 
-// 3. Legacy pre-COVID format regex WITHOUT explicit gender place column (2 initial numbers)
-// Matches: Pos Bib Name Club Cat CatPos
-const legacyNoGenderPosRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4}|\b[MF]\b)\s+(\d+)\r?$/i;
-
-// 4. Legacy format with ignored Finish Token (3 initial numbers): Pos Token Bib NameAndClub Cat CatPos
-// Matches: "1 11 952 Matthew SYMES Pont-Y-Pwl M1739 1"
-const legacyTokenRegex = /^(\d+)\s+(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4}|\b[MF]\b)\s+(\d+)\r?$/i;
-
-// Unknown runners
-const unknownRowRegex = /^\s*(\d+)\s+(\d+)\s+(UNKNOWN|GUEST|ANON)\b/i;
+const unknownRowRegex = /^\s*(\d+)\s+([A-Z0-9]+)?\s*(UNKNOWN|GUEST|ANON)\b/i;
 
 let allCompiledResults = [];
 
@@ -96,7 +86,6 @@ if (!fs.existsSync(sourceDir)) {
     process.exit(1);
 }
 
-// Read all source text files
 const files = fs.readdirSync(sourceDir);
 
 files.forEach(filename => {
@@ -116,13 +105,12 @@ files.forEach(filename => {
     let venue = "Unknown Venue";
     let date = "";
     let distance = "";
-    let status = "Confirmed"; // Default status
-    let notes = ""; // Optional historical notes
-    let race_section = "Main"; // Default section title
+    let status = "Confirmed";
+    let notes = "";
+    let race_section = "Main";
 
     const parsedResults = [];
 
-    // Track gender places dynamically for files missing the explicit column
     let maleCount = 0;
     let femaleCount = 0;
 
@@ -138,24 +126,19 @@ files.forEach(filename => {
             if (cleanLine.toUpperCase().startsWith('# NOTES:')) notes = cleanLine.split(':').slice(1).join(':').trim();
             if (cleanLine.toUpperCase().startsWith('# SECTION:')) {
                 race_section = cleanLine.split(':')[1].trim();
-                // Reset gender counters for each new race section
                 maleCount = 0;
                 femaleCount = 0;
             }
             return;
         }
 
-        // RULE 0: TRY UNKNOWN / GUEST ATHLETE FORMAT
+        // RULE 0: UNKNOWN ATHLETES
         const unknownMatch = cleanLine.match(unknownRowRegex);
         if (unknownMatch) {
-            const overallPos = parseInt(unknownMatch[1], 10);
-            const rawBib = unknownMatch[2];
-            const nameLabel = unknownMatch[3].toUpperCase();
-
             parsedResults.push({
-                pos: overallPos,
-                bib: (rawBib && rawBib !== '0') ? rawBib : '-',
-                name: nameLabel === 'UNKNOWN' ? 'Unknown Runner' : nameLabel,
+                pos: parseInt(unknownMatch[1], 10),
+                bib: unknownMatch[2] || '-',
+                name: 'Unknown Runner',
                 age: 0,
                 sex: 'N/A',
                 age_cat: 'N/A',
@@ -163,20 +146,12 @@ files.forEach(filename => {
                 time: 'N/A',
                 gender_pos: 0,
                 cat_pos: 0,
-                race_number,
-                discipline,
-                season,
-                venue,
-                date,
-                distance,
-                status,
-                notes,
-                race_section
+                race_number, discipline, season, venue, date, distance, status, notes, race_section
             });
             return;
         }
 
-        // RULE 1: TRY STANDARD TIMED FORMAT
+        // RULE 1: STANDARD TIMED FORMAT
         const standardMatch = cleanLine.match(standardRowRegex);
         if (standardMatch) {
             parsedResults.push({
@@ -190,20 +165,12 @@ files.forEach(filename => {
                 time: standardMatch[8],
                 gender_pos: parseInt(standardMatch[9], 10),
                 cat_pos: parseInt(standardMatch[10], 10),
-                race_number,
-                discipline,
-                season,
-                venue,
-                date,
-                distance,
-                status,
-                notes,
-                race_section
+                race_number, discipline, season, venue, date, distance, status, notes, race_section
             });
             return;
         }
 
-        // RULE 2: TRY LEGACY FORMAT WITH EXPLICIT GENDER PLACE
+        // RULE 2: LEGACY FORMAT WITH EXPLICIT GENDER PLACE
         const legacyMatch = cleanLine.match(legacyRowRegex);
         if (legacyMatch) {
             const [_, overallPos, rawBib, rawNameAndClub, rawCat, rawGender, genderPos, catPos] = legacyMatch;
@@ -226,90 +193,43 @@ files.forEach(filename => {
                 time: "N/A",
                 gender_pos: parseInt(genderPos, 10),
                 cat_pos: parseInt(catPos, 10),
-                race_number,
-                discipline,
-                season,
-                venue,
-                date,
-                distance,
-                status,
-                notes,
-                race_section
+                race_number, discipline, season, venue, date, distance, status, notes, race_section
             });
             return;
         }
 
-        // RULE 3: TRY LEGACY FORMAT WITHOUT EXPLICIT GENDER PLACE (2 NUMBERS AT START: Pos, Bib)
-        // Tested BEFORE Rule 4 to ensure 2-number lines capture the bib correctly
-        const legacyNoGenMatch = cleanLine.match(legacyNoGenderPosRegex);
-        if (legacyNoGenMatch) {
-            const [_, overallPos, realBib, rawNameAndClub, rawCat, rawCatPos] = legacyNoGenMatch;
+        // RULE 3: LEGACY 2-NUMBER FORMAT (Pos Bib NameClub Cat CatPos)
+        // Checks whether token 2 is a Bib vs Token
+        const tokenSplit = cleanLine.split(/\s+/);
+        if (tokenSplit.length >= 4 && !isNaN(tokenSplit[0])) {
+            const overallPos = parseInt(tokenSplit[0], 10);
+            
+            // If line starts with 3 numbers (Pos, Token, Bib) vs 2 numbers (Pos, Bib)
+            let realBib = tokenSplit[1];
+            let nameClubStartIdx = 2;
+
+            if (tokenSplit.length >= 5 && !isNaN(tokenSplit[1]) && !isNaN(tokenSplit[2])) {
+                // Rule 4: Pos, Token, Bib
+                realBib = tokenSplit[2];
+                nameClubStartIdx = 3;
+            }
+
+            // Extract Category from end of row if available
+            let rawCat = tokenSplit[tokenSplit.length - 2];
+            let rawCatPos = tokenSplit[tokenSplit.length - 1];
+
+            if (isNaN(rawCatPos)) {
+                rawCat = tokenSplit[tokenSplit.length - 1];
+                rawCatPos = "0";
+            }
+
+            const rawNameAndClub = tokenSplit.slice(nameClubStartIdx, tokenSplit.length - (isNaN(tokenSplit[tokenSplit.length - 1]) ? 1 : 2)).join(' ');
             const { name, rawClub } = extractNameAndClub(rawNameAndClub);
 
             const isFemale = rawCat.toUpperCase().startsWith('F');
             const sex = isFemale ? 'F' : 'M';
 
-            let computedGenderPos = 0;
-            if (isFemale) {
-                femaleCount++;
-                computedGenderPos = femaleCount;
-            } else {
-                maleCount++;
-                computedGenderPos = maleCount;
-            }
-
-            let ageCat = "Senior";
-            const catDigits = rawCat.match(/\d+/);
-            if (catDigits && catDigits[0].substring(0, 2) !== '17' && catDigits[0].substring(0, 2) !== '14') {
-                ageCat = `V${catDigits[0].substring(0, 2)}`;
-            }
-
-            let catPosVal = rawCatPos ? parseInt(rawCatPos, 10) : 0;
-            if (catPosVal > 50) {
-                catPosVal = parsedResults.filter(r => r.race_section === race_section && r.age_cat === ageCat).length + 1;
-            }
-
-            parsedResults.push({
-                pos: parseInt(overallPos, 10),
-                bib: realBib,
-                name: name,
-                age: 0,
-                sex: sex,
-                age_cat: ageCat,
-                club: normalizeClub(rawClub),
-                time: "N/A",
-                gender_pos: computedGenderPos,
-                cat_pos: catPosVal,
-                race_number,
-                discipline,
-                season,
-                venue,
-                date,
-                distance,
-                status,
-                notes,
-                race_section
-            });
-            return;
-        }
-
-        // RULE 4: TRY LEGACY FORMAT WITH FINISH TOKEN (3 NUMBERS AT START: Pos, Token, Bib)
-        const legacyTokenMatch = cleanLine.match(legacyTokenRegex);
-        if (legacyTokenMatch) {
-            const [_, overallPos, finishToken, realBib, rawNameAndClub, rawCat, rawCatPos] = legacyTokenMatch;
-            const { name, rawClub } = extractNameAndClub(rawNameAndClub);
-
-            const isFemale = rawCat.toUpperCase().startsWith('F');
-            const sex = isFemale ? 'F' : 'M';
-
-            let computedGenderPos = 0;
-            if (isFemale) {
-                femaleCount++;
-                computedGenderPos = femaleCount;
-            } else {
-                maleCount++;
-                computedGenderPos = maleCount;
-            }
+            let computedGenderPos = isFemale ? ++femaleCount : ++maleCount;
 
             let ageCat = "Senior";
             const catDigits = rawCat.match(/\d+/);
@@ -318,54 +238,31 @@ files.forEach(filename => {
             }
 
             parsedResults.push({
-                pos: parseInt(overallPos, 10),
+                pos: overallPos,
                 bib: realBib,
-                name: name,
+                name: name || "Unknown Runner",
                 age: 0,
                 sex: sex,
                 age_cat: ageCat,
                 club: normalizeClub(rawClub),
                 time: "N/A",
                 gender_pos: computedGenderPos,
-                cat_pos: parseInt(rawCatPos, 10),
-                race_number,
-                discipline,
-                season,
-                venue,
-                date,
-                distance,
-                status,
-                notes,
-                race_section
+                cat_pos: parseInt(rawCatPos, 10) || 0,
+                race_number, discipline, season, venue, date, distance, status, notes, race_section
             });
             return;
         }
     });
 
-    // Handle cancelled or missing results placeholder state if no runner rows were parsed
     const statusLower = status.toLowerCase();
     if ((statusLower === 'cancelled' || statusLower === 'results missing') && parsedResults.length === 0) {
         parsedResults.push({
-            race_number,
-            discipline,
-            season,
-            venue,
-            date,
-            distance,
+            race_number, discipline, season, venue, date, distance,
             status: statusLower === 'results missing' ? 'Results Missing' : 'Cancelled',
-            notes,
-            pos: 0, 
-            club: "", 
-            name: "", 
-            sex: "", 
-            age_cat: "", 
-            cat_pos: 0, 
-            gender_pos: 0,
-            race_section
+            notes, pos: 0, club: "", name: "", sex: "", age_cat: "", cat_pos: 0, gender_pos: 0, race_section
         });
     }
 
-    // Dynamic terminal log reporting
     let logStatus = 'Found ' + parsedResults.length + ' finishers';
     if (statusLower === 'cancelled') logStatus = 'CANCELLED';
     if (statusLower === 'results missing') logStatus = 'RESULTS MISSING';
@@ -374,7 +271,6 @@ files.forEach(filename => {
     allCompiledResults = allCompiledResults.concat(parsedResults);
 });
 
-// Sort the compiled results globally by season, discipline, race number, then position
 allCompiledResults.sort((a, b) => {
     if (a.season !== b.season) return b.season.localeCompare(a.season);
     if (a.discipline !== b.discipline) return a.discipline.localeCompare(b.discipline);
@@ -382,8 +278,7 @@ allCompiledResults.sort((a, b) => {
     return a.pos - b.pos;
 });
 
-// Write directly out to root data.js
-const jsContent = `// This file is auto-generated by backend_tools/parse_fixtures.js. Do not edit manually.\nwindow.glclResults = ${JSON.stringify(allCompiledResults, null, 4)};\n`;
+const jsContent = `// Auto-generated by backend_tools/parse_fixtures.js\nwindow.glclResults = ${JSON.stringify(allCompiledResults, null, 4)};\n`;
 fs.writeFileSync(rootDataPath, jsContent, 'utf8');
 
 console.log(`\nAutomated Build Success: Compiled ${allCompiledResults.length} total rows into root 'data.js'.`);

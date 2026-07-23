@@ -26,7 +26,7 @@
         .stat-card, .leaderboard-box { background-color: #090d16; }
     </style>
 </head>
-<body class="text-slate-300 font-sans antialiased">
+<body class="text-slate-300 font-sans antialiased flex flex-col min-h-screen">
 
     <!-- GLOBAL NAVIGATION CONTAINER -->
     <nav id="global-nav" class="border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
@@ -38,27 +38,26 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('global-nav').innerHTML = data;
-                // Fire a custom event to notify our page scripts that the nav bar is ready
                 window.dispatchEvent(new Event('navLoaded'));
             })
             .catch(err => console.error('Error loading navigation header:', err));
     </script>
 
-    <!-- EXPANDED HERO PHOTOGRAPHY BANNER CONTAINER -->
-    <header class="relative w-full h-[380px] md:h-[500px] overflow-hidden border-b border-slate-900 bg-slate-950 flex items-end">
-        <!-- Background Hero Image with Top Alignment and Increased Opacity -->
+    <!-- DYNAMIC HERO PHOTOGRAPHY BANNER CONTAINER -->
+    <header id="dashboard-hero" class="relative w-full h-[380px] md:h-[500px] transition-all duration-300 overflow-hidden border-b border-slate-900 bg-slate-950 flex items-end">
+        <!-- Background Hero Image (Hidden automatically for pre-2017 seasons) -->
         <img id="dashboard-hero-bg" src="assets/images/banners/default.jpg" alt="Season Banner" class="absolute inset-0 w-full h-full object-cover object-top opacity-60 select-none pointer-events-none" />
         
         <!-- Radical Bottom & Inset Gradient Overlay for Contrast -->
-        <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-[#030712]/60 via-transparent to-transparent hidden md:block"></div>
+        <div id="hero-gradient-overlay" class="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent"></div>
+        <div id="hero-gradient-side" class="absolute inset-0 bg-gradient-to-r from-[#030712]/60 via-transparent to-transparent hidden md:block"></div>
 
         <!-- Text Content Overlay Layer -->
         <div class="relative max-w-[1400px] w-full mx-auto px-4 pb-6 z-10 space-y-1.5">
             <h1 id="dashboard-title" class="text-2xl md:text-4xl font-black text-slate-100 tracking-tight uppercase drop-shadow-md">
                 Loading Campaign Standings...
             </h1>
-            <p class="text-[11px] md:text-xs font-bold text-slate-400 uppercase tracking-wider drop-shadow">
+            <p id="dashboard-subtitle" class="text-[11px] md:text-xs font-bold text-slate-400 uppercase tracking-wider drop-shadow">
                 Macro analysis, fixture tracking matrices, and divisional aggregation profiles.
             </p>
         </div>
@@ -125,11 +124,38 @@
         </section>
 
     </main>
+
     <div id="global-footer"></div>
+
+    <!-- DYNAMIC BANNER COLLAPSE CONTROLLER -->
+    <script>
+        (() => {
+            // Determine active season start year from URL parameter (e.g. ?season=2015/2016 or ?season=2015_2016)
+            const urlParams = new URLSearchParams(window.location.search);
+            const seasonParam = urlParams.get('season') || '';
+            const startYearMatch = seasonParam.match(/20\d{2}/);
+            const startYear = startYearMatch ? parseInt(startYearMatch[0], 10) : null;
+
+            // Collapse header height for seasons prior to 2017
+            if (startYear !== null && startYear < 2017) {
+                const heroHeader = document.getElementById('dashboard-hero');
+                const heroBg = document.getElementById('dashboard-hero-bg');
+                const overlayGrad = document.getElementById('hero-gradient-overlay');
+                const sideGrad = document.getElementById('hero-gradient-side');
+
+                if (heroHeader) {
+                    heroHeader.classList.remove('h-[380px]', 'md:h-[500px]');
+                    heroHeader.classList.add('h-[180px]', 'md:h-[220px]');
+                }
+                if (heroBg) heroBg.style.display = 'none';
+                if (overlayGrad) overlayGrad.style.display = 'none';
+                if (sideGrad) sideGrad.style.display = 'none';
+            }
+        })();
+    </script>
 
     <!-- DATE INTERCEPTOR FOR STATS ENGINE -->
     <script>
-        // Globally patch raw dataset dates to prevent YYYY-DD-MM parser failure before stats-engine runs
         (() => {
             const patchDateStr = (dateStr) => {
                 if (!dateStr || typeof dateStr !== 'string') return dateStr;
@@ -139,13 +165,11 @@
                     let month = parseInt(parts[1], 10);
                     let day = parseInt(parts[2], 10);
                     
-                    // If the month segment is greater than 12, it is actually YYYY-DD-MM
                     if (month > 12) {
                         const temp = month;
                         month = day;
                         day = temp;
                         
-                        // Pad numbers to standard ISO strings
                         const cleanMonth = String(month).padStart(2, '0');
                         const cleanDay = String(day).padStart(2, '0');
                         return `${year}-${cleanMonth}-${cleanDay}`;
@@ -154,7 +178,6 @@
                 return dateStr;
             };
 
-            // Intercept data fixtures array prior to calculations if defined
             if (typeof window.glclResults !== 'undefined' && Array.isArray(window.glclResults)) {
                 window.glclResults.forEach(item => {
                     if (item && item.date) {
