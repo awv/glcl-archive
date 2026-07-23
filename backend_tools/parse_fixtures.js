@@ -28,6 +28,8 @@ const clubAliases = {
 
     "monmouth": "Spirit of Monmouth RC",
     "monmouth harriers": "Spirit of Monmouth RC",
+    "spirit of monmouth": "Spirit of Monmouth RC",
+    "spirit of monmouth rc": "Spirit of Monmouth RC",
 
     "caerleon": "Caerleon RC",
     "caerleon running club": "Caerleon RC"
@@ -94,7 +96,8 @@ files.forEach(filename => {
     let femaleCount = 0;
 
     lines.forEach((line) => {
-        const cleanLine = line.trim();
+        // Strip rogue commas and trim line
+        let cleanLine = line.replace(/,/g, '').trim();
         if (!cleanLine) return;
 
         if (cleanLine.startsWith('#')) {
@@ -183,6 +186,8 @@ files.forEach(filename => {
             else if (nameAndClub.includes("Pont-y-Pwl") || nameAndClub.includes("Pont-Y-Pwl")) { rawClub = "Pont-Y-Pwl & District Runners"; name = nameAndClub.replace(/Pont-[yY]-Pwl/g, "").trim(); }
             else if (nameAndClub.includes("Lliswerry")) { rawClub = "Lliswerry Runners"; name = nameAndClub.replace("Lliswerry", "").trim(); }
             else if (nameAndClub.includes("Chepstow")) { rawClub = "Chepstow Harriers"; name = nameAndClub.replace("Chepstow", "").trim(); }
+            else if (nameAndClub.includes("Spirit of Monmouth")) { rawClub = "Spirit of Monmouth RC"; name = nameAndClub.replace("Spirit of Monmouth", "").trim(); }
+            else if (nameAndClub.includes("Monmouth")) { rawClub = "Spirit of Monmouth RC"; name = nameAndClub.replace("Monmouth", "").trim(); }
             else { rawClub = words[words.length - 1]; name = words.slice(0, -1).join(' '); }
 
             let ageCat = "Senior";
@@ -228,7 +233,8 @@ files.forEach(filename => {
             else if (nameAndClub.includes("Pont-Y-Pwl") || nameAndClub.includes("Pont-y-Pwl")) { rawClub = "Pont-Y-Pwl & District Runners"; name = nameAndClub.replace(/Pont-[yY]-Pwl/g, "").trim(); }
             else if (nameAndClub.includes("Lliswerry")) { rawClub = "Lliswerry Runners"; name = nameAndClub.replace("Lliswerry", "").trim(); }
             else if (nameAndClub.includes("Chepstow")) { rawClub = "Chepstow Harriers"; name = nameAndClub.replace("Chepstow", "").trim(); }
-            else if (nameAndClub.includes("Monmouth")) { rawClub = "Monmouth Harriers"; name = nameAndClub.replace("Monmouth", "").trim(); }
+            else if (nameAndClub.includes("Spirit of Monmouth")) { rawClub = "Spirit of Monmouth RC"; name = nameAndClub.replace("Spirit of Monmouth", "").trim(); }
+            else if (nameAndClub.includes("Monmouth")) { rawClub = "Spirit of Monmouth RC"; name = nameAndClub.replace("Monmouth", "").trim(); }
             else if (nameAndClub.includes("Caerleon")) { rawClub = "Caerleon RC"; name = nameAndClub.replace("Caerleon", "").trim(); }
             else if (nameAndClub.includes("Fairwater")) { rawClub = "Fairwater Runners"; name = nameAndClub.replace("Fairwater", "").trim(); }
             else { rawClub = words[words.length - 1]; name = words.slice(0, -1).join(' '); }
@@ -288,7 +294,8 @@ files.forEach(filename => {
             else if (nameAndClub.includes("Pont-y-Pwl") || nameAndClub.includes("Pont-Y-Pwl")) { rawClub = "Pont-Y-Pwl & District Runners"; name = nameAndClub.replace(/Pont-[yY]-Pwl/g, "").trim(); }
             else if (nameAndClub.includes("Lliswerry")) { rawClub = "Lliswerry Runners"; name = nameAndClub.replace("Lliswerry", "").trim(); }
             else if (nameAndClub.includes("Chepstow")) { rawClub = "Chepstow Harriers"; name = nameAndClub.replace("Chepstow", "").trim(); }
-            else if (nameAndClub.includes("Monmouth")) { rawClub = "Monmouth Harriers"; name = nameAndClub.replace("Monmouth", "").trim(); }
+            else if (nameAndClub.includes("Spirit of Monmouth")) { rawClub = "Spirit of Monmouth RC"; name = nameAndClub.replace("Spirit of Monmouth", "").trim(); }
+            else if (nameAndClub.includes("Monmouth")) { rawClub = "Spirit of Monmouth RC"; name = nameAndClub.replace("Monmouth", "").trim(); }
             else if (nameAndClub.includes("Caerleon")) { rawClub = "Caerleon RC"; name = nameAndClub.replace("Caerleon", "").trim(); }
             else { rawClub = words[words.length - 1]; name = words.slice(0, -1).join(' '); }
 
