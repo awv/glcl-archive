@@ -32,6 +32,7 @@ const clubAliases = {
     "spirit of monmouth rc": "Spirit of Monmouth RC",
 
     "caerleon": "Caerleon RC",
+    "caerleon rc": "Caerleon RC",
     "caerleon running club": "Caerleon RC",
 
     "islwyn": "Islwyn RC",

@@ -76,7 +76,7 @@
         </section>
     </main>
 
-    <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
     const allRecords = window.glclResults || [];
 
@@ -106,6 +106,22 @@ document.addEventListener("DOMContentLoaded", () => {
         "Spirit Of Monmouth RC": "spirit-of-monmouth-rc.jpg"   
     };
 
+    // Helper to resolve alias variations (e.g. "Caerleon RC" -> "Caerleon Running Club")
+    const normalizeName = (name) => {
+        if (!name) return "";
+        const clean = name.trim().toLowerCase();
+        if (clean.includes("caerleon")) return "caerleon running club";
+        if (clean.includes("islwyn")) return "islwyn rc";
+        if (clean.includes("lliswerry")) return "lliswerry runners";
+        if (clean.includes("chepstow")) return "chepstow harriers";
+        if (clean.includes("fairwater")) return "fairwater runners";
+        if (clean.includes("griffithstown")) return "griffithstown harriers";
+        if (clean.includes("parc bryn bach") || clean === "pbb") return "parc bryn bach rc";
+        if (clean.includes("pont-y-pwl") || clean.includes("pontypool")) return "pont-y-pwl & district runners";
+        if (clean.includes("monmouth")) return "spirit of monmouth rc";
+        return clean;
+    };
+
     // 1. DYNAMICALLY ISOLATE THE LATEST REGISTERED CAMPAIGN SEASON
     const seasons = allRecords
         .map(row => row.season)
@@ -118,9 +134,11 @@ document.addEventListener("DOMContentLoaded", () => {
     gridContainer.innerHTML = '';
 
     CLUBS.forEach(clubName => {
-        // Filter the global dataset to extract data points for this specific club
+        const targetNormalized = normalizeName(clubName);
+
+        // Filter using fuzzy/normalized match so variations in data.js match cleanly
         const clubRecords = allRecords.filter(row => 
-            row.club && row.club.toLowerCase() === clubName.toLowerCase()
+            row.club && normalizeName(row.club) === targetNormalized
         );
 
         // Aggregate basic telemetry
