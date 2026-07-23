@@ -32,7 +32,10 @@ const clubAliases = {
     "spirit of monmouth rc": "Spirit of Monmouth RC",
 
     "caerleon": "Caerleon RC",
-    "caerleon running club": "Caerleon RC"
+    "caerleon running club": "Caerleon RC",
+
+    "islwyn": "Islwyn RC",
+    "islwyn rc": "Islwyn RC"
 };
 
 function normalizeClub(rawClub) {
@@ -41,19 +44,46 @@ function normalizeClub(rawClub) {
     return clubAliases[key] || rawClub.trim();
 }
 
+// Shared extraction helper for legacy Name and Club combinations
+function extractNameAndClub(rawStr) {
+    // Strip trailing or internal commas left over from legacy text formats
+    let cleanStr = rawStr.replace(/,/g, '').trim();
+
+    let rawClub = "";
+    let name = "";
+
+    if (cleanStr.includes("Parc Bryn Bach")) { rawClub = "Parc Bryn Bach RC"; name = cleanStr.replace("Parc Bryn Bach", "").trim(); }
+    else if (cleanStr.includes("Pont-y-Pwl") || cleanStr.includes("Pont-Y-Pwl")) { rawClub = "Pont-Y-Pwl & District Runners"; name = cleanStr.replace(/Pont-[yY]-Pwl/g, "").trim(); }
+    else if (cleanStr.includes("Lliswerry")) { rawClub = "Lliswerry Runners"; name = cleanStr.replace("Lliswerry", "").trim(); }
+    else if (cleanStr.includes("Chepstow")) { rawClub = "Chepstow Harriers"; name = cleanStr.replace("Chepstow", "").trim(); }
+    else if (cleanStr.includes("Spirit of Monmouth")) { rawClub = "Spirit of Monmouth RC"; name = cleanStr.replace("Spirit of Monmouth", "").trim(); }
+    else if (cleanStr.includes("Monmouth")) { rawClub = "Spirit of Monmouth RC"; name = cleanStr.replace("Monmouth", "").trim(); }
+    else if (cleanStr.includes("Caerleon")) { rawClub = "Caerleon RC"; name = cleanStr.replace("Caerleon", "").trim(); }
+    else if (cleanStr.includes("Fairwater")) { rawClub = "Fairwater Runners"; name = cleanStr.replace("Fairwater", "").trim(); }
+    else if (cleanStr.includes("Griffithstown")) { rawClub = "Griffithstown Harriers"; name = cleanStr.replace("Griffithstown", "").trim(); }
+    else if (cleanStr.includes("Islwyn")) { rawClub = "Islwyn RC"; name = cleanStr.replace("Islwyn", "").trim(); }
+    else {
+        const words = cleanStr.split(/\s+/);
+        rawClub = words[words.length - 1];
+        name = words.slice(0, -1).join(' ');
+    }
+
+    return { name: name.trim(), rawClub: rawClub.trim() };
+}
+
 // 1. Current format regex (with Bib, Age, Time, etc.)
 const standardRowRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+(\d+)\s+([MF])\s+(Senior|V\d+\+?)\s+(.+?)\s+(\d{2}:\d{2}:\d{2})\s+(\d+)\s+(\d+)\r?$/i;
 
 // 2. Legacy pre-COVID format regex (with explicit gender place column)
-const legacyRowRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4})\s+(MEN|LADIES)\s+(\d+)\s+(\d+)/i;
+const legacyRowRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4})\s+(MEN|LADIES)\s+(\d+)\s+(\d+)\r?$/i;
 
-// 3. Legacy pre-COVID format regex WITHOUT explicit gender place column
+// 3. Legacy pre-COVID format regex WITHOUT explicit gender place column (2 initial numbers)
 // Matches: Pos Bib Name Club Cat CatPos
-const legacyNoGenderPosRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4}|\b[MF]\b)\s+(\d+)/i;
+const legacyNoGenderPosRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4}|\b[MF]\b)\s+(\d+)\r?$/i;
 
-// 4. Legacy format with ignored Finish Token: Pos Token Bib NameAndClub Cat CatPos
+// 4. Legacy format with ignored Finish Token (3 initial numbers): Pos Token Bib NameAndClub Cat CatPos
 // Matches: "1 11 952 Matthew SYMES Pont-Y-Pwl M1739 1"
-const legacyTokenRegex = /^(\d+)\s+(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4}|\b[MF]\b)\s+(\d+)/i;
+const legacyTokenRegex = /^(\d+)\s+(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4}|\b[MF]\b)\s+(\d+)\r?$/i;
 
 // Unknown runners
 const unknownRowRegex = /^\s*(\d+)\s+(\d+)\s+(UNKNOWN|GUEST|ANON)\b/i;
@@ -96,8 +126,7 @@ files.forEach(filename => {
     let femaleCount = 0;
 
     lines.forEach((line) => {
-        // Strip rogue commas and trim line
-        let cleanLine = line.replace(/,/g, '').trim();
+        let cleanLine = line.trim();
         if (!cleanLine) return;
 
         if (cleanLine.startsWith('#')) {
@@ -152,7 +181,7 @@ files.forEach(filename => {
             parsedResults.push({
                 pos: parseInt(standardMatch[1], 10),
                 bib: standardMatch[2],
-                name: standardMatch[3].trim(),
+                name: standardMatch[3].replace(/,/g, '').trim(),
                 age: parseInt(standardMatch[4], 10),
                 sex: standardMatch[5],
                 age_cat: standardMatch[6],
@@ -176,19 +205,8 @@ files.forEach(filename => {
         // RULE 2: TRY LEGACY FORMAT WITH EXPLICIT GENDER PLACE
         const legacyMatch = cleanLine.match(legacyRowRegex);
         if (legacyMatch) {
-            const [_, overallPos, rawBib, nameAndClub, rawCat, rawGender, genderPos, catPos] = legacyMatch;
-            
-            const words = nameAndClub.trim().split(' ');
-            let name = "";
-            let rawClub = "";
-
-            if (nameAndClub.includes("Parc Bryn Bach")) { rawClub = "Parc Bryn Bach RC"; name = nameAndClub.replace("Parc Bryn Bach", "").trim(); }
-            else if (nameAndClub.includes("Pont-y-Pwl") || nameAndClub.includes("Pont-Y-Pwl")) { rawClub = "Pont-Y-Pwl & District Runners"; name = nameAndClub.replace(/Pont-[yY]-Pwl/g, "").trim(); }
-            else if (nameAndClub.includes("Lliswerry")) { rawClub = "Lliswerry Runners"; name = nameAndClub.replace("Lliswerry", "").trim(); }
-            else if (nameAndClub.includes("Chepstow")) { rawClub = "Chepstow Harriers"; name = nameAndClub.replace("Chepstow", "").trim(); }
-            else if (nameAndClub.includes("Spirit of Monmouth")) { rawClub = "Spirit of Monmouth RC"; name = nameAndClub.replace("Spirit of Monmouth", "").trim(); }
-            else if (nameAndClub.includes("Monmouth")) { rawClub = "Spirit of Monmouth RC"; name = nameAndClub.replace("Monmouth", "").trim(); }
-            else { rawClub = words[words.length - 1]; name = words.slice(0, -1).join(' '); }
+            const [_, overallPos, rawBib, rawNameAndClub, rawCat, rawGender, genderPos, catPos] = legacyMatch;
+            const { name, rawClub } = extractNameAndClub(rawNameAndClub);
 
             let ageCat = "Senior";
             const catDigits = rawCat.match(/\d+/);
@@ -220,84 +238,12 @@ files.forEach(filename => {
             return;
         }
 
-        // RULE 4: TRY LEGACY FORMAT WITH FINISH TOKEN (IGNORED) - TEST BEFORE RULE 3 TO PREVENT OVERLAP
-        const legacyTokenMatch = cleanLine.match(legacyTokenRegex);
-        if (legacyTokenMatch) {
-            const [_, overallPos, finishToken, realBib, nameAndClub, rawCat, rawCatPos] = legacyTokenMatch;
-
-            const words = nameAndClub.trim().split(' ');
-            let name = "";
-            let rawClub = "";
-
-            if (nameAndClub.includes("Parc Bryn Bach")) { rawClub = "Parc Bryn Bach RC"; name = nameAndClub.replace("Parc Bryn Bach", "").trim(); }
-            else if (nameAndClub.includes("Pont-Y-Pwl") || nameAndClub.includes("Pont-y-Pwl")) { rawClub = "Pont-Y-Pwl & District Runners"; name = nameAndClub.replace(/Pont-[yY]-Pwl/g, "").trim(); }
-            else if (nameAndClub.includes("Lliswerry")) { rawClub = "Lliswerry Runners"; name = nameAndClub.replace("Lliswerry", "").trim(); }
-            else if (nameAndClub.includes("Chepstow")) { rawClub = "Chepstow Harriers"; name = nameAndClub.replace("Chepstow", "").trim(); }
-            else if (nameAndClub.includes("Spirit of Monmouth")) { rawClub = "Spirit of Monmouth RC"; name = nameAndClub.replace("Spirit of Monmouth", "").trim(); }
-            else if (nameAndClub.includes("Monmouth")) { rawClub = "Spirit of Monmouth RC"; name = nameAndClub.replace("Monmouth", "").trim(); }
-            else if (nameAndClub.includes("Caerleon")) { rawClub = "Caerleon RC"; name = nameAndClub.replace("Caerleon", "").trim(); }
-            else if (nameAndClub.includes("Fairwater")) { rawClub = "Fairwater Runners"; name = nameAndClub.replace("Fairwater", "").trim(); }
-            else { rawClub = words[words.length - 1]; name = words.slice(0, -1).join(' '); }
-
-            const isFemale = rawCat.toUpperCase().startsWith('F');
-            const sex = isFemale ? 'F' : 'M';
-
-            let computedGenderPos = 0;
-            if (isFemale) {
-                femaleCount++;
-                computedGenderPos = femaleCount;
-            } else {
-                maleCount++;
-                computedGenderPos = maleCount;
-            }
-
-            let ageCat = "Senior";
-            const catDigits = rawCat.match(/\d+/);
-            if (catDigits && catDigits[0].substring(0, 2) !== '17' && catDigits[0].substring(0, 2) !== '14') {
-                ageCat = `V${catDigits[0].substring(0, 2)}`;
-            }
-
-            parsedResults.push({
-                pos: parseInt(overallPos, 10),
-                bib: realBib,
-                name: name,
-                age: 0,
-                sex: sex,
-                age_cat: ageCat,
-                club: normalizeClub(rawClub),
-                time: "N/A",
-                gender_pos: computedGenderPos,
-                cat_pos: parseInt(rawCatPos, 10),
-                race_number,
-                discipline,
-                season,
-                venue,
-                date,
-                distance,
-                status,
-                notes,
-                race_section
-            });
-            return;
-        }
-
-        // RULE 3: TRY LEGACY FORMAT WITHOUT EXPLICIT GENDER PLACE (2 NUMBERS AT START)
+        // RULE 3: TRY LEGACY FORMAT WITHOUT EXPLICIT GENDER PLACE (2 NUMBERS AT START: Pos, Bib)
+        // Tested BEFORE Rule 4 to ensure 2-number lines capture the bib correctly
         const legacyNoGenMatch = cleanLine.match(legacyNoGenderPosRegex);
         if (legacyNoGenMatch) {
-            const [_, overallPos, realBib, nameAndClub, rawCat, rawCatPos] = legacyNoGenMatch;
-
-            const words = nameAndClub.trim().split(' ');
-            let name = "";
-            let rawClub = "";
-
-            if (nameAndClub.includes("Parc Bryn Bach")) { rawClub = "Parc Bryn Bach RC"; name = nameAndClub.replace("Parc Bryn Bach", "").trim(); }
-            else if (nameAndClub.includes("Pont-y-Pwl") || nameAndClub.includes("Pont-Y-Pwl")) { rawClub = "Pont-Y-Pwl & District Runners"; name = nameAndClub.replace(/Pont-[yY]-Pwl/g, "").trim(); }
-            else if (nameAndClub.includes("Lliswerry")) { rawClub = "Lliswerry Runners"; name = nameAndClub.replace("Lliswerry", "").trim(); }
-            else if (nameAndClub.includes("Chepstow")) { rawClub = "Chepstow Harriers"; name = nameAndClub.replace("Chepstow", "").trim(); }
-            else if (nameAndClub.includes("Spirit of Monmouth")) { rawClub = "Spirit of Monmouth RC"; name = nameAndClub.replace("Spirit of Monmouth", "").trim(); }
-            else if (nameAndClub.includes("Monmouth")) { rawClub = "Spirit of Monmouth RC"; name = nameAndClub.replace("Monmouth", "").trim(); }
-            else if (nameAndClub.includes("Caerleon")) { rawClub = "Caerleon RC"; name = nameAndClub.replace("Caerleon", "").trim(); }
-            else { rawClub = words[words.length - 1]; name = words.slice(0, -1).join(' '); }
+            const [_, overallPos, realBib, rawNameAndClub, rawCat, rawCatPos] = legacyNoGenMatch;
+            const { name, rawClub } = extractNameAndClub(rawNameAndClub);
 
             const isFemale = rawCat.toUpperCase().startsWith('F');
             const sex = isFemale ? 'F' : 'M';
@@ -330,9 +276,57 @@ files.forEach(filename => {
                 sex: sex,
                 age_cat: ageCat,
                 club: normalizeClub(rawClub),
-                time: "N/A", // Keeps timing consistent across legacy fixtures
+                time: "N/A",
                 gender_pos: computedGenderPos,
                 cat_pos: catPosVal,
+                race_number,
+                discipline,
+                season,
+                venue,
+                date,
+                distance,
+                status,
+                notes,
+                race_section
+            });
+            return;
+        }
+
+        // RULE 4: TRY LEGACY FORMAT WITH FINISH TOKEN (3 NUMBERS AT START: Pos, Token, Bib)
+        const legacyTokenMatch = cleanLine.match(legacyTokenRegex);
+        if (legacyTokenMatch) {
+            const [_, overallPos, finishToken, realBib, rawNameAndClub, rawCat, rawCatPos] = legacyTokenMatch;
+            const { name, rawClub } = extractNameAndClub(rawNameAndClub);
+
+            const isFemale = rawCat.toUpperCase().startsWith('F');
+            const sex = isFemale ? 'F' : 'M';
+
+            let computedGenderPos = 0;
+            if (isFemale) {
+                femaleCount++;
+                computedGenderPos = femaleCount;
+            } else {
+                maleCount++;
+                computedGenderPos = maleCount;
+            }
+
+            let ageCat = "Senior";
+            const catDigits = rawCat.match(/\d+/);
+            if (catDigits && catDigits[0].substring(0, 2) !== '17' && catDigits[0].substring(0, 2) !== '14') {
+                ageCat = `V${catDigits[0].substring(0, 2)}`;
+            }
+
+            parsedResults.push({
+                pos: parseInt(overallPos, 10),
+                bib: realBib,
+                name: name,
+                age: 0,
+                sex: sex,
+                age_cat: ageCat,
+                club: normalizeClub(rawClub),
+                time: "N/A",
+                gender_pos: computedGenderPos,
+                cat_pos: parseInt(rawCatPos, 10),
                 race_number,
                 discipline,
                 season,
