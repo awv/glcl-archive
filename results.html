@@ -181,12 +181,12 @@
             document.getElementById('count-men').textContent = menCount;
             document.getElementById('count-women').textContent = womenCount;
 
-            // Compute Age Category Winners
+            // Compute Age Category Winners (tracking athlete objects to preserve club details)
             const targetedCategories = ['SENIOR', 'V35', 'V40', 'V45', 'V50', 'V55', 'V60', 'V65', 'V70', 'V75+'];
             const catWinnersMap = {};
             
             targetedCategories.forEach(cat => {
-                catWinnersMap[cat] = { M: 'N/A', F: 'N/A' };
+                catWinnersMap[cat] = { M: null, F: null };
             });
 
             filtered.forEach(row => {
@@ -198,7 +198,10 @@
                 }
 
                 if (catWinnersMap[normCat]) {
-                    catWinnersMap[normCat][row.sex.toUpperCase()] = row.name;
+                    const sexKey = row.sex.toUpperCase();
+                    if (!catWinnersMap[normCat][sexKey]) {
+                        catWinnersMap[normCat][sexKey] = { name: row.name, club: row.club };
+                    }
                 }
             });
 
@@ -207,8 +210,16 @@
             winnersGrid.innerHTML = '';
 
             targetedCategories.forEach(cat => {
-                const maleWinner = catWinnersMap[cat].M;
-                const femaleWinner = catWinnersMap[cat].F;
+                const maleWinnerObj = catWinnersMap[cat].M;
+                const femaleWinnerObj = catWinnersMap[cat].F;
+
+                const maleWinnerHtml = maleWinnerObj 
+                    ? `<a href="athlete.html?name=${encodeURIComponent(maleWinnerObj.name)}&club=${encodeURIComponent(maleWinnerObj.club)}" class="hover:text-brand-500 transition-colors">${maleWinnerObj.name}</a>` 
+                    : '<span class="text-slate-600 font-normal">N/A</span>';
+
+                const femaleWinnerHtml = femaleWinnerObj 
+                    ? `<a href="athlete.html?name=${encodeURIComponent(femaleWinnerObj.name)}&club=${encodeURIComponent(femaleWinnerObj.club)}" class="hover:text-brand-500 transition-colors">${femaleWinnerObj.name}</a>` 
+                    : '<span class="text-slate-600 font-normal">N/A</span>';
 
                 const cardHtml = `
                     <div class="cat-card p-4 rounded-xl border border-slate-800 flex flex-col justify-between shadow-md">
@@ -218,14 +229,14 @@
                         <div class="space-y-1.5 text-[11px]">
                             <div class="flex justify-between items-center">
                                 <span class="font-mono text-slate-500 font-bold uppercase">M</span>
-                                <span class="font-bold text-slate-200 truncate max-w-[120px] text-right" title="${maleWinner}">
-                                    ${maleWinner !== 'N/A' ? `<a href="athlete.html?name=${encodeURIComponent(maleWinner)}" class="hover:text-brand-500 transition-colors">${maleWinner}</a>` : '<span class="text-slate-600 font-normal">N/A</span>'}
+                                <span class="font-bold text-slate-200 truncate max-w-[120px] text-right" title="${maleWinnerObj ? maleWinnerObj.name : 'N/A'}">
+                                    ${maleWinnerHtml}
                                 </span>
                             </div>
                             <div class="flex justify-between items-center">
                                 <span class="font-mono text-slate-500 font-bold uppercase">F</span>
-                                <span class="font-bold text-slate-200 truncate max-w-[120px] text-right" title="${femaleWinner}">
-                                    ${femaleWinner !== 'N/A' ? `<a href="athlete.html?name=${encodeURIComponent(femaleWinner)}" class="hover:text-brand-500 transition-colors">${femaleWinner}</a>` : '<span class="text-slate-600 font-normal">N/A</span>'}
+                                <span class="font-bold text-slate-200 truncate max-w-[120px] text-right" title="${femaleWinnerObj ? femaleWinnerObj.name : 'N/A'}">
+                                    ${femaleWinnerHtml}
                                 </span>
                             </div>
                         </div>
@@ -273,12 +284,14 @@
                             catPosHtml = `<span class="inline-block font-mono font-bold text-[10px] text-amber-600 bg-amber-600/10 border border-amber-700/20 px-1.5 py-0.5 rounded">🥉 Pos 3</span>`;
                         }
 
+                        const athleteUrl = `athlete.html?name=${encodeURIComponent(row.name)}&club=${encodeURIComponent(row.club)}`;
+
                         return `
                             <tr class="transition-colors ${podiumRowBg}">
                                 <td class="py-3 px-4 text-center font-mono font-bold text-slate-400">${row.pos}</td>
                                 <td class="py-3 px-4 text-center font-mono text-slate-500">${row.bib || '-'}</td>
                                 <td class="py-3 px-4 font-bold text-slate-200">
-                                    <a href="athlete.html?name=${encodeURIComponent(row.name)}" class="hover:text-brand-500 transition-colors">${row.name}</a>
+                                    <a href="${athleteUrl}" class="hover:text-brand-500 transition-colors">${row.name}</a>
                                 </td>
                                 <td class="py-3 px-4 text-center font-black ${sexColor}">${row.sex}</td>
                                 <td class="py-3 px-4 uppercase tracking-tight text-slate-400 font-medium">${row.age_cat || 'SEN'}</td>

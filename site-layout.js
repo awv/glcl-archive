@@ -182,10 +182,14 @@ document.addEventListener("DOMContentLoaded", () => {
             dataset.forEach(item => {
                 if (item && item.name) {
                     const cleanName = item.name.trim();
-                    if (!runnersMap.has(cleanName)) {
-                        runnersMap.set(cleanName, {
+                    const cleanClub = (item.club || 'Independent').trim();
+                    // Key by Name AND Club so distinct same-name runners aren't skipped
+                    const uniqueKey = `${cleanName.toLowerCase()}_${cleanClub.toLowerCase()}`;
+                    
+                    if (!runnersMap.has(uniqueKey)) {
+                        runnersMap.set(uniqueKey, {
                             name: cleanName,
-                            club: item.club || 'Independent',
+                            club: cleanClub,
                             sex: item.sex || '—',
                             age_cat: item.age_cat || '—'
                         });
@@ -288,7 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             filtered.forEach(athlete => {
                 const item = document.createElement('a');
-                item.href = `athlete.html?name=${encodeURIComponent(athlete.name)}`;
+                item.href = `athlete.html?name=${encodeURIComponent(athlete.name)}&club=${encodeURIComponent(athlete.club)}`;
                 item.className = 'flex justify-between items-center px-4 py-3 hover:bg-slate-800/40 rounded-xl transition-all cursor-pointer group';
                 item.innerHTML = `
                     <div class="space-y-0.5 text-left">

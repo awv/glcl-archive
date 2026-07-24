@@ -49,7 +49,7 @@
         <!-- Default deep blue ambient glow behind text layout -->
         <div id="header-glow" class="absolute left-12 -bottom-24 w-96 h-96 bg-brand-500/10 rounded-full blur-[100px] pointer-events-none select-none"></div>
         
-        <!-- Bottom / Immersive Gradient Overlay (Blends image nicely and ensures text readability) -->
+        <!-- Bottom / Immersive Gradient Overlay -->
         <div id="header-gradient" class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent"></div>
 
         <!-- Text Content Overlay Layer -->
@@ -65,7 +65,7 @@
                 <!-- Injected by script -->
             </h1>
 
-            <!-- Badges Container (Now on its own line below the name) -->
+            <!-- Badges Container -->
             <div id="athlete-badges" class="flex flex-wrap gap-1.5 pt-1"></div>
             
             <!-- Secondary Meta Target -->
@@ -114,7 +114,6 @@
 
         <!-- DYNAMIC INSIGHTS & HISTORICAL TREND SEGMENT -->
         <section id="insights-section" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <!-- Dynamic Trend Insights Card -->
             <div class="bg-slate-950 border border-slate-900 p-6 rounded-xl shadow-md flex flex-col justify-between">
                 <div>
                     <span id="insight-card-title" class="block text-[10px] font-black text-slate-500 uppercase tracking-wider">Career Projection</span>
@@ -123,12 +122,10 @@
                 <p id="insight-card-subtext" class="text-xs text-slate-500 mt-4 font-medium leading-relaxed">—</p>
             </div>
 
-            <!-- Historical Form Sparkline Chart -->
             <div id="trend-chart-container" class="bg-slate-950 border border-slate-900 p-6 rounded-xl shadow-md flex flex-col justify-between lg:col-span-2 relative">
                 <div class="flex items-center justify-between">
                     <span class="block text-[10px] font-black text-slate-500 uppercase tracking-wider">Gender Position Form Trend</span>
                     
-                    <!-- Color-coded Legend Keys -->
                     <div class="flex items-center space-x-4">
                         <div class="flex items-center space-x-1.5">
                             <span class="w-2.5 h-2.5 rounded-full bg-[#0066cc] inline-block"></span>
@@ -142,16 +139,13 @@
                     </div>
                 </div>
                 
-                <!-- Chart Container with Y-Axis and Background Gridlines -->
                 <div class="flex h-20 mt-4 relative">
-                    <!-- Y-Axis Labels -->
                     <div class="flex flex-col justify-between text-[9px] font-mono font-bold text-slate-600 pr-3 border-r border-slate-900/60 select-none text-right min-w-[55px]">
                         <span id="chart-y-max">Best</span>
                         <span id="chart-y-mid" class="text-slate-800">Mid</span>
                         <span id="chart-y-min">Lowest</span>
                     </div>
                     
-                    <!-- SVG Chart Canvas Area -->
                     <div class="flex-grow h-full pl-3 relative">
                         <div class="absolute inset-y-0 left-3 right-0 flex flex-col justify-between pointer-events-none opacity-40">
                             <div class="w-full border-t border-dashed border-slate-900"></div>
@@ -162,14 +156,11 @@
                         <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 300 60" preserveAspectRatio="none">
                             <path id="trend-sparkline-path" fill="none" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="" />
                             <path id="trend-road-path" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="" />
-                            
-                            <!-- Interactive Hover Circles Node -->
                             <g id="sparkline-points"></g>
                         </svg>
                     </div>
                 </div>
 
-                <!-- FLOATING TOOLTIP ELEMENT -->
                 <div id="chart-tooltip" class="absolute hidden pointer-events-none z-50 bg-slate-900/95 border border-slate-800 text-slate-200 p-2.5 rounded-lg shadow-2xl text-[10px] font-mono space-y-0.5 transform -translate-x-1/2 -translate-y-full -mt-2 backdrop-blur">
                     <div id="tooltip-title" class="font-bold text-slate-100 uppercase border-b border-slate-800 pb-1 mb-1"></div>
                     <div id="tooltip-meta" class="text-slate-400"></div>
@@ -177,11 +168,9 @@
                 </div>
             </div>
 
-            <!-- Repeating Course Progress Table Component -->
             <div id="course-progress-container" class="lg:col-span-3 space-y-3 pt-2">
                 <div class="flex justify-between items-center">
                     <h3 class="text-xs font-black tracking-widest text-slate-500 uppercase">Repeating Course Progress Breakdown</h3>
-                    <!-- Mobile Scroll Indicator Badge -->
                     <div class="flex items-center space-x-1 text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider md:hidden bg-slate-950 border border-slate-900 px-2 py-1 rounded">
                         <span>Swipe</span>
                         <svg class="w-3 h-3 text-brand-500 animate-pulse" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
@@ -212,7 +201,6 @@
         <section class="space-y-4">
             <div class="flex justify-between items-center">
                 <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Complete Race History</h2>
-                <!-- Mobile Scroll Indicator Badge -->
                 <div class="flex items-center space-x-1 text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider md:hidden bg-slate-950 border border-slate-900 px-2 py-1 rounded">
                     <span>Swipe</span>
                     <svg class="w-3 h-3 text-brand-500 animate-pulse" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
@@ -249,75 +237,93 @@
         document.addEventListener("DOMContentLoaded", () => {
             const urlParams = new URLSearchParams(window.location.search);
             let targetAthlete = urlParams.get('name');
+            let targetClub = urlParams.get('club');
 
             if (!targetAthlete) {
-                document.getElementById('athlete-name').textContent = "No Athlete Specified";
+                const nameEl = document.getElementById('athlete-name');
+                if (nameEl) nameEl.textContent = "No Athlete Specified";
                 return;
             }
 
             const allRecords = window.glclResults || [];
-            const corrections = window.glclCorrections || { nameChanges: {}, clubHistory: {} };
+            const corrections = window.glclCorrections || {};
+            const nameChanges = corrections.nameChanges || {};
+            const clubHistory = corrections.clubHistory || {};
 
-            // 1. CASE-INSENSITIVE IDENTITY ALIGNMENT INTERCEPTION
+            // 1. CASE-INSENSITIVE IDENTITY ALIGNMENT
             let masterName = targetAthlete;
-            Object.entries(corrections.nameChanges).forEach(([legacyName, data]) => {
-                if (legacyName.toLowerCase() === targetAthlete.toLowerCase() || data.primaryName.toLowerCase() === targetAthlete.toLowerCase()) {
+            Object.entries(nameChanges).forEach(([legacyName, data]) => {
+                if (data && data.primaryName && (legacyName.toLowerCase() === targetAthlete.toLowerCase() || data.primaryName.toLowerCase() === targetAthlete.toLowerCase())) {
                     masterName = data.primaryName; 
                 }
             });
             targetAthlete = masterName; 
 
-            // Dynamic background photo loader hook
-            const loadProfilePhoto = (name) => {
-                const formattedName = name.toLowerCase()
-                    .replace(/['’]/g, '-')
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/-+/g, '-')
-                    .replace(/^-|-$/g, '');
+            const loadProfilePhoto = (name, club) => {
+            const formatSlug = (str) => (str || '')
+                .toLowerCase()
+                .replace(/['’]/g, '-')
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '');
 
-                const photoSrc = `assets/images/athletes/${formattedName}.jpg`;
-                
+            const nameSlug = formatSlug(name);
+            const clubSlug = formatSlug(club);
+
+            // Try club-specific image first (e.g. sian-jones-lliswerry-runners.jpg), then fallback to nameSlug.jpg
+            const photoSources = [];
+            if (clubSlug) {
+                photoSources.push(`assets/images/athletes/${nameSlug}-${clubSlug}.jpg`);
+            }
+            photoSources.push(`assets/images/athletes/${nameSlug}.jpg`);
+
+            const tryNextImage = (index) => {
+                if (index >= photoSources.length) return; // Neither exists, keep default dark mesh banner
+
                 const imgCheck = new Image();
-                imgCheck.src = photoSrc;
-                imgCheck.onload = () => {
-                    const header = document.getElementById('athlete-header-container');
-                    const mesh = document.getElementById('header-mesh');
-                    const glow = document.getElementById('header-glow');
-                    const gradient = document.getElementById('header-gradient');
-                    
-                    if (header) {
-                        header.style.height = ''; 
-                        header.classList.remove('h-[240px]', 'md:h-[400px]');
-                        header.classList.add('h-[350px]', 'md:h-[500px]');
-                        
-                        header.style.backgroundImage = `url('${photoSrc}')`;
-                        header.style.backgroundSize = 'cover';
-                        header.style.backgroundPosition = 'top';
-                        header.style.backgroundRepeat = 'no-repeat';
-                        
-                        if (mesh) mesh.style.display = 'none';
-                        if (glow) glow.style.display = 'none';
-                        
-                        if (gradient) {
-                            gradient.className = "absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-black/20";
-                        }
-                    }
-                };
-            };
+        imgCheck.src = photoSources[index];
+        imgCheck.onload = () => {
+            const header = document.getElementById('athlete-header-container');
+            const mesh = document.getElementById('header-mesh');
+            const glow = document.getElementById('header-glow');
+            const gradient = document.getElementById('header-gradient');
+            
+            if (header) {
+                header.style.height = ''; 
+                header.classList.remove('h-[240px]', 'md:h-[400px]');
+                header.classList.add('h-[350px]', 'md:h-[500px]');
+                
+                header.style.backgroundImage = `url('${photoSources[index]}')`;
+                header.style.backgroundSize = 'cover';
+                header.style.backgroundPosition = 'top';
+                header.style.backgroundRepeat = 'no-repeat';
+                
+                if (mesh) mesh.style.display = 'none';
+                if (glow) glow.style.display = 'none';
+                
+                if (gradient) {
+                    gradient.className = "absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-black/20";
+                }
+            }
+        };
+        imgCheck.onerror = () => tryNextImage(index + 1);
+    };
 
-            // Find a matching key case-insensitively in clubHistory
-            const clubHistoryKey = Object.keys(corrections.clubHistory).find(key => 
+    tryNextImage(0);
+};
+
+            const clubHistoryKey = !targetClub ? Object.keys(clubHistory).find(key => 
                 key.toLowerCase() === targetAthlete.toLowerCase()
-            );
+            ) : null;
 
-            // Helper function to resolve which club they represented for a given season
             const getClubForSeason = (seasonStr, defaultClub) => {
-                if (!clubHistoryKey || !corrections.clubHistory[clubHistoryKey]) return defaultClub;
+                if (!clubHistoryKey || !clubHistory[clubHistoryKey]) return defaultClub;
                 
                 const currentYear = parseInt(seasonStr.split('/')[0], 10);
                 let resolvedClub = defaultClub;
 
-                corrections.clubHistory[clubHistoryKey].forEach(hist => {
+                clubHistory[clubHistoryKey].forEach(hist => {
+                    if (!hist || !hist.seasons) return;
                     const range = hist.seasons.replace(/\s+/g, '').split(/[—–-]/);
                     
                     let startYear = 0;
@@ -338,26 +344,34 @@
                 return resolvedClub;
             };
 
-            // Map records, cache original strings, and unify names
             const correctedRecords = allRecords.map(row => {
                 let updatedRow = { ...row };
                 updatedRow.originalName = row.name || '';
 
                 if (row.name) {
-                    const match = Object.entries(corrections.nameChanges).find(([legacyName]) => 
+                    const match = Object.entries(nameChanges).find(([legacyName]) => 
                         legacyName.toLowerCase() === row.name.toLowerCase()
                     );
-                    if (match) {
+                    if (match && match[1] && match[1].primaryName) {
                         updatedRow.name = match[1].primaryName;
                     }
                 }
                 return updatedRow;
             });
-            
-            // Filter history rows matching primary identity key
+
+            // STRICT FILTERING: Keeps separate runners with the same name completely isolated
+            // Filter history rows strictly matching both Name AND exact Club
             const history = correctedRecords.filter(row => {
                 if (!row.name || row.pos <= 0) return false;
-                return row.name.toLowerCase() === targetAthlete.toLowerCase();
+                
+                const matchesName = row.name.trim().toLowerCase() === targetAthlete.trim().toLowerCase();
+                
+                if (targetClub) {
+                    if (!row.club) return false;
+                    return matchesName && (row.club.trim().toLowerCase() === targetClub.trim().toLowerCase());
+                }
+
+                return matchesName;
             }).sort((a, b) => {
                 const cleanA = (a.season || '').replace(/[-_]/g, '/');
                 const cleanB = (b.season || '').replace(/[-_]/g, '/');
@@ -374,7 +388,18 @@
             });
 
             if (history.length === 0) {
-                document.getElementById('athlete-name').textContent = "Athlete Not Found";
+                const nameEl = document.getElementById('athlete-name');
+                if (nameEl) nameEl.textContent = targetAthlete;
+                
+                const clubHeader = document.getElementById('athlete-club');
+                if (clubHeader && targetClub) {
+                    clubHeader.textContent = targetClub.toUpperCase();
+                }
+                
+                const tableBody = document.getElementById('history-rows');
+                if (tableBody) {
+                    tableBody.innerHTML = `<tr><td colspan="8" class="py-6 text-center text-slate-500 font-mono">No matching race records found for this specific club entry.</td></tr>`;
+                }
                 return;
             }
 
@@ -384,25 +409,26 @@
             const latestYear = parseInt(latestSeason.split('/')[0], 10);
             const totalSpanYears = (latestYear - debutYear) + 1;
 
-            document.getElementById('athlete-career-span').textContent = `ACTIVE: ${debutSeason} – ${latestSeason} (${totalSpanYears} YRS)`;
+            const spanEl = document.getElementById('athlete-career-span');
+            if (spanEl) spanEl.textContent = `ACTIVE: ${debutSeason} – ${latestSeason} (${totalSpanYears} YRS)`;
 
-            // Identify Base Info from most recent finish row
             const meta = history[0];
-            document.getElementById('athlete-name').textContent = targetAthlete; 
-            document.getElementById('athlete-gender').textContent = `Gender: ${meta.sex === 'M' ? 'Male' : 'Female'}`;
-            document.getElementById('athlete-age-cat').textContent = meta.age_cat ? `Category: ${meta.age_cat.toUpperCase()}` : "Age Division Profile";
+            const nameEl = document.getElementById('athlete-name');
+            const genderEl = document.getElementById('athlete-gender');
+            const ageEl = document.getElementById('athlete-age-cat');
 
-            // Trigger dynamic profile check safely inside core configuration timeline
+            if (nameEl) nameEl.textContent = targetAthlete; 
+            if (genderEl) genderEl.textContent = `Gender: ${meta.sex === 'M' ? 'Male' : 'Female'}`;
+            if (ageEl) ageEl.textContent = meta.age_cat ? `Category: ${meta.age_cat.toUpperCase()}` : "Age Division Profile";
+
             loadProfilePhoto(targetAthlete);
 
-            // Set top club dynamically from clubHistory if present, otherwise fall back to dataset row
-            let initialClubFallback = meta.club || "Unattached";
-            if (clubHistoryKey) {
-                const presentClubEntry = corrections.clubHistory[clubHistoryKey].find(h => h.seasons.toLowerCase().includes('present'));
+            let initialClubFallback = targetClub || meta.club || "Unattached";
+            if (!targetClub && clubHistoryKey && clubHistory[clubHistoryKey]) {
+                const presentClubEntry = clubHistory[clubHistoryKey].find(h => h.seasons && h.seasons.toLowerCase().includes('present'));
                 if (presentClubEntry) initialClubFallback = presentClubEntry.club;
             }
             
-            // Render the main club title as a clickable link
             const clubHeaderContainer = document.getElementById('athlete-club');
             if (clubHeaderContainer) {
                 if (initialClubFallback !== "Unattached" && initialClubFallback !== "Independent") {
@@ -413,13 +439,12 @@
                 }
             }
 
-            // 2. RENDERING METADATA TIMELINE NOTICES (With clickable club history badges)
             const metaContainer = document.getElementById('athlete-meta-history');
             if (metaContainer) {
                 let metaNoticeHtml = '';
 
-                Object.entries(corrections.nameChanges).forEach(([legacyName, data]) => {
-                    if (data.primaryName.toLowerCase() === targetAthlete.toLowerCase()) {
+                Object.entries(nameChanges).forEach(([legacyName, data]) => {
+                    if (data && data.primaryName && data.primaryName.toLowerCase() === targetAthlete.toLowerCase()) {
                         metaNoticeHtml += `
                             <p class="text-[11px] font-mono text-slate-400 font-semibold uppercase tracking-wider mt-1 bg-brand-500/5 border border-brand-500/10 px-3 py-1.5 rounded inline-block">
                                 ℹ️ Note: ${data.note} (Effective ${data.effectiveSeason})
@@ -428,9 +453,9 @@
                     }
                 });
 
-                if (clubHistoryKey) {
+                if (clubHistoryKey && clubHistory[clubHistoryKey]) {
                     let historyRows = '';
-                    corrections.clubHistory[clubHistoryKey].forEach(hist => {
+                    clubHistory[clubHistoryKey].forEach(hist => {
                         if (hist.club && hist.club !== "Unattached" && hist.club !== "Independent") {
                             const clubUrl = `club.html?name=${encodeURIComponent(hist.club)}`;
                             historyRows += `
@@ -452,7 +477,6 @@
                 metaContainer.innerHTML = metaNoticeHtml;
             }
 
-            // Aggregation Computations
             let xcCount = 0;
             let roadCount = 0;
             let catWins = 0;
@@ -460,13 +484,11 @@
             let bestXcPos = Infinity;
             let bestRoadPos = Infinity;
             const venuesSet = new Set();
-            
-            // Build unique clubs list specifically for this runner to check for history variations
             const uniqueClubsRaced = new Set();
 
             history.forEach(row => {
                 const disc = (row.discipline || '').toLowerCase();
-                venuesSet.add(row.venue);
+                if (row.venue) venuesSet.add(row.venue);
 
                 const activeClubForFixture = getClubForSeason(row.season, row.club || "Unattached");
                 if (activeClubForFixture) {
@@ -487,37 +509,35 @@
                     }
                 }
 
-                if (parseInt(row.cat_pos, 10) === 1) {
-                    catWins++;
-                }
-
-                if (parseInt(row.gender_pos, 10) === 1) {
-                    overallWins++;
-                }
+                if (parseInt(row.cat_pos, 10) === 1) catWins++;
+                if (parseInt(row.gender_pos, 10) === 1) overallWins++;
             });
 
-            // Determine if this runner actually has a multi-club history footprints
             const isMultiClubRunner = uniqueClubsRaced.size > 1;
 
-            // Update Metric Text Blocks
-            document.getElementById('stat-xc-count').textContent = xcCount;
-            document.getElementById('stat-road-count').textContent = roadCount;
-            document.getElementById('stat-venues').textContent = venuesSet.size;
-            document.getElementById('stat-cat-wins').textContent = catWins;
-            document.getElementById('stat-best-xc').textContent = bestXcPos === Infinity ? '-' : `Pos ${bestXcPos}`;
-            document.getElementById('stat-best-road').textContent = bestRoadPos === Infinity ? '-' : `Pos ${bestRoadPos}`;
+            const xcCountEl = document.getElementById('stat-xc-count');
+            const roadCountEl = document.getElementById('stat-road-count');
+            const venuesEl = document.getElementById('stat-venues');
+            const catWinsEl = document.getElementById('stat-cat-wins');
+            const bestXcEl = document.getElementById('stat-best-xc');
+            const bestRoadEl = document.getElementById('stat-best-road');
+
+            if (xcCountEl) xcCountEl.textContent = xcCount;
+            if (roadCountEl) roadCountEl.textContent = roadCount;
+            if (venuesEl) venuesEl.textContent = venuesSet.size;
+            if (catWinsEl) catWinsEl.textContent = catWins;
+            if (bestXcEl) bestXcEl.textContent = bestXcPos === Infinity ? '-' : `Pos ${bestXcPos}`;
+            if (bestRoadEl) bestRoadEl.textContent = bestRoadPos === Infinity ? '-' : `Pos ${bestRoadPos}`;
 
             const genderLabel = meta.sex === 'M' ? 'Male' : 'Female';
-            document.getElementById('label-best-xc').textContent = `Best ${genderLabel} XC Pos`;
-            document.getElementById('label-best-road').textContent = `Best ${genderLabel} Road Pos`;
+            const labelXc = document.getElementById('label-best-xc');
+            const labelRoad = document.getElementById('label-best-road');
+            if (labelXc) labelXc.textContent = `Best ${genderLabel} XC Pos`;
+            if (labelRoad) labelRoad.textContent = `Best ${genderLabel} Road Pos`;
 
-            // ==========================================
-            // UNIVERSAL ATHLETE INSIGHTS CORE PIPELINE
-            // ==========================================
             const MIN_RACES_FOR_TREND = 3;
             const chronologicalHistory = [...history].reverse();
 
-            // Scope data points for hover rendering
             let xcPointsData = [];
             let roadPointsData = [];
             let minPos = 1;
@@ -605,7 +625,6 @@
                     document.getElementById('trend-sparkline-path').setAttribute('d', generatePathD(xcPointsData));
                     document.getElementById('trend-road-path').setAttribute('d', generatePathD(roadPointsData));
 
-                    // --- RENDER INTERACTIVE SPARKLINE HOVER POINTS ---
                     const pointsContainer = document.getElementById('sparkline-points');
                     const tooltip = document.getElementById('chart-tooltip');
                     const tooltipTitle = document.getElementById('tooltip-title');
@@ -702,129 +721,137 @@
                 });
 
                 const progressTbody = document.getElementById('course-progress-rows');
-                if (progressRowsArray.length > 0) {
-                    progressRowsArray.sort((a, b) => b.delta - a.delta);
-                    progressTbody.innerHTML = progressRowsArray.map(v => {
-                        const isCrossCountry = (v.discipline || '').toUpperCase() === 'XC';
-                        const seriesBadge = isCrossCountry 
-                            ? '<span class="text-[10px] font-mono font-bold bg-brand-500/10 text-brand-400 px-2 py-0.5 rounded">XC</span>' 
-                            : '<span class="text-[10px] font-mono font-bold bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">ROAD</span>';
+                if (progressTbody) {
+                    if (progressRowsArray.length > 0) {
+                        progressRowsArray.sort((a, b) => b.delta - a.delta);
+                        progressTbody.innerHTML = progressRowsArray.map(v => {
+                            const isCrossCountry = (v.discipline || '').toUpperCase() === 'XC';
+                            const seriesBadge = isCrossCountry 
+                                ? '<span class="text-[10px] font-mono font-bold bg-brand-500/10 text-brand-400 px-2 py-0.5 rounded">XC</span>' 
+                                : '<span class="text-[10px] font-mono font-bold bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">ROAD</span>';
 
-                        return `
-                            <tr class="hover:bg-slate-900/10 transition-colors">
-                                <td class="py-3 px-4 font-bold text-slate-200 uppercase">
-                                    <a href="${v.recentUrl}" class="hover:text-brand-500 hover:underline decoration-brand-500/30 transition-all">
-                                        ${v.venue}
-                                    </a>
-                                </td>
-                                <td class="py-3 px-4">${seriesBadge}</td>
-                                <td class="py-3 px-4 text-slate-400 font-mono">${v.debutStr}</td>
-                                <td class="py-3 px-4 text-slate-400 font-mono">${v.recentStr}</td>
-                                <td class="py-3 px-4 text-right pr-6 w-36">${v.progressHtml}</td>
-                            </tr>
-                        `;
-                    }).join('');
-                } else {
-                    document.getElementById('course-progress-container').style.display = 'none';
+                            return `
+                                <tr class="hover:bg-slate-900/10 transition-colors">
+                                    <td class="py-3 px-4 font-bold text-slate-200 uppercase">
+                                        <a href="${v.recentUrl}" class="hover:text-brand-500 hover:underline decoration-brand-500/30 transition-all">
+                                            ${v.venue}
+                                        </a>
+                                    </td>
+                                    <td class="py-3 px-4">${seriesBadge}</td>
+                                    <td class="py-3 px-4 text-slate-400 font-mono">${v.debutStr}</td>
+                                    <td class="py-3 px-4 text-slate-400 font-mono">${v.recentStr}</td>
+                                    <td class="py-3 px-4 text-right pr-6 w-36">${v.progressHtml}</td>
+                                </tr>
+                            `;
+                        }).join('');
+                    } else {
+                        const container = document.getElementById('course-progress-container');
+                        if (container) container.style.display = 'none';
+                    }
                 }
             } else {
-                document.getElementById('insight-card-title').textContent = "League Status";
-                document.getElementById('insight-card-value').textContent = "Rising Star";
-                document.getElementById('insight-card-subtext').textContent = `Welcome to the league! Complete ${MIN_RACES_FOR_TREND - chronologicalHistory.length} more fixtures to unlock comprehensive history trend analytics components.`;
-                document.getElementById('trend-chart-container').style.display = 'none';
-                document.getElementById('course-progress-container').style.display = 'none';
+                const titleEl = document.getElementById('insight-card-title');
+                const valEl = document.getElementById('insight-card-value');
+                const subEl = document.getElementById('insight-card-subtext');
+                const chartContainer = document.getElementById('trend-chart-container');
+                const courseContainer = document.getElementById('course-progress-container');
+
+                if (titleEl) titleEl.textContent = "League Status";
+                if (valEl) valEl.textContent = "Rising Star";
+                if (subEl) subEl.textContent = `Welcome to the league! Complete ${MIN_RACES_FOR_TREND - chronologicalHistory.length} more fixtures to unlock comprehensive history trend analytics components.`;
+                if (chartContainer) chartContainer.style.display = 'none';
+                if (courseContainer) courseContainer.style.display = 'none';
             }
 
-            // Render History Table Rows
             const tableBody = document.getElementById('history-rows');
-            tableBody.innerHTML = '';
+            if (tableBody) {
+                tableBody.innerHTML = '';
 
-            history.forEach(row => {
-                const isXc = (row.discipline || '').toLowerCase() === 'xc';
-                const typeBadge = isXc 
-                    ? '<span class="text-[10px] font-mono font-bold bg-brand-500/10 text-brand-400 px-2 py-0.5 rounded">XC</span>' 
-                    : '<span class="text-[10px] font-mono font-bold bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">ROAD</span>';
-                
-                let dateStr = row.date || '';
-                if (dateStr.includes('-')) {
-                    const parts = dateStr.split('-');
-                    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                history.forEach(row => {
+                    const isXc = (row.discipline || '').toLowerCase() === 'xc';
+                    const typeBadge = isXc 
+                        ? '<span class="text-[10px] font-mono font-bold bg-brand-500/10 text-brand-400 px-2 py-0.5 rounded">XC</span>' 
+                        : '<span class="text-[10px] font-mono font-bold bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">ROAD</span>';
                     
-                    if (parts.length === 3) {
-                        let year = parts[0];
-                        let part1 = parseInt(parts[1], 10);
-                        let part2 = parseInt(parts[2], 10);
+                    let dateStr = row.date || '';
+                    if (dateStr.includes('-')) {
+                        const parts = dateStr.split('-');
+                        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                         
-                        let day, monthIdx;
-                        
-                        if (part1 > 12) {
-                            day = part1;
-                            monthIdx = part2 - 1;
-                        } else {
-                            day = part2;
-                            monthIdx = part1 - 1;
+                        if (parts.length === 3) {
+                            let year = parts[0];
+                            let part1 = parseInt(parts[1], 10);
+                            let part2 = parseInt(parts[2], 10);
+                            
+                            let day, monthIdx;
+                            if (part1 > 12) {
+                                day = part1;
+                                monthIdx = part2 - 1;
+                            } else {
+                                day = part2;
+                                monthIdx = part1 - 1;
+                            }
+                            
+                            const monthName = months[monthIdx] || 'Unknown';
+                            dateStr = `${day} ${monthName} ${year}`;
                         }
-                        
-                        const monthName = months[monthIdx] || 'Unknown';
-                        dateStr = `${day} ${monthName} ${year}`;
                     }
-                }
 
-                const catPosNum = parseInt(row.cat_pos, 10);
-                let catPosHtml = `<span class="text-slate-400">Pos ${row.cat_pos}</span>`;
-                if (catPosNum === 1) catPosHtml = '<span class="text-amber-400 font-bold">🥇 Pos 1</span>';
-                if (catPosNum === 2) catPosHtml = '<span class="text-slate-300 font-bold">🥈 Pos 2</span>';
-                if (catPosNum === 3) catPosHtml = '<span class="text-amber-600 font-bold">🥉 Pos 3</span>';
+                    const catPosNum = parseInt(row.cat_pos, 10);
+                    let catPosHtml = `<span class="text-slate-400">Pos ${row.cat_pos}</span>`;
+                    if (catPosNum === 1) catPosHtml = '<span class="text-amber-400 font-bold">🥇 Pos 1</span>';
+                    if (catPosNum === 2) catPosHtml = '<span class="text-slate-300 font-bold">🥈 Pos 2</span>';
+                    if (catPosNum === 3) catPosHtml = '<span class="text-amber-600 font-bold">🥉 Pos 3</span>';
 
-                const paramSeason = row.season.replace('/', '_');
-                const resultsUrl = `results.html?season=${paramSeason}&discipline=${(row.discipline || '').toLowerCase()}&race=${row.race_number}`;
+                    const paramSeason = (row.season || '').replace('/', '_');
+                    const resultsUrl = `results.html?season=${paramSeason}&discipline=${(row.discipline || '').toLowerCase()}&race=${row.race_number}`;
 
-                const nameToDisplay = row.originalName || row.name;
-                const activeClubForFixture = getClubForSeason(row.season, row.club || "Unattached");
+                    const nameToDisplay = row.originalName || row.name;
+                    const activeClubForFixture = getClubForSeason(row.season, row.club || "Unattached");
 
-                let clubDetailsHtml = '';
-                if (isMultiClubRunner) {
-                    if (activeClubForFixture && activeClubForFixture !== "Unattached" && activeClubForFixture !== "Independent") {
-                        const clubUrl = `club.html?name=${encodeURIComponent(activeClubForFixture)}`;
-                        clubDetailsHtml = `RAN FOR <a href="${clubUrl}" class="underline decoration-slate-800 hover:decoration-brand-500 hover:text-brand-500 transition-colors">${activeClubForFixture.toUpperCase()}</a>`;
-                    } else {
-                        clubDetailsHtml = `RAN FOR ${activeClubForFixture.toUpperCase()}`;
+                    let clubDetailsHtml = '';
+                    if (isMultiClubRunner) {
+                        if (activeClubForFixture && activeClubForFixture !== "Unattached" && activeClubForFixture !== "Independent") {
+                            const clubUrl = `club.html?name=${encodeURIComponent(activeClubForFixture)}`;
+                            clubDetailsHtml = `RAN FOR <a href="${clubUrl}" class="underline decoration-slate-800 hover:decoration-brand-500 hover:text-brand-500 transition-colors">${activeClubForFixture.toUpperCase()}</a>`;
+                        } else {
+                            clubDetailsHtml = `RAN FOR ${activeClubForFixture.toUpperCase()}`;
+                        }
                     }
-                }
 
-                let nameChangeHtml = '';
-                if (nameToDisplay.toLowerCase() !== targetAthlete.toLowerCase()) {
-                    const spacer = clubDetailsHtml ? ' <span class="text-slate-700 font-sans px-1">•</span> ' : '';
-                    nameChangeHtml = `${spacer}Competed as: ${nameToDisplay}`;
-                }
+                    let nameChangeHtml = '';
+                    if (nameToDisplay.toLowerCase() !== targetAthlete.toLowerCase()) {
+                        const spacer = clubDetailsHtml ? ' <span class="text-slate-700 font-sans px-1">•</span> ' : '';
+                        nameChangeHtml = `${spacer}Competed as: ${nameToDisplay}`;
+                    }
 
-                const metaRowText = `${clubDetailsHtml}${nameChangeHtml}`;
+                    const metaRowText = `${clubDetailsHtml}${nameChangeHtml}`;
 
-                const metaBlockWrapper = metaRowText.trim().length > 0 
-                    ? `<span class="block text-[10px] text-slate-500 font-mono font-bold uppercase mt-0.5">${metaRowText}</span>`
-                    : '';
+                    const metaBlockWrapper = metaRowText.trim().length > 0 
+                        ? `<span class="block text-[10px] text-slate-500 font-mono font-bold uppercase mt-0.5">${metaRowText}</span>`
+                        : '';
 
-                const trHtml = `
-                    <tr class="hover:bg-slate-900/10 transition-colors">
-                        <td class="py-3 px-4 font-mono text-slate-400">${row.season}</td>
-                        <td class="py-3 px-4">${typeBadge}</td>
-                        <td class="py-3 px-4">
-                            <a href="${resultsUrl}" class="font-bold text-slate-200 uppercase tracking-tight hover:text-brand-500 transition-colors">
-                                Fixture ${row.race_number} — ${row.venue}
-                            </a>
-                            ${metaBlockWrapper}
-                        </td>
-                        <td class="py-3 px-4 text-slate-500 font-medium">${dateStr}</td>
-                        <td class="py-3 px-4 text-center font-mono text-slate-400 font-bold">Pos ${row.pos}</td>
-                        <td class="py-3 px-4 text-center font-mono">${catPosHtml}</td>
-                        <td class="py-3 px-4 text-center font-mono text-slate-400">Pos ${row.gender_pos}</td>
-                        <td class="py-3 px-4 text-right font-mono font-bold pr-6 text-brand-500">${row.time}</td>
-                    </tr>
-                `;
-                tableBody.insertAdjacentHTML('beforeend', trHtml);
-            });
+                    const trHtml = `
+                        <tr class="hover:bg-slate-900/10 transition-colors">
+                            <td class="py-3 px-4 font-mono text-slate-400">${row.season}</td>
+                            <td class="py-3 px-4">${typeBadge}</td>
+                            <td class="py-3 px-4">
+                                <a href="${resultsUrl}" class="font-bold text-slate-200 uppercase tracking-tight hover:text-brand-500 transition-colors">
+                                    Fixture ${row.race_number} — ${row.venue}
+                                </a>
+                                ${metaBlockWrapper}
+                            </td>
+                            <td class="py-3 px-4 text-slate-500 font-medium">${dateStr}</td>
+                            <td class="py-3 px-4 text-center font-mono text-slate-400 font-bold">Pos ${row.pos}</td>
+                            <td class="py-3 px-4 text-center font-mono">${catPosHtml}</td>
+                            <td class="py-3 px-4 text-center font-mono text-slate-400">Pos ${row.gender_pos}</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold pr-6 text-brand-500">${row.time}</td>
+                        </tr>
+                    `;
+                    tableBody.insertAdjacentHTML('beforeend', trHtml);
+                });
+            }
 
-            // WIRE DYNAMIC MILESTONE BADGES UP TO COMPUTED DATA
             const badgeContainer = document.getElementById('athlete-badges');
             if (badgeContainer) {
                 badgeContainer.innerHTML = '';

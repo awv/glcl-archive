@@ -34,7 +34,7 @@
         <!-- Injected automatically via site-layout.js -->
     </nav>
 
-    <!-- LARGER CINEMATIC HERO HERO BANNER -->
+    <!-- LARGER CINEMATIC HERO BANNER -->
     <header class="relative h-[45vh] md:h-[55vh] flex items-center justify-center overflow-hidden border-slate-900 w-full">
         <!-- Background Image -->
         <img src="assets/images/hero_placeholder.jpg" alt="Gwent League Cross Country Action" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 filter brightness-[0.785] contrast-125">
@@ -46,7 +46,7 @@
                 GLCL Archive
             </h1>
             
-            <!-- Centralized Prominent Search Field (Runner Search Focused) -->
+            <!-- Centralized Prominent Search Field -->
             <div class="max-w-xl mx-auto relative">
                 <div class="relative">
                     <input type="text" id="runner-search" placeholder="Search runner names..." autocomplete="off" 
@@ -106,35 +106,24 @@
 
     <!-- CONFIGURATION & RENDER ENGINE -->
     <script>
-    // ==========================================
-    // ⚙️ EASY CONFIGURATION BLOCK
-    // ==========================================
     const ARCHIVE_CONFIG = {
-        // 1. Set the active folder slug for links (must match folder naming)
         currentSeasonKey: "2025_2026", 
         currentSeasonLabel: "2025 / 2026",
 
-        // 2. The 10 Fixtures of the season (5 XC, 5 Road).
-        // - discipline: either "xc" or "road"
-        // - live: true (results active) or false (pending state)
-        // - cancelled: true (marks card as cancelled, overriding live/pending layouts)
         fixtures: [
             { name: "Glebelands",    date: "19 Oct 2025", discipline: "xc",   live: true,  cancelled: false },
-            { name: "Rogerstone",    date: "23 Nov 2025", discipline: "xc", live: true,  cancelled: false },
+            { name: "Rogerstone",    date: "23 Nov 2025", discipline: "xc",   live: true,  cancelled: false },
             { name: "Oldfield Farm", date: "04 Jan 2026", discipline: "xc",   live: true,  cancelled: false },
             { name: "Parc Bryn Bach",date: "01 Feb 2026", discipline: "xc",   live: false, cancelled: true },
             { name: "Risca",         date: "08 Mar 2026", discipline: "xc",   live: true,  cancelled: false },
             { name: "Chepstow",      date: "05 May 2026", discipline: "road", live: true,  cancelled: false },
-            { name: "Blaenavon",     date: "19 May 2026", discipline: "road",   live: true,  cancelled: false },
+            { name: "Blaenavon",     date: "19 May 2026", discipline: "road", live: true,  cancelled: false },
             { name: "Parc Penallta", date: "02 Jun 2026", discipline: "road", live: true,  cancelled: false },
-            { name: "Cwmbran",       date: "30 Jun 2026", discipline: "road",   live: true,  cancelled: false },
+            { name: "Cwmbran",       date: "30 Jun 2026", discipline: "road", live: true,  cancelled: false },
             { name: "Parc Bryn Bach",date: "04 Aug 2026", discipline: "road", live: false, cancelled: false }
         ]
     };
 
-    // ==========================================
-    // 🖥️ ENGINE: RENDERS THE CONFIG TO THE PAGE
-    // ==========================================
     document.addEventListener('DOMContentLoaded', () => {
         const xcGrid = document.getElementById('xc-fixtures-grid');
         const roadGrid = document.getElementById('road-fixtures-grid');
@@ -148,11 +137,9 @@
             xcGrid.innerHTML = '';
             roadGrid.innerHTML = '';
 
-            // Group fixtures by discipline to preserve chronological identity while splitting rows
             const xcFixtures = ARCHIVE_CONFIG.fixtures.filter(f => f.discipline.toLowerCase() === 'xc');
             const roadFixtures = ARCHIVE_CONFIG.fixtures.filter(f => f.discipline.toLowerCase() === 'road');
 
-            // Helper function to render a single subset
             const renderRow = (fixturesList, container, disciplineName) => {
                 fixturesList.forEach((fix, index) => {
                     const disciplineRaceIndex = index + 1;
@@ -162,7 +149,6 @@
                     
                     const card = document.createElement('div');
                     
-                    // 1. CANCELLED STATE
                     if (fix.cancelled) {
                         card.className = "bg-slate-950/40 border border-red-950/40 rounded-xl p-4 flex flex-col justify-between space-y-4 opacity-50";
                         card.innerHTML = `
@@ -179,7 +165,6 @@
                             </div>
                         `;
                     }
-                    // 2. LIVE RESULTS STATE (race parameter sequential to row index)
                     else if (fix.live) {
                         const badgeStyle = isXC 
                             ? "bg-brand-500/10 text-brand-400" 
@@ -207,7 +192,6 @@
                             </div>
                         `;
                     } 
-                    // 3. UPCOMING / PENDING STATE
                     else {
                         card.className = "bg-slate-950/40 border border-slate-900 rounded-xl p-4 flex flex-col justify-between space-y-4 opacity-60";
                         card.innerHTML = `
@@ -228,12 +212,11 @@
                 });
             };
 
-            // Render both lists into their respective rows cleanly
             renderRow(xcFixtures, xcGrid, 'xc');
             renderRow(roadFixtures, roadGrid, 'road');
         }
 
-        // AUTOCOMPLETE SEARCH SYSTEM (Runner names only)
+        // AUTOCOMPLETE SEARCH SYSTEM (Keyed strictly by Name + Club)
         const searchInput = document.getElementById('runner-search');
         const resultsContainer = document.getElementById('autocomplete-results');
         let uniqueRunners = [];
@@ -243,16 +226,19 @@
             window.glclResults.forEach(item => {
                 if (item && item.name) {
                     const standardizedName = item.name.trim();
-                    if (!runnersMap.has(standardizedName)) {
-                        runnersMap.set(standardizedName, item.club || 'Independent');
+                    const clubName = (item.club || 'Independent').trim();
+                    const uniqueKey = `${standardizedName.toLowerCase()}_${clubName.toLowerCase()}`;
+
+                    if (!runnersMap.has(uniqueKey)) {
+                        runnersMap.set(uniqueKey, { name: standardizedName, club: clubName });
                     }
                 }
             });
-            uniqueRunners = Array.from(runnersMap).map(([name, club]) => ({ name, club }));
+            uniqueRunners = Array.from(runnersMap.values());
         }
 
-        const routeToAthlete = (name) => {
-            window.location.href = `athlete.html?name=${encodeURIComponent(name)}`;
+        const routeToAthlete = (name, club) => {
+            window.location.href = `athlete.html?name=${encodeURIComponent(name)}&club=${encodeURIComponent(club)}`;
         };
 
         if (searchInput && resultsContainer) {
@@ -265,7 +251,6 @@
                     return;
                 }
 
-                // Filter explicitly against runner names
                 const filtered = uniqueRunners.filter(runner => 
                     runner.name.toLowerCase().includes(query)
                 ).slice(0, 10);
@@ -276,16 +261,13 @@
                 }
 
                 filtered.forEach(runner => {
-                    const item = document.createElement('div');
-                    item.className = 'px-4 py-3 hover:bg-slate-800/60 cursor-pointer flex justify-between items-center transition-colors';
+                    const item = document.createElement('a');
+                    item.href = `athlete.html?name=${encodeURIComponent(runner.name)}&club=${encodeURIComponent(runner.club)}`;
+                    item.className = 'px-4 py-3 hover:bg-slate-800/60 cursor-pointer flex justify-between items-center transition-colors block';
                     item.innerHTML = `
                         <span class="text-sm font-bold text-slate-200">${runner.name}</span>
                         <span class="text-[10px] font-mono tracking-wider text-slate-500 uppercase">${runner.club}</span>
                     `;
-                    
-                    item.addEventListener('click', () => {
-                        routeToAthlete(runner.name);
-                    });
                     
                     resultsContainer.appendChild(item);
                 });
@@ -295,13 +277,13 @@
 
             searchInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
-                    const query = searchInput.value.trim();
+                    const query = searchInput.value.trim().toLowerCase();
                     if (query.length > 0) {
                         const firstMatch = uniqueRunners.find(runner => 
-                            runner.name.toLowerCase().includes(query.toLowerCase())
+                            runner.name.toLowerCase().includes(query)
                         );
                         if (firstMatch) {
-                            routeToAthlete(firstMatch.name);
+                            routeToAthlete(firstMatch.name, firstMatch.club);
                         }
                     }
                 }

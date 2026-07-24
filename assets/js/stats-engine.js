@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Cache the true raw database name value before mapping overrides
         updatedRow.originalName = row.name;
 
-        if (corrections.nameChanges[updatedRow.name]) {
+        if (corrections.nameChanges && corrections.nameChanges[updatedRow.name]) {
             updatedRow.name = corrections.nameChanges[updatedRow.name].primaryName;
         }
         return updatedRow;
@@ -262,10 +262,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (winnersContainer) {
         winnersContainer.innerHTML = '';
         topWinners.forEach(runner => {
+            const runnerUrl = `athlete.html?name=${encodeURIComponent(runner.name)}&club=${encodeURIComponent(runner.club)}`;
             winnersContainer.insertAdjacentHTML('beforeend', `
                 <tr class="hover:bg-slate-900/20 transition-colors">
                     <td class="py-3 px-4 font-bold text-slate-100">
-                        <a href="athlete.html?name=${encodeURIComponent(runner.name)}" class="hover:text-brand-500 transition-colors">
+                        <a href="${runnerUrl}" class="hover:text-brand-500 transition-colors">
                             ${runner.name}
                         </a>
                     </td>
@@ -351,12 +352,12 @@ document.addEventListener("DOMContentLoaded", () => {
             let rowsHtml = '';
             runnersInCat.forEach((runner, idx) => {
                 const medals = ['🥇', '🥈', '🥉'];
+                const runnerUrl = `athlete.html?name=${encodeURIComponent(runner.name)}&club=${encodeURIComponent(runner.club)}`;
                 rowsHtml += `
                     <div class="flex justify-between items-center text-xs py-1.5 ${idx !== 2 ? 'border-b border-slate-800/30' : ''}">
                         <div class="truncate pr-2">
                             <span class="mr-1.5">${medals[idx]}</span>
-                            <!-- LINK ADDED HERE FOR DEEP-LINKING BACK TO ATHLETE PROFILES -->
-                            <a href="athlete.html?name=${encodeURIComponent(runner.name)}" class="font-bold text-slate-200 hover:text-brand-500 transition-colors">
+                            <a href="${runnerUrl}" class="font-bold text-slate-200 hover:text-brand-500 transition-colors">
                                 ${runner.name}
                             </a>
                         </div>
