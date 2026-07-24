@@ -49,14 +49,14 @@
         <!-- Default deep blue ambient glow behind text layout -->
         <div id="header-glow" class="absolute left-12 -bottom-24 w-96 h-96 bg-brand-500/10 rounded-full blur-[100px] pointer-events-none select-none"></div>
         
-        <!-- Bottom / Immersive Gradient Overlay -->
-        <div id="header-gradient" class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent"></div>
+        <!-- Smooth vertical overlay gradient to blend bottom of hero image seamlessly into page background -->
+        <div id="header-gradient" class="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/60 to-slate-950/20 z-0"></div>
 
         <!-- Text Content Overlay Layer -->
         <div class="relative max-w-[1400px] w-full mx-auto px-4 pb-6 z-10 space-y-2">
             
             <!-- Club Subtitle -->
-            <div id="athlete-club" class="text-xs font-black tracking-widest text-brand-500 uppercase block">
+            <div id="athlete-club" class="text-xs font-black tracking-widest text-sky-400 uppercase block drop-shadow-sm">
                 <!-- Injected by script -->
             </div>
             
@@ -69,12 +69,12 @@
             <div id="athlete-badges" class="flex flex-wrap gap-1.5 pt-1"></div>
             
             <!-- Secondary Meta Target -->
-            <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider pt-1">
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider pt-1">
                 <span id="athlete-gender">GENDER: —</span>
-                <span class="text-slate-800">•</span>
+                <span class="text-slate-700">•</span>
                 <span id="athlete-age-cat">AGE DIVISION PROFILE</span>
-                <span class="text-slate-800">•</span>
-                <span id="athlete-career-span" class="text-brand-400">ACTIVE: —</span>
+                <span class="text-slate-700">•</span>
+                <span id="athlete-career-span" class="text-sky-400">ACTIVE: —</span>
             </div>
 
             <!-- Dynamic Historical Meta Flags Injection Node -->
@@ -317,7 +317,7 @@
                             if (glow) glow.style.display = 'none';
                             
                             if (gradient) {
-                                gradient.className = "absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-black/20";
+                                gradient.className = "absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/60 to-slate-950/20 z-0";
                             }
                         }
                     };
@@ -446,21 +446,28 @@
             if (genderEl) genderEl.textContent = `Gender: ${meta.sex === 'M' ? 'Male' : 'Female'}`;
             if (ageEl) ageEl.textContent = meta.age_cat ? `Category: ${meta.age_cat.toUpperCase()}` : "Age Division Profile";
 
-            loadProfilePhoto(targetAthlete, targetClub || meta.club);
-
-            let initialClubFallback = targetClub || meta.club || "Unattached";
-            if (!targetClub && clubHistoryKey && clubHistory[clubHistoryKey]) {
-                const presentClubEntry = clubHistory[clubHistoryKey].find(h => h.seasons && normStr(h.seasons).includes('present'));
-                if (presentClubEntry) initialClubFallback = presentClubEntry.club;
+            // RESOLVE CURRENT / LATEST CLUB
+            let currentClub = null;
+            if (clubHistoryKey && clubHistory[clubHistoryKey]) {
+                const presentEntry = clubHistory[clubHistoryKey].find(h => h.seasons && normStr(h.seasons).includes('present'));
+                if (presentEntry) currentClub = presentEntry.club;
             }
+            if (!currentClub) {
+                currentClub = getClubForSeason(history[0].season, history[0].club || "Unattached");
+            }
+            if (!currentClub) {
+                currentClub = targetClub || "Unattached";
+            }
+
+            loadProfilePhoto(targetAthlete, currentClub);
             
             const clubHeaderContainer = document.getElementById('athlete-club');
             if (clubHeaderContainer) {
-                if (normStr(initialClubFallback) !== "unattached" && normStr(initialClubFallback) !== "independent") {
-                    const clubUrl = `club.html?name=${encodeURIComponent(initialClubFallback)}`;
-                    clubHeaderContainer.innerHTML = `<a href="${clubUrl}" class="hover:underline hover:text-brand-400 transition-colors">${initialClubFallback.toUpperCase()}</a>`;
+                if (normStr(currentClub) !== "unattached" && normStr(currentClub) !== "independent") {
+                    const clubUrl = `club.html?name=${encodeURIComponent(currentClub)}`;
+                    clubHeaderContainer.innerHTML = `<a href="${clubUrl}" class="hover:underline hover:text-sky-300 transition-colors">${currentClub.toUpperCase()}</a>`;
                 } else {
-                    clubHeaderContainer.textContent = initialClubFallback.toUpperCase();
+                    clubHeaderContainer.textContent = currentClub.toUpperCase();
                 }
             }
 
@@ -471,7 +478,7 @@
                 Object.entries(nameChanges).forEach(([legacyName, data]) => {
                     if (data && data.primaryName && getNameKey(data.primaryName) === finalMasterKey) {
                         metaNoticeHtml += `
-                            <p class="text-[11px] font-mono text-slate-400 font-semibold uppercase tracking-wider mt-1 bg-brand-500/5 border border-brand-500/10 px-3 py-1.5 rounded inline-block">
+                            <p class="text-[11px] font-mono text-slate-300 font-semibold uppercase tracking-wider mt-1 bg-slate-900/80 border border-slate-700 px-3 py-1.5 rounded inline-block shadow-sm">
                                 ℹ️ Note: ${data.note} (Effective ${data.effectiveSeason})
                             </p>
                         `;
@@ -484,13 +491,13 @@
                         if (hist.club && normStr(hist.club) !== "unattached" && normStr(hist.club) !== "independent") {
                             const clubUrl = `club.html?name=${encodeURIComponent(hist.club)}`;
                             historyRows += `
-                                <a href="${clubUrl}" class="inline-block bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-brand-500 text-[10px] font-mono font-bold text-slate-400 hover:text-brand-400 px-2.5 py-1 rounded transition-all">
+                                <a href="${clubUrl}" class="inline-block bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-sky-400 text-[10px] font-mono font-bold text-slate-300 hover:text-sky-300 px-2.5 py-1 rounded transition-all shadow-sm">
                                     🏃‍♂️ ${hist.club.toUpperCase()} (${hist.seasons})
                                 </a>
                             `;
                         } else {
                             historyRows += `
-                                <span class="inline-block bg-slate-900 border border-slate-800 text-[10px] font-mono font-bold text-slate-400 px-2.5 py-1 rounded">
+                                <span class="inline-block bg-slate-900/90 border border-slate-700 text-[10px] font-mono font-bold text-slate-300 px-2.5 py-1 rounded shadow-sm">
                                     🏃‍♂️ ${hist.club.toUpperCase()} (${hist.seasons})
                                 </span>
                             `;
@@ -883,7 +890,7 @@
                 
                 if (overallWins > 0) {
                     badgeContainer.insertAdjacentHTML('beforeend', `
-                        <span class="inline-flex items-center text-[10px] font-mono font-black bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded uppercase tracking-wider">
+                        <span class="inline-flex items-center text-[10px] font-mono font-bold bg-slate-900/90 text-rose-300 border border-rose-500/40 px-2.5 py-1 rounded shadow-sm">
                             👑 Race Winner (${overallWins})
                         </span>
                     `);
@@ -891,7 +898,7 @@
 
                 if (totalSpanYears >= 10) {
                     badgeContainer.insertAdjacentHTML('beforeend', `
-                        <span class="inline-flex items-center text-[10px] font-mono font-black bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded uppercase tracking-wider">
+                        <span class="inline-flex items-center text-[10px] font-mono font-bold bg-slate-900/90 text-emerald-300 border border-emerald-500/40 px-2.5 py-1 rounded shadow-sm">
                             ⏳ ${totalSpanYears} Year Veteran
                         </span>
                     `);
@@ -900,13 +907,13 @@
                 if (catWins > 0) {
                     if (catWins >= 5) {
                         badgeContainer.insertAdjacentHTML('beforeend', `
-                            <span class="inline-flex items-center text-[10px] font-mono font-black bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded uppercase tracking-wider">
+                            <span class="inline-flex items-center text-[10px] font-mono font-bold bg-slate-900/90 text-amber-300 border border-amber-500/40 px-2.5 py-1 rounded shadow-sm">
                                 🥇 Cat Dominator (${catWins})
                             </span>
                         `);
                     } else {
                         badgeContainer.insertAdjacentHTML('beforeend', `
-                            <span class="inline-flex items-center text-[10px] font-mono font-black bg-yellow-600/10 text-yellow-500 border border-yellow-600/20 px-2 py-0.5 rounded uppercase tracking-wider">
+                            <span class="inline-flex items-center text-[10px] font-mono font-bold bg-slate-900/90 text-yellow-300 border border-yellow-500/40 px-2.5 py-1 rounded shadow-sm">
                                 🏅 Cat Winner
                             </span>
                         `);
@@ -916,7 +923,7 @@
                 const totalRaces = xcCount + roadCount;
                 if (totalRaces >= 10) {
                     badgeContainer.insertAdjacentHTML('beforeend', `
-                        <span class="inline-flex items-center text-[10px] font-mono font-black bg-brand-500/10 text-brand-400 border border-brand-500/20 px-2 py-0.5 rounded uppercase tracking-wider">
+                        <span class="inline-flex items-center text-[10px] font-mono font-bold bg-slate-900/90 text-sky-300 border border-sky-500/40 px-2.5 py-1 rounded shadow-sm">
                             🛡️ League Veteran
                         </span>
                     `);
@@ -925,7 +932,7 @@
                 const bestOverallPos = Math.min(bestXcPos, bestRoadPos);
                 if (bestOverallPos > 0 && bestOverallPos <= 10) {
                     badgeContainer.insertAdjacentHTML('beforeend', `
-                        <span class="inline-flex items-center text-[10px] font-mono font-black bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2 py-0.5 rounded uppercase tracking-wider">
+                        <span class="inline-flex items-center text-[10px] font-mono font-bold bg-slate-900/90 text-cyan-300 border border-cyan-500/40 px-2.5 py-1 rounded shadow-sm">
                             ⚡ Top 10 Finisher
                         </span>
                     `);
