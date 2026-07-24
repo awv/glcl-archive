@@ -69,7 +69,7 @@
             </div>
         </section>
 
-            <!-- CLUB STALWARTS (LONGEST SERVING ACTIVE MEMBERS) -->
+        <!-- CLUB STALWARTS (LONGEST SERVING ACTIVE MEMBERS) -->
         <section class="space-y-6 pt-6 border-t border-slate-900">
             <div>
                 <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Loyalty Index</h2>
@@ -135,7 +135,7 @@
             </div>
         </section>
 
-<!-- THE PROGRESSION INDEX (MOST IMPROVED SQUAD MEMBERS) -->
+        <!-- THE PROGRESSION INDEX (MOST IMPROVED SQUAD MEMBERS) -->
         <section class="space-y-6 pt-6 border-t border-slate-900">
             <div>
                 <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">The Progression Index</h2>
@@ -195,8 +195,99 @@
 
     <!-- CORE PROCESSING SCRIPTER -->
     <script>
+        const knownClubKeywords = [
+            'chepstow', 'islwyn', 'griffithstown', 'caerleon', 'lliswerry', 
+            'fairwater', 'club 69', 'club69', 'parc bryn bach', 'monmouth', 
+            'pontypridd', 'san domenico', 'unattached', 'builth', 'brecon', 'pont-y-pwl', 'pontypool', 'abertillery'
+        ];
+
+        // HELPER CLEANERS & NAME FLIPPER
+        function capitalizeWord(str) {
+            return str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : '';
+        }
+
+        function formatRunnerName(rawName) {
+            if (!rawName) return '';
+            let name = rawName.trim();
+
+            // Strip out embedded club names stuck inside athlete names
+            name = name.replace(/\b(Abertillery(\s+AC)?|Chepstow(\s+Harriers)?|Islwyn(\s+RC)?|Griffithstown(\s+Harriers)?|Caerleon(\s+RC)?|Lliswerry(\s+Runners)?|Fairwater(\s+Runners)?|Pont-y-Pwl|Pontypool|Parc Bryn Bach|Monmouth(\s+Harriers)?|San Domenico|Builth(\s+District\s+RC)?)\b/gi, '');
+
+            // Strip out scrambled metadata and standalone gender flags (M/F)
+            name = name
+                .replace(/\b(MEN|MAN|LADIES|WOMEN|CLUB)\b/gi, '')
+                .replace(/\bO\/?\d+\b/gi, '')
+                .replace(/\bV\d+\b/gi, '')
+                .replace(/\b69\b/g, '')
+                .replace(/\b\d+\b/g, '')
+                .replace(/\b[MF]\b/g, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+
+            if (name.includes(',')) {
+                const parts = name.split(',');
+                const surname = parts[0].trim();
+                const firstName = parts.slice(1).join(' ').trim();
+                return `${capitalizeWord(firstName)} ${capitalizeWord(surname)}`;
+            }
+
+            const parts = name.split(/\s+/);
+            if (parts.length >= 2 && parts[0] === parts[0].toUpperCase() && /[A-Z]{2,}/.test(parts[0])) {
+                const surname = parts[0];
+                const firstName = parts.slice(1).join(' ');
+                return `${firstName.split(/\s+/).map(capitalizeWord).join(' ')} ${capitalizeWord(surname)}`;
+            }
+
+            return name.split(/\s+/).map(capitalizeWord).join(' ');
+        }
+
+        function formatSex(rawSex, rawName = '') {
+            if (/katherine/i.test(rawName) || /gemma/i.test(rawName) || /sian/i.test(rawName) || /sandra/i.test(rawName) || /sue/i.test(rawName) || /jane/i.test(rawName) || /becky/i.test(rawName) || /gwen/i.test(rawName)) {
+                return 'F';
+            }
+            if (!rawSex) return '';
+            const sex = rawSex.trim().toUpperCase();
+            if (sex === 'MEN' || sex === 'MALE' || sex === 'M') return 'M';
+            if (sex === 'LADIES' || sex === 'WOMEN' || sex === 'FEMALE' || sex === 'F') return 'F';
+            return sex;
+        }
+
+        function formatClubName(rawClub) {
+            if (!rawClub) return 'Unattached';
+            const club = rawClub.trim();
+            if (/^\d+$/.test(club)) {
+                return club === '69' ? 'Club 69' : 'Unattached';
+            }
+            if (/^(MEN|LADIES|WOMEN|M|F)$/i.test(club)) {
+                return 'Unattached';
+            }
+            const lower = club.toLowerCase();
+            if (lower.includes('abertillery')) return 'Abertillery AC';
+            if (lower.includes('griffithstown')) return 'Griffithstown Harriers';
+            if (lower.includes('chepstow')) return 'Chepstow Harriers';
+            if (lower.includes('islwyn')) return 'Islwyn RC';
+            if (lower.includes('lliswerry')) return 'Lliswerry Runners';
+            if (lower.includes('caerleon')) return 'Caerleon RC';
+            if (lower.includes('fairwater')) return 'Fairwater Runners';
+            if (lower.includes('club 69') || lower.includes('club69') || club === '69') return 'Club 69';
+            if (lower.includes('parc bryn bach')) return 'Parc Bryn Bach RC';
+            if (lower.includes('pont-y-pwl') || lower.includes('pontypool')) return 'Pont-y-Pwl & District Runners';
+            if (lower.includes('monmouth')) return 'Monmouth Harriers';
+            if (lower.includes('san domenico')) return 'San Domenico';
+            if (lower.includes('builth')) return 'Builth District RC';
+
+            return club;
+        }
+
+        // Normalise club aliases (e.g., "Caerleon Running Club" <-> "Caerleon RC" <-> "Caerleon")
+        function matchesClubName(recordClub, targetClub) {
+            if (!recordClub || !targetClub) return false;
+            const cleanRec = recordClub.trim().toLowerCase().replace(/ running club| rc/g, '').trim();
+            const cleanTarget = targetClub.trim().toLowerCase().replace(/ running club| rc/g, '').trim();
+            return cleanRec === cleanTarget;
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
-            // Fetch shared navigation content block
             fetch('components/nav.html')
                 .then(response => response.text())
                 .then(data => { document.getElementById('global-nav').innerHTML = data; })
@@ -218,7 +309,6 @@
             const bannerImg = document.getElementById('club-banner-img');
             if (bannerImg) {
                 const customSrc = `assets/images/clubs/${clubSlug}.jpg`;
-                
                 const imgCheck = new Image();
                 imgCheck.src = customSrc;
                 imgCheck.onload = () => { bannerImg.src = customSrc; };
@@ -226,10 +316,88 @@
 
             document.getElementById('club-title').textContent = targetClub;
 
-            const allRecords = window.glclResults || [];
-            
-            const clubRecords = allRecords.filter(row => 
-                row.club && row.club.trim().toLowerCase() === targetClub.trim().toLowerCase() && row.pos > 0
+            const rawRecords = window.glclResults || [];
+
+            // AUTO-REPAIR & CLEAN DATASET
+            const repairedRecords = rawRecords.map(row => {
+                let updated = { ...row };
+                let raw = updated.name || '';
+                let rawBib = updated.bib ? String(updated.bib).trim() : '';
+
+                // Extract embedded club names stuck inside athlete names
+                const embeddedClubMatch = raw.match(/\b(Abertillery(\s+AC)?|Chepstow(\s+Harriers)?|Islwyn(\s+RC)?|Griffithstown(\s+Harriers)?|Caerleon(\s+RC)?|Lliswerry(\s+Runners)?|Fairwater(\s+Runners)?|Pont-y-Pwl|Pontypool|Parc Bryn Bach|Monmouth(\s+Harriers)?|San Domenico|Builth(\s+District\s+RC)?)\b/i);
+                if (embeddedClubMatch) {
+                    const extractedClub = embeddedClubMatch[0];
+                    if (!updated.club || updated.club === 'Unattached' || !knownClubKeywords.some(kw => String(updated.club).toLowerCase().includes(kw))) {
+                        updated.club = formatClubName(extractedClub);
+                    }
+                    raw = raw.replace(embeddedClubMatch[0], '').replace(/\s+/g, ' ').trim();
+                }
+
+                // FIX: Check if surname was misparsed into the 'bib' field
+                if (rawBib && /^[a-zA-Z\s'-]+$/.test(rawBib) && !/^\d+$/.test(rawBib)) {
+                    const cleanFirstName = formatRunnerName(raw);
+                    const cleanSurname = capitalizeWord(rawBib);
+                    updated.name = `${cleanFirstName} ${cleanSurname}`.trim();
+                    updated.bib = '-';
+                } else {
+                    updated.name = formatRunnerName(raw);
+                }
+
+                if (/\b69\b/.test(raw) || updated.club === '1' || updated.club === '69' || /club69/i.test(raw)) {
+                    updated.club = 'Club 69';
+                }
+
+                const catMatch = raw.match(/\b(O\/?\d+|V\d+|SENIOR|SEN)\b/i);
+                if (catMatch) {
+                    let extractedCat = catMatch[0].toUpperCase();
+                    if (/^O\/?\d+/.test(extractedCat)) {
+                        extractedCat = extractedCat.replace(/^O\/?/, 'V');
+                    }
+                    updated.age_cat = extractedCat;
+                }
+
+                const catPosMatch = raw.match(/\b(O\/?\d+|V\d+|SENIOR|SEN)\s+(\d+)\b/i);
+                if (catPosMatch) {
+                    updated.cat_pos = parseInt(catPosMatch[2], 10);
+                }
+
+                if (/\b(LADIES|WOMEN)\b/i.test(raw)) {
+                    updated.sex = 'F';
+                } else if (/\b(MEN|MAN)\b/i.test(raw)) {
+                    updated.sex = 'M';
+                }
+
+                updated.sex = formatSex(updated.sex, updated.name);
+                updated.club = formatClubName(updated.club);
+
+                return updated;
+            });
+
+            // PASS 4: REPAIR MISSING CATEGORY POSITIONS & DISPLAY TIMES
+            const categoryCounters = {};
+
+            repairedRecords.forEach(row => {
+                // 1. Clean up display times
+                if (!row.time || row.time === 'N/A') {
+                    row.time = 'No Time';
+                }
+
+                // 2. If cat_pos is 0, assign a position based on arrival order for that age category
+                const catKey = `${row.season}_${row.race_number}_${row.sex}_${row.age_cat}`;
+                const currentCatPos = parseInt(row.cat_pos, 10);
+
+                if (isNaN(currentCatPos) || currentCatPos <= 0) {
+                    categoryCounters[catKey] = (categoryCounters[catKey] || 0) + 1;
+                    row.cat_pos = categoryCounters[catKey];
+                } else {
+                    categoryCounters[catKey] = Math.max(categoryCounters[catKey] || 0, currentCatPos);
+                }
+            });
+
+            // Filter for selected club using flexible alias matcher
+            const clubRecords = repairedRecords.filter(row => 
+                matchesClubName(row.club, targetClub) && row.pos > 0
             );
 
             let totalWins = 0;
@@ -241,7 +409,6 @@
                 if (parseInt(row.gender_pos, 10) === 1) totalWins++;
                 if (parseInt(row.cat_pos, 10) === 1) totalCatWins++;
 
-                // Build aggregate maps for the internal squad rosters
                 if (!athleteMap[row.name]) {
                     athleteMap[row.name] = {
                         name: row.name,
@@ -264,7 +431,6 @@
                     athleteMap[row.name].bestGenderPos = currentGenderPos;
                 }
 
-                // Track chronological timeline arrays for improvement indexes
                 if (!runnerHistory[row.name]) {
                     runnerHistory[row.name] = [];
                 }
@@ -274,12 +440,10 @@
                 });
             });
 
-            // Write standard performance summaries
             document.getElementById('stat-turnout').textContent = clubRecords.length;
             document.getElementById('stat-wins').textContent = totalWins;
             document.getElementById('stat-cat-wins').textContent = totalCatWins;
 
-            // Sort internal club rosters by total race involvement
             const sortedSquad = Object.values(athleteMap).sort((a, b) => b.racesRun - a.racesRun);
 
             const menContainer = document.getElementById('men-squad-rows');
@@ -311,15 +475,14 @@
                 }
             });
 
-            // 1. Calculate the total size of every individual race to serve as our percentage denominator
+            // Calculate race sizes for progression index
             const raceSizes = {};
-            allRecords.forEach(row => {
+            repairedRecords.forEach(row => {
                 if (!row.pos || parseInt(row.pos, 10) === 0) return;
-                const raceKey = `${row.season}_${row.discipline.toLowerCase()}_${row.race_number}`;
+                const raceKey = `${row.season}_${(row.discipline || '').toLowerCase()}_${row.race_number}`;
                 raceSizes[raceKey] = (raceSizes[raceKey] || 0) + 1;
             });
 
-            // 2. Separate athlete history collections by discipline tracker
             const xcHistory = {};
             const roadHistory = {};
 
@@ -349,7 +512,6 @@
                 });
             });
 
-            // 3. Helper processor to compile and sort improvers mathematically
             function processDisciplineImprovers(historyMap) {
                 const list = [];
 
@@ -387,7 +549,6 @@
             const topXcImprovers = processDisciplineImprovers(xcHistory);
             const topRoadImprovers = processDisciplineImprovers(roadHistory);
 
-            // 4. Render Layout Rows to the browser nodes
             function renderImproversTable(dataList, containerId) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -420,10 +581,9 @@
 
             renderImproversTable(topXcImprovers, 'xc-improvement-rows');
             renderImproversTable(topRoadImprovers, 'road-improvement-rows');
-            
 
-            // --- CALCULATE CLUB STALWARTS ---
-            const seasonsSet = new Set(allRecords.map(r => r.season).filter(Boolean));
+            // CALCULATE CLUB STALWARTS
+            const seasonsSet = new Set(repairedRecords.map(r => r.season).filter(Boolean));
             const sortedSeasons = Array.from(seasonsSet).sort();
             const currentSeason = sortedSeasons[sortedSeasons.length - 1];
 
@@ -465,7 +625,6 @@
                 })
                 .slice(0, 4);
 
-            // Render Stalwart Cards
             const stalwartsContainer = document.getElementById('stalwarts-grid');
             if (stalwartsContainer) {
                 stalwartsContainer.innerHTML = '';

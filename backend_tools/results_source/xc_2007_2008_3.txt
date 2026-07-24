@@ -1,0 +1,114 @@
+# VENUE: Islwyn
+# DATE: 2008-01-13
+# DISTANCE: Unknown
+# STATUS: Confirmed
+
+# SECTION: Men
+# DISTANCE: Unknown
+
+1 906 GURMIN Matthew Abertillery M1839 1
+2 327 HUMPHRIES, Dave Lliswerry M1839 2
+3 207 LEWIS, Simon Club 69 M4044 1
+4 904 CORNOCK Nicky Abertillery M1839 3
+5 338 HARRHY, Chris Lliswerry M4044 2
+6 678 VORRÉS Dimitri Griffithstown M4549 1
+7 201 WILLIAMS, David Club 69 M1839 4
+8 194 HARVEY, Mark Chepstow M1839 5
+9 86 COLLINS Ben Caerleon M1839 6
+10 175 DAVIS, Nick Chepstow M1839 7
+11 522 LEWIS Grant Fairwater M1839 8
+12 799 HARTNELL Haydn Islwyn M4549 2
+13 71 KING Jim Caerleon M1839 9
+14 179 ENGLISH, Mark Chepstow M1839 10
+15 150 CHESHIRE Calum Chepstow M1839 11
+16 229 BALL Russell Club 69 M1839 12
+17 304 HARRIS, Dave Lliswerry M1839 13
+18 221 FROST David Club 69 M4044 3
+19 512 HARVEY Kyle Fairwater M1839 14
+20 73 DAVIES Mike Caerleon M4549 3
+21 352 HARRIS, Paul Lliswerry M4044 4
+22 421 HARRIS Steven Chepstow M1839 15
+23 676 THOMPSON Andrew Griffithstown M5054 1
+24 540 WILLIAMS, Alun Fairwater M4044 5
+25 218 REES, Colin Club 69 M4549 4
+26 759 WHITE, Ade Islwyn M4044 6
+27 506 SPENCER, Andrew Fairwater M4044 7
+28 2 MASON, Howard Caerleon M4044 8
+29 228 PARHAM Gethin Club 69 M1839 16
+30 908 MORRIS Scott Abertillery M1839 17
+31 191 OST, Andy Chepstow M1839 18
+32 680 WATERS Phillip Griffithstown M5054 2
+33 158 SAVAGE, Bill Chepstow M5559 1
+34 671 RODGER Peter Griffithstown M5054 3
+35 350 JONES, Christopher Lliswerry M4549 5
+36 691 JONES Brian Griffithstown M4044 9
+37 198 MCENTEE, Kevin Chepstow M5054 4
+38 317 DAY, Paul Lliswerry M5559 2
+39 37 THOMAS, Peter Caerleon M4549 6
+40 315 DURSLEY, Paul Lliswerry M5054 5
+41 905 SMOUT David Abertillery M5559 3
+42 214 HUGHES Dorian Club 69 M4044 10
+43 423 JEFFRIES Mark Chepstow M1839 19
+44 541 WILLIAMS, John Fairwater M1839 20
+45 741 JOHNSTONE, Richard Islwyn M1839 21
+46 716 JONES, Steve Islwyn M4549 7
+47 101 ASHTON, Gerry Chepstow M5054 6
+48 307 CHIPPER, Neil Lliswerry M4549 8
+49 739 DOBBS, Russel Islwyn M1839 22
+50 224 WILLIAMS, Tim Club 69 M4549 9
+51 504 EDWARDS Jamie Pete Fairwater M1839 23
+52 724 WEHDEN Kim Islwyn M4549 10
+53 713 HICKS, Glyn Islwyn M5559 4
+54 661 GUY Thomas Griffithstown M1839 24
+55 543 WOODS, Garry Fairwater M4549 11
+56 508 FRY, Mark Fairwater M4044 11
+57 675 ROBERTS Peter Griffithstown M5054 7
+58 1 TAYLOR, Andrew Caerleon M5054 8
+59 732 BIRCH, Sean Islwyn M1839 25
+60 336 BURGESS Bryn Lliswerry M4549 12
+61 105 BAYLISS, Geoff Chepstow M6099 1
+62 55 WARD, Robert Caerleon M1839 26
+63 329 ATTWOOD, Howard Lliswerry M5559 5
+64 119 FINCH, Dick Chepstow M6099 2
+65 780 PAYTON, Peter Islwyn M5559 6
+66 798 SUTTON, Lyndon Islwyn M5559 7
+67 126 CRAM, Geoff Chepstow M6099 3
+68 684 MALONEY Peter Griffithstown M6099 4
+69 170 WHEELER, Syd Chepstow M6099 5
+
+# SECTION: Women
+# DISTANCE: Unknown
+
+1 349 JONES, Gemma Lliswerry F1834 1
+2 733 LODDER, Helen Islwyn F3539 1
+3 422 MULLIGAN Sam Chepstow F1834 2
+4 409 MERRIMAN Becky Chepstow F3539 2
+5 601 BAYLISS Emma Griffithstown F1834 3
+6 771 FINCH, Linda Islwyn F4044 1
+7 323 WOOLEY Kelly Lliswerry F1834 4
+8 605 DAVIES Julie Griffithstown F3539 3
+9 552 COCKRAM Deb Fairwater F4044 2
+10 209 EVANS, Anne Marie Club 69 F3539 4
+11 418 SUMMERS Louise Chepstow F4044 3
+12 102 ASHTON, Sue Chepstow F5099 1
+13 625 SHEPPARD Clare Griffithstown F1834 5
+14 635 PIMM Helina Griffithstown F1834 6
+15 57 SCRIVENS, Alison Caerleon F3539 5
+16 420 GRIFFITH Sian Chepstow F1834 7
+17 51 THOMAS, Helen Caerleon F4549 1
+18 21 OWEN, Joanne Caerleon F4044 4
+19 602 BURCHELL Julie Griffithstown F3539 6
+20 515 JENKINS, Jeanette Fairwater F4549 2
+21 729 JONES, Jackie Islwyn F3539 7
+22 104 BAYLISS, Jayne Chepstow F5099 2
+23 615 VORRES Christine Griffithstown F4549 3
+24 341 CEENEY, Karen Lliswerry F5099 3
+25 502 ROCHE, Julie Fairwater F3539 8
+26 192 OST, Sue Chepstow F1834 8
+27 19 HOWELLS, Gwyn Caerleon F5099 4
+28 631 SUTTON Clair Griffithstown F4044 5
+29 547 BURRIDGE, Marianne Fairwater F4549 4
+30 302 FORSEY, Yvonne Lliswerry F4549 5
+31 717 PRICE, Helen Islwyn F1834 9
+32 636 REYNOLDS Helen Griffithstown F4044 6
+33 337 BURGESS, Ros Lliswerry F4044 7

@@ -1,0 +1,103 @@
+# VENUE: Caerleon
+# DATE: 2007-02-18
+# DISTANCE: Unknown
+# STATUS: Confirmed
+
+# SECTION: Men
+# DISTANCE: Unknown
+
+1 327 Dave HUMPHRIES M Lliswerry SENIOR 1
+2 719 Dafydd LAMBETH M Islwyn SENIOR 2
+3 174 Martin PENGILLY M Chepstow SENIOR 3
+4 320 John FOSTER M Lliswerry O/45 1
+5 71 Jim KING M Caerleon SENIOR 4
+6 205 Damian WILLIAMS M Club 69 O/40 1
+7 201 David WILLIAMS M Club 69 SENIOR 5
+8 207 Simon LEWIS M Club 69 O/40 2
+9 522 Grant LEWIS M Fairwater SENIOR 6
+10 338 Chris HARRHY M Lliswerry O/40 3
+11 540 Alun WILLIAMS M Fairwater O/40 4
+12 143 Luke MALARZ M Chepstow SENIOR 7
+13 352 Paul HARRIS M Lliswerry O/40 5
+14 678 Dimitri Vorrés M GRIFFITHSTOWN O/40 6
+15 135 Mathew LAWSON M Chepstow SENIOR 8
+16 216 Daman JUKES M Club 69 SENIOR 9
+17 211 Phillip MILES M Club 69 O/55 1
+18 750 Stephen EDWARDS M Islwyn SENIOR 10
+19 549 James VERNALL M Fairwater SENIOR 11
+20 194 Mark HARVEY M Chepstow SENIOR 12
+21 164 Gareth CREED M Chepstow SENIOR 13
+22 506 Andrew SPENCER M Fairwater O/40 7
+23 215 Brian PHILLIPS M Club 69 O/40 8
+24 799 Hayden HARTNELL M ISLWYN O/40 9
+25 317 Paul DAY M Lliswerry O/55 2
+26 743 Michael BUNSTON M Islwyn SENIOR 14
+27 671 Peter Rodger M GRIFFITHSTOWN O/50 1
+28 679 Nick Walsh M GRIFFITHSTOWN SENIOR 15
+29 158 Bill SAVAGE M Chepstow O/55 3
+30 659 Gerard Gormley M GRIFFITHSTOWN SENIOR 16
+31 307 Neil CHIPPER M Lliswerry O/45 2
+32 315 Paul DURSLEY M Lliswerry O/50 2
+33 163 Andy STOTT M Chepstow O/45 3
+34 335 Nick PRINGLE M Lliswerry O/45 4
+35 37 Peter THOMAS M Caerleon O/45 5
+36 716 Steve JONES M Islwyn O/45 6
+37 153 Mally REEKS M Chepstow O/40 10
+38 214 Dorian HUGHES M Club 69 O/40 11
+39 508 Mark FRY M Fairwater O/40 12
+40 183 Nick HIGGINS M Chepstow SENIOR 17
+41 556 Steve NASH M Fairwater SENIOR 18
+42 101 Gerry ASHTON M Chepstow O/50 3
+43 778 Patrick SULLIVAN M Islwyn O/40 13
+44 1 Andrew TAYLOR M Caerleon O/50 4
+45 108 Andy BRAY M Chepstow O/50 5
+46 329 Howard ATTWOOD M Lliswerry O/55 4
+47 105 Geoff BAYLISS M Chepstow O/60 1
+48 126 Geoff CRAM M Chepstow O/60 2
+49 17 Micheal POWELL M Caerleon O/55 5
+50 687 Stewart THOMPSON M Griffithstown O/40 14
+51 713 Glyn HICKS M Islwyn O/55 6
+52 728 Blair LUNDIE M Islwyn O/50 6
+53 798 Lyndon SUTTON M ISLWYN O/55 7
+54 133 Dave ANDREWS M Chepstow O/55 8
+55 170 Syd WHEELER M Chepstow O/60 3
+56 684 Peter Maloney M GRIFFITHSTOWN O/60 4
+57 411 Phillip SCRIVENS M Chepstow O/40 15
+58 196 Brett REGULSKI M Chepstow O/45 7
+59 412 Gareth HOARE M Chepstow SENIOR 19
+60 147 Rob BROWN M Chepstow O/55 9
+61 780 Peter PAYTON M Islwyn O/55 10
+
+# SECTION: Women
+# DISTANCE: Unknown
+
+1 349 Gemma JONES F Lliswerry SENIOR 1
+2 733 Helen LODDER F Islwyn O/35 1
+3 413 Liz FRANCIS F Chepstow O/40 1
+4 305 Sandra CHIPPER F Lliswerry O/35 2
+5 227 Jacky AUSTIN F Club 69 O/50 1
+6 102 Sue ASHTON F Chepstow O/50 2
+7 726 Mandy JONES F Islwyn O/45 1
+8 57 Alision SCRIVENS F Caerleon O/35 3
+9 625 Clare HALL F Griffithstown SENIOR 2
+10 605 Julie Davies F GRIFFITHSTOWN O/35 4
+11 609 Stella Nowell F GRIFFITHSTOWN SENIOR 3
+12 209 Anne Marie EVANS F Club 69 O/35 5
+13 129 Jan MORRIS F Chepstow O/35 6
+14 551 Daniela WOODBRIDGE F Fairwater O/35 7
+15 410 Debbie James F Chepstow O/35 8
+16 21 Joanne OWEN F Caerleon O/40 2
+17 548 Sally ZERK F Fairwater SENIOR 4
+18 630 Becky Taylor F Griffithstown SENIOR 5
+19 612 Janet Richards F GRIFFITHSTOWN O/40 3
+20 136 Venessa LAWSON F Chepstow O/35 9
+21 308 Val CLARE F Lliswerry O/45 2
+22 602 Julie Burchell F GRIFFITHSTOWN O/35 10
+23 51 Helen THOMAS F Caerleon O/45 3
+24 729 Jackie JONES F Islwyn O/35 11
+25 515 Jeanette JENKINS F Fairwater O/45 4
+26 615 Christine Vorrés F GRIFFITHSTOWN O/45 5
+27 192 Sue OST F Chepstow SENIOR 6
+28 761 Fiona GLEN F Islwyn SENIOR 7
+29 529 Sue LLOYD F Fairwater O/50 3
+30 547 Marianne BURRIDGE F Fairwater O/45 6

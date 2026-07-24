@@ -250,14 +250,30 @@
             const nameChanges = corrections.nameChanges || {};
             const clubHistory = corrections.clubHistory || {};
 
-            // 1. CASE-INSENSITIVE IDENTITY ALIGNMENT
+            const normStr = (str) => (str || '').trim().toLowerCase();
+
+            // Order-independent name key generator (e.g., "AHERNE Lee" & "Lee Aherne" both produce "aherne lee")
+            const getNameKey = (str) => {
+                if (!str) return '';
+                return str.replace(/,/g, '')
+                          .toLowerCase()
+                          .split(/\s+/)
+                          .filter(Boolean)
+                          .sort()
+                          .join(' ');
+            };
+
+            const targetNameKey = getNameKey(targetAthlete);
+
+            // 1. CASE AND ORDER INSENSITIVE IDENTITY ALIGNMENT
             let masterName = targetAthlete;
             Object.entries(nameChanges).forEach(([legacyName, data]) => {
-                if (data && data.primaryName && (legacyName.toLowerCase() === targetAthlete.toLowerCase() || data.primaryName.toLowerCase() === targetAthlete.toLowerCase())) {
+                if (data && data.primaryName && (getNameKey(legacyName) === targetNameKey || getNameKey(data.primaryName) === targetNameKey)) {
                     masterName = data.primaryName; 
                 }
             });
             targetAthlete = masterName; 
+            const finalMasterKey = getNameKey(targetAthlete);
 
             const loadProfilePhoto = (name, club) => {
                 const formatSlug = (str) => (str || '')
@@ -270,7 +286,6 @@
                 const nameSlug = formatSlug(name);
                 const clubSlug = formatSlug(club);
 
-                // Try club-specific image first (e.g. sian-jones-lliswerry-runners.jpg), then fallback to nameSlug.jpg
                 const photoSources = [];
                 if (clubSlug) {
                     photoSources.push(`assets/images/athletes/${nameSlug}-${clubSlug}.jpg`);
@@ -278,7 +293,7 @@
                 photoSources.push(`assets/images/athletes/${nameSlug}.jpg`);
 
                 const tryNextImage = (index) => {
-                    if (index >= photoSources.length) return; // Neither exists, keep default dark mesh banner
+                    if (index >= photoSources.length) return;
 
                     const imgCheck = new Image();
                     imgCheck.src = photoSources[index];
@@ -312,28 +327,42 @@
                 tryNextImage(0);
             };
 
-            const clubHistoryKey = !targetClub ? Object.keys(clubHistory).find(key => 
-                key.toLowerCase() === targetAthlete.toLowerCase()
-            ) : null;
+            // CASE AND ORDER INSENSITIVE CLUB HISTORY LOOKUP
+            const clubHistoryKey = Object.keys(clubHistory).find(key => getNameKey(key) === finalMasterKey);
+
+            const parseSeasonYear = (seasonStr) => {
+                if (!seasonStr) return 0;
+                const clean = String(seasonStr).replace(/[^0-9/_-]/g, '');
+                const parts = clean.split(/[/_-]/);
+                let yr = parseInt(parts[0], 10);
+                if (isNaN(yr)) return 0;
+                if (yr < 100) yr += 2000;
+                return yr;
+            };
 
             const getClubForSeason = (seasonStr, defaultClub) => {
-                if (!clubHistoryKey || !clubHistory[clubHistoryKey]) return defaultClub;
+                if (!clubHistoryKey || !clubHistory[clubHistoryKey]) {
+                    return window.getCanonicalClub ? window.getCanonicalClub(defaultClub) : defaultClub;
+                }
                 
-                const currentYear = parseInt(seasonStr.split('/')[0], 10);
+                const currentYear = parseSeasonYear(seasonStr);
                 let resolvedClub = defaultClub;
 
                 clubHistory[clubHistoryKey].forEach(hist => {
                     if (!hist || !hist.seasons) return;
-                    const range = hist.seasons.replace(/\s+/g, '').split(/[—–-]/);
+                    
+                    const rangeParts = hist.seasons.replace(/\s+/g, '').split(/[—–-]/);
                     
                     let startYear = 0;
                     let endYear = Infinity;
 
-                    if (range[0].toLowerCase() !== 'debut') {
-                        startYear = parseInt(range[0].split('/')[0], 10);
+                    if (normStr(rangeParts[0]) !== 'debut') {
+                        startYear = parseSeasonYear(rangeParts[0]);
                     }
-                    if (range[1] && range[1].toLowerCase() !== 'present') {
-                        endYear = parseInt(range[1].split('/')[0], 10);
+
+                    const rawEnd = rangeParts[rangeParts.length - 1];
+                    if (rawEnd && normStr(rawEnd) !== 'present') {
+                        endYear = parseSeasonYear(rawEnd);
                     }
 
                     if (currentYear >= startYear && currentYear <= endYear) {
@@ -341,7 +370,7 @@
                     }
                 });
 
-                return resolvedClub;
+                return window.getCanonicalClub ? window.getCanonicalClub(resolvedClub) : resolvedClub;
             };
 
             const correctedRecords = allRecords.map(row => {
@@ -349,48 +378,26 @@
                 updatedRow.originalName = row.name || '';
 
                 if (row.name) {
-                    let currentName = row.name.trim();
+                    const rowKey = getNameKey(row.name);
 
-                    // 1. AUTO-FLIP: Automatically handles "SURNAME, Firstname" format (e.g. "HUMPHRIES, Dave" -> "Dave Humphries")
-                    if (currentName.includes(',')) {
-                        const parts = currentName.split(',');
-                        const surname = parts[0].trim();
-                        const firstName = parts[1].trim();
-
-                        const formattedFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
-                        const formattedSurname = surname.charAt(0).toUpperCase() + surname.slice(1).toLowerCase();
-
-                        currentName = `${formattedFirstName} ${formattedSurname}`;
-                    }
-
-                    // 2. CORRECTIONS OVERRIDE: Check manual mappings in corrections.js
                     const match = Object.entries(nameChanges).find(([legacyName]) => 
-                        legacyName.toLowerCase() === row.name.toLowerCase() ||
-                        legacyName.toLowerCase() === currentName.toLowerCase()
+                        getNameKey(legacyName) === rowKey
                     );
                     
                     if (match && match[1] && match[1].primaryName) {
-                        currentName = match[1].primaryName;
+                        updatedRow.name = match[1].primaryName;
                     }
-
-                    updatedRow.name = currentName;
                 }
                 return updatedRow;
             });
 
-            // STRICT FILTERING: Keeps separate runners with the same name completely isolated
-            const history = correctedRecords.filter(row => {
+            // 1. MATCH ATHLETE RACES REGARDLESS OF WORD ORDER OR CASING
+            let history = correctedRecords.filter(row => {
                 if (!row.name || row.pos <= 0) return false;
-                
-                const matchesName = row.name.trim().toLowerCase() === targetAthlete.trim().toLowerCase();
-                
-                if (targetClub) {
-                    if (!row.club) return false;
-                    return matchesName && (row.club.trim().toLowerCase() === targetClub.trim().toLowerCase());
-                }
+                return getNameKey(row.name) === finalMasterKey;
+            });
 
-                return matchesName;
-            }).sort((a, b) => {
+            history.sort((a, b) => {
                 const cleanA = (a.season || '').replace(/[-_]/g, '/');
                 const cleanB = (b.season || '').replace(/[-_]/g, '/');
                 
@@ -416,16 +423,16 @@
                 
                 const tableBody = document.getElementById('history-rows');
                 if (tableBody) {
-                    tableBody.innerHTML = `<tr><td colspan="8" class="py-6 text-center text-slate-500 font-mono">No matching race records found for this specific club entry.</td></tr>`;
+                    tableBody.innerHTML = `<tr><td colspan="8" class="py-6 text-center text-slate-500 font-mono">No matching race records found for this athlete.</td></tr>`;
                 }
                 return;
             }
 
             const debutSeason = history[history.length - 1].season;
             const latestSeason = history[0].season;
-            const debutYear = parseInt(debutSeason.split('/')[0], 10);
-            const latestYear = parseInt(latestSeason.split('/')[0], 10);
-            const totalSpanYears = (latestYear - debutYear) + 1;
+            const debutYear = parseSeasonYear(debutSeason);
+            const latestYear = parseSeasonYear(latestSeason);
+            const totalSpanYears = Math.max(1, (latestYear - debutYear) + 1);
 
             const spanEl = document.getElementById('athlete-career-span');
             if (spanEl) spanEl.textContent = `ACTIVE: ${debutSeason} – ${latestSeason} (${totalSpanYears} YRS)`;
@@ -439,18 +446,17 @@
             if (genderEl) genderEl.textContent = `Gender: ${meta.sex === 'M' ? 'Male' : 'Female'}`;
             if (ageEl) ageEl.textContent = meta.age_cat ? `Category: ${meta.age_cat.toUpperCase()}` : "Age Division Profile";
 
-            // Pass both targetAthlete and targetClub to support club-specific profile images
             loadProfilePhoto(targetAthlete, targetClub || meta.club);
 
             let initialClubFallback = targetClub || meta.club || "Unattached";
             if (!targetClub && clubHistoryKey && clubHistory[clubHistoryKey]) {
-                const presentClubEntry = clubHistory[clubHistoryKey].find(h => h.seasons && h.seasons.toLowerCase().includes('present'));
+                const presentClubEntry = clubHistory[clubHistoryKey].find(h => h.seasons && normStr(h.seasons).includes('present'));
                 if (presentClubEntry) initialClubFallback = presentClubEntry.club;
             }
             
             const clubHeaderContainer = document.getElementById('athlete-club');
             if (clubHeaderContainer) {
-                if (initialClubFallback !== "Unattached" && initialClubFallback !== "Independent") {
+                if (normStr(initialClubFallback) !== "unattached" && normStr(initialClubFallback) !== "independent") {
                     const clubUrl = `club.html?name=${encodeURIComponent(initialClubFallback)}`;
                     clubHeaderContainer.innerHTML = `<a href="${clubUrl}" class="hover:underline hover:text-brand-400 transition-colors">${initialClubFallback.toUpperCase()}</a>`;
                 } else {
@@ -463,7 +469,7 @@
                 let metaNoticeHtml = '';
 
                 Object.entries(nameChanges).forEach(([legacyName, data]) => {
-                    if (data && data.primaryName && data.primaryName.toLowerCase() === targetAthlete.toLowerCase()) {
+                    if (data && data.primaryName && getNameKey(data.primaryName) === finalMasterKey) {
                         metaNoticeHtml += `
                             <p class="text-[11px] font-mono text-slate-400 font-semibold uppercase tracking-wider mt-1 bg-brand-500/5 border border-brand-500/10 px-3 py-1.5 rounded inline-block">
                                 ℹ️ Note: ${data.note} (Effective ${data.effectiveSeason})
@@ -475,7 +481,7 @@
                 if (clubHistoryKey && clubHistory[clubHistoryKey]) {
                     let historyRows = '';
                     clubHistory[clubHistoryKey].forEach(hist => {
-                        if (hist.club && hist.club !== "Unattached" && hist.club !== "Independent") {
+                        if (hist.club && normStr(hist.club) !== "unattached" && normStr(hist.club) !== "independent") {
                             const clubUrl = `club.html?name=${encodeURIComponent(hist.club)}`;
                             historyRows += `
                                 <a href="${clubUrl}" class="inline-block bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-brand-500 text-[10px] font-mono font-bold text-slate-400 hover:text-brand-400 px-2.5 py-1 rounded transition-all">
@@ -506,12 +512,12 @@
             const uniqueClubsRaced = new Set();
 
             history.forEach(row => {
-                const disc = (row.discipline || '').toLowerCase();
+                const disc = normStr(row.discipline);
                 if (row.venue) venuesSet.add(row.venue);
 
                 const activeClubForFixture = getClubForSeason(row.season, row.club || "Unattached");
                 if (activeClubForFixture) {
-                    uniqueClubsRaced.add(activeClubForFixture.trim().toLowerCase());
+                    uniqueClubsRaced.add(normStr(activeClubForFixture));
                 }
 
                 const genderPosVal = parseInt(row.gender_pos, 10);
@@ -598,7 +604,7 @@
                         if (isNaN(posVal)) return;
 
                         const point = { index, pos: posVal };
-                        const disc = (race.discipline || '').toLowerCase();
+                        const disc = normStr(race.discipline);
                         if (disc === 'xc') {
                             xcPointsData.push(point);
                         } else {
@@ -722,7 +728,7 @@
 
                         if (!isNaN(debutPos) && !isNaN(recentPos)) {
                             const paramSeason = recent.season.replace('/', '_');
-                            const recentUrl = `results.html?season=${paramSeason}&discipline=${(recent.discipline || '').toLowerCase()}&race=${recent.race_number}`;
+                            const recentUrl = `results.html?season=${paramSeason}&discipline=${normStr(recent.discipline)}&race=${recent.race_number}`;
 
                             progressRowsArray.push({
                                 venue: debut.venue,
@@ -744,7 +750,7 @@
                     if (progressRowsArray.length > 0) {
                         progressRowsArray.sort((a, b) => b.delta - a.delta);
                         progressTbody.innerHTML = progressRowsArray.map(v => {
-                            const isCrossCountry = (v.discipline || '').toUpperCase() === 'XC';
+                            const isCrossCountry = normStr(v.discipline) === 'xc';
                             const seriesBadge = isCrossCountry 
                                 ? '<span class="text-[10px] font-mono font-bold bg-brand-500/10 text-brand-400 px-2 py-0.5 rounded">XC</span>' 
                                 : '<span class="text-[10px] font-mono font-bold bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">ROAD</span>';
@@ -787,7 +793,7 @@
                 tableBody.innerHTML = '';
 
                 history.forEach(row => {
-                    const isXc = (row.discipline || '').toLowerCase() === 'xc';
+                    const isXc = normStr(row.discipline) === 'xc';
                     const typeBadge = isXc 
                         ? '<span class="text-[10px] font-mono font-bold bg-brand-500/10 text-brand-400 px-2 py-0.5 rounded">XC</span>' 
                         : '<span class="text-[10px] font-mono font-bold bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">ROAD</span>';
@@ -823,14 +829,14 @@
                     if (catPosNum === 3) catPosHtml = '<span class="text-amber-600 font-bold">🥉 Pos 3</span>';
 
                     const paramSeason = (row.season || '').replace('/', '_');
-                    const resultsUrl = `results.html?season=${paramSeason}&discipline=${(row.discipline || '').toLowerCase()}&race=${row.race_number}`;
+                    const resultsUrl = `results.html?season=${paramSeason}&discipline=${normStr(row.discipline)}&race=${row.race_number}`;
 
                     const nameToDisplay = row.originalName || row.name;
                     const activeClubForFixture = getClubForSeason(row.season, row.club || "Unattached");
 
                     let clubDetailsHtml = '';
                     if (isMultiClubRunner) {
-                        if (activeClubForFixture && activeClubForFixture !== "Unattached" && activeClubForFixture !== "Independent") {
+                        if (activeClubForFixture && normStr(activeClubForFixture) !== "unattached" && normStr(activeClubForFixture) !== "independent") {
                             const clubUrl = `club.html?name=${encodeURIComponent(activeClubForFixture)}`;
                             clubDetailsHtml = `RAN FOR <a href="${clubUrl}" class="underline decoration-slate-800 hover:decoration-brand-500 hover:text-brand-500 transition-colors">${activeClubForFixture.toUpperCase()}</a>`;
                         } else {
@@ -839,7 +845,7 @@
                     }
 
                     let nameChangeHtml = '';
-                    if (nameToDisplay.toLowerCase() !== targetAthlete.toLowerCase()) {
+                    if (getNameKey(nameToDisplay) !== finalMasterKey) {
                         const spacer = clubDetailsHtml ? ' <span class="text-slate-700 font-sans px-1">•</span> ' : '';
                         nameChangeHtml = `${spacer}Competed as: ${nameToDisplay}`;
                     }

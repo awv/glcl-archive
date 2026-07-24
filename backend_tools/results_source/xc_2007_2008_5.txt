@@ -1,0 +1,106 @@
+# VENUE: Chepstow
+# DATE: 2008-03-09
+# DISTANCE: Unknown
+# STATUS: Confirmed
+
+# SECTION: Men
+# DISTANCE: Unknown
+
+1 408 MATTHEWS Phillip Chepstow M1839 1
+2 906 GURMIN Matthew Abertillery M1839 2
+3 327 HUMPHRIES, Dave Lliswerry M1839 3
+4 338 HARRHY, Chris Lliswerry M4044 1
+5 678 VORRÉS Dimitri Griffithstown M4549 1
+6 304 HARRIS, Dave Lliswerry M1839 4
+7 194 HARVEY, Mark Chepstow M1839 5
+8 207 LEWIS, Simon Club 69 M4044 2
+9 522 LEWIS Grant Fairwater M1839 6
+10 178 TEED Ivan Chepstow M1839 7
+11 799 HARTNELL Haydn Islwyn M4549 2
+12 352 HARRIS, Paul Lliswerry M4044 3
+13 421 HARRIS Steven Chepstow M1839 8
+14 71 KING Jim Caerleon M1839 9
+15 135 LAWSON, Mathew Chepstow M1839 10
+16 221 FROST David Club 69 M4044 4
+17 540 WILLIAMS, Alun Fairwater M4044 5
+18 676 THOMPSON Andrew Griffithstown M5054 1
+19 680 WATERS Phillip Griffithstown M5054 2
+20 143 MALARZ, Luke Chepstow M1839 11
+21 218 REES, Colin Club 69 M4549 3
+22 908 MORRIS Scott Abertillery M1839 12
+23 659 GORMLEY Gerard Griffithstown M4044 6
+24 741 JOHNSTONE, Richard Islwyn M1839 13
+25 37 THOMAS, Peter Caerleon M4549 4
+26 230 CHAMMINGS Martin Club 69 M1839 14
+27 211 MILES, Phillip Club 69 M5559 1
+28 425 BLACKMORE Andrew Chepstow M4044 7
+29 423 JEFFRIES Mark Chepstow M1839 15
+30 158 SAVAGE, Bill Chepstow M5559 2
+31 691 JONES Brian Griffithstown M4044 8
+32 215 PHILLIPS, Brian Club 69 M4044 9
+33 163 STOTT, Andy Chepstow M4549 5
+34 350 JONES, Christopher Lliswerry M4549 6
+35 198 MCENTEE, Kevin Chepstow M5054 3
+36 671 RODGER Peter Griffithstown M5054 4
+37 541 WILLIAMS, John Fairwater M1839 16
+38 724 WEHDEN Kim Islwyn M4549 7
+39 679 WALSH Nick Griffithstown M1839 17
+40 313 DAVIES, Chris Lliswerry M5054 5
+41 543 WOODS, Garry Fairwater M4549 8
+42 661 GUY Thomas Griffithstown M1839 18
+43 307 CHIPPER, Neil Lliswerry M4549 9
+44 675 ROBERTS Peter Griffithstown M5054 6
+45 905 SMOUT David Abertillery M5559 3
+46 101 ASHTON, Gerry Chepstow M5054 7
+47 301 BIRD Tom Lliswerry M4044 10
+48 1 TAYLOR, Andrew Caerleon M5054 8
+49 340 WAGENAAR Jonathon Lliswerry M1839 19
+50 713 HICKS, Glyn Islwyn M5559 4
+51 200 COOKSEY, Clive Club 69 M6099 1
+52 336 BURGESS Bryn Lliswerry M4549 10
+53 424 JONES, Rob Chepstow M5054 9
+54 119 FINCH, Dick Chepstow M6099 2
+55 126 CRAM, Geoff Chepstow M6099 3
+56 108 BRAY, Andy Chepstow M5054 10
+57 329 ATTWOOD, Howard Lliswerry M5559 5
+58 170 WHEELER, Syd Chepstow M6099 4
+59 416 COHEN Leo Chepstow M1839 20
+60 133 ANDREWS Dave Chepstow M5559 6
+61 684 MALONEY Peter Griffithstown M6099 5
+62 105 BAYLISS, Geoff Chepstow M6099 6
+63 780 PAYTON, Peter Islwyn M5559 7
+
+# SECTION: Women
+# DISTANCE: Unknown
+
+1 422 MULLIGAN Sam Chepstow F1834 1
+2 349 JONES, Gemma Lliswerry F1834 2
+3 409 MERRIMAN Becky Chepstow F3539 1
+4 601 BAYLISS Emma Griffithstown F1834 3
+5 418 SUMMERS Louise Chepstow F4044 1
+6 901 KNAPP Nicola Abertillery F1834 4
+7 605 DAVIES Julie Griffithstown F3539 2
+8 323 WOOLEY Kelly Lliswerry F1834 5
+9 552 COCKRAM Deb Fairwater F4044 2
+10 227 AUSTIN, Jacky Club 69 F5099 1
+11 209 EVANS, Anne Marie Club 69 F3539 3
+12 57 SCRIVENS, Alison Caerleon F3539 4
+13 608 WOODS Sharon Griffithstown F4549 1
+14 51 THOMAS, Helen Caerleon F4549 2
+15 109 CANTWELL Berna Chepstow F4044 3
+16 52 ADKINS, Shelaga Caerleon F5099 2
+17 515 JENKINS, Jeanette Fairwater F4549 3
+18 615 VORRES Christine Griffithstown F4549 4
+19 21 OWEN, Joanne Caerleon F4044 4
+20 129 MORRIS, Jan Chepstow F3539 5
+21 76 DUNLOP Shona Caerleon F1834 6
+22 729 JONES, Jackie Islwyn F3539 6
+23 136 LAWSON, Vanessa Chepstow F3539 7
+24 104 BAYLISS, Jayne Chepstow F5099 3
+25 632 REES Wendy Griffithstown F4549 5
+26 312 DAVIES, Julia Lliswerry F5099 4
+27 302 FORSEY, Yvonne Lliswerry F4549 6
+28 717 PRICE, Helen Islwyn F1834 7
+29 547 BURRIDGE, Marianne Fairwater F4549 7
+30 337 BURGESS, Ros Lliswerry F4044 5
+31 330 MORGAN Janet Lliswerry F4549 8

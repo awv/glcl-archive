@@ -35,7 +35,6 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('global-nav').innerHTML = data;
-                // Fire a custom event to notify our page scripts that the nav bar is ready
                 window.dispatchEvent(new Event('navLoaded'));
             })
             .catch(err => console.error('Error loading navigation header:', err));
@@ -85,24 +84,32 @@
             </div>
         </section>
         
-        <!-- RESULTS MAIN CONTAINER (DYNAMIC SECTION TABLES INJECTED HERE) -->
+        <!-- RESULTS MAIN CONTAINER -->
         <section id="results-sections-container" class="space-y-10">
-            <!-- Dynamically populated with single or multi-table standings -->
+            <!-- Dynamically populated standings -->
         </section>
     </main>
 
     <!-- RUNTIME SCRIPTER -->
     <script>
-        // NAME FORMATTING HELPER FUNCTIONS
         function capitalizeWord(str) {
             return str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : '';
         }
 
         function formatRunnerName(rawName) {
             if (!rawName) return '';
-            const name = rawName.trim();
+            let name = rawName.trim();
 
-            // 1. Handle "SURNAME, Firstname" (e.g., "HUMPHRIES, Dave" -> "Dave Humphries")
+            name = name
+                .replace(/\b(MEN|MAN|LADIES|WOMEN|CLUB)\b/gi, '')
+                .replace(/\bO\/?\d+\b/gi, '')
+                .replace(/\bV\d+\b/gi, '')
+                .replace(/\b69\b/g, '')
+                .replace(/\b\d+\b/g, '')
+                .replace(/\b[MF]\b/g, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+
             if (name.includes(',')) {
                 const parts = name.split(',');
                 const surname = parts[0].trim();
@@ -110,20 +117,77 @@
                 return `${capitalizeWord(firstName)} ${capitalizeWord(surname)}`;
             }
 
-            // 2. Handle "SURNAME Firstname" with ALL-CAPS surname (e.g., "HUMPHRIES Dave" -> "Dave Humphries")
             const parts = name.split(/\s+/);
             if (parts.length >= 2 && parts[0] === parts[0].toUpperCase() && /[A-Z]{2,}/.test(parts[0])) {
                 const surname = parts[0];
                 const firstName = parts.slice(1).join(' ');
-                
-                const formattedFirstName = firstName.split(/\s+/).map(capitalizeWord).join(' ');
-                const formattedSurname = capitalizeWord(surname);
-                
-                return `${formattedFirstName} ${formattedSurname}`;
+                return `${firstName.split(/\s+/).map(capitalizeWord).join(' ')} ${capitalizeWord(surname)}`;
             }
 
-            return name;
+            return name.split(/\s+/).map(capitalizeWord).join(' ');
         }
+
+        function formatSex(rawSex, rawName = '') {
+            if (/katherine|gemma|sian|sandra|sue|jane|becky|gwen|emma|stella|mel|helen|kate|claire|lisa|nicola|sarah/i.test(rawName)) {
+                return 'F';
+            }
+            if (!rawSex) return '';
+            const sex = rawSex.trim().toUpperCase();
+            if (sex === 'MEN' || sex === 'MALE' || sex === 'M') return 'M';
+            if (sex === 'LADIES' || sex === 'WOMEN' || sex === 'FEMALE' || sex === 'F') return 'F';
+            return sex;
+        }
+
+        function formatAgeCat(rawCat) {
+            if (!rawCat) return 'SENIOR';
+            let cat = rawCat.trim().toUpperCase();
+
+            if (/^O\/?\d+/.test(cat)) {
+                cat = cat.replace(/^O\/?/, 'V');
+            }
+
+            if (cat === 'SEN' || cat === 'SENIOR' || cat === 'V18') {
+                return 'SENIOR';
+            }
+
+            return cat;
+        }
+
+        function formatClubName(rawClub) {
+            if (!rawClub) return 'Unattached';
+            const club = rawClub.trim();
+
+            if (/^\d+$/.test(club)) {
+                return club === '69' ? 'Club 69' : 'Unattached';
+            }
+            if (/^(MEN|LADIES|WOMEN|M|F)$/i.test(club)) {
+                return 'Unattached';
+            }
+
+            const lower = club.toLowerCase();
+
+            if (lower.includes('abertillery')) return 'Abertillery AC';
+            if (lower.includes('griffithstown')) return 'Griffithstown Harriers';
+            if (lower.includes('chepstow')) return 'Chepstow Harriers';
+            if (lower.includes('islwyn')) return 'Islwyn RC';
+            if (lower.includes('lliswerry')) return 'Lliswerry Runners';
+            if (lower.includes('caerleon')) return 'Caerleon RC';
+            if (lower.includes('fairwater')) return 'Fairwater Runners';
+            if (lower.includes('club 69') || lower.includes('club69') || club === '69') return 'Club 69';
+            if (lower.includes('parc bryn bach')) return 'Parc Bryn Bach RC';
+            if (lower.includes('pont-y-pwl') || lower.includes('pontypool')) return 'Pont-y-Pwl & District Runners';
+            if (lower.includes('monmouth')) return 'Monmouth Harriers';
+            if (lower.includes('san domenico')) return 'San Domenico';
+            if (lower.includes('builth')) return 'Builth District RC';
+
+            return club;
+        }
+
+        const knownClubKeywords = [
+            'chepstow', 'islwyn', 'griffithstown', 'caerleon', 'lliswerry', 
+            'fairwater', 'club 69', 'club69', 'parc bryn bach', 'monmouth', 
+            'pontypridd', 'san domenico', 'unattached', 'builth', 'brecon', 'pont-y-pwl', 'pontypool', 'abertillery'
+        ];
 
         document.addEventListener("DOMContentLoaded", () => {
             const urlParams = new URLSearchParams(window.location.search);
@@ -133,7 +197,6 @@
 
             const selectedSeason = rawSeason.replace('_', '/');
             
-            // SAFE LINK UPDATE: Wait for asynchronous navbar load before manipulating its DOM properties
             window.addEventListener('navLoaded', () => {
                 const navBack = document.getElementById('nav-back-link');
                 if (navBack) {
@@ -144,9 +207,100 @@
             });
 
             const allRecords = window.glclResults || [];
-            
-            // Filter matches both runner records and status placeholders (pos === 0)
-            const allMatched = allRecords.filter(row => 
+
+            // PASS 1: AUTO-REPAIR & CLEAN DATASET
+            const repairedRecords = allRecords.map(row => {
+                let updated = { ...row };
+                let raw = updated.name || '';
+                let rawBib = updated.bib ? String(updated.bib).trim() : '';
+                let rawClub = updated.club ? String(updated.club).trim() : '';
+
+                // Extract embedded club names stuck inside athlete names (e.g. "Mark Abertillery Morgan")
+                const embeddedClubMatch = raw.match(/\b(Abertillery(\s+AC)?|Chepstow(\s+Harriers)?|Islwyn(\s+RC)?|Griffithstown(\s+Harriers)?|Caerleon(\s+RC)?|Lliswerry(\s+Runners)?|Fairwater(\s+Runners)?|Pont-y-Pwl|Pontypool|Parc Bryn Bach|Monmouth(\s+Harriers)?|San Domenico|Builth(\s+District\s+RC)?)\b/i);
+                if (embeddedClubMatch) {
+                    const extractedClub = embeddedClubMatch[0];
+                    if (!updated.club || updated.club === 'Unattached' || updated.club === '1' || !knownClubKeywords.some(kw => String(updated.club).toLowerCase().includes(kw))) {
+                        updated.club = formatClubName(extractedClub);
+                    }
+                    raw = raw.replace(embeddedClubMatch[0], '').replace(/\s+/g, ' ').trim();
+                    updated.name = raw;
+                }
+
+                // Repair surnames in bib field
+                if (rawBib && /^[a-zA-Z\s'-]+$/.test(rawBib) && !/^\d+$/.test(rawBib)) {
+                    const cleanFirstName = formatRunnerName(raw);
+                    const cleanSurname = capitalizeWord(rawBib);
+                    updated.name = `${cleanFirstName} ${cleanSurname}`.trim();
+                    updated.bib = '-';
+                    raw = updated.name;
+                }
+
+                // Repair surnames in club field
+                if (rawClub && !knownClubKeywords.some(kw => rawClub.toLowerCase().includes(kw))) {
+                    if (/^[a-zA-ZáéíóúÁÉÍÓÚñÑ'-]+$/.test(rawClub)) {
+                        const cleanName = formatRunnerName(raw);
+                        const cleanSurname = capitalizeWord(rawClub);
+                        updated.name = `${cleanName} ${cleanSurname}`.trim();
+                        updated.club = 'Unattached';
+                        raw = updated.name;
+                    }
+                }
+
+                // Extract Club 69
+                if (/\b69\b/.test(raw) || updated.club === '1' || updated.club === '69' || /club69/i.test(raw)) {
+                    updated.club = 'Club 69';
+                }
+
+                // Extract Age Category
+                const catMatch = raw.match(/\b(O\/?\d+|V\d+|SENIOR|SEN)\b/i);
+                if (catMatch) {
+                    let extractedCat = catMatch[0].toUpperCase();
+                    if (/^O\/?\d+/.test(extractedCat)) {
+                        extractedCat = extractedCat.replace(/^O\/?/, 'V');
+                    }
+                    updated.age_cat = extractedCat;
+                }
+
+                // Extract Category Position
+                const catPosMatch = raw.match(/\b(O\/?\d+|V\d+|SENIOR|SEN)\s+(\d+)\b/i);
+                if (catPosMatch) {
+                    updated.cat_pos = parseInt(catPosMatch[2], 10);
+                }
+
+                // Extract Gender
+                if (/\b(LADIES|WOMEN)\b/i.test(raw)) {
+                    updated.sex = 'F';
+                } else if (/\b(MEN|MAN)\b/i.test(raw)) {
+                    updated.sex = 'M';
+                }
+
+                updated.name = formatRunnerName(updated.name);
+                updated.sex = formatSex(updated.sex, updated.name);
+                if (updated.age_cat) updated.age_cat = formatAgeCat(updated.age_cat);
+                if (updated.club) updated.club = formatClubName(updated.club);
+
+                return updated;
+            });
+
+            // PASS 2: BUILD MASTER ATHLETE-TO-CLUB DICTIONARY FROM VALID ENTRIES
+            const athleteClubMap = {};
+            repairedRecords.forEach(row => {
+                if (row.name && row.club && row.club !== 'Unattached') {
+                    athleteClubMap[row.name.toLowerCase()] = row.club;
+                }
+            });
+
+            // PASS 3: INHERIT KNOWN CLUBS FOR UNATTACHED RECORDS
+            repairedRecords.forEach(row => {
+                if (row.club === 'Unattached' && row.name) {
+                    const knownClub = athleteClubMap[row.name.toLowerCase()];
+                    if (knownClub) {
+                        row.club = knownClub;
+                    }
+                }
+            });
+
+            const allMatched = repairedRecords.filter(row => 
                 row.season === selectedSeason && 
                 row.discipline.toLowerCase() === discipline.toLowerCase() && 
                 parseInt(row.race_number, 10) === raceNum
@@ -167,7 +321,6 @@
             const notesContainer = document.getElementById('fixture-notes-container');
             const notesText = document.getElementById('fixture-notes-text');
 
-            // Render Historical Notes if available
             if (meta.notes && meta.notes.trim() !== '') {
                 notesText.textContent = meta.notes;
                 notesContainer.classList.remove('hidden');
@@ -175,7 +328,6 @@
                 notesContainer.classList.add('hidden');
             }
 
-            // Handle Missing Results State
             if (meta.status === 'Results Missing') {
                 if (winnersSection) winnersSection.style.display = 'none';
                 resultsContainer.innerHTML = `
@@ -189,7 +341,6 @@
                 return;
             }
 
-            // Handle Cancelled State
             if (meta.status === 'Cancelled') {
                 if (winnersSection) winnersSection.style.display = 'none';
                 resultsContainer.innerHTML = `
@@ -203,17 +354,15 @@
                 return;
             }
 
-            // Filter for valid finisher rows
             const filtered = allMatched.filter(row => row.pos > 0).sort((a, b) => a.pos - b.pos);
 
-            // Totals
-            const menCount = filtered.filter(r => r.sex === 'M').length;
-            const womenCount = filtered.filter(r => r.sex === 'F').length;
+            const menCount = filtered.filter(r => formatSex(r.sex, r.name) === 'M').length;
+            const womenCount = filtered.filter(r => formatSex(r.sex, r.name) === 'F').length;
             document.getElementById('count-total').textContent = filtered.length;
             document.getElementById('count-men').textContent = menCount;
             document.getElementById('count-women').textContent = womenCount;
 
-            // Compute Age Category Winners (tracking athlete objects to preserve club details)
+            // Compute Age Category Winners
             const targetedCategories = ['SENIOR', 'V35', 'V40', 'V45', 'V50', 'V55', 'V60', 'V65', 'V70', 'V75+'];
             const catWinnersMap = {};
             
@@ -222,24 +371,21 @@
             });
 
             filtered.forEach(row => {
-                if (!row.age_cat || parseInt(row.cat_pos, 10) !== 1) return;
-                
-                let normCat = row.age_cat.toUpperCase().trim();
+                let normCat = formatAgeCat(row.age_cat);
+                const sexKey = formatSex(row.sex, row.name);
 
-                // Map V18 / SEN / SENIOR to the SENIOR grid card
-                if (normCat === 'V18' || normCat === 'SEN' || normCat === 'SENIOR') {
-                    normCat = 'SENIOR';
-                }
-
-                // Group older veteran categories into V75+
                 if (normCat.startsWith('V75') || normCat.startsWith('V80') || normCat.startsWith('V85')) {
                     normCat = 'V75+';
                 }
 
-                if (catWinnersMap[normCat]) {
-                    const sexKey = row.sex.toUpperCase();
-                    if (!catWinnersMap[normCat][sexKey]) {
-                        catWinnersMap[normCat][sexKey] = { name: row.name, club: row.club };
+                if (catWinnersMap[normCat] && sexKey) {
+                    const catPosNum = parseInt(row.cat_pos, 10);
+                    const currentWinner = catWinnersMap[normCat][sexKey];
+
+                    if (catPosNum === 1) {
+                        catWinnersMap[normCat][sexKey] = { name: row.name, club: formatClubName(row.club) };
+                    } else if (!currentWinner) {
+                        catWinnersMap[normCat][sexKey] = { name: row.name, club: formatClubName(row.club) };
                     }
                 }
             });
@@ -287,9 +433,7 @@
                 winnersGrid.insertAdjacentHTML('beforeend', cardHtml);
             });
 
-            // --- MULTI-SECTION DYNAMIC TABLE RENDERING ---
-            
-            // Group records by race_section
+            // MULTI-SECTION TABLE RENDERING
             const sectionsMap = {};
             filtered.forEach(row => {
                 const secName = row.race_section || "Main";
@@ -309,10 +453,14 @@
                     ? "Full Field Standings" 
                     : `${secName} Standings`;
 
-                // Helper function to build row HTML
                 const buildRowsHtml = (rows) => {
                     return rows.map(row => {
-                        const sexColor = row.sex === 'M' ? 'text-sky-400' : 'text-pink-400';
+                        const formattedName = formatRunnerName(row.name);
+                        const normSex = formatSex(row.sex, row.name);
+                        const normCat = formatAgeCat(row.age_cat);
+                        const displayClub = formatClubName(row.club);
+                        
+                        const sexColor = normSex === 'M' ? 'text-sky-400' : 'text-pink-400';
                         const podiumRowBg = row.pos <= 3 ? 'bg-brand-500/5 font-semibold text-slate-100' : 'hover:bg-slate-900/10';
                         
                         const catPosNum = parseInt(row.cat_pos, 10);
@@ -326,8 +474,7 @@
                             catPosHtml = `<span class="inline-block font-mono font-bold text-[10px] text-amber-600 bg-amber-600/10 border border-amber-700/20 px-1.5 py-0.5 rounded">🥉 Pos 3</span>`;
                         }
 
-                        const formattedName = formatRunnerName(row.name);
-                        const athleteUrl = `athlete.html?name=${encodeURIComponent(formattedName)}&club=${encodeURIComponent(row.club)}`;
+                        const athleteUrl = `athlete.html?name=${encodeURIComponent(formattedName)}&club=${encodeURIComponent(displayClub)}`;
 
                         return `
                             <tr class="transition-colors ${podiumRowBg}">
@@ -336,9 +483,9 @@
                                 <td class="py-3 px-4 font-bold text-slate-200">
                                     <a href="${athleteUrl}" class="hover:text-brand-500 transition-colors">${formattedName}</a>
                                 </td>
-                                <td class="py-3 px-4 text-center font-black ${sexColor}">${row.sex}</td>
-                                <td class="py-3 px-4 uppercase tracking-tight text-slate-400 font-medium">${row.age_cat || 'SEN'}</td>
-                                <td class="py-3 px-4 font-medium"><a href="club.html?name=${encodeURIComponent(row.club)}" class="hover:text-brand-500 transition-colors">${row.club}</a></td>
+                                <td class="py-3 px-4 text-center font-black ${sexColor}">${normSex}</td>
+                                <td class="py-3 px-4 uppercase tracking-tight text-slate-400 font-medium">${normCat}</td>
+                                <td class="py-3 px-4 font-medium"><a href="club.html?name=${encodeURIComponent(displayClub)}" class="hover:text-brand-500 transition-colors">${displayClub}</a></td>
                                 <td class="py-2 px-4 text-center">${catPosHtml}</td>
                                 <td class="py-3 px-4 text-center font-mono text-slate-400">Pos ${row.gender_pos}</td>
                                 <td class="py-3 px-4 text-right font-mono font-bold pr-6 text-brand-500">${row.time}</td>
