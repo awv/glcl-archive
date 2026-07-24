@@ -1,4 +1,4 @@
-# VENUE: Parc Penalla
+# VENUE: Parc Penallta
 # DATE: 2013-07-30
 # DISTANCE: Unknown
 # STATUS: Confirmed
@@ -56,7 +56,7 @@
 51 661 Thomas GUY Griffithstown M4044 MEN 49 7
 52 681 Terry WHITE Griffithstown M6064 MEN 50 2
 53 156 Dave AUSTIN Chepstow M4044 MEN 51 8
-54 882 James FOULKES- Lliswerry M1739 MEN 52 23
+54 882 James FOULKES-NOCKLliswerry M1739 MEN 52 23
 55 418 Louise SUMMERS Chepstow F4549 LADIES 3 1
 56 215 Nichola GETHING Parc Bryn Bach F4044 LADIES 4 1
 57 M54 Robert NELSON Monmouth M4044 MEN 53 9

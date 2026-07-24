@@ -257,7 +257,7 @@
 
             const campaignMaxes = {};
             const athleteMetrics = {};
-            const clubProfiles = {};
+            const rawClubProfiles = {};
             const runnerProfiles = {};
 
             // 1. Single unified loop to parse all dataset structures cleanly
@@ -265,7 +265,7 @@
                 if (row.pos === 0 || !row.name) return;
 
                 const name = row.name.trim();
-                const club = row.club ? row.club.trim() : 'Independent';
+                const rawClub = row.club ? row.club.trim() : 'Independent';
                 const campaignKey = `${row.season}_${row.discipline.toLowerCase()}`;
                 const raceKey = `${row.season}_${row.discipline.toLowerCase()}_${row.race_number}`;
 
@@ -281,7 +281,7 @@
                 if (!athleteMetrics[name]) {
                     athleteMetrics[name] = {
                         name: name,
-                        club: club,
+                        club: rawClub,
                         totalAppearances: 0,
                         campaignBreakdown: {}
                     };
@@ -292,12 +292,12 @@
                 }
                 athleteMetrics[name].campaignBreakdown[campaignKey]++;
 
-                // C. Aggregate profile metrics for the clubs comparison engine
+                // C. Aggregate raw profile metrics for clubs
                 if (row.club) {
                     const cName = row.club.trim();
-                    if (!clubProfiles[cName]) {
-                        clubProfiles[cName] = {
-                            name: cName,
+                    if (!rawClubProfiles[cName]) {
+                        rawClubProfiles[cName] = {
+                            rawName: cName,
                             finishesCount: 0,
                             distinctAthletes: new Set(),
                             femaleCount: 0,
@@ -307,12 +307,17 @@
                         };
                     }
                     
-                    const cp = clubProfiles[cName];
+                    const cp = rawClubProfiles[cName];
                     cp.finishesCount++;
                     cp.distinctAthletes.add(name);
                     
                     if (row.sex && row.sex.toUpperCase() === 'F') cp.femaleCount++;
-                    if (row.age_cat && row.age_cat.toUpperCase().startsWith('V')) cp.vetsCount++;
+                    
+                    const cat = (row.age_cat || '').toUpperCase();
+                    if (cat.includes('V') || cat.includes('M') || cat.includes('W') || cat.includes('VET') || cat.includes('MASTER')) {
+                        cp.vetsCount++;
+                    }
+
                     if (parseInt(row.gender_pos, 10) === 1) cp.outrightWins++;
 
                     if (!cp.packingMap[raceKey]) cp.packingMap[raceKey] = [];
@@ -323,7 +328,7 @@
                 if (!runnerProfiles[name]) {
                     runnerProfiles[name] = {
                         name: name,
-                        club: club,
+                        club: rawClub,
                         xcFinishes: 0,
                         xcBest: Infinity,
                         roadFinishes: 0,
@@ -335,7 +340,7 @@
                 }
 
                 const rp = runnerProfiles[name];
-                rp.club = club;
+                rp.club = rawClub;
                 const isXC = row.discipline.toLowerCase() === 'xc';
                 const genderPos = parseInt(row.gender_pos, 10);
                 const catPos = parseInt(row.cat_pos, 10);
@@ -355,6 +360,37 @@
                 if (catPos === 1) {
                     rp.catWins++;
                 }
+            });
+
+            // Re-map raw club profiles into canonical club profiles
+            const clubProfiles = {};
+            Object.values(rawClubProfiles).forEach(cp => {
+                let canonicalName = window.getCanonicalClub ? window.getCanonicalClub(cp.rawName) : cp.rawName;
+                if (!canonicalName) return;
+
+                if (!clubProfiles[canonicalName]) {
+                    clubProfiles[canonicalName] = {
+                        name: canonicalName,
+                        finishesCount: 0,
+                        distinctAthletes: new Set(),
+                        femaleCount: 0,
+                        vetsCount: 0,
+                        outrightWins: 0,
+                        packingMap: {}
+                    };
+                }
+
+                const target = clubProfiles[canonicalName];
+                target.finishesCount += cp.finishesCount;
+                cp.distinctAthletes.forEach(a => target.distinctAthletes.add(a));
+                target.femaleCount += cp.femaleCount;
+                target.vetsCount += cp.vetsCount;
+                target.outrightWins += cp.outrightWins;
+
+                Object.entries(cp.packingMap).forEach(([rKey, posArr]) => {
+                    if (!target.packingMap[rKey]) target.packingMap[rKey] = [];
+                    target.packingMap[rKey].push(...posArr);
+                });
             });
 
             // Calculate Head-to-Head Wins by searching matching race files
@@ -674,10 +710,23 @@
                 });
             }
 
-            // 4. Render Dynamic Demographic Leaderboard Rows for ALL Clubs
-            const clubList = Object.values(clubProfiles).filter(c => c.finishesCount >= 1);
+            // 4. Render Dynamic Demographic Leaderboard Rows for Legitimate Clubs
+            const excludedClubNames = new Set([
+                'unknown', 'unattached', 'independent',
+                'foulkes-', 'aherne', 'lewis', 'evans', 'williams', 
+                'miles', 'phillips', 'rainbird', 'thomas', 'hughes', 'austin'
+            ]);
 
-            // A. Render ALL Female Mobilisation Row Elements
+            const clubList = Object.values(clubProfiles).filter(c => {
+                const norm = c.name.toLowerCase().trim();
+                if (excludedClubNames.has(norm)) return false;
+                if (!norm.includes(' ') && !norm.includes('rc') && !norm.includes('ac') && !norm.includes('harriers') && !norm.includes('runners') && !norm.includes('club') && !norm.includes('69')) {
+                    return false;
+                }
+                return c.finishesCount >= 10;
+            });
+
+            // A. Render Female Mobilisation Row Elements
             const femaleContainer = document.getElementById('female-leaderboard-rows');
             if (femaleContainer) {
                 femaleContainer.innerHTML = '';
@@ -703,7 +752,7 @@
                 });
             }
 
-            // B. Render ALL Veteran vs Senior Row Elements
+            // B. Render Veteran vs Senior Row Elements
             const vetsContainer = document.getElementById('vets-leaderboard-rows');
             if (vetsContainer) {
                 vetsContainer.innerHTML = '';
