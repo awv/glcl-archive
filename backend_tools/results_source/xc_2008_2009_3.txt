@@ -1,0 +1,113 @@
+# VENUE: Griffithstown
+# DATE: 2009-01-11
+# DISTANCE: Unknown
+# STATUS: Confirmed
+
+# SECTION: Men
+# DISTANCE: Unknown
+
+1 71 KING Jim Caerleon M1839 1
+2 150 CHESHIRE Calum Chepstow M1839 2
+3 194 HARVEY, Mark Chepstow M1839 3
+4 360 SMOULT Robin Lliswerry M1839 4
+5 178 TEED Ivan Chepstow M1839 5
+6 207 LEWIS, Simon ParcBrynBach M4044 1
+7 320 FOSTER, John Lliswerry M5054 1
+8 521 HUMPHRIES Laurence Fairwater M1839 6
+9 512 HARVEY Kyle Fairwater M1839 7
+10 304 HARRIS, Dave Lliswerry M1839 8
+11 348 SMITH, Lee Lliswerry M4044 2
+12 176 SCOTT Paul Chepstow M4044 3
+13 678 VORRÉS Dimitri Griffithstown M4549 1
+14 193 BLORE James Chepstow M1839 9
+15 421 HARRIS Steven Chepstow M1839 10
+16 211 MILES, Phillip ParcBrynBach M5559 1
+17 680 WATERS Phillip Griffithstown M5054 2
+18 741 JOHNSTONE, Richard Islwyn M1839 11
+19 659 GORMLEY Gerard Griffithstown M4044 4
+20 237 HEWARD Damian ParcBrynBach M1839 12
+21 540 WILLIAMS, Alun Fairwater M4549 2
+22 549 VERNALL James Fairwater M1839 13
+23 218 REES, Colin ParcBrynBach M4549 3
+24 676 THOMPSON Andrew Griffithstown M5054 3
+25 2 MASON, Howard Caerleon M4044 5
+26 671 RODGER Peter Griffithstown M5054 4
+27 504 EDWARDS Pete Fairwater M1839 14
+28 751 BIRCH Kain Islwyn M1839 15
+29 230 CHAMMINGS Martin ParcBrynBach M1839 16
+30 506 SPENCER, Andrew Fairwater M4549 4
+31 361 HALL Gareth Lliswerry M1839 17
+32 238 SMOUT David ParcBrynBach M5559 2
+33 350 JONES, Christopher Lliswerry M4549 5
+34 509 LLOYD Richard Fairwater M1839 18
+35 143 MALARZ, Luke Chepstow M1839 19
+36 724 WEHDEN Kim Islwyn M4549 6
+37 508 FRY, Mark Fairwater M4549 7
+38 317 DAY, Paul Lliswerry M5559 3
+39 732 BIRCH, Sean Islwyn M1839 20
+40 37 THOMAS, Peter Caerleon M4549 8
+41 254 PHILLIPS, Brian ParcBrynBach M4549 9
+42 158 SAVAGE, Bill Chepstow M5559 4
+43 362 JONES Toby Lliswerry M1839 21
+44 198 MCENTEE, Kevin Chepstow M5054 5
+45 757 JIM, Dobbs Islwyn M5559 5
+46 541 WILLIAMS, John Fairwater M4044 6
+47 313 DAVIES, Chris Lliswerry M5054 6
+48 693 MORGAN Alistair Gfiffithstown M4549 10
+49 510 WILLIAMS Michael Fairwater M1839 22
+50 513 SKYRME Michael Fairwater M1839 23
+51 691 JONES Brian Griffithstown M4549 11
+52 524 THOMAS Richard Fairwater M1839 24
+53 775 LEWIS Terry Islwyn M4549 12
+54 224 WILLIAMS, Tim ParcBrynBach M4549 13
+55 307 CHIPPER, Neil Lliswerry M4549 14
+56 213 MONK, Bernie ParcBrynBach M6099 1
+57 315 DURSLEY, Paul Lliswerry M5559 6
+58 543 WOODS, Gary Fairwater M4549 15
+59 183 HIGGINS, Nick Chepstow M1839 25
+60 200 COOKSEY, Clive ParcBrynBach M6099 2
+61 669 TOMASULO Mike Griffithstown M4044 7
+62 675 ROBERTS Peter Griffithstown M5054 7
+63 119 FINCH, Dick Chepstow M6099 3
+64 55 WARD, Robert Caerleon M1839 26
+65 105 BAYLISS, Geoff Chepstow M6099 4
+66 668 PHILIPS Anthony Griffithstown M5054 8
+67 339 CARTER Clive Lliswerry M5054 9
+68 184 GEORGE Andy Chepstow M4549 16
+69 235 SNOWDEN Lawrence ParcBrynBach M4044 8
+70 126 CRAM, Geoff Chepstow M6099 5
+71 170 WHEELER, Syd Chepstow M6099 6
+72 411 SCRIVENS, Phillip Chepstow M4044 9
+
+# SECTION: Women
+# DISTANCE: Unknown
+
+1 422 HARRIS Sam Chepstow F1834 1
+2 189 GITTOES Marianne Chepstow F1834 2
+3 733 LODDER, Helen Islwyn F3539 1
+4 605 Davies Julie Griffithstown F3539 2
+5 305 CHIPPER, Sandra Lliswerry F3539 3
+6 552 COCKRAM Deb Fairwater F4044 1
+7 323 WOOLLEY Kelly Lliswerry F1834 3
+8 227 MILES, Jacky ParcBrynBach F5559 1
+9 124 MORGAN, Niki Chepstow F4044 2
+10 102 ASHTON, Sue Chepstow F5054 1
+11 420 GRIFFITH Sian Chepstow F1834 4
+12 209 EVANS, AnneMarie ParcBrynBach F3539 4
+13 603 WOODBRIDGE Daniela Griffithstown F3539 5
+14 766 WILLIAMS Maria Islwyn F3539 6
+15 57 SCRIVENS, Alison Caerleon F4044 3
+16 515 JENKINS, Jeanette Fairwater F4549 1
+17 215 JONES Keri ParcBrynBach F3539 7
+18 548 GREY Laura Fairwater F4044 4
+19 740 BIRCH, Coleene Islwyn F3539 8
+20 51 THOMAS, Helen Caerleon F4549 2
+21 233 RUSSELL Kate ParcBrynBach F1834 5
+22 502 ROCHE, Julie Fairwater F4044 5
+23 234 SNOWDEN Rosemary ParcBrynBach F4549 3
+24 783 RICHARDSON Pat Islwyn F5559 2
+25 104 BAYLISS, Jayne Chepstow F5559 3
+26 631 SUTTON Clair Griffithstown F4044 6
+27 302 FORSEY, Yvonne Lliswerry F5054 2
+28 312 DAVIES, Julia Lliswerry F5054 3
+29 533 MORGAN, Julie Fairwater F3539 9

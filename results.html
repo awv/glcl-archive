@@ -93,6 +93,38 @@
 
     <!-- RUNTIME SCRIPTER -->
     <script>
+        // NAME FORMATTING HELPER FUNCTIONS
+        function capitalizeWord(str) {
+            return str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : '';
+        }
+
+        function formatRunnerName(rawName) {
+            if (!rawName) return '';
+            const name = rawName.trim();
+
+            // 1. Handle "SURNAME, Firstname" (e.g., "HUMPHRIES, Dave" -> "Dave Humphries")
+            if (name.includes(',')) {
+                const parts = name.split(',');
+                const surname = parts[0].trim();
+                const firstName = parts.slice(1).join(' ').trim();
+                return `${capitalizeWord(firstName)} ${capitalizeWord(surname)}`;
+            }
+
+            // 2. Handle "SURNAME Firstname" with ALL-CAPS surname (e.g., "HUMPHRIES Dave" -> "Dave Humphries")
+            const parts = name.split(/\s+/);
+            if (parts.length >= 2 && parts[0] === parts[0].toUpperCase() && /[A-Z]{2,}/.test(parts[0])) {
+                const surname = parts[0];
+                const firstName = parts.slice(1).join(' ');
+                
+                const formattedFirstName = firstName.split(/\s+/).map(capitalizeWord).join(' ');
+                const formattedSurname = capitalizeWord(surname);
+                
+                return `${formattedFirstName} ${formattedSurname}`;
+            }
+
+            return name;
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             const urlParams = new URLSearchParams(window.location.search);
             const rawSeason = urlParams.get('season') || '2025_2026';
@@ -192,7 +224,14 @@
             filtered.forEach(row => {
                 if (!row.age_cat || parseInt(row.cat_pos, 10) !== 1) return;
                 
-                let normCat = row.age_cat.toUpperCase();
+                let normCat = row.age_cat.toUpperCase().trim();
+
+                // Map V18 / SEN / SENIOR to the SENIOR grid card
+                if (normCat === 'V18' || normCat === 'SEN' || normCat === 'SENIOR') {
+                    normCat = 'SENIOR';
+                }
+
+                // Group older veteran categories into V75+
                 if (normCat.startsWith('V75') || normCat.startsWith('V80') || normCat.startsWith('V85')) {
                     normCat = 'V75+';
                 }
@@ -213,12 +252,15 @@
                 const maleWinnerObj = catWinnersMap[cat].M;
                 const femaleWinnerObj = catWinnersMap[cat].F;
 
+                const maleFormattedName = maleWinnerObj ? formatRunnerName(maleWinnerObj.name) : '';
+                const femaleFormattedName = femaleWinnerObj ? formatRunnerName(femaleWinnerObj.name) : '';
+
                 const maleWinnerHtml = maleWinnerObj 
-                    ? `<a href="athlete.html?name=${encodeURIComponent(maleWinnerObj.name)}&club=${encodeURIComponent(maleWinnerObj.club)}" class="hover:text-brand-500 transition-colors">${maleWinnerObj.name}</a>` 
+                    ? `<a href="athlete.html?name=${encodeURIComponent(maleFormattedName)}&club=${encodeURIComponent(maleWinnerObj.club)}" class="hover:text-brand-500 transition-colors">${maleFormattedName}</a>` 
                     : '<span class="text-slate-600 font-normal">N/A</span>';
 
                 const femaleWinnerHtml = femaleWinnerObj 
-                    ? `<a href="athlete.html?name=${encodeURIComponent(femaleWinnerObj.name)}&club=${encodeURIComponent(femaleWinnerObj.club)}" class="hover:text-brand-500 transition-colors">${femaleWinnerObj.name}</a>` 
+                    ? `<a href="athlete.html?name=${encodeURIComponent(femaleFormattedName)}&club=${encodeURIComponent(femaleWinnerObj.club)}" class="hover:text-brand-500 transition-colors">${femaleFormattedName}</a>` 
                     : '<span class="text-slate-600 font-normal">N/A</span>';
 
                 const cardHtml = `
@@ -229,13 +271,13 @@
                         <div class="space-y-1.5 text-[11px]">
                             <div class="flex justify-between items-center">
                                 <span class="font-mono text-slate-500 font-bold uppercase">M</span>
-                                <span class="font-bold text-slate-200 truncate max-w-[120px] text-right" title="${maleWinnerObj ? maleWinnerObj.name : 'N/A'}">
+                                <span class="font-bold text-slate-200 truncate max-w-[120px] text-right" title="${maleFormattedName || 'N/A'}">
                                     ${maleWinnerHtml}
                                 </span>
                             </div>
                             <div class="flex justify-between items-center">
                                 <span class="font-mono text-slate-500 font-bold uppercase">F</span>
-                                <span class="font-bold text-slate-200 truncate max-w-[120px] text-right" title="${femaleWinnerObj ? femaleWinnerObj.name : 'N/A'}">
+                                <span class="font-bold text-slate-200 truncate max-w-[120px] text-right" title="${femaleFormattedName || 'N/A'}">
                                     ${femaleWinnerHtml}
                                 </span>
                             </div>
@@ -284,14 +326,15 @@
                             catPosHtml = `<span class="inline-block font-mono font-bold text-[10px] text-amber-600 bg-amber-600/10 border border-amber-700/20 px-1.5 py-0.5 rounded">🥉 Pos 3</span>`;
                         }
 
-                        const athleteUrl = `athlete.html?name=${encodeURIComponent(row.name)}&club=${encodeURIComponent(row.club)}`;
+                        const formattedName = formatRunnerName(row.name);
+                        const athleteUrl = `athlete.html?name=${encodeURIComponent(formattedName)}&club=${encodeURIComponent(row.club)}`;
 
                         return `
                             <tr class="transition-colors ${podiumRowBg}">
                                 <td class="py-3 px-4 text-center font-mono font-bold text-slate-400">${row.pos}</td>
                                 <td class="py-3 px-4 text-center font-mono text-slate-500">${row.bib || '-'}</td>
                                 <td class="py-3 px-4 font-bold text-slate-200">
-                                    <a href="${athleteUrl}" class="hover:text-brand-500 transition-colors">${row.name}</a>
+                                    <a href="${athleteUrl}" class="hover:text-brand-500 transition-colors">${formattedName}</a>
                                 </td>
                                 <td class="py-3 px-4 text-center font-black ${sexColor}">${row.sex}</td>
                                 <td class="py-3 px-4 uppercase tracking-tight text-slate-400 font-medium">${row.age_cat || 'SEN'}</td>

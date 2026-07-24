@@ -260,57 +260,57 @@
             targetAthlete = masterName; 
 
             const loadProfilePhoto = (name, club) => {
-            const formatSlug = (str) => (str || '')
-                .toLowerCase()
-                .replace(/['’]/g, '-')
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/-+/g, '-')
-                .replace(/^-|-$/g, '');
+                const formatSlug = (str) => (str || '')
+                    .toLowerCase()
+                    .replace(/['’]/g, '-')
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/-+/g, '-')
+                    .replace(/^-|-$/g, '');
 
-            const nameSlug = formatSlug(name);
-            const clubSlug = formatSlug(club);
+                const nameSlug = formatSlug(name);
+                const clubSlug = formatSlug(club);
 
-            // Try club-specific image first (e.g. sian-jones-lliswerry-runners.jpg), then fallback to nameSlug.jpg
-            const photoSources = [];
-            if (clubSlug) {
-                photoSources.push(`assets/images/athletes/${nameSlug}-${clubSlug}.jpg`);
-            }
-            photoSources.push(`assets/images/athletes/${nameSlug}.jpg`);
-
-            const tryNextImage = (index) => {
-                if (index >= photoSources.length) return; // Neither exists, keep default dark mesh banner
-
-                const imgCheck = new Image();
-        imgCheck.src = photoSources[index];
-        imgCheck.onload = () => {
-            const header = document.getElementById('athlete-header-container');
-            const mesh = document.getElementById('header-mesh');
-            const glow = document.getElementById('header-glow');
-            const gradient = document.getElementById('header-gradient');
-            
-            if (header) {
-                header.style.height = ''; 
-                header.classList.remove('h-[240px]', 'md:h-[400px]');
-                header.classList.add('h-[350px]', 'md:h-[500px]');
-                
-                header.style.backgroundImage = `url('${photoSources[index]}')`;
-                header.style.backgroundSize = 'cover';
-                header.style.backgroundPosition = 'top';
-                header.style.backgroundRepeat = 'no-repeat';
-                
-                if (mesh) mesh.style.display = 'none';
-                if (glow) glow.style.display = 'none';
-                
-                if (gradient) {
-                    gradient.className = "absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-black/20";
+                // Try club-specific image first (e.g. sian-jones-lliswerry-runners.jpg), then fallback to nameSlug.jpg
+                const photoSources = [];
+                if (clubSlug) {
+                    photoSources.push(`assets/images/athletes/${nameSlug}-${clubSlug}.jpg`);
                 }
-            }
-        };
-        imgCheck.onerror = () => tryNextImage(index + 1);
-    };
+                photoSources.push(`assets/images/athletes/${nameSlug}.jpg`);
 
-    tryNextImage(0);
-};
+                const tryNextImage = (index) => {
+                    if (index >= photoSources.length) return; // Neither exists, keep default dark mesh banner
+
+                    const imgCheck = new Image();
+                    imgCheck.src = photoSources[index];
+                    imgCheck.onload = () => {
+                        const header = document.getElementById('athlete-header-container');
+                        const mesh = document.getElementById('header-mesh');
+                        const glow = document.getElementById('header-glow');
+                        const gradient = document.getElementById('header-gradient');
+                        
+                        if (header) {
+                            header.style.height = ''; 
+                            header.classList.remove('h-[240px]', 'md:h-[400px]');
+                            header.classList.add('h-[350px]', 'md:h-[500px]');
+                            
+                            header.style.backgroundImage = `url('${photoSources[index]}')`;
+                            header.style.backgroundSize = 'cover';
+                            header.style.backgroundPosition = 'top';
+                            header.style.backgroundRepeat = 'no-repeat';
+                            
+                            if (mesh) mesh.style.display = 'none';
+                            if (glow) glow.style.display = 'none';
+                            
+                            if (gradient) {
+                                gradient.className = "absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-black/20";
+                            }
+                        }
+                    };
+                    imgCheck.onerror = () => tryNextImage(index + 1);
+                };
+
+                tryNextImage(0);
+            };
 
             const clubHistoryKey = !targetClub ? Object.keys(clubHistory).find(key => 
                 key.toLowerCase() === targetAthlete.toLowerCase()
@@ -349,18 +349,36 @@
                 updatedRow.originalName = row.name || '';
 
                 if (row.name) {
-                    const match = Object.entries(nameChanges).find(([legacyName]) => 
-                        legacyName.toLowerCase() === row.name.toLowerCase()
-                    );
-                    if (match && match[1] && match[1].primaryName) {
-                        updatedRow.name = match[1].primaryName;
+                    let currentName = row.name.trim();
+
+                    // 1. AUTO-FLIP: Automatically handles "SURNAME, Firstname" format (e.g. "HUMPHRIES, Dave" -> "Dave Humphries")
+                    if (currentName.includes(',')) {
+                        const parts = currentName.split(',');
+                        const surname = parts[0].trim();
+                        const firstName = parts[1].trim();
+
+                        const formattedFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+                        const formattedSurname = surname.charAt(0).toUpperCase() + surname.slice(1).toLowerCase();
+
+                        currentName = `${formattedFirstName} ${formattedSurname}`;
                     }
+
+                    // 2. CORRECTIONS OVERRIDE: Check manual mappings in corrections.js
+                    const match = Object.entries(nameChanges).find(([legacyName]) => 
+                        legacyName.toLowerCase() === row.name.toLowerCase() ||
+                        legacyName.toLowerCase() === currentName.toLowerCase()
+                    );
+                    
+                    if (match && match[1] && match[1].primaryName) {
+                        currentName = match[1].primaryName;
+                    }
+
+                    updatedRow.name = currentName;
                 }
                 return updatedRow;
             });
 
             // STRICT FILTERING: Keeps separate runners with the same name completely isolated
-            // Filter history rows strictly matching both Name AND exact Club
             const history = correctedRecords.filter(row => {
                 if (!row.name || row.pos <= 0) return false;
                 
@@ -421,7 +439,8 @@
             if (genderEl) genderEl.textContent = `Gender: ${meta.sex === 'M' ? 'Male' : 'Female'}`;
             if (ageEl) ageEl.textContent = meta.age_cat ? `Category: ${meta.age_cat.toUpperCase()}` : "Age Division Profile";
 
-            loadProfilePhoto(targetAthlete);
+            // Pass both targetAthlete and targetClub to support club-specific profile images
+            loadProfilePhoto(targetAthlete, targetClub || meta.club);
 
             let initialClubFallback = targetClub || meta.club || "Unattached";
             if (!targetClub && clubHistoryKey && clubHistory[clubHistoryKey]) {

@@ -1,0 +1,110 @@
+# VENUE: Parc Bryn Bach
+# DATE: 2011-02-20
+# DISTANCE: Unknown
+# STATUS: Confirmed
+
+# SECTION: Men
+# DISTANCE: Unknown
+
+1 536 Danny LEWIS Fairwater M1739 1
+2 435 Tom GIBBS Chepstow M1739 2
+3 530 Daryll BARNBY Fairwater M1739 3
+4 673 Stefan SIMMS Griffithstown M4044 1
+5 130 Stuart PENNY, Chepstow M4549 1
+6 696 Sean TAYLOR Griffithstown M1739 4
+7 421 Steven HARRIS Chepstow M1739 5
+8 219 James HEATON Parc Bryn Bach M1739 6
+9 31 Leighton RAWLINSON Caerleon M1739 7
+10 207 Simon LEWIS, Parc Bryn Bach M4044 2
+11 692 Adrian WOODS Griffithstown M4549 2
+12 657 Steve DAVIES Griffithstown M5054 1
+13 540 Alun WILLIAMS, Fairwater M4549 3
+14 121 Pete WARD Chepstow M4044 3
+15 799 Haydn HARTNELL Islwyn M4549 4
+16 320 John FOSTER, Lliswerry M5054 2
+17 791 Mark SAUNDERS Islwyn M5054 3
+18 522 Grant LEWIS Fairwater M1739 8
+19 710 Philip WILLIAMS Islwyn M1739 9
+20 110 Laurie CARTER Chepstow M5054 4
+21 377 Steve HARRHY Lliswerry M4549 5
+22 186 Andy CREBER, Chepstow M5054 5
+23 659 Gerard GORMLEY Griffithstown M4044 4
+24 509 Richard LLOYD, Fairwater M1739 10
+25 508 Mark FRY, Fairwater M4549 6
+26 686 Ray MORGAN Griffithstown M1739 11
+27 143 Luke MALARZ, Chepstow M1739 12
+28 24 Ben MORSE Caerleon M1739 13
+29 2 Howard MASON, Caerleon M4549 7
+30 724 Kim WEHDEN Islwyn M4549 8
+31 678 Dimitri VORRÉS Griffithstown M4549 9
+32 506 Andrew SPENCER, Fairwater M4549 10
+33 503 Pete EDWARDS Fairwater M1739 14
+34 524 Richard THOMAS Fairwater M1739 15
+35 123 Neil GRANT, Chepstow M5559 1
+36 683 Robert WITHERALL Griffithstown M1739 16
+37 541 John WILLIAMS, Fairwater M4044 5
+38 238 David SMOUT Parc Bryn Bach M6064 1
+39 317 Paul DAY, Lliswerry M5559 2
+40 214 Scott MORRIS Parc Bryn Bach M1739 17
+41 164 Rob TAYLOR Chepstow M1739 18
+42 122 Andy GREEN, Chepstow M4044 6
+43 527 Roger MILLS Fairwater M1739 19
+44 205 Adrian TAYLOR Parc Bryn Bach M5054 6
+45 354 Christopher MATTEWS Lliswerry M4549 11
+46 315 Paul DURSLEY, Lliswerry M5559 3
+47 23 Sean DAVEY Caerleon M4549 12
+48 775 Terry LEWIS Islwyn M4549 13
+49 687 Stewart THOMPSON Griffithstown M4549 14
+50 101 Gerry ASHTON, Chepstow M5559 4
+51 675 Peter ROBERTS Griffithstown M5054 7
+52 671 Peter RODGER Griffithstown M5054 8
+53 329 Howard ATTWOOD, Lliswerry M6064 2
+54 525 Richard BOWIE Fairwater M4549 15
+55 367 Rob ANDERSON Lliswerry M6599 1
+56 1 Andrew TAYLOR, Caerleon M5054 9
+57 713 Glyn HICKS, Islwyn M6064 3
+58 119 Dick FINCH, Chepstow M6599 2
+59 184 Andy GEORGE Chepstow M4549 16
+60 690 Rob RALPH Griffithstown M1739 20
+61 133 Dave ANDREWS Chepstow M6064 4
+62 307 Neil CHIPPER, Lliswerry M5054 10
+63 105 Geoff BAYLISS, Chepstow M6064 5
+64 108 Andy BRAY, Chepstow M5054 11
+65 170 Syd WHEELER, Chepstow M6599 3
+66 798 Lyndon SUTTON, Islwyn M6064 6
+
+# SECTION: Women
+# DISTANCE: Unknown
+
+1 735 Angela JONES Islwyn F4044 1
+2 418 Louise SUMMERS Chepstow F4044 2
+3 243 Caroline MORTON Parc Bryn Bach F4044 3
+4 136 Vanessa LAWSON, Chepstow F3539 1
+5 305 Sandra CHIPPER, Lliswerry F3539 2
+6 601 Emma BAYLISS Griffithstown F1734 1
+7 209 Anne Marie HARRIS Parc Bryn Bach F4044 4
+8 647 Rhian JINNY-JONES Griffithstown F1734 2
+9 114 Joc DODD Chepstow F5559 1
+10 129 Jan MORRIS, Chepstow F4044 5
+11 746 Alice BEDWELL Islwyn F4549 1
+12 227 Jacky MILES, Parc Bryn Bach F5559 2
+13 222 Susan TAGG Parc Bryn Bach F4044 6
+14 612 Janet RICHARDS Griffithstown F4549 2
+15 202 Lauri COWDELL Parc Bryn Bach F1734 3
+16 102 Sue ASHTON, Chepstow F5559 3
+17 408 Judith AUSTERBERRY Chepstow F3539 3
+18 515 Jeanette JENKINS, Fairwater F4549 3
+19 511 Stella SYMONS Fairwater F4549 4
+20 51 Helen THOMAS Caerleon F4549 5
+21 538 Rebecca REYNOLDS Fairwater F1734 4
+22 432 Becky COMINS Chepstow F4044 7
+23 100 Roberta HAVERS Chepstow F1734 5
+24 134 Brenda AVERY Chepstow F6099 1
+25 26 Amy RACKHAM Caerleon F1734 6
+26 104 Jayne BAYLISS, Chepstow F5559 4
+27 302 Yvonne FORSEY, Lliswerry F5054 1
+28 436 Georgina BROWN, Chepstow F1734 7
+29 161 Jackie WEBB Chepstow F4549 6
+30 615 Christine VORRÉS Griffithstown F5054 2
+31 19 Gwyn HOWELLS, Caerleon F6099 2
+32 415 Karen ELVERS Chepstow F3539 4

@@ -1,0 +1,101 @@
+# VENUE: Fairwater
+# DATE: 2010-02-07
+# DISTANCE: Unknown
+# STATUS: Confirmed
+
+# SECTION: Men
+# DISTANCE: Unknown
+
+1 338 Chris HARRHY, Lliswerry M4044 1
+2 193 James BLORE Chepstow M1739 1
+3 528 Mark JENNINGS Fairwater M1739 2
+4 360 Robin SMOULT Lliswerry M1739 3
+5 118 Mathew STOTT, Chepstow M1739 4
+6 530 Daryll BARNBY Fairwater M1739 5
+7 673 Stefan SIMMS Griffithstown M4044 2
+8 201 David WILLIAMS, Parc Bryn Bach M1739 6
+9 207 Simon LEWIS, Parc Bryn Bach M4044 3
+10 678 Dimitri VORRÉS Griffithstown M4549 1
+11 71 Jim KING Caerleon M1739 7
+12 31 Leighton RAWLINSON Caerleon M1739 8
+13 719 Dafydd LAMBETH, Islwyn M1739 9
+14 194 Mark HARVEY, Chepstow M1739 10
+15 228 Gethin PARHAM Parc Bryn Bach M1739 11
+16 361 Gareth HALL Lliswerry M1739 12
+17 657 Steve DAVIES Griffithstown M5054 1
+18 701 Steve THOMAS, Islwyn M4044 4
+19 799 Haydn HARTNELL Islwyn M4549 2
+20 696 Sean TAYLOR Griffithstown M1739 13
+21 651 Graham BETTY Griffithstown M1739 14
+22 110 Laurie CARTER Chepstow M5054 2
+23 514 Christopher MORGAN, Fairwater M4044 5
+24 741 Richard JOHNSTONE, Islwyn M1739 15
+25 320 John FOSTER, Lliswerry M5054 3
+26 540 Alun WILLIAMS, Fairwater M4549 3
+27 186 Andy CREBER, Chepstow M5054 4
+28 524 Richard THOMAS Fairwater M1739 16
+29 230 Martin CHAMMINGS Parc Bryn Bach M1739 17
+30 377 Steve HARRHY Lliswerry M4044 6
+31 221 David FROST Parc Bryn Bach M4044 7
+32 211 Phillip MILES, Parc Bryn Bach M5559 1
+33 143 Luke MALARZ, Chepstow M1739 18
+34 509 Richard LLOYD, Fairwater M1739 19
+35 238 David SMOUT Parc Bryn Bach M6099 1
+36 362 Toby JONES Lliswerry M1739 20
+37 679 Nick WALSH Griffithstown M1739 21
+38 724 Kim WEHDEN Islwyn M4549 4
+39 317 Paul DAY, Lliswerry M5559 2
+40 123 Neil GRANT, Chepstow M5559 3
+41 694 Richard NORTHCOTT Griffithstown M1739 22
+42 753 Johnathan DAVIES, Islwyn M4044 8
+43 254 Brian PHILLIPS, Parc Bryn Bach M4549 5
+44 315 Paul DURSLEY, Lliswerry M5559 4
+45 119 Dick FINCH, Chepstow M6099 2
+46 539 Adrian GWILLIAM Fairwater M4044 9
+47 30 Justin POCKNELL Caerleon M4044 10
+48 350 Christopher JONES, Lliswerry M5054 5
+49 101 Gerry ASHTON, Chepstow M5559 5
+50 2 Howard MASON, Caerleon M4044 11
+51 504 Pete EDWARDS Fairwater M1739 23
+52 543 Garry WOODS, Fairwater M4549 6
+53 174 John THOMAS Chepstow M4549 7
+54 428 Rob SUMMERS Chepstow M4044 12
+55 687 Stewart THOMPSON Griffithstown M4549 8
+56 198 Kevin MCENTEE, Chepstow M5054 6
+57 675 Peter ROBERTS Griffithstown M5054 7
+58 116 Nick DAVIES Chepstow M1739 24
+59 525 Richard BOWIE Fairwater M4549 9
+60 713 Glyn HICKS, Islwyn M6099 3
+61 329 Howard ATTWOOD, Lliswerry M5559 6
+62 798 Lyndon SUTTON, Islwyn M5559 7
+63 1 Andrew TAYLOR, Caerleon M5054 8
+64 184 Andy GEORGE Chepstow M4549 10
+65 324 John HILL, Lliswerry M5559 8
+66 367 Rob ANDERSON Lliswerry M6099 4
+67 411 Phillip SCRIVENS Chepstow M4044 13
+
+# SECTION: Women
+# DISTANCE: Unknown
+
+1 605 Julie DAVIES Griffithstown F3539 1
+2 418 Louise SUMMERS Chepstow F4044 1
+3 351 Lucy HENLEY Lliswerry F1734 1
+4 102 Sue ASHTON, Chepstow F5559 1
+5 124 Niki MORGAN, Chepstow F4044 2
+6 209 Anne Marie EVANS, Parc Bryn Bach F3539 2
+7 346 Lauren FOSTER, Lliswerry F1734 2
+8 222 Susan TAGG Parc Bryn Bach F4044 3
+9 52 Shelagh ADKINS, Caerleon F6099 1
+10 612 Janet RICHARDS Griffithstown F4044 4
+11 515 Jeanette JENKINS, Fairwater F4549 1
+12 511 Stella SYMONS Fairwater F4549 2
+13 602 Julie BURCHELL Griffithstown F3539 3
+14 502 Julie ROCHE, Fairwater F4044 5
+15 302 Yvonne FORSEY, Lliswerry F5054 1
+16 761 Paula DAVIES Islwyn F3539 4
+17 615 Christine VORRÉS Griffithstown F5054 2
+18 538 Rebecca REYNOLDS Fairwater F1734 3
+19 734 Ruth TREHARNE Islwyn F4549 3
+20 100 Roberta HAVERS Chepstow F1734 4
+21 374 Denise WOOD Lliswerry F4549 4
+22 19 Gwyn HOWELLS, Caerleon F5559 2

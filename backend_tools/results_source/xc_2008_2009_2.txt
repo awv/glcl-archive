@@ -1,0 +1,124 @@
+# VENUE: Lliswerry
+# DATE: 2008-11-16
+# DISTANCE: Unknown
+# STATUS: Confirmed
+
+# SECTION: Men
+# DISTANCE: Unknown
+
+1 338 HARRY, Chris Lliswerry M4044 1
+2 512 HARVEY Kyle Fairwater M1839 1
+3 327 HUMPHRIES, Dave Lliswerry M1839 2
+4 521 HUMPHRIES Laurence Fairwater M1839 3
+5 304 HARRIS, Dave Lliswerry M1839 4
+6 71 KING Jim Caerleon M1839 5
+7 678 VORRÉS Dimitri Griffithstown M4549 1
+8 121 WARD Pete Chepstow M1839 6
+9 178 TEED Ivan Chepstow M1839 7
+10 207 LEWIS, Simon Parc Bryn Bach M4044 2
+11 522 LEWIS, Grant Fairwater M1839 8
+12 421 HARRIS Steven Chepstow M1839 9
+13 221 FROST David Parc Bryn Bach M4044 3
+14 144 WRIGHT John Chepstow M1839 10
+15 540 WILLIAMS, Alun Fairwater M4549 2
+16 348 SMITH, Lee Lliswerry M4044 4
+17 519 GREY Keith Fairwater M5054 1
+18 211 MILES, Phillip Parc Bryn Bach M5559 1
+19 741 JOHNSTONE, Richard Islwyn M1839 11
+20 514 MORGAN Chris Fairwater M4044 5
+21 217 RAINBIRD, Dereck Parc Bryn Bach M5054 2
+22 176 SCOTT Paul Chepstow M4044 6
+23 193 BLORE James Chepstow M1839 12
+24 237 HEWARD Damian Parc Bryn Bach M1839 13
+25 218 REES, Colin Parc Bryn Bach M4549 3
+26 65 THURGOOD Mike Caerleon M4044 7
+27 143 MALARZ, Luke Chepstow M1839 14
+28 317 DAY, Paul Lliswerry M5559 2
+29 506 SPENCER, Andrew Fairwater M4549 4
+30 659 GORMLEY Gerard Griffithstown M4044 8
+31 671 RODGER Peter Griffithstown M5054 3
+32 177 AKERS Stuart Chepstow M1839 15
+33 2 MASON, Howard Caerleon M4044 9
+34 509 LLOYD Richard Fairwater M1839 16
+35 322 MONGER Paul Lliswerry M1839 17
+36 318 REESE, Tim Lliswerry M4549 5
+37 230 CHAMMINGS Martin Parc Bryn Bach M1839 18
+38 186 CREBER, Andy Chepstow M5054 4
+39 163 STOTT, Andy Chepstow M4549 6
+40 680 WATERS Phillip Griffithstown M5054 5
+41 238 SMOUT David Parc Bryn Bach M5559 3
+42 689 WELSH Matt Griffithstown M1839 19
+43 158 SAVAGE, Bill Chepstow M5559 4
+44 508 FRY, Mark Fairwater M4549 7
+45 315 DURSLEY, Paul Lliswerry M5559 5
+46 335 PRINGLE, Nick Lliswerry M4549 8
+47 679 WALSH Nick Griffithstown M1839 20
+48 691 JONES Brian Griffithstown M4549 9
+49 198 MCENTEE, Kevin Chepstow M5054 6
+50 724 WEHDEN Kim Islwyn M4549 10
+51 541 WILLIAMS, John Fairwater M4044 10
+52 419 SMITH Mike Chepstow M5054 7
+53 661 GUY Thomas Griffithstown M1839 21
+54 213 MONK, Bernie Parc Bryn Bach M6099 1
+55 535 PRICE, Tyrone Fairwater M4044 11
+56 101 ASHTON, Gerry Chepstow M5054 8
+57 23 DAVEY Sean Caerleon M1839 22
+58 510 WILLIAMS Michael Fairwater M1839 23
+59 235 SNOWDEN Lawrence Parc Bryn Bach M4044 12
+60 500 ANSTICE, Paul Fairwater M4549 11
+61 313 DAVIES, Chris Lliswerry M5054 9
+62 200 COOKSEY, Clive Parc Bryn Bach M6099 2
+63 675 ROBERTS Peter Griffithstown M5054 10
+64 524 THOMAS Richard Fairwater M1839 24
+65 307 CHIPPER, Neil Lliswerry M4549 12
+66 105 BAYLISS, Geoff Chepstow M6099 3
+67 336 BURGESS Bryn Lliswerry M5054 11
+68 119 FINCH, Dick Chepstow M6099 4
+69 788 BARRINGTON Gareth Islwyn M1839 25
+70 113 PROSSER, Colin Chepstow M4549 13
+71 126 CRAM, Geoff Chepstow M6099 5
+72 108 BRAY, Andy Chepstow M5054 12
+73 1 TAYLOR, Andrew Caerleon M5054 13
+74 777 DIXON Colin Islwyn M5559 6
+75 784 SELDON Gary Islwyn M1839 26
+76 780 PAYTON, Peter Islwyn M5559 7
+
+# SECTION: Women
+# DISTANCE: Unknown
+
+1 351 BEGUE Nadia Lliswerry F1834 1
+2 413 FRANCIS, Liz Chepstow F4549 1
+3 422 MULLIGAN Sam Chepstow F1834 2
+4 605 DAVIES Julie Griffithstown F3539 1
+5 305 CHIPPER, Sandra Lliswerry F3539 2
+6 138 POLLARD Jo Chepstow F1834 3
+7 418 SUMMERS Louise Chepstow F4044 1
+8 608 WOODS Sharon Griffithstown F4549 2
+9 102 ASHTON, Sue Chepstow F5054 1
+10 552 COCKRAM Deb Fairwater F4044 2
+11 124 MORGAN, Niki Chepstow F4044 3
+12 162 STOTT Gill Chepstow F5054 2
+13 57 SCRIVENS, Alison Caerleon F4044 4
+14 185 DUFFIELD, Helen Chepstow F3539 3
+15 129 MORRIS, Jan Chepstow F4044 5
+16 93 REES Sian Caerleon F1834 4
+17 209 EVANS, AnneMarie Parc Bryn Bach F3539 4
+18 603 WOODBRIDGE Daniela Griffithstown F3539 5
+19 20 HOWELL, Kim Caerleon F5054 3
+20 420 GRIFFITH Sian Chepstow F1834 5
+21 76 DUNLOP Shona Caerleon F1834 6
+22 515 JENKINS, Jeanette Fairwater F4549 3
+23 612 RICHARDS Janet Griffithstown F4044 6
+24 502 ROCHE, Julie Fairwater F4044 7
+25 19 HOWELLS, Gwyn Caerleon F5559 1
+26 104 BAYLISS, Jayne Chepstow F5559 2
+27 740 BIRCH, Coleene Islwyn F3539 6
+28 734 TREHARNE Ruth Islwyn F4044 8
+29 234 DAVIES Rosemary Parc Bryn Bach F4549 4
+30 632 REES Wendy Griffithstown F4549 5
+31 355 SHEEDY Alison Lliswerry F1834 7
+32 331 COOK Michelle Lliswerry F4044 9
+33 783 RICHARDSON Pat Islwyn F5559 3
+34 340 TIPPING Angela Lliswerry F1834 8
+35 312 DAVIES, Julia Lliswerry F5054 4
+36 533 MORGAN, Julie Fairwater F3539 7
