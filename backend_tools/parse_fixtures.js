@@ -63,16 +63,32 @@ function normalizeClub(rawClub) {
     return clubAliases[key] || clean;
 }
 
+// Normalise "SURNAME Forename" to "Forename SURNAME"
+function normalizeAthleteName(rawName) {
+    if (!rawName) return '';
+    let clean = rawName.replace(/,/g, '').trim();
+    clean = clean.replace(/([a-zA-Z]+)\s*[-–]\s*([a-zA-Z]+)/g, '$1-$2');
+
+    const parts = clean.split(/\s+/).filter(Boolean);
+    if (parts.length === 2) {
+        const [p1, p2] = parts;
+        // If p1 is ALL CAPS surname (e.g. MORGAN Niki or MORGAN NIKI)
+        if (p1 === p1.toUpperCase() && p1.length > 1 && !/^(DR|MR|MRS|MS|MISS)$/i.test(p1)) {
+            const forename = p2.charAt(0).toUpperCase() + p2.slice(1).toLowerCase();
+            const surname = p1.toUpperCase();
+            return `${forename} ${surname}`;
+        }
+    }
+    return clean;
+}
+
 function extractNameAndClub(rawStr) {
     let cleanStr = rawStr.replace(/,/g, '').trim();
-
-    // Rejoin hyphenated surnames
     cleanStr = cleanStr.replace(/([a-zA-Z]+)\s*[-–]\s*([a-zA-Z]+)/g, '$1-$2');
 
     let rawClub = "";
     let name = cleanStr;
 
-    // Restore embedded club pattern checks
     if (cleanStr.includes("Parc Bryn Bach") || cleanStr.includes("Parcbrynbach")) { rawClub = "Parc Bryn Bach RC"; name = cleanStr.replace(/Parc Bryn Bach|Parcbrynbach/gi, "").trim(); }
     else if (cleanStr.includes("Pont-y-Pwl") || cleanStr.includes("Pont-Y-Pwl")) { rawClub = "Pont-Y-Pwl & District Runners"; name = cleanStr.replace(/Pont-[yY]-Pwl/gi, "").trim(); }
     else if (cleanStr.includes("Lliswerry")) { rawClub = "Lliswerry Runners"; name = cleanStr.replace(/Lliswerry/gi, "").trim(); }
@@ -89,16 +105,19 @@ function extractNameAndClub(rawStr) {
     else {
         const words = cleanStr.split(/\s+/);
         const lastWord = words[words.length - 1] || "";
-        if (/^(M|F|MEN|LADIES|WOMEN|MAN)$/i.test(lastWord)) {
-            rawClub = "Unattached";
-            name = words.slice(0, -1).join(' ');
-        } else {
+        const lowerLast = lastWord.toLowerCase();
+
+        const isKnownClub = clubAliases[lowerLast] || /\b(rc|ac|harriers|runners|club|69)\b/i.test(lastWord);
+
+        if (isKnownClub) {
             rawClub = lastWord;
             name = words.slice(0, -1).join(' ');
+        } else {
+            rawClub = "Unattached";
+            name = cleanStr;
         }
     }
 
-    // Clean extraneous metadata leftover in name
     name = name
         .replace(/\b(MEN|LADIES|WOMEN|MAN|M|F)\b/gi, '')
         .replace(/\b(O\/?\d+|V\d+|Senior|SEN)\b/gi, '')
@@ -106,25 +125,15 @@ function extractNameAndClub(rawStr) {
         .replace(/\s+/g, ' ')
         .trim();
 
-    return { name, rawClub: normalizeClub(rawClub) };
+    return { name: normalizeAthleteName(name), rawClub: normalizeClub(rawClub) };
 }
 
 // REGEX MATCHERS
-// 1a. Standard timed format (With age)
 const standardRowRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+(\d+)\s+([MF])\s+(Senior|V\d+\+?)\s+(.+?)\s+(\d{2}:\d{2}:\d{2})\s+(\d+)\s+(\d+)/i;
-
-// 1b. Timed format without explicit age column
 const noAgeTimedRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF])\s+(Senior|V\d+\+?)\s+(.+?)\s+(\d{2}:\d{2}:\d{2})\s+(\d+)\s+(\d+)/i;
-
-// 1c. Legacy format with Club before Category
 const clubBeforeCatRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF])\s+([A-Za-z\s&-]+?)\s+(O\/?\d+|V\d+|Senior|SEN)\s+(\d+)/i;
-
-// 2. Legacy pre-COVID format regex
 const legacyRowRegex = /^(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4}|[MF]\d+)\s+(MEN|LADIES)\s+(\d+)\s+(\d+)/i;
-
-// 3. Legacy format with Points at end
 const legacyPointsRegex = /^(\d+)\s+(\d+)\s+([A-Z0-9]+)\s+(.+?)\s+([MF]\d{4}|[MF]\d+|\b[MF]\b)\s+(\d+)(?:\s+\d+)+/i;
-
 const unknownRowRegex = /^\s*(\d+)\s+([A-Z0-9]+)?\s*(UNKNOWN|GUEST|ANON)\b/i;
 
 let allCompiledResults = [];
@@ -207,7 +216,7 @@ files.forEach(filename => {
                 record = {
                     pos: parseInt(standardMatch[1], 10),
                     bib: standardMatch[2],
-                    name: standardMatch[3].replace(/,/g, '').trim(),
+                    name: normalizeAthleteName(standardMatch[3]),
                     age: parseInt(standardMatch[4], 10),
                     sex: standardMatch[5],
                     age_cat: standardMatch[6],
@@ -227,7 +236,7 @@ files.forEach(filename => {
                 record = {
                     pos: parseInt(noAgeMatch[1], 10),
                     bib: noAgeMatch[2],
-                    name: noAgeMatch[3].replace(/,/g, '').trim(),
+                    name: normalizeAthleteName(noAgeMatch[3]),
                     age: 0,
                     sex: noAgeMatch[4],
                     age_cat: noAgeMatch[5],
@@ -255,7 +264,7 @@ files.forEach(filename => {
                 record = {
                     pos: parseInt(clubBeforeCatMatch[1], 10),
                     bib: clubBeforeCatMatch[2],
-                    name: clubBeforeCatMatch[3].replace(/,/g, '').trim(),
+                    name: normalizeAthleteName(clubBeforeCatMatch[3]),
                     age: 0,
                     sex: sex,
                     age_cat: ageCat,
@@ -346,7 +355,7 @@ files.forEach(filename => {
 
                 let catIndex = -1;
                 for (let i = tokenSplit.length - 1; i >= nameClubStartIdx; i--) {
-                    if (/^([MF]\d+|\b[MF]\b|Senior|V\d+)/i.test(tokenSplit[i])) {
+                    if (/^([MF]\d+|\b[MF]\b|Senior|SEN|V\d+)/i.test(tokenSplit[i])) {
                         catIndex = i;
                         break;
                     }
@@ -381,7 +390,7 @@ files.forEach(filename => {
                 record = {
                     pos: overallPos,
                     bib: realBib,
-                    name: name || "Unknown Runner",
+                    name: normalizeAthleteName(name) || "Unknown Runner",
                     age: 0,
                     sex: sex,
                     age_cat: ageCat,
@@ -396,6 +405,25 @@ files.forEach(filename => {
 
         if (record) {
             parsedResults.push(record);
+        }
+    });
+
+    // POST-PROCESS CATEGORY POSITIONS IF ZERO OR MISSING
+    const categoryCounters = {};
+    parsedResults.forEach(r => {
+        if (r.pos === 0 || r.name === 'Unknown Runner') return;
+
+        const sex = (r.sex || 'M').toUpperCase();
+        const cat = (r.age_cat || 'Senior').toUpperCase();
+        const catKey = `${r.race_section || 'Main'}_${sex}_${cat}`;
+
+        if (!categoryCounters[catKey]) {
+            categoryCounters[catKey] = 0;
+        }
+        categoryCounters[catKey]++;
+
+        if (!r.cat_pos || r.cat_pos <= 0) {
+            r.cat_pos = categoryCounters[catKey];
         }
     });
 

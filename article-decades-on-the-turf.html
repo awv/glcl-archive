@@ -336,8 +336,100 @@
             const rawResults = window.glclResults || [];
             if (!rawResults.length) return;
 
+            const corrections = window.glclCorrections || {};
+            const nameChanges = corrections.nameChanges || {};
+            const clubHistory = corrections.clubHistory || {};
+
+            const normStr = (str) => (str || '').trim().toLowerCase();
+
+            const parseSeasonYear = (seasonStr) => {
+                if (!seasonStr) return 0;
+                const clean = String(seasonStr).replace(/[^0-9/_-]/g, '');
+                const parts = clean.split(/[/_-]/);
+                let yr = parseInt(parts[0], 10);
+                if (isNaN(yr)) return 0;
+                if (yr < 100) yr += 2000;
+                return yr;
+            };
+
+            const getNameKey = (str) => {
+                if (!str) return '';
+                return str.replace(/,/g, '')
+                          .toLowerCase()
+                          .split(/\s+/)
+                          .filter(Boolean)
+                          .sort()
+                          .join(' ');
+            };
+
+            const athleteNameMap = {};
+            Object.entries(nameChanges).forEach(([legacyName, data]) => {
+                if (data && data.primaryName) {
+                    const k1 = getNameKey(legacyName);
+                    const k2 = getNameKey(data.primaryName);
+                    if (k1) athleteNameMap[k1] = data.primaryName;
+                    if (k2) athleteNameMap[k2] = data.primaryName;
+                }
+            });
+
+            const normalizeNameFormat = (str) => {
+                if (!str) return '';
+                let clean = str.replace(/,/g, '').trim();
+                const parts = clean.split(/\s+/);
+                if (parts.length === 2) {
+                    const [p1, p2] = parts;
+                    if (p1 === p1.toUpperCase() && p2 !== p2.toUpperCase() && p1.length > 1) {
+                        return `${p2} ${p1}`;
+                    }
+                }
+                return clean;
+            };
+
+            const resolveAthleteName = (rawName) => {
+                if (!rawName) return '';
+                const key = getNameKey(rawName);
+                if (athleteNameMap[key]) {
+                    return athleteNameMap[key];
+                }
+                const formatted = normalizeNameFormat(rawName);
+                athleteNameMap[key] = formatted;
+                return formatted;
+            };
+
+            const resolveCurrentClub = (athleteName, latestRecordClub) => {
+                const key = getNameKey(athleteName);
+                const clubHistoryKey = Object.keys(clubHistory).find(k => getNameKey(k) === key);
+                
+                if (clubHistoryKey && clubHistory[clubHistoryKey]) {
+                    const presentEntry = clubHistory[clubHistoryKey].find(h => h.seasons && normStr(h.seasons).includes('present'));
+                    if (presentEntry && presentEntry.club) {
+                        return window.getCanonicalClub ? window.getCanonicalClub(presentEntry.club) : presentEntry.club;
+                    }
+                }
+                
+                const fallback = latestRecordClub || "Unattached";
+                return window.getCanonicalClub ? window.getCanonicalClub(fallback) : fallback;
+            };
+
+            const excludedClubNames = new Set([
+                'unknown', 'unattached', 'independent',
+                'foulkes-', 'aherne', 'lewis', 'evans', 'williams', 
+                'miles', 'phillips', 'rainbird', 'thomas', 'hughes', 'austin'
+            ]);
+
+            const isValidClub = (name) => {
+                if (!name) return false;
+                const norm = name.toLowerCase().trim();
+                if (excludedClubNames.has(norm)) return false;
+                return norm.includes(' ') || norm.includes('rc') || norm.includes('ac') || norm.includes('harriers') || norm.includes('runners') || norm.includes('club') || norm.includes('69');
+            };
+
             // Global club alias resolution
-            const getCanonicalClub = window.getCanonicalClub || function(name) { return name; };
+            const getCanonicalClub = (rawClub) => {
+                if (!rawClub) return null;
+                const resolved = window.getCanonicalClub ? window.getCanonicalClub(rawClub.trim()) : rawClub.trim();
+                return isValidClub(resolved) ? resolved : null;
+            };
 
             // 1. PROCESS ALL RAW RESULTS
             const seasonStats = {};
@@ -347,9 +439,11 @@
             let xcFinishes = 0;
 
             rawResults.forEach(r => {
-                if (!r.season || !r.name || r.name === 'Unknown Runner') return;
+                if (!r.season || !r.name || r.name === 'Unknown Runner' || r.pos === 0) return;
 
+                const name = resolveAthleteName(r.name);
                 const canonicalClub = getCanonicalClub(r.club);
+                const seasonYear = parseSeasonYear(r.season);
 
                 // Season Stats
                 if (!seasonStats[r.season]) {
@@ -367,7 +461,7 @@
                 }
 
                 // Club Stats
-                if (canonicalClub && canonicalClub !== 'Unattached') {
+                if (canonicalClub) {
                     if (!clubStats[canonicalClub]) {
                         clubStats[canonicalClub] = { 
                             name: canonicalClub, 
@@ -386,38 +480,46 @@
                 }
 
                 // Runner Stats
-                if (!runnerStats[r.name]) {
-                    runnerStats[r.name] = {
-                        name: r.name,
+                if (!runnerStats[name]) {
+                    runnerStats[name] = {
+                        name: name,
                         races: 0,
                         seasons: new Set(),
                         overallWins: 0,
                         catWins: 0,
-                        club: canonicalClub,
-                        latestSeason: r.season,
+                        rawClub: canonicalClub || 'Unattached',
+                        latestYear: seasonYear,
                         latestCat: r.age_cat || 'Senior'
                     };
                 }
-                runnerStats[r.name].races++;
-                runnerStats[r.name].seasons.add(r.season);
+                runnerStats[name].races++;
+                runnerStats[name].seasons.add(r.season);
                 
-                if (parseInt(r.gender_pos, 10) === 1) runnerStats[r.name].overallWins++;
-                if (parseInt(r.cat_pos, 10) === 1) runnerStats[r.name].catWins++;
+                if (parseInt(r.gender_pos, 10) === 1) runnerStats[name].overallWins++;
+                if (parseInt(r.cat_pos, 10) === 1) runnerStats[name].catWins++;
 
                 // Track most recent season & category for runner
-                if (r.season >= runnerStats[r.name].latestSeason) {
-                    runnerStats[r.name].latestSeason = r.season;
-                    if (r.age_cat && r.age_cat !== 'N/A') runnerStats[r.name].latestCat = r.age_cat;
-                    if (canonicalClub) runnerStats[r.name].club = canonicalClub;
+                if (seasonYear >= runnerStats[name].latestYear) {
+                    runnerStats[name].latestYear = seasonYear;
+                    if (r.age_cat && r.age_cat !== 'N/A') runnerStats[name].latestCat = r.age_cat;
+                    if (canonicalClub) runnerStats[name].rawClub = canonicalClub;
                 }
             });
+
+            // Resolve final current clubs for all runners
+            Object.values(runnerStats).forEach(r => {
+                r.club = resolveCurrentClub(r.name, r.rawClub);
+            });
+
+            // Filter valid clubs table list (>= 10 finishes to exclude noise)
+            const validClubsList = Object.values(clubStats).filter(c => c.finishes >= 10);
 
             // 2. HERO & MACRO STATS
             const totalFinishes = rawResults.length;
             const seasonsList = Object.keys(seasonStats).sort();
             const peakSeason = seasonsList.reduce((max, s) => seasonStats[s].total > seasonStats[max].total ? s : max, seasonsList[0]);
 
-            const sortedClubs = Object.values(clubStats).sort((a, b) => b.finishes - a.finishes);
+            const sortedClubs = [...validClubsList].sort((a, b) => b.finishes - a.finishes);
             const topClub = sortedClubs[0];
 
             const sortedRunnersByCatWins = Object.values(runnerStats).sort((a, b) => b.catWins - a.catWins);
@@ -431,11 +533,11 @@
             document.getElementById('stat-peak-count').textContent = seasonStats[peakSeason].total.toLocaleString();
             document.getElementById('stat-peak-season').textContent = `${peakSeason} Campaign`;
             
-            document.getElementById('stat-top-club-name').textContent = topClub.name;
-            document.getElementById('stat-top-club-count').textContent = `${topClub.finishes.toLocaleString()} Total Finishes`;
+            document.getElementById('stat-top-club-name').textContent = topClub ? topClub.name : '—';
+            document.getElementById('stat-top-club-count').textContent = topClub ? `${topClub.finishes.toLocaleString()} Total Finishes` : '0';
             
-            document.getElementById('stat-top-catwins-count').textContent = topCatWinRunner.catWins;
-            document.getElementById('stat-top-catwins-runner').textContent = `${topCatWinRunner.name} (${topCatWinRunner.club})`;
+            document.getElementById('stat-top-catwins-count').textContent = topCatWinRunner ? topCatWinRunner.catWins : '0';
+            document.getElementById('stat-top-catwins-runner').textContent = topCatWinRunner ? `${topCatWinRunner.name} (${topCatWinRunner.club})` : '—';
 
             // 3. SEASON PROGRESSION BAR CHART
             const chartContainer = document.getElementById('chart-seasons-container');

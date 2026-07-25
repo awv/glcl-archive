@@ -2,15 +2,13 @@
 // 📊 GOOGLE ANALYTICS GLOBAL INJECTION
 // ==========================================
 (function() {
-    const TRACKING_ID = 'G-L5RC85ZX8G'; // Replace with your actual ID
+    const TRACKING_ID = 'G-L5RC85ZX8G';
 
-    // 1. Create and inject the async GA source script tag
     const gaScript = document.createElement('script');
     gaScript.async = true;
     gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`;
     document.head.appendChild(gaScript);
 
-    // 2. Create and inject the local configuration initialization script tag
     const gaInitScript = document.createElement('script');
     gaInitScript.text = `
         window.dataLayer = window.dataLayer || [];
@@ -22,31 +20,22 @@
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Look for the new global-nav ID (fallback to global-header just in case)
     const navEl = document.getElementById('global-nav') || document.getElementById('global-header');
     const footerEl = document.getElementById('global-footer');
 
-    // Determine the correct relative path baseline depending on page depth
     const isSubFolderPage = window.location.pathname.split('/').filter(Boolean).length > 1;
 
-    // --- NAVIGATION LOGIC ---
     if (navEl) {
         const navComponentPath = isSubFolderPage ? '../components/nav.html' : 'components/nav.html';
 
-        console.log(`Site-Layout: Attempting nav fetch from target path: ${navComponentPath}`);
-
         fetch(navComponentPath)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 return response.text();
             })
             .then(data => {
                 navEl.innerHTML = data;
-                console.log("Global navigation rendered successfully.");
 
-                // Dedicated function to bind the toggle once the elements are guaranteed to exist
                 const bindMobileMenu = () => {
                     const toggleBtn = document.getElementById('mobile-menu-toggle');
                     const menuPanel = document.getElementById('mobile-menu-panel');
@@ -54,13 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     const clsIcon = document.getElementById('close-icon');
 
                     if (toggleBtn && menuPanel) {
-                        // If we already marked this button as active, exit immediately
                         if (toggleBtn.dataset.menuBound === "true") return true;
 
-                        // Unified clean click handler
                         const handleToggle = (e) => {
                             e.preventDefault();
-                            e.stopPropagation(); // Prevents the event from bubbling up
+                            e.stopPropagation();
                             
                             const isHidden = menuPanel.classList.contains('hidden');
                             menuPanel.classList.toggle('hidden', !isHidden);
@@ -69,51 +56,37 @@ document.addEventListener("DOMContentLoaded", () => {
                             if (clsIcon) clsIcon.classList.toggle('hidden', !isHidden);
                         };
 
-                        // Use standard click but explicitly flag it to prevent dual attachments
                         toggleBtn.addEventListener('click', handleToggle);
                         toggleBtn.dataset.menuBound = "true";
-                        
                         return true; 
                     }
                     return false;
                 };
 
-                // Run immediately, fallback to a brief retry loop if DevTools layout is lagging
                 if (!bindMobileMenu()) {
                     const retryInterval = setInterval(() => {
                         if (bindMobileMenu()) clearInterval(retryInterval);
                     }, 50);
-                    setTimeout(() => clearInterval(retryInterval), 2000); // Guard timeout
+                    setTimeout(() => clearInterval(retryInterval), 2000);
                 }
 
-                // Notify individual pages that the navigation is ready
                 window.dispatchEvent(new Event('navLoaded'));
             })
-            .catch(err => {
-                console.error('Error loading global navigation component:', err);
-            });
+            .catch(err => console.error('Error loading global navigation component:', err));
     }
 
-    // --- FOOTER LOGIC ---
     if (footerEl) {
         const footerComponentPath = isSubFolderPage ? '../components/footer.html' : 'components/footer.html';
 
-        console.log(`Site-Layout: Attempting footer fetch from target path: ${footerComponentPath}`);
-
         fetch(footerComponentPath)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 return response.text();
             })
             .then(data => { 
                 footerEl.innerHTML = data; 
-                console.log("Global footer rendered successfully.");
             })
             .catch(err => {
-                console.error('Error loading global footer component:', err);
-                // Fallback direct rendering if the asset fetch breaks
                 footerEl.innerHTML = `
                     <footer class="border-t border-slate-900 bg-slate-950/40 font-sans mt-auto">
                         <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -133,8 +106,85 @@ document.addEventListener("DOMContentLoaded", () => {
 // GLOBAL COMMAND PALETTE SYSTEM INTERCEPTOR
 (() => {
     let uniqueAthletes = [];
+    let isDatasetInitialized = false;
 
-    // 1. Inject the search markup context dynamically directly into the document body 
+    const parseSeasonYear = (seasonStr) => {
+        if (!seasonStr) return 0;
+        const clean = String(seasonStr).replace(/[^0-9/_-]/g, '');
+        const parts = clean.split(/[/_-]/);
+        let yr = parseInt(parts[0], 10);
+        if (isNaN(yr)) return 0;
+        if (yr < 100) yr += 2000;
+        return yr;
+    };
+
+    const getNameKey = (str) => {
+        if (!str) return '';
+        return str.replace(/,/g, '')
+                  .toLowerCase()
+                  .split(/\s+/)
+                  .filter(Boolean)
+                  .sort()
+                  .join(' ');
+    };
+
+    // Helper to format string into proper Titlecase (e.g. "Niki MORGAN")
+    const toProperCase = (word) => {
+        if (!word) return '';
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    };
+
+    // Robust Name Formatter & Reversal Normaliser
+    const normalizeNameFormat = (str) => {
+        if (!str) return '';
+        let clean = str.replace(/,/g, '').trim();
+        const parts = clean.split(/\s+/).filter(Boolean);
+
+        if (parts.length === 2) {
+            const [p1, p2] = parts;
+
+            // Pattern: SURNAME Forename (e.g., MORGAN Niki or MORGAN NIKI)
+            if (p1 === p1.toUpperCase() && p1.length > 1) {
+                return `${toProperCase(p2)} ${p1.toUpperCase()}`;
+            }
+        }
+        
+        return clean;
+    };
+
+    const resolveAthleteName = (rawName) => {
+        if (!rawName) return '';
+        const corrections = window.glclCorrections || {};
+        const nameChanges = corrections.nameChanges || {};
+        const key = getNameKey(rawName);
+
+        let resolved = '';
+        Object.entries(nameChanges).forEach(([legacyName, data]) => {
+            if (data && data.primaryName && (getNameKey(legacyName) === key || getNameKey(data.primaryName) === key)) {
+                resolved = data.primaryName;
+            }
+        });
+
+        return resolved || normalizeNameFormat(rawName);
+    };
+
+    const resolveCurrentClub = (athleteName, latestRecordClub) => {
+        const corrections = window.glclCorrections || {};
+        const clubHistory = corrections.clubHistory || {};
+        const key = getNameKey(athleteName);
+        const clubHistoryKey = Object.keys(clubHistory).find(k => getNameKey(k) === key);
+        
+        if (clubHistoryKey && clubHistory[clubHistoryKey]) {
+            const presentEntry = clubHistory[clubHistoryKey].find(h => h.seasons && h.seasons.toLowerCase().includes('present'));
+            if (presentEntry && presentEntry.club) {
+                return window.getCanonicalClub ? window.getCanonicalClub(presentEntry.club) : presentEntry.club;
+            }
+        }
+        
+        const fallback = latestRecordClub || "Unattached";
+        return window.getCanonicalClub ? window.getCanonicalClub(fallback) : fallback;
+    };
+
     const injectSearchModalMarkup = () => {
         if (document.getElementById('global-search-modal')) return;
 
@@ -142,29 +192,23 @@ document.addEventListener("DOMContentLoaded", () => {
         modalDiv.id = 'global-search-modal';
         modalDiv.className = 'hidden fixed inset-0 z-[9999] flex items-start justify-center pt-[10vh] px-4';
         modalDiv.innerHTML = `
-            <!-- Backdrop Blur -->
             <div id="search-modal-backdrop" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
 
-            <!-- Search Panel Box -->
             <div class="relative w-full max-w-xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[70vh] z-10" id="search-modal-panel">
                 
-                <!-- Search Field Header -->
                 <div class="flex items-center px-4 border-b border-slate-800">
                     <svg class="w-5 h-5 text-slate-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                     <input type="text" id="modal-search-input" placeholder="Search runners, clubs, or categories..." autocomplete="off" class="w-full bg-transparent border-0 text-slate-100 placeholder-slate-600 px-3 py-4 text-base focus:outline-none focus:ring-0 font-medium">
                     
-                    <!-- Close Button -->
                     <button id="nav-search-close" class="text-[10px] font-mono font-bold bg-slate-800 hover:bg-slate-700 text-slate-400 px-2 py-1 rounded transition-colors shrink-0">
                         ESC
                     </button>
                 </div>
 
-                <!-- Scrollable Results Tray -->
                 <div id="modal-search-results" class="overflow-y-auto divide-y divide-slate-950 max-h-[50vh] p-2 empty:hidden"></div>
 
-                <!-- Hotkey Hint Footer -->
                 <div class="bg-slate-950/60 px-4 py-2 border-t border-slate-800/60 flex justify-between items-center text-[9px] font-mono font-bold text-slate-500 tracking-wider">
                     <span>TIP: SELECT AN ATHLETE TO BROWSE PROFILE</span>
                     <span>ESC TO CLOSE</span>
@@ -174,35 +218,55 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(modalDiv);
     };
 
-    const initDataset = () => {
-        if (uniqueAthletes.length > 0) return;
+    const initDataset = (forceRebuild = false) => {
+        if (isDatasetInitialized && !forceRebuild) return;
+        
         const dataset = window.glclResults || window.glclData || [];
         if (Array.isArray(dataset) && dataset.length > 0) {
             const runnersMap = new Map();
+
             dataset.forEach(item => {
-                if (item && item.name) {
-                    const cleanName = item.name.trim();
-                    const cleanClub = (item.club || 'Independent').trim();
-                    // Key by Name AND Club so distinct same-name runners aren't skipped
-                    const uniqueKey = `${cleanName.toLowerCase()}_${cleanClub.toLowerCase()}`;
-                    
-                    if (!runnersMap.has(uniqueKey)) {
-                        runnersMap.set(uniqueKey, {
-                            name: cleanName,
-                            club: cleanClub,
+                if (item && item.name && item.pos > 0) {
+                    const canonicalName = resolveAthleteName(item.name);
+                    const key = getNameKey(canonicalName);
+                    const rawClub = item.club ? item.club.trim() : 'Unattached';
+                    const seasonYr = parseSeasonYear(item.season);
+
+                    if (!runnersMap.has(key)) {
+                        runnersMap.set(key, {
+                            name: canonicalName,
+                            rawClub: rawClub,
+                            latestYear: seasonYr,
                             sex: item.sex || '—',
                             age_cat: item.age_cat || '—'
                         });
+                    } else {
+                        const existing = runnersMap.get(key);
+                        if (seasonYr >= existing.latestYear) {
+                            existing.latestYear = seasonYr;
+                            existing.rawClub = rawClub;
+                            existing.sex = item.sex || existing.sex;
+                            existing.age_cat = item.age_cat || existing.age_cat;
+                        }
                     }
                 }
             });
-            uniqueAthletes = Array.from(runnersMap.values());
+
+            uniqueAthletes = Array.from(runnersMap.values()).map(a => ({
+                name: a.name,
+                club: resolveCurrentClub(a.name, a.rawClub),
+                sex: a.sex,
+                age_cat: a.age_cat
+            }));
+
+            isDatasetInitialized = true;
         }
     };
 
     const openSearch = () => {
         injectSearchModalMarkup();
-        initDataset();
+        // Force dataset rebuild if corrections loaded after layout init
+        initDataset(!isDatasetInitialized || !window.glclCorrections);
         
         const modal = document.getElementById('global-search-modal');
         const input = document.getElementById('modal-search-input');
@@ -230,9 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.remove('overflow-hidden');
     };
 
-    // 2. Document-wide click delegation loops
     document.addEventListener('click', (e) => {
-        // Global Search Triggers
         if (e.target.closest('#nav-search-trigger')) {
             e.preventDefault();
             openSearch();
@@ -241,7 +303,6 @@ document.addEventListener("DOMContentLoaded", () => {
             closeSearch();
         }
 
-        // Mobile Burger Menu Delegation Trigger
         if (e.target.closest('#mobile-burger-btn')) {
             e.preventDefault();
             
@@ -264,7 +325,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 3. Document-wide input typing listener
     document.addEventListener('input', (e) => {
         if (e.target && e.target.id === 'modal-search-input') {
             const resultsContainer = document.getElementById('modal-search-results');
@@ -274,7 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
             resultsContainer.innerHTML = '';
 
             if (query.length < 2) return;
-            if (uniqueAthletes.length === 0) initDataset();
+            initDataset();
 
             const filtered = uniqueAthletes.filter(athlete => 
                 athlete.name.toLowerCase().includes(query) ||
@@ -308,7 +368,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 4. Hotkey selection event listeners
     document.addEventListener('keydown', (e) => {
         const modal = document.getElementById('global-search-modal');
         if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
@@ -320,14 +379,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Initial injection setup on clean load entry
     if (document.body) {
         injectSearchModalMarkup();
     } else {
         document.addEventListener('DOMContentLoaded', injectSearchModalMarkup);
     }
 
-    // Direct bridge to trigger search modal via custom event
     document.addEventListener('glclOpenSearch', () => {
         if (typeof openSearch === 'function') {
             openSearch();

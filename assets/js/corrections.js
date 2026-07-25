@@ -28,7 +28,7 @@ window.glclCorrections = window.glclCorrections || {
         ],
         "Lee AHERNE": [
             { club: "Club 69", seasons: "Debut — 2007/2008" },
-            { club: "Parc Bryn Bach RC", seasons: "2008/2009 — Present" }
+            { club: "Parc Bryn Bach RC", seasons: "2012/2013 — Present" }
         ]
     },
 

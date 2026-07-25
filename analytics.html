@@ -6,6 +6,8 @@
     <title>GLCL Archive — League Insights</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="data.js"></script>
+    <!-- Combined corrections data overlay mapping profile configurations -->
+    <script src="assets/js/corrections.js"></script>
     <script src="site-layout.js"></script>
     <script>
         tailwind.config = {
@@ -35,7 +37,7 @@
             League Insights & Analytics
         </h1>
         <p class="text-xs font-semibold text-slate-500 mt-1 uppercase tracking-wider">
-            Deep-dive aggregate statistics, longevity indexes, and historical campaign campaigns.
+            Deep-dive aggregate statistics, longevity indexes, and historical campaign records.
         </p>
     </header>
 
@@ -254,20 +256,98 @@
         document.addEventListener("DOMContentLoaded", () => {
 
             const allRecords = window.glclResults || [];
+            const corrections = window.glclCorrections || {};
+            const nameChanges = corrections.nameChanges || {};
+            const clubHistory = corrections.clubHistory || {};
+
+            const normStr = (str) => (str || '').trim().toLowerCase();
+
+            const parseSeasonYear = (seasonStr) => {
+                if (!seasonStr) return 0;
+                const clean = String(seasonStr).replace(/[^0-9/_-]/g, '');
+                const parts = clean.split(/[/_-]/);
+                let yr = parseInt(parts[0], 10);
+                if (isNaN(yr)) return 0;
+                if (yr < 100) yr += 2000;
+                return yr;
+            };
+
+            const getNameKey = (str) => {
+                if (!str) return '';
+                return str.replace(/,/g, '')
+                          .toLowerCase()
+                          .split(/\s+/)
+                          .filter(Boolean)
+                          .sort()
+                          .join(' ');
+            };
+
+            // Pre-seed known canonical names from corrections.js
+            const athleteNameMap = {};
+            Object.entries(nameChanges).forEach(([legacyName, data]) => {
+                if (data && data.primaryName) {
+                    const k1 = getNameKey(legacyName);
+                    const k2 = getNameKey(data.primaryName);
+                    if (k1) athleteNameMap[k1] = data.primaryName;
+                    if (k2) athleteNameMap[k2] = data.primaryName;
+                }
+            });
+
+            // Normalize "SURNAME Forename" to "Forename SURNAME" automatically
+            const normalizeNameFormat = (str) => {
+                if (!str) return '';
+                let clean = str.replace(/,/g, '').trim();
+                const parts = clean.split(/\s+/);
+                if (parts.length === 2) {
+                    const [p1, p2] = parts;
+                    if (p1 === p1.toUpperCase() && p2 !== p2.toUpperCase() && p1.length > 1) {
+                        return `${p2} ${p1}`;
+                    }
+                }
+                return clean;
+            };
+
+            const resolveAthleteName = (rawName) => {
+                if (!rawName) return '';
+                const key = getNameKey(rawName);
+                if (athleteNameMap[key]) {
+                    return athleteNameMap[key];
+                }
+                const formatted = normalizeNameFormat(rawName);
+                athleteNameMap[key] = formatted;
+                return formatted;
+            };
+
+            // Helper to get athlete's current active club
+            const resolveCurrentClub = (athleteName, latestRecordClub) => {
+                const key = getNameKey(athleteName);
+                const clubHistoryKey = Object.keys(clubHistory).find(k => getNameKey(k) === key);
+                
+                if (clubHistoryKey && clubHistory[clubHistoryKey]) {
+                    const presentEntry = clubHistory[clubHistoryKey].find(h => h.seasons && normStr(h.seasons).includes('present'));
+                    if (presentEntry && presentEntry.club) {
+                        return window.getCanonicalClub ? window.getCanonicalClub(presentEntry.club) : presentEntry.club;
+                    }
+                }
+                
+                const fallback = latestRecordClub || "Unattached";
+                return window.getCanonicalClub ? window.getCanonicalClub(fallback) : fallback;
+            };
 
             const campaignMaxes = {};
             const athleteMetrics = {};
             const rawClubProfiles = {};
             const runnerProfiles = {};
 
-            // 1. Single unified loop to parse all dataset structures cleanly
+            // 1. Parse dataset cleanly
             allRecords.forEach(row => {
                 if (row.pos === 0 || !row.name) return;
 
-                const name = row.name.trim();
+                const name = resolveAthleteName(row.name);
                 const rawClub = row.club ? row.club.trim() : 'Independent';
                 const campaignKey = `${row.season}_${row.discipline.toLowerCase()}`;
                 const raceKey = `${row.season}_${row.discipline.toLowerCase()}_${row.race_number}`;
+                const seasonYear = parseSeasonYear(row.season);
 
                 // A. Track verified max fixture bounds
                 if (!row.status || row.status.toLowerCase() !== 'cancelled') {
@@ -281,12 +361,20 @@
                 if (!athleteMetrics[name]) {
                     athleteMetrics[name] = {
                         name: name,
-                        club: rawClub,
+                        rawClub: rawClub,
+                        latestYear: seasonYear,
                         totalAppearances: 0,
                         campaignBreakdown: {}
                     };
                 }
                 athleteMetrics[name].totalAppearances++;
+                
+                // Track actual latest season club
+                if (seasonYear >= athleteMetrics[name].latestYear) {
+                    athleteMetrics[name].latestYear = seasonYear;
+                    athleteMetrics[name].rawClub = rawClub;
+                }
+
                 if (!athleteMetrics[name].campaignBreakdown[campaignKey]) {
                     athleteMetrics[name].campaignBreakdown[campaignKey] = 0;
                 }
@@ -328,7 +416,8 @@
                 if (!runnerProfiles[name]) {
                     runnerProfiles[name] = {
                         name: name,
-                        club: rawClub,
+                        rawClub: rawClub,
+                        latestYear: seasonYear,
                         xcFinishes: 0,
                         xcBest: Infinity,
                         roadFinishes: 0,
@@ -340,7 +429,13 @@
                 }
 
                 const rp = runnerProfiles[name];
-                rp.club = rawClub;
+                
+                // Track actual latest season club
+                if (seasonYear >= rp.latestYear) {
+                    rp.latestYear = seasonYear;
+                    rp.rawClub = rawClub;
+                }
+
                 const isXC = row.discipline.toLowerCase() === 'xc';
                 const genderPos = parseInt(row.gender_pos, 10);
                 const catPos = parseInt(row.cat_pos, 10);
@@ -360,6 +455,15 @@
                 if (catPos === 1) {
                     rp.catWins++;
                 }
+            });
+
+            // Resolve actual current clubs for all athlete entries
+            Object.values(athleteMetrics).forEach(am => {
+                am.club = resolveCurrentClub(am.name, am.rawClub);
+            });
+
+            Object.values(runnerProfiles).forEach(rp => {
+                rp.club = resolveCurrentClub(rp.name, rp.rawClub);
             });
 
             // Re-map raw club profiles into canonical club profiles
@@ -393,13 +497,32 @@
                 });
             });
 
+            // Filter out junk/non-club entries to build the final validated clubs object
+            const excludedClubNames = new Set([
+                'unknown', 'unattached', 'independent',
+                'foulkes-', 'aherne', 'lewis', 'evans', 'williams', 
+                'miles', 'phillips', 'rainbird', 'thomas', 'hughes', 'austin'
+            ]);
+
+            const validClubProfiles = {};
+            Object.entries(clubProfiles).forEach(([name, data]) => {
+                const norm = name.toLowerCase().trim();
+                if (excludedClubNames.has(norm)) return;
+                if (!norm.includes(' ') && !norm.includes('rc') && !norm.includes('ac') && !norm.includes('harriers') && !norm.includes('runners') && !norm.includes('club') && !norm.includes('69')) {
+                    return;
+                }
+                if (data.finishesCount >= 10) {
+                    validClubProfiles[name] = data;
+                }
+            });
+
             // Calculate Head-to-Head Wins by searching matching race files
             const racesGroup = {};
             allRecords.forEach(row => {
                 if (!row.name || row.pos <= 0) return;
                 const raceKey = `${row.season}_${row.discipline.toLowerCase()}_${row.race_number}`;
                 if (!racesGroup[raceKey]) racesGroup[raceKey] = [];
-                racesGroup[raceKey].push({ name: row.name.trim(), genderPos: parseInt(row.gender_pos, 10) });
+                racesGroup[raceKey].push({ name: resolveAthleteName(row.name), genderPos: parseInt(row.gender_pos, 10) });
             });
 
             Object.values(racesGroup).forEach(runnersInRace => {
@@ -410,6 +533,7 @@
                         const runnerB = runnersInRace[j];
 
                         if (isNaN(runnerA.genderPos) || isNaN(runnerB.genderPos)) continue;
+                        if (!runnerProfiles[runnerA.name] || !runnerProfiles[runnerB.name]) continue;
 
                         if (!runnerProfiles[runnerA.name].headToHeadMatches[runnerB.name]) {
                             runnerProfiles[runnerA.name].headToHeadMatches[runnerB.name] = 0;
@@ -469,12 +593,12 @@
                 });
             }
 
-            // 3. Initialize Club Comparison
+            // 3. Initialize Club Comparison with Validated Club Profiles
             const selectA = document.getElementById('comp-select-a');
             const selectB = document.getElementById('comp-select-b');
 
             if (selectA && selectB) {
-                const selectClubsList = Object.keys(clubProfiles).sort();
+                const selectClubsList = Object.keys(validClubProfiles).sort();
                 
                 selectClubsList.forEach(club => {
                     const optA = document.createElement('option');
@@ -493,7 +617,7 @@
                     const title = document.getElementById(`comp-name-${targetId}`);
                     const metricsBox = document.getElementById(`comp-metrics-${targetId}`);
 
-                    if (!clubName || !clubProfiles[clubName]) {
+                    if (!clubName || !validClubProfiles[clubName]) {
                         card.classList.add('opacity-40', 'border-slate-800');
                         card.classList.remove('border-brand-500/40');
                         title.textContent = "No Selection";
@@ -502,7 +626,7 @@
                         return;
                     }
 
-                    const data = clubProfiles[clubName];
+                    const data = validClubProfiles[clubName];
                     
                     let totalGaps = 0, validRaces = 0;
                     Object.values(data.packingMap).forEach(positions => {
@@ -710,21 +834,8 @@
                 });
             }
 
-            // 4. Render Dynamic Demographic Leaderboard Rows for Legitimate Clubs
-            const excludedClubNames = new Set([
-                'unknown', 'unattached', 'independent',
-                'foulkes-', 'aherne', 'lewis', 'evans', 'williams', 
-                'miles', 'phillips', 'rainbird', 'thomas', 'hughes', 'austin'
-            ]);
-
-            const clubList = Object.values(clubProfiles).filter(c => {
-                const norm = c.name.toLowerCase().trim();
-                if (excludedClubNames.has(norm)) return false;
-                if (!norm.includes(' ') && !norm.includes('rc') && !norm.includes('ac') && !norm.includes('harriers') && !norm.includes('runners') && !norm.includes('club') && !norm.includes('69')) {
-                    return false;
-                }
-                return c.finishesCount >= 10;
-            });
+            // 4. Render Dynamic Demographic Leaderboard Rows
+            const clubList = Object.values(validClubProfiles);
 
             // A. Render Female Mobilisation Row Elements
             const femaleContainer = document.getElementById('female-leaderboard-rows');
