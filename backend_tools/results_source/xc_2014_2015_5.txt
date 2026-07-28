@@ -125,7 +125,7 @@
 1 1 1560 Katherine MATTHEWS Chepstow F3539 1 1000 100
 2 2 2003 Angela JONES Fairwater F4549 1 999 100
 3 3 4063 Caroline JONES Monmouth F3539 2 998 99
-4 4 4516 Nicola Gething Parc Bryn Bach F4044 1 997 100
+4 4 4516 Nichola GETHING Parc Bryn Bach F4044 1 997 100
 5 5 1607 Jane HORLER Chepstow F4044 2 996 99
 6 6 3528 Antoinette DUMAYNE Lliswerry F1734 1 995 100
 7 7 1525 Niki MORGAN Chepstow F4549 2 994 99

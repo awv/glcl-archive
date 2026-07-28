@@ -51,7 +51,7 @@
 46 207 Simon LEWIS Parc Bryn Bach M4549 MEN 45 7
 47 891 James PEARCE Lliswerry M1739 MEN 46 28
 48 125 Rob HOOK Chepstow M5054 MEN 47 3
-49 215 Nicola Gething Parc Bryn Bach F4044 LADIES 2 1
+49 215 Nichola GETHING Parc Bryn Bach F4044 LADIES 2 1
 50 542 Matthew LLOYD Fairwater M1739 MEN 48 29
 51 135 Mathew LAWSON Chepstow M4549 MEN 49 8
 52 950 Dimitri VORRÉS Pont-Y-Pwl M5054 MEN 50 4

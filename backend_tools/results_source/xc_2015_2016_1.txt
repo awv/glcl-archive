@@ -124,7 +124,7 @@
 # DISTANCE: Unknown
 
 1 1 3529 Emma WOOKEY Lliswerry F1734 1 1000 100
-2 2 4523 Nicola Gething Parc Bryn Bach F4549 1 999 100
+2 2 4523 Nichola GETHING Parc Bryn Bach F4549 1 999 100
 3 3 4004 Caroline JONES Monmouth F3539 1 998 100
 4 4 4505 Danielle PHILLIPS Parc Bryn Bach F1734 2 997 99
 5 5 4577 Lauren COOPER Parc Bryn Bach F1734 3 996 98

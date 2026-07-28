@@ -51,7 +51,7 @@
 46 350 Christopher JONES Lliswerry M5054 MEN 44 4
 47 43 Keith GITTINS Caerleon M5054 MEN 45 5
 48 M21 Russell FINCH Monmouth M4549 MEN 46 5
-49 215 Nicola Gething Parc Bryn Bach F4044 LADIES 3 1
+49 215 Nichola GETHING Parc Bryn Bach F4044 LADIES 3 1
 50 710 Philip WILLIAMS Islwyn M1739 MEN 47 29
 51 661 Thomas GUY Griffithstown M4044 MEN 48 7
 52 172 David SOMERSALL Chepstow M4044 MEN 49 8

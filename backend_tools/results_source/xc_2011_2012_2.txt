@@ -94,7 +94,7 @@
 6 209 Anne Marie HARRIS Parc Bryn Bach F4044 1
 7 733 Helen LODDER, Islwyn F4044 2
 8 136 Vanessa LAWSON, Chepstow F4044 3
-9 215 Nicola Gething Parc Bryn Bach F4044 4
+9 215 Nichola GETHING Parc Bryn Bach F4044 4
 10 418 Louise SUMMERS Chepstow F4044 5
 11 766 Maria RICHARDS Islwyn F3539 1
 12 114 Joc DODD Chepstow F5559 1

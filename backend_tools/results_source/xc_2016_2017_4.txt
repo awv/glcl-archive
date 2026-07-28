@@ -194,7 +194,7 @@ points
 5 5 1548 Sarah BELL Chepstow F3539 2 996 99
 6 6 1525 Jane HORLER Chepstow F4549 1 995 100
 7 7 1542 Niki MORGAN Chepstow F4549 2 994 99
-8 8 4523 Nicola Gething Parc Bryn Bach F4549 3 993 98
+8 8 4523 Nichola GETHING Parc Bryn Bach F4549 3 993 98
 9 9 5213 Bethan HAWKSLEY Pont-y-Pwl F1734 4 992 97
 10 10 1537 Lisa JEFFREY Chepstow F4549 4 991 97
 11 11 3793 Victoria HOBBS Lliswerry F1734 5 990 96

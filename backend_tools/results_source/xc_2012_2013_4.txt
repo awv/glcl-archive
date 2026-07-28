@@ -97,7 +97,7 @@
 
 1 422 Sam HARRIS Chepstow F1734 1
 2 414 Jane HORLER Chepstow F4044 1
-3 215 Nicola Gething Parc Bryn Bach F4044 2
+3 215 Nichola GETHING Parc Bryn Bach F4044 2
 4 124 Niki MORGAN Chepstow F4549 1
 5 408 Judith AUSTERBERRY Chepstow F3539 1
 6 418 Louise SUMMERS Chepstow F4549 2
