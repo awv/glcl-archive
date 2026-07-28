@@ -109,7 +109,7 @@
 # DISTANCE: Unknown
 
 1 414 Jane HORLER Chepstow F4044 1
-2 215 Nichola GETHING Parc Bryn Bach F4044 2
+2 215 Nicola Gething Parc Bryn Bach F4044 2
 3 136 Vanessa LAWSON Chepstow F4044 3
 4 418 Louise SUMMERS Chepstow F4549 1
 5 915 Samantha TOOP Pont-Y-Pwl F1734 1

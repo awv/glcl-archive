@@ -42,7 +42,7 @@
 37 143 Luke MALARZ, Chepstow M1739 MEN 35 20
 38 350 ChristopherJONES Lliswerry M5054 MEN 36 3
 39 124 Niki MORGAN, Chepstow F4549 LADIES 3 1
-40 215 Nichola GETHING Parc Bryn Bach F4044 LADIES 4 1
+40 215 Nicola Gething Parc Bryn Bach F4044 LADIES 4 1
 41 110 Laurie CARTER Chepstow M5054 MEN 37 4
 42 676 Andrew THOMPSON Griffithstown M5054 MEN 38 5
 43 506 Andrew SPENCER, Fairwater M4549 MEN 39 8

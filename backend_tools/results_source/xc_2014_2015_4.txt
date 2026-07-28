@@ -143,7 +143,7 @@
 # DISTANCE: Unknown
 
 1 1 4063 Caroline JONES Monmouth F3539 1 1000 100
-2 2 4516 Nichola GETHING Parc Bryn Bach F4044 1 999 100
+2 2 4516 Nicola Gething Parc Bryn Bach F4044 1 999 100
 3 3 1525 Niki MORGAN Chepstow F4549 1 998 100
 4 4 5014 Louise SUMMERS Pont-y-Pwl F4549 2 997 99
 5 5 3773 Rebecca ROTHWELL Lliswerry F1734 1 996 100

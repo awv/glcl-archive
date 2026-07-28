@@ -52,7 +52,7 @@
 47 238 David SMOUT Parc Bryn Bach M6064 MEN 44 1
 48 136 Vanessa LAWSON, Chepstow F3539 LADIES 4 1
 49 350 Christopher JONES Lliswerry M5054 MEN 45 4
-50 215 Nichola GETHING Parc Bryn Bach F4044 LADIES 5 4
+50 215 Nicola Gething Parc Bryn Bach F4044 LADIES 5 4
 51 163 Andy STOTT, Chepstow M5054 MEN 46 5
 52 354 Christopher MATTEWS Lliswerry M4549 MEN 47 8
 53 725 Kerry PRICE, Islwyn M5054 MEN 48 6

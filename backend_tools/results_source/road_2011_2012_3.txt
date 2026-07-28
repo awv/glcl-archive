@@ -45,7 +45,7 @@
 40 350 ChristopherJONES Lliswerry M5054 MEN 38 6
 41 M15 Robert PRINGLE Monmouth M1739 MEN 39 22
 42 683 Robert WITHERALL Griffithstown M1739 MEN 40 23
-43 215 Nichola GETHING Parc Bryn Bach F4044 LADIES 3 1
+43 215 Nicola Gething Parc Bryn Bach F4044 LADIES 3 1
 44 358 Steve PEMBERTON Lliswerry M1739 MEN 41 24
 45 377 Steve HARRHY Lliswerry M4549 MEN 42 8
 46 506 Andrew SPENCER, Fairwater M4549 MEN 43 9

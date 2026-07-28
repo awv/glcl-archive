@@ -100,7 +100,7 @@
 2 4 166 Georgie PARNELL Chepstow F1734 1
 3 6 124 Niki MORGAN Chepstow F4549 1
 4 8 136 Vanessa LAWSON Chepstow F4044 2
-5 9 215 Nichola GETHING Parc Bryn Bach F4044 3
+5 9 215 Nicola Gething Parc Bryn Bach F4044 3
 6 11 887 Ruth PHILLIPS Lliswerry F1734 2
 7 12 504 Angela JONES Fairwater F4549 2
 8 13 408 Judith AUSTERBERRY Chepstow F3539 1

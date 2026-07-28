@@ -40,7 +40,7 @@
 35 676 Andrew THOMPSON Griffithstown M5054 MEN 34 4
 36 878 Paul CHICK Lliswerry M4044 MEN 35 5
 37 542 Matthew LLOYD Fairwater M1739 MEN 36 21
-38 215 Nichola GETHING Parc Bryn Bach F4044 LADIES 2 1
+38 215 Nicola Gething Parc Bryn Bach F4044 LADIES 2 1
 39 124 Niki MORGAN, Chepstow F4549 LADIES 3 1
 40 679 Nick WALSH Griffithstown M4044 MEN 37 6
 41 43 Keith GITTINS Caerleon M5054 MEN 38 5

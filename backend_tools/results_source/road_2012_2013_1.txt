@@ -37,7 +37,7 @@
 32 659 Gerard GORMLEY Griffithstown M4549 MEN 30 5
 33 509 Richard LLOYD Fairwater M1739 MEN 31 15
 34 744 Robert DAVIES Islwyn M4044 MEN 32 7
-35 215 Nichola GETHING Parc Bryn Bach F4044 LADIES 3 2
+35 215 Nicola Gething Parc Bryn Bach F4044 LADIES 3 2
 36 M13 Allan MEEK Monmouth M4549 MEN 33 6
 37 676 Andrew THOMPSON Griffithstown M5559 MEN 34 3
 38 214 Daman JUKES Parc Bryn Bach M4044 MEN 35 8

@@ -144,7 +144,7 @@
 
 1 1 3573 Emma WOOKEY Lliswerry F1734 1 1000 100
 2 2 2003 Angela JONES Fairwater F4549 1 999 100
-3 3 4516 Nichola GETHING Parc Bryn Bach F4044 1 998 100
+3 3 4516 Nicola Gething Parc Bryn Bach F4044 1 998 100
 4 5 1525 Niki MORGAN Chepstow F4549 2 997 99
 5 6 5014 Louise SUMMERS Pont-y-Pwl F4549 3 996 98
 6 7 1567 Georgie PRIOR Chepstow F1734 2 995 99

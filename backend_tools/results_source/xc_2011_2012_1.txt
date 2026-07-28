@@ -91,7 +91,7 @@
 7 605 Julie DAVIES Griffithstown F4044 3
 8 209 Anne Marie HARRIS Parc Bryn Bach F4044 4
 9 733 Helen LODDER, Islwyn F4044 5
-10 215 Nichola GETHING Parc Bryn Bach F4044 6
+10 215 Nicola Gething Parc Bryn Bach F4044 6
 11 766 Maria RICHARDS Islwyn F3539 1
 12 136 Vanessa LAWSON, Chepstow F4044 7
 13 609 Claire THOMPSON Griffithstown F1734 4

@@ -61,7 +61,7 @@
 56 9 Tom EVANS Caerleon M1739 MEN 55 32
 57 418 Louise SUMMERS Chepstow F4549 LADIES 2 1
 58 110 Laurie CARTER Chepstow M5559 MEN 56 4
-59 215 Nichola GETHING Parc Bryn Bach F4044 LADIES 3 1
+59 215 Nicola Gething Parc Bryn Bach F4044 LADIES 3 1
 60 661 Thomas GUY Griffithstown M4044 MEN 57 6
 61 125 Rob HOOK Chepstow M4549 MEN 58 6
 62 535 Rob SYMONS Fairwater M4549 MEN 59 7

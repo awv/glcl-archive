@@ -57,7 +57,7 @@
 52 679 Nick WALSH Griffithstown M4044 MEN 50 9
 53 8854 Mike RIDD Lliswerry M1739 MEN 51 32
 54 878 Paul CHICK Lliswerry M4549 MEN 52 7
-55 215 Nichola GETHING Parc Bryn Bach F4044 LADIES 3 1
+55 215 Nicola Gething Parc Bryn Bach F4044 LADIES 3 1
 56 7746 Richard MORRIS Islwyn M1739 MEN 53 33
 57 678 Andrew PEARCE Griffithstown M1739 MEN 54 34
 58 73 Mike DAVIES Caerleon M5054 MEN 55 2
