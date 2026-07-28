@@ -66,39 +66,47 @@
                 </div>
 
                 <!-- SUBTLE DATABASE STATS BAR -->
-                <div id="hero-stats-bar" class="mt-6 max-w-2xl mx-auto px-2">
-                    <div class="grid grid-cols-3 sm:grid-cols-5 gap-y-3 gap-x-2 text-center font-mono text-[10px] text-slate-400">
+                <div id="hero-stats-bar" class="mt-5 max-w-xl mx-auto px-2">
+                    <div class="flex flex-wrap items-center justify-center gap-y-3 gap-x-3 sm:gap-x-6 text-center font-mono text-[10px] text-slate-400">
                         
                         <!-- Seasons -->
                         <div class="space-y-0.5">
-                            <span id="hero-stat-seasons" class="block font-sans font-black text-slate-200 text-sm md:text-base leading-none">0</span>
-                            <span class="block uppercase tracking-wider text-[9px] text-slate-500">Seasons</span>
+                            <span id="hero-stat-seasons" class="block font-sans font-black text-slate-200 text-xs sm:text-sm leading-none">0</span>
+                            <span class="block uppercase tracking-wider text-[8px] sm:text-[9px] text-slate-500">Seasons</span>
                         </div>
 
-                        <!-- Races -->
+                        <span class="text-slate-800 select-none">•</span>
+
+                        <!-- Fixtures -->
                         <div class="space-y-0.5">
-                            <span id="hero-stat-races" class="block font-sans font-black text-slate-200 text-sm md:text-base leading-none">0</span>
-                            <span class="block uppercase tracking-wider text-[9px] text-slate-500">Fixtures</span>
+                            <span id="hero-stat-races" class="block font-sans font-black text-slate-200 text-xs sm:text-sm leading-none">0</span>
+                            <span class="block uppercase tracking-wider text-[8px] sm:text-[9px] text-slate-500">Fixtures</span>
                         </div>
 
-                        <!-- Finishers -->
+                        <span class="text-slate-800 select-none">•</span>
+
+                        <!-- Finishes -->
                         <div class="space-y-0.5">
-                            <span id="hero-stat-finishers" class="block font-sans font-black text-slate-200 text-sm md:text-base leading-none">0</span>
-                            <span class="block uppercase tracking-wider text-[9px] text-slate-500">Finishes</span>
+                            <span id="hero-stat-finishers" class="block font-sans font-black text-slate-200 text-xs sm:text-sm leading-none">0</span>
+                            <span class="block uppercase tracking-wider text-[8px] sm:text-[9px] text-slate-500">Finishes</span>
                         </div>
+
+                        <span class="text-slate-800 select-none">•</span>
 
                         <!-- Unique Runners -->
                         <div class="space-y-0.5">
-                            <span id="hero-stat-runners" class="block font-sans font-black text-slate-200 text-sm md:text-base leading-none">0</span>
-                            <span class="block uppercase tracking-wider text-[9px] text-slate-500">Runners</span>
+                            <span id="hero-stat-runners" class="block font-sans font-black text-slate-200 text-xs sm:text-sm leading-none">0</span>
+                            <span class="block uppercase tracking-wider text-[8px] sm:text-[9px] text-slate-500">Runners</span>
                         </div>
 
+                        <span class="text-slate-800 select-none">•</span>
+
                         <!-- Discipline Split -->
-                        <div class="col-span-3 sm:col-span-1 space-y-0.5 pt-1 sm:pt-0 border-t sm:border-t-0 border-slate-800/60 sm:border-l sm:border-slate-800/80">
-                            <span class="block font-sans font-black text-slate-200 text-xs md:text-sm leading-none">
-                                <span id="hero-stat-xc" class="text-brand-400">0</span> <span class="text-slate-600 font-normal">/</span> <span id="hero-stat-road" class="text-amber-400">0</span>
+                        <div class="space-y-0.5">
+                            <span class="block font-sans font-black text-slate-200 text-xs sm:text-sm leading-none">
+                                <span id="hero-stat-xc" class="text-brand-400">0</span><span class="text-slate-600 font-normal">/</span><span id="hero-stat-road" class="text-amber-400">0</span>
                             </span>
-                            <span class="block uppercase tracking-wider text-[9px] text-slate-500">XC / Road</span>
+                            <span class="block uppercase tracking-wider text-[8px] sm:text-[9px] text-slate-500">XC / Road</span>
                         </div>
 
                     </div>
