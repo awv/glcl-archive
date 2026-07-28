@@ -6,6 +6,7 @@
     <title>GLCL Archive — Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="data.js"></script>
+    <script src="assets/js/corrections.js"></script>
     <script src="site-layout.js"></script>
     <script>
         tailwind.config = {
@@ -14,6 +15,7 @@
                     colors: {
                         brand: {
                             500: '#0066cc',
+                            400: '#3385ff'
                         }
                     }
                 }
@@ -35,7 +37,7 @@
     </nav>
 
     <!-- LARGER CINEMATIC HERO BANNER -->
-    <header class="relative h-[45vh] md:h-[55vh] flex items-center justify-center overflow-hidden border-slate-900 w-full">
+    <header class="relative min-h-[48vh] md:min-h-[55vh] flex items-center justify-center overflow-hidden border-slate-900 w-full py-12">
         <!-- Background Image -->
         <img src="assets/images/hero_placeholder.jpg" alt="Gwent League Cross Country Action" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 filter brightness-[0.9] contrast-125">
         <div class="absolute inset-0 hero-gradient"></div>
@@ -59,14 +61,48 @@
                 </div>
                 
                 <!-- Search Suggestions Dropdown -->
-                <div id="autocomplete-results" class="hidden absolute left-0 right-0 mt-2 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl z-50 max-h-64 overflow-y-auto divide-y divide-slate-950 text-left">
+                <div id="autocomplete-results" class="hidden absolute left-0 right-0 mt-2 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl z-50 max-h-64 overflow-y-auto divide-y divide-slate-950 text-left font-sans">
                     <!-- Dynamic search suggestions injected here -->
                 </div>
 
-                <!-- Database Era Disclaimer Text -->
-                <p class="text-[10px] md:text-[11px] font-mono text-slate-500 uppercase tracking-widest mt-4">
-                    Note: Database records currently cover campaigns from 2006 to 2026.
-                </p>
+                <!-- SUBTLE DATABASE STATS BAR -->
+                <div id="hero-stats-bar" class="mt-6 max-w-2xl mx-auto px-2">
+                    <div class="grid grid-cols-3 sm:grid-cols-5 gap-y-3 gap-x-2 text-center font-mono text-[10px] text-slate-400">
+                        
+                        <!-- Seasons -->
+                        <div class="space-y-0.5">
+                            <span id="hero-stat-seasons" class="block font-sans font-black text-slate-200 text-sm md:text-base leading-none">0</span>
+                            <span class="block uppercase tracking-wider text-[9px] text-slate-500">Seasons</span>
+                        </div>
+
+                        <!-- Races -->
+                        <div class="space-y-0.5">
+                            <span id="hero-stat-races" class="block font-sans font-black text-slate-200 text-sm md:text-base leading-none">0</span>
+                            <span class="block uppercase tracking-wider text-[9px] text-slate-500">Fixtures</span>
+                        </div>
+
+                        <!-- Finishers -->
+                        <div class="space-y-0.5">
+                            <span id="hero-stat-finishers" class="block font-sans font-black text-slate-200 text-sm md:text-base leading-none">0</span>
+                            <span class="block uppercase tracking-wider text-[9px] text-slate-500">Finishes</span>
+                        </div>
+
+                        <!-- Unique Runners -->
+                        <div class="space-y-0.5">
+                            <span id="hero-stat-runners" class="block font-sans font-black text-slate-200 text-sm md:text-base leading-none">0</span>
+                            <span class="block uppercase tracking-wider text-[9px] text-slate-500">Runners</span>
+                        </div>
+
+                        <!-- Discipline Split -->
+                        <div class="col-span-3 sm:col-span-1 space-y-0.5 pt-1 sm:pt-0 border-t sm:border-t-0 border-slate-800/60 sm:border-l sm:border-slate-800/80">
+                            <span class="block font-sans font-black text-slate-200 text-xs md:text-sm leading-none">
+                                <span id="hero-stat-xc" class="text-brand-400">0</span> <span class="text-slate-600 font-normal">/</span> <span id="hero-stat-road" class="text-amber-400">0</span>
+                            </span>
+                            <span class="block uppercase tracking-wider text-[9px] text-slate-500">XC / Road</span>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -125,6 +161,77 @@
     };
 
     document.addEventListener('DOMContentLoaded', () => {
+        // --- 1. POPULATE HERO STATS BAR ---
+        const rawResults = window.glclResults || [];
+        if (rawResults.length > 0) {
+            const corrections = window.glclCorrections || {};
+            const nameChanges = corrections.nameChanges || {};
+
+            const getNameKey = (str) => {
+                if (!str) return '';
+                return str.replace(/,/g, '')
+                          .toLowerCase()
+                          .split(/\s+/)
+                          .filter(Boolean)
+                          .sort()
+                          .join(' ');
+            };
+
+            const resolveAthleteName = (rawName) => {
+                if (!rawName) return '';
+                const key = getNameKey(rawName);
+                let resolved = '';
+
+                Object.entries(nameChanges).forEach(([legacyName, data]) => {
+                    if (data && data.primaryName && (getNameKey(legacyName) === key || getNameKey(data.primaryName) === key)) {
+                        resolved = data.primaryName;
+                    }
+                });
+
+                return resolved || rawName;
+            };
+
+            const seasonsSet = new Set();
+            const racesSet = new Set();
+            const runnersSet = new Set();
+            let totalFinishes = 0;
+            let xcCount = 0;
+            let roadCount = 0;
+
+            rawResults.forEach(r => {
+                if (r.season) seasonsSet.add(r.season);
+
+                if (r.season && r.discipline && r.race_number) {
+                    racesSet.add(`${r.season}_${r.discipline.toLowerCase()}_${r.race_number}`);
+                }
+
+                if (r.pos > 0 && r.name && r.name !== 'Unknown Runner') {
+                    totalFinishes++;
+                    const canonicalName = resolveAthleteName(r.name);
+                    runnersSet.add(getNameKey(canonicalName));
+
+                    const disc = (r.discipline || '').toLowerCase();
+                    if (disc === 'xc') xcCount++;
+                    else if (disc === 'road') roadCount++;
+                }
+            });
+
+            const seasonsEl = document.getElementById('hero-stat-seasons');
+            const racesEl = document.getElementById('hero-stat-races');
+            const finishesEl = document.getElementById('hero-stat-finishers');
+            const runnersEl = document.getElementById('hero-stat-runners');
+            const xcEl = document.getElementById('hero-stat-xc');
+            const roadEl = document.getElementById('hero-stat-road');
+
+            if (seasonsEl) seasonsEl.textContent = seasonsSet.size;
+            if (racesEl) racesEl.textContent = racesSet.size;
+            if (finishesEl) finishesEl.textContent = totalFinishes.toLocaleString();
+            if (runnersEl) runnersEl.textContent = runnersSet.size.toLocaleString();
+            if (xcEl) xcEl.textContent = xcCount.toLocaleString();
+            if (roadEl) roadEl.textContent = roadCount.toLocaleString();
+        }
+
+        // --- 2. RENDER FIXTURE BOARD ---
         const xcGrid = document.getElementById('xc-fixtures-grid');
         const roadGrid = document.getElementById('road-fixtures-grid');
         const boardTitle = document.getElementById('fixture-board-title');
@@ -216,7 +323,7 @@
             renderRow(roadFixtures, roadGrid, 'road');
         }
 
-        // AUTOCOMPLETE SEARCH SYSTEM (Keyed strictly by Name + Club)
+        // --- 3. AUTOCOMPLETE SEARCH SYSTEM ---
         const searchInput = document.getElementById('runner-search');
         const resultsContainer = document.getElementById('autocomplete-results');
         let uniqueRunners = [];
