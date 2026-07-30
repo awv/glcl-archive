@@ -17,6 +17,12 @@ window.glclCorrections = window.glclCorrections || {
             effectiveSeason: "2017/2018", 
             note: "Formerly competed as Sam Lewis Jones"
         }
+        ,
+        "Nicola Smith": {
+            primaryName: "Nicola Brunnock", // The new master profile name
+            effectiveSeason: "2021/2022", 
+            note: "Formerly competed as Nicola Smith"
+        }
     },
     
     // 2. HISTORICAL CLUB TRANSITIONS TRACKING

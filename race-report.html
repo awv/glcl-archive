@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLCL Archive — Fixture Race Report</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="data.js"></script>
+    <script src="assets/js/corrections.js"></script>
+    <script src="site-layout.js"></script>
+
+    <!-- Leaflet & GPX Libraries for Course Mapping -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#0066cc', 400: '#3385ff' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #030712; }
+        .leaflet-container { background: #090d16; border-radius: 1rem; }
+    </style>
+</head>
+<body class="text-slate-300 font-sans antialiased flex flex-col min-h-full">
+
+    <!-- GLOBAL NAVIGATION CONTAINER -->
+    <nav id="global-nav" class="border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <!-- Injected automatically via site-layout.js -->
+    </nav>
+    <script>
+        fetch('components/nav.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('global-nav').innerHTML = data;
+                window.dispatchEvent(new Event('navLoaded'));
+            })
+            .catch(err => console.error('Error loading nav:', err));
+    </script>
+
+    <!-- FULL-WIDTH CINEMATIC HERO HEADER -->
+    <header id="report-hero-container" class="relative w-full min-h-[50vh] md:min-h-[65vh] flex items-end overflow-hidden border-b border-slate-900 bg-slate-950">
+        <!-- Main Race Cover Photography (Unconstrained Full-Bleed) -->
+        <img id="report-hero-img" src="assets/images/hero_placeholder.jpg" alt="Race Action Cover" class="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.7] contrast-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/60 to-transparent"></div>
+
+        <div class="relative max-w-6xl w-full mx-auto px-6 pb-12 z-10 space-y-4">
+            <div class="flex flex-wrap items-center gap-2">
+                <span id="badge-discipline" class="text-[10px] font-mono font-bold bg-brand-500 text-slate-950 px-2.5 py-1 rounded uppercase tracking-wider">ROAD SERIES</span>
+                <span id="badge-season" class="text-[10px] font-mono font-bold bg-slate-900 text-slate-300 border border-slate-800 px-2.5 py-1 rounded uppercase tracking-wider">2025/2026</span>
+            </div>
+
+            <h1 id="report-title" class="text-4xl md:text-6xl font-black text-slate-100 tracking-tight uppercase leading-tight drop-shadow-2xl">
+                Loading Race Analysis...
+            </h1>
+
+            <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-mono font-bold text-slate-400 uppercase tracking-wider pt-2">
+                <span>🗓️ <span id="meta-date">-- --- ----</span></span>
+                <span>•</span>
+                <span>📍 <span id="meta-venue">--</span></span>
+                <span>•</span>
+                <span>👟 <span id="meta-finishers">0</span> Finishers</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN EDITORIAL & ANALYSIS MODULE -->
+    <main class="max-w-6xl w-full mx-auto px-6 py-12 space-y-16 flex-grow">
+
+        <!-- MACRO INSIGHTS COUNTER STRIP -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 font-mono">
+            <div class="bg-slate-950 border border-slate-900 p-5 rounded-2xl shadow-xl text-center space-y-1">
+                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wider block">Total Turnout</span>
+                <span id="stat-total" class="text-3xl font-black text-slate-100 block">0</span>
+            </div>
+            <div class="bg-slate-950 border border-slate-900 p-5 rounded-2xl shadow-xl text-center space-y-1">
+                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wider block">Men / Women Split</span>
+                <span id="stat-split" class="text-2xl font-black text-slate-200 block mt-1">
+                    <span id="stat-men" class="text-sky-400">0</span> / <span id="stat-women" class="text-pink-400">0</span>
+                </span>
+            </div>
+            <div class="bg-slate-950 border border-slate-900 p-5 rounded-2xl shadow-xl text-center space-y-1">
+                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wider block">Male Winner</span>
+                <span id="stat-winner-m" class="text-sm font-black text-brand-400 block truncate">--</span>
+            </div>
+            <div class="bg-slate-950 border border-slate-900 p-5 rounded-2xl shadow-xl text-center space-y-1">
+                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wider block">Female Winner</span>
+                <span id="stat-winner-f" class="text-sm font-black text-pink-400 block truncate">--</span>
+            </div>
+        </section>
+
+        <!-- COURSE ROUTE & GPX MAP EXPLORER (FULL CONTAINER) -->
+        <section class="space-y-4">
+            <div class="border-b border-slate-900 pb-2">
+                <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Course Profile</h2>
+                <h3 class="text-2xl font-black text-slate-100 uppercase tracking-tight mt-0.5">Interactive GPX Route & Elevation</h3>
+            </div>
+
+            <div class="bg-slate-950 border border-slate-900 p-4 rounded-2xl shadow-2xl space-y-4">
+                <div id="gpx-map" class="w-full h-96 relative z-10"></div>
+                <div id="gpx-meta-strip" class="flex flex-wrap justify-between items-center text-xs font-mono text-slate-400 px-2 pt-2 border-t border-slate-900">
+                    <span>Distance: <strong id="gpx-dist" class="text-slate-200">-- km</strong></span>
+                    <span>Elevation Gain: <strong id="gpx-elev" class="text-slate-200">-- m</strong></span>
+                    <a id="gpx-download" href="#" download class="text-brand-400 hover:underline">Download .GPX File</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDITORIAL RACE REPORT & PHOTOGRAPHY GALLERY -->
+        <section class="space-y-6">
+            <div class="border-b border-slate-900 pb-2">
+                <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Editorial Digest</h2>
+                <h3 class="text-2xl font-black text-slate-100 uppercase tracking-tight mt-0.5">Race Action Breakdown</h3>
+            </div>
+
+            <div class="prose prose-invert max-w-none text-slate-300 text-sm md:text-base leading-relaxed space-y-4">
+                <p id="editorial-text-intro">
+                    An exhilarating fixture on the road calendar. Competitive fields pushed the pace from the start line down to the final sprint finish.
+                </p>
+            </div>
+
+            <!-- PHOTO GALLERY GRID (FULL WIDTH) -->
+            <div id="report-photo-gallery" class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                <!-- High quality photography cards inserted dynamically -->
+            </div>
+        </section>
+
+        <!-- DATA ANALYSIS: PACKING FACTOR & CLOSE FINISHES -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Club Packing Factor Analysis -->
+            <div class="bg-slate-950 border border-slate-900 p-6 rounded-2xl shadow-xl space-y-4">
+                <div>
+                    <h4 class="text-xs font-mono font-bold text-brand-400 uppercase tracking-wider">Squad Mobilisation</h4>
+                    <h3 class="text-lg font-black text-slate-100 uppercase tracking-tight">Top Scoring Squad Packing Spread</h3>
+                    <p class="text-xs text-slate-500 mt-1">Time gap between the 1st and 4th scorer for top scoring clubs.</p>
+                </div>
+                <div id="packing-rows" class="space-y-3 font-mono text-xs pt-2">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Sprint Battles & Close Finishes -->
+            <div class="bg-slate-950 border border-slate-900 p-6 rounded-2xl shadow-xl space-y-4">
+                <div>
+                    <h4 class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">Photo Finishes</h4>
+                    <h3 class="text-lg font-black text-slate-100 uppercase tracking-tight">Tightest Sprint Battles</h3>
+                    <p class="text-xs text-slate-500 mt-1">Runners crossing the line in close succession.</p>
+                </div>
+                <div id="sprint-rows" class="space-y-3 font-mono text-xs pt-2">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- FULL FIXTURE RESULTS LINK STRIP -->
+        <section class="bg-slate-950 border border-slate-900 p-6 rounded-2xl text-center space-y-3">
+            <h3 class="text-lg font-black text-slate-100 uppercase tracking-tight">Complete Standing Index</h3>
+            <p class="text-xs text-slate-400 max-w-md mx-auto">Explore full standings, search individual age division winners, and filter by club.</p>
+            <div class="pt-2">
+                <a id="btn-full-results" href="#" class="inline-block bg-brand-500 hover:bg-brand-400 text-slate-950 font-mono font-black text-xs px-6 py-3 rounded-xl transition-all uppercase tracking-wider">
+                    View Complete Results Standings →
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- INJECTED GLOBAL FOOTER CONTAINER -->
+    <div id="global-footer"></div>
+
+    <!-- MAIN DYNAMIC ENGINE -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const rawSeason = urlParams.get('season') || '2025_2026';
+            const discipline = urlParams.get('discipline') || 'road';
+            const raceNum = parseInt(urlParams.get('race'), 10) || 1;
+
+            const selectedSeason = rawSeason.replace('_', '/');
+            const allRecords = window.glclResults || [];
+
+            // 1. FILTER FIXTURE RECORDS
+            const fixtureRecords = allRecords.filter(row => 
+                row.season === selectedSeason && 
+                row.discipline.toLowerCase() === discipline.toLowerCase() && 
+                parseInt(row.race_number, 10) === raceNum &&
+                row.pos > 0
+            ).sort((a, b) => a.pos - b.pos);
+
+            if (fixtureRecords.length === 0) {
+                document.getElementById('report-title').textContent = "Fixture Report Not Found";
+                return;
+            }
+
+            const meta = fixtureRecords[0];
+            const seasonSlug = rawSeason;
+            const raceSlug = `${discipline}_race_${raceNum}`;
+
+            // Populate Headers & Meta
+            document.getElementById('report-title').textContent = `${meta.venue} Race Report`;
+            document.getElementById('badge-discipline').textContent = `${discipline.toUpperCase()} SERIES`;
+            document.getElementById('badge-season').textContent = selectedSeason;
+            document.getElementById('meta-date').textContent = meta.date || 'N/A';
+            document.getElementById('meta-venue').textContent = meta.venue;
+            document.getElementById('meta-finishers').textContent = fixtureRecords.length;
+
+            document.getElementById('btn-full-results').href = `results.html?season=${rawSeason}&discipline=${discipline}&race=${raceNum}`;
+
+            // Image Auto-Loader
+            const tryLoadHeroImage = () => {
+                const heroImg = document.getElementById('report-hero-img');
+                const heroPath = `assets/images/reports/${seasonSlug}/${discipline}_${raceNum}_hero.jpg`;
+                
+                const imgCheck = new Image();
+                imgCheck.src = heroPath;
+                imgCheck.onload = () => heroImg.src = heroPath;
+                imgCheck.onerror = () => heroImg.src = 'assets/images/hero_placeholder.jpg';
+            };
+            tryLoadHeroImage();
+
+            // Photo Gallery Loader
+            const galleryContainer = document.getElementById('report-photo-gallery');
+            [1, 2, 3, 4].forEach(photoIdx => {
+                const photoPath = `assets/images/reports/${seasonSlug}/${discipline}_${raceNum}_${photoIdx}.jpg`;
+                const imgCheck = new Image();
+                imgCheck.src = photoPath;
+                imgCheck.onload = () => {
+                    galleryContainer.insertAdjacentHTML('beforeend', `
+                        <div class="bg-slate-950 border border-slate-900 rounded-2xl overflow-hidden shadow-xl h-64">
+                            <img src="${photoPath}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Race action ${photoIdx}">
+                        </div>
+                    `);
+                };
+            });
+
+            // 2. MACRO METRICS STATS
+            const menCount = fixtureRecords.filter(r => (r.sex || '').toUpperCase() === 'M' || (r.sex || '').toUpperCase() === 'MEN').length;
+            const womenCount = fixtureRecords.filter(r => (r.sex || '').toUpperCase() === 'F' || (r.sex || '').toUpperCase() === 'LADIES' || (r.sex || '').toUpperCase() === 'WOMEN').length;
+
+            const maleWinner = fixtureRecords.find(r => (r.sex || '').toUpperCase() === 'M' || (r.sex || '').toUpperCase() === 'MEN');
+            const femaleWinner = fixtureRecords.find(r => (r.sex || '').toUpperCase() === 'F' || (r.sex || '').toUpperCase() === 'LADIES' || (r.sex || '').toUpperCase() === 'WOMEN');
+
+            document.getElementById('stat-total').textContent = fixtureRecords.length;
+            document.getElementById('stat-men').textContent = menCount;
+            document.getElementById('stat-women').textContent = womenCount;
+            document.getElementById('stat-winner-m').textContent = maleWinner ? maleWinner.name : 'N/A';
+            document.getElementById('stat-winner-f').textContent = femaleWinner ? femaleWinner.name : 'N/A';
+
+            // 3. PACKING FACTOR CALCULATOR (Top scoring squads)
+            const clubSquads = {};
+            fixtureRecords.forEach(r => {
+                const c = window.getCanonicalClub ? window.getCanonicalClub(r.club) : r.club;
+                if (!c || c === 'Unattached' || c === 'Independent') return;
+                if (!clubSquads[c]) clubSquads[c] = [];
+                clubSquads[c].push(r);
+            });
+
+            const packingRowsContainer = document.getElementById('packing-rows');
+            packingRowsContainer.innerHTML = '';
+
+            Object.entries(clubSquads)
+                .filter(([_, runners]) => runners.length >= 4)
+                .map(([club, runners]) => {
+                    const top4 = runners.slice(0, 4);
+                    const gap = top4[3].pos - top4[0].pos;
+                    return { club, count: runners.length, gap, leadPos: top4[0].pos, lastPos: top4[3].pos };
+                })
+                .sort((a, b) => a.gap - b.gap)
+                .slice(0, 5)
+                .forEach((p, idx) => {
+                    packingRowsContainer.insertAdjacentHTML('beforeend', `
+                        <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-900/60 border border-slate-800">
+                            <div>
+                                <span class="font-bold text-slate-200 block">${idx + 1}. ${p.club}</span>
+                                <span class="text-[10px] text-slate-500">1st: Pos ${p.leadPos} ➔ 4th: Pos ${p.lastPos}</span>
+                            </div>
+                            <span class="text-brand-400 font-black">± ${p.gap} Pos Gap</span>
+                        </div>
+                    `);
+                });
+
+            // 4. PHOTO FINISHES / SPRINT BATTLES
+            const sprintRowsContainer = document.getElementById('sprint-rows');
+            sprintRowsContainer.innerHTML = '';
+
+            const closeFinishes = [];
+            for (let i = 0; i < fixtureRecords.length - 1; i++) {
+                const r1 = fixtureRecords[i];
+                const r2 = fixtureRecords[i + 1];
+                if (r1.time && r2.time && r1.time === r2.time) {
+                    closeFinishes.push({ r1, r2 });
+                }
+            }
+
+            closeFinishes.slice(0, 5).forEach(pair => {
+                sprintRowsContainer.insertAdjacentHTML('beforeend', `
+                    <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-900/60 border border-slate-800">
+                        <div class="space-y-0.5">
+                            <span class="text-slate-200 font-bold block">${pair.r1.name} (Pos ${pair.r1.pos})</span>
+                            <span class="text-slate-400 font-bold block">${pair.r2.name} (Pos ${pair.r2.pos})</span>
+                        </div>
+                        <span class="text-amber-400 font-black text-xs">${pair.r1.time}</span>
+                    </div>
+                `);
+            });
+
+            if (closeFinishes.length === 0) {
+                sprintRowsContainer.innerHTML = `<p class="text-slate-500 text-xs font-mono">No identical split times recorded for this fixture.</p>`;
+            }
+
+            // 5. LEAFLET GPX MAP INTEGRATION
+            const mapContainer = document.getElementById('gpx-map');
+            const gpxPath = `assets/gpx/${seasonSlug}_${discipline}_${raceNum}.gpx`;
+            document.getElementById('gpx-download').href = gpxPath;
+
+            const map = L.map('gpx-map').setView([51.65, -3.0], 12);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; CartoDB',
+                maxZoom: 19
+            }).addTo(map);
+
+            new L.GPX(gpxPath, {
+                async: true,
+                marker_options: {
+                    startIconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+                    endIconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+                    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png'
+                },
+                polyline_options: {
+                    color: '#0066cc',
+                    opacity: 0.85,
+                    weight: 4,
+                    lineCap: 'round'
+                }
+            }).on('loaded', function(e) {
+                const gpx = e.target;
+                map.fitBounds(gpx.getBounds());
+                document.getElementById('gpx-dist').textContent = `${(gpx.get_distance() / 1000).toFixed(2)} km`;
+                document.getElementById('gpx-elev').textContent = `${Math.round(gpx.get_elevation_gain())} m`;
+            }).on('error', function() {
+                mapContainer.innerHTML = `
+                    <div class="h-full flex flex-col items-center justify-center text-center p-6 text-slate-500 font-mono">
+                        <span>🗺️ GPX Course File Pending</span>
+                        <span class="text-xs mt-1 text-slate-600">Upload GPX file to assets/gpx/${seasonSlug}_${discipline}_${raceNum}.gpx</span>
+                    </div>
+                `;
+            }).addTo(map);
+        });
+    </script>
+</body>
+</html>
