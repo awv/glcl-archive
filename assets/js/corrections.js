@@ -22,6 +22,11 @@ window.glclCorrections = window.glclCorrections || {
             primaryName: "Nicola Brunnock", // The new master profile name
             effectiveSeason: "2021/2022", 
             note: "Formerly competed as Nicola Smith"
+        },
+        "Tom Henry": {
+            primaryName: "Thomas Henry", // The new master profile name
+            effectiveSeason: "2021/2022", 
+            note: "Formerly competed as Tom Henry"
         }
     },
     
