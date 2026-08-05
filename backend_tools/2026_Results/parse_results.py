@@ -6,46 +6,49 @@ import glob
 # Paths
 base_dir = os.path.dirname(__file__)
 pdf_dir = os.path.join(base_dir, "pdf_source")
-output_dir = os.path.join(base_dir, "results_source")
+output_dir = os.path.join(base_dir, "..", "results_source")
 
-LINE_REGEX = re.compile(r'^(\d+)\s+(.+)$')
-METRICS_REGEX = re.compile(r'\s+\*?([MF])\*?\s+(\d+)\s+\*?([A-Z0-9]+)\*?\s+(\d+)\s+(\d+:\d+:\d+)\s*$')
-
-# Create directories if they don't exist
 os.makedirs(pdf_dir, exist_ok=True)
 os.makedirs(output_dir, exist_ok=True)
 
-# Find all PDFs in the source folder
 pdf_files = glob.glob(os.path.join(pdf_dir, "*.pdf"))
 
 if not pdf_files:
     print(f"No PDFs found in {pdf_dir}. Please drop your race PDFs there.")
-    print("Example filename format: road_2025_2026_1.pdf")
+
+def find_time_token(tokens):
+    for idx in range(len(tokens) - 1, -1, -1):
+        if re.match(r'^\d{1,2}:\d{1,2}(?::\d{1,2})?$', tokens[idx]):
+            return idx, tokens[idx]
+    return -1, None
+
+def format_time(t_str):
+    parts = t_str.split(':')
+    if len(parts) == 2:
+        return f"00:{parts[0].zfill(2)}:{parts[1].zfill(2)}"
+    elif len(parts) == 3:
+        return f"{parts[0].zfill(2)}:{parts[1].zfill(2)}:{parts[2].zfill(2)}"
+    return t_str
 
 for pdf_path in pdf_files:
     filename = os.path.basename(pdf_path)
     print(f"\nProcessing {filename}...")
     
-    # Force the output filename format to match what parse_fixtures.js expects: road_2025_2026_X.txt
-    # We can extract the race number dynamically from the end of the filename
     race_num_match = re.search(r'(\d+)\.pdf$', filename, re.IGNORECASE)
     race_number = race_num_match.group(1) if race_num_match else "1"
     
     txt_filename = f"road_2025_2026_{race_number}.txt"
     output_txt_path = os.path.join(output_dir, txt_filename)
 
-    # Default metadata fallbacks
-    venue = "Unknown Venue"
-    date = "Unknown Date"
-    distance = "5 Miles" # Default road distance fallback
+    venue = "Parc Bryn Bach"
+    date = "2026-08-04"
+    distance = "5.14 Miles"
     
     parsed_lines = []
 
     with pdfplumber.open(pdf_path) as pdf:
-        # 1. Grab metadata from the first page header text before parsing rows
         first_page_text = pdf.pages[0].extract_text() or ""
         for line in first_page_text.split("\n"):
-            # Looks for common header patterns like "Venue: Caerleon" or "Date: 05/05/2026"
             if "VENUE:" in line.upper():
                 venue = line.split(":")[-1].strip()
             if "DATE:" in line.upper():
@@ -53,7 +56,6 @@ for pdf_path in pdf_files:
             if "DISTANCE:" in line.upper():
                 distance = line.split(":")[-1].strip()
 
-        # Add the required build tool headers
         parsed_lines.extend([
             f"# VENUE: {venue}",
             f"# DATE: {date}",
@@ -61,7 +63,6 @@ for pdf_path in pdf_files:
             "# STATUS: Confirmed"
         ])
 
-        # 2. Parse the table rows across all pages
         for page in pdf.pages:
             text = page.extract_text()
             if not text:
@@ -69,75 +70,97 @@ for pdf_path in pdf_files:
                 
             for line in text.split('\n'):
                 line_str = line.strip()
-                
-                start_match = LINE_REGEX.match(line_str)
-                if not start_match:
+                raw_tokens = line_str.split()
+
+                if not raw_tokens or not raw_tokens[0].isdigit():
                     continue
-                    
-                pos = int(start_match.group(1))
-                raw_content = start_match.group(2).strip()
+
+                pos = int(raw_tokens[0])
                 
-                metrics_match = METRICS_REGEX.search(raw_content)
-                if not metrics_match:
-                    # Print out skipped rows so we can instantly see the formatting quirks
-                    print(f"Skipped row: {line_str}")
+                # Strip out asterisks from all data tokens (*M* -> M, *M16S* -> M16S)
+                tokens = [t.strip('*') for t in raw_tokens[1:] if t.strip('*')]
+
+                time_idx, raw_time = find_time_token(tokens)
+                if time_idx == -1:
+                    print(f"Skipped (No time pattern): {line_str}")
                     continue
-                    
-                sex = metrics_match.group(1)
-                gender_pos = int(metrics_match.group(2))
-                age_cat = metrics_match.group(3)
-                cat_pos = int(metrics_match.group(4))
-                time = metrics_match.group(5)
+
+                time = format_time(raw_time)
+                row_tokens = tokens[:time_idx]
+
+                # Look for standalone M/F token
+                sex_idx = -1
+                for idx in range(len(row_tokens) - 1, -1, -1):
+                    if row_tokens[idx].upper() in ['M', 'F']:
+                        sex_idx = idx
+                        break
+
+                if sex_idx == -1:
+                    print(f"Skipped (No M/F gender flag): {line_str}")
+                    continue
+
+                sex = row_tokens[sex_idx].upper()
                 
-                # Auto-convert specific 16S categories to Senior
-                if age_cat.upper() in ["M16S", "F16S", "SENIOR"]:
+                # Identify Age Category
+                age_cat = "Senior"
+                if sex_idx > 0 and re.match(r'^(?:[MF]\d+|[MF]16S|SENIOR|SEN)$', row_tokens[sex_idx - 1].upper()):
+                    age_cat = row_tokens[sex_idx - 1]
+                    name_club_tokens = row_tokens[:sex_idx - 1]
+                elif sex_idx + 1 < len(row_tokens) and re.match(r'^(?:[MF]\d+|[MF]16S|SENIOR|SEN)$', row_tokens[sex_idx + 1].upper()):
+                    age_cat = row_tokens[sex_idx + 1]
+                    name_club_tokens = row_tokens[:sex_idx]
+                else:
+                    name_club_tokens = row_tokens[:sex_idx]
+
+                # Extract trailing position integers between Sex and Time
+                gender_pos = 0
+                cat_pos = 0
+                trailing_nums = [t for t in row_tokens[sex_idx + 1:] if t.isdigit() and not re.match(r'^(?:[MF]\d+|[MF]16S)$', t.upper())]
+                if len(trailing_nums) >= 1:
+                    gender_pos = int(trailing_nums[0])
+                if len(trailing_nums) >= 2:
+                    cat_pos = int(trailing_nums[1])
+
+                # Normalise age category string
+                if age_cat.upper() in ["M16S", "F16S", "SENIOR", "SEN", "M", "F"]:
                     age_cat = "Senior"
                 elif age_cat[0].upper() in ["M", "F"] and age_cat[1:].isdigit():
-                    # Automatically turns "M35" into "V35" and "F45" into "V45" 
-                    # so that parse_fixtures.js can read them perfectly!
-                    age_cat = f"V{age_cat[1:]}"  
-                    
-                core_text = raw_content[:metrics_match.start()].strip()
-                core_parts = core_text.split()
-                if not core_parts:
+                    age_cat = f"V{age_cat[1:]}"
+
+                # Strip EA/Welsh Athletics ID (e.g. A12462450, 7050036)
+                if name_club_tokens and re.match(r'^[A-Za-z]?\d+$', name_club_tokens[0]):
+                    name_club_tokens = name_club_tokens[1:]
+
+                if not name_club_tokens:
+                    print(f"Skipped (No name/club data left): {line_str}")
                     continue
-                    
-                bib = "0"
-                name_club_block = " ".join(core_parts[1:])
-                
-                words = name_club_block.split()
+
+                # Separate SURNAME Forename from Club
                 surname_idx = -1
-                
-                for i in range(len(words) - 1, -1, -1):
-                    word = words[i]
-                    
-                    # Check if the word is a valid surname (all uppercase OR Mc/Mac surname like McLOUGHLIN)
-                    is_caps_surname = re.match(r'^[A-Z\-\']+$', word) is not None
-                    is_mc_surname = re.match(r'^(?:Mc|Mac)[A-Z][A-Z\-\']*$', word) is not None
-                    
-                    if is_caps_surname or is_mc_surname:
+                for i in range(len(name_club_tokens) - 1, -1, -1):
+                    word = name_club_tokens[i]
+                    is_caps = re.match(r'^[A-Z\-\']+$', word) is not None
+                    is_mc = re.match(r'^(?:Mc|Mac)[A-Z][A-Z\-\']*$', word) is not None
+                    if is_caps or is_mc:
                         surname_idx = i
                         break
-                
+
                 if surname_idx != -1:
-                    full_name = " ".join(words[:surname_idx + 1])
-                    club = " ".join(words[surname_idx + 1:])
+                    full_name = " ".join(name_club_tokens[:surname_idx + 1])
+                    club = " ".join(name_club_tokens[surname_idx + 1:])
                 else:
-                    full_name = name_club_block
-                    club = "Unknown"
-                    
+                    full_name = " ".join(name_club_tokens)
+                    club = "Independent"
+
                 if not club:
                     club = "Independent"
 
-                if len(time.split(':')[0]) == 1:
-                    time = f"0{time}"
-
-                age_placeholder = 0 
+                bib = "0"
+                age_placeholder = 0
 
                 data_line = f"{pos} {bib} {full_name} {age_placeholder} {sex} {age_cat} {club} {time} {gender_pos} {cat_pos}"
                 parsed_lines.append(data_line)
 
-    # Save the individual text file out for this specific race
     with open(output_txt_path, "w", encoding="utf-8") as f:
         f.write("\n".join(parsed_lines) + "\n")
 

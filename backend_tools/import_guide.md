@@ -27,7 +27,7 @@ Place the official race PDF into `backend_tools/2026_Results/pdf_source/`.
 ### Step 2: Parse PDF to Text
 Run the Python parser script from your terminal:
 ```bash
-python backend_tools/parse_results.py
+python backend_tools/2026_results/parse_results.py
 ```
 * Checks all PDFs in `pdf_source/`.
 * Normalises age categories (e.g. converting `M35` to `V35`).
