@@ -34,27 +34,30 @@ for pdf_path in pdf_files:
     filename = os.path.basename(pdf_path)
     print(f"\nProcessing {filename}...")
     
+    # Extract race number dynamically (e.g., GLCL_2026_ROAD_RACE_1.pdf -> 1)
     race_num_match = re.search(r'(\d+)\.pdf$', filename, re.IGNORECASE)
     race_number = race_num_match.group(1) if race_num_match else "1"
     
     txt_filename = f"road_2025_2026_{race_number}.txt"
     output_txt_path = os.path.join(output_dir, txt_filename)
 
-    venue = "Parc Bryn Bach"
-    date = "2026-08-04"
-    distance = "5.14 Miles"
+    # Generic fallbacks reset for each file
+    venue = f"Fixture {race_number}"
+    date = "Unknown Date"
+    distance = "5 Miles"
     
     parsed_lines = []
 
     with pdfplumber.open(pdf_path) as pdf:
         first_page_text = pdf.pages[0].extract_text() or ""
         for line in first_page_text.split("\n"):
-            if "VENUE:" in line.upper():
-                venue = line.split(":")[-1].strip()
-            if "DATE:" in line.upper():
-                date = line.split(":")[-1].strip()
-            if "DISTANCE:" in line.upper():
-                distance = line.split(":")[-1].strip()
+            clean_line = line.strip()
+            if "VENUE" in clean_line.upper():
+                venue = clean_line.split(":")[-1].strip() if ":" in clean_line else clean_line
+            if "DATE" in clean_line.upper():
+                date = clean_line.split(":")[-1].strip() if ":" in clean_line else clean_line
+            if "DISTANCE" in clean_line.upper():
+                distance = clean_line.split(":")[-1].strip() if ":" in clean_line else clean_line
 
         parsed_lines.extend([
             f"# VENUE: {venue}",
@@ -76,19 +79,15 @@ for pdf_path in pdf_files:
                     continue
 
                 pos = int(raw_tokens[0])
-                
-                # Strip out asterisks from all data tokens (*M* -> M, *M16S* -> M16S)
                 tokens = [t.strip('*') for t in raw_tokens[1:] if t.strip('*')]
 
                 time_idx, raw_time = find_time_token(tokens)
                 if time_idx == -1:
-                    print(f"Skipped (No time pattern): {line_str}")
                     continue
 
                 time = format_time(raw_time)
                 row_tokens = tokens[:time_idx]
 
-                # Look for standalone M/F token
                 sex_idx = -1
                 for idx in range(len(row_tokens) - 1, -1, -1):
                     if row_tokens[idx].upper() in ['M', 'F']:
@@ -96,12 +95,10 @@ for pdf_path in pdf_files:
                         break
 
                 if sex_idx == -1:
-                    print(f"Skipped (No M/F gender flag): {line_str}")
                     continue
 
                 sex = row_tokens[sex_idx].upper()
                 
-                # Identify Age Category
                 age_cat = "Senior"
                 if sex_idx > 0 and re.match(r'^(?:[MF]\d+|[MF]16S|SENIOR|SEN)$', row_tokens[sex_idx - 1].upper()):
                     age_cat = row_tokens[sex_idx - 1]
@@ -112,7 +109,6 @@ for pdf_path in pdf_files:
                 else:
                     name_club_tokens = row_tokens[:sex_idx]
 
-                # Extract trailing position integers between Sex and Time
                 gender_pos = 0
                 cat_pos = 0
                 trailing_nums = [t for t in row_tokens[sex_idx + 1:] if t.isdigit() and not re.match(r'^(?:[MF]\d+|[MF]16S)$', t.upper())]
@@ -121,21 +117,17 @@ for pdf_path in pdf_files:
                 if len(trailing_nums) >= 2:
                     cat_pos = int(trailing_nums[1])
 
-                # Normalise age category string
                 if age_cat.upper() in ["M16S", "F16S", "SENIOR", "SEN", "M", "F"]:
                     age_cat = "Senior"
                 elif age_cat[0].upper() in ["M", "F"] and age_cat[1:].isdigit():
                     age_cat = f"V{age_cat[1:]}"
 
-                # Strip EA/Welsh Athletics ID (e.g. A12462450, 7050036)
                 if name_club_tokens and re.match(r'^[A-Za-z]?\d+$', name_club_tokens[0]):
                     name_club_tokens = name_club_tokens[1:]
 
                 if not name_club_tokens:
-                    print(f"Skipped (No name/club data left): {line_str}")
                     continue
 
-                # Separate SURNAME Forename from Club
                 surname_idx = -1
                 for i in range(len(name_club_tokens) - 1, -1, -1):
                     word = name_club_tokens[i]
@@ -164,4 +156,4 @@ for pdf_path in pdf_files:
     with open(output_txt_path, "w", encoding="utf-8") as f:
         f.write("\n".join(parsed_lines) + "\n")
 
-    print(f"Success! Generated '{txt_filename}' tracking {len(parsed_lines) - 4} finishers at {venue}.")
+    print(f"Success! Generated '{txt_filename}' tracking {len(parsed_lines) - 4} finishers.")
