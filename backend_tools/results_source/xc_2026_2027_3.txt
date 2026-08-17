@@ -1,0 +1,4 @@
+# VENUE: Oldfield Farm
+# DATE: 2027-01-10
+# DISTANCE: 4.04 Miles
+# Status: Confirmed
