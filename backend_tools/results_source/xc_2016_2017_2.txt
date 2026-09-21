@@ -1,5 +1,5 @@
 # VENUE: Pentwyn
-# DATE: 2016-11-230
+# DATE: 2016-11-23
 # DISTANCE: Unknown
 # STATUS: Confirmed
 
