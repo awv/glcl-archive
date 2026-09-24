@@ -19,31 +19,23 @@
                     }
                 }
             }
-        }
+        };
     </script>
     <style>
-        body { background-color: #030712; }
+        body {
+            background-color: #030712;
+        }
         .hero-gradient {
-            background: linear-gradient(to bottom, rgba(3,7,18,0.3) 0%, rgba(3,7,18,1) 100%);
+            background: linear-gradient(to bottom, rgba(3, 7, 18, 0.4) 0%, rgba(3, 7, 18, 1) 100%);
         }
-
-        /* Pure CSS Masonry using columns */
-        .masonry-columns {
-            column-count: 1;
-            column-gap: 1rem;
+        /* Custom image fade-in transition */
+        .img-fade {
+            transition: opacity 0.35s ease-in-out, transform 0.3s ease-out;
         }
-        @media (min-width: 640px) {
-            .masonry-columns { column-count: 2; }
-        }
-        @media (min-width: 1024px) {
-            .masonry-columns { column-count: 3; }
-        }
-        @media (min-width: 1280px) {
-            .masonry-columns { column-count: 4; }
-        }
-        .masonry-item {
-            break-inside: avoid;
-            margin-bottom: 1rem;
+        /* Prevent scroll bar shift when opening modal */
+        body.modal-open {
+            overflow: hidden;
+            touch-action: none;
         }
     </style>
 </head>
@@ -54,23 +46,22 @@
         <!-- Injected automatically via site-layout.js -->
     </nav>
 
-    <!-- CINEMATIC HERO BANNER -->
     <header class="relative min-h-[38vh] md:min-h-[46vh] flex items-center justify-center overflow-hidden border-b border-slate-900 w-full py-12">
-        <img src="assets/images/hero_placeholder.jpg" alt="GLCL 40th Anniversary" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 filter brightness-[0.6] contrast-125">
+        <img src="assets/images/hero_placeholder.jpg" alt="GLCL 40th Anniversary" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 filter brightness-[0.5] contrast-125">
         <div class="absolute inset-0 hero-gradient"></div>
 
         <div class="relative max-w-4xl mx-auto px-4 w-full z-10 text-center space-y-4">
-            <span class="text-xs font-mono font-bold tracking-widest text-brand-400 uppercase bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20 inline-block">
-                1986 — 2026
+            <span class="text-xs font-mono font-bold tracking-widest text-brand-400 uppercase bg-brand-500/10 px-3.5 py-1 rounded-full border border-brand-500/20 inline-block">
+                1986 — 2026 Milestone
             </span>
             <h1 class="text-3xl md:text-6xl font-black text-slate-100 tracking-tight uppercase">
                 40 Years of the GLCL
             </h1>
             <p class="max-w-2xl mx-auto text-sm md:text-base text-slate-400 leading-relaxed">
-                Four decades of mud, tarmac and team rivalry. 
+                Four decades of mud, tarmac, team rivalry, and community.
             </p>
             <div class="pt-2">
-                <button id="start-slideshow-hero" class="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-400 text-white font-mono text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-xl transition shadow-lg">
+                <button id="start-slideshow-hero" class="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-400 text-white font-mono text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-xl transition shadow-lg active:scale-95">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                     Play Fullscreen Slideshow
                 </button>
@@ -78,7 +69,6 @@
         </div>
     </header>
 
-    <!-- MAIN GALLERY -->
     <main class="max-w-[1500px] mx-auto px-4 py-10 space-y-6 w-full flex-grow">
         
         <div class="flex items-center justify-between border-b border-slate-900 pb-4">
@@ -86,52 +76,59 @@
                 <h2 class="text-lg font-black text-slate-100 uppercase tracking-tight">The Archive Gallery</h2>
                 <p class="text-xs font-mono text-slate-500 mt-0.5">Click any image to expand or begin presentation mode</p>
             </div>
-            <span id="photo-tally" class="text-xs font-mono text-slate-400 font-bold">Loaded 0 photos</span>
+            <span id="photo-tally" class="text-xs font-mono text-slate-400 font-bold bg-slate-900/90 border border-slate-800 px-3 py-1 rounded-lg">
+                Loading archive...
+            </span>
         </div>
 
-        <!-- MASONRY CONTAINER -->
-        <div id="masonry-grid" class="masonry-columns"></div>
+        <!-- INDEPENDENT MULTI-COLUMN TRACKS:
+             Prevents browser column-rebalancing jitter. Items stay permanently in their assigned column. -->
+        <div id="masonry-wrapper" class="flex gap-4 items-start w-full">
+            <div id="col-0" class="flex flex-col gap-4 flex-1 min-w-0"></div>
+            <div id="col-1" class="hidden sm:flex flex-col gap-4 flex-1 min-w-0"></div>
+            <div id="col-2" class="hidden lg:flex flex-col gap-4 flex-1 min-w-0"></div>
+            <div id="col-3" class="hidden xl:flex flex-col gap-4 flex-1 min-w-0"></div>
+        </div>
 
-        <!-- SCROLL SENTINEL FOR INFINITE LOADING -->
-        <div id="scroll-sentinel" class="py-8 text-center font-mono text-xs text-slate-600">
+        <!-- SCROLL SENTINEL FOR INFINITE STREAMING -->
+        <div id="scroll-sentinel" class="py-10 text-center font-mono text-xs text-slate-600">
             <span id="loading-spinner" class="inline-flex items-center gap-2">
                 <svg class="animate-spin h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                 </svg>
-                Loading more frames...
+                Streaming photo frames...
             </span>
-            <span id="end-of-gallery" class="hidden">End of photo collection</span>
+            <span id="end-of-gallery" class="hidden text-slate-500">End of photo collection</span>
         </div>
 
     </main>
 
-    <!-- FULLSCREEN SLIDESHOW / LIGHTBOX MODAL -->
     <div id="viewer" class="fixed inset-0 z-50 bg-slate-950/98 backdrop-blur-md hidden flex flex-col justify-between p-4 md:p-6 select-none transition-opacity duration-200">
         
         <!-- Top Toolbar -->
         <div class="flex items-center justify-between border-b border-slate-900 pb-3 z-10">
-            <div>
-                <p id="viewer-caption" class="text-sm md:text-base font-bold text-slate-100"></p>
+            <div class="space-y-0.5">
+                <p id="viewer-caption" class="text-sm md:text-base font-bold text-slate-100 line-clamp-1"></p>
                 <span id="viewer-counter" class="text-xs font-mono text-slate-500"></span>
             </div>
             
             <div class="flex items-center gap-2">
                 <!-- Autoplay Toggle Button -->
-                <button id="toggle-autoplay" class="flex items-center gap-1.5 text-xs font-mono font-bold text-slate-300 hover:text-white px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 transition">
+                <button id="toggle-autoplay" class="flex items-center gap-1.5 text-xs font-mono font-bold text-slate-300 hover:text-white px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 transition hover:border-slate-700">
                     <span id="autoplay-icon" class="inline-block">▶</span>
                     <span id="autoplay-label">Slideshow</span>
                 </button>
 
                 <!-- Fullscreen Toggle -->
-                <button id="toggle-native-fs" class="text-slate-400 hover:text-slate-100 p-2 rounded-lg bg-slate-900 border border-slate-800 transition" aria-label="Toggle native fullscreen">
+                <button id="toggle-native-fs" class="text-slate-400 hover:text-slate-100 p-2 rounded-lg bg-slate-900 border border-slate-800 transition hover:border-slate-700" aria-label="Toggle native fullscreen">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
                     </svg>
                 </button>
 
                 <!-- Close -->
-                <button id="close-viewer" class="text-slate-400 hover:text-slate-100 p-2 rounded-lg bg-slate-900 border border-slate-800 transition" aria-label="Close">
+                <button id="close-viewer" class="text-slate-400 hover:text-slate-100 p-2 rounded-lg bg-slate-900 border border-slate-800 transition hover:border-slate-700" aria-label="Close">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
@@ -141,15 +138,15 @@
 
         <!-- Stage Area -->
         <div class="relative flex-grow flex items-center justify-center py-2 overflow-hidden">
-            <button id="viewer-prev" class="absolute left-2 md:left-6 z-20 p-3 rounded-full bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-200 transition" aria-label="Previous">
+            <button id="viewer-prev" class="absolute left-2 md:left-6 z-20 p-3 rounded-full bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-200 transition shadow-xl" aria-label="Previous">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
                 </svg>
             </button>
 
-            <img id="viewer-image" src="" alt="" class="max-h-[80vh] max-w-[95vw] object-contain rounded-lg shadow-2xl transition-opacity duration-300 opacity-100">
+            <img id="viewer-image" src="" alt="" class="max-h-[80vh] max-w-[95vw] object-contain rounded-lg shadow-2xl transition-opacity duration-200 opacity-100">
 
-            <button id="viewer-next" class="absolute right-2 md:right-6 z-20 p-3 rounded-full bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-200 transition" aria-label="Next">
+            <button id="viewer-next" class="absolute right-2 md:right-6 z-20 p-3 rounded-full bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-200 transition shadow-xl" aria-label="Next">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
                 </svg>
@@ -158,7 +155,7 @@
 
         <!-- Footer / Timeline Indicator -->
         <div class="text-center font-mono text-[11px] text-slate-600 pt-2 border-t border-slate-900">
-            <span>Use Left / Right arrow keys, or Spacebar to Play / Pause</span>
+            <span>Left / Right arrows to navigate &bull; Spacebar to Play / Pause &bull; Esc to Close</span>
         </div>
     </div>
 
@@ -166,12 +163,16 @@
     <div id="global-footer"></div>
 
     <script>
-    // --- 1. PHOTO CATALOGUE ---
-    // Add all of your photo objects here.
     const PHOTOS = window.glclGallery || [];
 
     document.addEventListener('DOMContentLoaded', () => {
-        const grid = document.getElementById('masonry-grid');
+        const columnElements = [
+            document.getElementById('col-0'),
+            document.getElementById('col-1'),
+            document.getElementById('col-2'),
+            document.getElementById('col-3')
+        ];
+
         const tally = document.getElementById('photo-tally');
         const sentinel = document.getElementById('scroll-sentinel');
         const spinner = document.getElementById('loading-spinner');
@@ -190,41 +191,85 @@
         const btnNativeFs = document.getElementById('toggle-native-fs');
         const btnHeroSlideshow = document.getElementById('start-slideshow-hero');
 
-        // Infinite Scroll / Chunk State
-        const BATCH_SIZE = 100;
+        // Streaming state
+        const BATCH_SIZE = 24;
         let renderedCount = 0;
         let isFetching = false;
 
-        // Slideshow State
+        // Slideshow state
         let currentIndex = 0;
         let autoplayTimer = null;
-        const AUTOPLAY_INTERVAL = 4000; // 4 seconds per slide
+        const AUTOPLAY_INTERVAL = 3800;
+
+        // Determine the number of active columns based on viewport breakpoint
+        function getActiveColumnCount() {
+            const width = window.innerWidth;
+            if (width >= 1280) return 4;
+            if (width >= 1024) return 3;
+            if (width >= 640) return 2;
+            return 1;
+        }
+
+        // Get the shortest column element among currently active tracks
+        function getShortestColumn() {
+            const count = getActiveColumnCount();
+            let shortestCol = columnElements[0];
+            let minHeight = shortestCol.offsetHeight;
+
+            for (let i = 1; i < count; i++) {
+                const h = columnElements[i].offsetHeight;
+                if (h < minHeight) {
+                    minHeight = h;
+                    shortestCol = columnElements[i];
+                }
+            }
+            return shortestCol;
+        }
+
+        function createCard(photo, globalIndex) {
+            const card = document.createElement('div');
+            card.className = "group relative bg-slate-950 border border-slate-900 hover:border-brand-500/60 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 shadow-md";
+
+            // Dark skeleton wrapper with a subtle min-height to prevent vertical flickers
+            card.innerHTML = `
+                <div class="relative overflow-hidden bg-slate-900/90 min-h-[140px] flex items-center justify-center">
+                    <img 
+                        src="${photo.src}" 
+                        alt="${photo.caption || 'GLCL Archive Photo'}" 
+                        loading="lazy" 
+                        decoding="async"
+                        class="w-full h-auto block object-cover opacity-0 img-fade group-hover:scale-105"
+                        onload="this.classList.remove('opacity-0')"
+                        onerror="this.parentElement.innerHTML='<div class=\\'p-4 text-center text-xs font-mono text-slate-600\\'>Image unavailable</div>'"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3 pointer-events-none">
+                        <p class="text-xs text-slate-200 font-medium">${photo.caption || ''}</p>
+                    </div>
+                </div>
+            `;
+
+            card.addEventListener('click', () => openViewer(globalIndex));
+            return card;
+        }
 
         function renderBatch() {
-            if (renderedCount >= PHOTOS.length) {
-                spinner.classList.add('hidden');
-                endNotice.classList.remove('hidden');
+            if (isFetching || renderedCount >= PHOTOS.length) {
+                if (renderedCount >= PHOTOS.length) {
+                    spinner.classList.add('hidden');
+                    endNotice.classList.remove('hidden');
+                    tally.textContent = `Showing all ${PHOTOS.length} photos`;
+                }
                 return;
             }
 
+            isFetching = true;
             const nextBatch = PHOTOS.slice(renderedCount, renderedCount + BATCH_SIZE);
 
             nextBatch.forEach((photo, idx) => {
                 const globalIndex = renderedCount + idx;
-                const card = document.createElement('div');
-                card.className = "masonry-item group relative bg-slate-950 border border-slate-900 hover:border-brand-500/60 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 shadow-lg";
-
-                card.innerHTML = `
-                    <div class="relative overflow-hidden bg-slate-900">
-                        <img src="${photo.src}" alt="${photo.caption || 'GLCL Archive'}" loading="lazy" class="w-full h-auto block object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-                            <p class="text-xs text-slate-200 font-medium">${photo.caption || ''}</p>
-                        </div>
-                    </div>
-                `;
-
-                card.addEventListener('click', () => openViewer(globalIndex));
-                grid.appendChild(card);
+                const card = createCard(photo, globalIndex);
+                const targetColumn = getShortestColumn();
+                targetColumn.appendChild(card);
             });
 
             renderedCount += nextBatch.length;
@@ -234,33 +279,54 @@
                 spinner.classList.add('hidden');
                 endNotice.classList.remove('hidden');
             }
+
+            isFetching = false;
+            requestAnimationFrame(checkAndFillViewport);
         }
 
-        // Infinite Scroll Observer
-        const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !isFetching && renderedCount < PHOTOS.length) {
-                isFetching = true;
-                setTimeout(() => {
+        // Ensure initial viewport is adequately filled
+        function checkAndFillViewport() {
+            if (renderedCount < PHOTOS.length && !isFetching) {
+                const scrollPos = window.innerHeight + window.scrollY;
+                const threshold = document.documentElement.scrollHeight - 1000;
+
+                if (scrollPos >= threshold || document.body.offsetHeight < window.innerHeight * 1.5) {
                     renderBatch();
-                    isFetching = false;
-                }, 150);
+                }
             }
-        }, { rootMargin: '300px' });
+        }
+
+        // IntersectionObserver using 800px prefetch buffer
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                renderBatch();
+            }
+        }, { rootMargin: '800px 0px' });
 
         if (sentinel) observer.observe(sentinel);
 
-        // --- VIEWER / SLIDESHOW CONTROLS ---
+        // Fallback passive scroll listener
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (!scrollTimeout) {
+                scrollTimeout = setTimeout(() => {
+                    scrollTimeout = null;
+                    checkAndFillViewport();
+                }, 80);
+            }
+        }, { passive: true });
+
         function openViewer(index) {
             currentIndex = index;
             updateViewerSlide();
             viewer.classList.remove('hidden');
-            document.body.classList.add('overflow-hidden');
+            document.body.classList.add('modal-open');
         }
 
         function closeViewer() {
             stopAutoplay();
             viewer.classList.add('hidden');
-            document.body.classList.remove('overflow-hidden');
+            document.body.classList.remove('modal-open');
             if (document.fullscreenElement) {
                 document.exitFullscreen().catch(() => {});
             }
@@ -277,15 +343,17 @@
                 viewerCaption.textContent = photo.caption || 'GLCL 40th Anniversary';
                 viewerCounter.textContent = `${currentIndex + 1} of ${PHOTOS.length}`;
                 viewerImg.style.opacity = '1';
-            }, 100);
+            }, 60);
         }
 
         function nextSlide() {
+            if (PHOTOS.length === 0) return;
             currentIndex = (currentIndex + 1) % PHOTOS.length;
             updateViewerSlide();
         }
 
         function prevSlide() {
+            if (PHOTOS.length === 0) return;
             currentIndex = (currentIndex - 1 + PHOTOS.length) % PHOTOS.length;
             updateViewerSlide();
         }
@@ -310,7 +378,7 @@
             else startAutoplay();
         }
 
-        // Event Listeners
+        // Action attachments
         btnClose.addEventListener('click', closeViewer);
         btnNext.addEventListener('click', () => { stopAutoplay(); nextSlide(); });
         btnPrev.addEventListener('click', () => { stopAutoplay(); prevSlide(); });
@@ -333,7 +401,7 @@
             });
         }
 
-        // Keyboard Controls
+        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (viewer.classList.contains('hidden')) return;
 
@@ -346,7 +414,7 @@
             }
         });
 
-        // Touch / Swipe Navigation for Mobile
+        // Mobile touch swipe gestures
         let touchStartX = 0;
         viewer.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
@@ -355,14 +423,14 @@
         viewer.addEventListener('touchend', (e) => {
             const touchEndX = e.changedTouches[0].screenX;
             const diff = touchEndX - touchStartX;
-            if (Math.abs(diff) > 45) {
+            if (Math.abs(diff) > 40) {
                 stopAutoplay();
                 if (diff < 0) nextSlide();
                 else prevSlide();
             }
         }, { passive: true });
 
-        // Initial Render
+        // Kick off first render pass
         renderBatch();
     });
     </script>
