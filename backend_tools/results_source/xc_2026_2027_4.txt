@@ -1,4 +1,4 @@
-# VENUE: TBC
-# DATE: 2027-02-14
-# DISTANCE: x.x Miles
+# VENUE: Chepstow
+# DATE: 2027-02-07
+# DISTANCE: 4.05 Miles
 # Status: Confirmed

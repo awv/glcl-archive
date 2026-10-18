@@ -151,20 +151,20 @@
     <!-- CONFIGURATION & RENDER ENGINE -->
     <script>
     const ARCHIVE_CONFIG = {
-        currentSeasonKey: "2025_2026", 
-        currentSeasonLabel: "2025 / 2026",
+        currentSeasonKey: "2026_2027", 
+        currentSeasonLabel: "2026 / 2027",
 
         fixtures: [
-            { name: "Glebelands",    date: "19 Oct 2025", discipline: "xc",   live: true,  cancelled: false },
-            { name: "Rogerstone",    date: "23 Nov 2025", discipline: "xc",   live: true,  cancelled: false },
-            { name: "Oldfield Farm", date: "04 Jan 2026", discipline: "xc",   live: true,  cancelled: false },
-            { name: "Parc Bryn Bach",date: "01 Feb 2026", discipline: "xc",   live: false, cancelled: true },
-            { name: "Risca",         date: "08 Mar 2026", discipline: "xc",   live: true,  cancelled: false },
-            { name: "Chepstow",      date: "05 May 2026", discipline: "road", live: true,  cancelled: false },
-            { name: "Blaenavon",     date: "19 May 2026", discipline: "road", live: true,  cancelled: false },
-            { name: "Parc Penallta", date: "02 Jun 2026", discipline: "road", live: true,  cancelled: false },
-            { name: "Cwmbran",       date: "30 Jun 2026", discipline: "road", live: true,  cancelled: false },
-            { name: "Parc Bryn Bach",date: "04 Aug 2026", discipline: "road", live: true, cancelled: false }
+            { name: "Glebelands",    date: "18 Oct 2026", distance: "4.5 Miles",  discipline: "xc",   live: false, cancelled: false },
+            { name: "Rogerstone",    date: "29 Nov 2026", distance: "4.5 Miles",  discipline: "xc",   live: false, cancelled: false },
+            { name: "Oldfield Farm", date: "10 Jan 2027", distance: "4.04 Miles", discipline: "xc",   live: false, cancelled: false },
+            { name: "Chepstow",      date: "07 Feb 2027", distance: "4.05 Miles", discipline: "xc",   live: false, cancelled: false },
+            { name: "Risca",         date: "14 Mar 2027", distance: "4.04 Miles", discipline: "xc",   live: false, cancelled: false },
+            { name: "Venue TBC",     date: "Date TBC",    distance: "",           discipline: "road", live: false, cancelled: false },
+            { name: "Venue TBC",     date: "Date TBC",    distance: "",           discipline: "road", live: false, cancelled: false },
+            { name: "Venue TBC",     date: "Date TBC",    distance: "",           discipline: "road", live: false, cancelled: false },
+            { name: "Venue TBC",     date: "Date TBC",    distance: "",           discipline: "road", live: false, cancelled: false },
+            { name: "Venue TBC",     date: "Date TBC",    distance: "",           discipline: "road", live: false, cancelled: false }
         ]
     };
 
@@ -261,6 +261,7 @@
                     const roundNumString = String(disciplineRaceIndex).padStart(2, '0');
                     const isXC = disciplineName === 'xc';
                     const discLabel = isXC ? 'XC' : 'ROAD';
+                    const distanceStr = fix.distance ? ` • ${fix.distance}` : '';
                     
                     const card = document.createElement('div');
                     
@@ -273,7 +274,7 @@
                                     <span class="text-[9px] font-mono font-bold bg-red-500/10 text-red-400 px-2 py-0.5 rounded uppercase tracking-wider">Cancelled</span>
                                 </div>
                                 <h4 class="text-sm font-black text-slate-400 line-through uppercase tracking-tight">${fix.name}</h4>
-                                <p class="text-[11px] font-mono text-slate-600">${fix.date}</p>
+                                <p class="text-[11px] font-mono text-slate-600">${fix.date}${distanceStr}</p>
                             </div>
                             <div class="pt-2 border-t border-slate-900">
                                 <span class="block text-center text-[10px] font-mono font-bold text-red-500/60 py-1.5 bg-red-950/5 rounded">Race Cancelled</span>
@@ -297,7 +298,7 @@
                                     <span class="text-[9px] font-mono font-bold px-2 py-0.5 rounded uppercase tracking-wider ${badgeStyle}">${discLabel}</span>
                                 </div>
                                 <h4 class="text-sm font-black text-slate-200 uppercase tracking-tight">${fix.name}</h4>
-                                <p class="text-[11px] font-mono text-slate-400">${fix.date}</p>
+                                <p class="text-[11px] font-mono text-slate-400">${fix.date}${distanceStr}</p>
                             </div>
                             <div class="pt-2 border-t border-slate-900/60">
                                 <a href="results.html?season=${ARCHIVE_CONFIG.currentSeasonKey}&discipline=${disciplineName}&race=${disciplineRaceIndex}" 
@@ -316,7 +317,7 @@
                                     <span class="text-[9px] font-mono font-bold bg-slate-900 text-slate-500 px-2 py-0.5 rounded uppercase tracking-wider">${discLabel}</span>
                                 </div>
                                 <h4 class="text-sm font-black text-slate-400 uppercase tracking-tight">${fix.name}</h4>
-                                <p class="text-[11px] font-mono text-slate-600">${fix.date}</p>
+                                <p class="text-[11px] font-mono text-slate-600">${fix.date}${distanceStr}</p>
                             </div>
                             <div class="pt-2 border-t border-slate-900">
                                 <span class="block text-center text-[10px] font-mono font-bold text-slate-600 py-1.5 bg-slate-900/20 rounded">Awaiting Fixture</span>

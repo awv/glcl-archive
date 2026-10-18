@@ -1,4 +1,4 @@
-# VENUE: TBC
-# DATE: 2027-03-07
-# DISTANCE: x.x Miles
+# VENUE: Risca
+# DATE: 2027-03-14
+# DISTANCE: 4.04 Miles
 # Status: Confirmed
