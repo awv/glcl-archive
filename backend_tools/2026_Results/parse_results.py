@@ -34,36 +34,62 @@ for pdf_path in pdf_files:
     filename = os.path.basename(pdf_path)
     print(f"\nProcessing {filename}...")
     
-    # Extract race number dynamically (e.g., GLCL_2026_ROAD_RACE_1.pdf -> 1)
+    # Dynamically extract discipline (XC vs Road)
+    discipline = "xc" if re.search(r'(?:_|\b)XC(?:_|\b)', filename, re.IGNORECASE) else "road"
+    
+    # Extract season (e.g. 2026_2027 or 2025_2026)
+    season_match = re.search(r'(\d{4})[_-](\d{4})', filename)
+    if season_match:
+        season = f"{season_match.group(1)}_{season_match.group(2)}"
+    elif re.search(r'2026', filename):
+        season = "2026_2027" if discipline == "xc" else "2025_2026"
+    else:
+        season = "2026_2027"
+
+    # Extract race number dynamically (e.g., GLCL_2026_2027_XC_1.pdf -> 1)
     race_num_match = re.search(r'(\d+)\.pdf$', filename, re.IGNORECASE)
     race_number = race_num_match.group(1) if race_num_match else "1"
     
-    txt_filename = f"road_2025_2026_{race_number}.txt"
+    txt_filename = f"{discipline}_{season}_{race_number}.txt"
     output_txt_path = os.path.join(output_dir, txt_filename)
 
-    # Generic fallbacks reset for each file
+    # Generic fallbacks reset for each file, checking existing metadata headers first
     venue = f"Fixture {race_number}"
     date = "Unknown Date"
     distance = "5 Miles"
-    
+    status = "Confirmed"
+
+    if os.path.exists(output_txt_path):
+        with open(output_txt_path, 'r', encoding='utf-8') as ef:
+            for eline in ef:
+                eline = eline.strip()
+                if eline.startswith('#'):
+                    parts = eline[1:].split(':', 1)
+                    if len(parts) == 2:
+                        k, v = parts[0].strip().upper(), parts[1].strip()
+                        if k == 'VENUE' and v and v != 'TBC': venue = v
+                        if k == 'DATE' and v and 'xx' not in v: date = v
+                        if k == 'DISTANCE' and v and 'x.x' not in v: distance = v
+                        if k == 'STATUS' and v: status = v
+
     parsed_lines = []
 
     with pdfplumber.open(pdf_path) as pdf:
         first_page_text = pdf.pages[0].extract_text() or ""
         for line in first_page_text.split("\n"):
             clean_line = line.strip()
-            if "VENUE" in clean_line.upper():
-                venue = clean_line.split(":")[-1].strip() if ":" in clean_line else clean_line
-            if "DATE" in clean_line.upper():
-                date = clean_line.split(":")[-1].strip() if ":" in clean_line else clean_line
-            if "DISTANCE" in clean_line.upper():
-                distance = clean_line.split(":")[-1].strip() if ":" in clean_line else clean_line
+            if "VENUE:" in clean_line.upper():
+                venue = clean_line.split(":")[-1].strip()
+            if "DATE:" in clean_line.upper():
+                date = clean_line.split(":")[-1].strip()
+            if "DISTANCE:" in clean_line.upper():
+                distance = clean_line.split(":")[-1].strip()
 
         parsed_lines.extend([
             f"# VENUE: {venue}",
             f"# DATE: {date}",
             f"# DISTANCE: {distance}",
-            "# STATUS: Confirmed"
+            f"# STATUS: {status}"
         ])
 
         for page in pdf.pages:

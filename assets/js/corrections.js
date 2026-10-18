@@ -82,10 +82,16 @@ window.glclCorrections = window.glclCorrections || {
         "islwyn": "Islwyn RC",
         "islwyn rc": "Islwyn RC",
 
+        "caldicot rc": "Caldicot Running Club",
+
         "abertillery": "Abertillery AC",
         "abertillery ac": "Abertillery AC",
 
         "gfiffithstown": "Griffithstown Harriers",
+        "griffithstown": "Griffithstown Harriers",
+        "griffithstown harriers": "Griffithstown Harriers",
+
+        "pont-y-pwl and district runners": "Pont-Y-Pwl & District Runners",
 
         "club 69": "Club 69",
         "club69": "Club 69",
