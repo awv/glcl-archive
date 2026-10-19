@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLCL Archive — Race Photography Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="data.js"></script>
+    <script src="assets/js/corrections.js"></script>
+    <script src="site-layout.js"></script>
+    <!-- JSZip for Client-Side in-browser ZIP Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            500: '#0066cc',
+                            400: '#3385ff'
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { background-color: #030712; }
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(3,7,18,0.4) 0%, rgba(3,7,18,1) 100%);
+        }
+        .stat-card { background-color: #090d16; }
+        /* Smooth fade-in for image loading */
+        .photo-fade {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="text-slate-300 font-sans antialiased flex flex-col min-h-full">
+
+    <!-- GLOBAL NAVIGATION CONTAINER -->
+    <nav id="global-nav" class="border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <!-- Injected automatically via site-layout.js -->
+    </nav>
+
+    <!-- CINEMATIC HERO HEADER -->
+    <header class="relative min-h-[35vh] md:min-h-[42vh] flex items-center justify-center overflow-hidden border-b border-slate-900 w-full py-12">
+        <img src="assets/images/hero_placeholder.jpg" alt="GLCL Race Photography" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 filter brightness-[0.4] contrast-125">
+        <div class="absolute inset-0 hero-gradient"></div>
+
+        <div class="relative max-w-4xl mx-auto px-4 w-full z-10 text-center space-y-4">
+            <span class="text-xs font-mono font-bold tracking-widest text-brand-400 uppercase bg-brand-500/10 px-3.5 py-1 rounded-full border border-brand-500/20 inline-block">
+                Robert Gale Photography • Flickr Archive
+            </span>
+            <h1 class="text-3xl md:text-5xl font-black text-slate-100 tracking-tight uppercase">
+                Find Your Race Photos
+            </h1>
+            <p class="max-w-2xl mx-auto text-sm md:text-base text-slate-400 leading-relaxed font-medium">
+                Search by bib number, runner name, or club to find your race action shots. Free for personal runner download.
+            </p>
+        </div>
+    </header>
+
+    <!-- MAIN SEARCH & GALLERY WORKSPACE -->
+    <main class="max-w-[1500px] mx-auto px-4 py-8 space-y-8 w-full flex-grow">
+
+        <!-- SEARCH CONTROLS PANEL -->
+        <section class="bg-slate-950 border border-slate-900 rounded-2xl p-5 md:p-6 shadow-2xl space-y-5">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+                
+                <!-- 1. Event / Album Selector (Col 1-4) -->
+                <div class="md:col-span-4 space-y-1.5">
+                    <label for="album-selector" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">
+                        1. Select Race / Album
+                    </label>
+                    <div class="relative">
+                        <select id="album-selector" class="w-full bg-slate-900 border border-slate-800 text-slate-200 text-xs font-medium rounded-xl px-4 py-3 appearance-none focus:outline-none focus:border-brand-500 transition-colors cursor-pointer">
+                            <option value="" disabled selected>Loading Flickr albums...</option>
+                        </select>
+                        <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Search by Bib or Runner Name (Col 5-8) -->
+                <div class="md:col-span-5 space-y-1.5 relative">
+                    <label for="bib-search-input" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">
+                        2. Search Bib # or Runner Name
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="bib-search-input" placeholder="e.g. 104 or Joby Eynon..." autocomplete="off"
+                            class="w-full bg-slate-900 border border-slate-800 text-slate-100 placeholder-slate-600 rounded-xl px-4 py-3 text-xs md:text-sm font-medium focus:outline-none focus:border-brand-500 transition-colors shadow-inner">
+                        <div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
+                            <button id="clear-search-btn" class="hidden text-slate-500 hover:text-slate-300 p-1" title="Clear search">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                            </button>
+                            <span class="text-slate-600">|</span>
+                            <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Runner Autocomplete Dropdown -->
+                    <div id="bib-autocomplete" class="hidden absolute left-0 right-0 top-full mt-1.5 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl z-50 max-h-56 overflow-y-auto divide-y divide-slate-950 font-sans text-xs">
+                        <!-- Injected dynamic suggestions -->
+                    </div>
+                </div>
+
+                <!-- 3. Filter by Club Dropdown (Col 9-10) -->
+                <div class="md:col-span-3 space-y-1.5">
+                    <label for="club-filter" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">
+                        3. Filter by Club
+                    </label>
+                    <div class="relative">
+                        <select id="club-filter" class="w-full bg-slate-900 border border-slate-800 text-slate-200 text-xs font-medium rounded-xl px-4 py-3 appearance-none focus:outline-none focus:border-brand-500 transition-colors cursor-pointer">
+                            <option value="">All Member Clubs</option>
+                            <!-- Injected clubs -->
+                        </select>
+                        <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Search Summary & Action Bar -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-3 border-t border-slate-900/80">
+                <div class="flex items-center gap-2 text-xs font-mono">
+                    <span id="results-count" class="text-slate-400 font-bold">Ready</span>
+                    <span id="active-tag-badge" class="hidden bg-brand-500/20 text-brand-300 border border-brand-500/30 px-2 py-0.5 rounded text-[10px] font-bold"></span>
+                </div>
+                
+                <div class="flex items-center gap-2.5 w-full sm:w-auto">
+                    <!-- Reset Filters Button -->
+                    <button id="reset-filters-btn" class="text-xs font-mono font-bold text-slate-400 hover:text-slate-200 bg-slate-900 hover:bg-slate-800 px-3 py-2 rounded-xl border border-slate-800 transition">
+                        Reset
+                    </button>
+
+                    <!-- In-Browser ZIP Downloader Button -->
+                    <button id="download-zip-btn" disabled class="disabled:opacity-40 disabled:cursor-not-allowed inline-flex items-center gap-1.5 bg-brand-500 hover:bg-brand-400 text-white text-xs font-mono font-bold uppercase tracking-wider px-4 py-2 rounded-xl transition shadow-lg">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                        <span>Download ZIP</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHOTO RESULTS GRID -->
+        <section id="gallery-container">
+            <!-- Loading Indicator -->
+            <div id="gallery-loader" class="py-16 text-center space-y-3">
+                <div class="inline-block animate-spin w-8 h-8 border-4 border-brand-500 border-t-transparent rounded-full"></div>
+                <p class="text-xs font-mono text-slate-500">Connecting to Flickr Photostream...</p>
+            </div>
+
+            <!-- Empty / Initial State Prompt -->
+            <div id="gallery-empty" class="hidden py-16 text-center max-w-md mx-auto space-y-3">
+                <div class="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 text-slate-500 flex items-center justify-center mx-auto text-xl">
+                    📷
+                </div>
+                <h3 class="text-base font-bold text-slate-200 uppercase tracking-tight">No Photos Found</h3>
+                <p id="empty-message-text" class="text-xs text-slate-500 leading-relaxed">
+                    Try searching for another bib number, clearing the club filter, or browsing all photos in the album.
+                </p>
+                <button id="show-all-photos-btn" class="mt-2 text-xs font-mono font-bold text-brand-400 hover:underline">
+                    Browse All Album Photos →
+                </button>
+            </div>
+
+            <!-- Photos Grid -->
+            <div id="photos-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Dynamically populated cards -->
+            </div>
+
+            <!-- Pagination / Load More Button -->
+            <div id="load-more-container" class="hidden text-center pt-8">
+                <button id="load-more-btn" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-mono text-xs font-bold px-6 py-3 rounded-xl transition shadow">
+                    Load More Photos
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox-modal" class="hidden fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md flex flex-col justify-between p-4 md:p-6" role="dialog" aria-modal="true">
+        <!-- Top Toolbar -->
+        <div class="flex items-center justify-between z-10">
+            <div class="space-y-0.5">
+                <span id="modal-counter" class="text-[11px] font-mono text-slate-400">Photo 1 of 50</span>
+                <div id="modal-runner-info" class="text-xs font-bold text-brand-400 uppercase tracking-wider"></div>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <a id="modal-direct-download" href="#" target="_blank" download class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 text-xs font-mono font-bold px-3 py-1.5 rounded-lg transition inline-flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                    Download High-Res
+                </a>
+                <button id="modal-close-btn" class="p-2 text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 rounded-lg border border-slate-800 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Center Image Viewport -->
+        <div class="relative flex-grow flex items-center justify-center my-4 overflow-hidden">
+            <button id="modal-prev-btn" class="absolute left-2 p-3 text-slate-400 hover:text-white bg-slate-900/60 hover:bg-slate-900 rounded-full border border-slate-800/80 transition z-20 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+
+            <img id="modal-image" src="" alt="Race Photo" class="max-h-[75vh] max-w-full object-contain rounded-lg shadow-2xl transition-opacity duration-200">
+
+            <button id="modal-next-btn" class="absolute right-2 p-3 text-slate-400 hover:text-white bg-slate-900/60 hover:bg-slate-900 rounded-full border border-slate-800/80 transition z-20 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" /></svg>
+            </button>
+        </div>
+
+        <!-- Bottom Caption -->
+        <div class="text-center font-mono text-[11px] text-slate-500">
+            All photos © Robert Gale (Parc Bryn Bach RC). Free for personal running use.
+        </div>
+    </div>
+
+    <!-- ZIP DOWNLOAD PROGRESS MODAL -->
+    <div id="zip-progress-modal" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-md w-full shadow-2xl text-center space-y-4">
+            <div class="w-12 h-12 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded-full flex items-center justify-center mx-auto text-xl">
+                📦
+            </div>
+            <div>
+                <h4 class="text-base font-black text-slate-100 uppercase tracking-tight">Creating ZIP Download</h4>
+                <p id="zip-progress-status" class="text-xs font-mono text-slate-400 mt-1">Preparing photos...</p>
+            </div>
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-950 rounded-full h-2.5 overflow-hidden border border-slate-800">
+                <div id="zip-progress-bar" class="bg-brand-500 h-full w-0 transition-all duration-150"></div>
+            </div>
+            <button id="zip-cancel-btn" class="text-xs font-mono text-slate-500 hover:text-slate-300 transition">
+                Cancel Download
+            </button>
+        </div>
+    </div>
+
+    <!-- INJECTED GLOBAL FOOTER CONTAINER -->
+    <div id="global-footer"></div>
+
+    <!-- CLIENT LOGIC & FLICKR CONNECTOR -->
+    <script>
+    (() => {
+        // --- 1. CONFIGURATION ---
+        const FLICKR_CONFIG = {
+            apiKey: window.GLCL_FLICKR_KEY || "d6f7a2fa79fb6eadfcb13be7282ef019",
+            userId: "35034352089@N01", // Robert Gale (AWV)
+            perPage: 60
+        };
+
+        // State
+        let allAlbums = [];
+        let selectedAlbumId = null;
+        let selectedAlbumTitle = "";
+        let currentPhotos = [];
+        let currentPhotoIndex = 0;
+        let currentPage = 1;
+        let totalPages = 1;
+        let activeSearchFilter = { bib: "", runnerName: "", club: "" };
+        let zipAbortController = null;
+
+        // Elements
+        const albumSelector = document.getElementById("album-selector");
+        const bibInput = document.getElementById("bib-search-input");
+        const autocompleteBox = document.getElementById("bib-autocomplete");
+        const clubFilter = document.getElementById("club-filter");
+        const clearSearchBtn = document.getElementById("clear-search-btn");
+        const resetFiltersBtn = document.getElementById("reset-filters-btn");
+        const resultsCountEl = document.getElementById("results-count");
+        const activeTagBadge = document.getElementById("active-tag-badge");
+        const downloadZipBtn = document.getElementById("download-zip-btn");
+        const photosGrid = document.getElementById("photos-grid");
+        const galleryLoader = document.getElementById("gallery-loader");
+        const galleryEmpty = document.getElementById("gallery-empty");
+        const emptyMessageText = document.getElementById("empty-message-text");
+        const showAllPhotosBtn = document.getElementById("show-all-photos-btn");
+        const loadMoreContainer = document.getElementById("load-more-container");
+        const loadMoreBtn = document.getElementById("load-more-btn");
+
+        // Lightbox Elements
+        const lightboxModal = document.getElementById("lightbox-modal");
+        const modalImage = document.getElementById("modal-image");
+        const modalCounter = document.getElementById("modal-counter");
+        const modalRunnerInfo = document.getElementById("modal-runner-info");
+        const modalDirectDownload = document.getElementById("modal-direct-download");
+        const modalCloseBtn = document.getElementById("modal-close-btn");
+        const modalPrevBtn = document.getElementById("modal-prev-btn");
+        const modalNextBtn = document.getElementById("modal-next-btn");
+
+        // Progress Modal Elements
+        const zipModal = document.getElementById("zip-progress-modal");
+        const zipStatus = document.getElementById("zip-progress-status");
+        const zipBar = document.getElementById("zip-progress-bar");
+        const zipCancelBtn = document.getElementById("zip-cancel-btn");
+
+        // --- 2. DATASET RUNNER & CLUB LOOKUP HELPERS ---
+        const getAllRunners = () => {
+            const rawResults = window.glclResults || [];
+            const map = new Map();
+            rawResults.forEach(r => {
+                if (r.name && r.name !== 'Unknown Runner') {
+                    const key = r.name.toLowerCase();
+                    if (!map.has(key)) {
+                        map.set(key, {
+                            name: r.name,
+                            club: r.club || 'Independent',
+                            bib: r.bib || ''
+                        });
+                    }
+                }
+            });
+            return Array.from(map.values());
+        };
+
+        const getAllClubs = () => {
+            const rawResults = window.glclResults || [];
+            const clubs = new Set();
+            rawResults.forEach(r => {
+                if (r.club && r.club !== 'Unattached' && r.club !== 'Unknown') {
+                    clubs.add(r.club);
+                }
+            });
+            return Array.from(clubs).sort();
+        };
+
+        // Populate Club Dropdown
+        const populateClubs = () => {
+            const clubs = getAllClubs();
+            clubFilter.innerHTML = '<option value="">All Member Clubs</option>';
+            clubs.forEach(c => {
+                const opt = document.createElement("option");
+                opt.value = c;
+                opt.textContent = c;
+                clubFilter.appendChild(opt);
+            });
+        };
+
+        // --- 3. FLICKR API CALLS ---
+        const callFlickr = async (method, params = {}) => {
+            const url = new URL("https://api.flickr.com/services/rest/");
+            url.searchParams.set("method", method);
+            url.searchParams.set("api_key", FLICKR_CONFIG.apiKey);
+            url.searchParams.set("format", "json");
+            url.searchParams.set("nojsoncallback", "1");
+            Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+
+            const res = await fetch(url.toString());
+            if (!res.ok) throw new Error(`Flickr HTTP error: ${res.status}`);
+            const data = await res.json();
+            if (data.stat !== "ok") throw new Error(data.message || "Flickr API error");
+            return data;
+        };
+
+        // Fetch user's albums
+        const loadAlbums = async () => {
+            try {
+                const data = await callFlickr("flickr.photosets.getList", {
+                    user_id: FLICKR_CONFIG.userId,
+                    per_page: 500
+                });
+                
+                const sets = data.photosets?.photoset || [];
+                // Prioritize GLCL race albums
+                allAlbums = sets.filter(s => {
+                    const title = (s.title?._content || "").toLowerCase();
+                    return title.includes("glcl") || title.includes("cross country") || title.includes("road series");
+                });
+
+                if (allAlbums.length === 0) {
+                    allAlbums = sets.slice(0, 50); // Fallback to recent sets
+                }
+
+                albumSelector.innerHTML = "";
+                allAlbums.forEach((album, idx) => {
+                    const opt = document.createElement("option");
+                    opt.value = album.id;
+                    opt.textContent = `${album.title?._content || "Untitled"} (${album.photos || 0} photos)`;
+                    albumSelector.appendChild(opt);
+                });
+
+                if (allAlbums.length > 0) {
+                    albumSelector.selectedIndex = 0;
+                    selectedAlbumId = allAlbums[0].id;
+                    selectedAlbumTitle = allAlbums[0].title?._content || "";
+                    fetchAlbumPhotos(selectedAlbumId, 1);
+                }
+            } catch (err) {
+                console.error("Error loading albums:", err);
+                albumSelector.innerHTML = '<option value="" disabled selected>Unable to load albums</option>';
+                showError("Unable to load Flickr albums. Please check connection.");
+            }
+        };
+
+        // Fetch photos from selected album
+        const fetchAlbumPhotos = async (albumId, page = 1, append = false) => {
+            if (!append) {
+                galleryLoader.classList.remove("hidden");
+                photosGrid.innerHTML = "";
+                galleryEmpty.classList.add("hidden");
+                currentPhotos = [];
+            }
+
+            try {
+                const data = await callFlickr("flickr.photosets.getPhotos", {
+                    photoset_id: albumId,
+                    extras: "tags,url_m,url_l,url_k,url_o,date_taken",
+                    per_page: FLICKR_CONFIG.perPage,
+                    page: page
+                });
+
+                galleryLoader.classList.add("hidden");
+
+                const photoset = data.photoset || {};
+                const newPhotos = photoset.photo || [];
+                currentPage = Number(photoset.page) || 1;
+                totalPages = Number(photoset.pages) || 1;
+
+                if (append) {
+                    currentPhotos = currentPhotos.concat(newPhotos);
+                } else {
+                    currentPhotos = newPhotos;
+                }
+
+                applyClientFilters();
+
+                if (currentPage < totalPages && !activeSearchFilter.bib && !activeSearchFilter.club) {
+                    loadMoreContainer.classList.remove("hidden");
+                } else {
+                    loadMoreContainer.classList.add("hidden");
+                }
+
+            } catch (err) {
+                console.error("Error fetching album photos:", err);
+                galleryLoader.classList.add("hidden");
+                showError("Failed to fetch photos for this album.");
+            }
+        };
+
+        // Search photos tagged with specific bib number
+        const searchPhotosByTag = async (tag) => {
+            galleryLoader.classList.remove("hidden");
+            photosGrid.innerHTML = "";
+            galleryEmpty.classList.add("hidden");
+            loadMoreContainer.classList.add("hidden");
+
+            try {
+                // Try searching with prefix variants: e.g. "bib104" and "104"
+                const cleanTag = tag.trim().replace(/^bib/i, "");
+                const tagQueries = [`bib${cleanTag}`, cleanTag];
+                
+                const data = await callFlickr("flickr.photos.search", {
+                    user_id: FLICKR_CONFIG.userId,
+                    tags: tagQueries.join(","),
+                    tag_mode: "any",
+                    extras: "tags,url_m,url_l,url_k,url_o,date_taken",
+                    per_page: 250
+                });
+
+                galleryLoader.classList.add("hidden");
+                const searchResults = data.photos?.photo || [];
+
+                currentPhotos = searchResults;
+                applyClientFilters();
+
+            } catch (err) {
+                console.error("Tag search failed:", err);
+                galleryLoader.classList.add("hidden");
+                showError("Error searching Flickr by tag.");
+            }
+        };
+
+        // --- 4. FILTERING & RENDERING ---
+        const applyClientFilters = () => {
+            let filtered = currentPhotos;
+
+            // If bib search is active
+            if (activeSearchFilter.bib) {
+                const searchNum = activeSearchFilter.bib.toLowerCase().trim().replace(/^bib/i, "");
+                filtered = filtered.filter(p => {
+                    const tagList = (p.tags || "").toLowerCase().split(/\s+/).filter(Boolean);
+                    return tagList.includes(`bib${searchNum}`) || tagList.includes(searchNum);
+                });
+            }
+
+            // If club filter is active
+            if (activeSearchFilter.club) {
+                const targetClub = activeSearchFilter.club.toLowerCase();
+                // Match against data.js runner clubs if photo has tags matching a bib
+                filtered = filtered.filter(p => {
+                    const tags = (p.tags || "").toLowerCase().split(/\s+/);
+                    for (const t of tags) {
+                        const num = t.replace(/^bib/i, "");
+                        const matchRunner = (window.glclResults || []).find(r => String(r.bib) === num);
+                        if (matchRunner && (matchRunner.club || "").toLowerCase().includes(targetClub)) {
+                            return true;
+                        }
+                    }
+                    // Or if photo title/tags explicitly contain the club
+                    return (p.tags || "").toLowerCase().includes(targetClub) || (p.title || "").toLowerCase().includes(targetClub);
+                });
+            }
+
+            renderGrid(filtered);
+        };
+
+        const renderGrid = (photos) => {
+            photosGrid.innerHTML = "";
+            const total = photos.length;
+
+            if (total === 0) {
+                galleryEmpty.classList.remove("hidden");
+                downloadZipBtn.disabled = true;
+                resultsCountEl.textContent = "0 photos";
+                return;
+            }
+
+            galleryEmpty.classList.add("hidden");
+            downloadZipBtn.disabled = false;
+            resultsCountEl.textContent = `${total} photo${total === 1 ? '' : 's'}`;
+
+            photos.forEach((photo, idx) => {
+                const imgThumb = photo.url_m || photo.url_l || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`;
+                const imgLarge = photo.url_l || photo.url_k || photo.url_m || imgThumb;
+
+                const card = document.createElement("div");
+                card.className = "group relative bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg hover:border-brand-500/60 transition-all duration-300 photo-fade";
+                
+                card.innerHTML = `
+                    <div class="aspect-[4/3] bg-slate-950 overflow-hidden relative cursor-pointer">
+                        <img src="${imgThumb}" alt="${photo.title || 'GLCL Race Photo'}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                            <span class="text-[10px] font-mono text-slate-200 font-bold bg-slate-900/90 px-2 py-1 rounded border border-slate-700">Click to Expand</span>
+                        </div>
+                    </div>
+                    <div class="p-3 flex items-center justify-between text-xs font-mono">
+                        <span class="text-slate-400 truncate max-w-[150px]">${photo.title || `Photo #${idx + 1}`}</span>
+                        <a href="${imgLarge}" download="${photo.id}.jpg" target="_blank" class="text-brand-400 hover:text-brand-300 p-1" title="Download Image">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                        </a>
+                    </div>
+                `;
+
+                // Lightbox Click
+                card.querySelector("img").addEventListener("click", () => {
+                    openLightbox(idx, photos);
+                });
+
+                photosGrid.appendChild(card);
+            });
+        };
+
+        // --- 5. LIGHTBOX MODAL ---
+        let lightboxList = [];
+        const openLightbox = (index, photos) => {
+            lightboxList = photos;
+            currentPhotoIndex = index;
+            updateLightboxContent();
+            lightboxModal.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+        };
+
+        const closeLightbox = () => {
+            lightboxModal.classList.add("hidden");
+            document.body.style.overflow = "";
+        };
+
+        const updateLightboxContent = () => {
+            const photo = lightboxList[currentPhotoIndex];
+            if (!photo) return;
+
+            const highRes = photo.url_k || photo.url_l || photo.url_m || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
+            modalImage.src = highRes;
+            modalCounter.textContent = `Photo ${currentPhotoIndex + 1} of ${lightboxList.length}`;
+            modalDirectDownload.href = highRes;
+
+            // Check if tagged with bib and match runner
+            const tags = (photo.tags || "").split(/\s+/);
+            const foundBibs = tags.map(t => t.replace(/^bib/i, "")).filter(t => /^\d+$/.test(t));
+            
+            if (foundBibs.length > 0) {
+                const bibNum = foundBibs[0];
+                const runner = (window.glclResults || []).find(r => String(r.bib) === bibNum);
+                if (runner) {
+                    modalRunnerInfo.innerHTML = `Bib #${bibNum} • <a href="athlete.html?name=${encodeURIComponent(runner.name)}" class="hover:underline">${runner.name}</a> (${runner.club || 'Independent'})`;
+                } else {
+                    modalRunnerInfo.textContent = `Bib #${bibNum}`;
+                }
+            } else {
+                modalRunnerInfo.textContent = photo.title || selectedAlbumTitle;
+            }
+        };
+
+        // --- 6. IN-BROWSER ZIP GENERATOR ---
+        const downloadAsZip = async () => {
+            const photosToZip = currentPhotos;
+            if (photosToZip.length === 0) return;
+
+            zipModal.classList.remove("hidden");
+            zipBar.style.width = "0%";
+            zipStatus.textContent = `Starting download of ${photosToZip.length} photos...`;
+
+            zipAbortController = new AbortController();
+            const zip = new JSZip();
+            const total = photosToZip.length;
+            let completed = 0;
+
+            try {
+                for (let i = 0; i < total; i++) {
+                    if (zipAbortController.signal.aborted) throw new Error("Cancelled by user");
+
+                    const photo = photosToZip[i];
+                    // Prefer large 1024 or 2048 for zip download
+                    const imgUrl = photo.url_l || photo.url_k || photo.url_m || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
+                    const filename = `GLCL_${photo.id}.jpg`;
+
+                    zipStatus.textContent = `Downloading photo ${i + 1} of ${total}...`;
+                    const response = await fetch(imgUrl, { signal: zipAbortController.signal });
+                    const blob = await response.blob();
+                    zip.file(filename, blob);
+
+                    completed++;
+                    const pct = Math.round((completed / total) * 100);
+                    zipBar.style.width = `${pct}%`;
+                }
+
+                zipStatus.textContent = "Compiling ZIP bundle...";
+                const zipBlob = await zip.generateAsync({ type: "blob" }, (metadata) => {
+                    zipBar.style.width = `${Math.round(metadata.percent)}%`;
+                });
+
+                // Trigger Save
+                const downloadUrl = URL.createObjectURL(zipBlob);
+                const a = document.createElement("a");
+                a.href = downloadUrl;
+                const safeName = (activeSearchFilter.runnerName || activeSearchFilter.club || activeSearchFilter.bib || selectedAlbumTitle || "GLCL_Photos")
+                    .replace(/[^a-zA-Z0-9_-]/g, "_");
+                a.download = `GLCL_${safeName}.zip`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(downloadUrl);
+
+                zipStatus.textContent = "Complete!";
+                setTimeout(() => zipModal.classList.add("hidden"), 1200);
+
+            } catch (err) {
+                if (err.message === "Cancelled by user") {
+                    console.log("ZIP download aborted");
+                } else {
+                    console.error("ZIP bundling error:", err);
+                    alert("Unable to compile ZIP. Browser may have run low on memory.");
+                }
+                zipModal.classList.add("hidden");
+            }
+        };
+
+        // --- 7. AUTOCOMPLETE SEARCH ---
+        const setupAutocomplete = () => {
+            const runners = getAllRunners();
+
+            bibInput.addEventListener("input", (e) => {
+                const val = e.target.value.trim();
+                clearSearchBtn.classList.toggle("hidden", !val);
+
+                if (val.length < 2) {
+                    autocompleteBox.classList.add("hidden");
+                    return;
+                }
+
+                const matches = runners.filter(r => 
+                    r.name.toLowerCase().includes(val.toLowerCase()) || 
+                    String(r.bib) === val
+                ).slice(0, 8);
+
+                if (matches.length === 0) {
+                    autocompleteBox.classList.add("hidden");
+                    return;
+                }
+
+                autocompleteBox.innerHTML = "";
+                matches.forEach(m => {
+                    const row = document.createElement("div");
+                    row.className = "px-4 py-2.5 hover:bg-slate-800 cursor-pointer flex justify-between items-center transition";
+                    row.innerHTML = `
+                        <div>
+                            <span class="font-bold text-slate-100">${m.name}</span>
+                            <span class="text-[10px] font-mono text-slate-500 block">${m.club}</span>
+                        </div>
+                        ${m.bib ? `<span class="text-[10px] font-mono bg-brand-500/20 text-brand-300 px-2 py-0.5 rounded font-bold">Bib #${m.bib}</span>` : ''}
+                    `;
+                    row.addEventListener("click", () => {
+                        bibInput.value = m.name;
+                        autocompleteBox.classList.add("hidden");
+                        activeSearchFilter.runnerName = m.name;
+                        activeSearchFilter.bib = m.bib || "";
+                        activeTagBadge.textContent = m.name;
+                        activeTagBadge.classList.remove("hidden");
+                        if (m.bib) {
+                            searchPhotosByTag(m.bib);
+                        } else {
+                            applyClientFilters();
+                        }
+                    });
+                    autocompleteBox.appendChild(row);
+                });
+
+                autocompleteBox.classList.remove("hidden");
+            });
+
+            // Handle Enter key for direct bib search
+            bibInput.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") {
+                    autocompleteBox.classList.add("hidden");
+                    const val = bibInput.value.trim();
+                    if (/^\d+$/.test(val) || /^bib\d+$/i.test(val)) {
+                        activeSearchFilter.bib = val;
+                        activeTagBadge.textContent = `Bib #${val}`;
+                        activeTagBadge.classList.remove("hidden");
+                        searchPhotosByTag(val);
+                    } else {
+                        activeSearchFilter.runnerName = val;
+                        applyClientFilters();
+                    }
+                }
+            });
+
+            // Close autocomplete when clicking outside
+            document.addEventListener("click", (e) => {
+                if (!bibInput.contains(e.target) && !autocompleteBox.contains(e.target)) {
+                    autocompleteBox.classList.add("hidden");
+                }
+            });
+        };
+
+        // --- 8. EVENT LISTENERS ---
+        albumSelector.addEventListener("change", (e) => {
+            selectedAlbumId = e.target.value;
+            const sel = albumSelector.options[albumSelector.selectedIndex];
+            selectedAlbumTitle = sel ? sel.textContent : "";
+            fetchAlbumPhotos(selectedAlbumId, 1);
+        });
+
+        clubFilter.addEventListener("change", (e) => {
+            activeSearchFilter.club = e.target.value;
+            applyClientFilters();
+        });
+
+        clearSearchBtn.addEventListener("click", () => {
+            bibInput.value = "";
+            clearSearchBtn.classList.add("hidden");
+            activeSearchFilter.bib = "";
+            activeSearchFilter.runnerName = "";
+            activeTagBadge.classList.add("hidden");
+            if (selectedAlbumId) {
+                fetchAlbumPhotos(selectedAlbumId, 1);
+            }
+        });
+
+        resetFiltersBtn.addEventListener("click", () => {
+            bibInput.value = "";
+            clubFilter.selectedIndex = 0;
+            clearSearchBtn.classList.add("hidden");
+            activeSearchFilter = { bib: "", runnerName: "", club: "" };
+            activeTagBadge.classList.add("hidden");
+            if (selectedAlbumId) {
+                fetchAlbumPhotos(selectedAlbumId, 1);
+            }
+        });
+
+        showAllPhotosBtn.addEventListener("click", () => {
+            bibInput.value = "";
+            clubFilter.selectedIndex = 0;
+            activeSearchFilter = { bib: "", runnerName: "", club: "" };
+            activeTagBadge.classList.add("hidden");
+            fetchAlbumPhotos(selectedAlbumId, 1);
+        });
+
+        loadMoreBtn.addEventListener("click", () => {
+            if (currentPage < totalPages && selectedAlbumId) {
+                fetchAlbumPhotos(selectedAlbumId, currentPage + 1, true);
+            }
+        });
+
+        downloadZipBtn.addEventListener("click", downloadAsZip);
+        zipCancelBtn.addEventListener("click", () => {
+            if (zipAbortController) zipAbortController.abort();
+        });
+
+        // Lightbox modal controls
+        modalCloseBtn.addEventListener("click", closeLightbox);
+        modalPrevBtn.addEventListener("click", () => {
+            if (currentPhotoIndex > 0) {
+                currentPhotoIndex--;
+                updateLightboxContent();
+            }
+        });
+        modalNextBtn.addEventListener("click", () => {
+            if (currentPhotoIndex < lightboxList.length - 1) {
+                currentPhotoIndex++;
+                updateLightboxContent();
+            }
+        });
+        document.addEventListener("keydown", (e) => {
+            if (lightboxModal.classList.contains("hidden")) return;
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowLeft" && currentPhotoIndex > 0) {
+                currentPhotoIndex--;
+                updateLightboxContent();
+            }
+            if (e.key === "ArrowRight" && currentPhotoIndex < lightboxList.length - 1) {
+                currentPhotoIndex++;
+                updateLightboxContent();
+            }
+        });
+
+        // Helpers
+        const showError = (msg) => {
+            galleryLoader.classList.add("hidden");
+            galleryEmpty.classList.remove("hidden");
+            emptyMessageText.textContent = msg;
+        };
+
+        // --- 9. INITIALIZATION ---
+        document.addEventListener("DOMContentLoaded", () => {
+            populateClubs();
+            setupAutocomplete();
+            loadAlbums();
+        });
+    })();
+    </script>
+</body>
+</html>
