@@ -178,18 +178,46 @@
                 <!-- Dynamically populated cards -->
             </div>
 
-            <!-- Pagination / Load More Button -->
-            <div id="load-more-container" class="hidden text-center pt-8">
-                <button id="load-more-btn" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-mono text-xs font-bold px-6 py-3 rounded-xl transition shadow">
-                    Load More Photos
-                </button>
+            <!-- Pagination Controls Bar -->
+            <div id="pagination-container" class="hidden flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-slate-900 font-mono text-xs">
+                <!-- Left: Page status & Jump -->
+                <div class="flex items-center gap-3 text-slate-400">
+                    <span id="pagination-info">Page 1 of 1</span>
+                    <span class="text-slate-700">•</span>
+                    <label class="flex items-center gap-1.5 text-slate-400">
+                        <span>Go to page:</span>
+                        <input type="number" id="page-jump-input" min="1" max="1" value="1" 
+                            class="w-14 bg-slate-900 border border-slate-800 text-slate-100 rounded-lg px-2 py-1 text-center focus:outline-none focus:border-brand-500 font-bold">
+                    </label>
+                </div>
+
+                <!-- Right: Navigation Buttons -->
+                <div class="flex items-center gap-1.5">
+                    <button id="page-first-btn" class="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition" title="First Page">
+                        ««
+                    </button>
+                    <button id="page-prev-btn" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition flex items-center gap-1">
+                        ‹ Prev
+                    </button>
+
+                    <div id="page-numbers-container" class="hidden md:flex items-center gap-1">
+                        <!-- Dynamic page number buttons -->
+                    </div>
+
+                    <button id="page-next-btn" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition flex items-center gap-1">
+                        Next ›
+                    </button>
+                    <button id="page-last-btn" class="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition" title="Last Page">
+                        »»
+                    </button>
+                </div>
             </div>
         </section>
 
     </main>
 
     <!-- LIGHTBOX MODAL -->
-    <div id="lightbox-modal" class="hidden fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md flex flex-col justify-between p-4 md:p-6" role="dialog" aria-modal="true">
+    <div id="lightbox-modal" class="hidden fixed inset-0 z-[9999] bg-slate-950/95 backdrop-blur-md flex flex-col justify-between p-4 md:p-6" role="dialog" aria-modal="true">
         <!-- Top Toolbar -->
         <div class="flex items-center justify-between z-10">
             <div class="space-y-0.5">
@@ -228,7 +256,7 @@
     </div>
 
     <!-- ZIP DOWNLOAD PROGRESS MODAL -->
-    <div id="zip-progress-modal" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur flex items-center justify-center p-4">
+    <div id="zip-progress-modal" class="hidden fixed inset-0 z-[9999] bg-slate-950/90 backdrop-blur flex items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-md w-full shadow-2xl text-center space-y-4">
             <div class="w-12 h-12 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded-full flex items-center justify-center mx-auto text-xl">
                 📦
@@ -271,6 +299,7 @@
         let activeSearchFilter = { bib: "", runnerName: "", club: "" };
         let zipAbortController = null;
         let photoIndex = {};
+        let selectedAlbumTotalPhotos = 0;
 
         // Elements
         const albumSelector = document.getElementById("album-selector");
@@ -287,8 +316,16 @@
         const galleryEmpty = document.getElementById("gallery-empty");
         const emptyMessageText = document.getElementById("empty-message-text");
         const showAllPhotosBtn = document.getElementById("show-all-photos-btn");
-        const loadMoreContainer = document.getElementById("load-more-container");
-        const loadMoreBtn = document.getElementById("load-more-btn");
+        
+        // Pagination Elements
+        const paginationContainer = document.getElementById("pagination-container");
+        const paginationInfo = document.getElementById("pagination-info");
+        const pageJumpInput = document.getElementById("page-jump-input");
+        const pageFirstBtn = document.getElementById("page-first-btn");
+        const pagePrevBtn = document.getElementById("page-prev-btn");
+        const pageNextBtn = document.getElementById("page-next-btn");
+        const pageLastBtn = document.getElementById("page-last-btn");
+        const pageNumbersContainer = document.getElementById("page-numbers-container");
 
         // Lightbox Elements
         const lightboxModal = document.getElementById("lightbox-modal");
@@ -392,10 +429,44 @@
                 });
 
                 if (allAlbums.length > 0) {
-                    albumSelector.selectedIndex = 0;
-                    selectedAlbumId = allAlbums[0].id;
-                    selectedAlbumTitle = allAlbums[0].title?._content || "";
-                    fetchAlbumPhotos(selectedAlbumId, 1);
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const paramAlbum = urlParams.get("album");
+                    
+                    let targetIdx = 0;
+                    if (paramAlbum) {
+                        const found = allAlbums.findIndex(a => a.id === paramAlbum);
+                        if (found !== -1) targetIdx = found;
+                    }
+
+                    albumSelector.selectedIndex = targetIdx;
+                    selectedAlbumId = allAlbums[targetIdx].id;
+                    selectedAlbumTitle = allAlbums[targetIdx].title?._content || "";
+                    selectedAlbumTotalPhotos = Number(allAlbums[targetIdx].photos) || 0;
+                    
+                    const paramPage = parseInt(urlParams.get("page"), 10) || 1;
+                    await fetchAlbumPhotos(selectedAlbumId, paramPage);
+
+                    const paramBib = urlParams.get("bib");
+                    const paramName = urlParams.get("name");
+                    const paramClub = urlParams.get("club");
+
+                    if (paramClub) {
+                        clubFilter.value = paramClub;
+                        activeSearchFilter.club = paramClub;
+                    }
+                    if (paramBib) {
+                        bibInput.value = paramBib;
+                        activeSearchFilter.bib = paramBib;
+                        activeTagBadge.textContent = `Bib #${paramBib}`;
+                        activeTagBadge.classList.remove("hidden");
+                        searchPhotosByTag(paramBib);
+                    } else if (paramName) {
+                        bibInput.value = paramName;
+                        activeSearchFilter.runnerName = paramName;
+                        activeTagBadge.textContent = paramName;
+                        activeTagBadge.classList.remove("hidden");
+                        applyClientFilters();
+                    }
                 }
             } catch (err) {
                 console.error("Error loading albums:", err);
@@ -416,13 +487,12 @@
         };
 
         // Fetch photos from selected album
-        const fetchAlbumPhotos = async (albumId, page = 1, append = false) => {
-            if (!append) {
-                galleryLoader.classList.remove("hidden");
-                photosGrid.innerHTML = "";
-                galleryEmpty.classList.add("hidden");
-                currentPhotos = [];
-            }
+        const fetchAlbumPhotos = async (albumId, page = 1) => {
+            galleryLoader.classList.remove("hidden");
+            photosGrid.innerHTML = "";
+            galleryEmpty.classList.add("hidden");
+            paginationContainer.classList.add("hidden");
+            currentPhotos = [];
 
             try {
                 const data = await callFlickr("flickr.photosets.getPhotos", {
@@ -438,6 +508,7 @@
                 const newPhotos = photoset.photo || [];
                 currentPage = Number(photoset.page) || 1;
                 totalPages = Number(photoset.pages) || 1;
+                selectedAlbumTotalPhotos = Number(photoset.total) || selectedAlbumTotalPhotos;
 
                 // Enrich photos with local index if available
                 newPhotos.forEach(p => {
@@ -450,19 +521,9 @@
                     }
                 });
 
-                if (append) {
-                    currentPhotos = currentPhotos.concat(newPhotos);
-                } else {
-                    currentPhotos = newPhotos;
-                }
-
+                currentPhotos = newPhotos;
                 applyClientFilters();
-
-                if (currentPage < totalPages && !activeSearchFilter.bib && !activeSearchFilter.club) {
-                    loadMoreContainer.classList.remove("hidden");
-                } else {
-                    loadMoreContainer.classList.add("hidden");
-                }
+                updatePaginationUI();
 
             } catch (err) {
                 console.error("Error fetching album photos:", err);
@@ -471,12 +532,53 @@
             }
         };
 
+        const updatePaginationUI = () => {
+            if (totalPages <= 1 || activeSearchFilter.bib || activeSearchFilter.runnerName) {
+                paginationContainer.classList.add("hidden");
+                return;
+            }
+
+            paginationContainer.classList.remove("hidden");
+            const totalCountText = selectedAlbumTotalPhotos ? ` • ${selectedAlbumTotalPhotos} photos in album` : '';
+            paginationInfo.textContent = `Page ${currentPage} of ${totalPages}${totalCountText}`;
+            pageJumpInput.value = currentPage;
+            pageJumpInput.max = totalPages;
+
+            pageFirstBtn.disabled = currentPage <= 1;
+            pagePrevBtn.disabled = currentPage <= 1;
+            pageNextBtn.disabled = currentPage >= totalPages;
+            pageLastBtn.disabled = currentPage >= totalPages;
+
+            // Generate page pill buttons (current - 2 to current + 2)
+            pageNumbersContainer.innerHTML = "";
+            let startP = Math.max(1, currentPage - 2);
+            let endP = Math.min(totalPages, startP + 4);
+            if (endP - startP < 4) startP = Math.max(1, endP - 4);
+
+            for (let p = startP; p <= endP; p++) {
+                const btn = document.createElement("button");
+                btn.className = `w-8 h-8 rounded-lg font-bold text-xs transition ${
+                    p === currentPage
+                        ? 'bg-brand-500 text-white shadow-lg'
+                        : 'bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-100 border border-slate-800'
+                }`;
+                btn.textContent = p;
+                btn.addEventListener("click", () => {
+                    if (p !== currentPage && selectedAlbumId) {
+                        fetchAlbumPhotos(selectedAlbumId, p);
+                        document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+                pageNumbersContainer.appendChild(btn);
+            }
+        };
+
         // Search photos tagged with specific bib number
         const searchPhotosByTag = async (tag) => {
             galleryLoader.classList.remove("hidden");
             photosGrid.innerHTML = "";
             galleryEmpty.classList.add("hidden");
-            loadMoreContainer.classList.add("hidden");
+            paginationContainer.classList.add("hidden");
 
             try {
                 // Try searching with prefix variants: e.g. "bib104" and "104"
@@ -596,7 +698,7 @@
                                 </span>
                             </div>
                         ` : ''}
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3 pointer-events-none">
                             <span class="text-[10px] font-mono text-slate-200 font-bold bg-slate-900/90 px-2 py-1 rounded border border-slate-700">Click to Expand</span>
                         </div>
                     </div>
@@ -608,10 +710,15 @@
                     </div>
                 `;
 
-                // Lightbox Click
-                card.querySelector("img").addEventListener("click", () => {
-                    openLightbox(idx, photos);
-                });
+                // Lightbox Click - bound to container
+                const clickTarget = card.querySelector(".cursor-pointer");
+                if (clickTarget) {
+                    clickTarget.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        openLightbox(idx, photos);
+                    });
+                }
 
                 photosGrid.appendChild(card);
             });
@@ -847,9 +954,38 @@
             fetchAlbumPhotos(selectedAlbumId, 1);
         });
 
-        loadMoreBtn.addEventListener("click", () => {
+        // Pagination controls
+        pageFirstBtn.addEventListener("click", () => {
+            if (currentPage > 1 && selectedAlbumId) {
+                fetchAlbumPhotos(selectedAlbumId, 1);
+                document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        pagePrevBtn.addEventListener("click", () => {
+            if (currentPage > 1 && selectedAlbumId) {
+                fetchAlbumPhotos(selectedAlbumId, currentPage - 1);
+                document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        pageNextBtn.addEventListener("click", () => {
             if (currentPage < totalPages && selectedAlbumId) {
-                fetchAlbumPhotos(selectedAlbumId, currentPage + 1, true);
+                fetchAlbumPhotos(selectedAlbumId, currentPage + 1);
+                document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        pageLastBtn.addEventListener("click", () => {
+            if (currentPage < totalPages && selectedAlbumId) {
+                fetchAlbumPhotos(selectedAlbumId, totalPages);
+                document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        pageJumpInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                let targetPage = parseInt(pageJumpInput.value, 10);
+                if (!isNaN(targetPage) && targetPage >= 1 && targetPage <= totalPages && selectedAlbumId) {
+                    fetchAlbumPhotos(selectedAlbumId, targetPage);
+                    document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         });
 
