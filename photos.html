@@ -270,6 +270,7 @@
         let totalPages = 1;
         let activeSearchFilter = { bib: "", runnerName: "", club: "" };
         let zipAbortController = null;
+        let photoIndex = {};
 
         // Elements
         const albumSelector = document.getElementById("album-selector");
@@ -403,6 +404,17 @@
             }
         };
 
+        const loadPhotoIndex = async () => {
+            try {
+                const res = await fetch("assets/data/photo_tags.json");
+                if (res.ok) {
+                    photoIndex = await res.json();
+                }
+            } catch (e) {
+                console.log("No local photo index found, using live Flickr tags only");
+            }
+        };
+
         // Fetch photos from selected album
         const fetchAlbumPhotos = async (albumId, page = 1, append = false) => {
             if (!append) {
@@ -426,6 +438,17 @@
                 const newPhotos = photoset.photo || [];
                 currentPage = Number(photoset.page) || 1;
                 totalPages = Number(photoset.pages) || 1;
+
+                // Enrich photos with local index if available
+                newPhotos.forEach(p => {
+                    const meta = photoIndex[p.id];
+                    if (meta) {
+                        p.indexedBib = meta.bib;
+                        p.indexedRunner = meta.name;
+                        p.indexedClub = meta.club;
+                        p.tags = (p.tags || "") + ` bib${meta.bib} ${meta.bib} ${meta.name} ${meta.club}`;
+                    }
+                });
 
                 if (append) {
                     currentPhotos = currentPhotos.concat(newPhotos);
@@ -469,7 +492,20 @@
                 });
 
                 galleryLoader.classList.add("hidden");
-                const searchResults = data.photos?.photo || [];
+                let searchResults = data.photos?.photo || [];
+
+                // If Flickr search had 0 results, fall back to locally indexed photos
+                if (searchResults.length === 0 && Object.keys(photoIndex).length > 0) {
+                    const clean = tag.trim().replace(/^bib/i, "").toLowerCase();
+                    const matchedPids = new Set(
+                        Object.entries(photoIndex)
+                            .filter(([pid, meta]) => (meta.bib && meta.bib.toLowerCase() === clean) || (meta.name && meta.name.toLowerCase().includes(clean)))
+                            .map(([pid]) => pid)
+                    );
+                    if (matchedPids.size > 0) {
+                        searchResults = currentPhotos.filter(p => matchedPids.has(String(p.id)));
+                    }
+                }
 
                 currentPhotos = searchResults;
                 applyClientFilters();
@@ -489,8 +525,18 @@
             if (activeSearchFilter.bib) {
                 const searchNum = activeSearchFilter.bib.toLowerCase().trim().replace(/^bib/i, "");
                 filtered = filtered.filter(p => {
+                    if (p.indexedBib && p.indexedBib.toLowerCase() === searchNum) return true;
                     const tagList = (p.tags || "").toLowerCase().split(/\s+/).filter(Boolean);
                     return tagList.includes(`bib${searchNum}`) || tagList.includes(searchNum);
+                });
+            }
+
+            // If runner name search is active
+            if (activeSearchFilter.runnerName) {
+                const targetName = activeSearchFilter.runnerName.toLowerCase().trim();
+                filtered = filtered.filter(p => {
+                    if (p.indexedRunner && p.indexedRunner.toLowerCase().includes(targetName)) return true;
+                    return (p.tags || "").toLowerCase().includes(targetName);
                 });
             }
 
@@ -499,6 +545,7 @@
                 const targetClub = activeSearchFilter.club.toLowerCase();
                 // Match against data.js runner clubs if photo has tags matching a bib
                 filtered = filtered.filter(p => {
+                    if (p.indexedClub && p.indexedClub.toLowerCase().includes(targetClub)) return true;
                     const tags = (p.tags || "").toLowerCase().split(/\s+/);
                     for (const t of tags) {
                         const num = t.replace(/^bib/i, "");
@@ -540,6 +587,15 @@
                 card.innerHTML = `
                     <div class="aspect-[4/3] bg-slate-950 overflow-hidden relative cursor-pointer">
                         <img src="${imgThumb}" alt="${photo.title || 'GLCL Race Photo'}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        ${photo.indexedRunner ? `
+                            <div class="absolute top-2 left-2 z-10 pointer-events-none">
+                                <span class="bg-brand-600/90 backdrop-blur-md text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow border border-brand-400/30 flex items-center gap-1.5">
+                                    <span>Bib #${photo.indexedBib}</span>
+                                    <span class="text-brand-300">•</span>
+                                    <span class="truncate max-w-[130px]">${photo.indexedRunner}</span>
+                                </span>
+                            </div>
+                        ` : ''}
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                             <span class="text-[10px] font-mono text-slate-200 font-bold bg-slate-900/90 px-2 py-1 rounded border border-slate-700">Click to Expand</span>
                         </div>
@@ -586,19 +642,23 @@
             modalDirectDownload.href = highRes;
 
             // Check if tagged with bib and match runner
-            const tags = (photo.tags || "").split(/\s+/);
-            const foundBibs = tags.map(t => t.replace(/^bib/i, "")).filter(t => /^\d+$/.test(t));
-            
-            if (foundBibs.length > 0) {
-                const bibNum = foundBibs[0];
-                const runner = (window.glclResults || []).find(r => String(r.bib) === bibNum);
-                if (runner) {
-                    modalRunnerInfo.innerHTML = `Bib #${bibNum} • <a href="athlete.html?name=${encodeURIComponent(runner.name)}" class="hover:underline">${runner.name}</a> (${runner.club || 'Independent'})`;
-                } else {
-                    modalRunnerInfo.textContent = `Bib #${bibNum}`;
-                }
+            if (photo.indexedRunner) {
+                modalRunnerInfo.innerHTML = `Bib #${photo.indexedBib} • <a href="athlete.html?name=${encodeURIComponent(photo.indexedRunner)}" class="hover:underline text-brand-300 font-bold">${photo.indexedRunner}</a> (${photo.indexedClub || 'Independent'})`;
             } else {
-                modalRunnerInfo.textContent = photo.title || selectedAlbumTitle;
+                const tags = (photo.tags || "").split(/\s+/);
+                const foundBibs = tags.map(t => t.replace(/^bib/i, "")).filter(t => /^\d+$/.test(t));
+                
+                if (foundBibs.length > 0) {
+                    const bibNum = foundBibs[0];
+                    const runner = (window.glclResults || []).find(r => String(r.bib) === bibNum);
+                    if (runner) {
+                        modalRunnerInfo.innerHTML = `Bib #${bibNum} • <a href="athlete.html?name=${encodeURIComponent(runner.name)}" class="hover:underline">${runner.name}</a> (${runner.club || 'Independent'})`;
+                    } else {
+                        modalRunnerInfo.textContent = `Bib #${bibNum}`;
+                    }
+                } else {
+                    modalRunnerInfo.textContent = photo.title || selectedAlbumTitle;
+                }
             }
         };
 
@@ -833,7 +893,8 @@
         };
 
         // --- 9. INITIALIZATION ---
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", async () => {
+            await loadPhotoIndex();
             populateClubs();
             setupAutocomplete();
             loadAlbums();
