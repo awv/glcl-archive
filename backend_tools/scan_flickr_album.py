@@ -139,7 +139,10 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE):
                 
                 runner_name = ""
                 runner_club = ""
-                if "(" in runner_part:
+                if "Unregistered" in runner_part:
+                    runner_name = ""
+                    runner_club = ""
+                elif "(" in runner_part:
                     runner_name = runner_part.split("(")[0].strip()
                     runner_club = runner_part.split("(")[1].split(")")[0].strip()
                 else:

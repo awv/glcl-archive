@@ -955,24 +955,86 @@
             }
 
             // 7. MATCH ATHLETE PHOTOS FROM photo_tags.json
-            const athleteBibs = new Set(
-                history.map(r => r.bib && r.bib !== '-' ? String(r.bib).trim() : null).filter(Boolean)
-            );
-            
+            // Normalize album lookup dictionary by album_id
+            const albumById = {};
+            Object.values(fixtureAlbums).forEach(alb => {
+                if (alb && alb.album_id) {
+                    albumById[alb.album_id] = alb;
+                }
+            });
+
+            // Index athlete's historical bib numbers by season, and historical clubs
+            const athleteSeasonBibs = new Map(); // season -> Set of bib strings
+            const athleteClubs = new Set();
+            if (targetClub) {
+                athleteClubs.add(window.getCanonicalClub ? window.getCanonicalClub(targetClub).toLowerCase() : targetClub.toLowerCase());
+            }
+
+            history.forEach(r => {
+                if (r.club) {
+                    const canonical = window.getCanonicalClub ? window.getCanonicalClub(r.club) : r.club;
+                    athleteClubs.add(canonical.toLowerCase());
+                }
+                const bib = r.bib && r.bib !== '-' && r.bib !== '0' ? String(r.bib).trim() : null;
+                const season = r.season ? String(r.season).trim() : null;
+                if (season && bib) {
+                    if (!athleteSeasonBibs.has(season)) {
+                        athleteSeasonBibs.set(season, new Set());
+                    }
+                    athleteSeasonBibs.get(season).add(bib);
+                }
+            });
+
+            const matchesAthleteClub = (photoClub) => {
+                if (!photoClub) return true; // Club unspecified on photo
+                const normPhotoClub = (window.getCanonicalClub ? window.getCanonicalClub(photoClub) : photoClub).toLowerCase();
+                for (const ac of athleteClubs) {
+                    if (ac === normPhotoClub || ac.includes(normPhotoClub) || normPhotoClub.includes(ac)) {
+                        return true;
+                    }
+                }
+                return false;
+            };
+
             const matchedPhotos = [];
             const seenPhotoIds = new Set();
 
             Object.entries(photoTags).forEach(([pid, meta]) => {
                 if (seenPhotoIds.has(pid)) return;
 
-                const nameMatch = meta.name && (
-                    getNameKey(meta.name) === finalMasterKey || 
-                    meta.name.toLowerCase().includes(targetAthlete.toLowerCase()) ||
-                    targetAthlete.toLowerCase().includes(meta.name.toLowerCase())
-                );
-                const bibMatch = meta.bib && athleteBibs.has(String(meta.bib).trim());
+                const album = (meta.album_id && albumById[meta.album_id]) || fixtureAlbums[meta.album_id] || null;
+                const photoSeason = album ? album.season : null;
+                const metaName = (meta.name || '').trim();
+                const metaBib = meta.bib ? String(meta.bib).trim() : '';
 
-                if (nameMatch || bibMatch) {
+                // A photo explicitly tagged with a different athlete's name should NEVER match
+                if (metaName) {
+                    const isNameMatch = (getNameKey(metaName) === finalMasterKey);
+                    if (!isNameMatch) {
+                        return;
+                    }
+                }
+
+                // If album season is known and athlete has recorded bibs for that season, bib must not contradict
+                if (photoSeason && athleteSeasonBibs.has(photoSeason)) {
+                    const validBibsThisSeason = athleteSeasonBibs.get(photoSeason);
+                    if (metaBib && !validBibsThisSeason.has(metaBib)) {
+                        return; // Athlete wore a different bib in this season
+                    }
+                }
+
+                // Check club compatibility if photo has club metadata
+                if (meta.club && !matchesAthleteClub(meta.club)) {
+                    return;
+                }
+
+                // A match is confirmed if:
+                // 1) Explicit name match (and no season/bib/club contradiction above)
+                // 2) OR photoSeason is known and metaBib matches athlete's bib in that season
+                const explicitNameMatch = Boolean(metaName && getNameKey(metaName) === finalMasterKey);
+                const seasonBibMatch = Boolean(photoSeason && metaBib && athleteSeasonBibs.has(photoSeason) && athleteSeasonBibs.get(photoSeason).has(metaBib));
+
+                if (explicitNameMatch || seasonBibMatch) {
                     seenPhotoIds.add(pid);
                     matchedPhotos.push({ id: pid, ...meta });
                 }
@@ -997,8 +1059,9 @@
                             const imgLarge = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : imgThumb);
                             
                             let raceTitle = 'GLCL Race';
-                            if (photo.album_id && fixtureAlbums[photo.album_id]) {
-                                raceTitle = fixtureAlbums[photo.album_id].venue || fixtureAlbums[photo.album_id].title || 'GLCL Race';
+                            const album = (photo.album_id && albumById[photo.album_id]) || fixtureAlbums[photo.album_id];
+                            if (album) {
+                                raceTitle = album.venue || album.title || 'GLCL Race';
                             }
 
                             return `

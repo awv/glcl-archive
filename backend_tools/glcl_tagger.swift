@@ -263,7 +263,15 @@ func scanPhoto(url: URL, activeBibMap: [String: RunnerRecord], lifetimeBibMap: [
                     }
                 }
                 
-                // Tier 2: Persistent Lifetime GLCL Runner match (Secondary Priority)
+                // Tier 2: Unregistered candidate within active season (Confirms bib number without guessing wrong runner)
+                if !activeBibMap.isEmpty {
+                    if token.conf >= minConfidence && (bestMatch == nil || (bestMatch!.runner == nil && token.conf > bestMatch!.conf)) {
+                        bestMatch = (numStr, nil, token.conf)
+                    }
+                    continue
+                }
+                
+                // Tier 3: Ungrounded fallback (Only if no active season roster was provided)
                 if let runner = lifetimeBibMap[numStr] {
                     if bestMatch == nil || (token.conf > bestMatch!.conf && bestMatch!.runner?.isLifetimeFallback == true) {
                         bestMatch = (numStr, runner, token.conf)
@@ -271,11 +279,9 @@ func scanPhoto(url: URL, activeBibMap: [String: RunnerRecord], lifetimeBibMap: [
                     }
                 }
                 
-                // Tier 3: Unregistered candidate (if no matches found so far)
-                if activeBibMap.isEmpty && lifetimeBibMap.isEmpty {
-                    if token.conf >= minConfidence && (bestMatch == nil || token.conf > bestMatch!.conf) {
-                        bestMatch = (numStr, nil, token.conf)
-                    }
+                // Tier 4: Unregistered candidate when no database is available
+                if token.conf >= minConfidence && (bestMatch == nil || token.conf > bestMatch!.conf) {
+                    bestMatch = (numStr, nil, token.conf)
                 }
             }
         }
