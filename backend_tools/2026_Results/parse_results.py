@@ -2,14 +2,35 @@ import pdfplumber
 import re
 import os
 import glob
+import json
 
 # Paths
 base_dir = os.path.dirname(__file__)
 pdf_dir = os.path.join(base_dir, "pdf_source")
 output_dir = os.path.join(base_dir, "..", "results_source")
+registry_path = os.path.join(base_dir, "..", "glcl_runner_registry.json")
 
 os.makedirs(pdf_dir, exist_ok=True)
 os.makedirs(output_dir, exist_ok=True)
+
+# Load runner registry fallback if available
+reg_map = {}
+if os.path.exists(registry_path):
+    try:
+        with open(registry_path, "r", encoding="utf-8") as rf:
+            reg_data = json.load(rf)
+            for runner in reg_data.get("runners", []):
+                bib = runner.get("bib")
+                if runner.get("barcode"):
+                    reg_map[runner["barcode"].upper()] = bib
+                if runner.get("urn"):
+                    reg_map[str(runner["urn"])] = bib
+                norm = re.sub(r'[^a-z0-9]', '', runner.get("name", "").lower())
+                if norm:
+                    reg_map[norm] = bib
+        print(f"Loaded {len(reg_map)} mappings from glcl_runner_registry.json")
+    except Exception as e:
+        print(f"Warning: could not load runner registry: {e}")
 
 pdf_files = glob.glob(os.path.join(pdf_dir, "*.pdf"))
 
@@ -37,16 +58,21 @@ for pdf_path in pdf_files:
     # Dynamically extract discipline (XC vs Road)
     discipline = "xc" if re.search(r'(?:_|\b)XC(?:_|\b)', filename, re.IGNORECASE) else "road"
     
-    # Extract season (e.g. 2026_2027 or 2025_2026)
+    # Extract season (e.g. 2026_2027 or 2026~27)
     season_match = re.search(r'(\d{4})[_-](\d{4})', filename)
     if season_match:
         season = f"{season_match.group(1)}_{season_match.group(2)}"
-    elif re.search(r'2026', filename):
-        season = "2026_2027" if discipline == "xc" else "2025_2026"
     else:
-        season = "2026_2027"
+        short_match = re.search(r'(\d{4})[_-~](\d{2})\b', filename)
+        if short_match:
+            prefix = short_match.group(1)[:2]
+            season = f"{short_match.group(1)}_{prefix}{short_match.group(2)}"
+        elif re.search(r'2026', filename):
+            season = "2026_2027" if discipline == "xc" else "2025_2026"
+        else:
+            season = "2026_2027"
 
-    # Extract race number dynamically (e.g., GLCL_2026_2027_XC_1.pdf -> 1)
+    # Extract race number dynamically (e.g., GLCL_2026_2027_XC_1.pdf or GLCL_2026~27_XC_RACE_1.pdf -> 1)
     race_num_match = re.search(r'(\d+)\.pdf$', filename, re.IGNORECASE)
     race_number = race_num_match.group(1) if race_num_match else "1"
     
@@ -113,6 +139,15 @@ for pdf_path in pdf_files:
 
                 time = format_time(raw_time)
                 row_tokens = tokens[:time_idx]
+                after_time = tokens[time_idx + 1:]
+
+                # Check for explicit BIB and URN columns after time (e.g. Draft 1.1 format)
+                bib = "0"
+                urn = ""
+                if len(after_time) >= 1 and after_time[0].isdigit():
+                    bib = after_time[0]
+                if len(after_time) >= 2 and after_time[1].isdigit():
+                    urn = after_time[1]
 
                 sex_idx = -1
                 for idx in range(len(row_tokens) - 1, -1, -1):
@@ -148,7 +183,9 @@ for pdf_path in pdf_files:
                 elif age_cat[0].upper() in ["M", "F"] and age_cat[1:].isdigit():
                     age_cat = f"V{age_cat[1:]}"
 
+                barcode = ""
                 if name_club_tokens and re.match(r'^[A-Za-z]?\d+$', name_club_tokens[0]):
+                    barcode = name_club_tokens[0]
                     name_club_tokens = name_club_tokens[1:]
 
                 if not name_club_tokens:
@@ -173,7 +210,17 @@ for pdf_path in pdf_files:
                 if not club:
                     club = "Independent"
 
-                bib = "0"
+                # If bib was not provided in the PDF, resolve via runner registry
+                if bib == "0":
+                    if barcode and barcode.upper() in reg_map:
+                        bib = reg_map[barcode.upper()]
+                    elif urn and urn in reg_map:
+                        bib = reg_map[urn]
+                    else:
+                        norm = re.sub(r'[^a-z0-9]', '', full_name.lower())
+                        if norm in reg_map:
+                            bib = reg_map[norm]
+
                 age_placeholder = 0
 
                 data_line = f"{pos} {bib} {full_name} {age_placeholder} {sex} {age_cat} {club} {time} {gender_pos} {cat_pos}"
