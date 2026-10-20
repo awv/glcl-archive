@@ -1036,5 +1036,15 @@
     "race_number": 1,
     "venue": "Parc Bryn Bach",
     "date": "2019-10-20"
+  },
+  "72177720330513551": {
+    "album_id": "72177720330513551",
+    "title": "GLCL XC 25/26 \u2014 Rogerstone",
+    "photos": 3944,
+    "season": "2025/2026",
+    "discipline": "xc",
+    "race_number": 1,
+    "venue": "Rogerstone",
+    "date": "1763976864"
   }
 }

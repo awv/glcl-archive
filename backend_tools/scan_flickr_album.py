@@ -53,7 +53,16 @@ def fetch_album_photos(photoset_id, max_photos=50):
 
     return photos[:max_photos]
 
+def extract_album_id(val):
+    if not val:
+        return ""
+    val = str(val).strip().rstrip("/")
+    if "/" in val:
+        val = val.split("/")[-1]
+    return val
+
 def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE):
+    album_id = extract_album_id(album_id)
     if not TAGGER_BIN.exists():
         print("Error: backend_tools/glcl-tagger binary not found. Please compile it first.")
         return 0, 0
