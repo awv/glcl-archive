@@ -54,11 +54,14 @@
         <!-- Smooth vertical overlay gradient to blend bottom of hero image seamlessly into page background -->
         <div id="header-gradient" class="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/60 to-slate-950/20 z-0"></div>
 
-        <!-- Floating Header Photo Control Button -->
-        <div class="absolute top-4 right-4 z-20 flex items-center gap-2">
+        <!-- Floating Header Photo Control Button (Admin Edit Mode Only) -->
+        <div id="header-admin-controls" class="hidden absolute top-4 right-4 z-20 flex items-center gap-2">
             <button id="open-header-picker-btn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold font-mono bg-slate-900/80 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/80 backdrop-blur-md shadow-lg transition-all hover:scale-105" title="Choose or customize header photo">
                 <span>📸</span>
                 <span id="header-btn-text">Choose Header</span>
+            </button>
+            <button id="exit-admin-btn" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold font-mono bg-slate-900/80 hover:bg-red-950/80 text-slate-400 hover:text-red-300 border border-slate-700/80 hover:border-red-800/80 backdrop-blur-md shadow-lg transition-all" title="Exit Admin Edit Mode">
+                <span>✕ Exit Admin</span>
             </button>
         </div>
 
@@ -282,6 +285,54 @@
             const urlParams = new URLSearchParams(window.location.search);
             let targetAthlete = urlParams.get('name');
             let targetClub = urlParams.get('club');
+
+            // --- ADMIN / EDIT MODE SECURITY GATE ---
+            // Edit controls (header picker, card header buttons, export) are strictly hidden for the general public.
+            // Activated only via ?admin=1 / ?edit=1 or the secret shortcut Ctrl+Shift+E / Cmd+Shift+E.
+            const adminParam = urlParams.get('admin') || urlParams.get('edit');
+            if (adminParam === '1' || adminParam === 'true') {
+                localStorage.setItem('glcl_admin_mode', 'true');
+            } else if (adminParam === '0' || adminParam === 'false') {
+                localStorage.removeItem('glcl_admin_mode');
+            }
+            const isAdminMode = localStorage.getItem('glcl_admin_mode') === 'true';
+
+            const headerAdminControls = document.getElementById('header-admin-controls');
+            if (headerAdminControls) {
+                if (isAdminMode) {
+                    headerAdminControls.classList.remove('hidden');
+                } else {
+                    headerAdminControls.classList.add('hidden');
+                }
+            }
+
+            const exitAdminBtn = document.getElementById('exit-admin-btn');
+            if (exitAdminBtn) {
+                exitAdminBtn.addEventListener('click', () => {
+                    localStorage.removeItem('glcl_admin_mode');
+                    const cleanUrl = new URL(window.location.href);
+                    cleanUrl.searchParams.delete('admin');
+                    cleanUrl.searchParams.delete('edit');
+                    window.location.href = cleanUrl.toString();
+                });
+            }
+
+            // Secret keyboard shortcut to toggle admin edit mode (Ctrl+Shift+E / Cmd+Shift+E)
+            window.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'e') {
+                    e.preventDefault();
+                    if (localStorage.getItem('glcl_admin_mode') === 'true') {
+                        localStorage.removeItem('glcl_admin_mode');
+                        if (headerAdminControls) headerAdminControls.classList.add('hidden');
+                        showToast('Exited Admin Edit Mode');
+                    } else {
+                        localStorage.setItem('glcl_admin_mode', 'true');
+                        if (headerAdminControls) headerAdminControls.classList.remove('hidden');
+                        showToast('✓ Admin Edit Mode enabled');
+                    }
+                    setTimeout(() => window.location.reload(), 400);
+                }
+            });
 
             if (!targetAthlete) {
                 const nameEl = document.getElementById('athlete-name');
@@ -1158,7 +1209,7 @@
                                     <div class="p-2 flex items-center justify-between text-xs font-mono">
                                         <span class="text-slate-400 truncate max-w-[85px] text-[10px]">${raceTitle}</span>
                                         <div class="flex items-center gap-1">
-                                            <button class="set-header-card-btn text-[10px] text-brand-400 hover:text-white bg-brand-500/10 hover:bg-brand-500 border border-brand-500/20 px-1.5 py-0.5 rounded transition font-bold" data-idx="${idx}" title="Set as Header Photo">★ Header</button>
+                                            ${isAdminMode ? `<button class="set-header-card-btn text-[10px] text-brand-400 hover:text-white bg-brand-500/10 hover:bg-brand-500 border border-brand-500/20 px-1.5 py-0.5 rounded transition font-bold" data-idx="${idx}" title="Set as Header Photo">★ Header</button>` : ''}
                                             <a href="photos.html?album=${photo.album_id || ''}&bib=${photo.bib}" class="text-slate-400 hover:text-slate-200 text-[10px] hover:underline" title="View Album">Album →</a>
                                             <a href="${imgLarge}" download="GLCL_${photo.id}.jpg" target="_blank" class="text-brand-400 hover:text-brand-300 p-0.5" title="Download High-Res Original">
                                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
@@ -1450,25 +1501,30 @@
                 });
             }
 
-            // LIGHTBOX SET AS HEADER BUTTON
+            // LIGHTBOX SET AS HEADER BUTTON (Admin Edit Mode Only)
             const modalSetHeaderBtn = document.getElementById('modal-set-header-btn');
             if (modalSetHeaderBtn) {
-                modalSetHeaderBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const photo = matchedPhotos[currentAthletePhotoIndex];
-                    if (!photo) return;
-                    const highRes = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
-                    const url = photo.url_l || photo.url_m || highRes;
-                    currentHeaderPhotoId = photo.id;
-                    applyHeaderPhoto(url, currentActiveHeaderPos || 'center 25%');
-                    saveAthleteHeaderConfig({
-                        url: url,
-                        photoId: photo.id,
-                        position: currentActiveHeaderPos || 'center 25%',
-                        source: 'flickr'
+                if (isAdminMode) {
+                    modalSetHeaderBtn.classList.remove('hidden');
+                    modalSetHeaderBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const photo = matchedPhotos[currentAthletePhotoIndex];
+                        if (!photo) return;
+                        const highRes = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
+                        const url = photo.url_l || photo.url_m || highRes;
+                        currentHeaderPhotoId = photo.id;
+                        applyHeaderPhoto(url, currentActiveHeaderPos || 'center 25%');
+                        saveAthleteHeaderConfig({
+                            url: url,
+                            photoId: photo.id,
+                            position: currentActiveHeaderPos || 'center 25%',
+                            source: 'flickr'
+                        });
+                        showToast(`✓ Set as header photo for ${targetAthlete}`);
                     });
-                    showToast(`✓ Set as header photo for ${targetAthlete}`);
-                });
+                } else {
+                    modalSetHeaderBtn.classList.add('hidden');
+                }
             }
 
             // 11. CHOOSE HEADER PHOTO MODAL CONTROLLER
@@ -1577,7 +1633,7 @@
             };
 
             const openHeaderPicker = () => {
-                if (!headerPickerModal) return;
+                if (!isAdminMode || !headerPickerModal) return;
                 const athleteLabel = document.getElementById('picker-athlete-name');
                 if (athleteLabel) athleteLabel.textContent = `${targetAthlete} • ${targetClub || 'GLCL Runner'}`;
 
@@ -1603,7 +1659,11 @@
                 document.body.style.overflow = '';
             };
 
-            if (openHeaderPickerBtn) openHeaderPickerBtn.addEventListener('click', openHeaderPicker);
+            if (openHeaderPickerBtn) {
+                openHeaderPickerBtn.addEventListener('click', () => {
+                    if (isAdminMode) openHeaderPicker();
+                });
+            }
             if (closeHeaderPickerBtn) closeHeaderPickerBtn.addEventListener('click', closeHeaderPicker);
             if (saveClosePickerBtn) saveClosePickerBtn.addEventListener('click', closeHeaderPicker);
             if (headerPickerModal) {
@@ -1739,7 +1799,7 @@
             </div>
             
             <div class="flex items-center gap-2">
-                <button id="modal-set-header-btn" class="bg-brand-600 hover:bg-brand-500 text-white border border-brand-400/30 text-xs font-mono font-bold px-3 py-1.5 rounded-lg transition inline-flex items-center gap-1.5 shadow-lg" title="Set this photo as athlete hero header">
+                <button id="modal-set-header-btn" class="hidden bg-brand-600 hover:bg-brand-500 text-white border border-brand-400/30 text-xs font-mono font-bold px-3 py-1.5 rounded-lg transition inline-flex items-center gap-1.5 shadow-lg" title="Set this photo as athlete hero header">
                     <span>★</span>
                     <span>Set as Header</span>
                 </button>

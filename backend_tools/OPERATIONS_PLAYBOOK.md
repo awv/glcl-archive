@@ -132,21 +132,33 @@ python3 backend_tools/manage_tags.py --review assets/data/photos/xc_2026_race_1.
 
 ## 🎨 Playbook D: Athlete Hero Header Photos & Framing
 
-### Explicit Header Assignment Policy
-To ensure no athlete is given an inaccurate or awkward action photo as their hero profile image:
+### Explicit Header Assignment & Admin Edit Mode Security
+To protect public users from seeing or tampering with editor controls, all editing features (the `📸 Choose Header` floating pill, `★ Header` card buttons, and `★ Set as Header` lightbox action) are **strictly hidden from the general public by default**.
 
-1. **How to Choose a Hero Photo in the UI**:
-   - Navigate to [`athlete.html?id=Runner+Name`](file:///Users/robgale/Documents/glcl-archive/athlete.html).
-   - Click the floating **`📸 Choose Header`** pill (or click **`★ Header`** on any photo card in their gallery).
+1. **How to Activate Admin Edit Mode**:
+   - **URL Parameter**: Open any athlete profile with `?admin=1` (or `?edit=1`), e.g.:
+     `athlete.html?name=Joby+EYNON&admin=1`
+   - **Keyboard Shortcut**: Alternatively, press **`Ctrl + Shift + E`** (or **`Cmd + Shift + E`** on Mac) on any athlete page.
+   - Once activated, Admin Mode persists in your browser's `localStorage` across all athlete profiles until you exit.
+
+2. **How to Exit Admin Edit Mode**:
+   - Click the **`✕ Exit Admin`** button next to the header picker pill, or:
+   - Press **`Ctrl + Shift + E`** / **`Cmd + Shift + E`** again, or:
+   - Add `?admin=0` to the URL.
+
+3. **Using the Header Picker (Admin Only)**:
+   - Click **`📸 Choose Header`** (or click **`★ Header`** on any photo card).
    - In the modal:
      - Select from their tagged race photos, or enter an external image URL.
      - Adjust the **Vertical Framing** slider (`0%` top to `100%` bottom, default `25%` optimal for running portraits).
      - Click **Save as Header**.
-2. **Exporting and Committing**:
-   - Local edits persist immediately in browser `localStorage`.
+
+4. **Exporting and Committing**:
+   - Local edits persist immediately in your browser's `localStorage`.
    - Click **`⬇ Export athlete_headers.json`** inside the modal.
-   - Replace `assets/data/athlete_headers.json` and push to git to deploy site-wide.
-3. **Custom Local Portraits**:
+   - Replace `assets/data/athlete_headers.json` and push to git to deploy site-wide for all visitors.
+
+5. **Custom Local Portraits**:
    - Save custom square or portrait photos directly to:
      `assets/images/athletes/<Runner_Name>.jpg`
    - The athlete page automatically picks up custom local portraits if no hero banner is explicitly chosen.
