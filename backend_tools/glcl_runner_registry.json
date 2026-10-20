@@ -1,19 +1,8 @@
 {
-  "updated_at": "2026-10-20T16:10:02.302536",
+  "updated_at": "2026-10-20T16:19:13.944160",
   "source": "https://sites.google.com/view/glclrunning-results-and-reg/home/entry-registration",
-  "total_registered": 1210,
+  "total_registered": 1200,
   "runners": [
-    {
-      "bib": "GLCL",
-      "urn": "URN",
-      "barcode": "BARCODE",
-      "first_name": "FIRST NAME",
-      "last_name": "LAST NAME",
-      "name": "FIRST NAME LAST NAME",
-      "club": "CLUB",
-      "gender": "GENDER",
-      "changes": []
-    },
     {
       "bib": "1001",
       "urn": "7038868",
@@ -1165,17 +1154,6 @@
       "changes": []
     },
     {
-      "bib": "GLCL",
-      "urn": "URN",
-      "barcode": "BARCODE",
-      "first_name": "FIRST NAME",
-      "last_name": "LAST NAME",
-      "name": "FIRST NAME LAST NAME",
-      "club": "CLUB",
-      "gender": "GENDER",
-      "changes": []
-    },
-    {
       "bib": "3501",
       "urn": "7050036",
       "barcode": "A4170841",
@@ -1382,17 +1360,6 @@
       "name": "Julian GUY",
       "club": "Caldicot Rc",
       "gender": "M",
-      "changes": []
-    },
-    {
-      "bib": "GLCL",
-      "urn": "URN",
-      "barcode": "BARCODE",
-      "first_name": "FIRST NAME",
-      "last_name": "LAST NAME",
-      "name": "FIRST NAME LAST NAME",
-      "club": "CLUB",
-      "gender": "GENDER",
       "changes": []
     },
     {
@@ -3103,17 +3070,6 @@
       ]
     },
     {
-      "bib": "GLCL",
-      "urn": "URN",
-      "barcode": "BARCODE",
-      "first_name": "FIRST NAME",
-      "last_name": "LAST NAME",
-      "name": "FIRST NAME LAST NAME",
-      "club": "CLUB",
-      "gender": "GENDER",
-      "changes": []
-    },
-    {
       "bib": "3001",
       "urn": "4044553",
       "barcode": "A2159085",
@@ -4006,17 +3962,6 @@
       "name": "Joseph WILLIS",
       "club": "Fairwater Runners",
       "gender": "M",
-      "changes": []
-    },
-    {
-      "bib": "GLCL",
-      "urn": "URN",
-      "barcode": "BARCODE",
-      "first_name": "FIRST NAME",
-      "last_name": "LAST NAME",
-      "name": "FIRST NAME LAST NAME",
-      "club": "CLUB",
-      "gender": "GENDER",
       "changes": []
     },
     {
@@ -5463,17 +5408,6 @@
       "changes": [
         "was 4078"
       ]
-    },
-    {
-      "bib": "GLCL",
-      "urn": "URN",
-      "barcode": "BARCODE",
-      "first_name": "FIRST NAME",
-      "last_name": "LAST NAME",
-      "name": "FIRST NAME LAST NAME",
-      "club": "CLUB",
-      "gender": "GENDER",
-      "changes": []
     },
     {
       "bib": "5001",
@@ -7766,17 +7700,6 @@
       ]
     },
     {
-      "bib": "GLCL",
-      "urn": "URN",
-      "barcode": "BARCODE",
-      "first_name": "FIRST NAME",
-      "last_name": "LAST NAME",
-      "name": "FIRST NAME LAST NAME",
-      "club": "CLUB",
-      "gender": "GENDER",
-      "changes": []
-    },
-    {
       "bib": "6001",
       "urn": "4002623",
       "barcode": "A4736383",
@@ -9983,17 +9906,6 @@
       "changes": []
     },
     {
-      "bib": "GLCL",
-      "urn": "URN",
-      "barcode": "BARCODE",
-      "first_name": "FIRST NAME",
-      "last_name": "LAST NAME",
-      "name": "FIRST NAME LAST NAME",
-      "club": "CLUB",
-      "gender": "GENDER",
-      "changes": []
-    },
-    {
       "bib": "7001",
       "urn": "4005270",
       "barcode": "A7232905",
@@ -10640,17 +10552,6 @@
       "name": "Cath EALES",
       "club": "Spirit Of Monmouth Rc",
       "gender": "F",
-      "changes": []
-    },
-    {
-      "bib": "GLCL",
-      "urn": "URN",
-      "barcode": "BARCODE",
-      "first_name": "FIRST NAME",
-      "last_name": "LAST NAME",
-      "name": "FIRST NAME LAST NAME",
-      "club": "CLUB",
-      "gender": "GENDER",
       "changes": []
     },
     {
@@ -12168,17 +12069,6 @@
       "changes": [
         "was 8033"
       ]
-    },
-    {
-      "bib": "GLCL",
-      "urn": "URN",
-      "barcode": "BARCODE",
-      "first_name": "FIRST NAME",
-      "last_name": "LAST NAME",
-      "name": "FIRST NAME LAST NAME",
-      "club": "CLUB",
-      "gender": "GENDER",
-      "changes": []
     },
     {
       "bib": "9001",
