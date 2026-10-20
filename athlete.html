@@ -54,6 +54,14 @@
         <!-- Smooth vertical overlay gradient to blend bottom of hero image seamlessly into page background -->
         <div id="header-gradient" class="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/60 to-slate-950/20 z-0"></div>
 
+        <!-- Floating Header Photo Control Button -->
+        <div class="absolute top-4 right-4 z-20 flex items-center gap-2">
+            <button id="open-header-picker-btn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold font-mono bg-slate-900/80 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/80 backdrop-blur-md shadow-lg transition-all hover:scale-105" title="Choose or customize header photo">
+                <span>📸</span>
+                <span id="header-btn-text">Choose Header</span>
+            </button>
+        </div>
+
         <!-- Text Content Overlay Layer -->
         <div class="relative max-w-[1400px] w-full mx-auto px-4 pb-6 z-10 space-y-2">
             
@@ -281,16 +289,19 @@
                 return;
             }
 
-            // Load verified photo tags and fixture albums mapping
+            // Load verified photo tags, fixture albums mapping, and custom athlete headers
             let photoTags = {};
             let fixtureAlbums = {};
+            let athleteHeadersFile = {};
             try {
-                const [tagRes, albumRes] = await Promise.all([
+                const [tagRes, albumRes, hdrRes] = await Promise.all([
                     fetch('assets/data/photo_tags.json'),
-                    fetch('assets/data/fixture_photo_albums.json')
+                    fetch('assets/data/fixture_photo_albums.json'),
+                    fetch('assets/data/athlete_headers.json')
                 ]);
                 if (tagRes.ok) photoTags = await tagRes.json();
                 if (albumRes.ok) fixtureAlbums = await albumRes.json();
+                if (hdrRes.ok) athleteHeadersFile = await hdrRes.json();
             } catch (e) {
                 console.log("Photo data loading fallback", e);
             }
@@ -325,8 +336,45 @@
             targetAthlete = masterName; 
             const finalMasterKey = getNameKey(targetAthlete);
 
+            let currentActiveHeaderUrl = '';
+            let currentActiveHeaderPos = 'center 25%';
+            let currentHeaderPhotoId = '';
             let hasCustomPortrait = false;
-            const applyHeaderPhoto = (photoUrl) => {
+
+            const getSavedAthleteHeader = () => {
+                const local = JSON.parse(localStorage.getItem('glcl_athlete_headers') || '{}');
+                const merged = { ...athleteHeadersFile, ...local };
+                return merged[finalMasterKey] || null;
+            };
+
+            const saveAthleteHeaderConfig = (config) => {
+                const local = JSON.parse(localStorage.getItem('glcl_athlete_headers') || '{}');
+                if (!config) {
+                    delete local[finalMasterKey];
+                } else {
+                    local[finalMasterKey] = {
+                        ...config,
+                        athlete: targetAthlete,
+                        updatedAt: new Date().toISOString()
+                    };
+                }
+                localStorage.setItem('glcl_athlete_headers', JSON.stringify(local));
+            };
+
+            const showToast = (message) => {
+                const toast = document.getElementById('toast-notification');
+                const msg = document.getElementById('toast-message');
+                if (!toast || !msg) return;
+                msg.textContent = message;
+                toast.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
+                toast.classList.add('translate-y-0', 'opacity-100');
+                setTimeout(() => {
+                    toast.classList.remove('translate-y-0', 'opacity-100');
+                    toast.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+                }, 2800);
+            };
+
+            const applyHeaderPhoto = (photoUrl, position = 'center 25%') => {
                 const header = document.getElementById('athlete-header-container');
                 const mesh = document.getElementById('header-mesh');
                 const glow = document.getElementById('header-glow');
@@ -339,7 +387,7 @@
                     
                     header.style.backgroundImage = `url('${photoUrl}')`;
                     header.style.backgroundSize = 'cover';
-                    header.style.backgroundPosition = 'center 25%';
+                    header.style.backgroundPosition = position;
                     header.style.backgroundRepeat = 'no-repeat';
                     
                     if (mesh) mesh.style.display = 'none';
@@ -349,6 +397,8 @@
                         gradient.className = "absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/60 to-slate-950/20 z-0";
                     }
                 }
+                currentActiveHeaderUrl = photoUrl;
+                currentActiveHeaderPos = position;
             };
 
             const loadProfilePhoto = (name, club) => {
@@ -375,13 +425,24 @@
                     imgCheck.src = photoSources[index];
                     imgCheck.onload = () => {
                         hasCustomPortrait = true;
-                        applyHeaderPhoto(photoSources[index]);
+                        applyHeaderPhoto(photoSources[index], currentActiveHeaderPos);
                     };
                     imgCheck.onerror = () => tryNextImage(index + 1);
                 };
 
                 tryNextImage(0);
             };
+
+            // Check if runner has an explicitly chosen header photo
+            const initialSavedHeader = getSavedAthleteHeader();
+            if (initialSavedHeader && initialSavedHeader.url) {
+                hasCustomPortrait = true;
+                currentHeaderPhotoId = initialSavedHeader.photoId || '';
+                currentActiveHeaderPos = initialSavedHeader.position || 'center 25%';
+                applyHeaderPhoto(initialSavedHeader.url, currentActiveHeaderPos);
+            } else {
+                loadProfilePhoto(targetAthlete, targetClub);
+            }
 
             // CASE AND ORDER INSENSITIVE CLUB HISTORY LOOKUP
             const clubHistoryKey = Object.keys(clubHistory).find(key => getNameKey(key) === finalMasterKey);
@@ -1049,12 +1110,18 @@
             // Best Shot First: Sort photos by sharpness (crispest action shots first)
             matchedPhotos.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
 
-            // If no custom local portrait was found, feature the athlete's sharpest action photo as banner
-            if (!hasCustomPortrait && matchedPhotos.length > 0) {
+            // If no custom local portrait or saved custom header was found, feature the athlete's sharpest action photo as banner
+            const savedHeaderCheck = getSavedAthleteHeader();
+            if (savedHeaderCheck && savedHeaderCheck.url) {
+                hasCustomPortrait = true;
+                currentHeaderPhotoId = savedHeaderCheck.photoId || '';
+                applyHeaderPhoto(savedHeaderCheck.url, savedHeaderCheck.position || 'center 25%');
+            } else if (!hasCustomPortrait && matchedPhotos.length > 0) {
                 const bestPhoto = matchedPhotos[0];
                 const bestUrl = bestPhoto.url_l || bestPhoto.url_m;
                 if (bestUrl) {
-                    applyHeaderPhoto(bestUrl);
+                    currentHeaderPhotoId = bestPhoto.id;
+                    applyHeaderPhoto(bestUrl, 'center 25%');
                 }
             }
 
@@ -1095,11 +1162,12 @@
                                             <span class="text-[9px] font-mono text-slate-200 font-bold bg-slate-900/90 px-2 py-1 rounded border border-slate-700">Click to Expand</span>
                                         </div>
                                     </div>
-                                    <div class="p-2.5 flex items-center justify-between text-xs font-mono">
-                                        <span class="text-slate-400 truncate max-w-[110px] text-[11px]">${raceTitle}</span>
-                                        <div class="flex items-center gap-2">
+                                    <div class="p-2 flex items-center justify-between text-xs font-mono">
+                                        <span class="text-slate-400 truncate max-w-[85px] text-[10px]">${raceTitle}</span>
+                                        <div class="flex items-center gap-1">
+                                            <button class="set-header-card-btn text-[10px] text-brand-400 hover:text-white bg-brand-500/10 hover:bg-brand-500 border border-brand-500/20 px-1.5 py-0.5 rounded transition font-bold" data-idx="${idx}" title="Set as Header Photo">★ Header</button>
                                             <a href="photos.html?album=${photo.album_id || ''}&bib=${photo.bib}" class="text-slate-400 hover:text-slate-200 text-[10px] hover:underline" title="View Album">Album →</a>
-                                            <a href="${imgLarge}" download="GLCL_${photo.id}.jpg" target="_blank" class="text-brand-400 hover:text-brand-300 p-1" title="Download High-Res Original">
+                                            <a href="${imgLarge}" download="GLCL_${photo.id}.jpg" target="_blank" class="text-brand-400 hover:text-brand-300 p-0.5" title="Download High-Res Original">
                                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                                             </a>
                                         </div>
@@ -1112,6 +1180,25 @@
                             card.addEventListener('click', () => {
                                 const idx = parseInt(card.getAttribute('data-idx'), 10);
                                 openAthleteLightbox(idx);
+                            });
+                        });
+
+                        photosGrid.querySelectorAll('.set-header-card-btn').forEach(btn => {
+                            btn.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                const idx = parseInt(btn.getAttribute('data-idx'), 10);
+                                const photo = matchedPhotos[idx];
+                                if (!photo) return;
+                                const url = photo.url_l || photo.url_m || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
+                                currentHeaderPhotoId = photo.id;
+                                applyHeaderPhoto(url, currentActiveHeaderPos || 'center 25%');
+                                saveAthleteHeaderConfig({
+                                    url: url,
+                                    photoId: photo.id,
+                                    position: currentActiveHeaderPos || 'center 25%',
+                                    source: 'flickr'
+                                });
+                                showToast(`✓ Set as header photo for ${targetAthlete}`);
                             });
                         });
                     }
@@ -1369,6 +1456,296 @@
                     if (zipAbortController) zipAbortController.abort();
                 });
             }
+
+            // LIGHTBOX SET AS HEADER BUTTON
+            const modalSetHeaderBtn = document.getElementById('modal-set-header-btn');
+            if (modalSetHeaderBtn) {
+                modalSetHeaderBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const photo = matchedPhotos[currentAthletePhotoIndex];
+                    if (!photo) return;
+                    const highRes = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
+                    const url = photo.url_l || photo.url_m || highRes;
+                    currentHeaderPhotoId = photo.id;
+                    applyHeaderPhoto(url, currentActiveHeaderPos || 'center 25%');
+                    saveAthleteHeaderConfig({
+                        url: url,
+                        photoId: photo.id,
+                        position: currentActiveHeaderPos || 'center 25%',
+                        source: 'flickr'
+                    });
+                    showToast(`✓ Set as header photo for ${targetAthlete}`);
+                });
+            }
+
+            // 11. CHOOSE HEADER PHOTO MODAL CONTROLLER
+            const headerPickerModal = document.getElementById('header-picker-modal');
+            const openHeaderPickerBtn = document.getElementById('open-header-picker-btn');
+            const closeHeaderPickerBtn = document.getElementById('close-header-picker-btn');
+            const saveClosePickerBtn = document.getElementById('save-close-picker-btn');
+            const pickerLivePreview = document.getElementById('picker-live-preview');
+            const framingSlider = document.getElementById('framing-range-slider');
+            const framingDisplay = document.getElementById('framing-val-display');
+            const pickerPhotosGrid = document.getElementById('picker-photos-grid');
+            const pickerPhotoCount = document.getElementById('picker-photo-count');
+            const pickerNoPhotosMsg = document.getElementById('picker-no-photos-msg');
+            const customUrlInput = document.getElementById('custom-photo-url-input');
+            const applyCustomUrlBtn = document.getElementById('apply-custom-url-btn');
+            const resetHeaderBtn = document.getElementById('reset-header-btn');
+            const exportHeadersBtn = document.getElementById('export-headers-btn');
+
+            const updateFramingDisplay = (val) => {
+                const num = parseInt(val, 10);
+                let label = '(Upper Torso)';
+                if (num <= 15) label = '(Head & Shoulders)';
+                else if (num <= 35) label = '(Upper Torso)';
+                else if (num <= 60) label = '(Mid Torso)';
+                else label = '(Lower Body)';
+                if (framingDisplay) framingDisplay.textContent = `${num}% ${label}`;
+            };
+
+            const updatePickerPreview = (url, pos) => {
+                if (pickerLivePreview) {
+                    if (url) {
+                        pickerLivePreview.style.backgroundImage = `url('${url}')`;
+                        pickerLivePreview.style.backgroundPosition = pos;
+                        pickerLivePreview.style.display = '';
+                    } else {
+                        pickerLivePreview.style.backgroundImage = '';
+                        pickerLivePreview.style.display = 'none';
+                    }
+                }
+            };
+
+            const renderPickerPhotosGrid = () => {
+                if (!pickerPhotosGrid) return;
+                if (!matchedPhotos || matchedPhotos.length === 0) {
+                    pickerPhotosGrid.innerHTML = '';
+                    if (pickerNoPhotosMsg) pickerNoPhotosMsg.classList.remove('hidden');
+                    if (pickerPhotoCount) pickerPhotoCount.textContent = '0 Photos';
+                    return;
+                }
+
+                if (pickerNoPhotosMsg) pickerNoPhotosMsg.classList.add('hidden');
+                if (pickerPhotoCount) pickerPhotoCount.textContent = `${matchedPhotos.length} Photo${matchedPhotos.length > 1 ? 's' : ''}`;
+
+                pickerPhotosGrid.innerHTML = matchedPhotos.map((photo, idx) => {
+                    const imgThumb = photo.url_m || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg` : '');
+                    const photoUrl = photo.url_l || photo.url_m || imgThumb;
+                    const isCurrent = (currentHeaderPhotoId && photo.id === currentHeaderPhotoId) || (currentActiveHeaderUrl && (photoUrl === currentActiveHeaderUrl || (photo.url_l && photo.url_l === currentActiveHeaderUrl)));
+
+                    let raceTitle = 'GLCL Race';
+                    const album = (photo.album_id && albumById[photo.album_id]) || fixtureAlbums[photo.album_id];
+                    if (album) raceTitle = album.venue || album.title || 'GLCL Race';
+
+                    return `
+                        <div class="relative group rounded-xl overflow-hidden border ${isCurrent ? 'border-brand-500 ring-2 ring-brand-500/50 bg-slate-800' : 'border-slate-800 bg-slate-950'} p-1.5 transition-all flex flex-col justify-between">
+                            <div class="aspect-[4/3] rounded-lg overflow-hidden relative cursor-pointer picker-card-img" data-idx="${idx}">
+                                <img src="${imgThumb}" alt="${targetAthlete}" class="w-full h-full object-cover">
+                                ${isCurrent ? `
+                                    <div class="absolute top-1.5 left-1.5 bg-brand-500 text-white text-[9px] font-mono font-bold px-1.5 py-0.5 rounded shadow">
+                                        ✓ Active
+                                    </div>
+                                ` : ''}
+                                <div class="absolute bottom-1 right-1 bg-slate-900/80 text-slate-300 text-[9px] font-mono px-1 py-0.5 rounded">
+                                    Bib #${photo.bib}
+                                </div>
+                            </div>
+                            <div class="mt-1.5 flex items-center justify-between text-[10px] font-mono">
+                                <span class="text-slate-400 truncate max-w-[85px]">${raceTitle}</span>
+                                <button class="select-picker-photo-btn px-2 py-0.5 rounded font-bold ${isCurrent ? 'bg-brand-500/20 text-brand-300 border border-brand-500/40' : 'bg-slate-800 hover:bg-brand-600 text-slate-200 hover:text-white transition'}" data-idx="${idx}">
+                                    ${isCurrent ? 'Selected' : 'Use'}
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                pickerPhotosGrid.querySelectorAll('.select-picker-photo-btn, .picker-card-img').forEach(el => {
+                    el.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const idx = parseInt(el.getAttribute('data-idx'), 10);
+                        const photo = matchedPhotos[idx];
+                        if (!photo) return;
+                        const url = photo.url_l || photo.url_m || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
+                        currentHeaderPhotoId = photo.id;
+                        applyHeaderPhoto(url, currentActiveHeaderPos);
+                        updatePickerPreview(url, currentActiveHeaderPos);
+                        saveAthleteHeaderConfig({
+                            url: url,
+                            photoId: photo.id,
+                            position: currentActiveHeaderPos,
+                            source: 'flickr'
+                        });
+                        renderPickerPhotosGrid();
+                        showToast(`✓ Header photo updated for ${targetAthlete}`);
+                    });
+                });
+            };
+
+            const openHeaderPicker = () => {
+                if (!headerPickerModal) return;
+                const athleteLabel = document.getElementById('picker-athlete-name');
+                if (athleteLabel) athleteLabel.textContent = `${targetAthlete} • ${targetClub || 'GLCL Runner'}`;
+
+                // Extract percentage from current position
+                let currentPct = 25;
+                if (currentActiveHeaderPos) {
+                    const match = currentActiveHeaderPos.match(/(\d+)%/);
+                    if (match) currentPct = parseInt(match[1], 10);
+                }
+                if (framingSlider) framingSlider.value = currentPct;
+                updateFramingDisplay(currentPct);
+
+                updatePickerPreview(currentActiveHeaderUrl, currentActiveHeaderPos);
+                renderPickerPhotosGrid();
+
+                headerPickerModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeHeaderPicker = () => {
+                if (!headerPickerModal) return;
+                headerPickerModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            };
+
+            if (openHeaderPickerBtn) openHeaderPickerBtn.addEventListener('click', openHeaderPicker);
+            if (closeHeaderPickerBtn) closeHeaderPickerBtn.addEventListener('click', closeHeaderPicker);
+            if (saveClosePickerBtn) saveClosePickerBtn.addEventListener('click', closeHeaderPicker);
+            if (headerPickerModal) {
+                headerPickerModal.addEventListener('click', (e) => {
+                    if (e.target === headerPickerModal) closeHeaderPicker();
+                });
+            }
+
+            if (framingSlider) {
+                framingSlider.addEventListener('input', (e) => {
+                    const pct = e.target.value;
+                    const pos = `center ${pct}%`;
+                    updateFramingDisplay(pct);
+                    currentActiveHeaderPos = pos;
+                    if (currentActiveHeaderUrl) {
+                        applyHeaderPhoto(currentActiveHeaderUrl, pos);
+                        updatePickerPreview(currentActiveHeaderUrl, pos);
+                        const saved = getSavedAthleteHeader() || {};
+                        saveAthleteHeaderConfig({
+                            ...saved,
+                            url: currentActiveHeaderUrl,
+                            position: pos
+                        });
+                    }
+                });
+            }
+
+            if (applyCustomUrlBtn && customUrlInput) {
+                applyCustomUrlBtn.addEventListener('click', () => {
+                    const url = customUrlInput.value.trim();
+                    if (!url) return;
+                    const testImg = new Image();
+                    testImg.onload = () => {
+                        currentHeaderPhotoId = '';
+                        applyHeaderPhoto(url, currentActiveHeaderPos);
+                        updatePickerPreview(url, currentActiveHeaderPos);
+                        saveAthleteHeaderConfig({
+                            url: url,
+                            photoId: '',
+                            position: currentActiveHeaderPos,
+                            source: 'custom'
+                        });
+                        customUrlInput.value = '';
+                        renderPickerPhotosGrid();
+                        showToast(`✓ Custom header applied for ${targetAthlete}`);
+                    };
+                    testImg.onerror = () => {
+                        alert('Could not load image from that URL. Please verify the link is accessible.');
+                    };
+                    testImg.src = url;
+                });
+            }
+
+            if (resetHeaderBtn) {
+                resetHeaderBtn.addEventListener('click', () => {
+                    saveAthleteHeaderConfig(null);
+                    currentHeaderPhotoId = '';
+                    currentActiveHeaderUrl = '';
+                    currentActiveHeaderPos = 'center 25%';
+                    if (framingSlider) framingSlider.value = 25;
+                    updateFramingDisplay(25);
+
+                    // Revert to local portrait, sharpest matched photo, or default mesh
+                    const formatSlug = (str) => (str || '')
+                        .toLowerCase()
+                        .replace(/['’]/g, '-')
+                        .replace(/[^a-z0-9]+/g, '-')
+                        .replace(/-+/g, '-')
+                        .replace(/^-|-$/g, '');
+
+                    const nameSlug = formatSlug(targetAthlete);
+                    const clubSlug = formatSlug(targetClub);
+                    const photoSources = [];
+                    if (clubSlug) photoSources.push(`assets/images/athletes/${nameSlug}-${clubSlug}.jpg`);
+                    photoSources.push(`assets/images/athletes/${nameSlug}.jpg`);
+
+                    const checkLocal = (idx) => {
+                        if (idx >= photoSources.length) {
+                            if (matchedPhotos.length > 0) {
+                                const best = matchedPhotos[0];
+                                const bestUrl = best.url_l || best.url_m;
+                                if (bestUrl) {
+                                    applyHeaderPhoto(bestUrl, 'center 25%');
+                                    updatePickerPreview(bestUrl, 'center 25%');
+                                    renderPickerPhotosGrid();
+                                    showToast('Reset to sharpest action photo');
+                                    return;
+                                }
+                            }
+                            // Reset to default CSS pattern
+                            const header = document.getElementById('athlete-header-container');
+                            const mesh = document.getElementById('header-mesh');
+                            const glow = document.getElementById('header-glow');
+                            if (header) {
+                                header.classList.remove('h-[350px]', 'md:h-[500px]');
+                                header.classList.add('h-[240px]', 'md:h-[400px]');
+                                header.style.backgroundImage = '';
+                                if (mesh) mesh.style.display = '';
+                                if (glow) glow.style.display = '';
+                            }
+                            updatePickerPreview('', 'center 25%');
+                            renderPickerPhotosGrid();
+                            showToast('Reset to default pattern');
+                            return;
+                        }
+                        const img = new Image();
+                        img.src = photoSources[idx];
+                        img.onload = () => {
+                            applyHeaderPhoto(photoSources[idx], 'center 25%');
+                            updatePickerPreview(photoSources[idx], 'center 25%');
+                            renderPickerPhotosGrid();
+                            showToast('Reset to local portrait photo');
+                        };
+                        img.onerror = () => checkLocal(idx + 1);
+                    };
+                    checkLocal(0);
+                });
+            }
+
+            if (exportHeadersBtn) {
+                exportHeadersBtn.addEventListener('click', () => {
+                    const local = JSON.parse(localStorage.getItem('glcl_athlete_headers') || '{}');
+                    const merged = { ...athleteHeadersFile, ...local };
+                    const blob = new Blob([JSON.stringify(merged, null, 2)], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'athlete_headers.json';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    showToast('Exported athlete_headers.json');
+                });
+            }
         });
     </script>
     <div id="lightbox-modal" class="hidden fixed inset-0 z-[9999] bg-slate-950/95 backdrop-blur-md flex flex-col justify-between p-4 md:p-6" role="dialog" aria-modal="true">
@@ -1380,6 +1757,10 @@
             </div>
             
             <div class="flex items-center gap-2">
+                <button id="modal-set-header-btn" class="bg-brand-600 hover:bg-brand-500 text-white border border-brand-400/30 text-xs font-mono font-bold px-3 py-1.5 rounded-lg transition inline-flex items-center gap-1.5 shadow-lg" title="Set this photo as athlete hero header">
+                    <span>★</span>
+                    <span>Set as Header</span>
+                </button>
                 <a id="modal-direct-download" href="#" target="_blank" download class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 text-xs font-mono font-bold px-3 py-1.5 rounded-lg transition inline-flex items-center gap-1.5">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                     Download High-Res
@@ -1427,6 +1808,97 @@
                 Cancel Download
             </button>
         </div>
+    </div>
+
+    <!-- CHOOSE HEADER PHOTO MODAL -->
+    <div id="header-picker-modal" class="hidden fixed inset-0 z-[9999] bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4" role="dialog" aria-modal="true">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-3xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+            <!-- Modal Header -->
+            <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950/50">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center justify-center text-xl">
+                        📸
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-slate-100 uppercase tracking-tight">Choose Header Photo</h3>
+                        <p id="picker-athlete-name" class="text-xs font-mono text-slate-400">Customise banner photo and framing</p>
+                    </div>
+                </div>
+                <button id="close-header-picker-btn" class="p-2 text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 rounded-lg border border-slate-800 transition" aria-label="Close Modal">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+
+            <!-- Modal Body (Scrollable) -->
+            <div class="p-5 space-y-6 overflow-y-auto flex-grow">
+                <!-- Live Preview & Framing Control -->
+                <div class="space-y-3 bg-slate-950/70 border border-slate-800 rounded-xl p-4">
+                    <div class="flex items-center justify-between">
+                        <label class="text-xs font-bold text-slate-200 uppercase tracking-wider">Vertical Framing / Crop</label>
+                        <span id="framing-val-display" class="text-xs font-mono text-brand-400 font-bold">25% (Upper Torso)</span>
+                    </div>
+                    <div class="relative w-full h-36 rounded-lg overflow-hidden border border-slate-800 bg-slate-950">
+                        <div id="picker-live-preview" class="w-full h-full bg-cover bg-no-repeat transition-all"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent pointer-events-none"></div>
+                        <div class="absolute bottom-2.5 left-3.5 text-xs font-black text-white uppercase drop-shadow flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span>Live Header Preview</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 pt-1">
+                        <span class="text-[10px] font-mono text-slate-500 font-bold">Top (0%)</span>
+                        <input id="framing-range-slider" type="range" min="0" max="100" value="25" class="w-full accent-brand-500 cursor-pointer">
+                        <span class="text-[10px] font-mono text-slate-500 font-bold">Bottom (100%)</span>
+                    </div>
+                </div>
+
+                <!-- Tagged Photos Gallery -->
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Tagged Race Action Photos</h4>
+                        <span id="picker-photo-count" class="text-xs font-mono text-slate-500"></span>
+                    </div>
+                    <div id="picker-photos-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-64 overflow-y-auto p-1 border border-slate-800/60 rounded-xl bg-slate-950/30">
+                        <!-- Populated dynamically -->
+                    </div>
+                    <div id="picker-no-photos-msg" class="hidden text-center py-6 text-xs text-slate-500 font-mono">
+                        No action photos currently tagged for this runner.
+                    </div>
+                </div>
+
+                <!-- Custom URL / Image Path Option -->
+                <div class="space-y-2 border-t border-slate-800 pt-4">
+                    <h4 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Or Use Custom Image Link / Local Path</h4>
+                    <p class="text-[11px] text-slate-400">Paste any Flickr photo direct URL or local path (e.g. <code class="text-slate-300">assets/images/athletes/runner.jpg</code>):</p>
+                    <div class="flex gap-2">
+                        <input id="custom-photo-url-input" type="text" placeholder="https://live.staticflickr.com/... or assets/images/athletes/..." class="bg-slate-950 border border-slate-800 focus:border-brand-500 rounded-lg px-3 py-2 text-xs font-mono text-slate-200 flex-grow outline-none">
+                        <button id="apply-custom-url-btn" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-mono font-bold rounded-lg border border-slate-700 transition">Apply</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-slate-800 bg-slate-950/80 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-2">
+                    <button id="reset-header-btn" class="px-3 py-1.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 rounded-lg text-xs font-mono font-bold transition">
+                        Reset to Default
+                    </button>
+                    <button id="export-headers-btn" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded-lg text-xs font-mono font-bold transition flex items-center gap-1.5" title="Download athlete_headers.json to persist permanently in repository">
+                        <span>💾</span>
+                        <span>Export athlete_headers.json</span>
+                    </button>
+                </div>
+                <button id="save-close-picker-btn" class="px-5 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-lg text-xs font-bold font-mono transition shadow-lg shadow-brand-500/20">
+                    Done
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast-notification" class="fixed bottom-6 right-6 z-[10000] bg-slate-900 border border-brand-500/50 text-white px-4 py-2.5 rounded-xl shadow-2xl flex items-center gap-2.5 text-xs font-mono transition-all duration-300 transform translate-y-12 opacity-0 pointer-events-none">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span id="toast-message">Header photo updated</span>
     </div>
 
     <!-- INJECTED GLOBAL FOOTER CONTAINER -->
