@@ -5,3 +5,5 @@ __pycache__/
 .env
 backend_tools/config.json
 assets/js/flickr_config.js
+*.backup.json
+

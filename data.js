@@ -5777,7 +5777,7 @@ window.glclResults = [
     },
     {
         "pos": 1,
-        "bib": "0",
+        "bib": "8073",
         "name": "Phillip MATTHEWS",
         "age": 0,
         "sex": "M",
@@ -5798,7 +5798,7 @@ window.glclResults = [
     },
     {
         "pos": 2,
-        "bib": "0",
+        "bib": "2010",
         "name": "Tim BATCHELOR",
         "age": 0,
         "sex": "M",
@@ -5819,7 +5819,7 @@ window.glclResults = [
     },
     {
         "pos": 3,
-        "bib": "0",
+        "bib": "1297",
         "name": "Dane WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -5840,7 +5840,7 @@ window.glclResults = [
     },
     {
         "pos": 4,
-        "bib": "0",
+        "bib": "9035",
         "name": "Adam GREY",
         "age": 0,
         "sex": "M",
@@ -5861,7 +5861,7 @@ window.glclResults = [
     },
     {
         "pos": 5,
-        "bib": "0",
+        "bib": "8111",
         "name": "Thomas WADE",
         "age": 0,
         "sex": "M",
@@ -5882,7 +5882,7 @@ window.glclResults = [
     },
     {
         "pos": 6,
-        "bib": "0",
+        "bib": "6091",
         "name": "Reece JENKINS",
         "age": 0,
         "sex": "M",
@@ -5903,7 +5903,7 @@ window.glclResults = [
     },
     {
         "pos": 7,
-        "bib": "0",
+        "bib": "9094",
         "name": "Ricci WATTS",
         "age": 0,
         "sex": "M",
@@ -5924,7 +5924,7 @@ window.glclResults = [
     },
     {
         "pos": 8,
-        "bib": "0",
+        "bib": "8039",
         "name": "Ryan GONCALVES",
         "age": 0,
         "sex": "M",
@@ -5945,7 +5945,7 @@ window.glclResults = [
     },
     {
         "pos": 9,
-        "bib": "0",
+        "bib": "8018",
         "name": "Justin CROCKER",
         "age": 0,
         "sex": "M",
@@ -5966,7 +5966,7 @@ window.glclResults = [
     },
     {
         "pos": 10,
-        "bib": "0",
+        "bib": "2062",
         "name": "Mark GILLETT",
         "age": 0,
         "sex": "M",
@@ -5987,7 +5987,7 @@ window.glclResults = [
     },
     {
         "pos": 11,
-        "bib": "0",
+        "bib": "8134",
         "name": "Lee AHERNE",
         "age": 0,
         "sex": "M",
@@ -6008,7 +6008,7 @@ window.glclResults = [
     },
     {
         "pos": 12,
-        "bib": "0",
+        "bib": "9001",
         "name": "Andrei ARCANA",
         "age": 0,
         "sex": "M",
@@ -6029,7 +6029,7 @@ window.glclResults = [
     },
     {
         "pos": 13,
-        "bib": "0",
+        "bib": "8052",
         "name": "Patrick JARVIS",
         "age": 0,
         "sex": "M",
@@ -6050,7 +6050,7 @@ window.glclResults = [
     },
     {
         "pos": 14,
-        "bib": "0",
+        "bib": "8112",
         "name": "Paul WHITE",
         "age": 0,
         "sex": "M",
@@ -6071,7 +6071,7 @@ window.glclResults = [
     },
     {
         "pos": 15,
-        "bib": "0",
+        "bib": "2017",
         "name": "James BLORE",
         "age": 0,
         "sex": "M",
@@ -6092,7 +6092,7 @@ window.glclResults = [
     },
     {
         "pos": 16,
-        "bib": "0",
+        "bib": "9055",
         "name": "Mike MARSH",
         "age": 0,
         "sex": "M",
@@ -6113,7 +6113,7 @@ window.glclResults = [
     },
     {
         "pos": 17,
-        "bib": "0",
+        "bib": "8099",
         "name": "Adam ROBERTS",
         "age": 0,
         "sex": "M",
@@ -6134,7 +6134,7 @@ window.glclResults = [
     },
     {
         "pos": 18,
-        "bib": "0",
+        "bib": "8070",
         "name": "Alastair MASTERTON",
         "age": 0,
         "sex": "M",
@@ -6155,7 +6155,7 @@ window.glclResults = [
     },
     {
         "pos": 19,
-        "bib": "0",
+        "bib": "9080",
         "name": "Daniel SNELLING",
         "age": 0,
         "sex": "M",
@@ -6176,7 +6176,7 @@ window.glclResults = [
     },
     {
         "pos": 20,
-        "bib": "0",
+        "bib": "1432",
         "name": "Dean JOHNSON",
         "age": 0,
         "sex": "M",
@@ -6197,7 +6197,7 @@ window.glclResults = [
     },
     {
         "pos": 21,
-        "bib": "0",
+        "bib": "1471",
         "name": "Jeff WHERLOCK",
         "age": 0,
         "sex": "M",
@@ -6218,7 +6218,7 @@ window.glclResults = [
     },
     {
         "pos": 22,
-        "bib": "0",
+        "bib": "2099",
         "name": "Joseph MATTHEWS",
         "age": 0,
         "sex": "M",
@@ -6239,7 +6239,7 @@ window.glclResults = [
     },
     {
         "pos": 23,
-        "bib": "0",
+        "bib": "6023",
         "name": "Eddie CAMPBELL-ADAMS",
         "age": 0,
         "sex": "M",
@@ -6260,7 +6260,7 @@ window.glclResults = [
     },
     {
         "pos": 24,
-        "bib": "0",
+        "bib": "9016",
         "name": "Craig CHEEDY",
         "age": 0,
         "sex": "M",
@@ -6281,7 +6281,7 @@ window.glclResults = [
     },
     {
         "pos": 25,
-        "bib": "0",
+        "bib": "1063",
         "name": "Karl COUGHLIN",
         "age": 0,
         "sex": "M",
@@ -6302,7 +6302,7 @@ window.glclResults = [
     },
     {
         "pos": 26,
-        "bib": "0",
+        "bib": "6079",
         "name": "Thomas HENRY",
         "age": 0,
         "sex": "M",
@@ -6323,7 +6323,7 @@ window.glclResults = [
     },
     {
         "pos": 27,
-        "bib": "0",
+        "bib": "8120",
         "name": "Lucy WILLIAMSON",
         "age": 0,
         "sex": "F",
@@ -6344,7 +6344,7 @@ window.glclResults = [
     },
     {
         "pos": 28,
-        "bib": "0",
+        "bib": "1296",
         "name": "Martin THOMAS",
         "age": 0,
         "sex": "M",
@@ -6365,7 +6365,7 @@ window.glclResults = [
     },
     {
         "pos": 29,
-        "bib": "0",
+        "bib": "9072",
         "name": "Iestyn RHODES",
         "age": 0,
         "sex": "M",
@@ -6386,7 +6386,7 @@ window.glclResults = [
     },
     {
         "pos": 30,
-        "bib": "0",
+        "bib": "7025",
         "name": "Ben SAUNDERS",
         "age": 0,
         "sex": "M",
@@ -6407,7 +6407,7 @@ window.glclResults = [
     },
     {
         "pos": 31,
-        "bib": "0",
+        "bib": "4030",
         "name": "Daniel FLETCHER",
         "age": 0,
         "sex": "M",
@@ -6428,7 +6428,7 @@ window.glclResults = [
     },
     {
         "pos": 32,
-        "bib": "0",
+        "bib": "4005",
         "name": "Matt BENNETT",
         "age": 0,
         "sex": "M",
@@ -6449,7 +6449,7 @@ window.glclResults = [
     },
     {
         "pos": 33,
-        "bib": "0",
+        "bib": "4006",
         "name": "Dominic BETHELL",
         "age": 0,
         "sex": "M",
@@ -6470,7 +6470,7 @@ window.glclResults = [
     },
     {
         "pos": 34,
-        "bib": "0",
+        "bib": "1507",
         "name": "Walbyoff JOSEPH",
         "age": 0,
         "sex": "M",
@@ -6491,7 +6491,7 @@ window.glclResults = [
     },
     {
         "pos": 35,
-        "bib": "0",
+        "bib": "8121",
         "name": "Alun WOOD",
         "age": 0,
         "sex": "M",
@@ -6512,7 +6512,7 @@ window.glclResults = [
     },
     {
         "pos": 36,
-        "bib": "0",
+        "bib": "9039",
         "name": "William HARVEY",
         "age": 0,
         "sex": "M",
@@ -6533,7 +6533,7 @@ window.glclResults = [
     },
     {
         "pos": 37,
-        "bib": "0",
+        "bib": "6092",
         "name": "Martin JOHNS",
         "age": 0,
         "sex": "M",
@@ -6554,7 +6554,7 @@ window.glclResults = [
     },
     {
         "pos": 38,
-        "bib": "0",
+        "bib": "4104",
         "name": "Egan THOMAS-WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -6575,7 +6575,7 @@ window.glclResults = [
     },
     {
         "pos": 39,
-        "bib": "0",
+        "bib": "1470",
         "name": "Jed WHERLOCK",
         "age": 0,
         "sex": "M",
@@ -6596,7 +6596,7 @@ window.glclResults = [
     },
     {
         "pos": 40,
-        "bib": "0",
+        "bib": "2088",
         "name": "Seth LAWSON",
         "age": 0,
         "sex": "M",
@@ -6617,7 +6617,7 @@ window.glclResults = [
     },
     {
         "pos": 41,
-        "bib": "0",
+        "bib": "7014",
         "name": "Tom CHINNICK",
         "age": 0,
         "sex": "M",
@@ -6638,7 +6638,7 @@ window.glclResults = [
     },
     {
         "pos": 42,
-        "bib": "0",
+        "bib": "2134",
         "name": "James TUCKER",
         "age": 0,
         "sex": "M",
@@ -6659,7 +6659,7 @@ window.glclResults = [
     },
     {
         "pos": 43,
-        "bib": "0",
+        "bib": "1077",
         "name": "Matthew VISSER",
         "age": 0,
         "sex": "M",
@@ -6680,7 +6680,7 @@ window.glclResults = [
     },
     {
         "pos": 44,
-        "bib": "0",
+        "bib": "2079",
         "name": "Dickie HUDD",
         "age": 0,
         "sex": "M",
@@ -6701,7 +6701,7 @@ window.glclResults = [
     },
     {
         "pos": 45,
-        "bib": "0",
+        "bib": "8127",
         "name": "Thomas WEBB",
         "age": 0,
         "sex": "M",
@@ -6722,7 +6722,7 @@ window.glclResults = [
     },
     {
         "pos": 46,
-        "bib": "0",
+        "bib": "8030",
         "name": "Thomas EDWARDS",
         "age": 0,
         "sex": "M",
@@ -6743,7 +6743,7 @@ window.glclResults = [
     },
     {
         "pos": 47,
-        "bib": "0",
+        "bib": "8076",
         "name": "Christian MURPHY",
         "age": 0,
         "sex": "M",
@@ -6764,7 +6764,7 @@ window.glclResults = [
     },
     {
         "pos": 48,
-        "bib": "0",
+        "bib": "6169",
         "name": "Emma WOOKEY",
         "age": 0,
         "sex": "F",
@@ -6785,7 +6785,7 @@ window.glclResults = [
     },
     {
         "pos": 49,
-        "bib": "0",
+        "bib": "6131",
         "name": "Robert PRITCHARD",
         "age": 0,
         "sex": "M",
@@ -6806,7 +6806,7 @@ window.glclResults = [
     },
     {
         "pos": 50,
-        "bib": "0",
+        "bib": "6138",
         "name": "Jack ROWLAND",
         "age": 0,
         "sex": "M",
@@ -6827,7 +6827,7 @@ window.glclResults = [
     },
     {
         "pos": 51,
-        "bib": "0",
+        "bib": "8122",
         "name": "Ryan WORLOCK-MORGAN",
         "age": 0,
         "sex": "M",
@@ -6848,7 +6848,7 @@ window.glclResults = [
     },
     {
         "pos": 52,
-        "bib": "0",
+        "bib": "4118",
         "name": "John WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -6869,7 +6869,7 @@ window.glclResults = [
     },
     {
         "pos": 53,
-        "bib": "0",
+        "bib": "1276",
         "name": "Ewelina CIESIELSKA",
         "age": 0,
         "sex": "F",
@@ -6890,7 +6890,7 @@ window.glclResults = [
     },
     {
         "pos": 54,
-        "bib": "0",
+        "bib": "2060",
         "name": "Ian GAWINOWSKI",
         "age": 0,
         "sex": "M",
@@ -6911,7 +6911,7 @@ window.glclResults = [
     },
     {
         "pos": 55,
-        "bib": "0",
+        "bib": "1158",
         "name": "Rae ELIAS",
         "age": 0,
         "sex": "M",
@@ -6932,7 +6932,7 @@ window.glclResults = [
     },
     {
         "pos": 56,
-        "bib": "0",
+        "bib": "3027",
         "name": "Kyle HARVEY",
         "age": 0,
         "sex": "M",
@@ -6953,7 +6953,7 @@ window.glclResults = [
     },
     {
         "pos": 57,
-        "bib": "0",
+        "bib": "2043",
         "name": "Stephen DILLEY",
         "age": 0,
         "sex": "M",
@@ -6974,7 +6974,7 @@ window.glclResults = [
     },
     {
         "pos": 58,
-        "bib": "0",
+        "bib": "2097",
         "name": "Tony MARSHALL",
         "age": 0,
         "sex": "M",
@@ -6995,7 +6995,7 @@ window.glclResults = [
     },
     {
         "pos": 59,
-        "bib": "0",
+        "bib": "2034",
         "name": "Steffan COLE",
         "age": 0,
         "sex": "M",
@@ -7016,7 +7016,7 @@ window.glclResults = [
     },
     {
         "pos": 60,
-        "bib": "0",
+        "bib": "6137",
         "name": "Antoinette ROSE",
         "age": 0,
         "sex": "F",
@@ -7037,7 +7037,7 @@ window.glclResults = [
     },
     {
         "pos": 61,
-        "bib": "0",
+        "bib": "8110",
         "name": "Connor THURSTON",
         "age": 0,
         "sex": "M",
@@ -7058,7 +7058,7 @@ window.glclResults = [
     },
     {
         "pos": 62,
-        "bib": "0",
+        "bib": "1407",
         "name": "Rhys PRITCHARD",
         "age": 0,
         "sex": "M",
@@ -7079,7 +7079,7 @@ window.glclResults = [
     },
     {
         "pos": 63,
-        "bib": "0",
+        "bib": "1513",
         "name": "Jonathan PAYMAN",
         "age": 0,
         "sex": "M",
@@ -7100,7 +7100,7 @@ window.glclResults = [
     },
     {
         "pos": 64,
-        "bib": "0",
+        "bib": "5167",
         "name": "Brett THORNBURY",
         "age": 0,
         "sex": "M",
@@ -7121,7 +7121,7 @@ window.glclResults = [
     },
     {
         "pos": 65,
-        "bib": "0",
+        "bib": "1410",
         "name": "Ben FOWLER",
         "age": 0,
         "sex": "M",
@@ -7142,7 +7142,7 @@ window.glclResults = [
     },
     {
         "pos": 66,
-        "bib": "0",
+        "bib": "2045",
         "name": "Georgie DOBBS",
         "age": 0,
         "sex": "F",
@@ -7163,7 +7163,7 @@ window.glclResults = [
     },
     {
         "pos": 67,
-        "bib": "0",
+        "bib": "5133",
         "name": "John KEEBLE",
         "age": 0,
         "sex": "M",
@@ -7184,7 +7184,7 @@ window.glclResults = [
     },
     {
         "pos": 68,
-        "bib": "0",
+        "bib": "6055",
         "name": "Ellis DYER",
         "age": 0,
         "sex": "M",
@@ -7205,7 +7205,7 @@ window.glclResults = [
     },
     {
         "pos": 69,
-        "bib": "0",
+        "bib": "5016",
         "name": "Kimberley EVANS",
         "age": 0,
         "sex": "F",
@@ -7226,7 +7226,7 @@ window.glclResults = [
     },
     {
         "pos": 70,
-        "bib": "0",
+        "bib": "1090",
         "name": "Matt TURNER",
         "age": 0,
         "sex": "M",
@@ -7247,7 +7247,7 @@ window.glclResults = [
     },
     {
         "pos": 71,
-        "bib": "0",
+        "bib": "8144",
         "name": "Ethan SAYCE",
         "age": 0,
         "sex": "M",
@@ -7268,7 +7268,7 @@ window.glclResults = [
     },
     {
         "pos": 72,
-        "bib": "0",
+        "bib": "7058",
         "name": "Katie ADAMS",
         "age": 0,
         "sex": "F",
@@ -7289,7 +7289,7 @@ window.glclResults = [
     },
     {
         "pos": 73,
-        "bib": "0",
+        "bib": "1064",
         "name": "Anelu PIRVU",
         "age": 0,
         "sex": "M",
@@ -7310,7 +7310,7 @@ window.glclResults = [
     },
     {
         "pos": 74,
-        "bib": "0",
+        "bib": "3019",
         "name": "Leon GLEED",
         "age": 0,
         "sex": "M",
@@ -7331,7 +7331,7 @@ window.glclResults = [
     },
     {
         "pos": 75,
-        "bib": "0",
+        "bib": "1447",
         "name": "Kieran CHAPLIN",
         "age": 0,
         "sex": "M",
@@ -7352,7 +7352,7 @@ window.glclResults = [
     },
     {
         "pos": 76,
-        "bib": "0",
+        "bib": "8027",
         "name": "Steven DUGGAN",
         "age": 0,
         "sex": "M",
@@ -7373,7 +7373,7 @@ window.glclResults = [
     },
     {
         "pos": 77,
-        "bib": "0",
+        "bib": "8047",
         "name": "Kani HINSHELWOOD",
         "age": 0,
         "sex": "F",
@@ -7394,7 +7394,7 @@ window.glclResults = [
     },
     {
         "pos": 78,
-        "bib": "0",
+        "bib": "4108",
         "name": "Nicky TUDOR",
         "age": 0,
         "sex": "M",
@@ -7415,7 +7415,7 @@ window.glclResults = [
     },
     {
         "pos": 79,
-        "bib": "0",
+        "bib": "9053",
         "name": "Joshua MALONEY",
         "age": 0,
         "sex": "M",
@@ -7436,7 +7436,7 @@ window.glclResults = [
     },
     {
         "pos": 80,
-        "bib": "0",
+        "bib": "4107",
         "name": "Luciano TOMASULO",
         "age": 0,
         "sex": "M",
@@ -7457,7 +7457,7 @@ window.glclResults = [
     },
     {
         "pos": 81,
-        "bib": "0",
+        "bib": "5103",
         "name": "Devon EASON",
         "age": 0,
         "sex": "M",
@@ -7478,7 +7478,7 @@ window.glclResults = [
     },
     {
         "pos": 82,
-        "bib": "0",
+        "bib": "5156",
         "name": "Neil PROFIT",
         "age": 0,
         "sex": "M",
@@ -7499,7 +7499,7 @@ window.glclResults = [
     },
     {
         "pos": 83,
-        "bib": "0",
+        "bib": "2100",
         "name": "Katherine MATTHEWS",
         "age": 0,
         "sex": "F",
@@ -7520,7 +7520,7 @@ window.glclResults = [
     },
     {
         "pos": 84,
-        "bib": "0",
+        "bib": "8079",
         "name": "Nick OSMAN",
         "age": 0,
         "sex": "M",
@@ -7541,7 +7541,7 @@ window.glclResults = [
     },
     {
         "pos": 85,
-        "bib": "0",
+        "bib": "7050",
         "name": "Vicky ROBERTS",
         "age": 0,
         "sex": "F",
@@ -7562,7 +7562,7 @@ window.glclResults = [
     },
     {
         "pos": 86,
-        "bib": "0",
+        "bib": "8081",
         "name": "Clare PATTERSON",
         "age": 0,
         "sex": "F",
@@ -7583,7 +7583,7 @@ window.glclResults = [
     },
     {
         "pos": 87,
-        "bib": "0",
+        "bib": "9068",
         "name": "Hywel NASH",
         "age": 0,
         "sex": "M",
@@ -7604,7 +7604,7 @@ window.glclResults = [
     },
     {
         "pos": 88,
-        "bib": "0",
+        "bib": "5110",
         "name": "Nathan HAINES",
         "age": 0,
         "sex": "M",
@@ -7625,7 +7625,7 @@ window.glclResults = [
     },
     {
         "pos": 89,
-        "bib": "0",
+        "bib": "5116",
         "name": "Paul HAYWARD",
         "age": 0,
         "sex": "M",
@@ -7646,7 +7646,7 @@ window.glclResults = [
     },
     {
         "pos": 90,
-        "bib": "0",
+        "bib": "9069",
         "name": "Ben POWELL",
         "age": 0,
         "sex": "M",
@@ -7667,7 +7667,7 @@ window.glclResults = [
     },
     {
         "pos": 91,
-        "bib": "0",
+        "bib": "9038",
         "name": "Lee HARVEY",
         "age": 0,
         "sex": "M",
@@ -7688,7 +7688,7 @@ window.glclResults = [
     },
     {
         "pos": 92,
-        "bib": "0",
+        "bib": "2058",
         "name": "Cherry FOWLER",
         "age": 0,
         "sex": "F",
@@ -7709,7 +7709,7 @@ window.glclResults = [
     },
     {
         "pos": 93,
-        "bib": "0",
+        "bib": "8056",
         "name": "Beth JONES",
         "age": 0,
         "sex": "F",
@@ -7730,7 +7730,7 @@ window.glclResults = [
     },
     {
         "pos": 94,
-        "bib": "0",
+        "bib": "1036",
         "name": "Lowenna HUGGINS",
         "age": 0,
         "sex": "F",
@@ -7751,7 +7751,7 @@ window.glclResults = [
     },
     {
         "pos": 95,
-        "bib": "0",
+        "bib": "4037",
         "name": "Dave GRIMES",
         "age": 0,
         "sex": "M",
@@ -7772,7 +7772,7 @@ window.glclResults = [
     },
     {
         "pos": 96,
-        "bib": "0",
+        "bib": "1374",
         "name": "Kevin HARFORD",
         "age": 0,
         "sex": "M",
@@ -7793,7 +7793,7 @@ window.glclResults = [
     },
     {
         "pos": 97,
-        "bib": "0",
+        "bib": "6073",
         "name": "Michael HAJDON",
         "age": 0,
         "sex": "M",
@@ -7814,7 +7814,7 @@ window.glclResults = [
     },
     {
         "pos": 98,
-        "bib": "0",
+        "bib": "6030",
         "name": "Sandra CHIPPER",
         "age": 0,
         "sex": "F",
@@ -7835,7 +7835,7 @@ window.glclResults = [
     },
     {
         "pos": 99,
-        "bib": "0",
+        "bib": "5164",
         "name": "Gethin THOMAS",
         "age": 0,
         "sex": "M",
@@ -7856,7 +7856,7 @@ window.glclResults = [
     },
     {
         "pos": 100,
-        "bib": "0",
+        "bib": "5143",
         "name": "Lee MILLS",
         "age": 0,
         "sex": "M",
@@ -7877,7 +7877,7 @@ window.glclResults = [
     },
     {
         "pos": 101,
-        "bib": "0",
+        "bib": "7034",
         "name": "Kirk HILL",
         "age": 0,
         "sex": "M",
@@ -7898,7 +7898,7 @@ window.glclResults = [
     },
     {
         "pos": 102,
-        "bib": "0",
+        "bib": "8093",
         "name": "Kimberley PRICE",
         "age": 0,
         "sex": "F",
@@ -7919,7 +7919,7 @@ window.glclResults = [
     },
     {
         "pos": 103,
-        "bib": "0",
+        "bib": "2102",
         "name": "Niki MORGAN",
         "age": 0,
         "sex": "F",
@@ -7940,7 +7940,7 @@ window.glclResults = [
     },
     {
         "pos": 104,
-        "bib": "0",
+        "bib": "1098",
         "name": "Lauren WILLIAMS",
         "age": 0,
         "sex": "F",
@@ -7961,7 +7961,7 @@ window.glclResults = [
     },
     {
         "pos": 105,
-        "bib": "0",
+        "bib": "8060",
         "name": "Nicola JUKES",
         "age": 0,
         "sex": "F",
@@ -7982,7 +7982,7 @@ window.glclResults = [
     },
     {
         "pos": 106,
-        "bib": "0",
+        "bib": "6110",
         "name": "Phillip LEE",
         "age": 0,
         "sex": "M",
@@ -8003,7 +8003,7 @@ window.glclResults = [
     },
     {
         "pos": 107,
-        "bib": "0",
+        "bib": "6164",
         "name": "Sarah WILKES",
         "age": 0,
         "sex": "F",
@@ -8024,7 +8024,7 @@ window.glclResults = [
     },
     {
         "pos": 108,
-        "bib": "0",
+        "bib": "1032",
         "name": "Mark HISLOP",
         "age": 0,
         "sex": "M",
@@ -8045,7 +8045,7 @@ window.glclResults = [
     },
     {
         "pos": 109,
-        "bib": "0",
+        "bib": "1135",
         "name": "Christian FORD",
         "age": 0,
         "sex": "M",
@@ -8066,7 +8066,7 @@ window.glclResults = [
     },
     {
         "pos": 110,
-        "bib": "0",
+        "bib": "3062",
         "name": "Sean WASSALL",
         "age": 0,
         "sex": "M",
@@ -8087,7 +8087,7 @@ window.glclResults = [
     },
     {
         "pos": 111,
-        "bib": "0",
+        "bib": "8143",
         "name": "Scott GREAVES",
         "age": 0,
         "sex": "M",
@@ -8108,7 +8108,7 @@ window.glclResults = [
     },
     {
         "pos": 112,
-        "bib": "0",
+        "bib": "6124",
         "name": "Chris O'BRIEN",
         "age": 0,
         "sex": "M",
@@ -8129,7 +8129,7 @@ window.glclResults = [
     },
     {
         "pos": 113,
-        "bib": "0",
+        "bib": "1089",
         "name": "Matt TOOBY",
         "age": 0,
         "sex": "M",
@@ -8150,7 +8150,7 @@ window.glclResults = [
     },
     {
         "pos": 114,
-        "bib": "0",
+        "bib": "1120",
         "name": "James KING",
         "age": 0,
         "sex": "M",
@@ -8171,7 +8171,7 @@ window.glclResults = [
     },
     {
         "pos": 115,
-        "bib": "0",
+        "bib": "6019",
         "name": "Paul BRUTON",
         "age": 0,
         "sex": "M",
@@ -8192,7 +8192,7 @@ window.glclResults = [
     },
     {
         "pos": 116,
-        "bib": "0",
+        "bib": "6172",
         "name": "Daniel BODIN",
         "age": 0,
         "sex": "M",
@@ -8213,7 +8213,7 @@ window.glclResults = [
     },
     {
         "pos": 117,
-        "bib": "0",
+        "bib": "1067",
         "name": "Jason PRITCHARD",
         "age": 0,
         "sex": "M",
@@ -8234,7 +8234,7 @@ window.glclResults = [
     },
     {
         "pos": 118,
-        "bib": "0",
+        "bib": "1094",
         "name": "Jade WAKLEY",
         "age": 0,
         "sex": "F",
@@ -8255,7 +8255,7 @@ window.glclResults = [
     },
     {
         "pos": 119,
-        "bib": "0",
+        "bib": "9095",
         "name": "Matt WEBB",
         "age": 0,
         "sex": "M",
@@ -8276,7 +8276,7 @@ window.glclResults = [
     },
     {
         "pos": 120,
-        "bib": "0",
+        "bib": "6036",
         "name": "Elliot COUNSELL",
         "age": 0,
         "sex": "M",
@@ -8297,7 +8297,7 @@ window.glclResults = [
     },
     {
         "pos": 121,
-        "bib": "0",
+        "bib": "2137",
         "name": "Ross WALKER",
         "age": 0,
         "sex": "M",
@@ -8318,7 +8318,7 @@ window.glclResults = [
     },
     {
         "pos": 122,
-        "bib": "0",
+        "bib": "1045",
         "name": "Ian KITT",
         "age": 0,
         "sex": "M",
@@ -8339,7 +8339,7 @@ window.glclResults = [
     },
     {
         "pos": 123,
-        "bib": "0",
+        "bib": "1065",
         "name": "Lubica FORD",
         "age": 0,
         "sex": "F",
@@ -8360,7 +8360,7 @@ window.glclResults = [
     },
     {
         "pos": 124,
-        "bib": "0",
+        "bib": "3004",
         "name": "Stuart BALL",
         "age": 0,
         "sex": "M",
@@ -8381,7 +8381,7 @@ window.glclResults = [
     },
     {
         "pos": 125,
-        "bib": "0",
+        "bib": "1100",
         "name": "Chris WREFORD",
         "age": 0,
         "sex": "M",
@@ -8402,7 +8402,7 @@ window.glclResults = [
     },
     {
         "pos": 126,
-        "bib": "0",
+        "bib": "3039",
         "name": "Alan LEGGE",
         "age": 0,
         "sex": "M",
@@ -8423,7 +8423,7 @@ window.glclResults = [
     },
     {
         "pos": 127,
-        "bib": "0",
+        "bib": "1516",
         "name": "Rhys WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -8444,7 +8444,7 @@ window.glclResults = [
     },
     {
         "pos": 128,
-        "bib": "0",
+        "bib": "9006",
         "name": "Shane BAKER",
         "age": 0,
         "sex": "M",
@@ -8486,7 +8486,7 @@ window.glclResults = [
     },
     {
         "pos": 130,
-        "bib": "0",
+        "bib": "1371",
         "name": "Bethan RICHARDSON",
         "age": 0,
         "sex": "F",
@@ -8507,7 +8507,7 @@ window.glclResults = [
     },
     {
         "pos": 131,
-        "bib": "0",
+        "bib": "1138",
         "name": "Daniel PHILLIPS",
         "age": 0,
         "sex": "M",
@@ -8528,7 +8528,7 @@ window.glclResults = [
     },
     {
         "pos": 132,
-        "bib": "0",
+        "bib": "8055",
         "name": "Andrew JONES",
         "age": 0,
         "sex": "M",
@@ -8549,7 +8549,7 @@ window.glclResults = [
     },
     {
         "pos": 133,
-        "bib": "0",
+        "bib": "4099",
         "name": "Adrian SMITH",
         "age": 0,
         "sex": "M",
@@ -8570,7 +8570,7 @@ window.glclResults = [
     },
     {
         "pos": 134,
-        "bib": "0",
+        "bib": "7033",
         "name": "Sarah HEATH",
         "age": 0,
         "sex": "F",
@@ -8591,7 +8591,7 @@ window.glclResults = [
     },
     {
         "pos": 135,
-        "bib": "0",
+        "bib": "6130",
         "name": "Christopher POTTER",
         "age": 0,
         "sex": "M",
@@ -8612,7 +8612,7 @@ window.glclResults = [
     },
     {
         "pos": 136,
-        "bib": "0",
+        "bib": "5170",
         "name": "Russ WAREHAM",
         "age": 0,
         "sex": "M",
@@ -8633,7 +8633,7 @@ window.glclResults = [
     },
     {
         "pos": 137,
-        "bib": "0",
+        "bib": "6026",
         "name": "Daniel CHAMBERS",
         "age": 0,
         "sex": "M",
@@ -8654,7 +8654,7 @@ window.glclResults = [
     },
     {
         "pos": 138,
-        "bib": "0",
+        "bib": "7023",
         "name": "Brian EVANS",
         "age": 0,
         "sex": "M",
@@ -8675,7 +8675,7 @@ window.glclResults = [
     },
     {
         "pos": 139,
-        "bib": "0",
+        "bib": "6105",
         "name": "Danica KENNEDY",
         "age": 0,
         "sex": "F",
@@ -8696,7 +8696,7 @@ window.glclResults = [
     },
     {
         "pos": 140,
-        "bib": "0",
+        "bib": "8014",
         "name": "Carly COLE",
         "age": 0,
         "sex": "F",
@@ -8717,7 +8717,7 @@ window.glclResults = [
     },
     {
         "pos": 141,
-        "bib": "0",
+        "bib": "1039",
         "name": "Philip HYATT",
         "age": 0,
         "sex": "M",
@@ -8738,7 +8738,7 @@ window.glclResults = [
     },
     {
         "pos": 142,
-        "bib": "0",
+        "bib": "2108",
         "name": "Alex NORTH",
         "age": 0,
         "sex": "M",
@@ -8759,7 +8759,7 @@ window.glclResults = [
     },
     {
         "pos": 143,
-        "bib": "0",
+        "bib": "7054",
         "name": "Joe ROBSON",
         "age": 0,
         "sex": "M",
@@ -8780,7 +8780,7 @@ window.glclResults = [
     },
     {
         "pos": 144,
-        "bib": "0",
+        "bib": "1073",
         "name": "Liz RICHARDS",
         "age": 0,
         "sex": "F",
@@ -8801,7 +8801,7 @@ window.glclResults = [
     },
     {
         "pos": 145,
-        "bib": "0",
+        "bib": "5066",
         "name": "Eve TRANTER",
         "age": 0,
         "sex": "F",
@@ -8822,7 +8822,7 @@ window.glclResults = [
     },
     {
         "pos": 146,
-        "bib": "0",
+        "bib": "2122",
         "name": "Jane ROSCOE",
         "age": 0,
         "sex": "F",
@@ -8843,7 +8843,7 @@ window.glclResults = [
     },
     {
         "pos": 147,
-        "bib": "0",
+        "bib": "2048",
         "name": "Caroline DUDER",
         "age": 0,
         "sex": "F",
@@ -8864,7 +8864,7 @@ window.glclResults = [
     },
     {
         "pos": 148,
-        "bib": "0",
+        "bib": "6149",
         "name": "Gemma THOMAS",
         "age": 0,
         "sex": "F",
@@ -8885,7 +8885,7 @@ window.glclResults = [
     },
     {
         "pos": 149,
-        "bib": "0",
+        "bib": "7005",
         "name": "Martin BLAKEBROUGH",
         "age": 0,
         "sex": "M",
@@ -8906,7 +8906,7 @@ window.glclResults = [
     },
     {
         "pos": 150,
-        "bib": "0",
+        "bib": "4097",
         "name": "Karen SILVER",
         "age": 0,
         "sex": "F",
@@ -8927,7 +8927,7 @@ window.glclResults = [
     },
     {
         "pos": 151,
-        "bib": "0",
+        "bib": "6126",
         "name": "Caitlin OWEN",
         "age": 0,
         "sex": "F",
@@ -8948,7 +8948,7 @@ window.glclResults = [
     },
     {
         "pos": 152,
-        "bib": "0",
+        "bib": "4068",
         "name": "Paul MASON",
         "age": 0,
         "sex": "M",
@@ -8969,7 +8969,7 @@ window.glclResults = [
     },
     {
         "pos": 153,
-        "bib": "0",
+        "bib": "3054",
         "name": "Michael SKYRME",
         "age": 0,
         "sex": "M",
@@ -8990,7 +8990,7 @@ window.glclResults = [
     },
     {
         "pos": 154,
-        "bib": "0",
+        "bib": "6118",
         "name": "James McLOUGHLIN",
         "age": 0,
         "sex": "M",
@@ -9011,7 +9011,7 @@ window.glclResults = [
     },
     {
         "pos": 155,
-        "bib": "0",
+        "bib": "2112",
         "name": "Stephen OWEN",
         "age": 0,
         "sex": "M",
@@ -9032,7 +9032,7 @@ window.glclResults = [
     },
     {
         "pos": 156,
-        "bib": "0",
+        "bib": "8115",
         "name": "Stephen WILES",
         "age": 0,
         "sex": "M",
@@ -9053,7 +9053,7 @@ window.glclResults = [
     },
     {
         "pos": 157,
-        "bib": "0",
+        "bib": "5168",
         "name": "Neil THORPE",
         "age": 0,
         "sex": "M",
@@ -9074,7 +9074,7 @@ window.glclResults = [
     },
     {
         "pos": 158,
-        "bib": "0",
+        "bib": "5005",
         "name": "Carly BUNSTON",
         "age": 0,
         "sex": "F",
@@ -9095,7 +9095,7 @@ window.glclResults = [
     },
     {
         "pos": 159,
-        "bib": "0",
+        "bib": "6058",
         "name": "Spencer ENGLISH",
         "age": 0,
         "sex": "M",
@@ -9116,7 +9116,7 @@ window.glclResults = [
     },
     {
         "pos": 160,
-        "bib": "0",
+        "bib": "8103",
         "name": "Sebastian SILVA",
         "age": 0,
         "sex": "M",
@@ -9137,7 +9137,7 @@ window.glclResults = [
     },
     {
         "pos": 161,
-        "bib": "0",
+        "bib": "8067",
         "name": "Harri LIKE",
         "age": 0,
         "sex": "F",
@@ -9158,7 +9158,7 @@ window.glclResults = [
     },
     {
         "pos": 162,
-        "bib": "0",
+        "bib": "1086",
         "name": "Abbie THOMAS",
         "age": 0,
         "sex": "F",
@@ -9179,7 +9179,7 @@ window.glclResults = [
     },
     {
         "pos": 163,
-        "bib": "0",
+        "bib": "9009",
         "name": "Marisa BENJAMIN",
         "age": 0,
         "sex": "F",
@@ -9200,7 +9200,7 @@ window.glclResults = [
     },
     {
         "pos": 164,
-        "bib": "0",
+        "bib": "3043",
         "name": "Sam MARTIN",
         "age": 0,
         "sex": "M",
@@ -9221,7 +9221,7 @@ window.glclResults = [
     },
     {
         "pos": 165,
-        "bib": "0",
+        "bib": "8036",
         "name": "Roger FREEMAN",
         "age": 0,
         "sex": "M",
@@ -9242,7 +9242,7 @@ window.glclResults = [
     },
     {
         "pos": 166,
-        "bib": "0",
+        "bib": "6082",
         "name": "James HOBSON",
         "age": 0,
         "sex": "M",
@@ -9263,7 +9263,7 @@ window.glclResults = [
     },
     {
         "pos": 167,
-        "bib": "0",
+        "bib": "4058",
         "name": "Richard JONES",
         "age": 0,
         "sex": "M",
@@ -9284,7 +9284,7 @@ window.glclResults = [
     },
     {
         "pos": 168,
-        "bib": "0",
+        "bib": "5098",
         "name": "Jason DIXON",
         "age": 0,
         "sex": "M",
@@ -9305,7 +9305,7 @@ window.glclResults = [
     },
     {
         "pos": 169,
-        "bib": "0",
+        "bib": "8007",
         "name": "Victoria BOXHALL-JAMES",
         "age": 0,
         "sex": "F",
@@ -9326,7 +9326,7 @@ window.glclResults = [
     },
     {
         "pos": 170,
-        "bib": "0",
+        "bib": "6081",
         "name": "Victoria HOBBS",
         "age": 0,
         "sex": "F",
@@ -9347,7 +9347,7 @@ window.glclResults = [
     },
     {
         "pos": 171,
-        "bib": "0",
+        "bib": "8125",
         "name": "Tammi PREECE",
         "age": 0,
         "sex": "F",
@@ -9368,7 +9368,7 @@ window.glclResults = [
     },
     {
         "pos": 172,
-        "bib": "0",
+        "bib": "1289",
         "name": "Sarah JEREMIAH",
         "age": 0,
         "sex": "F",
@@ -9389,7 +9389,7 @@ window.glclResults = [
     },
     {
         "pos": 173,
-        "bib": "0",
+        "bib": "8069",
         "name": "Ian LINE",
         "age": 0,
         "sex": "M",
@@ -9410,7 +9410,7 @@ window.glclResults = [
     },
     {
         "pos": 174,
-        "bib": "0",
+        "bib": "3050",
         "name": "Leonie ROBERTS",
         "age": 0,
         "sex": "F",
@@ -9431,7 +9431,7 @@ window.glclResults = [
     },
     {
         "pos": 175,
-        "bib": "0",
+        "bib": "6107",
         "name": "Emma KING",
         "age": 0,
         "sex": "F",
@@ -9452,7 +9452,7 @@ window.glclResults = [
     },
     {
         "pos": 176,
-        "bib": "0",
+        "bib": "2081",
         "name": "Lisa JEFFREY",
         "age": 0,
         "sex": "F",
@@ -9473,7 +9473,7 @@ window.glclResults = [
     },
     {
         "pos": 177,
-        "bib": "0",
+        "bib": "6083",
         "name": "Kate HODGSON",
         "age": 0,
         "sex": "F",
@@ -9494,7 +9494,7 @@ window.glclResults = [
     },
     {
         "pos": 178,
-        "bib": "0",
+        "bib": "5177",
         "name": "Drew WAREHAM",
         "age": 0,
         "sex": "M",
@@ -9515,7 +9515,7 @@ window.glclResults = [
     },
     {
         "pos": 179,
-        "bib": "0",
+        "bib": "4083",
         "name": "Joshua REYNOLDS",
         "age": 0,
         "sex": "M",
@@ -9536,7 +9536,7 @@ window.glclResults = [
     },
     {
         "pos": 180,
-        "bib": "0",
+        "bib": "8104",
         "name": "Huw STEADMAN",
         "age": 0,
         "sex": "M",
@@ -9557,7 +9557,7 @@ window.glclResults = [
     },
     {
         "pos": 181,
-        "bib": "0",
+        "bib": "2054",
         "name": "Barry EVANS",
         "age": 0,
         "sex": "M",
@@ -9578,7 +9578,7 @@ window.glclResults = [
     },
     {
         "pos": 182,
-        "bib": "0",
+        "bib": "4106",
         "name": "Joe TOMASULO",
         "age": 0,
         "sex": "M",
@@ -9599,7 +9599,7 @@ window.glclResults = [
     },
     {
         "pos": 183,
-        "bib": "0",
+        "bib": "1227",
         "name": "Jamie FRASER",
         "age": 0,
         "sex": "M",
@@ -9620,7 +9620,7 @@ window.glclResults = [
     },
     {
         "pos": 184,
-        "bib": "0",
+        "bib": "5131",
         "name": "Philip JONES",
         "age": 0,
         "sex": "M",
@@ -9641,7 +9641,7 @@ window.glclResults = [
     },
     {
         "pos": 185,
-        "bib": "0",
+        "bib": "9037",
         "name": "William HARNETT",
         "age": 0,
         "sex": "M",
@@ -9662,7 +9662,7 @@ window.glclResults = [
     },
     {
         "pos": 186,
-        "bib": "0",
+        "bib": "3064",
         "name": "Stephen WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -9683,7 +9683,7 @@ window.glclResults = [
     },
     {
         "pos": 187,
-        "bib": "0",
+        "bib": "9032",
         "name": "Michelle GOOCH",
         "age": 0,
         "sex": "F",
@@ -9704,7 +9704,7 @@ window.glclResults = [
     },
     {
         "pos": 188,
-        "bib": "0",
+        "bib": "1044",
         "name": "Huw JONES",
         "age": 0,
         "sex": "M",
@@ -9725,7 +9725,7 @@ window.glclResults = [
     },
     {
         "pos": 189,
-        "bib": "0",
+        "bib": "7003",
         "name": "Liberty BARLOW",
         "age": 0,
         "sex": "F",
@@ -9746,7 +9746,7 @@ window.glclResults = [
     },
     {
         "pos": 190,
-        "bib": "0",
+        "bib": "2086",
         "name": "Matthew LAWSON",
         "age": 0,
         "sex": "M",
@@ -9767,7 +9767,7 @@ window.glclResults = [
     },
     {
         "pos": 191,
-        "bib": "0",
+        "bib": "1027",
         "name": "Wesley HARRIS",
         "age": 0,
         "sex": "M",
@@ -9788,7 +9788,7 @@ window.glclResults = [
     },
     {
         "pos": 192,
-        "bib": "0",
+        "bib": "2103",
         "name": "Jan MORRIS",
         "age": 0,
         "sex": "F",
@@ -9809,7 +9809,7 @@ window.glclResults = [
     },
     {
         "pos": 193,
-        "bib": "0",
+        "bib": "5115",
         "name": "Alex HAY",
         "age": 0,
         "sex": "M",
@@ -9830,7 +9830,7 @@ window.glclResults = [
     },
     {
         "pos": 194,
-        "bib": "0",
+        "bib": "2063",
         "name": "Jamie GODDARD",
         "age": 0,
         "sex": "M",
@@ -9851,7 +9851,7 @@ window.glclResults = [
     },
     {
         "pos": 195,
-        "bib": "0",
+        "bib": "4032",
         "name": "David GOODGER",
         "age": 0,
         "sex": "M",
@@ -9872,7 +9872,7 @@ window.glclResults = [
     },
     {
         "pos": 196,
-        "bib": "0",
+        "bib": "5051",
         "name": "Melissa MORGAN",
         "age": 0,
         "sex": "F",
@@ -9893,7 +9893,7 @@ window.glclResults = [
     },
     {
         "pos": 197,
-        "bib": "0",
+        "bib": "2110",
         "name": "Andy OST",
         "age": 0,
         "sex": "M",
@@ -9914,7 +9914,7 @@ window.glclResults = [
     },
     {
         "pos": 198,
-        "bib": "0",
+        "bib": "1096",
         "name": "Mark WALSH",
         "age": 0,
         "sex": "M",
@@ -9935,7 +9935,7 @@ window.glclResults = [
     },
     {
         "pos": 199,
-        "bib": "0",
+        "bib": "2022",
         "name": "Gary BURLEY",
         "age": 0,
         "sex": "M",
@@ -9956,7 +9956,7 @@ window.glclResults = [
     },
     {
         "pos": 200,
-        "bib": "0",
+        "bib": "9005",
         "name": "Mark BAKER",
         "age": 0,
         "sex": "M",
@@ -9977,7 +9977,7 @@ window.glclResults = [
     },
     {
         "pos": 201,
-        "bib": "0",
+        "bib": "5089",
         "name": "Lewis CARDWELL",
         "age": 0,
         "sex": "M",
@@ -9998,7 +9998,7 @@ window.glclResults = [
     },
     {
         "pos": 202,
-        "bib": "0",
+        "bib": "3005",
         "name": "Michael BARNES",
         "age": 0,
         "sex": "M",
@@ -10019,7 +10019,7 @@ window.glclResults = [
     },
     {
         "pos": 203,
-        "bib": "0",
+        "bib": "6151",
         "name": "Rhys THURSTON",
         "age": 0,
         "sex": "M",
@@ -10040,7 +10040,7 @@ window.glclResults = [
     },
     {
         "pos": 204,
-        "bib": "0",
+        "bib": "1091",
         "name": "Ryan VINCENT",
         "age": 0,
         "sex": "M",
@@ -10061,7 +10061,7 @@ window.glclResults = [
     },
     {
         "pos": 205,
-        "bib": "0",
+        "bib": "4066",
         "name": "Laura LEWIS-COPEMAN",
         "age": 0,
         "sex": "F",
@@ -10082,7 +10082,7 @@ window.glclResults = [
     },
     {
         "pos": 206,
-        "bib": "0",
+        "bib": "6006",
         "name": "Rachel BANKS",
         "age": 0,
         "sex": "F",
@@ -10103,7 +10103,7 @@ window.glclResults = [
     },
     {
         "pos": 207,
-        "bib": "0",
+        "bib": "6053",
         "name": "Paige DOUGLAS",
         "age": 0,
         "sex": "F",
@@ -10124,7 +10124,7 @@ window.glclResults = [
     },
     {
         "pos": 208,
-        "bib": "0",
+        "bib": "5172",
         "name": "Ade WHITE",
         "age": 0,
         "sex": "M",
@@ -10145,7 +10145,7 @@ window.glclResults = [
     },
     {
         "pos": 209,
-        "bib": "0",
+        "bib": "3036",
         "name": "Ieuan KINGSTON",
         "age": 0,
         "sex": "M",
@@ -10166,7 +10166,7 @@ window.glclResults = [
     },
     {
         "pos": 210,
-        "bib": "0",
+        "bib": "2138",
         "name": "San WALKER",
         "age": 0,
         "sex": "F",
@@ -10187,7 +10187,7 @@ window.glclResults = [
     },
     {
         "pos": 211,
-        "bib": "0",
+        "bib": "5041",
         "name": "Bryony LEWIS",
         "age": 0,
         "sex": "F",
@@ -10208,7 +10208,7 @@ window.glclResults = [
     },
     {
         "pos": 212,
-        "bib": "0",
+        "bib": "5166",
         "name": "Owen THOMAS",
         "age": 0,
         "sex": "M",
@@ -10229,7 +10229,7 @@ window.glclResults = [
     },
     {
         "pos": 213,
-        "bib": "0",
+        "bib": "9029",
         "name": "Simon FISH",
         "age": 0,
         "sex": "M",
@@ -10250,7 +10250,7 @@ window.glclResults = [
     },
     {
         "pos": 214,
-        "bib": "0",
+        "bib": "6143",
         "name": "Neil SMITH",
         "age": 0,
         "sex": "M",
@@ -10271,7 +10271,7 @@ window.glclResults = [
     },
     {
         "pos": 215,
-        "bib": "0",
+        "bib": "6048",
         "name": "Karen DAY",
         "age": 0,
         "sex": "F",
@@ -10292,7 +10292,7 @@ window.glclResults = [
     },
     {
         "pos": 216,
-        "bib": "0",
+        "bib": "1043",
         "name": "Dan JONES",
         "age": 0,
         "sex": "M",
@@ -10313,7 +10313,7 @@ window.glclResults = [
     },
     {
         "pos": 217,
-        "bib": "0",
+        "bib": "2111",
         "name": "Oliver OST",
         "age": 0,
         "sex": "M",
@@ -10334,7 +10334,7 @@ window.glclResults = [
     },
     {
         "pos": 218,
-        "bib": "0",
+        "bib": "5083",
         "name": "Niall BOARDMAN",
         "age": 0,
         "sex": "M",
@@ -10355,7 +10355,7 @@ window.glclResults = [
     },
     {
         "pos": 219,
-        "bib": "0",
+        "bib": "8041",
         "name": "Vincent GREGORY",
         "age": 0,
         "sex": "M",
@@ -10376,7 +10376,7 @@ window.glclResults = [
     },
     {
         "pos": 220,
-        "bib": "0",
+        "bib": "2117",
         "name": "Ceri RICHARDS",
         "age": 0,
         "sex": "M",
@@ -10397,7 +10397,7 @@ window.glclResults = [
     },
     {
         "pos": 221,
-        "bib": "0",
+        "bib": "5176",
         "name": "Ben ELLIS",
         "age": 0,
         "sex": "M",
@@ -10418,7 +10418,7 @@ window.glclResults = [
     },
     {
         "pos": 222,
-        "bib": "0",
+        "bib": "8035",
         "name": "Abigail FELLOWS",
         "age": 0,
         "sex": "F",
@@ -10439,7 +10439,7 @@ window.glclResults = [
     },
     {
         "pos": 223,
-        "bib": "0",
+        "bib": "8061",
         "name": "Joanne KILBY",
         "age": 0,
         "sex": "F",
@@ -10460,7 +10460,7 @@ window.glclResults = [
     },
     {
         "pos": 224,
-        "bib": "0",
+        "bib": "6014",
         "name": "Fiona BOLTON",
         "age": 0,
         "sex": "F",
@@ -10481,7 +10481,7 @@ window.glclResults = [
     },
     {
         "pos": 225,
-        "bib": "0",
+        "bib": "9007",
         "name": "Tracy BAKER",
         "age": 0,
         "sex": "F",
@@ -10502,7 +10502,7 @@ window.glclResults = [
     },
     {
         "pos": 226,
-        "bib": "0",
+        "bib": "4013",
         "name": "Ben CHARD",
         "age": 0,
         "sex": "M",
@@ -10523,7 +10523,7 @@ window.glclResults = [
     },
     {
         "pos": 227,
-        "bib": "0",
+        "bib": "6018",
         "name": "James BROWN",
         "age": 0,
         "sex": "M",
@@ -10544,7 +10544,7 @@ window.glclResults = [
     },
     {
         "pos": 228,
-        "bib": "0",
+        "bib": "1033",
         "name": "Lee HOLLAND",
         "age": 0,
         "sex": "M",
@@ -10565,7 +10565,7 @@ window.glclResults = [
     },
     {
         "pos": 229,
-        "bib": "0",
+        "bib": "8019",
         "name": "Stephen DALLOW",
         "age": 0,
         "sex": "M",
@@ -10586,7 +10586,7 @@ window.glclResults = [
     },
     {
         "pos": 230,
-        "bib": "0",
+        "bib": "1435",
         "name": "Iwan ROBERTS",
         "age": 0,
         "sex": "M",
@@ -10607,7 +10607,7 @@ window.glclResults = [
     },
     {
         "pos": 231,
-        "bib": "0",
+        "bib": "9079",
         "name": "Sammi SINCLAIR",
         "age": 0,
         "sex": "F",
@@ -10628,7 +10628,7 @@ window.glclResults = [
     },
     {
         "pos": 232,
-        "bib": "0",
+        "bib": "5175",
         "name": "Aled WYNNE",
         "age": 0,
         "sex": "M",
@@ -10649,7 +10649,7 @@ window.glclResults = [
     },
     {
         "pos": 233,
-        "bib": "0",
+        "bib": "7018",
         "name": "Jeremy CREASEY",
         "age": 0,
         "sex": "M",
@@ -10670,7 +10670,7 @@ window.glclResults = [
     },
     {
         "pos": 234,
-        "bib": "0",
+        "bib": "7004",
         "name": "Marina WRIGHT",
         "age": 0,
         "sex": "F",
@@ -10691,7 +10691,7 @@ window.glclResults = [
     },
     {
         "pos": 235,
-        "bib": "0",
+        "bib": "7024",
         "name": "James EXTON",
         "age": 0,
         "sex": "M",
@@ -10712,7 +10712,7 @@ window.glclResults = [
     },
     {
         "pos": 236,
-        "bib": "0",
+        "bib": "3040",
         "name": "Matthew LLOYD",
         "age": 0,
         "sex": "M",
@@ -10733,7 +10733,7 @@ window.glclResults = [
     },
     {
         "pos": 237,
-        "bib": "0",
+        "bib": "5037",
         "name": "Michelle JOHNSON",
         "age": 0,
         "sex": "F",
@@ -10754,7 +10754,7 @@ window.glclResults = [
     },
     {
         "pos": 238,
-        "bib": "0",
+        "bib": "1434",
         "name": "Mark POTTER",
         "age": 0,
         "sex": "M",
@@ -10775,7 +10775,7 @@ window.glclResults = [
     },
     {
         "pos": 239,
-        "bib": "0",
+        "bib": "1008",
         "name": "Phil CUMMINGS",
         "age": 0,
         "sex": "M",
@@ -10796,7 +10796,7 @@ window.glclResults = [
     },
     {
         "pos": 240,
-        "bib": "0",
+        "bib": "2037",
         "name": "Christopher COX",
         "age": 0,
         "sex": "M",
@@ -10817,7 +10817,7 @@ window.glclResults = [
     },
     {
         "pos": 241,
-        "bib": "0",
+        "bib": "8101",
         "name": "Georgina SEED",
         "age": 0,
         "sex": "F",
@@ -10838,7 +10838,7 @@ window.glclResults = [
     },
     {
         "pos": 242,
-        "bib": "0",
+        "bib": "9043",
         "name": "Mangawa ITIMU",
         "age": 0,
         "sex": "M",
@@ -10859,7 +10859,7 @@ window.glclResults = [
     },
     {
         "pos": 243,
-        "bib": "0",
+        "bib": "6155",
         "name": "Bob WATSON",
         "age": 0,
         "sex": "M",
@@ -10880,7 +10880,7 @@ window.glclResults = [
     },
     {
         "pos": 244,
-        "bib": "0",
+        "bib": "1516",
         "name": "Rhys WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -10901,7 +10901,7 @@ window.glclResults = [
     },
     {
         "pos": 245,
-        "bib": "0",
+        "bib": "9081",
         "name": "Karen SOUTHGATE",
         "age": 0,
         "sex": "F",
@@ -10922,7 +10922,7 @@ window.glclResults = [
     },
     {
         "pos": 246,
-        "bib": "0",
+        "bib": "8005",
         "name": "Samantha BILLS",
         "age": 0,
         "sex": "F",
@@ -10943,7 +10943,7 @@ window.glclResults = [
     },
     {
         "pos": 247,
-        "bib": "0",
+        "bib": "3001",
         "name": "Phillip ALLSOPP",
         "age": 0,
         "sex": "M",
@@ -10964,7 +10964,7 @@ window.glclResults = [
     },
     {
         "pos": 248,
-        "bib": "0",
+        "bib": "1433",
         "name": "Chloe NORTON",
         "age": 0,
         "sex": "F",
@@ -10985,7 +10985,7 @@ window.glclResults = [
     },
     {
         "pos": 249,
-        "bib": "0",
+        "bib": "4073",
         "name": "Timothy MILES",
         "age": 0,
         "sex": "M",
@@ -11006,7 +11006,7 @@ window.glclResults = [
     },
     {
         "pos": 250,
-        "bib": "0",
+        "bib": "5085",
         "name": "Paul BROOKES",
         "age": 0,
         "sex": "M",
@@ -11027,7 +11027,7 @@ window.glclResults = [
     },
     {
         "pos": 251,
-        "bib": "0",
+        "bib": "5132",
         "name": "David JOSEPH",
         "age": 0,
         "sex": "M",
@@ -11048,7 +11048,7 @@ window.glclResults = [
     },
     {
         "pos": 252,
-        "bib": "0",
+        "bib": "2084",
         "name": "Mark JONES",
         "age": 0,
         "sex": "M",
@@ -11069,7 +11069,7 @@ window.glclResults = [
     },
     {
         "pos": 253,
-        "bib": "0",
+        "bib": "6063",
         "name": "Joshua FORD",
         "age": 0,
         "sex": "M",
@@ -11090,7 +11090,7 @@ window.glclResults = [
     },
     {
         "pos": 254,
-        "bib": "0",
+        "bib": "2074",
         "name": "Daniel HAZELL-SMART",
         "age": 0,
         "sex": "M",
@@ -11111,7 +11111,7 @@ window.glclResults = [
     },
     {
         "pos": 255,
-        "bib": "0",
+        "bib": "2064",
         "name": "Neil GRANT",
         "age": 0,
         "sex": "M",
@@ -11132,7 +11132,7 @@ window.glclResults = [
     },
     {
         "pos": 256,
-        "bib": "0",
+        "bib": "2093",
         "name": "Hannah LIDGETT",
         "age": 0,
         "sex": "F",
@@ -11153,7 +11153,7 @@ window.glclResults = [
     },
     {
         "pos": 257,
-        "bib": "0",
+        "bib": "6007",
         "name": "Andy BARRY",
         "age": 0,
         "sex": "M",
@@ -11174,7 +11174,7 @@ window.glclResults = [
     },
     {
         "pos": 258,
-        "bib": "0",
+        "bib": "4114",
         "name": "Terry WHITE",
         "age": 0,
         "sex": "M",
@@ -11195,7 +11195,7 @@ window.glclResults = [
     },
     {
         "pos": 259,
-        "bib": "0",
+        "bib": "3061",
         "name": "Elizabeth WALSH",
         "age": 0,
         "sex": "F",
@@ -11216,7 +11216,7 @@ window.glclResults = [
     },
     {
         "pos": 260,
-        "bib": "0",
+        "bib": "2029",
         "name": "Kim CARWARDINE",
         "age": 0,
         "sex": "F",
@@ -11237,7 +11237,7 @@ window.glclResults = [
     },
     {
         "pos": 261,
-        "bib": "0",
+        "bib": "8088",
         "name": "Martyn POWELL",
         "age": 0,
         "sex": "M",
@@ -11258,7 +11258,7 @@ window.glclResults = [
     },
     {
         "pos": 262,
-        "bib": "0",
+        "bib": "9056",
         "name": "Kirsty RHODES",
         "age": 0,
         "sex": "F",
@@ -11279,7 +11279,7 @@ window.glclResults = [
     },
     {
         "pos": 263,
-        "bib": "0",
+        "bib": "6112",
         "name": "Jane LEWIS",
         "age": 0,
         "sex": "F",
@@ -11300,7 +11300,7 @@ window.glclResults = [
     },
     {
         "pos": 264,
-        "bib": "0",
+        "bib": "3049",
         "name": "Mark PROSSER",
         "age": 0,
         "sex": "M",
@@ -11321,7 +11321,7 @@ window.glclResults = [
     },
     {
         "pos": 265,
-        "bib": "0",
+        "bib": "6070",
         "name": "Josh GREEN",
         "age": 0,
         "sex": "M",
@@ -11342,7 +11342,7 @@ window.glclResults = [
     },
     {
         "pos": 266,
-        "bib": "0",
+        "bib": "2069",
         "name": "Amanda HAEFFNER",
         "age": 0,
         "sex": "F",
@@ -11363,7 +11363,7 @@ window.glclResults = [
     },
     {
         "pos": 267,
-        "bib": "0",
+        "bib": "2125",
         "name": "Wendy SHARPE-NASH",
         "age": 0,
         "sex": "F",
@@ -11384,7 +11384,7 @@ window.glclResults = [
     },
     {
         "pos": 268,
-        "bib": "0",
+        "bib": "3003",
         "name": "Andy BAKER",
         "age": 0,
         "sex": "M",
@@ -11405,7 +11405,7 @@ window.glclResults = [
     },
     {
         "pos": 269,
-        "bib": "0",
+        "bib": "7015",
         "name": "Andy CLIFTON",
         "age": 0,
         "sex": "M",
@@ -11426,7 +11426,7 @@ window.glclResults = [
     },
     {
         "pos": 270,
-        "bib": "0",
+        "bib": "5123",
         "name": "Julian HUNT",
         "age": 0,
         "sex": "M",
@@ -11447,7 +11447,7 @@ window.glclResults = [
     },
     {
         "pos": 271,
-        "bib": "0",
+        "bib": "6161",
         "name": "Leanne WESTACOTT",
         "age": 0,
         "sex": "F",
@@ -11468,7 +11468,7 @@ window.glclResults = [
     },
     {
         "pos": 272,
-        "bib": "0",
+        "bib": "2146",
         "name": "Cheryl DEHARENG",
         "age": 0,
         "sex": "F",
@@ -11489,7 +11489,7 @@ window.glclResults = [
     },
     {
         "pos": 273,
-        "bib": "0",
+        "bib": "6043",
         "name": "Chris DAVIES",
         "age": 0,
         "sex": "M",
@@ -11510,7 +11510,7 @@ window.glclResults = [
     },
     {
         "pos": 274,
-        "bib": "0",
+        "bib": "5094",
         "name": "Keith DAVIES",
         "age": 0,
         "sex": "M",
@@ -11531,7 +11531,7 @@ window.glclResults = [
     },
     {
         "pos": 275,
-        "bib": "0",
+        "bib": "2041",
         "name": "Bridget DAVIES",
         "age": 0,
         "sex": "F",
@@ -11552,7 +11552,7 @@ window.glclResults = [
     },
     {
         "pos": 276,
-        "bib": "0",
+        "bib": "1334",
         "name": "Gulesh KUMAR",
         "age": 0,
         "sex": "M",
@@ -11573,7 +11573,7 @@ window.glclResults = [
     },
     {
         "pos": 277,
-        "bib": "0",
+        "bib": "6009",
         "name": "Edward BENTLEY",
         "age": 0,
         "sex": "M",
@@ -11594,7 +11594,7 @@ window.glclResults = [
     },
     {
         "pos": 278,
-        "bib": "0",
+        "bib": "6038",
         "name": "Martin CROUCHER",
         "age": 0,
         "sex": "M",
@@ -11615,7 +11615,7 @@ window.glclResults = [
     },
     {
         "pos": 279,
-        "bib": "0",
+        "bib": "5169",
         "name": "Craig WARD",
         "age": 0,
         "sex": "M",
@@ -11636,7 +11636,7 @@ window.glclResults = [
     },
     {
         "pos": 280,
-        "bib": "0",
+        "bib": "1452",
         "name": "Rachel DOREL",
         "age": 0,
         "sex": "F",
@@ -11657,7 +11657,7 @@ window.glclResults = [
     },
     {
         "pos": 281,
-        "bib": "0",
+        "bib": "4095",
         "name": "Dallyn SHAW",
         "age": 0,
         "sex": "F",
@@ -11678,7 +11678,7 @@ window.glclResults = [
     },
     {
         "pos": 282,
-        "bib": "0",
+        "bib": "8123",
         "name": "Roxy ZYM",
         "age": 0,
         "sex": "F",
@@ -11699,7 +11699,7 @@ window.glclResults = [
     },
     {
         "pos": 283,
-        "bib": "0",
+        "bib": "6100",
         "name": "Iona JONES",
         "age": 0,
         "sex": "F",
@@ -11720,7 +11720,7 @@ window.glclResults = [
     },
     {
         "pos": 284,
-        "bib": "0",
+        "bib": "1072",
         "name": "James REYNOLDS",
         "age": 0,
         "sex": "M",
@@ -11741,7 +11741,7 @@ window.glclResults = [
     },
     {
         "pos": 285,
-        "bib": "0",
+        "bib": "8117",
         "name": "Cyril WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -11762,7 +11762,7 @@ window.glclResults = [
     },
     {
         "pos": 286,
-        "bib": "0",
+        "bib": "1015",
         "name": "Antony DERRICK",
         "age": 0,
         "sex": "M",
@@ -11783,7 +11783,7 @@ window.glclResults = [
     },
     {
         "pos": 287,
-        "bib": "0",
+        "bib": "5155",
         "name": "Andrew PRICE-STEPHENS",
         "age": 0,
         "sex": "M",
@@ -11804,7 +11804,7 @@ window.glclResults = [
     },
     {
         "pos": 288,
-        "bib": "0",
+        "bib": "4069",
         "name": "Shane MATTHEWS",
         "age": 0,
         "sex": "M",
@@ -11825,7 +11825,7 @@ window.glclResults = [
     },
     {
         "pos": 289,
-        "bib": "0",
+        "bib": "6121",
         "name": "Louise MUTEHAM",
         "age": 0,
         "sex": "F",
@@ -11846,7 +11846,7 @@ window.glclResults = [
     },
     {
         "pos": 290,
-        "bib": "0",
+        "bib": "4071",
         "name": "Jennifer MCPADDEN",
         "age": 0,
         "sex": "F",
@@ -11867,7 +11867,7 @@ window.glclResults = [
     },
     {
         "pos": 291,
-        "bib": "0",
+        "bib": "1377",
         "name": "Philip HAWKINS",
         "age": 0,
         "sex": "M",
@@ -11888,7 +11888,7 @@ window.glclResults = [
     },
     {
         "pos": 292,
-        "bib": "0",
+        "bib": "5113",
         "name": "Kevin HARLEY",
         "age": 0,
         "sex": "M",
@@ -11909,7 +11909,7 @@ window.glclResults = [
     },
     {
         "pos": 293,
-        "bib": "0",
+        "bib": "9024",
         "name": "Michele DEAL",
         "age": 0,
         "sex": "F",
@@ -11930,7 +11930,7 @@ window.glclResults = [
     },
     {
         "pos": 294,
-        "bib": "0",
+        "bib": "2068",
         "name": "Paul GRIFFITHS",
         "age": 0,
         "sex": "M",
@@ -11951,7 +11951,7 @@ window.glclResults = [
     },
     {
         "pos": 295,
-        "bib": "0",
+        "bib": "4075",
         "name": "Mikiko MINTY",
         "age": 0,
         "sex": "F",
@@ -11972,7 +11972,7 @@ window.glclResults = [
     },
     {
         "pos": 296,
-        "bib": "0",
+        "bib": "2032",
         "name": "John COBBE",
         "age": 0,
         "sex": "M",
@@ -11993,7 +11993,7 @@ window.glclResults = [
     },
     {
         "pos": 297,
-        "bib": "0",
+        "bib": "2049",
         "name": "Lowri DUFFIELD",
         "age": 0,
         "sex": "F",
@@ -12014,7 +12014,7 @@ window.glclResults = [
     },
     {
         "pos": 298,
-        "bib": "0",
+        "bib": "2040",
         "name": "Jen DANGER HARDING",
         "age": 0,
         "sex": "F",
@@ -12035,7 +12035,7 @@ window.glclResults = [
     },
     {
         "pos": 299,
-        "bib": "0",
+        "bib": "5159",
         "name": "Peter SIMPSON",
         "age": 0,
         "sex": "M",
@@ -12056,7 +12056,7 @@ window.glclResults = [
     },
     {
         "pos": 300,
-        "bib": "0",
+        "bib": "9013",
         "name": "Nicola BRUNNOCK",
         "age": 0,
         "sex": "F",
@@ -12077,7 +12077,7 @@ window.glclResults = [
     },
     {
         "pos": 301,
-        "bib": "0",
+        "bib": "7017",
         "name": "Helen SHEPHERD",
         "age": 0,
         "sex": "F",
@@ -12098,7 +12098,7 @@ window.glclResults = [
     },
     {
         "pos": 302,
-        "bib": "0",
+        "bib": "4113",
         "name": "Peter WELBIRG",
         "age": 0,
         "sex": "M",
@@ -12119,7 +12119,7 @@ window.glclResults = [
     },
     {
         "pos": 303,
-        "bib": "0",
+        "bib": "7006",
         "name": "Rachel WATERS",
         "age": 0,
         "sex": "F",
@@ -12140,7 +12140,7 @@ window.glclResults = [
     },
     {
         "pos": 304,
-        "bib": "0",
+        "bib": "1483",
         "name": "Louise BRIGHT",
         "age": 0,
         "sex": "F",
@@ -12161,7 +12161,7 @@ window.glclResults = [
     },
     {
         "pos": 305,
-        "bib": "0",
+        "bib": "7057",
         "name": "Robin MACINTOSH",
         "age": 0,
         "sex": "M",
@@ -12182,7 +12182,7 @@ window.glclResults = [
     },
     {
         "pos": 306,
-        "bib": "0",
+        "bib": "1018",
         "name": "Meghan BRICKLEY",
         "age": 0,
         "sex": "F",
@@ -12203,7 +12203,7 @@ window.glclResults = [
     },
     {
         "pos": 307,
-        "bib": "0",
+        "bib": "4120",
         "name": "Olivia WOODHOUSE",
         "age": 0,
         "sex": "F",
@@ -12224,7 +12224,7 @@ window.glclResults = [
     },
     {
         "pos": 308,
-        "bib": "0",
+        "bib": "5088",
         "name": "Martin BUSSELL",
         "age": 0,
         "sex": "M",
@@ -12245,7 +12245,7 @@ window.glclResults = [
     },
     {
         "pos": 309,
-        "bib": "0",
+        "bib": "2071",
         "name": "Mia HAEFFNER",
         "age": 0,
         "sex": "F",
@@ -12266,7 +12266,7 @@ window.glclResults = [
     },
     {
         "pos": 310,
-        "bib": "0",
+        "bib": "2070",
         "name": "Eve HAEFFNER",
         "age": 0,
         "sex": "F",
@@ -12287,7 +12287,7 @@ window.glclResults = [
     },
     {
         "pos": 311,
-        "bib": "0",
+        "bib": "2095",
         "name": "Barbara MADDISON",
         "age": 0,
         "sex": "F",
@@ -12308,7 +12308,7 @@ window.glclResults = [
     },
     {
         "pos": 312,
-        "bib": "0",
+        "bib": "2051",
         "name": "Stuart DUNCAN",
         "age": 0,
         "sex": "M",
@@ -12329,7 +12329,7 @@ window.glclResults = [
     },
     {
         "pos": 313,
-        "bib": "0",
+        "bib": "1007",
         "name": "Michelle CLABON",
         "age": 0,
         "sex": "F",
@@ -12350,7 +12350,7 @@ window.glclResults = [
     },
     {
         "pos": 314,
-        "bib": "0",
+        "bib": "6005",
         "name": "Howard ATTWOOD",
         "age": 0,
         "sex": "M",
@@ -12371,7 +12371,7 @@ window.glclResults = [
     },
     {
         "pos": 315,
-        "bib": "0",
+        "bib": "9089",
         "name": "Toby WALES",
         "age": 0,
         "sex": "M",
@@ -12392,7 +12392,7 @@ window.glclResults = [
     },
     {
         "pos": 316,
-        "bib": "0",
+        "bib": "2115",
         "name": "Amanda RAMSHAW",
         "age": 0,
         "sex": "F",
@@ -12413,7 +12413,7 @@ window.glclResults = [
     },
     {
         "pos": 317,
-        "bib": "0",
+        "bib": "8029",
         "name": "Clair EDWARDS",
         "age": 0,
         "sex": "F",
@@ -12434,7 +12434,7 @@ window.glclResults = [
     },
     {
         "pos": 318,
-        "bib": "0",
+        "bib": "5161",
         "name": "Matthew TAYLOUR",
         "age": 0,
         "sex": "M",
@@ -12455,7 +12455,7 @@ window.glclResults = [
     },
     {
         "pos": 319,
-        "bib": "0",
+        "bib": "5022",
         "name": "Kelly HALL",
         "age": 0,
         "sex": "F",
@@ -12476,7 +12476,7 @@ window.glclResults = [
     },
     {
         "pos": 320,
-        "bib": "0",
+        "bib": "8046",
         "name": "Emily-Mae HERRING",
         "age": 0,
         "sex": "F",
@@ -12497,7 +12497,7 @@ window.glclResults = [
     },
     {
         "pos": 321,
-        "bib": "0",
+        "bib": "5064",
         "name": "Louise SADDLER",
         "age": 0,
         "sex": "F",
@@ -12518,7 +12518,7 @@ window.glclResults = [
     },
     {
         "pos": 322,
-        "bib": "0",
+        "bib": "1339",
         "name": "Charlotte MELLOR",
         "age": 0,
         "sex": "F",
@@ -12539,7 +12539,7 @@ window.glclResults = [
     },
     {
         "pos": 323,
-        "bib": "0",
+        "bib": "8087",
         "name": "Laura PINNEY",
         "age": 0,
         "sex": "F",
@@ -12560,7 +12560,7 @@ window.glclResults = [
     },
     {
         "pos": 324,
-        "bib": "0",
+        "bib": "6064",
         "name": "Nigel FOULKES-NOCK",
         "age": 0,
         "sex": "M",
@@ -12581,7 +12581,7 @@ window.glclResults = [
     },
     {
         "pos": 325,
-        "bib": "0",
+        "bib": "3031",
         "name": "Martyn JENKINS",
         "age": 0,
         "sex": "M",
@@ -12602,7 +12602,7 @@ window.glclResults = [
     },
     {
         "pos": 326,
-        "bib": "0",
+        "bib": "3018",
         "name": "Stuart FOWLER",
         "age": 0,
         "sex": "M",
@@ -12623,7 +12623,7 @@ window.glclResults = [
     },
     {
         "pos": 327,
-        "bib": "0",
+        "bib": "2044",
         "name": "Alan DOBBS",
         "age": 0,
         "sex": "M",
@@ -12644,7 +12644,7 @@ window.glclResults = [
     },
     {
         "pos": 328,
-        "bib": "0",
+        "bib": "7001",
         "name": "Chris BABER",
         "age": 0,
         "sex": "M",
@@ -12665,7 +12665,7 @@ window.glclResults = [
     },
     {
         "pos": 329,
-        "bib": "0",
+        "bib": "9010",
         "name": "Katherine BLACK",
         "age": 0,
         "sex": "F",
@@ -12686,7 +12686,7 @@ window.glclResults = [
     },
     {
         "pos": 330,
-        "bib": "0",
+        "bib": "5012",
         "name": "Rebecca DAVIES",
         "age": 0,
         "sex": "F",
@@ -12707,7 +12707,7 @@ window.glclResults = [
     },
     {
         "pos": 331,
-        "bib": "0",
+        "bib": "6108",
         "name": "Gemma KINGSTON",
         "age": 0,
         "sex": "F",
@@ -12728,7 +12728,7 @@ window.glclResults = [
     },
     {
         "pos": 332,
-        "bib": "0",
+        "bib": "5100",
         "name": "Mark DUDDRIDGE",
         "age": 0,
         "sex": "M",
@@ -12749,7 +12749,7 @@ window.glclResults = [
     },
     {
         "pos": 333,
-        "bib": "0",
+        "bib": "1040",
         "name": "Clare JEFFRIES",
         "age": 0,
         "sex": "F",
@@ -12770,7 +12770,7 @@ window.glclResults = [
     },
     {
         "pos": 334,
-        "bib": "0",
+        "bib": "2050",
         "name": "Christelle DUMOND",
         "age": 0,
         "sex": "F",
@@ -12791,7 +12791,7 @@ window.glclResults = [
     },
     {
         "pos": 335,
-        "bib": "0",
+        "bib": "6115",
         "name": "Ian MACRORY",
         "age": 0,
         "sex": "M",
@@ -12812,7 +12812,7 @@ window.glclResults = [
     },
     {
         "pos": 336,
-        "bib": "0",
+        "bib": "6120",
         "name": "James MOSELEY",
         "age": 0,
         "sex": "M",
@@ -12833,7 +12833,7 @@ window.glclResults = [
     },
     {
         "pos": 337,
-        "bib": "0",
+        "bib": "5179",
         "name": "Luke PERROTT",
         "age": 0,
         "sex": "M",
@@ -12854,7 +12854,7 @@ window.glclResults = [
     },
     {
         "pos": 338,
-        "bib": "0",
+        "bib": "5108",
         "name": "Keston GRIFFITHS",
         "age": 0,
         "sex": "M",
@@ -12875,7 +12875,7 @@ window.glclResults = [
     },
     {
         "pos": 339,
-        "bib": "0",
+        "bib": "8085",
         "name": "Daniel PEARCE",
         "age": 0,
         "sex": "M",
@@ -12896,7 +12896,7 @@ window.glclResults = [
     },
     {
         "pos": 340,
-        "bib": "0",
+        "bib": "8114",
         "name": "Kathryn WILES",
         "age": 0,
         "sex": "F",
@@ -12917,7 +12917,7 @@ window.glclResults = [
     },
     {
         "pos": 341,
-        "bib": "0",
+        "bib": "1075",
         "name": "Peter ROWLANDS",
         "age": 0,
         "sex": "M",
@@ -12938,7 +12938,7 @@ window.glclResults = [
     },
     {
         "pos": 342,
-        "bib": "0",
+        "bib": "4080",
         "name": "Barrie PARHAM",
         "age": 0,
         "sex": "M",
@@ -12959,7 +12959,7 @@ window.glclResults = [
     },
     {
         "pos": 343,
-        "bib": "0",
+        "bib": "6049",
         "name": "Paul DAY",
         "age": 0,
         "sex": "M",
@@ -12980,7 +12980,7 @@ window.glclResults = [
     },
     {
         "pos": 344,
-        "bib": "0",
+        "bib": "1450",
         "name": "Sue COTTRELL",
         "age": 0,
         "sex": "F",
@@ -13001,7 +13001,7 @@ window.glclResults = [
     },
     {
         "pos": 345,
-        "bib": "0",
+        "bib": "1023",
         "name": "Nicholas FRY",
         "age": 0,
         "sex": "M",
@@ -13022,7 +13022,7 @@ window.glclResults = [
     },
     {
         "pos": 346,
-        "bib": "0",
+        "bib": "5019",
         "name": "Julie GOULD",
         "age": 0,
         "sex": "F",
@@ -13043,7 +13043,7 @@ window.glclResults = [
     },
     {
         "pos": 347,
-        "bib": "0",
+        "bib": "1092",
         "name": "Grahame VINER",
         "age": 0,
         "sex": "M",
@@ -13064,7 +13064,7 @@ window.glclResults = [
     },
     {
         "pos": 348,
-        "bib": "0",
+        "bib": "9076",
         "name": "Mandy ROBINSON",
         "age": 0,
         "sex": "F",
@@ -13085,7 +13085,7 @@ window.glclResults = [
     },
     {
         "pos": 349,
-        "bib": "0",
+        "bib": "1449",
         "name": "Kathryn COLLINS",
         "age": 0,
         "sex": "F",
@@ -13106,7 +13106,7 @@ window.glclResults = [
     },
     {
         "pos": 350,
-        "bib": "0",
+        "bib": "2013",
         "name": "Jenni BELL",
         "age": 0,
         "sex": "F",
@@ -13127,7 +13127,7 @@ window.glclResults = [
     },
     {
         "pos": 351,
-        "bib": "0",
+        "bib": "4042",
         "name": "Samantha HANCOX",
         "age": 0,
         "sex": "F",
@@ -13148,7 +13148,7 @@ window.glclResults = [
     },
     {
         "pos": 352,
-        "bib": "0",
+        "bib": "4016",
         "name": "Robert CLAYTON",
         "age": 0,
         "sex": "M",
@@ -13169,7 +13169,7 @@ window.glclResults = [
     },
     {
         "pos": 353,
-        "bib": "0",
+        "bib": "1002",
         "name": "Debbie ANDREW",
         "age": 0,
         "sex": "F",
@@ -13190,7 +13190,7 @@ window.glclResults = [
     },
     {
         "pos": 354,
-        "bib": "0",
+        "bib": "1311",
         "name": "Andrew HILLIS",
         "age": 0,
         "sex": "M",
@@ -13211,7 +13211,7 @@ window.glclResults = [
     },
     {
         "pos": 355,
-        "bib": "0",
+        "bib": "2145",
         "name": "Sian GRIFFITH",
         "age": 0,
         "sex": "F",
@@ -13232,7 +13232,7 @@ window.glclResults = [
     },
     {
         "pos": 356,
-        "bib": "0",
+        "bib": "6040",
         "name": "Jacqueline DAVIDGE",
         "age": 0,
         "sex": "F",
@@ -13253,7 +13253,7 @@ window.glclResults = [
     },
     {
         "pos": 357,
-        "bib": "0",
+        "bib": "5079",
         "name": "Karen WOODSFORD",
         "age": 0,
         "sex": "F",
@@ -13274,7 +13274,7 @@ window.glclResults = [
     },
     {
         "pos": 358,
-        "bib": "0",
+        "bib": "6065",
         "name": "Dirkje FRASER",
         "age": 0,
         "sex": "F",
@@ -13295,7 +13295,7 @@ window.glclResults = [
     },
     {
         "pos": 359,
-        "bib": "0",
+        "bib": "2035",
         "name": "Lindsey COODE",
         "age": 0,
         "sex": "F",
@@ -13316,7 +13316,7 @@ window.glclResults = [
     },
     {
         "pos": 360,
-        "bib": "0",
+        "bib": "5059",
         "name": "Hilary PREECE",
         "age": 0,
         "sex": "F",
@@ -13337,7 +13337,7 @@ window.glclResults = [
     },
     {
         "pos": 361,
-        "bib": "0",
+        "bib": "3051",
         "name": "Julie ROCHE",
         "age": 0,
         "sex": "F",
@@ -13358,7 +13358,7 @@ window.glclResults = [
     },
     {
         "pos": 362,
-        "bib": "0",
+        "bib": "5104",
         "name": "Gerald EVANS",
         "age": 0,
         "sex": "M",
@@ -13379,7 +13379,7 @@ window.glclResults = [
     },
     {
         "pos": 363,
-        "bib": "0",
+        "bib": "5053",
         "name": "Joanne PAINE",
         "age": 0,
         "sex": "F",
@@ -13400,7 +13400,7 @@ window.glclResults = [
     },
     {
         "pos": 364,
-        "bib": "0",
+        "bib": "6045",
         "name": "Dawn DAVIS",
         "age": 0,
         "sex": "F",
@@ -13421,7 +13421,7 @@ window.glclResults = [
     },
     {
         "pos": 365,
-        "bib": "0",
+        "bib": "5126",
         "name": "Evan JAMES",
         "age": 0,
         "sex": "M",
@@ -13442,7 +13442,7 @@ window.glclResults = [
     },
     {
         "pos": 366,
-        "bib": "0",
+        "bib": "3053",
         "name": "Stewart SEABORNE",
         "age": 0,
         "sex": "M",
@@ -13463,7 +13463,7 @@ window.glclResults = [
     },
     {
         "pos": 367,
-        "bib": "0",
+        "bib": "5007",
         "name": "Sheryl CLARK",
         "age": 0,
         "sex": "F",
@@ -13484,7 +13484,7 @@ window.glclResults = [
     },
     {
         "pos": 368,
-        "bib": "0",
+        "bib": "6122",
         "name": "Andrew NORTH",
         "age": 0,
         "sex": "M",
@@ -13505,7 +13505,7 @@ window.glclResults = [
     },
     {
         "pos": 369,
-        "bib": "0",
+        "bib": "5044",
         "name": "Katie LIPPIATT",
         "age": 0,
         "sex": "F",
@@ -13526,7 +13526,7 @@ window.glclResults = [
     },
     {
         "pos": 370,
-        "bib": "0",
+        "bib": "6046",
         "name": "Nigel DAVIS",
         "age": 0,
         "sex": "M",
@@ -13547,7 +13547,7 @@ window.glclResults = [
     },
     {
         "pos": 371,
-        "bib": "0",
+        "bib": "5107",
         "name": "Andrew GOULD",
         "age": 0,
         "sex": "M",
@@ -13568,7 +13568,7 @@ window.glclResults = [
     },
     {
         "pos": 372,
-        "bib": "0",
+        "bib": "4031",
         "name": "Stuart FRANCIS",
         "age": 0,
         "sex": "M",
@@ -13589,7 +13589,7 @@ window.glclResults = [
     },
     {
         "pos": 373,
-        "bib": "0",
+        "bib": "4092",
         "name": "Wayne RUDALL",
         "age": 0,
         "sex": "M",
@@ -13610,7 +13610,7 @@ window.glclResults = [
     },
     {
         "pos": 374,
-        "bib": "0",
+        "bib": "1081",
         "name": "Rachael STEPHENS",
         "age": 0,
         "sex": "F",
@@ -13631,7 +13631,7 @@ window.glclResults = [
     },
     {
         "pos": 375,
-        "bib": "0",
+        "bib": "3012",
         "name": "Cerris DAWE",
         "age": 0,
         "sex": "F",
@@ -13652,7 +13652,7 @@ window.glclResults = [
     },
     {
         "pos": 376,
-        "bib": "0",
+        "bib": "5052",
         "name": "Catherine NORRIS",
         "age": 0,
         "sex": "F",
@@ -13673,7 +13673,7 @@ window.glclResults = [
     },
     {
         "pos": 377,
-        "bib": "0",
+        "bib": "5033",
         "name": "Stefanie JAMES",
         "age": 0,
         "sex": "F",
@@ -13694,7 +13694,7 @@ window.glclResults = [
     },
     {
         "pos": 378,
-        "bib": "0",
+        "bib": "3002",
         "name": "Emma BAGLEY",
         "age": 0,
         "sex": "F",
@@ -13715,7 +13715,7 @@ window.glclResults = [
     },
     {
         "pos": 379,
-        "bib": "0",
+        "bib": "6034",
         "name": "Jordan COOK",
         "age": 0,
         "sex": "M",
@@ -13736,7 +13736,7 @@ window.glclResults = [
     },
     {
         "pos": 380,
-        "bib": "0",
+        "bib": "9071",
         "name": "Catherine PRICE",
         "age": 0,
         "sex": "F",
@@ -13757,7 +13757,7 @@ window.glclResults = [
     },
     {
         "pos": 381,
-        "bib": "0",
+        "bib": "5069",
         "name": "Sarah TUCKER",
         "age": 0,
         "sex": "F",
@@ -13778,7 +13778,7 @@ window.glclResults = [
     },
     {
         "pos": 382,
-        "bib": "0",
+        "bib": "3006",
         "name": "Tia BARTER",
         "age": 0,
         "sex": "F",
@@ -13799,7 +13799,7 @@ window.glclResults = [
     },
     {
         "pos": 383,
-        "bib": "0",
+        "bib": "9033",
         "name": "Paul GRAINGER JONES",
         "age": 0,
         "sex": "M",
@@ -13820,7 +13820,7 @@ window.glclResults = [
     },
     {
         "pos": 384,
-        "bib": "0",
+        "bib": "9034",
         "name": "Kyle GREENHALF",
         "age": 0,
         "sex": "M",
@@ -13841,7 +13841,7 @@ window.glclResults = [
     },
     {
         "pos": 385,
-        "bib": "0",
+        "bib": "2147",
         "name": "Angela BARNETT",
         "age": 0,
         "sex": "F",
@@ -13862,7 +13862,7 @@ window.glclResults = [
     },
     {
         "pos": 386,
-        "bib": "0",
+        "bib": "1051",
         "name": "Edward McDAID",
         "age": 0,
         "sex": "M",
@@ -13883,7 +13883,7 @@ window.glclResults = [
     },
     {
         "pos": 387,
-        "bib": "0",
+        "bib": "1012",
         "name": "Hattie JENKINS",
         "age": 0,
         "sex": "F",
@@ -13904,7 +13904,7 @@ window.glclResults = [
     },
     {
         "pos": 388,
-        "bib": "0",
+        "bib": "5056",
         "name": "Nicola PATERSON",
         "age": 0,
         "sex": "F",
@@ -13925,7 +13925,7 @@ window.glclResults = [
     },
     {
         "pos": 389,
-        "bib": "0",
+        "bib": "5150",
         "name": "Neill PARKER",
         "age": 0,
         "sex": "M",
@@ -13946,7 +13946,7 @@ window.glclResults = [
     },
     {
         "pos": 390,
-        "bib": "0",
+        "bib": "4079",
         "name": "Joanne PALING",
         "age": 0,
         "sex": "F",
@@ -13967,7 +13967,7 @@ window.glclResults = [
     },
     {
         "pos": 391,
-        "bib": "0",
+        "bib": "8098",
         "name": "Jayne RIST",
         "age": 0,
         "sex": "F",
@@ -13988,7 +13988,7 @@ window.glclResults = [
     },
     {
         "pos": 392,
-        "bib": "0",
+        "bib": "3007",
         "name": "Richard BOWIE",
         "age": 0,
         "sex": "M",
@@ -14009,7 +14009,7 @@ window.glclResults = [
     },
     {
         "pos": 393,
-        "bib": "0",
+        "bib": "3070",
         "name": "Glyn WORTH",
         "age": 0,
         "sex": "M",
@@ -14030,7 +14030,7 @@ window.glclResults = [
     },
     {
         "pos": 394,
-        "bib": "0",
+        "bib": "4039",
         "name": "Jake HANCOX",
         "age": 0,
         "sex": "M",
@@ -14051,7 +14051,7 @@ window.glclResults = [
     },
     {
         "pos": 395,
-        "bib": "0",
+        "bib": "5128",
         "name": "Simon JOHNSON",
         "age": 0,
         "sex": "M",
@@ -14072,7 +14072,7 @@ window.glclResults = [
     },
     {
         "pos": 396,
-        "bib": "0",
+        "bib": "4041",
         "name": "Paul HANCOX",
         "age": 0,
         "sex": "M",
@@ -14093,7 +14093,7 @@ window.glclResults = [
     },
     {
         "pos": 397,
-        "bib": "0",
+        "bib": "6029",
         "name": "Neil CHIPPER",
         "age": 0,
         "sex": "M",
@@ -14114,7 +14114,7 @@ window.glclResults = [
     },
     {
         "pos": 398,
-        "bib": "0",
+        "bib": "1085",
         "name": "Michael TASKER",
         "age": 0,
         "sex": "M",
@@ -14135,7 +14135,7 @@ window.glclResults = [
     },
     {
         "pos": 399,
-        "bib": "0",
+        "bib": "5077",
         "name": "Bethan WILLIAMS",
         "age": 0,
         "sex": "F",
@@ -14156,7 +14156,7 @@ window.glclResults = [
     },
     {
         "pos": 400,
-        "bib": "0",
+        "bib": "5078",
         "name": "Jessica WILLIAMS",
         "age": 0,
         "sex": "F",
@@ -14177,7 +14177,7 @@ window.glclResults = [
     },
     {
         "pos": 401,
-        "bib": "0",
+        "bib": "7011",
         "name": "Sian BURNS",
         "age": 0,
         "sex": "F",
@@ -14198,7 +14198,7 @@ window.glclResults = [
     },
     {
         "pos": 402,
-        "bib": "0",
+        "bib": "8003",
         "name": "Michelle BATES",
         "age": 0,
         "sex": "F",
@@ -14219,7 +14219,7 @@ window.glclResults = [
     },
     {
         "pos": 403,
-        "bib": "0",
+        "bib": "6090",
         "name": "Trudy HURFORD",
         "age": 0,
         "sex": "F",
@@ -14240,7 +14240,7 @@ window.glclResults = [
     },
     {
         "pos": 404,
-        "bib": "0",
+        "bib": "9058",
         "name": "Wendy MORGAN",
         "age": 0,
         "sex": "F",
@@ -14261,7 +14261,7 @@ window.glclResults = [
     },
     {
         "pos": 405,
-        "bib": "0",
+        "bib": "8002",
         "name": "Rhoslyn BAKER",
         "age": 0,
         "sex": "F",
@@ -14282,7 +14282,7 @@ window.glclResults = [
     },
     {
         "pos": 406,
-        "bib": "0",
+        "bib": "2056",
         "name": "Mike EVANS",
         "age": 0,
         "sex": "M",
@@ -14303,7 +14303,7 @@ window.glclResults = [
     },
     {
         "pos": 407,
-        "bib": "0",
+        "bib": "3059",
         "name": "Nyree TEMBY",
         "age": 0,
         "sex": "F",
@@ -14324,7 +14324,7 @@ window.glclResults = [
     },
     {
         "pos": 408,
-        "bib": "0",
+        "bib": "5093",
         "name": "Craig DAVIES",
         "age": 0,
         "sex": "M",
@@ -14345,7 +14345,7 @@ window.glclResults = [
     },
     {
         "pos": 409,
-        "bib": "0",
+        "bib": "1016",
         "name": "Jane DERRICK",
         "age": 0,
         "sex": "F",
@@ -14366,7 +14366,7 @@ window.glclResults = [
     },
     {
         "pos": 410,
-        "bib": "0",
+        "bib": "1025",
         "name": "Incy GIBSON",
         "age": 0,
         "sex": "F",
@@ -14387,7 +14387,7 @@ window.glclResults = [
     },
     {
         "pos": 411,
-        "bib": "0",
+        "bib": "6057",
         "name": "Maria ENGLISH",
         "age": 0,
         "sex": "F",
@@ -14408,7 +14408,7 @@ window.glclResults = [
     },
     {
         "pos": 412,
-        "bib": "0",
+        "bib": "5001",
         "name": "Clare BARRETT",
         "age": 0,
         "sex": "F",
@@ -14429,7 +14429,7 @@ window.glclResults = [
     },
     {
         "pos": 413,
-        "bib": "0",
+        "bib": "1351",
         "name": "Sharron BURRIDGE",
         "age": 0,
         "sex": "F",
@@ -14450,7 +14450,7 @@ window.glclResults = [
     },
     {
         "pos": 414,
-        "bib": "0",
+        "bib": "9036",
         "name": "Eigen HALPIN",
         "age": 0,
         "sex": "F",
@@ -14471,7 +14471,7 @@ window.glclResults = [
     },
     {
         "pos": 415,
-        "bib": "0",
+        "bib": "1005",
         "name": "Rebecca BUCHANAN",
         "age": 0,
         "sex": "F",
@@ -14492,7 +14492,7 @@ window.glclResults = [
     },
     {
         "pos": 416,
-        "bib": "0",
+        "bib": "3028",
         "name": "Jessica HENRY",
         "age": 0,
         "sex": "F",
@@ -14513,7 +14513,7 @@ window.glclResults = [
     },
     {
         "pos": 417,
-        "bib": "0",
+        "bib": "3011",
         "name": "Alison DAVIS",
         "age": 0,
         "sex": "F",
@@ -14534,7 +14534,7 @@ window.glclResults = [
     },
     {
         "pos": 418,
-        "bib": "0",
+        "bib": "9082",
         "name": "Robert SOUTHGATE",
         "age": 0,
         "sex": "M",
@@ -14555,7 +14555,7 @@ window.glclResults = [
     },
     {
         "pos": 419,
-        "bib": "0",
+        "bib": "6141",
         "name": "Alison SHEEDY",
         "age": 0,
         "sex": "F",
@@ -14576,7 +14576,7 @@ window.glclResults = [
     },
     {
         "pos": 420,
-        "bib": "0",
+        "bib": "7043",
         "name": "Alison McMENEMY",
         "age": 0,
         "sex": "F",
@@ -14597,7 +14597,7 @@ window.glclResults = [
     },
     {
         "pos": 421,
-        "bib": "0",
+        "bib": "7044",
         "name": "Stephen McMENEMY",
         "age": 0,
         "sex": "M",
@@ -14618,7 +14618,7 @@ window.glclResults = [
     },
     {
         "pos": 422,
-        "bib": "0",
+        "bib": "1341",
         "name": "Jaye PRICE",
         "age": 0,
         "sex": "F",
@@ -14639,7 +14639,7 @@ window.glclResults = [
     },
     {
         "pos": 423,
-        "bib": "0",
+        "bib": "1014",
         "name": "Sian DENMAN",
         "age": 0,
         "sex": "F",
@@ -14660,7 +14660,7 @@ window.glclResults = [
     },
     {
         "pos": 424,
-        "bib": "0",
+        "bib": "4078",
         "name": "Hayley NOWELL",
         "age": 0,
         "sex": "F",
@@ -14681,7 +14681,7 @@ window.glclResults = [
     },
     {
         "pos": 425,
-        "bib": "0",
+        "bib": "1019",
         "name": "Caroline DUNN",
         "age": 0,
         "sex": "F",
@@ -14702,7 +14702,7 @@ window.glclResults = [
     },
     {
         "pos": 426,
-        "bib": "0",
+        "bib": "5063",
         "name": "Pat RICHARDSON",
         "age": 0,
         "sex": "F",
@@ -14723,7 +14723,7 @@ window.glclResults = [
     },
     {
         "pos": 427,
-        "bib": "0",
+        "bib": "4077",
         "name": "Nicola NEEDS",
         "age": 0,
         "sex": "F",
@@ -14744,7 +14744,7 @@ window.glclResults = [
     },
     {
         "pos": 428,
-        "bib": "0",
+        "bib": "6093",
         "name": "Michelle JOHNSTON",
         "age": 0,
         "sex": "F",
@@ -14765,7 +14765,7 @@ window.glclResults = [
     },
     {
         "pos": 429,
-        "bib": "0",
+        "bib": "6088",
         "name": "Eleanor HOWELL",
         "age": 0,
         "sex": "F",
@@ -14786,7 +14786,7 @@ window.glclResults = [
     },
     {
         "pos": 430,
-        "bib": "0",
+        "bib": "5018",
         "name": "Cheryl FRANCIS",
         "age": 0,
         "sex": "F",
@@ -14807,7 +14807,7 @@ window.glclResults = [
     },
     {
         "pos": 431,
-        "bib": "0",
+        "bib": "2002",
         "name": "Dave ANDREWS",
         "age": 0,
         "sex": "M",
@@ -14828,7 +14828,7 @@ window.glclResults = [
     },
     {
         "pos": 432,
-        "bib": "0",
+        "bib": "2053",
         "name": "Gill ELLIS",
         "age": 0,
         "sex": "F",
@@ -14849,7 +14849,7 @@ window.glclResults = [
     },
     {
         "pos": 433,
-        "bib": "0",
+        "bib": "4126",
         "name": "Grace WILLIAMS",
         "age": 0,
         "sex": "F",
@@ -14870,7 +14870,7 @@ window.glclResults = [
     },
     {
         "pos": 434,
-        "bib": "0",
+        "bib": "1095",
         "name": "Karys WALSH",
         "age": 0,
         "sex": "F",
@@ -14891,7 +14891,7 @@ window.glclResults = [
     },
     {
         "pos": 435,
-        "bib": "0",
+        "bib": "5025",
         "name": "Lisa HAYWARD",
         "age": 0,
         "sex": "F",
@@ -14912,7 +14912,7 @@ window.glclResults = [
     },
     {
         "pos": 436,
-        "bib": "0",
+        "bib": "1077",
         "name": "Katy SHOESMITH",
         "age": 0,
         "sex": "F",
@@ -14933,7 +14933,7 @@ window.glclResults = [
     },
     {
         "pos": 437,
-        "bib": "0",
+        "bib": "4040",
         "name": "Nikki HANCOX",
         "age": 0,
         "sex": "F",
@@ -14954,7 +14954,7 @@ window.glclResults = [
     },
     {
         "pos": 438,
-        "bib": "0",
+        "bib": "7028",
         "name": "Maixent GAILLARD",
         "age": 0,
         "sex": "M",
@@ -14975,7 +14975,7 @@ window.glclResults = [
     },
     {
         "pos": 439,
-        "bib": "0",
+        "bib": "7042",
         "name": "Laura McLOUGHLIN",
         "age": 0,
         "sex": "F",
@@ -14996,7 +14996,7 @@ window.glclResults = [
     },
     {
         "pos": 440,
-        "bib": "0",
+        "bib": "6077",
         "name": "Lowri HAWROT",
         "age": 0,
         "sex": "F",
@@ -15017,7 +15017,7 @@ window.glclResults = [
     },
     {
         "pos": 441,
-        "bib": "0",
+        "bib": "6031",
         "name": "Paula CHURCH",
         "age": 0,
         "sex": "F",
@@ -15038,7 +15038,7 @@ window.glclResults = [
     },
     {
         "pos": 442,
-        "bib": "0",
+        "bib": "6170",
         "name": "Tim WRIGHT",
         "age": 0,
         "sex": "M",
@@ -15059,7 +15059,7 @@ window.glclResults = [
     },
     {
         "pos": 443,
-        "bib": "0",
+        "bib": "2005",
         "name": "Brenda AVERY",
         "age": 0,
         "sex": "F",
@@ -15080,7 +15080,7 @@ window.glclResults = [
     },
     {
         "pos": 444,
-        "bib": "0",
+        "bib": "5029",
         "name": "Michelle HOCKADAY",
         "age": 0,
         "sex": "F",
@@ -15101,7 +15101,7 @@ window.glclResults = [
     },
     {
         "pos": 445,
-        "bib": "0",
+        "bib": "1309",
         "name": "Julie GEE",
         "age": 0,
         "sex": "F",
@@ -15122,7 +15122,7 @@ window.glclResults = [
     },
     {
         "pos": 446,
-        "bib": "0",
+        "bib": "7038",
         "name": "Fay VISSER",
         "age": 0,
         "sex": "F",
@@ -15143,7 +15143,7 @@ window.glclResults = [
     },
     {
         "pos": 447,
-        "bib": "0",
+        "bib": "5020",
         "name": "Rebecca GRIST",
         "age": 0,
         "sex": "F",
@@ -15164,7 +15164,7 @@ window.glclResults = [
     },
     {
         "pos": 448,
-        "bib": "0",
+        "bib": "3009",
         "name": "Helen BROWN",
         "age": 0,
         "sex": "F",
@@ -15185,7 +15185,7 @@ window.glclResults = [
     },
     {
         "pos": 449,
-        "bib": "0",
+        "bib": "4115",
         "name": "Anna WILKINSON",
         "age": 0,
         "sex": "F",
@@ -15206,7 +15206,7 @@ window.glclResults = [
     },
     {
         "pos": 450,
-        "bib": "0",
+        "bib": "4116",
         "name": "Isabelle WILKINSON",
         "age": 0,
         "sex": "F",
@@ -15227,7 +15227,7 @@ window.glclResults = [
     },
     {
         "pos": 451,
-        "bib": "0",
+        "bib": "8059",
         "name": "Sian JONES",
         "age": 0,
         "sex": "F",
@@ -15248,7 +15248,7 @@ window.glclResults = [
     },
     {
         "pos": 452,
-        "bib": "0",
+        "bib": "6054",
         "name": "Paul DURSLEY",
         "age": 0,
         "sex": "M",
@@ -15269,7 +15269,7 @@ window.glclResults = [
     },
     {
         "pos": 453,
-        "bib": "0",
+        "bib": "5032",
         "name": "Sian JAMES",
         "age": 0,
         "sex": "F",
@@ -15290,7 +15290,7 @@ window.glclResults = [
     },
     {
         "pos": 454,
-        "bib": "0",
+        "bib": "5121",
         "name": "Jake HOWE",
         "age": 0,
         "sex": "M",
@@ -15311,7 +15311,7 @@ window.glclResults = [
     },
     {
         "pos": 455,
-        "bib": "0",
+        "bib": "7046",
         "name": "Sara MOORE",
         "age": 0,
         "sex": "F",
@@ -15332,7 +15332,7 @@ window.glclResults = [
     },
     {
         "pos": 456,
-        "bib": "0",
+        "bib": "5047",
         "name": "Charlotte MARSHALL",
         "age": 0,
         "sex": "F",
@@ -15353,7 +15353,7 @@ window.glclResults = [
     },
     {
         "pos": 457,
-        "bib": "0",
+        "bib": "1053",
         "name": "Aisling MORGAN",
         "age": 0,
         "sex": "F",
@@ -15374,7 +15374,7 @@ window.glclResults = [
     },
     {
         "pos": 458,
-        "bib": "0",
+        "bib": "9050",
         "name": "Susan LAWRENCE",
         "age": 0,
         "sex": "F",
@@ -15395,7 +15395,7 @@ window.glclResults = [
     },
     {
         "pos": 459,
-        "bib": "0",
+        "bib": "6020",
         "name": "Bernard BUTLER",
         "age": 0,
         "sex": "M",
@@ -15416,7 +15416,7 @@ window.glclResults = [
     },
     {
         "pos": 460,
-        "bib": "0",
+        "bib": "5153",
         "name": "Gareth POWELL",
         "age": 0,
         "sex": "M",
@@ -15437,7 +15437,7 @@ window.glclResults = [
     },
     {
         "pos": 461,
-        "bib": "0",
+        "bib": "2132",
         "name": "Corinna TANNIAN",
         "age": 0,
         "sex": "F",
@@ -15458,7 +15458,7 @@ window.glclResults = [
     },
     {
         "pos": 462,
-        "bib": "0",
+        "bib": "5057",
         "name": "Zoe PHILLIPS",
         "age": 0,
         "sex": "F",
@@ -15479,7 +15479,7 @@ window.glclResults = [
     },
     {
         "pos": 463,
-        "bib": "0",
+        "bib": "1010",
         "name": "David DAVIES",
         "age": 0,
         "sex": "M",
@@ -15500,7 +15500,7 @@ window.glclResults = [
     },
     {
         "pos": 464,
-        "bib": "0",
+        "bib": "6148",
         "name": "Angela TAYLOR",
         "age": 0,
         "sex": "F",
@@ -15521,7 +15521,7 @@ window.glclResults = [
     },
     {
         "pos": 465,
-        "bib": "0",
+        "bib": "3026",
         "name": "Sheree HAMPTON",
         "age": 0,
         "sex": "F",
@@ -15542,7 +15542,7 @@ window.glclResults = [
     },
     {
         "pos": 466,
-        "bib": "0",
+        "bib": "2148",
         "name": "Louise PECKHAM",
         "age": 0,
         "sex": "F",
@@ -15563,7 +15563,7 @@ window.glclResults = [
     },
     {
         "pos": 467,
-        "bib": "0",
+        "bib": "5073",
         "name": "Rachael WATKINS",
         "age": 0,
         "sex": "F",
@@ -15584,7 +15584,7 @@ window.glclResults = [
     },
     {
         "pos": 468,
-        "bib": "0",
+        "bib": "5036",
         "name": "Louise JENKINS",
         "age": 0,
         "sex": "F",
@@ -15605,7 +15605,7 @@ window.glclResults = [
     },
     {
         "pos": 469,
-        "bib": "0",
+        "bib": "6010",
         "name": "Ceri BENTLEY",
         "age": 0,
         "sex": "F",
@@ -15626,7 +15626,7 @@ window.glclResults = [
     },
     {
         "pos": 470,
-        "bib": "0",
+        "bib": "9025",
         "name": "Imogen EDWARDS",
         "age": 0,
         "sex": "F",
@@ -15647,7 +15647,7 @@ window.glclResults = [
     },
     {
         "pos": 471,
-        "bib": "0",
+        "bib": "9015",
         "name": "Kayleigh CARTER",
         "age": 0,
         "sex": "F",
@@ -15668,7 +15668,7 @@ window.glclResults = [
     },
     {
         "pos": 472,
-        "bib": "0",
+        "bib": "9052",
         "name": "Susan LEWIS",
         "age": 0,
         "sex": "F",
@@ -15689,7 +15689,7 @@ window.glclResults = [
     },
     {
         "pos": 473,
-        "bib": "0",
+        "bib": "2028",
         "name": "Marie CARUSO-CLARIDGE",
         "age": 0,
         "sex": "F",
@@ -15710,7 +15710,7 @@ window.glclResults = [
     },
     {
         "pos": 474,
-        "bib": "0",
+        "bib": "2061",
         "name": "Charlotte GILES",
         "age": 0,
         "sex": "F",
@@ -15731,7 +15731,7 @@ window.glclResults = [
     },
     {
         "pos": 475,
-        "bib": "0",
+        "bib": "5139",
         "name": "William LEWIS",
         "age": 0,
         "sex": "M",
@@ -15752,7 +15752,7 @@ window.glclResults = [
     },
     {
         "pos": 476,
-        "bib": "0",
+        "bib": "1076",
         "name": "Amy SHEWARD",
         "age": 0,
         "sex": "F",
@@ -15773,7 +15773,7 @@ window.glclResults = [
     },
     {
         "pos": 477,
-        "bib": "0",
+        "bib": "1004",
         "name": "Pauline BECKETT",
         "age": 0,
         "sex": "F",
@@ -15794,7 +15794,7 @@ window.glclResults = [
     },
     {
         "pos": 478,
-        "bib": "0",
+        "bib": "5008",
         "name": "Danielle CLEVERLY",
         "age": 0,
         "sex": "F",
@@ -15836,7 +15836,7 @@ window.glclResults = [
     },
     {
         "pos": 480,
-        "bib": "0",
+        "bib": "5119",
         "name": "Stephen HOARE",
         "age": 0,
         "sex": "M",
@@ -15857,7 +15857,7 @@ window.glclResults = [
     },
     {
         "pos": 481,
-        "bib": "0",
+        "bib": "5178",
         "name": "Roy BEECHAM",
         "age": 0,
         "sex": "M",
@@ -15878,7 +15878,7 @@ window.glclResults = [
     },
     {
         "pos": 482,
-        "bib": "0",
+        "bib": "6119",
         "name": "Heather MORGAN",
         "age": 0,
         "sex": "F",
@@ -15899,7 +15899,7 @@ window.glclResults = [
     },
     {
         "pos": 483,
-        "bib": "0",
+        "bib": "5065",
         "name": "Lisa THOMAS",
         "age": 0,
         "sex": "F",
@@ -15920,7 +15920,7 @@ window.glclResults = [
     },
     {
         "pos": 484,
-        "bib": "0",
+        "bib": "5021",
         "name": "Tyra GRUNSEIS",
         "age": 0,
         "sex": "F",
@@ -15941,7 +15941,7 @@ window.glclResults = [
     },
     {
         "pos": 485,
-        "bib": "0",
+        "bib": "5074",
         "name": "Wendy WATKINS",
         "age": 0,
         "sex": "F",
@@ -15962,7 +15962,7 @@ window.glclResults = [
     },
     {
         "pos": 486,
-        "bib": "0",
+        "bib": "9077",
         "name": "Lauren SIMON",
         "age": 0,
         "sex": "F",
@@ -15983,7 +15983,7 @@ window.glclResults = [
     },
     {
         "pos": 487,
-        "bib": "0",
+        "bib": "6013",
         "name": "Ole BLACK",
         "age": 0,
         "sex": "M",
@@ -16004,7 +16004,7 @@ window.glclResults = [
     },
     {
         "pos": 488,
-        "bib": "0",
+        "bib": "4110",
         "name": "Yvonne WALKER",
         "age": 0,
         "sex": "F",
@@ -16025,7 +16025,7 @@ window.glclResults = [
     },
     {
         "pos": 489,
-        "bib": "0",
+        "bib": "2109",
         "name": "Andrew OLIVER",
         "age": 0,
         "sex": "M",
@@ -16046,7 +16046,7 @@ window.glclResults = [
     },
     {
         "pos": 490,
-        "bib": "0",
+        "bib": "5028",
         "name": "Janet HOARE",
         "age": 0,
         "sex": "F",
@@ -16067,7 +16067,7 @@ window.glclResults = [
     },
     {
         "pos": 491,
-        "bib": "0",
+        "bib": "2067",
         "name": "Marg GRIFFITHS",
         "age": 0,
         "sex": "F",
@@ -16088,7 +16088,7 @@ window.glclResults = [
     },
     {
         "pos": 1,
-        "bib": "0",
+        "bib": "1380",
         "name": "Jonathan FORD",
         "age": 0,
         "sex": "M",
@@ -16109,7 +16109,7 @@ window.glclResults = [
     },
     {
         "pos": 2,
-        "bib": "0",
+        "bib": "8136",
         "name": "Daniel BODMAN",
         "age": 0,
         "sex": "M",
@@ -16130,7 +16130,7 @@ window.glclResults = [
     },
     {
         "pos": 3,
-        "bib": "0",
+        "bib": "2149",
         "name": "Peter NIMMO",
         "age": 0,
         "sex": "M",
@@ -16151,7 +16151,7 @@ window.glclResults = [
     },
     {
         "pos": 4,
-        "bib": "0",
+        "bib": "8149",
         "name": "Joby EYNON",
         "age": 0,
         "sex": "M",
@@ -16172,7 +16172,7 @@ window.glclResults = [
     },
     {
         "pos": 5,
-        "bib": "0",
+        "bib": "9035",
         "name": "Adam GREY",
         "age": 0,
         "sex": "M",
@@ -16193,7 +16193,7 @@ window.glclResults = [
     },
     {
         "pos": 6,
-        "bib": "0",
+        "bib": "2010",
         "name": "Tim BATCHELOR",
         "age": 0,
         "sex": "M",
@@ -16214,7 +16214,7 @@ window.glclResults = [
     },
     {
         "pos": 7,
-        "bib": "0",
+        "bib": "8111",
         "name": "Thomas WADE",
         "age": 0,
         "sex": "M",
@@ -16235,7 +16235,7 @@ window.glclResults = [
     },
     {
         "pos": 8,
-        "bib": "0",
+        "bib": "8039",
         "name": "Ryan GONCALVES",
         "age": 0,
         "sex": "M",
@@ -16256,7 +16256,7 @@ window.glclResults = [
     },
     {
         "pos": 9,
-        "bib": "0",
+        "bib": "8112",
         "name": "Paul WHITE",
         "age": 0,
         "sex": "M",
@@ -16277,7 +16277,7 @@ window.glclResults = [
     },
     {
         "pos": 10,
-        "bib": "0",
+        "bib": "2062",
         "name": "Mark GILLETT",
         "age": 0,
         "sex": "M",
@@ -16298,7 +16298,7 @@ window.glclResults = [
     },
     {
         "pos": 11,
-        "bib": "0",
+        "bib": "9001",
         "name": "Andrei ARCANA",
         "age": 0,
         "sex": "M",
@@ -16319,7 +16319,7 @@ window.glclResults = [
     },
     {
         "pos": 12,
-        "bib": "0",
+        "bib": "9094",
         "name": "Ricci WATTS",
         "age": 0,
         "sex": "M",
@@ -16340,7 +16340,7 @@ window.glclResults = [
     },
     {
         "pos": 13,
-        "bib": "0",
+        "bib": "9055",
         "name": "Mike MARSH",
         "age": 0,
         "sex": "M",
@@ -16361,7 +16361,7 @@ window.glclResults = [
     },
     {
         "pos": 14,
-        "bib": "0",
+        "bib": "9080",
         "name": "Daniel SNELLING",
         "age": 0,
         "sex": "M",
@@ -16382,7 +16382,7 @@ window.glclResults = [
     },
     {
         "pos": 15,
-        "bib": "0",
+        "bib": "8134",
         "name": "Lee AHERNE",
         "age": 0,
         "sex": "M",
@@ -16403,7 +16403,7 @@ window.glclResults = [
     },
     {
         "pos": 16,
-        "bib": "0",
+        "bib": "2087",
         "name": "Reuben LAWSON",
         "age": 0,
         "sex": "M",
@@ -16424,7 +16424,7 @@ window.glclResults = [
     },
     {
         "pos": 17,
-        "bib": "0",
+        "bib": "7050036",
         "name": "Harry WOODWARD",
         "age": 0,
         "sex": "M",
@@ -16445,7 +16445,7 @@ window.glclResults = [
     },
     {
         "pos": 18,
-        "bib": "0",
+        "bib": "2099",
         "name": "Joseph MATTHEWS",
         "age": 0,
         "sex": "M",
@@ -16466,7 +16466,7 @@ window.glclResults = [
     },
     {
         "pos": 19,
-        "bib": "0",
+        "bib": "8106",
         "name": "Lauren STOCKLEY",
         "age": 0,
         "sex": "F",
@@ -16487,7 +16487,7 @@ window.glclResults = [
     },
     {
         "pos": 20,
-        "bib": "0",
+        "bib": "6023",
         "name": "Eddie CAMPBELL-ADAMS",
         "age": 0,
         "sex": "M",
@@ -16508,7 +16508,7 @@ window.glclResults = [
     },
     {
         "pos": 21,
-        "bib": "0",
+        "bib": "9016",
         "name": "Craig CHEEDY",
         "age": 0,
         "sex": "M",
@@ -16529,7 +16529,7 @@ window.glclResults = [
     },
     {
         "pos": 22,
-        "bib": "0",
+        "bib": "2017",
         "name": "James BLORE",
         "age": 0,
         "sex": "M",
@@ -16550,7 +16550,7 @@ window.glclResults = [
     },
     {
         "pos": 23,
-        "bib": "0",
+        "bib": "1296",
         "name": "Martin THOMAS",
         "age": 0,
         "sex": "M",
@@ -16571,7 +16571,7 @@ window.glclResults = [
     },
     {
         "pos": 24,
-        "bib": "0",
+        "bib": "9072",
         "name": "Iestyn RHODES",
         "age": 0,
         "sex": "M",
@@ -16592,7 +16592,7 @@ window.glclResults = [
     },
     {
         "pos": 25,
-        "bib": "0",
+        "bib": "9097",
         "name": "Thomas BRISCO WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -16613,7 +16613,7 @@ window.glclResults = [
     },
     {
         "pos": 26,
-        "bib": "0",
+        "bib": "4006",
         "name": "Dominic BETHELL",
         "age": 0,
         "sex": "M",
@@ -16634,7 +16634,7 @@ window.glclResults = [
     },
     {
         "pos": 27,
-        "bib": "0",
+        "bib": "7014",
         "name": "Tom CHINNICK",
         "age": 0,
         "sex": "M",
@@ -16655,7 +16655,7 @@ window.glclResults = [
     },
     {
         "pos": 28,
-        "bib": "0",
+        "bib": "8070",
         "name": "Alastair MASTERTON",
         "age": 0,
         "sex": "M",
@@ -16676,7 +16676,7 @@ window.glclResults = [
     },
     {
         "pos": 29,
-        "bib": "0",
+        "bib": "6138",
         "name": "Jack ROWLAND",
         "age": 0,
         "sex": "M",
@@ -16697,7 +16697,7 @@ window.glclResults = [
     },
     {
         "pos": 30,
-        "bib": "0",
+        "bib": "7025",
         "name": "Ben SAUNDERS",
         "age": 0,
         "sex": "M",
@@ -16718,7 +16718,7 @@ window.glclResults = [
     },
     {
         "pos": 31,
-        "bib": "0",
+        "bib": "4030",
         "name": "Daniel FLETCHER",
         "age": 0,
         "sex": "M",
@@ -16739,7 +16739,7 @@ window.glclResults = [
     },
     {
         "pos": 32,
-        "bib": "0",
+        "bib": "8024",
         "name": "Mark DAVIES",
         "age": 0,
         "sex": "M",
@@ -16760,7 +16760,7 @@ window.glclResults = [
     },
     {
         "pos": 33,
-        "bib": "0",
+        "bib": "3504",
         "name": "Benjamin St JOHN",
         "age": 0,
         "sex": "M",
@@ -16781,7 +16781,7 @@ window.glclResults = [
     },
     {
         "pos": 34,
-        "bib": "0",
+        "bib": "1507",
         "name": "Joseph WALBYOFF",
         "age": 0,
         "sex": "M",
@@ -16802,7 +16802,7 @@ window.glclResults = [
     },
     {
         "pos": 35,
-        "bib": "0",
+        "bib": "1063",
         "name": "Karl COUGHLIN",
         "age": 0,
         "sex": "M",
@@ -16823,7 +16823,7 @@ window.glclResults = [
     },
     {
         "pos": 36,
-        "bib": "0",
+        "bib": "6075",
         "name": "Oliver HARRIS",
         "age": 0,
         "sex": "M",
@@ -16844,7 +16844,7 @@ window.glclResults = [
     },
     {
         "pos": 37,
-        "bib": "0",
+        "bib": "3508",
         "name": "Matthew POTTENGER",
         "age": 0,
         "sex": "M",
@@ -16865,7 +16865,7 @@ window.glclResults = [
     },
     {
         "pos": 38,
-        "bib": "0",
+        "bib": "9039",
         "name": "William HARVEY",
         "age": 0,
         "sex": "M",
@@ -16886,7 +16886,7 @@ window.glclResults = [
     },
     {
         "pos": 39,
-        "bib": "0",
+        "bib": "4005",
         "name": "Matt BENNETT",
         "age": 0,
         "sex": "M",
@@ -16907,7 +16907,7 @@ window.glclResults = [
     },
     {
         "pos": 40,
-        "bib": "0",
+        "bib": "8122",
         "name": "Ryan WORLOCK-MORGAN",
         "age": 0,
         "sex": "M",
@@ -16928,7 +16928,7 @@ window.glclResults = [
     },
     {
         "pos": 41,
-        "bib": "0",
+        "bib": "8073",
         "name": "Phillip MATTHEWS",
         "age": 0,
         "sex": "M",
@@ -16949,7 +16949,7 @@ window.glclResults = [
     },
     {
         "pos": 42,
-        "bib": "0",
+        "bib": "1158",
         "name": "Rae ELIAS",
         "age": 0,
         "sex": "M",
@@ -16970,7 +16970,7 @@ window.glclResults = [
     },
     {
         "pos": 43,
-        "bib": "0",
+        "bib": "8110",
         "name": "Connor THURSTON",
         "age": 0,
         "sex": "M",
@@ -16991,7 +16991,7 @@ window.glclResults = [
     },
     {
         "pos": 44,
-        "bib": "0",
+        "bib": "3027",
         "name": "Kyle HARVEY",
         "age": 0,
         "sex": "M",
@@ -17012,7 +17012,7 @@ window.glclResults = [
     },
     {
         "pos": 45,
-        "bib": "0",
+        "bib": "2088",
         "name": "Seth LAWSON",
         "age": 0,
         "sex": "M",
@@ -17033,7 +17033,7 @@ window.glclResults = [
     },
     {
         "pos": 46,
-        "bib": "0",
+        "bib": "2079",
         "name": "Dickie HUDD",
         "age": 0,
         "sex": "M",
@@ -17054,7 +17054,7 @@ window.glclResults = [
     },
     {
         "pos": 47,
-        "bib": "0",
+        "bib": "4049",
         "name": "Craig HOPKINS",
         "age": 0,
         "sex": "M",
@@ -17075,7 +17075,7 @@ window.glclResults = [
     },
     {
         "pos": 48,
-        "bib": "0",
+        "bib": "4104",
         "name": "Egan THOMAS-WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -17096,7 +17096,7 @@ window.glclResults = [
     },
     {
         "pos": 49,
-        "bib": "0",
+        "bib": "1077",
         "name": "Matthew VISSER",
         "age": 0,
         "sex": "M",
@@ -17117,7 +17117,7 @@ window.glclResults = [
     },
     {
         "pos": 50,
-        "bib": "0",
+        "bib": "3510",
         "name": "Owen STADDON",
         "age": 0,
         "sex": "M",
@@ -17138,7 +17138,7 @@ window.glclResults = [
     },
     {
         "pos": 51,
-        "bib": "0",
+        "bib": "6137",
         "name": "Antoinette ROSE",
         "age": 0,
         "sex": "F",
@@ -17159,7 +17159,7 @@ window.glclResults = [
     },
     {
         "pos": 52,
-        "bib": "0",
+        "bib": "6092",
         "name": "Martin JOHNS",
         "age": 0,
         "sex": "M",
@@ -17180,7 +17180,7 @@ window.glclResults = [
     },
     {
         "pos": 53,
-        "bib": "0",
+        "bib": "2060",
         "name": "Ian GAWINOWSKI",
         "age": 0,
         "sex": "M",
@@ -17201,7 +17201,7 @@ window.glclResults = [
     },
     {
         "pos": 54,
-        "bib": "0",
+        "bib": "2020",
         "name": "Douglas BRIGGS",
         "age": 0,
         "sex": "M",
@@ -17222,7 +17222,7 @@ window.glclResults = [
     },
     {
         "pos": 55,
-        "bib": "0",
+        "bib": "8078",
         "name": "Gareth NEWMAN",
         "age": 0,
         "sex": "M",
@@ -17243,7 +17243,7 @@ window.glclResults = [
     },
     {
         "pos": 56,
-        "bib": "0",
+        "bib": "6169",
         "name": "Emma WOOKEY",
         "age": 0,
         "sex": "F",
@@ -17264,7 +17264,7 @@ window.glclResults = [
     },
     {
         "pos": 57,
-        "bib": "0",
+        "bib": "2134",
         "name": "James TUCKER",
         "age": 0,
         "sex": "M",
@@ -17306,7 +17306,7 @@ window.glclResults = [
     },
     {
         "pos": 59,
-        "bib": "0",
+        "bib": "8030",
         "name": "Thomas EDWARDS",
         "age": 0,
         "sex": "M",
@@ -17327,7 +17327,7 @@ window.glclResults = [
     },
     {
         "pos": 60,
-        "bib": "0",
+        "bib": "2043",
         "name": "Stephen DILLEY",
         "age": 0,
         "sex": "M",
@@ -17348,7 +17348,7 @@ window.glclResults = [
     },
     {
         "pos": 61,
-        "bib": "0",
+        "bib": "5167",
         "name": "Brett THORNBURY",
         "age": 0,
         "sex": "M",
@@ -17369,7 +17369,7 @@ window.glclResults = [
     },
     {
         "pos": 62,
-        "bib": "0",
+        "bib": "1493",
         "name": "Lloyd DOWDEN",
         "age": 0,
         "sex": "M",
@@ -17390,7 +17390,7 @@ window.glclResults = [
     },
     {
         "pos": 63,
-        "bib": "0",
+        "bib": "8047",
         "name": "Kani HINSHELWOOD",
         "age": 0,
         "sex": "F",
@@ -17411,7 +17411,7 @@ window.glclResults = [
     },
     {
         "pos": 64,
-        "bib": "0",
+        "bib": "3071",
         "name": "Ben POMEROY",
         "age": 0,
         "sex": "M",
@@ -17432,7 +17432,7 @@ window.glclResults = [
     },
     {
         "pos": 65,
-        "bib": "0",
+        "bib": "9068",
         "name": "Hywel NASH",
         "age": 0,
         "sex": "M",
@@ -17453,7 +17453,7 @@ window.glclResults = [
     },
     {
         "pos": 66,
-        "bib": "0",
+        "bib": "8144",
         "name": "Ethan SAYCE",
         "age": 0,
         "sex": "M",
@@ -17474,7 +17474,7 @@ window.glclResults = [
     },
     {
         "pos": 67,
-        "bib": "0",
+        "bib": "8081",
         "name": "Clare PATTERSON",
         "age": 0,
         "sex": "F",
@@ -17495,7 +17495,7 @@ window.glclResults = [
     },
     {
         "pos": 68,
-        "bib": "0",
+        "bib": "6110",
         "name": "Phillip LEE",
         "age": 0,
         "sex": "M",
@@ -17516,7 +17516,7 @@ window.glclResults = [
     },
     {
         "pos": 69,
-        "bib": "0",
+        "bib": "1513",
         "name": "Jonathan PAYMAN",
         "age": 0,
         "sex": "M",
@@ -17537,7 +17537,7 @@ window.glclResults = [
     },
     {
         "pos": 70,
-        "bib": "0",
+        "bib": "9053",
         "name": "Joshua MALONEY",
         "age": 0,
         "sex": "M",
@@ -17558,7 +17558,7 @@ window.glclResults = [
     },
     {
         "pos": 71,
-        "bib": "0",
+        "bib": "5171",
         "name": "Robbie WATERHOUSE",
         "age": 0,
         "sex": "M",
@@ -17579,7 +17579,7 @@ window.glclResults = [
     },
     {
         "pos": 72,
-        "bib": "0",
+        "bib": "4118",
         "name": "John WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -17600,7 +17600,7 @@ window.glclResults = [
     },
     {
         "pos": 73,
-        "bib": "0",
+        "bib": "5156",
         "name": "Neil PROFIT",
         "age": 0,
         "sex": "M",
@@ -17621,7 +17621,7 @@ window.glclResults = [
     },
     {
         "pos": 74,
-        "bib": "0",
+        "bib": "5143",
         "name": "Lee MILLS",
         "age": 0,
         "sex": "M",
@@ -17642,7 +17642,7 @@ window.glclResults = [
     },
     {
         "pos": 75,
-        "bib": "0",
+        "bib": "9061",
         "name": "Adrian MURKIN",
         "age": 0,
         "sex": "M",
@@ -17663,7 +17663,7 @@ window.glclResults = [
     },
     {
         "pos": 76,
-        "bib": "0",
+        "bib": "7058",
         "name": "Katie ADAMS",
         "age": 0,
         "sex": "F",
@@ -17684,7 +17684,7 @@ window.glclResults = [
     },
     {
         "pos": 77,
-        "bib": "0",
+        "bib": "2100",
         "name": "Katherine MATTHEWS",
         "age": 0,
         "sex": "F",
@@ -17705,7 +17705,7 @@ window.glclResults = [
     },
     {
         "pos": 78,
-        "bib": "0",
+        "bib": "9038",
         "name": "Lee HARVEY",
         "age": 0,
         "sex": "M",
@@ -17726,7 +17726,7 @@ window.glclResults = [
     },
     {
         "pos": 79,
-        "bib": "0",
+        "bib": "5120",
         "name": "Jaime HOLMES",
         "age": 0,
         "sex": "M",
@@ -17747,7 +17747,7 @@ window.glclResults = [
     },
     {
         "pos": 80,
-        "bib": "0",
+        "bib": "1410",
         "name": "Ben FOWLER",
         "age": 0,
         "sex": "M",
@@ -17768,7 +17768,7 @@ window.glclResults = [
     },
     {
         "pos": 81,
-        "bib": "0",
+        "bib": "5164",
         "name": "Gethin THOMAS",
         "age": 0,
         "sex": "M",
@@ -17789,7 +17789,7 @@ window.glclResults = [
     },
     {
         "pos": 82,
-        "bib": "0",
+        "bib": "1125",
         "name": "Saul COOKE-BLACK",
         "age": 0,
         "sex": "M",
@@ -17810,7 +17810,7 @@ window.glclResults = [
     },
     {
         "pos": 83,
-        "bib": "0",
+        "bib": "8079",
         "name": "Nick OSMAN",
         "age": 0,
         "sex": "M",
@@ -17831,7 +17831,7 @@ window.glclResults = [
     },
     {
         "pos": 84,
-        "bib": "0",
+        "bib": "2102",
         "name": "Niki MORGAN",
         "age": 0,
         "sex": "F",
@@ -17852,7 +17852,7 @@ window.glclResults = [
     },
     {
         "pos": 85,
-        "bib": "0",
+        "bib": "2058",
         "name": "Cherry FOWLER",
         "age": 0,
         "sex": "F",
@@ -17873,7 +17873,7 @@ window.glclResults = [
     },
     {
         "pos": 86,
-        "bib": "0",
+        "bib": "3019",
         "name": "Leon GLEED",
         "age": 0,
         "sex": "M",
@@ -17894,7 +17894,7 @@ window.glclResults = [
     },
     {
         "pos": 87,
-        "bib": "0",
+        "bib": "6113",
         "name": "Spencer LEWIS",
         "age": 0,
         "sex": "M",
@@ -17915,7 +17915,7 @@ window.glclResults = [
     },
     {
         "pos": 88,
-        "bib": "0",
+        "bib": "8084",
         "name": "Maisie PEARCE",
         "age": 0,
         "sex": "F",
@@ -17936,7 +17936,7 @@ window.glclResults = [
     },
     {
         "pos": 89,
-        "bib": "0",
+        "bib": "1036",
         "name": "Lowenna HUGGINS",
         "age": 0,
         "sex": "F",
@@ -17957,7 +17957,7 @@ window.glclResults = [
     },
     {
         "pos": 90,
-        "bib": "0",
+        "bib": "5136",
         "name": "Steven LANE",
         "age": 0,
         "sex": "M",
@@ -17978,7 +17978,7 @@ window.glclResults = [
     },
     {
         "pos": 91,
-        "bib": "0",
+        "bib": "5174",
         "name": "David WITTS",
         "age": 0,
         "sex": "M",
@@ -17999,7 +17999,7 @@ window.glclResults = [
     },
     {
         "pos": 92,
-        "bib": "0",
+        "bib": "8093",
         "name": "Kimberley PRICE",
         "age": 0,
         "sex": "F",
@@ -18020,7 +18020,7 @@ window.glclResults = [
     },
     {
         "pos": 93,
-        "bib": "0",
+        "bib": "9090",
         "name": "Ieuan WALKER",
         "age": 0,
         "sex": "M",
@@ -18041,7 +18041,7 @@ window.glclResults = [
     },
     {
         "pos": 94,
-        "bib": "0",
+        "bib": "8060",
         "name": "Nicola JUKES",
         "age": 0,
         "sex": "F",
@@ -18062,7 +18062,7 @@ window.glclResults = [
     },
     {
         "pos": 95,
-        "bib": "0",
+        "bib": "6124",
         "name": "Chris O'BRIEN",
         "age": 0,
         "sex": "M",
@@ -18083,7 +18083,7 @@ window.glclResults = [
     },
     {
         "pos": 96,
-        "bib": "0",
+        "bib": "7020",
         "name": "Lee DAVIES",
         "age": 0,
         "sex": "M",
@@ -18104,7 +18104,7 @@ window.glclResults = [
     },
     {
         "pos": 97,
-        "bib": "0",
+        "bib": "3062",
         "name": "Sean WASSALL",
         "age": 0,
         "sex": "M",
@@ -18125,7 +18125,7 @@ window.glclResults = [
     },
     {
         "pos": 98,
-        "bib": "0",
+        "bib": "7050",
         "name": "Vicky ROBERTS",
         "age": 0,
         "sex": "F",
@@ -18146,7 +18146,7 @@ window.glclResults = [
     },
     {
         "pos": 99,
-        "bib": "0",
+        "bib": "8009",
         "name": "Keith BREWER",
         "age": 0,
         "sex": "M",
@@ -18167,7 +18167,7 @@ window.glclResults = [
     },
     {
         "pos": 100,
-        "bib": "0",
+        "bib": "6002",
         "name": "Michael ABELL",
         "age": 0,
         "sex": "M",
@@ -18209,7 +18209,7 @@ window.glclResults = [
     },
     {
         "pos": 102,
-        "bib": "0",
+        "bib": "2014",
         "name": "Sarah BELL",
         "age": 0,
         "sex": "F",
@@ -18230,7 +18230,7 @@ window.glclResults = [
     },
     {
         "pos": 103,
-        "bib": "0",
+        "bib": "6030",
         "name": "Sandra CHIPPER",
         "age": 0,
         "sex": "F",
@@ -18272,7 +18272,7 @@ window.glclResults = [
     },
     {
         "pos": 105,
-        "bib": "0",
+        "bib": "8129",
         "name": "Dylan GREENWAY",
         "age": 0,
         "sex": "M",
@@ -18293,7 +18293,7 @@ window.glclResults = [
     },
     {
         "pos": 106,
-        "bib": "0",
+        "bib": "8050",
         "name": "Paul JARMAN",
         "age": 0,
         "sex": "M",
@@ -18335,7 +18335,7 @@ window.glclResults = [
     },
     {
         "pos": 108,
-        "bib": "0",
+        "bib": "1094",
         "name": "Jade WAKLEY",
         "age": 0,
         "sex": "F",
@@ -18356,7 +18356,7 @@ window.glclResults = [
     },
     {
         "pos": 109,
-        "bib": "0",
+        "bib": "3039",
         "name": "Alan LEGGE",
         "age": 0,
         "sex": "M",
@@ -18377,7 +18377,7 @@ window.glclResults = [
     },
     {
         "pos": 110,
-        "bib": "0",
+        "bib": "5181",
         "name": "Stephen EDWARDS",
         "age": 0,
         "sex": "M",
@@ -18398,7 +18398,7 @@ window.glclResults = [
     },
     {
         "pos": 111,
-        "bib": "0",
+        "bib": "1435",
         "name": "Iwan ROBERTS",
         "age": 0,
         "sex": "M",
@@ -18419,7 +18419,7 @@ window.glclResults = [
     },
     {
         "pos": 112,
-        "bib": "0",
+        "bib": "5170",
         "name": "Russ WAREHAM",
         "age": 0,
         "sex": "M",
@@ -18440,7 +18440,7 @@ window.glclResults = [
     },
     {
         "pos": 113,
-        "bib": "0",
+        "bib": "6172",
         "name": "Daniel BODIN",
         "age": 0,
         "sex": "M",
@@ -18461,7 +18461,7 @@ window.glclResults = [
     },
     {
         "pos": 114,
-        "bib": "0",
+        "bib": "1032",
         "name": "Mark HISLOP",
         "age": 0,
         "sex": "M",
@@ -18482,7 +18482,7 @@ window.glclResults = [
     },
     {
         "pos": 115,
-        "bib": "0",
+        "bib": "1485",
         "name": "Sean CLARKE",
         "age": 0,
         "sex": "M",
@@ -18503,7 +18503,7 @@ window.glclResults = [
     },
     {
         "pos": 116,
-        "bib": "0",
+        "bib": "5103",
         "name": "Devon EASON",
         "age": 0,
         "sex": "M",
@@ -18524,7 +18524,7 @@ window.glclResults = [
     },
     {
         "pos": 117,
-        "bib": "0",
+        "bib": "8125",
         "name": "Tammi PREECE",
         "age": 0,
         "sex": "F",
@@ -18545,7 +18545,7 @@ window.glclResults = [
     },
     {
         "pos": 118,
-        "bib": "0",
+        "bib": "9022",
         "name": "Gareth DAVIES",
         "age": 0,
         "sex": "M",
@@ -18566,7 +18566,7 @@ window.glclResults = [
     },
     {
         "pos": 119,
-        "bib": "0",
+        "bib": "3004",
         "name": "Stuart BALL",
         "age": 0,
         "sex": "M",
@@ -18587,7 +18587,7 @@ window.glclResults = [
     },
     {
         "pos": 120,
-        "bib": "0",
+        "bib": "4099",
         "name": "Adrian SMITH",
         "age": 0,
         "sex": "M",
@@ -18608,7 +18608,7 @@ window.glclResults = [
     },
     {
         "pos": 121,
-        "bib": "0",
+        "bib": "8055",
         "name": "Andrew JONES",
         "age": 0,
         "sex": "M",
@@ -18629,7 +18629,7 @@ window.glclResults = [
     },
     {
         "pos": 122,
-        "bib": "0",
+        "bib": "9006",
         "name": "Shane BAKER",
         "age": 0,
         "sex": "M",
@@ -18650,7 +18650,7 @@ window.glclResults = [
     },
     {
         "pos": 123,
-        "bib": "0",
+        "bib": "1135",
         "name": "Christian FORD",
         "age": 0,
         "sex": "M",
@@ -18671,7 +18671,7 @@ window.glclResults = [
     },
     {
         "pos": 124,
-        "bib": "0",
+        "bib": "9095",
         "name": "Matt WEBB",
         "age": 0,
         "sex": "M",
@@ -18692,7 +18692,7 @@ window.glclResults = [
     },
     {
         "pos": 125,
-        "bib": "0",
+        "bib": "7005",
         "name": "Martin BLAKEBROUGH",
         "age": 0,
         "sex": "M",
@@ -18713,7 +18713,7 @@ window.glclResults = [
     },
     {
         "pos": 126,
-        "bib": "0",
+        "bib": "7031387",
         "name": "Mark ENGLISH",
         "age": 0,
         "sex": "M",
@@ -18734,7 +18734,7 @@ window.glclResults = [
     },
     {
         "pos": 127,
-        "bib": "0",
+        "bib": "8014",
         "name": "Carly COLE",
         "age": 0,
         "sex": "F",
@@ -18755,7 +18755,7 @@ window.glclResults = [
     },
     {
         "pos": 128,
-        "bib": "0",
+        "bib": "1045",
         "name": "Ian KITT",
         "age": 0,
         "sex": "M",
@@ -18776,7 +18776,7 @@ window.glclResults = [
     },
     {
         "pos": 129,
-        "bib": "0",
+        "bib": "8007",
         "name": "Victoria BOXHALL-JAMES",
         "age": 0,
         "sex": "F",
@@ -18797,7 +18797,7 @@ window.glclResults = [
     },
     {
         "pos": 130,
-        "bib": "0",
+        "bib": "5168",
         "name": "Neil THORPE",
         "age": 0,
         "sex": "M",
@@ -18818,7 +18818,7 @@ window.glclResults = [
     },
     {
         "pos": 131,
-        "bib": "0",
+        "bib": "7023",
         "name": "Brian EVANS",
         "age": 0,
         "sex": "M",
@@ -18839,7 +18839,7 @@ window.glclResults = [
     },
     {
         "pos": 132,
-        "bib": "0",
+        "bib": "1073",
         "name": "Liz RICHARDS",
         "age": 0,
         "sex": "F",
@@ -18881,7 +18881,7 @@ window.glclResults = [
     },
     {
         "pos": 134,
-        "bib": "0",
+        "bib": "1100",
         "name": "Chris WREFORD",
         "age": 0,
         "sex": "M",
@@ -18902,7 +18902,7 @@ window.glclResults = [
     },
     {
         "pos": 135,
-        "bib": "0",
+        "bib": "1102",
         "name": "Matthew MULCAHY",
         "age": 0,
         "sex": "M",
@@ -18923,7 +18923,7 @@ window.glclResults = [
     },
     {
         "pos": 136,
-        "bib": "0",
+        "bib": "8051",
         "name": "Lewis JARMAN",
         "age": 0,
         "sex": "M",
@@ -18944,7 +18944,7 @@ window.glclResults = [
     },
     {
         "pos": 137,
-        "bib": "0",
+        "bib": "6081",
         "name": "Victoria HOBBS",
         "age": 0,
         "sex": "F",
@@ -18965,7 +18965,7 @@ window.glclResults = [
     },
     {
         "pos": 138,
-        "bib": "0",
+        "bib": "9037",
         "name": "William HARNETT",
         "age": 0,
         "sex": "M",
@@ -18986,7 +18986,7 @@ window.glclResults = [
     },
     {
         "pos": 139,
-        "bib": "0",
+        "bib": "9069",
         "name": "Ben POWELL",
         "age": 0,
         "sex": "M",
@@ -19028,7 +19028,7 @@ window.glclResults = [
     },
     {
         "pos": 141,
-        "bib": "0",
+        "bib": "5115",
         "name": "Alex HAY",
         "age": 0,
         "sex": "M",
@@ -19049,7 +19049,7 @@ window.glclResults = [
     },
     {
         "pos": 142,
-        "bib": "0",
+        "bib": "6130",
         "name": "Christopher POTTER",
         "age": 0,
         "sex": "M",
@@ -19070,7 +19070,7 @@ window.glclResults = [
     },
     {
         "pos": 143,
-        "bib": "0",
+        "bib": "2122",
         "name": "Jane ROSCOE",
         "age": 0,
         "sex": "F",
@@ -19091,7 +19091,7 @@ window.glclResults = [
     },
     {
         "pos": 144,
-        "bib": "0",
+        "bib": "4228662",
         "name": "Peter STEVENS",
         "age": 0,
         "sex": "M",
@@ -19112,7 +19112,7 @@ window.glclResults = [
     },
     {
         "pos": 145,
-        "bib": "0",
+        "bib": "6105",
         "name": "Danica KENNEDY",
         "age": 0,
         "sex": "F",
@@ -19133,7 +19133,7 @@ window.glclResults = [
     },
     {
         "pos": 146,
-        "bib": "0",
+        "bib": "8104",
         "name": "Huw STEADMAN",
         "age": 0,
         "sex": "M",
@@ -19154,7 +19154,7 @@ window.glclResults = [
     },
     {
         "pos": 147,
-        "bib": "0",
+        "bib": "2086",
         "name": "Matthew LAWSON",
         "age": 0,
         "sex": "M",
@@ -19175,7 +19175,7 @@ window.glclResults = [
     },
     {
         "pos": 148,
-        "bib": "0",
+        "bib": "5131",
         "name": "Philip JONES",
         "age": 0,
         "sex": "M",
@@ -19196,7 +19196,7 @@ window.glclResults = [
     },
     {
         "pos": 149,
-        "bib": "0",
+        "bib": "6126",
         "name": "Caitlin OWEN",
         "age": 0,
         "sex": "F",
@@ -19217,7 +19217,7 @@ window.glclResults = [
     },
     {
         "pos": 150,
-        "bib": "0",
+        "bib": "4097",
         "name": "Karen SILVER",
         "age": 0,
         "sex": "F",
@@ -19238,7 +19238,7 @@ window.glclResults = [
     },
     {
         "pos": 151,
-        "bib": "0",
+        "bib": "1289",
         "name": "Sarah JEREMIAH",
         "age": 0,
         "sex": "F",
@@ -19259,7 +19259,7 @@ window.glclResults = [
     },
     {
         "pos": 152,
-        "bib": "0",
+        "bib": "2048",
         "name": "Caroline DUDER",
         "age": 0,
         "sex": "F",
@@ -19301,7 +19301,7 @@ window.glclResults = [
     },
     {
         "pos": 154,
-        "bib": "0",
+        "bib": "2054",
         "name": "Barry EVANS",
         "age": 0,
         "sex": "M",
@@ -19322,7 +19322,7 @@ window.glclResults = [
     },
     {
         "pos": 155,
-        "bib": "0",
+        "bib": "5005",
         "name": "Carly BUNSTON",
         "age": 0,
         "sex": "F",
@@ -19343,7 +19343,7 @@ window.glclResults = [
     },
     {
         "pos": 156,
-        "bib": "0",
+        "bib": "7003",
         "name": "Liberty BARLOW",
         "age": 0,
         "sex": "F",
@@ -19364,7 +19364,7 @@ window.glclResults = [
     },
     {
         "pos": 157,
-        "bib": "0",
+        "bib": "9002",
         "name": "James ARNOLD",
         "age": 0,
         "sex": "M",
@@ -19385,7 +19385,7 @@ window.glclResults = [
     },
     {
         "pos": 158,
-        "bib": "0",
+        "bib": "6095",
         "name": "Charlotte JONES",
         "age": 0,
         "sex": "F",
@@ -19427,7 +19427,7 @@ window.glclResults = [
     },
     {
         "pos": 160,
-        "bib": "0",
+        "bib": "4032",
         "name": "David GOODGER",
         "age": 0,
         "sex": "M",
@@ -19448,7 +19448,7 @@ window.glclResults = [
     },
     {
         "pos": 161,
-        "bib": "0",
+        "bib": "5177",
         "name": "Drew WAREHAM",
         "age": 0,
         "sex": "M",
@@ -19469,7 +19469,7 @@ window.glclResults = [
     },
     {
         "pos": 162,
-        "bib": "0",
+        "bib": "5130",
         "name": "Martin JONES",
         "age": 0,
         "sex": "M",
@@ -19490,7 +19490,7 @@ window.glclResults = [
     },
     {
         "pos": 163,
-        "bib": "0",
+        "bib": "4112",
         "name": "Paul WATKINS",
         "age": 0,
         "sex": "M",
@@ -19511,7 +19511,7 @@ window.glclResults = [
     },
     {
         "pos": 164,
-        "bib": "0",
+        "bib": "2081",
         "name": "Lisa JEFFREY",
         "age": 0,
         "sex": "F",
@@ -19532,7 +19532,7 @@ window.glclResults = [
     },
     {
         "pos": 165,
-        "bib": "0",
+        "bib": "3043",
         "name": "Sam MARTIN",
         "age": 0,
         "sex": "M",
@@ -19553,7 +19553,7 @@ window.glclResults = [
     },
     {
         "pos": 166,
-        "bib": "0",
+        "bib": "5118",
         "name": "Darren HILL",
         "age": 0,
         "sex": "M",
@@ -19574,7 +19574,7 @@ window.glclResults = [
     },
     {
         "pos": 167,
-        "bib": "0",
+        "bib": "2061",
         "name": "Charlotte GILES",
         "age": 0,
         "sex": "F",
@@ -19595,7 +19595,7 @@ window.glclResults = [
     },
     {
         "pos": 168,
-        "bib": "0",
+        "bib": "5083",
         "name": "Niall BOARDMAN",
         "age": 0,
         "sex": "M",
@@ -19637,7 +19637,7 @@ window.glclResults = [
     },
     {
         "pos": 170,
-        "bib": "0",
+        "bib": "9043",
         "name": "Mangawa ITIMU",
         "age": 0,
         "sex": "M",
@@ -19658,7 +19658,7 @@ window.glclResults = [
     },
     {
         "pos": 171,
-        "bib": "0",
+        "bib": "2103",
         "name": "Jan MORRIS",
         "age": 0,
         "sex": "F",
@@ -19679,7 +19679,7 @@ window.glclResults = [
     },
     {
         "pos": 172,
-        "bib": "0",
+        "bib": "4111",
         "name": "Nicholas WALSH",
         "age": 0,
         "sex": "M",
@@ -19700,7 +19700,7 @@ window.glclResults = [
     },
     {
         "pos": 173,
-        "bib": "0",
+        "bib": "9009",
         "name": "Marisa BENJAMIN",
         "age": 0,
         "sex": "F",
@@ -19742,7 +19742,7 @@ window.glclResults = [
     },
     {
         "pos": 175,
-        "bib": "0",
+        "bib": "1227",
         "name": "Jamie FRASER",
         "age": 0,
         "sex": "M",
@@ -19763,7 +19763,7 @@ window.glclResults = [
     },
     {
         "pos": 176,
-        "bib": "0",
+        "bib": "2112",
         "name": "Stephen OWEN",
         "age": 0,
         "sex": "M",
@@ -19784,7 +19784,7 @@ window.glclResults = [
     },
     {
         "pos": 177,
-        "bib": "0",
+        "bib": "8132",
         "name": "Melissa PEARCE",
         "age": 0,
         "sex": "F",
@@ -19805,7 +19805,7 @@ window.glclResults = [
     },
     {
         "pos": 178,
-        "bib": "0",
+        "bib": "1049",
         "name": "Lyn MAC",
         "age": 0,
         "sex": "M",
@@ -19826,7 +19826,7 @@ window.glclResults = [
     },
     {
         "pos": 179,
-        "bib": "0",
+        "bib": "8019",
         "name": "Stephen DALLOW",
         "age": 0,
         "sex": "M",
@@ -19847,7 +19847,7 @@ window.glclResults = [
     },
     {
         "pos": 180,
-        "bib": "0",
+        "bib": "8067",
         "name": "Harri LIKE",
         "age": 0,
         "sex": "F",
@@ -19868,7 +19868,7 @@ window.glclResults = [
     },
     {
         "pos": 181,
-        "bib": "0",
+        "bib": "1044",
         "name": "Huw JONES",
         "age": 0,
         "sex": "M",
@@ -19889,7 +19889,7 @@ window.glclResults = [
     },
     {
         "pos": 182,
-        "bib": "0",
+        "bib": "4066",
         "name": "Laura LEWIS-COPEMAN",
         "age": 0,
         "sex": "F",
@@ -19910,7 +19910,7 @@ window.glclResults = [
     },
     {
         "pos": 183,
-        "bib": "0",
+        "bib": "8041",
         "name": "Vincent GREGORY",
         "age": 0,
         "sex": "M",
@@ -19931,7 +19931,7 @@ window.glclResults = [
     },
     {
         "pos": 184,
-        "bib": "0",
+        "bib": "3036",
         "name": "Ieuan KINGSTON",
         "age": 0,
         "sex": "M",
@@ -19952,7 +19952,7 @@ window.glclResults = [
     },
     {
         "pos": 185,
-        "bib": "0",
+        "bib": "4083",
         "name": "Joshua REYNOLDS",
         "age": 0,
         "sex": "M",
@@ -19973,7 +19973,7 @@ window.glclResults = [
     },
     {
         "pos": 186,
-        "bib": "0",
+        "bib": "8061",
         "name": "Joanne KILBY",
         "age": 0,
         "sex": "F",
@@ -19994,7 +19994,7 @@ window.glclResults = [
     },
     {
         "pos": 187,
-        "bib": "0",
+        "bib": "5051",
         "name": "Melissa MORGAN",
         "age": 0,
         "sex": "F",
@@ -20015,7 +20015,7 @@ window.glclResults = [
     },
     {
         "pos": 188,
-        "bib": "0",
+        "bib": "4029",
         "name": "Marc FARR",
         "age": 0,
         "sex": "M",
@@ -20036,7 +20036,7 @@ window.glclResults = [
     },
     {
         "pos": 189,
-        "bib": "0",
+        "bib": "2006",
         "name": "Julia BAJJADA",
         "age": 0,
         "sex": "F",
@@ -20057,7 +20057,7 @@ window.glclResults = [
     },
     {
         "pos": 190,
-        "bib": "0",
+        "bib": "5041",
         "name": "Bryony LEWIS",
         "age": 0,
         "sex": "F",
@@ -20078,7 +20078,7 @@ window.glclResults = [
     },
     {
         "pos": 191,
-        "bib": "0",
+        "bib": "3054",
         "name": "Michael SKYRME",
         "age": 0,
         "sex": "M",
@@ -20099,7 +20099,7 @@ window.glclResults = [
     },
     {
         "pos": 192,
-        "bib": "0",
+        "bib": "2074",
         "name": "Daniel HAZELL-SMART",
         "age": 0,
         "sex": "M",
@@ -20141,7 +20141,7 @@ window.glclResults = [
     },
     {
         "pos": 194,
-        "bib": "0",
+        "bib": "9032",
         "name": "Michelle GOOCH",
         "age": 0,
         "sex": "F",
@@ -20162,7 +20162,7 @@ window.glclResults = [
     },
     {
         "pos": 195,
-        "bib": "0",
+        "bib": "4089",
         "name": "Gareth ROBINS",
         "age": 0,
         "sex": "M",
@@ -20183,7 +20183,7 @@ window.glclResults = [
     },
     {
         "pos": 196,
-        "bib": "0",
+        "bib": "5037",
         "name": "Michelle JOHNSON",
         "age": 0,
         "sex": "F",
@@ -20204,7 +20204,7 @@ window.glclResults = [
     },
     {
         "pos": 197,
-        "bib": "0",
+        "bib": "7004",
         "name": "Marina WRIGHT",
         "age": 0,
         "sex": "F",
@@ -20225,7 +20225,7 @@ window.glclResults = [
     },
     {
         "pos": 198,
-        "bib": "0",
+        "bib": "9056",
         "name": "Kirsty RHODES",
         "age": 0,
         "sex": "F",
@@ -20246,7 +20246,7 @@ window.glclResults = [
     },
     {
         "pos": 199,
-        "bib": "0",
+        "bib": "5013",
         "name": "Sarah DAVIES",
         "age": 0,
         "sex": "F",
@@ -20267,7 +20267,7 @@ window.glclResults = [
     },
     {
         "pos": 200,
-        "bib": "0",
+        "bib": "6007",
         "name": "Andy BARRY",
         "age": 0,
         "sex": "M",
@@ -20288,7 +20288,7 @@ window.glclResults = [
     },
     {
         "pos": 201,
-        "bib": "0",
+        "bib": "3005",
         "name": "Michael BARNES",
         "age": 0,
         "sex": "M",
@@ -20309,7 +20309,7 @@ window.glclResults = [
     },
     {
         "pos": 202,
-        "bib": "0",
+        "bib": "5175",
         "name": "Aled WYNNE",
         "age": 0,
         "sex": "M",
@@ -20330,7 +20330,7 @@ window.glclResults = [
     },
     {
         "pos": 203,
-        "bib": "0",
+        "bib": "6048",
         "name": "Karen DAY",
         "age": 0,
         "sex": "F",
@@ -20351,7 +20351,7 @@ window.glclResults = [
     },
     {
         "pos": 204,
-        "bib": "0",
+        "bib": "1024",
         "name": "Tammy FRY",
         "age": 0,
         "sex": "F",
@@ -20372,7 +20372,7 @@ window.glclResults = [
     },
     {
         "pos": 205,
-        "bib": "0",
+        "bib": "5014",
         "name": "Charlotte DAVIS",
         "age": 0,
         "sex": "F",
@@ -20393,7 +20393,7 @@ window.glclResults = [
     },
     {
         "pos": 206,
-        "bib": "0",
+        "bib": "5166",
         "name": "Owen THOMAS",
         "age": 0,
         "sex": "M",
@@ -20414,7 +20414,7 @@ window.glclResults = [
     },
     {
         "pos": 207,
-        "bib": "0",
+        "bib": "1098",
         "name": "Lauren WILLIAMS",
         "age": 0,
         "sex": "F",
@@ -20435,7 +20435,7 @@ window.glclResults = [
     },
     {
         "pos": 208,
-        "bib": "0",
+        "bib": "1433",
         "name": "Chloe NORTON",
         "age": 0,
         "sex": "F",
@@ -20456,7 +20456,7 @@ window.glclResults = [
     },
     {
         "pos": 209,
-        "bib": "0",
+        "bib": "9099",
         "name": "Dan MUTLOW",
         "age": 0,
         "sex": "M",
@@ -20477,7 +20477,7 @@ window.glclResults = [
     },
     {
         "pos": 210,
-        "bib": "0",
+        "bib": "8123",
         "name": "Roxy ZYM",
         "age": 0,
         "sex": "F",
@@ -20498,7 +20498,7 @@ window.glclResults = [
     },
     {
         "pos": 211,
-        "bib": "0",
+        "bib": "7059",
         "name": "Holly JANES-THOMAS",
         "age": 0,
         "sex": "F",
@@ -20519,7 +20519,7 @@ window.glclResults = [
     },
     {
         "pos": 212,
-        "bib": "0",
+        "bib": "5004",
         "name": "Alysha BUNSTON",
         "age": 0,
         "sex": "F",
@@ -20540,7 +20540,7 @@ window.glclResults = [
     },
     {
         "pos": 213,
-        "bib": "0",
+        "bib": "5172",
         "name": "Ade WHITE",
         "age": 0,
         "sex": "M",
@@ -20561,7 +20561,7 @@ window.glclResults = [
     },
     {
         "pos": 214,
-        "bib": "0",
+        "bib": "3001",
         "name": "Phillip ALLSOPP",
         "age": 0,
         "sex": "M",
@@ -20582,7 +20582,7 @@ window.glclResults = [
     },
     {
         "pos": 215,
-        "bib": "0",
+        "bib": "5176",
         "name": "Ben ELLIS",
         "age": 0,
         "sex": "M",
@@ -20645,7 +20645,7 @@ window.glclResults = [
     },
     {
         "pos": 218,
-        "bib": "0",
+        "bib": "1040",
         "name": "Clare JEFFRIES",
         "age": 0,
         "sex": "F",
@@ -20666,7 +20666,7 @@ window.glclResults = [
     },
     {
         "pos": 219,
-        "bib": "0",
+        "bib": "2038",
         "name": "Nicola Louise CROCKETT",
         "age": 0,
         "sex": "F",
@@ -20687,7 +20687,7 @@ window.glclResults = [
     },
     {
         "pos": 220,
-        "bib": "0",
+        "bib": "4114",
         "name": "Terry WHITE",
         "age": 0,
         "sex": "M",
@@ -20708,7 +20708,7 @@ window.glclResults = [
     },
     {
         "pos": 221,
-        "bib": "0",
+        "bib": "6009",
         "name": "Edward BENTLEY",
         "age": 0,
         "sex": "M",
@@ -20750,7 +20750,7 @@ window.glclResults = [
     },
     {
         "pos": 223,
-        "bib": "0",
+        "bib": "2022",
         "name": "Gary BURLEY",
         "age": 0,
         "sex": "M",
@@ -20771,7 +20771,7 @@ window.glclResults = [
     },
     {
         "pos": 224,
-        "bib": "0",
+        "bib": "6001",
         "name": "Alicia ABELL",
         "age": 0,
         "sex": "F",
@@ -20792,7 +20792,7 @@ window.glclResults = [
     },
     {
         "pos": 225,
-        "bib": "0",
+        "bib": "5123",
         "name": "Julian HUNT",
         "age": 0,
         "sex": "M",
@@ -20813,7 +20813,7 @@ window.glclResults = [
     },
     {
         "pos": 226,
-        "bib": "0",
+        "bib": "1072",
         "name": "James REYNOLDS",
         "age": 0,
         "sex": "M",
@@ -20834,7 +20834,7 @@ window.glclResults = [
     },
     {
         "pos": 227,
-        "bib": "0",
+        "bib": "1015",
         "name": "Antony DERRICK",
         "age": 0,
         "sex": "M",
@@ -20855,7 +20855,7 @@ window.glclResults = [
     },
     {
         "pos": 228,
-        "bib": "0",
+        "bib": "2069",
         "name": "Amanda HAEFFNER",
         "age": 0,
         "sex": "F",
@@ -20876,7 +20876,7 @@ window.glclResults = [
     },
     {
         "pos": 229,
-        "bib": "0",
+        "bib": "2068",
         "name": "Paul GRIFFITHS",
         "age": 0,
         "sex": "M",
@@ -20897,7 +20897,7 @@ window.glclResults = [
     },
     {
         "pos": 230,
-        "bib": "0",
+        "bib": "8117",
         "name": "Cyril WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -20918,7 +20918,7 @@ window.glclResults = [
     },
     {
         "pos": 231,
-        "bib": "0",
+        "bib": "4073",
         "name": "Timothy MILES",
         "age": 0,
         "sex": "M",
@@ -20939,7 +20939,7 @@ window.glclResults = [
     },
     {
         "pos": 232,
-        "bib": "0",
+        "bib": "4071",
         "name": "Jennifer MCPADDEN",
         "age": 0,
         "sex": "F",
@@ -20960,7 +20960,7 @@ window.glclResults = [
     },
     {
         "pos": 233,
-        "bib": "0",
+        "bib": "9093",
         "name": "Tom WARWICK",
         "age": 0,
         "sex": "M",
@@ -20981,7 +20981,7 @@ window.glclResults = [
     },
     {
         "pos": 234,
-        "bib": "0",
+        "bib": "7032",
         "name": "Louise HARTREE",
         "age": 0,
         "sex": "F",
@@ -21002,7 +21002,7 @@ window.glclResults = [
     },
     {
         "pos": 235,
-        "bib": "0",
+        "bib": "3061",
         "name": "Elizabeth WALSH",
         "age": 0,
         "sex": "F",
@@ -21023,7 +21023,7 @@ window.glclResults = [
     },
     {
         "pos": 236,
-        "bib": "0",
+        "bib": "6161",
         "name": "Leanne WESTACOTT",
         "age": 0,
         "sex": "F",
@@ -21044,7 +21044,7 @@ window.glclResults = [
     },
     {
         "pos": 237,
-        "bib": "0",
+        "bib": "1377",
         "name": "Philip HAWKINS",
         "age": 0,
         "sex": "M",
@@ -21065,7 +21065,7 @@ window.glclResults = [
     },
     {
         "pos": 238,
-        "bib": "0",
+        "bib": "1339",
         "name": "Charlotte MELLOR",
         "age": 0,
         "sex": "F",
@@ -21086,7 +21086,7 @@ window.glclResults = [
     },
     {
         "pos": 239,
-        "bib": "0",
+        "bib": "1054",
         "name": "Ffion MORGAN",
         "age": 0,
         "sex": "F",
@@ -21107,7 +21107,7 @@ window.glclResults = [
     },
     {
         "pos": 240,
-        "bib": "0",
+        "bib": "1064",
         "name": "Anelu PIRVU",
         "age": 0,
         "sex": "M",
@@ -21128,7 +21128,7 @@ window.glclResults = [
     },
     {
         "pos": 241,
-        "bib": "0",
+        "bib": "1007",
         "name": "Michelle CLABON",
         "age": 0,
         "sex": "F",
@@ -21149,7 +21149,7 @@ window.glclResults = [
     },
     {
         "pos": 242,
-        "bib": "0",
+        "bib": "1294",
         "name": "Justin PEARCE",
         "age": 0,
         "sex": "M",
@@ -21170,7 +21170,7 @@ window.glclResults = [
     },
     {
         "pos": 243,
-        "bib": "0",
+        "bib": "5094",
         "name": "Keith DAVIES",
         "age": 0,
         "sex": "M",
@@ -21191,7 +21191,7 @@ window.glclResults = [
     },
     {
         "pos": 244,
-        "bib": "0",
+        "bib": "5161",
         "name": "Matthew TAYLOUR",
         "age": 0,
         "sex": "M",
@@ -21212,7 +21212,7 @@ window.glclResults = [
     },
     {
         "pos": 245,
-        "bib": "0",
+        "bib": "6112",
         "name": "Jane LEWIS",
         "age": 0,
         "sex": "F",
@@ -21233,7 +21233,7 @@ window.glclResults = [
     },
     {
         "pos": 246,
-        "bib": "0",
+        "bib": "2056",
         "name": "Mike EVANS",
         "age": 0,
         "sex": "M",
@@ -21254,7 +21254,7 @@ window.glclResults = [
     },
     {
         "pos": 247,
-        "bib": "0",
+        "bib": "5100",
         "name": "Mark DUDDRIDGE",
         "age": 0,
         "sex": "M",
@@ -21275,7 +21275,7 @@ window.glclResults = [
     },
     {
         "pos": 248,
-        "bib": "0",
+        "bib": "7018",
         "name": "Jeremy CREASEY",
         "age": 0,
         "sex": "M",
@@ -21296,7 +21296,7 @@ window.glclResults = [
     },
     {
         "pos": 249,
-        "bib": "0",
+        "bib": "4075",
         "name": "Mikiko MINTY",
         "age": 0,
         "sex": "F",
@@ -21317,7 +21317,7 @@ window.glclResults = [
     },
     {
         "pos": 250,
-        "bib": "0",
+        "bib": "2032",
         "name": "John COBBE",
         "age": 0,
         "sex": "M",
@@ -21338,7 +21338,7 @@ window.glclResults = [
     },
     {
         "pos": 251,
-        "bib": "0",
+        "bib": "8029",
         "name": "Clair EDWARDS",
         "age": 0,
         "sex": "F",
@@ -21359,7 +21359,7 @@ window.glclResults = [
     },
     {
         "pos": 252,
-        "bib": "0",
+        "bib": "5039",
         "name": "Lorraine KELSEY",
         "age": 0,
         "sex": "F",
@@ -21380,7 +21380,7 @@ window.glclResults = [
     },
     {
         "pos": 253,
-        "bib": "0",
+        "bib": "2037",
         "name": "Christopher COX",
         "age": 0,
         "sex": "M",
@@ -21401,7 +21401,7 @@ window.glclResults = [
     },
     {
         "pos": 254,
-        "bib": "0",
+        "bib": "7017",
         "name": "Helen SHEPHERD",
         "age": 0,
         "sex": "F",
@@ -21422,7 +21422,7 @@ window.glclResults = [
     },
     {
         "pos": 255,
-        "bib": "0",
+        "bib": "3049",
         "name": "Mark PROSSER",
         "age": 0,
         "sex": "M",
@@ -21443,7 +21443,7 @@ window.glclResults = [
     },
     {
         "pos": 256,
-        "bib": "0",
+        "bib": "7001",
         "name": "Chris BABER",
         "age": 0,
         "sex": "M",
@@ -21464,7 +21464,7 @@ window.glclResults = [
     },
     {
         "pos": 257,
-        "bib": "0",
+        "bib": "5034",
         "name": "Jennifer JENKINS",
         "age": 0,
         "sex": "F",
@@ -21485,7 +21485,7 @@ window.glclResults = [
     },
     {
         "pos": 258,
-        "bib": "0",
+        "bib": "2050",
         "name": "Christelle DUMOND",
         "age": 0,
         "sex": "F",
@@ -21506,7 +21506,7 @@ window.glclResults = [
     },
     {
         "pos": 259,
-        "bib": "0",
+        "bib": "2055",
         "name": "Denise EVANS",
         "age": 0,
         "sex": "F",
@@ -21527,7 +21527,7 @@ window.glclResults = [
     },
     {
         "pos": 260,
-        "bib": "0",
+        "bib": "1334",
         "name": "Gulesh KUMAR",
         "age": 0,
         "sex": "M",
@@ -21548,7 +21548,7 @@ window.glclResults = [
     },
     {
         "pos": 261,
-        "bib": "0",
+        "bib": "6121",
         "name": "Louise MUTEHAM",
         "age": 0,
         "sex": "F",
@@ -21569,7 +21569,7 @@ window.glclResults = [
     },
     {
         "pos": 262,
-        "bib": "0",
+        "bib": "3031",
         "name": "Martyn JENKINS",
         "age": 0,
         "sex": "M",
@@ -21590,7 +21590,7 @@ window.glclResults = [
     },
     {
         "pos": 263,
-        "bib": "0",
+        "bib": "6015",
         "name": "Fay BOWEN",
         "age": 0,
         "sex": "F",
@@ -21611,7 +21611,7 @@ window.glclResults = [
     },
     {
         "pos": 264,
-        "bib": "0",
+        "bib": "4059",
         "name": "Hannah KEATING",
         "age": 0,
         "sex": "F",
@@ -21632,7 +21632,7 @@ window.glclResults = [
     },
     {
         "pos": 265,
-        "bib": "0",
+        "bib": "5012",
         "name": "Rebecca DAVIES",
         "age": 0,
         "sex": "F",
@@ -21653,7 +21653,7 @@ window.glclResults = [
     },
     {
         "pos": 266,
-        "bib": "0",
+        "bib": "5064",
         "name": "Louise SADDLER",
         "age": 0,
         "sex": "F",
@@ -21674,7 +21674,7 @@ window.glclResults = [
     },
     {
         "pos": 267,
-        "bib": "0",
+        "bib": "2116",
         "name": "Brett REGULSKI",
         "age": 0,
         "sex": "M",
@@ -21695,7 +21695,7 @@ window.glclResults = [
     },
     {
         "pos": 268,
-        "bib": "0",
+        "bib": "6005",
         "name": "Howard ATTWOOD",
         "age": 0,
         "sex": "M",
@@ -21716,7 +21716,7 @@ window.glclResults = [
     },
     {
         "pos": 269,
-        "bib": "0",
+        "bib": "5019",
         "name": "Julie GOULD",
         "age": 0,
         "sex": "F",
@@ -21737,7 +21737,7 @@ window.glclResults = [
     },
     {
         "pos": 270,
-        "bib": "0",
+        "bib": "3029",
         "name": "Evie HOARE",
         "age": 0,
         "sex": "F",
@@ -21758,7 +21758,7 @@ window.glclResults = [
     },
     {
         "pos": 271,
-        "bib": "0",
+        "bib": "2145",
         "name": "Sian GRIFFITH",
         "age": 0,
         "sex": "F",
@@ -21779,7 +21779,7 @@ window.glclResults = [
     },
     {
         "pos": 272,
-        "bib": "0",
+        "bib": "5184",
         "name": "Rebecca SAGE",
         "age": 0,
         "sex": "F",
@@ -21800,7 +21800,7 @@ window.glclResults = [
     },
     {
         "pos": 273,
-        "bib": "0",
+        "bib": "5079",
         "name": "Karen WOODSFORD",
         "age": 0,
         "sex": "F",
@@ -21821,7 +21821,7 @@ window.glclResults = [
     },
     {
         "pos": 274,
-        "bib": "0",
+        "bib": "4080",
         "name": "Barrie PARHAM",
         "age": 0,
         "sex": "M",
@@ -21842,7 +21842,7 @@ window.glclResults = [
     },
     {
         "pos": 275,
-        "bib": "0",
+        "bib": "6008",
         "name": "Rich BELBIN",
         "age": 0,
         "sex": "M",
@@ -21863,7 +21863,7 @@ window.glclResults = [
     },
     {
         "pos": 276,
-        "bib": "0",
+        "bib": "9071",
         "name": "Catherine PRICE",
         "age": 0,
         "sex": "F",
@@ -21884,7 +21884,7 @@ window.glclResults = [
     },
     {
         "pos": 277,
-        "bib": "0",
+        "bib": "1012",
         "name": "Hattie JENKINS",
         "age": 0,
         "sex": "F",
@@ -21905,7 +21905,7 @@ window.glclResults = [
     },
     {
         "pos": 278,
-        "bib": "0",
+        "bib": "2070",
         "name": "Eve HAEFFNER",
         "age": 0,
         "sex": "F",
@@ -21926,7 +21926,7 @@ window.glclResults = [
     },
     {
         "pos": 279,
-        "bib": "0",
+        "bib": "5007",
         "name": "Sheryl CLARK",
         "age": 0,
         "sex": "F",
@@ -21947,7 +21947,7 @@ window.glclResults = [
     },
     {
         "pos": 280,
-        "bib": "0",
+        "bib": "1009",
         "name": "Steve DANCE",
         "age": 0,
         "sex": "M",
@@ -21968,7 +21968,7 @@ window.glclResults = [
     },
     {
         "pos": 281,
-        "bib": "0",
+        "bib": "5031",
         "name": "Lauren HOLTHAM-MORGAN",
         "age": 0,
         "sex": "F",
@@ -21989,7 +21989,7 @@ window.glclResults = [
     },
     {
         "pos": 282,
-        "bib": "0",
+        "bib": "1092",
         "name": "Grahame VINER",
         "age": 0,
         "sex": "M",
@@ -22010,7 +22010,7 @@ window.glclResults = [
     },
     {
         "pos": 283,
-        "bib": "0",
+        "bib": "2071",
         "name": "Mia HAEFFNER",
         "age": 0,
         "sex": "F",
@@ -22031,7 +22031,7 @@ window.glclResults = [
     },
     {
         "pos": 284,
-        "bib": "0",
+        "bib": "5059",
         "name": "Hilary PREECE",
         "age": 0,
         "sex": "F",
@@ -22052,7 +22052,7 @@ window.glclResults = [
     },
     {
         "pos": 285,
-        "bib": "0",
+        "bib": "1051",
         "name": "Edward McDAID",
         "age": 0,
         "sex": "M",
@@ -22073,7 +22073,7 @@ window.glclResults = [
     },
     {
         "pos": 286,
-        "bib": "0",
+        "bib": "5069",
         "name": "Sarah TUCKER",
         "age": 0,
         "sex": "F",
@@ -22094,7 +22094,7 @@ window.glclResults = [
     },
     {
         "pos": 287,
-        "bib": "0",
+        "bib": "6045",
         "name": "Dawn DAVIS",
         "age": 0,
         "sex": "F",
@@ -22115,7 +22115,7 @@ window.glclResults = [
     },
     {
         "pos": 288,
-        "bib": "0",
+        "bib": "6065",
         "name": "Dirkje FRASER",
         "age": 0,
         "sex": "F",
@@ -22136,7 +22136,7 @@ window.glclResults = [
     },
     {
         "pos": 289,
-        "bib": "0",
+        "bib": "5104",
         "name": "Gerald EVANS",
         "age": 0,
         "sex": "M",
@@ -22157,7 +22157,7 @@ window.glclResults = [
     },
     {
         "pos": 290,
-        "bib": "0",
+        "bib": "3012",
         "name": "Cerris DAWE",
         "age": 0,
         "sex": "F",
@@ -22178,7 +22178,7 @@ window.glclResults = [
     },
     {
         "pos": 291,
-        "bib": "0",
+        "bib": "3038",
         "name": "Julie LEES",
         "age": 0,
         "sex": "F",
@@ -22199,7 +22199,7 @@ window.glclResults = [
     },
     {
         "pos": 292,
-        "bib": "0",
+        "bib": "5044",
         "name": "Katie LIPPIATT",
         "age": 0,
         "sex": "F",
@@ -22220,7 +22220,7 @@ window.glclResults = [
     },
     {
         "pos": 293,
-        "bib": "0",
+        "bib": "5107",
         "name": "Andrew GOULD",
         "age": 0,
         "sex": "M",
@@ -22241,7 +22241,7 @@ window.glclResults = [
     },
     {
         "pos": 294,
-        "bib": "0",
+        "bib": "1025",
         "name": "Incy GIBSON",
         "age": 0,
         "sex": "F",
@@ -22262,7 +22262,7 @@ window.glclResults = [
     },
     {
         "pos": 295,
-        "bib": "0",
+        "bib": "4098",
         "name": "Erika SKIVINGTON",
         "age": 0,
         "sex": "F",
@@ -22283,7 +22283,7 @@ window.glclResults = [
     },
     {
         "pos": 296,
-        "bib": "0",
+        "bib": "1014",
         "name": "Sian DENMAN",
         "age": 0,
         "sex": "F",
@@ -22304,7 +22304,7 @@ window.glclResults = [
     },
     {
         "pos": 297,
-        "bib": "0",
+        "bib": "3053",
         "name": "Stewart SEABORNE",
         "age": 0,
         "sex": "M",
@@ -22325,7 +22325,7 @@ window.glclResults = [
     },
     {
         "pos": 298,
-        "bib": "0",
+        "bib": "4079",
         "name": "Joanne PALING",
         "age": 0,
         "sex": "F",
@@ -22346,7 +22346,7 @@ window.glclResults = [
     },
     {
         "pos": 299,
-        "bib": "0",
+        "bib": "3028",
         "name": "Jessica HENRY",
         "age": 0,
         "sex": "F",
@@ -22367,7 +22367,7 @@ window.glclResults = [
     },
     {
         "pos": 300,
-        "bib": "0",
+        "bib": "4031",
         "name": "Stuart FRANCIS",
         "age": 0,
         "sex": "M",
@@ -22388,7 +22388,7 @@ window.glclResults = [
     },
     {
         "pos": 301,
-        "bib": "0",
+        "bib": "4092",
         "name": "Wayne RUDALL",
         "age": 0,
         "sex": "M",
@@ -22409,7 +22409,7 @@ window.glclResults = [
     },
     {
         "pos": 302,
-        "bib": "0",
+        "bib": "1081",
         "name": "Rachael STEPHENS",
         "age": 0,
         "sex": "F",
@@ -22430,7 +22430,7 @@ window.glclResults = [
     },
     {
         "pos": 303,
-        "bib": "0",
+        "bib": "5093",
         "name": "Craig DAVIES",
         "age": 0,
         "sex": "M",
@@ -22451,7 +22451,7 @@ window.glclResults = [
     },
     {
         "pos": 304,
-        "bib": "0",
+        "bib": "8098",
         "name": "Jayne RIST",
         "age": 0,
         "sex": "F",
@@ -22472,7 +22472,7 @@ window.glclResults = [
     },
     {
         "pos": 305,
-        "bib": "0",
+        "bib": "8003",
         "name": "Michelle BATES",
         "age": 0,
         "sex": "F",
@@ -22493,7 +22493,7 @@ window.glclResults = [
     },
     {
         "pos": 306,
-        "bib": "0",
+        "bib": "6175",
         "name": "Desmond JONES",
         "age": 0,
         "sex": "M",
@@ -22514,7 +22514,7 @@ window.glclResults = [
     },
     {
         "pos": 307,
-        "bib": "0",
+        "bib": "3006",
         "name": "Tia BARTER",
         "age": 0,
         "sex": "F",
@@ -22535,7 +22535,7 @@ window.glclResults = [
     },
     {
         "pos": 308,
-        "bib": "0",
+        "bib": "6029",
         "name": "Neil CHIPPER",
         "age": 0,
         "sex": "M",
@@ -22556,7 +22556,7 @@ window.glclResults = [
     },
     {
         "pos": 309,
-        "bib": "0",
+        "bib": "4115",
         "name": "Anna WILKINSON",
         "age": 0,
         "sex": "F",
@@ -22577,7 +22577,7 @@ window.glclResults = [
     },
     {
         "pos": 310,
-        "bib": "0",
+        "bib": "3519",
         "name": "Julian GUY",
         "age": 0,
         "sex": "M",
@@ -22598,7 +22598,7 @@ window.glclResults = [
     },
     {
         "pos": 311,
-        "bib": "0",
+        "bib": "3011",
         "name": "Alison DAVIS",
         "age": 0,
         "sex": "F",
@@ -22619,7 +22619,7 @@ window.glclResults = [
     },
     {
         "pos": 312,
-        "bib": "0",
+        "bib": "1019",
         "name": "Caroline DUNN",
         "age": 0,
         "sex": "F",
@@ -22640,7 +22640,7 @@ window.glclResults = [
     },
     {
         "pos": 313,
-        "bib": "0",
+        "bib": "1016",
         "name": "Jane DERRICK",
         "age": 0,
         "sex": "F",
@@ -22661,7 +22661,7 @@ window.glclResults = [
     },
     {
         "pos": 314,
-        "bib": "0",
+        "bib": "5128",
         "name": "Simon JOHNSON",
         "age": 0,
         "sex": "M",
@@ -22682,7 +22682,7 @@ window.glclResults = [
     },
     {
         "pos": 315,
-        "bib": "0",
+        "bib": "5063",
         "name": "Pat RICHARDSON",
         "age": 0,
         "sex": "F",
@@ -22703,7 +22703,7 @@ window.glclResults = [
     },
     {
         "pos": 316,
-        "bib": "0",
+        "bib": "4065",
         "name": "Cj LEWIS",
         "age": 0,
         "sex": "M",
@@ -22724,7 +22724,7 @@ window.glclResults = [
     },
     {
         "pos": 317,
-        "bib": "0",
+        "bib": "5129",
         "name": "Jake JONES",
         "age": 0,
         "sex": "M",
@@ -22745,7 +22745,7 @@ window.glclResults = [
     },
     {
         "pos": 318,
-        "bib": "0",
+        "bib": "1341",
         "name": "Jaye PRICE",
         "age": 0,
         "sex": "F",
@@ -22787,7 +22787,7 @@ window.glclResults = [
     },
     {
         "pos": 320,
-        "bib": "0",
+        "bib": "3025",
         "name": "Helen GWILLIAM",
         "age": 0,
         "sex": "F",
@@ -22808,7 +22808,7 @@ window.glclResults = [
     },
     {
         "pos": 321,
-        "bib": "0",
+        "bib": "4077",
         "name": "Nicola NEEDS",
         "age": 0,
         "sex": "F",
@@ -22829,7 +22829,7 @@ window.glclResults = [
     },
     {
         "pos": 322,
-        "bib": "0",
+        "bib": "3072",
         "name": "Nick WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -22850,7 +22850,7 @@ window.glclResults = [
     },
     {
         "pos": 323,
-        "bib": "0",
+        "bib": "5032",
         "name": "Sian JAMES",
         "age": 0,
         "sex": "F",
@@ -22871,7 +22871,7 @@ window.glclResults = [
     },
     {
         "pos": 324,
-        "bib": "0",
+        "bib": "3048",
         "name": "Sarah PRICE",
         "age": 0,
         "sex": "F",
@@ -22892,7 +22892,7 @@ window.glclResults = [
     },
     {
         "pos": 325,
-        "bib": "0",
+        "bib": "7043",
         "name": "Alison McMENEMY",
         "age": 0,
         "sex": "F",
@@ -22913,7 +22913,7 @@ window.glclResults = [
     },
     {
         "pos": 326,
-        "bib": "0",
+        "bib": "7044",
         "name": "Stephen McMENEMY",
         "age": 0,
         "sex": "M",
@@ -22934,7 +22934,7 @@ window.glclResults = [
     },
     {
         "pos": 327,
-        "bib": "0",
+        "bib": "5047",
         "name": "Charlotte MARSHALL",
         "age": 0,
         "sex": "F",
@@ -22955,7 +22955,7 @@ window.glclResults = [
     },
     {
         "pos": 328,
-        "bib": "0",
+        "bib": "5121",
         "name": "Jake HOWE",
         "age": 0,
         "sex": "M",
@@ -22976,7 +22976,7 @@ window.glclResults = [
     },
     {
         "pos": 329,
-        "bib": "0",
+        "bib": "1438",
         "name": "Charlie MATTHEWS",
         "age": 0,
         "sex": "F",
@@ -22997,7 +22997,7 @@ window.glclResults = [
     },
     {
         "pos": 330,
-        "bib": "0",
+        "bib": "7042",
         "name": "Laura McLOUGHLIN",
         "age": 0,
         "sex": "F",
@@ -23018,7 +23018,7 @@ window.glclResults = [
     },
     {
         "pos": 331,
-        "bib": "0",
+        "bib": "7028",
         "name": "Maixent GAILLARD",
         "age": 0,
         "sex": "M",
@@ -23039,7 +23039,7 @@ window.glclResults = [
     },
     {
         "pos": 332,
-        "bib": "0",
+        "bib": "7038",
         "name": "Fay VISSER",
         "age": 0,
         "sex": "F",
@@ -23060,7 +23060,7 @@ window.glclResults = [
     },
     {
         "pos": 333,
-        "bib": "0",
+        "bib": "4116",
         "name": "Isabelle WILKINSON",
         "age": 0,
         "sex": "F",
@@ -23123,7 +23123,7 @@ window.glclResults = [
     },
     {
         "pos": 336,
-        "bib": "0",
+        "bib": "2053",
         "name": "Gill ELLIS",
         "age": 0,
         "sex": "F",
@@ -23144,7 +23144,7 @@ window.glclResults = [
     },
     {
         "pos": 337,
-        "bib": "0",
+        "bib": "5030",
         "name": "Kirsty HOLTHAM-MORGAN",
         "age": 0,
         "sex": "F",
@@ -23165,7 +23165,7 @@ window.glclResults = [
     },
     {
         "pos": 338,
-        "bib": "0",
+        "bib": "5070",
         "name": "Fiona WALKLEY",
         "age": 0,
         "sex": "F",
@@ -23186,7 +23186,7 @@ window.glclResults = [
     },
     {
         "pos": 339,
-        "bib": "0",
+        "bib": "2012",
         "name": "Jane BAYLISS",
         "age": 0,
         "sex": "F",
@@ -23207,7 +23207,7 @@ window.glclResults = [
     },
     {
         "pos": 340,
-        "bib": "0",
+        "bib": "3009",
         "name": "Helen BROWN",
         "age": 0,
         "sex": "F",
@@ -23228,7 +23228,7 @@ window.glclResults = [
     },
     {
         "pos": 341,
-        "bib": "0",
+        "bib": "6031",
         "name": "Paula CHURCH",
         "age": 0,
         "sex": "F",
@@ -23249,7 +23249,7 @@ window.glclResults = [
     },
     {
         "pos": 342,
-        "bib": "0",
+        "bib": "6170",
         "name": "Tim WRIGHT",
         "age": 0,
         "sex": "M",
@@ -23291,7 +23291,7 @@ window.glclResults = [
     },
     {
         "pos": 344,
-        "bib": "0",
+        "bib": "1010",
         "name": "David DAVIES",
         "age": 0,
         "sex": "M",
@@ -23312,7 +23312,7 @@ window.glclResults = [
     },
     {
         "pos": 345,
-        "bib": "0",
+        "bib": "5060",
         "name": "Shelly PRICE-STEPHENS",
         "age": 0,
         "sex": "F",
@@ -23333,7 +23333,7 @@ window.glclResults = [
     },
     {
         "pos": 346,
-        "bib": "0",
+        "bib": "5155",
         "name": "Andrew PRICE-STEPHENS",
         "age": 0,
         "sex": "M",
@@ -23354,7 +23354,7 @@ window.glclResults = [
     },
     {
         "pos": 347,
-        "bib": "0",
+        "bib": "2132",
         "name": "Corinna TANNIAN",
         "age": 0,
         "sex": "F",
@@ -23375,7 +23375,7 @@ window.glclResults = [
     },
     {
         "pos": 348,
-        "bib": "0",
+        "bib": "5009",
         "name": "Sophie COLLINS",
         "age": 0,
         "sex": "F",
@@ -23396,7 +23396,7 @@ window.glclResults = [
     },
     {
         "pos": 349,
-        "bib": "0",
+        "bib": "5057",
         "name": "Zoe PHILLIPS",
         "age": 0,
         "sex": "F",
@@ -23417,7 +23417,7 @@ window.glclResults = [
     },
     {
         "pos": 350,
-        "bib": "0",
+        "bib": "5003",
         "name": "Deborah BROWN",
         "age": 0,
         "sex": "F",
@@ -23438,7 +23438,7 @@ window.glclResults = [
     },
     {
         "pos": 351,
-        "bib": "0",
+        "bib": "1053",
         "name": "Aisling MORGAN",
         "age": 0,
         "sex": "F",
@@ -23459,7 +23459,7 @@ window.glclResults = [
     },
     {
         "pos": 352,
-        "bib": "0",
+        "bib": "5073",
         "name": "Rachael WATKINS",
         "age": 0,
         "sex": "F",
@@ -23480,7 +23480,7 @@ window.glclResults = [
     },
     {
         "pos": 353,
-        "bib": "0",
+        "bib": "5020",
         "name": "Rebecca GRIST",
         "age": 0,
         "sex": "F",
@@ -23501,7 +23501,7 @@ window.glclResults = [
     },
     {
         "pos": 354,
-        "bib": "0",
+        "bib": "5008",
         "name": "Danielle CLEVERLY",
         "age": 0,
         "sex": "F",
@@ -23522,7 +23522,7 @@ window.glclResults = [
     },
     {
         "pos": 355,
-        "bib": "0",
+        "bib": "5139",
         "name": "William LEWIS",
         "age": 0,
         "sex": "M",
@@ -23543,7 +23543,7 @@ window.glclResults = [
     },
     {
         "pos": 356,
-        "bib": "0",
+        "bib": "5097",
         "name": "Colin DIXON",
         "age": 0,
         "sex": "M",
@@ -23564,7 +23564,7 @@ window.glclResults = [
     },
     {
         "pos": 357,
-        "bib": "0",
+        "bib": "5178",
         "name": "Roy BEECHAM",
         "age": 0,
         "sex": "M",
@@ -23585,7 +23585,7 @@ window.glclResults = [
     },
     {
         "pos": 358,
-        "bib": "0",
+        "bib": "3065",
         "name": "Suzanne WILLAMS",
         "age": 0,
         "sex": "F",
@@ -23606,7 +23606,7 @@ window.glclResults = [
     },
     {
         "pos": 359,
-        "bib": "0",
+        "bib": "5074",
         "name": "Wendy WATKINS",
         "age": 0,
         "sex": "F",
@@ -23627,7 +23627,7 @@ window.glclResults = [
     },
     {
         "pos": 360,
-        "bib": "0",
+        "bib": "4110",
         "name": "Yvonne WALKER",
         "age": 0,
         "sex": "F",
@@ -23648,7 +23648,7 @@ window.glclResults = [
     },
     {
         "pos": 361,
-        "bib": "0",
+        "bib": "5119",
         "name": "Stephen HOARE",
         "age": 0,
         "sex": "M",
@@ -23669,7 +23669,7 @@ window.glclResults = [
     },
     {
         "pos": 362,
-        "bib": "0",
+        "bib": "5065",
         "name": "Lisa THOMAS",
         "age": 0,
         "sex": "F",
@@ -23690,7 +23690,7 @@ window.glclResults = [
     },
     {
         "pos": 363,
-        "bib": "0",
+        "bib": "5076",
         "name": "Emily WELSH",
         "age": 0,
         "sex": "F",
@@ -23711,7 +23711,7 @@ window.glclResults = [
     },
     {
         "pos": 364,
-        "bib": "0",
+        "bib": "5028",
         "name": "Janet HOARE",
         "age": 0,
         "sex": "F",
@@ -23732,7 +23732,7 @@ window.glclResults = [
     },
     {
         "pos": 1,
-        "bib": "0",
+        "bib": "8073",
         "name": "Phillip MATTHEWS",
         "age": 0,
         "sex": "M",
@@ -23753,7 +23753,7 @@ window.glclResults = [
     },
     {
         "pos": 2,
-        "bib": "0",
+        "bib": "8136",
         "name": "Daniel BODMAN",
         "age": 0,
         "sex": "M",
@@ -23774,7 +23774,7 @@ window.glclResults = [
     },
     {
         "pos": 3,
-        "bib": "0",
+        "bib": "1380",
         "name": "Jonathan FORD",
         "age": 0,
         "sex": "M",
@@ -23795,7 +23795,7 @@ window.glclResults = [
     },
     {
         "pos": 4,
-        "bib": "0",
+        "bib": "2149",
         "name": "Peter NIMMO",
         "age": 0,
         "sex": "M",
@@ -23816,7 +23816,7 @@ window.glclResults = [
     },
     {
         "pos": 5,
-        "bib": "0",
+        "bib": "2010",
         "name": "Tim BATCHELOR",
         "age": 0,
         "sex": "M",
@@ -23837,7 +23837,7 @@ window.glclResults = [
     },
     {
         "pos": 6,
-        "bib": "0",
+        "bib": "9035",
         "name": "Adam GREY",
         "age": 0,
         "sex": "M",
@@ -23858,7 +23858,7 @@ window.glclResults = [
     },
     {
         "pos": 7,
-        "bib": "0",
+        "bib": "9001",
         "name": "Andrei ARCANA",
         "age": 0,
         "sex": "M",
@@ -23879,7 +23879,7 @@ window.glclResults = [
     },
     {
         "pos": 8,
-        "bib": "0",
+        "bib": "8112",
         "name": "Paul WHITE",
         "age": 0,
         "sex": "M",
@@ -23900,7 +23900,7 @@ window.glclResults = [
     },
     {
         "pos": 9,
-        "bib": "0",
+        "bib": "8134",
         "name": "Lee AHERNE",
         "age": 0,
         "sex": "M",
@@ -23921,7 +23921,7 @@ window.glclResults = [
     },
     {
         "pos": 10,
-        "bib": "0",
+        "bib": "2087",
         "name": "Reuben LAWSON",
         "age": 0,
         "sex": "M",
@@ -23942,7 +23942,7 @@ window.glclResults = [
     },
     {
         "pos": 11,
-        "bib": "0",
+        "bib": "2017",
         "name": "James BLORE",
         "age": 0,
         "sex": "M",
@@ -23963,7 +23963,7 @@ window.glclResults = [
     },
     {
         "pos": 12,
-        "bib": "0",
+        "bib": "2099",
         "name": "Joseph MATTHEWS",
         "age": 0,
         "sex": "M",
@@ -23984,7 +23984,7 @@ window.glclResults = [
     },
     {
         "pos": 13,
-        "bib": "0",
+        "bib": "8018",
         "name": "Justin CROCKER",
         "age": 0,
         "sex": "M",
@@ -24005,7 +24005,7 @@ window.glclResults = [
     },
     {
         "pos": 14,
-        "bib": "0",
+        "bib": "9097",
         "name": "Thomas BRISCO WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -24026,7 +24026,7 @@ window.glclResults = [
     },
     {
         "pos": 15,
-        "bib": "0",
+        "bib": "3504",
         "name": "Benjamin St JOHN",
         "age": 0,
         "sex": "M",
@@ -24047,7 +24047,7 @@ window.glclResults = [
     },
     {
         "pos": 16,
-        "bib": "0",
+        "bib": "8106",
         "name": "Lauren STOCKLEY",
         "age": 0,
         "sex": "F",
@@ -24068,7 +24068,7 @@ window.glclResults = [
     },
     {
         "pos": 17,
-        "bib": "0",
+        "bib": "8024",
         "name": "Mark DAVIES",
         "age": 0,
         "sex": "M",
@@ -24089,7 +24089,7 @@ window.glclResults = [
     },
     {
         "pos": 18,
-        "bib": "0",
+        "bib": "7050036",
         "name": "Harry WOODWARD",
         "age": 0,
         "sex": "M",
@@ -24110,7 +24110,7 @@ window.glclResults = [
     },
     {
         "pos": 19,
-        "bib": "0",
+        "bib": "8039",
         "name": "Ryan GONCALVES",
         "age": 0,
         "sex": "M",
@@ -24131,7 +24131,7 @@ window.glclResults = [
     },
     {
         "pos": 20,
-        "bib": "0",
+        "bib": "8120",
         "name": "Lucy WILLIAMSON",
         "age": 0,
         "sex": "F",
@@ -24152,7 +24152,7 @@ window.glclResults = [
     },
     {
         "pos": 21,
-        "bib": "0",
+        "bib": "9039",
         "name": "William HARVEY",
         "age": 0,
         "sex": "M",
@@ -24173,7 +24173,7 @@ window.glclResults = [
     },
     {
         "pos": 22,
-        "bib": "0",
+        "bib": "9055",
         "name": "Mike MARSH",
         "age": 0,
         "sex": "M",
@@ -24194,7 +24194,7 @@ window.glclResults = [
     },
     {
         "pos": 23,
-        "bib": "0",
+        "bib": "1105",
         "name": "Liam MOORE",
         "age": 0,
         "sex": "M",
@@ -24215,7 +24215,7 @@ window.glclResults = [
     },
     {
         "pos": 24,
-        "bib": "0",
+        "bib": "1296",
         "name": "Martin THOMAS",
         "age": 0,
         "sex": "M",
@@ -24236,7 +24236,7 @@ window.glclResults = [
     },
     {
         "pos": 25,
-        "bib": "0",
+        "bib": "9072",
         "name": "Iestyn RHODES",
         "age": 0,
         "sex": "M",
@@ -24257,7 +24257,7 @@ window.glclResults = [
     },
     {
         "pos": 26,
-        "bib": "0",
+        "bib": "8122",
         "name": "Ryan WORLOCK-MORGAN",
         "age": 0,
         "sex": "M",
@@ -24278,7 +24278,7 @@ window.glclResults = [
     },
     {
         "pos": 27,
-        "bib": "0",
+        "bib": "4005",
         "name": "Matt BENNETT",
         "age": 0,
         "sex": "M",
@@ -24299,7 +24299,7 @@ window.glclResults = [
     },
     {
         "pos": 28,
-        "bib": "0",
+        "bib": "1507",
         "name": "Joseph WALBYOFF",
         "age": 0,
         "sex": "M",
@@ -24320,7 +24320,7 @@ window.glclResults = [
     },
     {
         "pos": 29,
-        "bib": "0",
+        "bib": "8110",
         "name": "Connor THURSTON",
         "age": 0,
         "sex": "M",
@@ -24341,7 +24341,7 @@ window.glclResults = [
     },
     {
         "pos": 30,
-        "bib": "0",
+        "bib": "7014",
         "name": "Tom CHINNICK",
         "age": 0,
         "sex": "M",
@@ -24362,7 +24362,7 @@ window.glclResults = [
     },
     {
         "pos": 31,
-        "bib": "0",
+        "bib": "4049",
         "name": "Craig HOPKINS",
         "age": 0,
         "sex": "M",
@@ -24383,7 +24383,7 @@ window.glclResults = [
     },
     {
         "pos": 32,
-        "bib": "0",
+        "bib": "3027",
         "name": "Kyle HARVEY",
         "age": 0,
         "sex": "M",
@@ -24404,7 +24404,7 @@ window.glclResults = [
     },
     {
         "pos": 33,
-        "bib": "0",
+        "bib": "8121",
         "name": "Alun WOOD",
         "age": 0,
         "sex": "M",
@@ -24425,7 +24425,7 @@ window.glclResults = [
     },
     {
         "pos": 34,
-        "bib": "0",
+        "bib": "4006",
         "name": "Dominic BETHELL",
         "age": 0,
         "sex": "M",
@@ -24446,7 +24446,7 @@ window.glclResults = [
     },
     {
         "pos": 35,
-        "bib": "0",
+        "bib": "2079",
         "name": "Dickie HUDD",
         "age": 0,
         "sex": "M",
@@ -24467,7 +24467,7 @@ window.glclResults = [
     },
     {
         "pos": 36,
-        "bib": "0",
+        "bib": "2020",
         "name": "Douglas BRIGGS",
         "age": 0,
         "sex": "M",
@@ -24488,7 +24488,7 @@ window.glclResults = [
     },
     {
         "pos": 37,
-        "bib": "0",
+        "bib": "2088",
         "name": "Seth LAWSON",
         "age": 0,
         "sex": "M",
@@ -24509,7 +24509,7 @@ window.glclResults = [
     },
     {
         "pos": 38,
-        "bib": "0",
+        "bib": "2060",
         "name": "Ian GAWINOWSKI",
         "age": 0,
         "sex": "M",
@@ -24530,7 +24530,7 @@ window.glclResults = [
     },
     {
         "pos": 39,
-        "bib": "0",
+        "bib": "8076",
         "name": "Christian MURPHY",
         "age": 0,
         "sex": "M",
@@ -24551,7 +24551,7 @@ window.glclResults = [
     },
     {
         "pos": 40,
-        "bib": "0",
+        "bib": "8078",
         "name": "Gareth NEWMAN",
         "age": 0,
         "sex": "M",
@@ -24572,7 +24572,7 @@ window.glclResults = [
     },
     {
         "pos": 41,
-        "bib": "0",
+        "bib": "2034",
         "name": "Steffan COLE",
         "age": 0,
         "sex": "M",
@@ -24593,7 +24593,7 @@ window.glclResults = [
     },
     {
         "pos": 42,
-        "bib": "0",
+        "bib": "1158",
         "name": "Rae ELIAS",
         "age": 0,
         "sex": "M",
@@ -24614,7 +24614,7 @@ window.glclResults = [
     },
     {
         "pos": 43,
-        "bib": "0",
+        "bib": "8052",
         "name": "Patrick JARVIS",
         "age": 0,
         "sex": "M",
@@ -24635,7 +24635,7 @@ window.glclResults = [
     },
     {
         "pos": 44,
-        "bib": "0",
+        "bib": "3511",
         "name": "Henry WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -24656,7 +24656,7 @@ window.glclResults = [
     },
     {
         "pos": 45,
-        "bib": "0",
+        "bib": "2097",
         "name": "Tony MARSHALL",
         "age": 0,
         "sex": "M",
@@ -24677,7 +24677,7 @@ window.glclResults = [
     },
     {
         "pos": 46,
-        "bib": "0",
+        "bib": "7025",
         "name": "Ben SAUNDERS",
         "age": 0,
         "sex": "M",
@@ -24698,7 +24698,7 @@ window.glclResults = [
     },
     {
         "pos": 47,
-        "bib": "0",
+        "bib": "5084",
         "name": "Dewi BRITTON",
         "age": 0,
         "sex": "M",
@@ -24719,7 +24719,7 @@ window.glclResults = [
     },
     {
         "pos": 48,
-        "bib": "0",
+        "bib": "5101",
         "name": "Michael DURY",
         "age": 0,
         "sex": "M",
@@ -24740,7 +24740,7 @@ window.glclResults = [
     },
     {
         "pos": 49,
-        "bib": "0",
+        "bib": "2151",
         "name": "Chris HAEFFNER",
         "age": 0,
         "sex": "M",
@@ -24761,7 +24761,7 @@ window.glclResults = [
     },
     {
         "pos": 50,
-        "bib": "0",
+        "bib": "9063",
         "name": "David NEWMAN",
         "age": 0,
         "sex": "M",
@@ -24782,7 +24782,7 @@ window.glclResults = [
     },
     {
         "pos": 51,
-        "bib": "0",
+        "bib": "9053",
         "name": "Joshua MALONEY",
         "age": 0,
         "sex": "M",
@@ -24803,7 +24803,7 @@ window.glclResults = [
     },
     {
         "pos": 52,
-        "bib": "0",
+        "bib": "7058",
         "name": "Katie ADAMS",
         "age": 0,
         "sex": "F",
@@ -24824,7 +24824,7 @@ window.glclResults = [
     },
     {
         "pos": 53,
-        "bib": "0",
+        "bib": "3071",
         "name": "Ben POMEROY",
         "age": 0,
         "sex": "M",
@@ -24845,7 +24845,7 @@ window.glclResults = [
     },
     {
         "pos": 54,
-        "bib": "0",
+        "bib": "1513",
         "name": "Jonathan PAYMAN",
         "age": 0,
         "sex": "M",
@@ -24866,7 +24866,7 @@ window.glclResults = [
     },
     {
         "pos": 55,
-        "bib": "0",
+        "bib": "2043",
         "name": "Stephen DILLEY",
         "age": 0,
         "sex": "M",
@@ -24887,7 +24887,7 @@ window.glclResults = [
     },
     {
         "pos": 56,
-        "bib": "0",
+        "bib": "6023",
         "name": "Eddie CAMPBELL-ADAMS",
         "age": 0,
         "sex": "M",
@@ -24908,7 +24908,7 @@ window.glclResults = [
     },
     {
         "pos": 57,
-        "bib": "0",
+        "bib": "6092",
         "name": "Martin JOHNS",
         "age": 0,
         "sex": "M",
@@ -24929,7 +24929,7 @@ window.glclResults = [
     },
     {
         "pos": 58,
-        "bib": "0",
+        "bib": "6137",
         "name": "Antoinette ROSE",
         "age": 0,
         "sex": "F",
@@ -24950,7 +24950,7 @@ window.glclResults = [
     },
     {
         "pos": 59,
-        "bib": "0",
+        "bib": "4108",
         "name": "Nicky TUDOR",
         "age": 0,
         "sex": "M",
@@ -24971,7 +24971,7 @@ window.glclResults = [
     },
     {
         "pos": 60,
-        "bib": "0",
+        "bib": "9068",
         "name": "Hywel NASH",
         "age": 0,
         "sex": "M",
@@ -24992,7 +24992,7 @@ window.glclResults = [
     },
     {
         "pos": 61,
-        "bib": "0",
+        "bib": "5164",
         "name": "Gethin THOMAS",
         "age": 0,
         "sex": "M",
@@ -25013,7 +25013,7 @@ window.glclResults = [
     },
     {
         "pos": 62,
-        "bib": "0",
+        "bib": "5137",
         "name": "Chris LATHAM",
         "age": 0,
         "sex": "M",
@@ -25034,7 +25034,7 @@ window.glclResults = [
     },
     {
         "pos": 63,
-        "bib": "0",
+        "bib": "5049",
         "name": "Jenny MCCALL",
         "age": 0,
         "sex": "F",
@@ -25055,7 +25055,7 @@ window.glclResults = [
     },
     {
         "pos": 64,
-        "bib": "0",
+        "bib": "9061",
         "name": "Adrian MURKIN",
         "age": 0,
         "sex": "M",
@@ -25076,7 +25076,7 @@ window.glclResults = [
     },
     {
         "pos": 65,
-        "bib": "0",
+        "bib": "1064",
         "name": "Anelu PIRVU",
         "age": 0,
         "sex": "M",
@@ -25097,7 +25097,7 @@ window.glclResults = [
     },
     {
         "pos": 66,
-        "bib": "0",
+        "bib": "5096",
         "name": "Connor DIMMICK",
         "age": 0,
         "sex": "M",
@@ -25118,7 +25118,7 @@ window.glclResults = [
     },
     {
         "pos": 67,
-        "bib": "0",
+        "bib": "1120",
         "name": "James KING",
         "age": 0,
         "sex": "M",
@@ -25139,7 +25139,7 @@ window.glclResults = [
     },
     {
         "pos": 68,
-        "bib": "0",
+        "bib": "2100",
         "name": "Katherine MATTHEWS",
         "age": 0,
         "sex": "F",
@@ -25160,7 +25160,7 @@ window.glclResults = [
     },
     {
         "pos": 69,
-        "bib": "0",
+        "bib": "7030",
         "name": "James ROBERTSON",
         "age": 0,
         "sex": "M",
@@ -25181,7 +25181,7 @@ window.glclResults = [
     },
     {
         "pos": 70,
-        "bib": "0",
+        "bib": "5136",
         "name": "Steven LANE",
         "age": 0,
         "sex": "M",
@@ -25202,7 +25202,7 @@ window.glclResults = [
     },
     {
         "pos": 71,
-        "bib": "0",
+        "bib": "5143",
         "name": "Lee MILLS",
         "age": 0,
         "sex": "M",
@@ -25223,7 +25223,7 @@ window.glclResults = [
     },
     {
         "pos": 72,
-        "bib": "0",
+        "bib": "3062",
         "name": "Sean WASSALL",
         "age": 0,
         "sex": "M",
@@ -25244,7 +25244,7 @@ window.glclResults = [
     },
     {
         "pos": 73,
-        "bib": "0",
+        "bib": "2102",
         "name": "Niki MORGAN",
         "age": 0,
         "sex": "F",
@@ -25265,7 +25265,7 @@ window.glclResults = [
     },
     {
         "pos": 74,
-        "bib": "0",
+        "bib": "5156",
         "name": "Neil PROFIT",
         "age": 0,
         "sex": "M",
@@ -25286,7 +25286,7 @@ window.glclResults = [
     },
     {
         "pos": 75,
-        "bib": "0",
+        "bib": "8111",
         "name": "Thomas WADE",
         "age": 0,
         "sex": "M",
@@ -25307,7 +25307,7 @@ window.glclResults = [
     },
     {
         "pos": 76,
-        "bib": "0",
+        "bib": "5174",
         "name": "David WITTS",
         "age": 0,
         "sex": "M",
@@ -25328,7 +25328,7 @@ window.glclResults = [
     },
     {
         "pos": 77,
-        "bib": "0",
+        "bib": "8079",
         "name": "Nick OSMAN",
         "age": 0,
         "sex": "M",
@@ -25349,7 +25349,7 @@ window.glclResults = [
     },
     {
         "pos": 78,
-        "bib": "0",
+        "bib": "5110",
         "name": "Nathan HAINES",
         "age": 0,
         "sex": "M",
@@ -25370,7 +25370,7 @@ window.glclResults = [
     },
     {
         "pos": 79,
-        "bib": "0",
+        "bib": "5125",
         "name": "Nicholas HURLEY",
         "age": 0,
         "sex": "M",
@@ -25391,7 +25391,7 @@ window.glclResults = [
     },
     {
         "pos": 80,
-        "bib": "0",
+        "bib": "8056",
         "name": "Beth JONES",
         "age": 0,
         "sex": "F",
@@ -25412,7 +25412,7 @@ window.glclResults = [
     },
     {
         "pos": 81,
-        "bib": "0",
+        "bib": "9038",
         "name": "Lee HARVEY",
         "age": 0,
         "sex": "M",
@@ -25433,7 +25433,7 @@ window.glclResults = [
     },
     {
         "pos": 82,
-        "bib": "0",
+        "bib": "8093",
         "name": "Kimberley PRICE",
         "age": 0,
         "sex": "F",
@@ -25454,7 +25454,7 @@ window.glclResults = [
     },
     {
         "pos": 83,
-        "bib": "0",
+        "bib": "1063",
         "name": "Karl COUGHLIN",
         "age": 0,
         "sex": "M",
@@ -25475,7 +25475,7 @@ window.glclResults = [
     },
     {
         "pos": 84,
-        "bib": "0",
+        "bib": "8060",
         "name": "Nicola JUKES",
         "age": 0,
         "sex": "F",
@@ -25496,7 +25496,7 @@ window.glclResults = [
     },
     {
         "pos": 85,
-        "bib": "0",
+        "bib": "8009",
         "name": "Keith BREWER",
         "age": 0,
         "sex": "M",
@@ -25517,7 +25517,7 @@ window.glclResults = [
     },
     {
         "pos": 86,
-        "bib": "0",
+        "bib": "3019",
         "name": "Leon GLEED",
         "age": 0,
         "sex": "M",
@@ -25538,7 +25538,7 @@ window.glclResults = [
     },
     {
         "pos": 87,
-        "bib": "0",
+        "bib": "8084",
         "name": "Maisie PEARCE",
         "age": 0,
         "sex": "F",
@@ -25559,7 +25559,7 @@ window.glclResults = [
     },
     {
         "pos": 88,
-        "bib": "0",
+        "bib": "6124",
         "name": "Chris O'BRIEN",
         "age": 0,
         "sex": "M",
@@ -25580,7 +25580,7 @@ window.glclResults = [
     },
     {
         "pos": 89,
-        "bib": "0",
+        "bib": "7020",
         "name": "Lee DAVIES",
         "age": 0,
         "sex": "M",
@@ -25601,7 +25601,7 @@ window.glclResults = [
     },
     {
         "pos": 90,
-        "bib": "0",
+        "bib": "6113",
         "name": "Spencer LEWIS",
         "age": 0,
         "sex": "M",
@@ -25622,7 +25622,7 @@ window.glclResults = [
     },
     {
         "pos": 91,
-        "bib": "0",
+        "bib": "5181",
         "name": "Stephen EDWARDS",
         "age": 0,
         "sex": "M",
@@ -25643,7 +25643,7 @@ window.glclResults = [
     },
     {
         "pos": 92,
-        "bib": "0",
+        "bib": "1077",
         "name": "Matthew VISSER",
         "age": 0,
         "sex": "M",
@@ -25664,7 +25664,7 @@ window.glclResults = [
     },
     {
         "pos": 93,
-        "bib": "0",
+        "bib": "7034",
         "name": "Kirk HILL",
         "age": 0,
         "sex": "M",
@@ -25706,7 +25706,7 @@ window.glclResults = [
     },
     {
         "pos": 95,
-        "bib": "0",
+        "bib": "7050",
         "name": "Vicky ROBERTS",
         "age": 0,
         "sex": "F",
@@ -25727,7 +25727,7 @@ window.glclResults = [
     },
     {
         "pos": 96,
-        "bib": "0",
+        "bib": "8050",
         "name": "Paul JARMAN",
         "age": 0,
         "sex": "M",
@@ -25748,7 +25748,7 @@ window.glclResults = [
     },
     {
         "pos": 97,
-        "bib": "0",
+        "bib": "3039",
         "name": "Alan LEGGE",
         "age": 0,
         "sex": "M",
@@ -25769,7 +25769,7 @@ window.glclResults = [
     },
     {
         "pos": 98,
-        "bib": "0",
+        "bib": "6172",
         "name": "Daniel BODIN",
         "age": 0,
         "sex": "M",
@@ -25790,7 +25790,7 @@ window.glclResults = [
     },
     {
         "pos": 99,
-        "bib": "0",
+        "bib": "8055",
         "name": "Andrew JONES",
         "age": 0,
         "sex": "M",
@@ -25811,7 +25811,7 @@ window.glclResults = [
     },
     {
         "pos": 100,
-        "bib": "0",
+        "bib": "8129",
         "name": "Dylan GREENWAY",
         "age": 0,
         "sex": "M",
@@ -25832,7 +25832,7 @@ window.glclResults = [
     },
     {
         "pos": 101,
-        "bib": "0",
+        "bib": "1014",
         "name": "Lee SMITH",
         "age": 0,
         "sex": "M",
@@ -25853,7 +25853,7 @@ window.glclResults = [
     },
     {
         "pos": 102,
-        "bib": "0",
+        "bib": "1101",
         "name": "Chirstian FORD",
         "age": 0,
         "sex": "M",
@@ -25874,7 +25874,7 @@ window.glclResults = [
     },
     {
         "pos": 103,
-        "bib": "0",
+        "bib": "8125",
         "name": "Tammi PREECE",
         "age": 0,
         "sex": "F",
@@ -25895,7 +25895,7 @@ window.glclResults = [
     },
     {
         "pos": 104,
-        "bib": "0",
+        "bib": "1032",
         "name": "Mark HISLOP",
         "age": 0,
         "sex": "M",
@@ -25916,7 +25916,7 @@ window.glclResults = [
     },
     {
         "pos": 105,
-        "bib": "0",
+        "bib": "1100",
         "name": "Chris WREFORD",
         "age": 0,
         "sex": "M",
@@ -25937,7 +25937,7 @@ window.glclResults = [
     },
     {
         "pos": 106,
-        "bib": "0",
+        "bib": "1045",
         "name": "Ian KITT",
         "age": 0,
         "sex": "M",
@@ -25958,7 +25958,7 @@ window.glclResults = [
     },
     {
         "pos": 107,
-        "bib": "0",
+        "bib": "2058",
         "name": "Cherry FOWLER",
         "age": 0,
         "sex": "F",
@@ -25979,7 +25979,7 @@ window.glclResults = [
     },
     {
         "pos": 108,
-        "bib": "0",
+        "bib": "5170",
         "name": "Russ WAREHAM",
         "age": 0,
         "sex": "M",
@@ -26000,7 +26000,7 @@ window.glclResults = [
     },
     {
         "pos": 109,
-        "bib": "0",
+        "bib": "5168",
         "name": "Neil THORPE",
         "age": 0,
         "sex": "M",
@@ -26021,7 +26021,7 @@ window.glclResults = [
     },
     {
         "pos": 110,
-        "bib": "0",
+        "bib": "9006",
         "name": "Shane BAKER",
         "age": 0,
         "sex": "M",
@@ -26042,7 +26042,7 @@ window.glclResults = [
     },
     {
         "pos": 111,
-        "bib": "0",
+        "bib": "6110",
         "name": "Phillip LEE",
         "age": 0,
         "sex": "M",
@@ -26063,7 +26063,7 @@ window.glclResults = [
     },
     {
         "pos": 112,
-        "bib": "0",
+        "bib": "8104",
         "name": "Huw STEADMAN",
         "age": 0,
         "sex": "M",
@@ -26084,7 +26084,7 @@ window.glclResults = [
     },
     {
         "pos": 113,
-        "bib": "0",
+        "bib": "3004",
         "name": "Stuart BALL",
         "age": 0,
         "sex": "M",
@@ -26105,7 +26105,7 @@ window.glclResults = [
     },
     {
         "pos": 114,
-        "bib": "0",
+        "bib": "1067",
         "name": "Jason PRITCHARD",
         "age": 0,
         "sex": "M",
@@ -26126,7 +26126,7 @@ window.glclResults = [
     },
     {
         "pos": 115,
-        "bib": "0",
+        "bib": "6156",
         "name": "Richard WEBER",
         "age": 0,
         "sex": "M",
@@ -26147,7 +26147,7 @@ window.glclResults = [
     },
     {
         "pos": 116,
-        "bib": "0",
+        "bib": "8051",
         "name": "Lewis JARMAN",
         "age": 0,
         "sex": "M",
@@ -26168,7 +26168,7 @@ window.glclResults = [
     },
     {
         "pos": 117,
-        "bib": "0",
+        "bib": "7033",
         "name": "Sarah HEATH",
         "age": 0,
         "sex": "F",
@@ -26189,7 +26189,7 @@ window.glclResults = [
     },
     {
         "pos": 118,
-        "bib": "0",
+        "bib": "7023",
         "name": "Brian EVANS",
         "age": 0,
         "sex": "M",
@@ -26210,7 +26210,7 @@ window.glclResults = [
     },
     {
         "pos": 119,
-        "bib": "0",
+        "bib": "4097",
         "name": "Karen SILVER",
         "age": 0,
         "sex": "F",
@@ -26231,7 +26231,7 @@ window.glclResults = [
     },
     {
         "pos": 120,
-        "bib": "0",
+        "bib": "7031387",
         "name": "Mark ENGLISH",
         "age": 0,
         "sex": "M",
@@ -26252,7 +26252,7 @@ window.glclResults = [
     },
     {
         "pos": 121,
-        "bib": "0",
+        "bib": "8014",
         "name": "Carly COLE",
         "age": 0,
         "sex": "F",
@@ -26273,7 +26273,7 @@ window.glclResults = [
     },
     {
         "pos": 122,
-        "bib": "0",
+        "bib": "5163",
         "name": "Dai THOMAS",
         "age": 0,
         "sex": "M",
@@ -26294,7 +26294,7 @@ window.glclResults = [
     },
     {
         "pos": 123,
-        "bib": "0",
+        "bib": "5182",
         "name": "Steve PONTIN",
         "age": 0,
         "sex": "M",
@@ -26315,7 +26315,7 @@ window.glclResults = [
     },
     {
         "pos": 124,
-        "bib": "0",
+        "bib": "6081",
         "name": "Victoria HOBBS",
         "age": 0,
         "sex": "F",
@@ -26336,7 +26336,7 @@ window.glclResults = [
     },
     {
         "pos": 125,
-        "bib": "0",
+        "bib": "4058",
         "name": "Richard JONES",
         "age": 0,
         "sex": "M",
@@ -26357,7 +26357,7 @@ window.glclResults = [
     },
     {
         "pos": 126,
-        "bib": "0",
+        "bib": "8131",
         "name": "Tomas LEGGE",
         "age": 0,
         "sex": "M",
@@ -26378,7 +26378,7 @@ window.glclResults = [
     },
     {
         "pos": 127,
-        "bib": "0",
+        "bib": "4228662",
         "name": "Peter STEVENS",
         "age": 0,
         "sex": "M",
@@ -26399,7 +26399,7 @@ window.glclResults = [
     },
     {
         "pos": 128,
-        "bib": "0",
+        "bib": "7003",
         "name": "Liberty BARLOW",
         "age": 0,
         "sex": "F",
@@ -26420,7 +26420,7 @@ window.glclResults = [
     },
     {
         "pos": 129,
-        "bib": "0",
+        "bib": "9069",
         "name": "Ben POWELL",
         "age": 0,
         "sex": "M",
@@ -26441,7 +26441,7 @@ window.glclResults = [
     },
     {
         "pos": 130,
-        "bib": "0",
+        "bib": "1073",
         "name": "Liz RICHARDS",
         "age": 0,
         "sex": "F",
@@ -26462,7 +26462,7 @@ window.glclResults = [
     },
     {
         "pos": 131,
-        "bib": "0",
+        "bib": "2054",
         "name": "Barry EVANS",
         "age": 0,
         "sex": "M",
@@ -26483,7 +26483,7 @@ window.glclResults = [
     },
     {
         "pos": 132,
-        "bib": "0",
+        "bib": "5118",
         "name": "Darren HILL",
         "age": 0,
         "sex": "M",
@@ -26504,7 +26504,7 @@ window.glclResults = [
     },
     {
         "pos": 133,
-        "bib": "0",
+        "bib": "1289",
         "name": "Sarah JEREMIAH",
         "age": 0,
         "sex": "F",
@@ -26525,7 +26525,7 @@ window.glclResults = [
     },
     {
         "pos": 134,
-        "bib": "0",
+        "bib": "5092",
         "name": "Aidan DAVIES",
         "age": 0,
         "sex": "M",
@@ -26546,7 +26546,7 @@ window.glclResults = [
     },
     {
         "pos": 135,
-        "bib": "0",
+        "bib": "9043",
         "name": "Mangawa ITIMU",
         "age": 0,
         "sex": "M",
@@ -26567,7 +26567,7 @@ window.glclResults = [
     },
     {
         "pos": 136,
-        "bib": "0",
+        "bib": "8013",
         "name": "Spencer CLEASE",
         "age": 0,
         "sex": "M",
@@ -26588,7 +26588,7 @@ window.glclResults = [
     },
     {
         "pos": 137,
-        "bib": "0",
+        "bib": "5098",
         "name": "Jason DIXON",
         "age": 0,
         "sex": "M",
@@ -26609,7 +26609,7 @@ window.glclResults = [
     },
     {
         "pos": 138,
-        "bib": "0",
+        "bib": "9037",
         "name": "William HARNETT",
         "age": 0,
         "sex": "M",
@@ -26630,7 +26630,7 @@ window.glclResults = [
     },
     {
         "pos": 139,
-        "bib": "0",
+        "bib": "6130",
         "name": "Christopher POTTER",
         "age": 0,
         "sex": "M",
@@ -26651,7 +26651,7 @@ window.glclResults = [
     },
     {
         "pos": 140,
-        "bib": "0",
+        "bib": "1102",
         "name": "Matthew MULCAHY",
         "age": 0,
         "sex": "M",
@@ -26672,7 +26672,7 @@ window.glclResults = [
     },
     {
         "pos": 141,
-        "bib": "0",
+        "bib": "6026",
         "name": "Daniel CHAMBERS",
         "age": 0,
         "sex": "M",
@@ -26693,7 +26693,7 @@ window.glclResults = [
     },
     {
         "pos": 142,
-        "bib": "0",
+        "bib": "6058",
         "name": "Spencer ENGLISH",
         "age": 0,
         "sex": "M",
@@ -26714,7 +26714,7 @@ window.glclResults = [
     },
     {
         "pos": 143,
-        "bib": "0",
+        "bib": "2122",
         "name": "Jane ROSCOE",
         "age": 0,
         "sex": "F",
@@ -26735,7 +26735,7 @@ window.glclResults = [
     },
     {
         "pos": 144,
-        "bib": "0",
+        "bib": "3043",
         "name": "Sam MARTIN",
         "age": 0,
         "sex": "M",
@@ -26756,7 +26756,7 @@ window.glclResults = [
     },
     {
         "pos": 145,
-        "bib": "0",
+        "bib": "1027",
         "name": "Wesley HARRIS",
         "age": 0,
         "sex": "M",
@@ -26777,7 +26777,7 @@ window.glclResults = [
     },
     {
         "pos": 146,
-        "bib": "0",
+        "bib": "2112",
         "name": "Stephen OWEN",
         "age": 0,
         "sex": "M",
@@ -26798,7 +26798,7 @@ window.glclResults = [
     },
     {
         "pos": 147,
-        "bib": "0",
+        "bib": "8007",
         "name": "Victoria BOXHALL-JAMES",
         "age": 0,
         "sex": "F",
@@ -26819,7 +26819,7 @@ window.glclResults = [
     },
     {
         "pos": 148,
-        "bib": "0",
+        "bib": "4044",
         "name": "Charlotte HEALY",
         "age": 0,
         "sex": "F",
@@ -26840,7 +26840,7 @@ window.glclResults = [
     },
     {
         "pos": 149,
-        "bib": "0",
+        "bib": "2086",
         "name": "Matthew LAWSON",
         "age": 0,
         "sex": "M",
@@ -26861,7 +26861,7 @@ window.glclResults = [
     },
     {
         "pos": 150,
-        "bib": "0",
+        "bib": "4032",
         "name": "David GOODGER",
         "age": 0,
         "sex": "M",
@@ -26882,7 +26882,7 @@ window.glclResults = [
     },
     {
         "pos": 151,
-        "bib": "0",
+        "bib": "1371",
         "name": "Bethan RICHARDSON",
         "age": 0,
         "sex": "F",
@@ -26903,7 +26903,7 @@ window.glclResults = [
     },
     {
         "pos": 152,
-        "bib": "0",
+        "bib": "5166",
         "name": "Owen THOMAS",
         "age": 0,
         "sex": "M",
@@ -26945,7 +26945,7 @@ window.glclResults = [
     },
     {
         "pos": 154,
-        "bib": "0",
+        "bib": "8069",
         "name": "Ian LINE",
         "age": 0,
         "sex": "M",
@@ -26966,7 +26966,7 @@ window.glclResults = [
     },
     {
         "pos": 155,
-        "bib": "0",
+        "bib": "2103",
         "name": "Jan MORRIS",
         "age": 0,
         "sex": "F",
@@ -26987,7 +26987,7 @@ window.glclResults = [
     },
     {
         "pos": 156,
-        "bib": "0",
+        "bib": "2061",
         "name": "Charlotte GILES",
         "age": 0,
         "sex": "F",
@@ -27008,7 +27008,7 @@ window.glclResults = [
     },
     {
         "pos": 157,
-        "bib": "0",
+        "bib": "1049",
         "name": "Lyn MAC",
         "age": 0,
         "sex": "M",
@@ -27029,7 +27029,7 @@ window.glclResults = [
     },
     {
         "pos": 158,
-        "bib": "0",
+        "bib": "1083",
         "name": "Daniel SYMMONDS",
         "age": 0,
         "sex": "M",
@@ -27050,7 +27050,7 @@ window.glclResults = [
     },
     {
         "pos": 159,
-        "bib": "0",
+        "bib": "9009",
         "name": "Marisa BENJAMIN",
         "age": 0,
         "sex": "F",
@@ -27071,7 +27071,7 @@ window.glclResults = [
     },
     {
         "pos": 160,
-        "bib": "0",
+        "bib": "1407",
         "name": "Rhys PRITCHARD",
         "age": 0,
         "sex": "M",
@@ -27092,7 +27092,7 @@ window.glclResults = [
     },
     {
         "pos": 161,
-        "bib": "0",
+        "bib": "6082",
         "name": "James HOBSON",
         "age": 0,
         "sex": "M",
@@ -27113,7 +27113,7 @@ window.glclResults = [
     },
     {
         "pos": 162,
-        "bib": "0",
+        "bib": "7007",
         "name": "Renske BOUWENS",
         "age": 0,
         "sex": "F",
@@ -27134,7 +27134,7 @@ window.glclResults = [
     },
     {
         "pos": 163,
-        "bib": "0",
+        "bib": "8115",
         "name": "Stephen WILES",
         "age": 0,
         "sex": "M",
@@ -27155,7 +27155,7 @@ window.glclResults = [
     },
     {
         "pos": 164,
-        "bib": "0",
+        "bib": "1138",
         "name": "Daniel PHILLIPS",
         "age": 0,
         "sex": "M",
@@ -27176,7 +27176,7 @@ window.glclResults = [
     },
     {
         "pos": 165,
-        "bib": "0",
+        "bib": "9079",
         "name": "Sammi SINCLAIR",
         "age": 0,
         "sex": "F",
@@ -27197,7 +27197,7 @@ window.glclResults = [
     },
     {
         "pos": 166,
-        "bib": "0",
+        "bib": "1098",
         "name": "Lauren WILLIAMS",
         "age": 0,
         "sex": "F",
@@ -27218,7 +27218,7 @@ window.glclResults = [
     },
     {
         "pos": 167,
-        "bib": "0",
+        "bib": "5089",
         "name": "Lewis CARDWELL",
         "age": 0,
         "sex": "M",
@@ -27239,7 +27239,7 @@ window.glclResults = [
     },
     {
         "pos": 168,
-        "bib": "0",
+        "bib": "5131",
         "name": "Philip JONES",
         "age": 0,
         "sex": "M",
@@ -27260,7 +27260,7 @@ window.glclResults = [
     },
     {
         "pos": 169,
-        "bib": "0",
+        "bib": "8019",
         "name": "Stephen DALLOW",
         "age": 0,
         "sex": "M",
@@ -27281,7 +27281,7 @@ window.glclResults = [
     },
     {
         "pos": 170,
-        "bib": "0",
+        "bib": "1091",
         "name": "Ryan VINCENT",
         "age": 0,
         "sex": "M",
@@ -27302,7 +27302,7 @@ window.glclResults = [
     },
     {
         "pos": 171,
-        "bib": "0",
+        "bib": "3054",
         "name": "Michael SKYRME",
         "age": 0,
         "sex": "M",
@@ -27323,7 +27323,7 @@ window.glclResults = [
     },
     {
         "pos": 172,
-        "bib": "0",
+        "bib": "3036",
         "name": "Ieuan KINGSTON",
         "age": 0,
         "sex": "M",
@@ -27344,7 +27344,7 @@ window.glclResults = [
     },
     {
         "pos": 173,
-        "bib": "0",
+        "bib": "9089",
         "name": "Toby WALES",
         "age": 0,
         "sex": "M",
@@ -27365,7 +27365,7 @@ window.glclResults = [
     },
     {
         "pos": 174,
-        "bib": "0",
+        "bib": "8132",
         "name": "Melissa PEARCE",
         "age": 0,
         "sex": "F",
@@ -27386,7 +27386,7 @@ window.glclResults = [
     },
     {
         "pos": 175,
-        "bib": "0",
+        "bib": "2074",
         "name": "Daniel HAZELL-SMART",
         "age": 0,
         "sex": "M",
@@ -27407,7 +27407,7 @@ window.glclResults = [
     },
     {
         "pos": 176,
-        "bib": "0",
+        "bib": "5172",
         "name": "Ade WHITE",
         "age": 0,
         "sex": "M",
@@ -27428,7 +27428,7 @@ window.glclResults = [
     },
     {
         "pos": 177,
-        "bib": "0",
+        "bib": "5041",
         "name": "Bryony LEWIS",
         "age": 0,
         "sex": "F",
@@ -27449,7 +27449,7 @@ window.glclResults = [
     },
     {
         "pos": 178,
-        "bib": "0",
+        "bib": "1044",
         "name": "Huw JONES",
         "age": 0,
         "sex": "M",
@@ -27470,7 +27470,7 @@ window.glclResults = [
     },
     {
         "pos": 179,
-        "bib": "0",
+        "bib": "8101",
         "name": "Georgina SEED",
         "age": 0,
         "sex": "F",
@@ -27491,7 +27491,7 @@ window.glclResults = [
     },
     {
         "pos": 180,
-        "bib": "0",
+        "bib": "1227",
         "name": "Jamie FRASER",
         "age": 0,
         "sex": "M",
@@ -27512,7 +27512,7 @@ window.glclResults = [
     },
     {
         "pos": 181,
-        "bib": "0",
+        "bib": "1334",
         "name": "Gulesh KUMAR",
         "age": 0,
         "sex": "M",
@@ -27533,7 +27533,7 @@ window.glclResults = [
     },
     {
         "pos": 182,
-        "bib": "0",
+        "bib": "2006",
         "name": "Julia BAJJADA",
         "age": 0,
         "sex": "F",
@@ -27554,7 +27554,7 @@ window.glclResults = [
     },
     {
         "pos": 183,
-        "bib": "0",
+        "bib": "6118",
         "name": "James McLOUGHLIN",
         "age": 0,
         "sex": "M",
@@ -27575,7 +27575,7 @@ window.glclResults = [
     },
     {
         "pos": 184,
-        "bib": "0",
+        "bib": "2093",
         "name": "Hannah LIDGETT",
         "age": 0,
         "sex": "F",
@@ -27596,7 +27596,7 @@ window.glclResults = [
     },
     {
         "pos": 185,
-        "bib": "0",
+        "bib": "8041",
         "name": "Vincent GREGORY",
         "age": 0,
         "sex": "M",
@@ -27617,7 +27617,7 @@ window.glclResults = [
     },
     {
         "pos": 186,
-        "bib": "0",
+        "bib": "3050",
         "name": "Leonie ROBERTS",
         "age": 0,
         "sex": "F",
@@ -27638,7 +27638,7 @@ window.glclResults = [
     },
     {
         "pos": 187,
-        "bib": "0",
+        "bib": "9081",
         "name": "Karen SOUTHGATE",
         "age": 0,
         "sex": "F",
@@ -27659,7 +27659,7 @@ window.glclResults = [
     },
     {
         "pos": 188,
-        "bib": "0",
+        "bib": "6048",
         "name": "Karen DAY",
         "age": 0,
         "sex": "F",
@@ -27680,7 +27680,7 @@ window.glclResults = [
     },
     {
         "pos": 189,
-        "bib": "0",
+        "bib": "6155",
         "name": "Bob WATSON",
         "age": 0,
         "sex": "M",
@@ -27701,7 +27701,7 @@ window.glclResults = [
     },
     {
         "pos": 190,
-        "bib": "0",
+        "bib": "7024",
         "name": "James EXTON",
         "age": 0,
         "sex": "M",
@@ -27722,7 +27722,7 @@ window.glclResults = [
     },
     {
         "pos": 191,
-        "bib": "0",
+        "bib": "6036",
         "name": "Elliot COUNSELL",
         "age": 0,
         "sex": "M",
@@ -27743,7 +27743,7 @@ window.glclResults = [
     },
     {
         "pos": 192,
-        "bib": "0",
+        "bib": "5013",
         "name": "Sarah DAVIES",
         "age": 0,
         "sex": "F",
@@ -27764,7 +27764,7 @@ window.glclResults = [
     },
     {
         "pos": 193,
-        "bib": "0",
+        "bib": "1079",
         "name": "Mike VISSER",
         "age": 0,
         "sex": "M",
@@ -27785,7 +27785,7 @@ window.glclResults = [
     },
     {
         "pos": 194,
-        "bib": "0",
+        "bib": "8005",
         "name": "Samantha BILLS",
         "age": 0,
         "sex": "F",
@@ -27806,7 +27806,7 @@ window.glclResults = [
     },
     {
         "pos": 195,
-        "bib": "0",
+        "bib": "4113",
         "name": "Peter WELBIRG",
         "age": 0,
         "sex": "M",
@@ -27827,7 +27827,7 @@ window.glclResults = [
     },
     {
         "pos": 196,
-        "bib": "0",
+        "bib": "6007",
         "name": "Andy BARRY",
         "age": 0,
         "sex": "M",
@@ -27848,7 +27848,7 @@ window.glclResults = [
     },
     {
         "pos": 197,
-        "bib": "0",
+        "bib": "9029",
         "name": "Simon FISH",
         "age": 0,
         "sex": "M",
@@ -27869,7 +27869,7 @@ window.glclResults = [
     },
     {
         "pos": 198,
-        "bib": "0",
+        "bib": "5014",
         "name": "Charlotte DAVIS",
         "age": 0,
         "sex": "F",
@@ -27890,7 +27890,7 @@ window.glclResults = [
     },
     {
         "pos": 199,
-        "bib": "0",
+        "bib": "5100",
         "name": "Mark DUDDRIDGE",
         "age": 0,
         "sex": "M",
@@ -27911,7 +27911,7 @@ window.glclResults = [
     },
     {
         "pos": 200,
-        "bib": "0",
+        "bib": "8123",
         "name": "Roxy ZYM",
         "age": 0,
         "sex": "F",
@@ -27932,7 +27932,7 @@ window.glclResults = [
     },
     {
         "pos": 201,
-        "bib": "0",
+        "bib": "7059",
         "name": "Holly JANES-THOMAS",
         "age": 0,
         "sex": "F",
@@ -27953,7 +27953,7 @@ window.glclResults = [
     },
     {
         "pos": 202,
-        "bib": "0",
+        "bib": "4089",
         "name": "Gareth ROBINS",
         "age": 0,
         "sex": "M",
@@ -27974,7 +27974,7 @@ window.glclResults = [
     },
     {
         "pos": 203,
-        "bib": "0",
+        "bib": "4119",
         "name": "Colin WILMOTT",
         "age": 0,
         "sex": "M",
@@ -27995,7 +27995,7 @@ window.glclResults = [
     },
     {
         "pos": 204,
-        "bib": "0",
+        "bib": "6009",
         "name": "Edward BENTLEY",
         "age": 0,
         "sex": "M",
@@ -28016,7 +28016,7 @@ window.glclResults = [
     },
     {
         "pos": 205,
-        "bib": "0",
+        "bib": "7018",
         "name": "Jeremy CREASEY",
         "age": 0,
         "sex": "M",
@@ -28037,7 +28037,7 @@ window.glclResults = [
     },
     {
         "pos": 206,
-        "bib": "0",
+        "bib": "5176",
         "name": "Ben ELLIS",
         "age": 0,
         "sex": "M",
@@ -28058,7 +28058,7 @@ window.glclResults = [
     },
     {
         "pos": 207,
-        "bib": "0",
+        "bib": "1096",
         "name": "Mark WALSH",
         "age": 0,
         "sex": "M",
@@ -28079,7 +28079,7 @@ window.glclResults = [
     },
     {
         "pos": 208,
-        "bib": "0",
+        "bib": "2038",
         "name": "Nicola Louise CROCKETT",
         "age": 0,
         "sex": "F",
@@ -28100,7 +28100,7 @@ window.glclResults = [
     },
     {
         "pos": 209,
-        "bib": "0",
+        "bib": "4114",
         "name": "Terry WHITE",
         "age": 0,
         "sex": "M",
@@ -28121,7 +28121,7 @@ window.glclResults = [
     },
     {
         "pos": 210,
-        "bib": "0",
+        "bib": "6018",
         "name": "James BROWN",
         "age": 0,
         "sex": "M",
@@ -28142,7 +28142,7 @@ window.glclResults = [
     },
     {
         "pos": 211,
-        "bib": "0",
+        "bib": "5080",
         "name": "Andrew ADAMS",
         "age": 0,
         "sex": "M",
@@ -28163,7 +28163,7 @@ window.glclResults = [
     },
     {
         "pos": 212,
-        "bib": "0",
+        "bib": "7004",
         "name": "Marina WRIGHT",
         "age": 0,
         "sex": "F",
@@ -28184,7 +28184,7 @@ window.glclResults = [
     },
     {
         "pos": 213,
-        "bib": "0",
+        "bib": "5051",
         "name": "Melissa MORGAN",
         "age": 0,
         "sex": "F",
@@ -28205,7 +28205,7 @@ window.glclResults = [
     },
     {
         "pos": 214,
-        "bib": "0",
+        "bib": "1294",
         "name": "Justin PEARCE",
         "age": 0,
         "sex": "M",
@@ -28247,7 +28247,7 @@ window.glclResults = [
     },
     {
         "pos": 216,
-        "bib": "0",
+        "bib": "9032",
         "name": "Michelle GOOCH",
         "age": 0,
         "sex": "F",
@@ -28268,7 +28268,7 @@ window.glclResults = [
     },
     {
         "pos": 217,
-        "bib": "0",
+        "bib": "3061",
         "name": "Elizabeth WALSH",
         "age": 0,
         "sex": "F",
@@ -28289,7 +28289,7 @@ window.glclResults = [
     },
     {
         "pos": 218,
-        "bib": "0",
+        "bib": "9056",
         "name": "Kirsty RHODES",
         "age": 0,
         "sex": "F",
@@ -28310,7 +28310,7 @@ window.glclResults = [
     },
     {
         "pos": 219,
-        "bib": "0",
+        "bib": "2114",
         "name": "Joff PHELPS",
         "age": 0,
         "sex": "M",
@@ -28331,7 +28331,7 @@ window.glclResults = [
     },
     {
         "pos": 220,
-        "bib": "0",
+        "bib": "6068",
         "name": "Josh GILBY",
         "age": 0,
         "sex": "M",
@@ -28352,7 +28352,7 @@ window.glclResults = [
     },
     {
         "pos": 221,
-        "bib": "0",
+        "bib": "3005",
         "name": "Michael BARNES",
         "age": 0,
         "sex": "M",
@@ -28373,7 +28373,7 @@ window.glclResults = [
     },
     {
         "pos": 222,
-        "bib": "0",
+        "bib": "8086",
         "name": "Steven PHILLIPS",
         "age": 0,
         "sex": "M",
@@ -28394,7 +28394,7 @@ window.glclResults = [
     },
     {
         "pos": 223,
-        "bib": "0",
+        "bib": "8117",
         "name": "Cyril WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -28415,7 +28415,7 @@ window.glclResults = [
     },
     {
         "pos": 224,
-        "bib": "0",
+        "bib": "3003",
         "name": "Andy BAKER",
         "age": 0,
         "sex": "M",
@@ -28436,7 +28436,7 @@ window.glclResults = [
     },
     {
         "pos": 225,
-        "bib": "0",
+        "bib": "5004",
         "name": "Alysha BUNSTON",
         "age": 0,
         "sex": "F",
@@ -28457,7 +28457,7 @@ window.glclResults = [
     },
     {
         "pos": 226,
-        "bib": "0",
+        "bib": "5039",
         "name": "Lorraine KELSEY",
         "age": 0,
         "sex": "F",
@@ -28478,7 +28478,7 @@ window.glclResults = [
     },
     {
         "pos": 227,
-        "bib": "0",
+        "bib": "6064",
         "name": "Nigel FOULKES-NOCK",
         "age": 0,
         "sex": "M",
@@ -28499,7 +28499,7 @@ window.glclResults = [
     },
     {
         "pos": 228,
-        "bib": "0",
+        "bib": "3001",
         "name": "Phillip ALLSOPP",
         "age": 0,
         "sex": "M",
@@ -28520,7 +28520,7 @@ window.glclResults = [
     },
     {
         "pos": 229,
-        "bib": "0",
+        "bib": "9092",
         "name": "Cariad WARRILOW",
         "age": 0,
         "sex": "F",
@@ -28541,7 +28541,7 @@ window.glclResults = [
     },
     {
         "pos": 230,
-        "bib": "0",
+        "bib": "2069",
         "name": "Amanda HAEFFNER",
         "age": 0,
         "sex": "F",
@@ -28562,7 +28562,7 @@ window.glclResults = [
     },
     {
         "pos": 231,
-        "bib": "0",
+        "bib": "8065",
         "name": "Tony LEWIS",
         "age": 0,
         "sex": "M",
@@ -28583,7 +28583,7 @@ window.glclResults = [
     },
     {
         "pos": 232,
-        "bib": "0",
+        "bib": "5161",
         "name": "Matthew TAYLOUR",
         "age": 0,
         "sex": "M",
@@ -28604,7 +28604,7 @@ window.glclResults = [
     },
     {
         "pos": 233,
-        "bib": "0",
+        "bib": "6063",
         "name": "Joshua FORD",
         "age": 0,
         "sex": "M",
@@ -28625,7 +28625,7 @@ window.glclResults = [
     },
     {
         "pos": 234,
-        "bib": "0",
+        "bib": "9093",
         "name": "Tom WARWICK",
         "age": 0,
         "sex": "M",
@@ -28646,7 +28646,7 @@ window.glclResults = [
     },
     {
         "pos": 235,
-        "bib": "0",
+        "bib": "9013",
         "name": "Nicola BRUNNOCK",
         "age": 0,
         "sex": "F",
@@ -28667,7 +28667,7 @@ window.glclResults = [
     },
     {
         "pos": 236,
-        "bib": "0",
+        "bib": "2022",
         "name": "Gary BURLEY",
         "age": 0,
         "sex": "M",
@@ -28688,7 +28688,7 @@ window.glclResults = [
     },
     {
         "pos": 237,
-        "bib": "0",
+        "bib": "1433",
         "name": "Chloe NORTON",
         "age": 0,
         "sex": "F",
@@ -28709,7 +28709,7 @@ window.glclResults = [
     },
     {
         "pos": 238,
-        "bib": "0",
+        "bib": "1015",
         "name": "Antony DERRICK",
         "age": 0,
         "sex": "M",
@@ -28730,7 +28730,7 @@ window.glclResults = [
     },
     {
         "pos": 239,
-        "bib": "0",
+        "bib": "1072",
         "name": "James REYNOLDS",
         "age": 0,
         "sex": "M",
@@ -28751,7 +28751,7 @@ window.glclResults = [
     },
     {
         "pos": 240,
-        "bib": "0",
+        "bib": "8057",
         "name": "Delphine JONES",
         "age": 0,
         "sex": "F",
@@ -28772,7 +28772,7 @@ window.glclResults = [
     },
     {
         "pos": 241,
-        "bib": "0",
+        "bib": "1516",
         "name": "Rhys WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -28793,7 +28793,7 @@ window.glclResults = [
     },
     {
         "pos": 242,
-        "bib": "0",
+        "bib": "1018",
         "name": "Meghan BRICKLEY",
         "age": 0,
         "sex": "F",
@@ -28814,7 +28814,7 @@ window.glclResults = [
     },
     {
         "pos": 243,
-        "bib": "0",
+        "bib": "1452",
         "name": "Rachel DOREL",
         "age": 0,
         "sex": "F",
@@ -28835,7 +28835,7 @@ window.glclResults = [
     },
     {
         "pos": 244,
-        "bib": "0",
+        "bib": "3018",
         "name": "Stuart FOWLER",
         "age": 0,
         "sex": "M",
@@ -28856,7 +28856,7 @@ window.glclResults = [
     },
     {
         "pos": 245,
-        "bib": "0",
+        "bib": "9024",
         "name": "Michele DEAL",
         "age": 0,
         "sex": "F",
@@ -28877,7 +28877,7 @@ window.glclResults = [
     },
     {
         "pos": 246,
-        "bib": "0",
+        "bib": "3029",
         "name": "Evie HOARE",
         "age": 0,
         "sex": "F",
@@ -28898,7 +28898,7 @@ window.glclResults = [
     },
     {
         "pos": 247,
-        "bib": "0",
+        "bib": "3040",
         "name": "Matthew LLOYD",
         "age": 0,
         "sex": "M",
@@ -28919,7 +28919,7 @@ window.glclResults = [
     },
     {
         "pos": 248,
-        "bib": "0",
+        "bib": "7032",
         "name": "Louise HARTREE",
         "age": 0,
         "sex": "F",
@@ -28940,7 +28940,7 @@ window.glclResults = [
     },
     {
         "pos": 249,
-        "bib": "0",
+        "bib": "5113",
         "name": "Kevin HARLEY",
         "age": 0,
         "sex": "M",
@@ -28961,7 +28961,7 @@ window.glclResults = [
     },
     {
         "pos": 250,
-        "bib": "0",
+        "bib": "5159",
         "name": "Peter SIMPSON",
         "age": 0,
         "sex": "M",
@@ -28982,7 +28982,7 @@ window.glclResults = [
     },
     {
         "pos": 251,
-        "bib": "0",
+        "bib": "1339",
         "name": "Charlotte MELLOR",
         "age": 0,
         "sex": "F",
@@ -29003,7 +29003,7 @@ window.glclResults = [
     },
     {
         "pos": 252,
-        "bib": "0",
+        "bib": "2071",
         "name": "Mia HAEFFNER",
         "age": 0,
         "sex": "F",
@@ -29024,7 +29024,7 @@ window.glclResults = [
     },
     {
         "pos": 253,
-        "bib": "0",
+        "bib": "1002",
         "name": "Debbie ANDREW",
         "age": 0,
         "sex": "F",
@@ -29045,7 +29045,7 @@ window.glclResults = [
     },
     {
         "pos": 254,
-        "bib": "0",
+        "bib": "6158",
         "name": "David WEBSTER",
         "age": 0,
         "sex": "M",
@@ -29066,7 +29066,7 @@ window.glclResults = [
     },
     {
         "pos": 255,
-        "bib": "0",
+        "bib": "6103",
         "name": "Martyn JONES",
         "age": 0,
         "sex": "M",
@@ -29087,7 +29087,7 @@ window.glclResults = [
     },
     {
         "pos": 256,
-        "bib": "0",
+        "bib": "4120",
         "name": "Olivia WOODHOUSE",
         "age": 0,
         "sex": "F",
@@ -29108,7 +29108,7 @@ window.glclResults = [
     },
     {
         "pos": 257,
-        "bib": "0",
+        "bib": "3038",
         "name": "Julie LEES",
         "age": 0,
         "sex": "F",
@@ -29129,7 +29129,7 @@ window.glclResults = [
     },
     {
         "pos": 258,
-        "bib": "0",
+        "bib": "5022",
         "name": "Kelly HALL",
         "age": 0,
         "sex": "F",
@@ -29150,7 +29150,7 @@ window.glclResults = [
     },
     {
         "pos": 259,
-        "bib": "0",
+        "bib": "6161",
         "name": "Leanne WESTACOTT",
         "age": 0,
         "sex": "F",
@@ -29171,7 +29171,7 @@ window.glclResults = [
     },
     {
         "pos": 260,
-        "bib": "0",
+        "bib": "8029",
         "name": "Clair EDWARDS",
         "age": 0,
         "sex": "F",
@@ -29192,7 +29192,7 @@ window.glclResults = [
     },
     {
         "pos": 261,
-        "bib": "0",
+        "bib": "4059",
         "name": "Hannah KEATING",
         "age": 0,
         "sex": "F",
@@ -29213,7 +29213,7 @@ window.glclResults = [
     },
     {
         "pos": 262,
-        "bib": "0",
+        "bib": "2056",
         "name": "Mike EVANS",
         "age": 0,
         "sex": "M",
@@ -29234,7 +29234,7 @@ window.glclResults = [
     },
     {
         "pos": 263,
-        "bib": "0",
+        "bib": "5007",
         "name": "Sheryl CLARK",
         "age": 0,
         "sex": "F",
@@ -29255,7 +29255,7 @@ window.glclResults = [
     },
     {
         "pos": 264,
-        "bib": "0",
+        "bib": "4071",
         "name": "Jennifer MCPADDEN",
         "age": 0,
         "sex": "F",
@@ -29276,7 +29276,7 @@ window.glclResults = [
     },
     {
         "pos": 265,
-        "bib": "0",
+        "bib": "2068",
         "name": "Paul GRIFFITHS",
         "age": 0,
         "sex": "M",
@@ -29297,7 +29297,7 @@ window.glclResults = [
     },
     {
         "pos": 266,
-        "bib": "0",
+        "bib": "6005",
         "name": "Howard ATTWOOD",
         "age": 0,
         "sex": "M",
@@ -29318,7 +29318,7 @@ window.glclResults = [
     },
     {
         "pos": 267,
-        "bib": "0",
+        "bib": "9071",
         "name": "Catherine PRICE",
         "age": 0,
         "sex": "F",
@@ -29339,7 +29339,7 @@ window.glclResults = [
     },
     {
         "pos": 268,
-        "bib": "0",
+        "bib": "2044",
         "name": "Alan DOBBS",
         "age": 0,
         "sex": "M",
@@ -29360,7 +29360,7 @@ window.glclResults = [
     },
     {
         "pos": 269,
-        "bib": "0",
+        "bib": "8114",
         "name": "Kathryn WILES",
         "age": 0,
         "sex": "F",
@@ -29381,7 +29381,7 @@ window.glclResults = [
     },
     {
         "pos": 270,
-        "bib": "0",
+        "bib": "7006",
         "name": "Rachel WATERS",
         "age": 0,
         "sex": "F",
@@ -29402,7 +29402,7 @@ window.glclResults = [
     },
     {
         "pos": 271,
-        "bib": "0",
+        "bib": "2095",
         "name": "Barbara MADDISON",
         "age": 0,
         "sex": "F",
@@ -29423,7 +29423,7 @@ window.glclResults = [
     },
     {
         "pos": 272,
-        "bib": "0",
+        "bib": "5019",
         "name": "Julie GOULD",
         "age": 0,
         "sex": "F",
@@ -29444,7 +29444,7 @@ window.glclResults = [
     },
     {
         "pos": 273,
-        "bib": "0",
+        "bib": "3031",
         "name": "Martyn JENKINS",
         "age": 0,
         "sex": "M",
@@ -29465,7 +29465,7 @@ window.glclResults = [
     },
     {
         "pos": 274,
-        "bib": "0",
+        "bib": "5064",
         "name": "Louise SADDLER",
         "age": 0,
         "sex": "F",
@@ -29486,7 +29486,7 @@ window.glclResults = [
     },
     {
         "pos": 275,
-        "bib": "0",
+        "bib": "2055",
         "name": "Denise EVANS",
         "age": 0,
         "sex": "F",
@@ -29507,7 +29507,7 @@ window.glclResults = [
     },
     {
         "pos": 276,
-        "bib": "0",
+        "bib": "5031",
         "name": "Lauren HOLTHAM-MORGAN",
         "age": 0,
         "sex": "F",
@@ -29528,7 +29528,7 @@ window.glclResults = [
     },
     {
         "pos": 277,
-        "bib": "0",
+        "bib": "7001",
         "name": "Chris BABER",
         "age": 0,
         "sex": "M",
@@ -29549,7 +29549,7 @@ window.glclResults = [
     },
     {
         "pos": 278,
-        "bib": "0",
+        "bib": "4080",
         "name": "Barrie PARHAM",
         "age": 0,
         "sex": "M",
@@ -29570,7 +29570,7 @@ window.glclResults = [
     },
     {
         "pos": 279,
-        "bib": "0",
+        "bib": "2070",
         "name": "Eve HAEFFNER",
         "age": 0,
         "sex": "F",
@@ -29591,7 +29591,7 @@ window.glclResults = [
     },
     {
         "pos": 280,
-        "bib": "0",
+        "bib": "8085",
         "name": "Daniel PEARCE",
         "age": 0,
         "sex": "M",
@@ -29612,7 +29612,7 @@ window.glclResults = [
     },
     {
         "pos": 281,
-        "bib": "0",
+        "bib": "5059",
         "name": "Hilary PREECE",
         "age": 0,
         "sex": "F",
@@ -29633,7 +29633,7 @@ window.glclResults = [
     },
     {
         "pos": 282,
-        "bib": "0",
+        "bib": "5155",
         "name": "Andrew PRICE-STEPHENS",
         "age": 0,
         "sex": "M",
@@ -29654,7 +29654,7 @@ window.glclResults = [
     },
     {
         "pos": 283,
-        "bib": "0",
+        "bib": "2013",
         "name": "Jenni BELL",
         "age": 0,
         "sex": "F",
@@ -29675,7 +29675,7 @@ window.glclResults = [
     },
     {
         "pos": 284,
-        "bib": "0",
+        "bib": "5126",
         "name": "Evan JAMES",
         "age": 0,
         "sex": "M",
@@ -29696,7 +29696,7 @@ window.glclResults = [
     },
     {
         "pos": 285,
-        "bib": "0",
+        "bib": "1449",
         "name": "Kathryn COLLINS",
         "age": 0,
         "sex": "F",
@@ -29717,7 +29717,7 @@ window.glclResults = [
     },
     {
         "pos": 286,
-        "bib": "0",
+        "bib": "6157",
         "name": "Caroline WEBER",
         "age": 0,
         "sex": "F",
@@ -29738,7 +29738,7 @@ window.glclResults = [
     },
     {
         "pos": 287,
-        "bib": "0",
+        "bib": "9033",
         "name": "Paul GRAINGER JONES",
         "age": 0,
         "sex": "M",
@@ -29759,7 +29759,7 @@ window.glclResults = [
     },
     {
         "pos": 288,
-        "bib": "0",
+        "bib": "5179",
         "name": "Luke PERROTT",
         "age": 0,
         "sex": "M",
@@ -29780,7 +29780,7 @@ window.glclResults = [
     },
     {
         "pos": 289,
-        "bib": "0",
+        "bib": "5104",
         "name": "Gerald EVANS",
         "age": 0,
         "sex": "M",
@@ -29801,7 +29801,7 @@ window.glclResults = [
     },
     {
         "pos": 290,
-        "bib": "0",
+        "bib": "5108",
         "name": "Keston GRIFFITHS",
         "age": 0,
         "sex": "M",
@@ -29843,7 +29843,7 @@ window.glclResults = [
     },
     {
         "pos": 292,
-        "bib": "0",
+        "bib": "5127",
         "name": "Carl JOHNSON",
         "age": 0,
         "sex": "M",
@@ -29864,7 +29864,7 @@ window.glclResults = [
     },
     {
         "pos": 293,
-        "bib": "0",
+        "bib": "5052",
         "name": "Catherine NORRIS",
         "age": 0,
         "sex": "F",
@@ -29885,7 +29885,7 @@ window.glclResults = [
     },
     {
         "pos": 294,
-        "bib": "0",
+        "bib": "4078",
         "name": "Hayley NOWELL",
         "age": 0,
         "sex": "F",
@@ -29906,7 +29906,7 @@ window.glclResults = [
     },
     {
         "pos": 295,
-        "bib": "0",
+        "bib": "1311",
         "name": "Andrew HILLIS",
         "age": 0,
         "sex": "M",
@@ -29927,7 +29927,7 @@ window.glclResults = [
     },
     {
         "pos": 296,
-        "bib": "0",
+        "bib": "2152",
         "name": "Andy CREBER",
         "age": 0,
         "sex": "M",
@@ -29948,7 +29948,7 @@ window.glclResults = [
     },
     {
         "pos": 297,
-        "bib": "0",
+        "bib": "5053",
         "name": "Joanne PAINE",
         "age": 0,
         "sex": "F",
@@ -29969,7 +29969,7 @@ window.glclResults = [
     },
     {
         "pos": 298,
-        "bib": "0",
+        "bib": "3006",
         "name": "Tia BARTER",
         "age": 0,
         "sex": "F",
@@ -29990,7 +29990,7 @@ window.glclResults = [
     },
     {
         "pos": 299,
-        "bib": "0",
+        "bib": "5044",
         "name": "Katie LIPPIATT",
         "age": 0,
         "sex": "F",
@@ -30011,7 +30011,7 @@ window.glclResults = [
     },
     {
         "pos": 300,
-        "bib": "0",
+        "bib": "6071",
         "name": "Julia GROOMBRIDGE",
         "age": 0,
         "sex": "F",
@@ -30032,7 +30032,7 @@ window.glclResults = [
     },
     {
         "pos": 301,
-        "bib": "0",
+        "bib": "3012",
         "name": "Cerris DAWE",
         "age": 0,
         "sex": "F",
@@ -30053,7 +30053,7 @@ window.glclResults = [
     },
     {
         "pos": 302,
-        "bib": "0",
+        "bib": "6045",
         "name": "Dawn DAVIS",
         "age": 0,
         "sex": "F",
@@ -30074,7 +30074,7 @@ window.glclResults = [
     },
     {
         "pos": 303,
-        "bib": "0",
+        "bib": "3007",
         "name": "Richard BOWIE",
         "age": 0,
         "sex": "M",
@@ -30095,7 +30095,7 @@ window.glclResults = [
     },
     {
         "pos": 304,
-        "bib": "0",
+        "bib": "1344",
         "name": "Ian SMITH",
         "age": 0,
         "sex": "M",
@@ -30116,7 +30116,7 @@ window.glclResults = [
     },
     {
         "pos": 305,
-        "bib": "0",
+        "bib": "5069",
         "name": "Sarah TUCKER",
         "age": 0,
         "sex": "F",
@@ -30137,7 +30137,7 @@ window.glclResults = [
     },
     {
         "pos": 306,
-        "bib": "0",
+        "bib": "3053",
         "name": "Stewart SEABORNE",
         "age": 0,
         "sex": "M",
@@ -30158,7 +30158,7 @@ window.glclResults = [
     },
     {
         "pos": 307,
-        "bib": "0",
+        "bib": "4115",
         "name": "Anna WILKINSON",
         "age": 0,
         "sex": "F",
@@ -30179,7 +30179,7 @@ window.glclResults = [
     },
     {
         "pos": 308,
-        "bib": "0",
+        "bib": "5093",
         "name": "Craig DAVIES",
         "age": 0,
         "sex": "M",
@@ -30200,7 +30200,7 @@ window.glclResults = [
     },
     {
         "pos": 309,
-        "bib": "0",
+        "bib": "2116",
         "name": "Brett REGULSKI",
         "age": 0,
         "sex": "M",
@@ -30221,7 +30221,7 @@ window.glclResults = [
     },
     {
         "pos": 310,
-        "bib": "0",
+        "bib": "5015",
         "name": "Sian EDWARDS",
         "age": 0,
         "sex": "F",
@@ -30242,7 +30242,7 @@ window.glclResults = [
     },
     {
         "pos": 311,
-        "bib": "0",
+        "bib": "4031",
         "name": "Stuart FRANCIS",
         "age": 0,
         "sex": "M",
@@ -30263,7 +30263,7 @@ window.glclResults = [
     },
     {
         "pos": 312,
-        "bib": "0",
+        "bib": "4092",
         "name": "Wayne RUDALL",
         "age": 0,
         "sex": "M",
@@ -30284,7 +30284,7 @@ window.glclResults = [
     },
     {
         "pos": 313,
-        "bib": "0",
+        "bib": "5062",
         "name": "Stacey RENDALL",
         "age": 0,
         "sex": "F",
@@ -30305,7 +30305,7 @@ window.glclResults = [
     },
     {
         "pos": 314,
-        "bib": "0",
+        "bib": "5184",
         "name": "Rebecca SAGE",
         "age": 0,
         "sex": "F",
@@ -30326,7 +30326,7 @@ window.glclResults = [
     },
     {
         "pos": 315,
-        "bib": "0",
+        "bib": "6034",
         "name": "Jordan COOK",
         "age": 0,
         "sex": "M",
@@ -30347,7 +30347,7 @@ window.glclResults = [
     },
     {
         "pos": 316,
-        "bib": "0",
+        "bib": "8003",
         "name": "Michelle BATES",
         "age": 0,
         "sex": "F",
@@ -30368,7 +30368,7 @@ window.glclResults = [
     },
     {
         "pos": 317,
-        "bib": "0",
+        "bib": "1023",
         "name": "Nicholas FRY",
         "age": 0,
         "sex": "M",
@@ -30389,7 +30389,7 @@ window.glclResults = [
     },
     {
         "pos": 318,
-        "bib": "0",
+        "bib": "9034",
         "name": "Kyle GREENHALF",
         "age": 0,
         "sex": "M",
@@ -30410,7 +30410,7 @@ window.glclResults = [
     },
     {
         "pos": 319,
-        "bib": "0",
+        "bib": "9058",
         "name": "Wendy MORGAN",
         "age": 0,
         "sex": "F",
@@ -30431,7 +30431,7 @@ window.glclResults = [
     },
     {
         "pos": 320,
-        "bib": "0",
+        "bib": "8098",
         "name": "Jayne RIST",
         "age": 0,
         "sex": "F",
@@ -30452,7 +30452,7 @@ window.glclResults = [
     },
     {
         "pos": 321,
-        "bib": "0",
+        "bib": "1309",
         "name": "Julie GEE",
         "age": 0,
         "sex": "F",
@@ -30473,7 +30473,7 @@ window.glclResults = [
     },
     {
         "pos": 322,
-        "bib": "0",
+        "bib": "1021",
         "name": "Tina FLETCHER",
         "age": 0,
         "sex": "F",
@@ -30494,7 +30494,7 @@ window.glclResults = [
     },
     {
         "pos": 323,
-        "bib": "0",
+        "bib": "5077",
         "name": "Bethan WILLIAMS",
         "age": 0,
         "sex": "F",
@@ -30515,7 +30515,7 @@ window.glclResults = [
     },
     {
         "pos": 324,
-        "bib": "0",
+        "bib": "5033",
         "name": "Stefanie JAMES",
         "age": 0,
         "sex": "F",
@@ -30536,7 +30536,7 @@ window.glclResults = [
     },
     {
         "pos": 325,
-        "bib": "0",
+        "bib": "9082",
         "name": "Robert SOUTHGATE",
         "age": 0,
         "sex": "M",
@@ -30557,7 +30557,7 @@ window.glclResults = [
     },
     {
         "pos": 326,
-        "bib": "0",
+        "bib": "4079",
         "name": "Joanne PALING",
         "age": 0,
         "sex": "F",
@@ -30578,7 +30578,7 @@ window.glclResults = [
     },
     {
         "pos": 327,
-        "bib": "0",
+        "bib": "4065",
         "name": "Cj LEWIS",
         "age": 0,
         "sex": "M",
@@ -30599,7 +30599,7 @@ window.glclResults = [
     },
     {
         "pos": 328,
-        "bib": "0",
+        "bib": "1051",
         "name": "Edward McDAID",
         "age": 0,
         "sex": "M",
@@ -30620,7 +30620,7 @@ window.glclResults = [
     },
     {
         "pos": 329,
-        "bib": "0",
+        "bib": "6090",
         "name": "Trudy HURFORD",
         "age": 0,
         "sex": "F",
@@ -30641,7 +30641,7 @@ window.glclResults = [
     },
     {
         "pos": 330,
-        "bib": "0",
+        "bib": "1016",
         "name": "Jane DERRICK",
         "age": 0,
         "sex": "F",
@@ -30662,7 +30662,7 @@ window.glclResults = [
     },
     {
         "pos": 331,
-        "bib": "0",
+        "bib": "9084",
         "name": "Megan STARK",
         "age": 0,
         "sex": "F",
@@ -30683,7 +30683,7 @@ window.glclResults = [
     },
     {
         "pos": 332,
-        "bib": "0",
+        "bib": "5129",
         "name": "Jake JONES",
         "age": 0,
         "sex": "M",
@@ -30704,7 +30704,7 @@ window.glclResults = [
     },
     {
         "pos": 333,
-        "bib": "0",
+        "bib": "6077",
         "name": "Lowri HAWROT",
         "age": 0,
         "sex": "F",
@@ -30725,7 +30725,7 @@ window.glclResults = [
     },
     {
         "pos": 334,
-        "bib": "0",
+        "bib": "1040",
         "name": "Clare JEFFRIES",
         "age": 0,
         "sex": "F",
@@ -30746,7 +30746,7 @@ window.glclResults = [
     },
     {
         "pos": 335,
-        "bib": "0",
+        "bib": "1014",
         "name": "Sian DENMAN",
         "age": 0,
         "sex": "F",
@@ -30767,7 +30767,7 @@ window.glclResults = [
     },
     {
         "pos": 336,
-        "bib": "0",
+        "bib": "5001",
         "name": "Clare BARRETT",
         "age": 0,
         "sex": "F",
@@ -30788,7 +30788,7 @@ window.glclResults = [
     },
     {
         "pos": 337,
-        "bib": "0",
+        "bib": "3025",
         "name": "Helen GWILLIAM",
         "age": 0,
         "sex": "F",
@@ -30809,7 +30809,7 @@ window.glclResults = [
     },
     {
         "pos": 338,
-        "bib": "0",
+        "bib": "1081",
         "name": "Rachael STEPHENS",
         "age": 0,
         "sex": "F",
@@ -30830,7 +30830,7 @@ window.glclResults = [
     },
     {
         "pos": 339,
-        "bib": "0",
+        "bib": "3011",
         "name": "Alison DAVIS",
         "age": 0,
         "sex": "F",
@@ -30851,7 +30851,7 @@ window.glclResults = [
     },
     {
         "pos": 340,
-        "bib": "0",
+        "bib": "1341",
         "name": "Jaye PRICE",
         "age": 0,
         "sex": "F",
@@ -30872,7 +30872,7 @@ window.glclResults = [
     },
     {
         "pos": 341,
-        "bib": "0",
+        "bib": "5150",
         "name": "Neill PARKER",
         "age": 0,
         "sex": "M",
@@ -30893,7 +30893,7 @@ window.glclResults = [
     },
     {
         "pos": 342,
-        "bib": "0",
+        "bib": "1019",
         "name": "Caroline DUNN",
         "age": 0,
         "sex": "F",
@@ -30914,7 +30914,7 @@ window.glclResults = [
     },
     {
         "pos": 343,
-        "bib": "0",
+        "bib": "2150",
         "name": "Berna CANTWELL",
         "age": 0,
         "sex": "F",
@@ -30935,7 +30935,7 @@ window.glclResults = [
     },
     {
         "pos": 344,
-        "bib": "0",
+        "bib": "7055",
         "name": "Susan LINCOLN",
         "age": 0,
         "sex": "F",
@@ -30956,7 +30956,7 @@ window.glclResults = [
     },
     {
         "pos": 345,
-        "bib": "0",
+        "bib": "7011",
         "name": "Sian BURNS",
         "age": 0,
         "sex": "F",
@@ -30977,7 +30977,7 @@ window.glclResults = [
     },
     {
         "pos": 346,
-        "bib": "0",
+        "bib": "4040",
         "name": "Nikki HANCOX",
         "age": 0,
         "sex": "F",
@@ -30998,7 +30998,7 @@ window.glclResults = [
     },
     {
         "pos": 347,
-        "bib": "0",
+        "bib": "4041",
         "name": "Paul HANCOX",
         "age": 0,
         "sex": "M",
@@ -31019,7 +31019,7 @@ window.glclResults = [
     },
     {
         "pos": 348,
-        "bib": "0",
+        "bib": "3072",
         "name": "Nick WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -31040,7 +31040,7 @@ window.glclResults = [
     },
     {
         "pos": 349,
-        "bib": "0",
+        "bib": "6175",
         "name": "Desmond JONES",
         "age": 0,
         "sex": "M",
@@ -31061,7 +31061,7 @@ window.glclResults = [
     },
     {
         "pos": 350,
-        "bib": "0",
+        "bib": "2148",
         "name": "Louise PECKHAM",
         "age": 0,
         "sex": "F",
@@ -31082,7 +31082,7 @@ window.glclResults = [
     },
     {
         "pos": 351,
-        "bib": "0",
+        "bib": "5002",
         "name": "Emma BLACKBURN",
         "age": 0,
         "sex": "F",
@@ -31103,7 +31103,7 @@ window.glclResults = [
     },
     {
         "pos": 352,
-        "bib": "0",
+        "bib": "5060",
         "name": "Shelly PRICE-STEPHENS",
         "age": 0,
         "sex": "F",
@@ -31124,7 +31124,7 @@ window.glclResults = [
     },
     {
         "pos": 353,
-        "bib": "0",
+        "bib": "5063",
         "name": "Pat RICHARDSON",
         "age": 0,
         "sex": "F",
@@ -31145,7 +31145,7 @@ window.glclResults = [
     },
     {
         "pos": 354,
-        "bib": "0",
+        "bib": "7043",
         "name": "Alison McMENEMY",
         "age": 0,
         "sex": "F",
@@ -31166,7 +31166,7 @@ window.glclResults = [
     },
     {
         "pos": 355,
-        "bib": "0",
+        "bib": "7044",
         "name": "Stephen McMENEMY",
         "age": 0,
         "sex": "M",
@@ -31187,7 +31187,7 @@ window.glclResults = [
     },
     {
         "pos": 356,
-        "bib": "0",
+        "bib": "5018",
         "name": "Cheryl FRANCIS",
         "age": 0,
         "sex": "F",
@@ -31208,7 +31208,7 @@ window.glclResults = [
     },
     {
         "pos": 357,
-        "bib": "0",
+        "bib": "5032",
         "name": "Sian JAMES",
         "age": 0,
         "sex": "F",
@@ -31229,7 +31229,7 @@ window.glclResults = [
     },
     {
         "pos": 358,
-        "bib": "0",
+        "bib": "6046",
         "name": "Nigel DAVIS",
         "age": 0,
         "sex": "M",
@@ -31250,7 +31250,7 @@ window.glclResults = [
     },
     {
         "pos": 359,
-        "bib": "0",
+        "bib": "7038",
         "name": "Fay VISSER",
         "age": 0,
         "sex": "F",
@@ -31271,7 +31271,7 @@ window.glclResults = [
     },
     {
         "pos": 360,
-        "bib": "0",
+        "bib": "4077",
         "name": "Nicola NEEDS",
         "age": 0,
         "sex": "F",
@@ -31292,7 +31292,7 @@ window.glclResults = [
     },
     {
         "pos": 361,
-        "bib": "0",
+        "bib": "9027",
         "name": "Sarah Jane EVANS",
         "age": 0,
         "sex": "F",
@@ -31313,7 +31313,7 @@ window.glclResults = [
     },
     {
         "pos": 362,
-        "bib": "0",
+        "bib": "8059",
         "name": "Sian JONES",
         "age": 0,
         "sex": "F",
@@ -31334,7 +31334,7 @@ window.glclResults = [
     },
     {
         "pos": 363,
-        "bib": "0",
+        "bib": "9050",
         "name": "Susan LAWRENCE",
         "age": 0,
         "sex": "F",
@@ -31355,7 +31355,7 @@ window.glclResults = [
     },
     {
         "pos": 364,
-        "bib": "0",
+        "bib": "9100",
         "name": "Rhiannon DAVIES",
         "age": 0,
         "sex": "F",
@@ -31418,7 +31418,7 @@ window.glclResults = [
     },
     {
         "pos": 367,
-        "bib": "0",
+        "bib": "3066",
         "name": "Mark WILLIS",
         "age": 0,
         "sex": "M",
@@ -31439,7 +31439,7 @@ window.glclResults = [
     },
     {
         "pos": 368,
-        "bib": "0",
+        "bib": "5020",
         "name": "Rebecca GRIST",
         "age": 0,
         "sex": "F",
@@ -31460,7 +31460,7 @@ window.glclResults = [
     },
     {
         "pos": 369,
-        "bib": "0",
+        "bib": "5078",
         "name": "Jessica WILLIAMS",
         "age": 0,
         "sex": "F",
@@ -31481,7 +31481,7 @@ window.glclResults = [
     },
     {
         "pos": 370,
-        "bib": "0",
+        "bib": "5029",
         "name": "Michelle HOCKADAY",
         "age": 0,
         "sex": "F",
@@ -31502,7 +31502,7 @@ window.glclResults = [
     },
     {
         "pos": 371,
-        "bib": "0",
+        "bib": "2132",
         "name": "Corinna TANNIAN",
         "age": 0,
         "sex": "F",
@@ -31523,7 +31523,7 @@ window.glclResults = [
     },
     {
         "pos": 372,
-        "bib": "0",
+        "bib": "5070",
         "name": "Fiona WALKLEY",
         "age": 0,
         "sex": "F",
@@ -31544,7 +31544,7 @@ window.glclResults = [
     },
     {
         "pos": 373,
-        "bib": "0",
+        "bib": "3026",
         "name": "Sheree HAMPTON",
         "age": 0,
         "sex": "F",
@@ -31565,7 +31565,7 @@ window.glclResults = [
     },
     {
         "pos": 374,
-        "bib": "0",
+        "bib": "5030",
         "name": "Kirsty HOLTHAM-MORGAN",
         "age": 0,
         "sex": "F",
@@ -31586,7 +31586,7 @@ window.glclResults = [
     },
     {
         "pos": 375,
-        "bib": "0",
+        "bib": "6031",
         "name": "Paula CHURCH",
         "age": 0,
         "sex": "F",
@@ -31607,7 +31607,7 @@ window.glclResults = [
     },
     {
         "pos": 376,
-        "bib": "0",
+        "bib": "6170",
         "name": "Tim WRIGHT",
         "age": 0,
         "sex": "M",
@@ -31628,7 +31628,7 @@ window.glclResults = [
     },
     {
         "pos": 377,
-        "bib": "0",
+        "bib": "9040",
         "name": "Sharon HERBERT",
         "age": 0,
         "sex": "F",
@@ -31649,7 +31649,7 @@ window.glclResults = [
     },
     {
         "pos": 378,
-        "bib": "0",
+        "bib": "2012",
         "name": "Jane BAYLISS",
         "age": 0,
         "sex": "F",
@@ -31670,7 +31670,7 @@ window.glclResults = [
     },
     {
         "pos": 379,
-        "bib": "0",
+        "bib": "5073",
         "name": "Rachael WATKINS",
         "age": 0,
         "sex": "F",
@@ -31691,7 +31691,7 @@ window.glclResults = [
     },
     {
         "pos": 380,
-        "bib": "0",
+        "bib": "1010",
         "name": "David DAVIES",
         "age": 0,
         "sex": "M",
@@ -31712,7 +31712,7 @@ window.glclResults = [
     },
     {
         "pos": 381,
-        "bib": "0",
+        "bib": "6159",
         "name": "Susan WEBSTER",
         "age": 0,
         "sex": "F",
@@ -31733,7 +31733,7 @@ window.glclResults = [
     },
     {
         "pos": 382,
-        "bib": "0",
+        "bib": "5008",
         "name": "Danielle CLEVERLY",
         "age": 0,
         "sex": "F",
@@ -31754,7 +31754,7 @@ window.glclResults = [
     },
     {
         "pos": 383,
-        "bib": "0",
+        "bib": "5139",
         "name": "William LEWIS",
         "age": 0,
         "sex": "M",
@@ -31775,7 +31775,7 @@ window.glclResults = [
     },
     {
         "pos": 384,
-        "bib": "0",
+        "bib": "4018",
         "name": "Malcolm COX",
         "age": 0,
         "sex": "M",
@@ -31796,7 +31796,7 @@ window.glclResults = [
     },
     {
         "pos": 385,
-        "bib": "0",
+        "bib": "5119",
         "name": "Stephen HOARE",
         "age": 0,
         "sex": "M",
@@ -31817,7 +31817,7 @@ window.glclResults = [
     },
     {
         "pos": 386,
-        "bib": "0",
+        "bib": "5097",
         "name": "Colin DIXON",
         "age": 0,
         "sex": "M",
@@ -31838,7 +31838,7 @@ window.glclResults = [
     },
     {
         "pos": 387,
-        "bib": "0",
+        "bib": "7060",
         "name": "Cath EALES",
         "age": 0,
         "sex": "F",
@@ -31859,7 +31859,7 @@ window.glclResults = [
     },
     {
         "pos": 388,
-        "bib": "0",
+        "bib": "5178",
         "name": "Roy BEECHAM",
         "age": 0,
         "sex": "M",
@@ -31880,7 +31880,7 @@ window.glclResults = [
     },
     {
         "pos": 389,
-        "bib": "0",
+        "bib": "2067",
         "name": "Marg GRIFFITHS",
         "age": 0,
         "sex": "F",
@@ -31901,7 +31901,7 @@ window.glclResults = [
     },
     {
         "pos": 390,
-        "bib": "0",
+        "bib": "3065",
         "name": "Suzanne WILLAMS",
         "age": 0,
         "sex": "F",
@@ -31922,7 +31922,7 @@ window.glclResults = [
     },
     {
         "pos": 391,
-        "bib": "0",
+        "bib": "5065",
         "name": "Lisa THOMAS",
         "age": 0,
         "sex": "F",
@@ -31943,7 +31943,7 @@ window.glclResults = [
     },
     {
         "pos": 392,
-        "bib": "0",
+        "bib": "5165",
         "name": "Neil THOMAS",
         "age": 0,
         "sex": "M",
@@ -31964,7 +31964,7 @@ window.glclResults = [
     },
     {
         "pos": 393,
-        "bib": "0",
+        "bib": "5074",
         "name": "Wendy WATKINS",
         "age": 0,
         "sex": "F",
@@ -31985,7 +31985,7 @@ window.glclResults = [
     },
     {
         "pos": 394,
-        "bib": "0",
+        "bib": "6013",
         "name": "Ole BLACK",
         "age": 0,
         "sex": "M",
@@ -32006,7 +32006,7 @@ window.glclResults = [
     },
     {
         "pos": 395,
-        "bib": "0",
+        "bib": "5076",
         "name": "Emily WELSH",
         "age": 0,
         "sex": "F",
@@ -32027,7 +32027,7 @@ window.glclResults = [
     },
     {
         "pos": 396,
-        "bib": "0",
+        "bib": "5028",
         "name": "Janet HOARE",
         "age": 0,
         "sex": "F",
@@ -32048,7 +32048,7 @@ window.glclResults = [
     },
     {
         "pos": 397,
-        "bib": "0",
+        "bib": "5073",
         "name": "Rachael WATKINS",
         "age": 0,
         "sex": "F",
@@ -32069,7 +32069,7 @@ window.glclResults = [
     },
     {
         "pos": 1,
-        "bib": "0",
+        "bib": "8073",
         "name": "Phillip MATTHEWS",
         "age": 0,
         "sex": "M",
@@ -32090,7 +32090,7 @@ window.glclResults = [
     },
     {
         "pos": 2,
-        "bib": "0",
+        "bib": "8136",
         "name": "Daniel BODMAN",
         "age": 0,
         "sex": "M",
@@ -32111,7 +32111,7 @@ window.glclResults = [
     },
     {
         "pos": 3,
-        "bib": "0",
+        "bib": "2010",
         "name": "Tim BATCHELOR",
         "age": 0,
         "sex": "M",
@@ -32132,7 +32132,7 @@ window.glclResults = [
     },
     {
         "pos": 4,
-        "bib": "0",
+        "bib": "8058",
         "name": "Sam JONES",
         "age": 0,
         "sex": "M",
@@ -32153,7 +32153,7 @@ window.glclResults = [
     },
     {
         "pos": 5,
-        "bib": "0",
+        "bib": "9001",
         "name": "Andrei ARCANA",
         "age": 0,
         "sex": "M",
@@ -32174,7 +32174,7 @@ window.glclResults = [
     },
     {
         "pos": 6,
-        "bib": "0",
+        "bib": "8138",
         "name": "Tye DUGGAN",
         "age": 0,
         "sex": "M",
@@ -32195,7 +32195,7 @@ window.glclResults = [
     },
     {
         "pos": 7,
-        "bib": "0",
+        "bib": "8018",
         "name": "Justin CROCKER",
         "age": 0,
         "sex": "M",
@@ -32216,7 +32216,7 @@ window.glclResults = [
     },
     {
         "pos": 8,
-        "bib": "0",
+        "bib": "2062",
         "name": "Mark GILLETT",
         "age": 0,
         "sex": "M",
@@ -32237,7 +32237,7 @@ window.glclResults = [
     },
     {
         "pos": 9,
-        "bib": "0",
+        "bib": "2087",
         "name": "Reuben LAWSON",
         "age": 0,
         "sex": "M",
@@ -32258,7 +32258,7 @@ window.glclResults = [
     },
     {
         "pos": 10,
-        "bib": "0",
+        "bib": "2017",
         "name": "James BLORE",
         "age": 0,
         "sex": "M",
@@ -32279,7 +32279,7 @@ window.glclResults = [
     },
     {
         "pos": 11,
-        "bib": "0",
+        "bib": "9035",
         "name": "Adam GREY",
         "age": 0,
         "sex": "M",
@@ -32300,7 +32300,7 @@ window.glclResults = [
     },
     {
         "pos": 12,
-        "bib": "0",
+        "bib": "8134",
         "name": "Lee AHERNE",
         "age": 0,
         "sex": "M",
@@ -32321,7 +32321,7 @@ window.glclResults = [
     },
     {
         "pos": 13,
-        "bib": "0",
+        "bib": "2099",
         "name": "Joseph MATTHEWS",
         "age": 0,
         "sex": "M",
@@ -32342,7 +32342,7 @@ window.glclResults = [
     },
     {
         "pos": 14,
-        "bib": "0",
+        "bib": "8099",
         "name": "Adam ROBERTS",
         "age": 0,
         "sex": "M",
@@ -32363,7 +32363,7 @@ window.glclResults = [
     },
     {
         "pos": 15,
-        "bib": "0",
+        "bib": "1296",
         "name": "Martin THOMAS",
         "age": 0,
         "sex": "M",
@@ -32384,7 +32384,7 @@ window.glclResults = [
     },
     {
         "pos": 16,
-        "bib": "0",
+        "bib": "9055",
         "name": "Mike MARSH",
         "age": 0,
         "sex": "M",
@@ -32405,7 +32405,7 @@ window.glclResults = [
     },
     {
         "pos": 17,
-        "bib": "0",
+        "bib": "3504",
         "name": "Benjamin St JOHN",
         "age": 0,
         "sex": "M",
@@ -32426,7 +32426,7 @@ window.glclResults = [
     },
     {
         "pos": 18,
-        "bib": "0",
+        "bib": "9097",
         "name": "Thomas BRISCO WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -32447,7 +32447,7 @@ window.glclResults = [
     },
     {
         "pos": 19,
-        "bib": "0",
+        "bib": "8052",
         "name": "Patrick JARVIS",
         "age": 0,
         "sex": "M",
@@ -32468,7 +32468,7 @@ window.glclResults = [
     },
     {
         "pos": 20,
-        "bib": "0",
+        "bib": "7050036",
         "name": "Harry WOODWARD",
         "age": 0,
         "sex": "M",
@@ -32489,7 +32489,7 @@ window.glclResults = [
     },
     {
         "pos": 21,
-        "bib": "0",
+        "bib": "1063",
         "name": "Karl COUGHLIN",
         "age": 0,
         "sex": "M",
@@ -32510,7 +32510,7 @@ window.glclResults = [
     },
     {
         "pos": 22,
-        "bib": "0",
+        "bib": "4049",
         "name": "Craig HOPKINS",
         "age": 0,
         "sex": "M",
@@ -32531,7 +32531,7 @@ window.glclResults = [
     },
     {
         "pos": 23,
-        "bib": "0",
+        "bib": "6137",
         "name": "Antoinette ROSE",
         "age": 0,
         "sex": "F",
@@ -32552,7 +32552,7 @@ window.glclResults = [
     },
     {
         "pos": 24,
-        "bib": "0",
+        "bib": "9080",
         "name": "Daniel SNELLING",
         "age": 0,
         "sex": "M",
@@ -32573,7 +32573,7 @@ window.glclResults = [
     },
     {
         "pos": 25,
-        "bib": "0",
+        "bib": "1056",
         "name": "Tom NEWMAN",
         "age": 0,
         "sex": "M",
@@ -32594,7 +32594,7 @@ window.glclResults = [
     },
     {
         "pos": 26,
-        "bib": "0",
+        "bib": "9094",
         "name": "Ricci WATTS",
         "age": 0,
         "sex": "M",
@@ -32615,7 +32615,7 @@ window.glclResults = [
     },
     {
         "pos": 27,
-        "bib": "0",
+        "bib": "8120",
         "name": "Lucy WILLIAMSON",
         "age": 0,
         "sex": "F",
@@ -32636,7 +32636,7 @@ window.glclResults = [
     },
     {
         "pos": 28,
-        "bib": "0",
+        "bib": "8110",
         "name": "Connor THURSTON",
         "age": 0,
         "sex": "M",
@@ -32657,7 +32657,7 @@ window.glclResults = [
     },
     {
         "pos": 29,
-        "bib": "0",
+        "bib": "5162",
         "name": "Craig THOMAS",
         "age": 0,
         "sex": "M",
@@ -32678,7 +32678,7 @@ window.glclResults = [
     },
     {
         "pos": 30,
-        "bib": "0",
+        "bib": "3027",
         "name": "Kyle HARVEY",
         "age": 0,
         "sex": "M",
@@ -32699,7 +32699,7 @@ window.glclResults = [
     },
     {
         "pos": 31,
-        "bib": "0",
+        "bib": "7014",
         "name": "Tom CHINNICK",
         "age": 0,
         "sex": "M",
@@ -32720,7 +32720,7 @@ window.glclResults = [
     },
     {
         "pos": 32,
-        "bib": "0",
+        "bib": "4006",
         "name": "Dominic BETHELL",
         "age": 0,
         "sex": "M",
@@ -32741,7 +32741,7 @@ window.glclResults = [
     },
     {
         "pos": 33,
-        "bib": "0",
+        "bib": "6138",
         "name": "Jack ROWLAND",
         "age": 0,
         "sex": "M",
@@ -32762,7 +32762,7 @@ window.glclResults = [
     },
     {
         "pos": 34,
-        "bib": "0",
+        "bib": "8076",
         "name": "Christian MURPHY",
         "age": 0,
         "sex": "M",
@@ -32783,7 +32783,7 @@ window.glclResults = [
     },
     {
         "pos": 35,
-        "bib": "0",
+        "bib": "1507",
         "name": "Joseph WALBYOFF",
         "age": 0,
         "sex": "M",
@@ -32804,7 +32804,7 @@ window.glclResults = [
     },
     {
         "pos": 36,
-        "bib": "0",
+        "bib": "2134",
         "name": "James TUCKER",
         "age": 0,
         "sex": "M",
@@ -32825,7 +32825,7 @@ window.glclResults = [
     },
     {
         "pos": 37,
-        "bib": "0",
+        "bib": "6092",
         "name": "Martin JOHNS",
         "age": 0,
         "sex": "M",
@@ -32846,7 +32846,7 @@ window.glclResults = [
     },
     {
         "pos": 38,
-        "bib": "0",
+        "bib": "2079",
         "name": "Dickie HUDD",
         "age": 0,
         "sex": "M",
@@ -32867,7 +32867,7 @@ window.glclResults = [
     },
     {
         "pos": 39,
-        "bib": "0",
+        "bib": "8070",
         "name": "Alastair MASTERTON",
         "age": 0,
         "sex": "M",
@@ -32888,7 +32888,7 @@ window.glclResults = [
     },
     {
         "pos": 40,
-        "bib": "0",
+        "bib": "6169",
         "name": "Emma WOOKEY",
         "age": 0,
         "sex": "F",
@@ -32909,7 +32909,7 @@ window.glclResults = [
     },
     {
         "pos": 41,
-        "bib": "0",
+        "bib": "8078",
         "name": "Gareth NEWMAN",
         "age": 0,
         "sex": "M",
@@ -32930,7 +32930,7 @@ window.glclResults = [
     },
     {
         "pos": 42,
-        "bib": "0",
+        "bib": "2078",
         "name": "Ross HOWELLS",
         "age": 0,
         "sex": "M",
@@ -32951,7 +32951,7 @@ window.glclResults = [
     },
     {
         "pos": 43,
-        "bib": "0",
+        "bib": "5096",
         "name": "Connor DIMMICK",
         "age": 0,
         "sex": "M",
@@ -32972,7 +32972,7 @@ window.glclResults = [
     },
     {
         "pos": 44,
-        "bib": "0",
+        "bib": "5164",
         "name": "Gethin THOMAS",
         "age": 0,
         "sex": "M",
@@ -32993,7 +32993,7 @@ window.glclResults = [
     },
     {
         "pos": 45,
-        "bib": "0",
+        "bib": "2043",
         "name": "Stephen DILLEY",
         "age": 0,
         "sex": "M",
@@ -33014,7 +33014,7 @@ window.glclResults = [
     },
     {
         "pos": 46,
-        "bib": "0",
+        "bib": "2060",
         "name": "Ian GAWINOWSKI",
         "age": 0,
         "sex": "M",
@@ -33035,7 +33035,7 @@ window.glclResults = [
     },
     {
         "pos": 47,
-        "bib": "0",
+        "bib": "7025",
         "name": "Ben SAUNDERS",
         "age": 0,
         "sex": "M",
@@ -33056,7 +33056,7 @@ window.glclResults = [
     },
     {
         "pos": 48,
-        "bib": "0",
+        "bib": "8027",
         "name": "Steven DUGGAN",
         "age": 0,
         "sex": "M",
@@ -33077,7 +33077,7 @@ window.glclResults = [
     },
     {
         "pos": 49,
-        "bib": "0",
+        "bib": "9022",
         "name": "Gareth DAVIES",
         "age": 0,
         "sex": "M",
@@ -33098,7 +33098,7 @@ window.glclResults = [
     },
     {
         "pos": 50,
-        "bib": "0",
+        "bib": "4118",
         "name": "John WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -33119,7 +33119,7 @@ window.glclResults = [
     },
     {
         "pos": 51,
-        "bib": "0",
+        "bib": "5143",
         "name": "Lee MILLS",
         "age": 0,
         "sex": "M",
@@ -33140,7 +33140,7 @@ window.glclResults = [
     },
     {
         "pos": 52,
-        "bib": "0",
+        "bib": "1064",
         "name": "Anelu PIRVU",
         "age": 0,
         "sex": "M",
@@ -33161,7 +33161,7 @@ window.glclResults = [
     },
     {
         "pos": 53,
-        "bib": "0",
+        "bib": "2097",
         "name": "Tony MARSHALL",
         "age": 0,
         "sex": "M",
@@ -33182,7 +33182,7 @@ window.glclResults = [
     },
     {
         "pos": 54,
-        "bib": "0",
+        "bib": "2151",
         "name": "Chris HAEFFNER",
         "age": 0,
         "sex": "M",
@@ -33203,7 +33203,7 @@ window.glclResults = [
     },
     {
         "pos": 55,
-        "bib": "0",
+        "bib": "5137",
         "name": "Chris LATHAM",
         "age": 0,
         "sex": "M",
@@ -33224,7 +33224,7 @@ window.glclResults = [
     },
     {
         "pos": 56,
-        "bib": "0",
+        "bib": "8047",
         "name": "Kani HINSHELWOOD",
         "age": 0,
         "sex": "F",
@@ -33245,7 +33245,7 @@ window.glclResults = [
     },
     {
         "pos": 57,
-        "bib": "0",
+        "bib": "5016",
         "name": "Kimberley EVANS",
         "age": 0,
         "sex": "F",
@@ -33266,7 +33266,7 @@ window.glclResults = [
     },
     {
         "pos": 58,
-        "bib": "0",
+        "bib": "5156",
         "name": "Neil PROFIT",
         "age": 0,
         "sex": "M",
@@ -33287,7 +33287,7 @@ window.glclResults = [
     },
     {
         "pos": 59,
-        "bib": "0",
+        "bib": "3062",
         "name": "Sean WASSALL",
         "age": 0,
         "sex": "M",
@@ -33308,7 +33308,7 @@ window.glclResults = [
     },
     {
         "pos": 60,
-        "bib": "0",
+        "bib": "5133",
         "name": "John KEEBLE",
         "age": 0,
         "sex": "M",
@@ -33329,7 +33329,7 @@ window.glclResults = [
     },
     {
         "pos": 61,
-        "bib": "0",
+        "bib": "1513",
         "name": "Jonathan PAYMAN",
         "age": 0,
         "sex": "M",
@@ -33350,7 +33350,7 @@ window.glclResults = [
     },
     {
         "pos": 62,
-        "bib": "0",
+        "bib": "5120",
         "name": "Jaime HOLMES",
         "age": 0,
         "sex": "M",
@@ -33371,7 +33371,7 @@ window.glclResults = [
     },
     {
         "pos": 63,
-        "bib": "0",
+        "bib": "9090",
         "name": "Ieuan WALKER",
         "age": 0,
         "sex": "M",
@@ -33392,7 +33392,7 @@ window.glclResults = [
     },
     {
         "pos": 64,
-        "bib": "0",
+        "bib": "2100",
         "name": "Katherine MATTHEWS",
         "age": 0,
         "sex": "F",
@@ -33413,7 +33413,7 @@ window.glclResults = [
     },
     {
         "pos": 65,
-        "bib": "0",
+        "bib": "7050",
         "name": "Vicky ROBERTS",
         "age": 0,
         "sex": "F",
@@ -33434,7 +33434,7 @@ window.glclResults = [
     },
     {
         "pos": 66,
-        "bib": "0",
+        "bib": "9068",
         "name": "Hywel NASH",
         "age": 0,
         "sex": "M",
@@ -33455,7 +33455,7 @@ window.glclResults = [
     },
     {
         "pos": 67,
-        "bib": "0",
+        "bib": "4108",
         "name": "Nicky TUDOR",
         "age": 0,
         "sex": "M",
@@ -33476,7 +33476,7 @@ window.glclResults = [
     },
     {
         "pos": 68,
-        "bib": "0",
+        "bib": "2102",
         "name": "Niki MORGAN",
         "age": 0,
         "sex": "F",
@@ -33497,7 +33497,7 @@ window.glclResults = [
     },
     {
         "pos": 69,
-        "bib": "0",
+        "bib": "6172",
         "name": "Daniel BODIN",
         "age": 0,
         "sex": "M",
@@ -33518,7 +33518,7 @@ window.glclResults = [
     },
     {
         "pos": 70,
-        "bib": "0",
+        "bib": "9004",
         "name": "Alyssa BAKER",
         "age": 0,
         "sex": "F",
@@ -33539,7 +33539,7 @@ window.glclResults = [
     },
     {
         "pos": 71,
-        "bib": "0",
+        "bib": "7058",
         "name": "Katie ADAMS",
         "age": 0,
         "sex": "F",
@@ -33560,7 +33560,7 @@ window.glclResults = [
     },
     {
         "pos": 72,
-        "bib": "0",
+        "bib": "3071",
         "name": "Ben POMEROY",
         "age": 0,
         "sex": "M",
@@ -33581,7 +33581,7 @@ window.glclResults = [
     },
     {
         "pos": 73,
-        "bib": "0",
+        "bib": "9038",
         "name": "Lee HARVEY",
         "age": 0,
         "sex": "M",
@@ -33602,7 +33602,7 @@ window.glclResults = [
     },
     {
         "pos": 74,
-        "bib": "0",
+        "bib": "6124",
         "name": "Chris O'BRIEN",
         "age": 0,
         "sex": "M",
@@ -33623,7 +33623,7 @@ window.glclResults = [
     },
     {
         "pos": 75,
-        "bib": "0",
+        "bib": "2058",
         "name": "Cherry FOWLER",
         "age": 0,
         "sex": "F",
@@ -33644,7 +33644,7 @@ window.glclResults = [
     },
     {
         "pos": 76,
-        "bib": "0",
+        "bib": "1407",
         "name": "Rhys PRITCHARD",
         "age": 0,
         "sex": "M",
@@ -33665,7 +33665,7 @@ window.glclResults = [
     },
     {
         "pos": 77,
-        "bib": "0",
+        "bib": "8056",
         "name": "Beth JONES",
         "age": 0,
         "sex": "F",
@@ -33686,7 +33686,7 @@ window.glclResults = [
     },
     {
         "pos": 78,
-        "bib": "0",
+        "bib": "8079",
         "name": "Nick OSMAN",
         "age": 0,
         "sex": "M",
@@ -33707,7 +33707,7 @@ window.glclResults = [
     },
     {
         "pos": 79,
-        "bib": "0",
+        "bib": "9018",
         "name": "Ashley COLE",
         "age": 0,
         "sex": "M",
@@ -33728,7 +33728,7 @@ window.glclResults = [
     },
     {
         "pos": 80,
-        "bib": "0",
+        "bib": "9061",
         "name": "Adrian MURKIN",
         "age": 0,
         "sex": "M",
@@ -33749,7 +33749,7 @@ window.glclResults = [
     },
     {
         "pos": 81,
-        "bib": "0",
+        "bib": "7020",
         "name": "Lee DAVIES",
         "age": 0,
         "sex": "M",
@@ -33770,7 +33770,7 @@ window.glclResults = [
     },
     {
         "pos": 82,
-        "bib": "0",
+        "bib": "9054",
         "name": "Nathan MALONEY",
         "age": 0,
         "sex": "M",
@@ -33791,7 +33791,7 @@ window.glclResults = [
     },
     {
         "pos": 83,
-        "bib": "0",
+        "bib": "1120",
         "name": "James KING",
         "age": 0,
         "sex": "M",
@@ -33812,7 +33812,7 @@ window.glclResults = [
     },
     {
         "pos": 84,
-        "bib": "0",
+        "bib": "5136",
         "name": "Steven LANE",
         "age": 0,
         "sex": "M",
@@ -33833,7 +33833,7 @@ window.glclResults = [
     },
     {
         "pos": 85,
-        "bib": "0",
+        "bib": "8084",
         "name": "Maisie PEARCE",
         "age": 0,
         "sex": "F",
@@ -33854,7 +33854,7 @@ window.glclResults = [
     },
     {
         "pos": 86,
-        "bib": "0",
+        "bib": "5181",
         "name": "Stephen EDWARDS",
         "age": 0,
         "sex": "M",
@@ -33875,7 +33875,7 @@ window.glclResults = [
     },
     {
         "pos": 87,
-        "bib": "0",
+        "bib": "6113",
         "name": "Spencer LEWIS",
         "age": 0,
         "sex": "M",
@@ -33896,7 +33896,7 @@ window.glclResults = [
     },
     {
         "pos": 88,
-        "bib": "0",
+        "bib": "3019",
         "name": "Leon GLEED",
         "age": 0,
         "sex": "M",
@@ -33917,7 +33917,7 @@ window.glclResults = [
     },
     {
         "pos": 89,
-        "bib": "0",
+        "bib": "6019",
         "name": "Paul BRUTON",
         "age": 0,
         "sex": "M",
@@ -33938,7 +33938,7 @@ window.glclResults = [
     },
     {
         "pos": 90,
-        "bib": "0",
+        "bib": "8144",
         "name": "Ethan SAYCE",
         "age": 0,
         "sex": "M",
@@ -33959,7 +33959,7 @@ window.glclResults = [
     },
     {
         "pos": 91,
-        "bib": "0",
+        "bib": "8055",
         "name": "Andrew JONES",
         "age": 0,
         "sex": "M",
@@ -33980,7 +33980,7 @@ window.glclResults = [
     },
     {
         "pos": 92,
-        "bib": "0",
+        "bib": "1014",
         "name": "Lee SMITH",
         "age": 0,
         "sex": "M",
@@ -34001,7 +34001,7 @@ window.glclResults = [
     },
     {
         "pos": 93,
-        "bib": "0",
+        "bib": "1090",
         "name": "Matt TURNER",
         "age": 0,
         "sex": "M",
@@ -34022,7 +34022,7 @@ window.glclResults = [
     },
     {
         "pos": 94,
-        "bib": "0",
+        "bib": "6030",
         "name": "Sandra CHIPPER",
         "age": 0,
         "sex": "F",
@@ -34043,7 +34043,7 @@ window.glclResults = [
     },
     {
         "pos": 95,
-        "bib": "0",
+        "bib": "3039",
         "name": "Alan LEGGE",
         "age": 0,
         "sex": "M",
@@ -34064,7 +34064,7 @@ window.glclResults = [
     },
     {
         "pos": 96,
-        "bib": "0",
+        "bib": "6036",
         "name": "Elliot COUNSELL",
         "age": 0,
         "sex": "M",
@@ -34085,7 +34085,7 @@ window.glclResults = [
     },
     {
         "pos": 97,
-        "bib": "0",
+        "bib": "1098",
         "name": "Lauren WILLIAMS",
         "age": 0,
         "sex": "F",
@@ -34106,7 +34106,7 @@ window.glclResults = [
     },
     {
         "pos": 98,
-        "bib": "0",
+        "bib": "4107",
         "name": "Luciano TOMASULO",
         "age": 0,
         "sex": "M",
@@ -34127,7 +34127,7 @@ window.glclResults = [
     },
     {
         "pos": 99,
-        "bib": "0",
+        "bib": "8013",
         "name": "Spencer CLEASE",
         "age": 0,
         "sex": "M",
@@ -34148,7 +34148,7 @@ window.glclResults = [
     },
     {
         "pos": 100,
-        "bib": "0",
+        "bib": "5183",
         "name": "Lewis PONTIN",
         "age": 0,
         "sex": "M",
@@ -34169,7 +34169,7 @@ window.glclResults = [
     },
     {
         "pos": 101,
-        "bib": "0",
+        "bib": "9095",
         "name": "Matt WEBB",
         "age": 0,
         "sex": "M",
@@ -34190,7 +34190,7 @@ window.glclResults = [
     },
     {
         "pos": 102,
-        "bib": "0",
+        "bib": "8093",
         "name": "Kimberley PRICE",
         "age": 0,
         "sex": "F",
@@ -34211,7 +34211,7 @@ window.glclResults = [
     },
     {
         "pos": 103,
-        "bib": "0",
+        "bib": "8129",
         "name": "Dylan GREENWAY",
         "age": 0,
         "sex": "M",
@@ -34232,7 +34232,7 @@ window.glclResults = [
     },
     {
         "pos": 104,
-        "bib": "0",
+        "bib": "8104",
         "name": "Huw STEADMAN",
         "age": 0,
         "sex": "M",
@@ -34253,7 +34253,7 @@ window.glclResults = [
     },
     {
         "pos": 105,
-        "bib": "0",
+        "bib": "8143",
         "name": "Scott GREAVES",
         "age": 0,
         "sex": "M",
@@ -34274,7 +34274,7 @@ window.glclResults = [
     },
     {
         "pos": 106,
-        "bib": "0",
+        "bib": "1067",
         "name": "Jason PRITCHARD",
         "age": 0,
         "sex": "M",
@@ -34295,7 +34295,7 @@ window.glclResults = [
     },
     {
         "pos": 107,
-        "bib": "0",
+        "bib": "7023",
         "name": "Brian EVANS",
         "age": 0,
         "sex": "M",
@@ -34316,7 +34316,7 @@ window.glclResults = [
     },
     {
         "pos": 108,
-        "bib": "0",
+        "bib": "8131",
         "name": "Tomas LEGGE",
         "age": 0,
         "sex": "M",
@@ -34337,7 +34337,7 @@ window.glclResults = [
     },
     {
         "pos": 109,
-        "bib": "0",
+        "bib": "7033",
         "name": "Sarah HEATH",
         "age": 0,
         "sex": "F",
@@ -34358,7 +34358,7 @@ window.glclResults = [
     },
     {
         "pos": 110,
-        "bib": "0",
+        "bib": "6028",
         "name": "Craig CHAPLIN",
         "age": 0,
         "sex": "M",
@@ -34379,7 +34379,7 @@ window.glclResults = [
     },
     {
         "pos": 111,
-        "bib": "0",
+        "bib": "8014",
         "name": "Carly COLE",
         "age": 0,
         "sex": "F",
@@ -34400,7 +34400,7 @@ window.glclResults = [
     },
     {
         "pos": 112,
-        "bib": "0",
+        "bib": "5131",
         "name": "Philip JONES",
         "age": 0,
         "sex": "M",
@@ -34421,7 +34421,7 @@ window.glclResults = [
     },
     {
         "pos": 113,
-        "bib": "0",
+        "bib": "6154",
         "name": "Chris WATKINS",
         "age": 0,
         "sex": "M",
@@ -34442,7 +34442,7 @@ window.glclResults = [
     },
     {
         "pos": 114,
-        "bib": "0",
+        "bib": "5182",
         "name": "Steve PONTIN",
         "age": 0,
         "sex": "M",
@@ -34463,7 +34463,7 @@ window.glclResults = [
     },
     {
         "pos": 115,
-        "bib": "0",
+        "bib": "9006",
         "name": "Shane BAKER",
         "age": 0,
         "sex": "M",
@@ -34484,7 +34484,7 @@ window.glclResults = [
     },
     {
         "pos": 116,
-        "bib": "0",
+        "bib": "5170",
         "name": "Russ WAREHAM",
         "age": 0,
         "sex": "M",
@@ -34505,7 +34505,7 @@ window.glclResults = [
     },
     {
         "pos": 117,
-        "bib": "0",
+        "bib": "6002",
         "name": "Michael ABELL",
         "age": 0,
         "sex": "M",
@@ -34526,7 +34526,7 @@ window.glclResults = [
     },
     {
         "pos": 118,
-        "bib": "0",
+        "bib": "1032",
         "name": "Mark HISLOP",
         "age": 0,
         "sex": "M",
@@ -34547,7 +34547,7 @@ window.glclResults = [
     },
     {
         "pos": 119,
-        "bib": "0",
+        "bib": "1094",
         "name": "Jade WAKLEY",
         "age": 0,
         "sex": "F",
@@ -34568,7 +34568,7 @@ window.glclResults = [
     },
     {
         "pos": 120,
-        "bib": "0",
+        "bib": "5110",
         "name": "Nathan HAINES",
         "age": 0,
         "sex": "M",
@@ -34589,7 +34589,7 @@ window.glclResults = [
     },
     {
         "pos": 121,
-        "bib": "0",
+        "bib": "5098",
         "name": "Jason DIXON",
         "age": 0,
         "sex": "M",
@@ -34610,7 +34610,7 @@ window.glclResults = [
     },
     {
         "pos": 122,
-        "bib": "0",
+        "bib": "5112",
         "name": "Dai HAMM",
         "age": 0,
         "sex": "M",
@@ -34631,7 +34631,7 @@ window.glclResults = [
     },
     {
         "pos": 123,
-        "bib": "0",
+        "bib": "8115",
         "name": "Stephen WILES",
         "age": 0,
         "sex": "M",
@@ -34652,7 +34652,7 @@ window.glclResults = [
     },
     {
         "pos": 124,
-        "bib": "0",
+        "bib": "4097",
         "name": "Karen SILVER",
         "age": 0,
         "sex": "F",
@@ -34673,7 +34673,7 @@ window.glclResults = [
     },
     {
         "pos": 125,
-        "bib": "0",
+        "bib": "1101",
         "name": "Chirstian FORD",
         "age": 0,
         "sex": "M",
@@ -34694,7 +34694,7 @@ window.glclResults = [
     },
     {
         "pos": 126,
-        "bib": "0",
+        "bib": "6105",
         "name": "Danica KENNEDY",
         "age": 0,
         "sex": "F",
@@ -34715,7 +34715,7 @@ window.glclResults = [
     },
     {
         "pos": 127,
-        "bib": "0",
+        "bib": "1013",
         "name": "Ryan DAVIES",
         "age": 0,
         "sex": "M",
@@ -34736,7 +34736,7 @@ window.glclResults = [
     },
     {
         "pos": 128,
-        "bib": "0",
+        "bib": "6184",
         "name": "Rachel BOWEN",
         "age": 0,
         "sex": "F",
@@ -34757,7 +34757,7 @@ window.glclResults = [
     },
     {
         "pos": 129,
-        "bib": "0",
+        "bib": "4010",
         "name": "David BRAWN",
         "age": 0,
         "sex": "M",
@@ -34778,7 +34778,7 @@ window.glclResults = [
     },
     {
         "pos": 130,
-        "bib": "0",
+        "bib": "6101",
         "name": "Mostyn JONES",
         "age": 0,
         "sex": "M",
@@ -34799,7 +34799,7 @@ window.glclResults = [
     },
     {
         "pos": 131,
-        "bib": "0",
+        "bib": "7005",
         "name": "Martin BLAKEBROUGH",
         "age": 0,
         "sex": "M",
@@ -34820,7 +34820,7 @@ window.glclResults = [
     },
     {
         "pos": 132,
-        "bib": "0",
+        "bib": "5115",
         "name": "Alex HAY",
         "age": 0,
         "sex": "M",
@@ -34841,7 +34841,7 @@ window.glclResults = [
     },
     {
         "pos": 133,
-        "bib": "0",
+        "bib": "6134",
         "name": "Daniel REILLY",
         "age": 0,
         "sex": "M",
@@ -34862,7 +34862,7 @@ window.glclResults = [
     },
     {
         "pos": 134,
-        "bib": "0",
+        "bib": "9099",
         "name": "Dan MUTLOW",
         "age": 0,
         "sex": "M",
@@ -34883,7 +34883,7 @@ window.glclResults = [
     },
     {
         "pos": 135,
-        "bib": "0",
+        "bib": "6069",
         "name": "Simon GILL",
         "age": 0,
         "sex": "M",
@@ -34904,7 +34904,7 @@ window.glclResults = [
     },
     {
         "pos": 136,
-        "bib": "0",
+        "bib": "2122",
         "name": "Jane ROSCOE",
         "age": 0,
         "sex": "F",
@@ -34925,7 +34925,7 @@ window.glclResults = [
     },
     {
         "pos": 137,
-        "bib": "0",
+        "bib": "5118",
         "name": "Darren HILL",
         "age": 0,
         "sex": "M",
@@ -34946,7 +34946,7 @@ window.glclResults = [
     },
     {
         "pos": 138,
-        "bib": "0",
+        "bib": "6180",
         "name": "Lorraine FERGUS",
         "age": 0,
         "sex": "F",
@@ -34967,7 +34967,7 @@ window.glclResults = [
     },
     {
         "pos": 139,
-        "bib": "0",
+        "bib": "6149",
         "name": "Gemma THOMAS",
         "age": 0,
         "sex": "F",
@@ -34988,7 +34988,7 @@ window.glclResults = [
     },
     {
         "pos": 140,
-        "bib": "0",
+        "bib": "1044",
         "name": "Huw JONES",
         "age": 0,
         "sex": "M",
@@ -35009,7 +35009,7 @@ window.glclResults = [
     },
     {
         "pos": 141,
-        "bib": "0",
+        "bib": "2061",
         "name": "Charlotte GILES",
         "age": 0,
         "sex": "F",
@@ -35030,7 +35030,7 @@ window.glclResults = [
     },
     {
         "pos": 142,
-        "bib": "0",
+        "bib": "1289",
         "name": "Sarah JEREMIAH",
         "age": 0,
         "sex": "F",
@@ -35051,7 +35051,7 @@ window.glclResults = [
     },
     {
         "pos": 143,
-        "bib": "0",
+        "bib": "6151",
         "name": "Rhys THURSTON",
         "age": 0,
         "sex": "M",
@@ -35072,7 +35072,7 @@ window.glclResults = [
     },
     {
         "pos": 144,
-        "bib": "0",
+        "bib": "8069",
         "name": "Ian LINE",
         "age": 0,
         "sex": "M",
@@ -35093,7 +35093,7 @@ window.glclResults = [
     },
     {
         "pos": 145,
-        "bib": "0",
+        "bib": "6140",
         "name": "Sian SCANNELL",
         "age": 0,
         "sex": "F",
@@ -35114,7 +35114,7 @@ window.glclResults = [
     },
     {
         "pos": 146,
-        "bib": "0",
+        "bib": "3054",
         "name": "Michael SKYRME",
         "age": 0,
         "sex": "M",
@@ -35135,7 +35135,7 @@ window.glclResults = [
     },
     {
         "pos": 147,
-        "bib": "0",
+        "bib": "7050037",
         "name": "Robin BELL",
         "age": 0,
         "sex": "M",
@@ -35156,7 +35156,7 @@ window.glclResults = [
     },
     {
         "pos": 148,
-        "bib": "0",
+        "bib": "3056",
         "name": "Stephen SMITH",
         "age": 0,
         "sex": "M",
@@ -35177,7 +35177,7 @@ window.glclResults = [
     },
     {
         "pos": 149,
-        "bib": "0",
+        "bib": "1102",
         "name": "Matthew MULCAHY",
         "age": 0,
         "sex": "M",
@@ -35198,7 +35198,7 @@ window.glclResults = [
     },
     {
         "pos": 150,
-        "bib": "0",
+        "bib": "4001",
         "name": "James AVERY",
         "age": 0,
         "sex": "M",
@@ -35219,7 +35219,7 @@ window.glclResults = [
     },
     {
         "pos": 151,
-        "bib": "0",
+        "bib": "4066",
         "name": "Laura LEWIS-COPEMAN",
         "age": 0,
         "sex": "F",
@@ -35240,7 +35240,7 @@ window.glclResults = [
     },
     {
         "pos": 152,
-        "bib": "0",
+        "bib": "6118",
         "name": "James McLOUGHLIN",
         "age": 0,
         "sex": "M",
@@ -35261,7 +35261,7 @@ window.glclResults = [
     },
     {
         "pos": 153,
-        "bib": "0",
+        "bib": "1334",
         "name": "Gulesh KUMAR",
         "age": 0,
         "sex": "M",
@@ -35282,7 +35282,7 @@ window.glclResults = [
     },
     {
         "pos": 154,
-        "bib": "0",
+        "bib": "3005",
         "name": "Michael BARNES",
         "age": 0,
         "sex": "M",
@@ -35303,7 +35303,7 @@ window.glclResults = [
     },
     {
         "pos": 155,
-        "bib": "0",
+        "bib": "9079",
         "name": "Sammi SINCLAIR",
         "age": 0,
         "sex": "F",
@@ -35324,7 +35324,7 @@ window.glclResults = [
     },
     {
         "pos": 156,
-        "bib": "0",
+        "bib": "1227",
         "name": "Jamie FRASER",
         "age": 0,
         "sex": "M",
@@ -35345,7 +35345,7 @@ window.glclResults = [
     },
     {
         "pos": 157,
-        "bib": "0",
+        "bib": "3043",
         "name": "Sam MARTIN",
         "age": 0,
         "sex": "M",
@@ -35366,7 +35366,7 @@ window.glclResults = [
     },
     {
         "pos": 158,
-        "bib": "0",
+        "bib": "1091",
         "name": "Ryan VINCENT",
         "age": 0,
         "sex": "M",
@@ -35387,7 +35387,7 @@ window.glclResults = [
     },
     {
         "pos": 159,
-        "bib": "0",
+        "bib": "8019",
         "name": "Stephen DALLOW",
         "age": 0,
         "sex": "M",
@@ -35408,7 +35408,7 @@ window.glclResults = [
     },
     {
         "pos": 160,
-        "bib": "0",
+        "bib": "9009",
         "name": "Marisa BENJAMIN",
         "age": 0,
         "sex": "F",
@@ -35429,7 +35429,7 @@ window.glclResults = [
     },
     {
         "pos": 161,
-        "bib": "0",
+        "bib": "8139",
         "name": "Darryl COOK",
         "age": 0,
         "sex": "M",
@@ -35450,7 +35450,7 @@ window.glclResults = [
     },
     {
         "pos": 162,
-        "bib": "0",
+        "bib": "1049",
         "name": "Lyn MAC",
         "age": 0,
         "sex": "M",
@@ -35471,7 +35471,7 @@ window.glclResults = [
     },
     {
         "pos": 163,
-        "bib": "0",
+        "bib": "6181",
         "name": "Rachel MITCHELL",
         "age": 0,
         "sex": "F",
@@ -35492,7 +35492,7 @@ window.glclResults = [
     },
     {
         "pos": 164,
-        "bib": "0",
+        "bib": "9005",
         "name": "Mark BAKER",
         "age": 0,
         "sex": "M",
@@ -35513,7 +35513,7 @@ window.glclResults = [
     },
     {
         "pos": 165,
-        "bib": "0",
+        "bib": "2103",
         "name": "Jan MORRIS",
         "age": 0,
         "sex": "F",
@@ -35534,7 +35534,7 @@ window.glclResults = [
     },
     {
         "pos": 166,
-        "bib": "0",
+        "bib": "4119",
         "name": "Colin WILMOTT",
         "age": 0,
         "sex": "M",
@@ -35555,7 +35555,7 @@ window.glclResults = [
     },
     {
         "pos": 167,
-        "bib": "0",
+        "bib": "4111",
         "name": "Nicholas WALSH",
         "age": 0,
         "sex": "M",
@@ -35576,7 +35576,7 @@ window.glclResults = [
     },
     {
         "pos": 168,
-        "bib": "0",
+        "bib": "4083",
         "name": "Joshua REYNOLDS",
         "age": 0,
         "sex": "M",
@@ -35597,7 +35597,7 @@ window.glclResults = [
     },
     {
         "pos": 169,
-        "bib": "0",
+        "bib": "5083",
         "name": "Niall BOARDMAN",
         "age": 0,
         "sex": "M",
@@ -35618,7 +35618,7 @@ window.glclResults = [
     },
     {
         "pos": 170,
-        "bib": "0",
+        "bib": "3040",
         "name": "Matthew LLOYD",
         "age": 0,
         "sex": "M",
@@ -35639,7 +35639,7 @@ window.glclResults = [
     },
     {
         "pos": 171,
-        "bib": "0",
+        "bib": "4112",
         "name": "Paul WATKINS",
         "age": 0,
         "sex": "M",
@@ -35660,7 +35660,7 @@ window.glclResults = [
     },
     {
         "pos": 172,
-        "bib": "0",
+        "bib": "8041",
         "name": "Vincent GREGORY",
         "age": 0,
         "sex": "M",
@@ -35681,7 +35681,7 @@ window.glclResults = [
     },
     {
         "pos": 173,
-        "bib": "0",
+        "bib": "7007",
         "name": "Renske BOUWENS",
         "age": 0,
         "sex": "F",
@@ -35702,7 +35702,7 @@ window.glclResults = [
     },
     {
         "pos": 174,
-        "bib": "0",
+        "bib": "9032",
         "name": "Michelle GOOCH",
         "age": 0,
         "sex": "F",
@@ -35723,7 +35723,7 @@ window.glclResults = [
     },
     {
         "pos": 175,
-        "bib": "0",
+        "bib": "6007",
         "name": "Andy BARRY",
         "age": 0,
         "sex": "M",
@@ -35744,7 +35744,7 @@ window.glclResults = [
     },
     {
         "pos": 176,
-        "bib": "0",
+        "bib": "5177",
         "name": "Drew WAREHAM",
         "age": 0,
         "sex": "M",
@@ -35765,7 +35765,7 @@ window.glclResults = [
     },
     {
         "pos": 177,
-        "bib": "0",
+        "bib": "5172",
         "name": "Ade WHITE",
         "age": 0,
         "sex": "M",
@@ -35786,7 +35786,7 @@ window.glclResults = [
     },
     {
         "pos": 178,
-        "bib": "0",
+        "bib": "8061",
         "name": "Joanne KILBY",
         "age": 0,
         "sex": "F",
@@ -35807,7 +35807,7 @@ window.glclResults = [
     },
     {
         "pos": 179,
-        "bib": "0",
+        "bib": "5051",
         "name": "Melissa MORGAN",
         "age": 0,
         "sex": "F",
@@ -35828,7 +35828,7 @@ window.glclResults = [
     },
     {
         "pos": 180,
-        "bib": "0",
+        "bib": "7004",
         "name": "Marina WRIGHT",
         "age": 0,
         "sex": "F",
@@ -35849,7 +35849,7 @@ window.glclResults = [
     },
     {
         "pos": 181,
-        "bib": "0",
+        "bib": "2074",
         "name": "Daniel HAZELL-SMART",
         "age": 0,
         "sex": "M",
@@ -35870,7 +35870,7 @@ window.glclResults = [
     },
     {
         "pos": 182,
-        "bib": "0",
+        "bib": "8132",
         "name": "Melissa PEARCE",
         "age": 0,
         "sex": "F",
@@ -35891,7 +35891,7 @@ window.glclResults = [
     },
     {
         "pos": 183,
-        "bib": "0",
+        "bib": "8101",
         "name": "Georgina SEED",
         "age": 0,
         "sex": "F",
@@ -35912,7 +35912,7 @@ window.glclResults = [
     },
     {
         "pos": 184,
-        "bib": "0",
+        "bib": "2093",
         "name": "Hannah LIDGETT",
         "age": 0,
         "sex": "F",
@@ -35933,7 +35933,7 @@ window.glclResults = [
     },
     {
         "pos": 185,
-        "bib": "0",
+        "bib": "9007",
         "name": "Tracy BAKER",
         "age": 0,
         "sex": "F",
@@ -35954,7 +35954,7 @@ window.glclResults = [
     },
     {
         "pos": 186,
-        "bib": "0",
+        "bib": "1096",
         "name": "Mark WALSH",
         "age": 0,
         "sex": "M",
@@ -35975,7 +35975,7 @@ window.glclResults = [
     },
     {
         "pos": 187,
-        "bib": "0",
+        "bib": "5166",
         "name": "Owen THOMAS",
         "age": 0,
         "sex": "M",
@@ -35996,7 +35996,7 @@ window.glclResults = [
     },
     {
         "pos": 188,
-        "bib": "0",
+        "bib": "5013",
         "name": "Sarah DAVIES",
         "age": 0,
         "sex": "F",
@@ -36017,7 +36017,7 @@ window.glclResults = [
     },
     {
         "pos": 189,
-        "bib": "0",
+        "bib": "3036",
         "name": "Ieuan KINGSTON",
         "age": 0,
         "sex": "M",
@@ -36038,7 +36038,7 @@ window.glclResults = [
     },
     {
         "pos": 190,
-        "bib": "0",
+        "bib": "5061",
         "name": "Coral PUTMAN",
         "age": 0,
         "sex": "F",
@@ -36059,7 +36059,7 @@ window.glclResults = [
     },
     {
         "pos": 191,
-        "bib": "0",
+        "bib": "5075",
         "name": "Kim WEHDEN",
         "age": 0,
         "sex": "M",
@@ -36080,7 +36080,7 @@ window.glclResults = [
     },
     {
         "pos": 192,
-        "bib": "0",
+        "bib": "6048",
         "name": "Karen DAY",
         "age": 0,
         "sex": "F",
@@ -36101,7 +36101,7 @@ window.glclResults = [
     },
     {
         "pos": 193,
-        "bib": "0",
+        "bib": "8005",
         "name": "Samantha BILLS",
         "age": 0,
         "sex": "F",
@@ -36122,7 +36122,7 @@ window.glclResults = [
     },
     {
         "pos": 194,
-        "bib": "0",
+        "bib": "6155",
         "name": "Bob WATSON",
         "age": 0,
         "sex": "M",
@@ -36143,7 +36143,7 @@ window.glclResults = [
     },
     {
         "pos": 195,
-        "bib": "0",
+        "bib": "4113",
         "name": "Peter WELBIRG",
         "age": 0,
         "sex": "M",
@@ -36164,7 +36164,7 @@ window.glclResults = [
     },
     {
         "pos": 196,
-        "bib": "0",
+        "bib": "6004",
         "name": "Tracey ARTHUR",
         "age": 0,
         "sex": "F",
@@ -36185,7 +36185,7 @@ window.glclResults = [
     },
     {
         "pos": 197,
-        "bib": "0",
+        "bib": "5089",
         "name": "Lewis CARDWELL",
         "age": 0,
         "sex": "M",
@@ -36206,7 +36206,7 @@ window.glclResults = [
     },
     {
         "pos": 198,
-        "bib": "0",
+        "bib": "7012",
         "name": "Nick SLOPER",
         "age": 0,
         "sex": "M",
@@ -36227,7 +36227,7 @@ window.glclResults = [
     },
     {
         "pos": 199,
-        "bib": "0",
+        "bib": "5014",
         "name": "Charlotte DAVIS",
         "age": 0,
         "sex": "F",
@@ -36248,7 +36248,7 @@ window.glclResults = [
     },
     {
         "pos": 200,
-        "bib": "0",
+        "bib": "4114",
         "name": "Terry WHITE",
         "age": 0,
         "sex": "M",
@@ -36269,7 +36269,7 @@ window.glclResults = [
     },
     {
         "pos": 201,
-        "bib": "0",
+        "bib": "5100",
         "name": "Mark DUDDRIDGE",
         "age": 0,
         "sex": "M",
@@ -36290,7 +36290,7 @@ window.glclResults = [
     },
     {
         "pos": 202,
-        "bib": "0",
+        "bib": "7024",
         "name": "James EXTON",
         "age": 0,
         "sex": "M",
@@ -36311,7 +36311,7 @@ window.glclResults = [
     },
     {
         "pos": 203,
-        "bib": "0",
+        "bib": "6183",
         "name": "Steve HOGAN",
         "age": 0,
         "sex": "M",
@@ -36332,7 +36332,7 @@ window.glclResults = [
     },
     {
         "pos": 204,
-        "bib": "0",
+        "bib": "2089",
         "name": "Vanessa LAWSON",
         "age": 0,
         "sex": "F",
@@ -36353,7 +36353,7 @@ window.glclResults = [
     },
     {
         "pos": 205,
-        "bib": "0",
+        "bib": "5189",
         "name": "Mark MARTIN",
         "age": 0,
         "sex": "M",
@@ -36374,7 +36374,7 @@ window.glclResults = [
     },
     {
         "pos": 206,
-        "bib": "0",
+        "bib": "2112",
         "name": "Stephen OWEN",
         "age": 0,
         "sex": "M",
@@ -36395,7 +36395,7 @@ window.glclResults = [
     },
     {
         "pos": 207,
-        "bib": "0",
+        "bib": "2022",
         "name": "Gary BURLEY",
         "age": 0,
         "sex": "M",
@@ -36416,7 +36416,7 @@ window.glclResults = [
     },
     {
         "pos": 208,
-        "bib": "0",
+        "bib": "1452",
         "name": "Rachel DOREL",
         "age": 0,
         "sex": "F",
@@ -36437,7 +36437,7 @@ window.glclResults = [
     },
     {
         "pos": 209,
-        "bib": "0",
+        "bib": "7059",
         "name": "Holly JANES-THOMAS",
         "age": 0,
         "sex": "F",
@@ -36458,7 +36458,7 @@ window.glclResults = [
     },
     {
         "pos": 210,
-        "bib": "0",
+        "bib": "8123",
         "name": "Roxy ZYM",
         "age": 0,
         "sex": "F",
@@ -36479,7 +36479,7 @@ window.glclResults = [
     },
     {
         "pos": 211,
-        "bib": "0",
+        "bib": "1040",
         "name": "Clare JEFFRIES",
         "age": 0,
         "sex": "F",
@@ -36500,7 +36500,7 @@ window.glclResults = [
     },
     {
         "pos": 212,
-        "bib": "0",
+        "bib": "2038",
         "name": "Nicola Louise CROCKETT",
         "age": 0,
         "sex": "F",
@@ -36521,7 +36521,7 @@ window.glclResults = [
     },
     {
         "pos": 213,
-        "bib": "0",
+        "bib": "5094",
         "name": "Keith DAVIES",
         "age": 0,
         "sex": "M",
@@ -36542,7 +36542,7 @@ window.glclResults = [
     },
     {
         "pos": 214,
-        "bib": "0",
+        "bib": "5088",
         "name": "Martin BUSSELL",
         "age": 0,
         "sex": "M",
@@ -36563,7 +36563,7 @@ window.glclResults = [
     },
     {
         "pos": 215,
-        "bib": "0",
+        "bib": "4039",
         "name": "Jake HANCOX",
         "age": 0,
         "sex": "M",
@@ -36584,7 +36584,7 @@ window.glclResults = [
     },
     {
         "pos": 216,
-        "bib": "0",
+        "bib": "3001",
         "name": "Phillip ALLSOPP",
         "age": 0,
         "sex": "M",
@@ -36605,7 +36605,7 @@ window.glclResults = [
     },
     {
         "pos": 217,
-        "bib": "0",
+        "bib": "1271",
         "name": "Rebecca YEARLING",
         "age": 0,
         "sex": "F",
@@ -36626,7 +36626,7 @@ window.glclResults = [
     },
     {
         "pos": 218,
-        "bib": "0",
+        "bib": "2114",
         "name": "Joff PHELPS",
         "age": 0,
         "sex": "M",
@@ -36647,7 +36647,7 @@ window.glclResults = [
     },
     {
         "pos": 219,
-        "bib": "0",
+        "bib": "5176",
         "name": "Ben ELLIS",
         "age": 0,
         "sex": "M",
@@ -36668,7 +36668,7 @@ window.glclResults = [
     },
     {
         "pos": 220,
-        "bib": "0",
+        "bib": "1078",
         "name": "Elizabeth SIMS",
         "age": 0,
         "sex": "F",
@@ -36689,7 +36689,7 @@ window.glclResults = [
     },
     {
         "pos": 221,
-        "bib": "0",
+        "bib": "1027",
         "name": "Wesley HARRIS",
         "age": 0,
         "sex": "M",
@@ -36710,7 +36710,7 @@ window.glclResults = [
     },
     {
         "pos": 222,
-        "bib": "0",
+        "bib": "4089",
         "name": "Gareth ROBINS",
         "age": 0,
         "sex": "M",
@@ -36731,7 +36731,7 @@ window.glclResults = [
     },
     {
         "pos": 223,
-        "bib": "0",
+        "bib": "6018",
         "name": "James BROWN",
         "age": 0,
         "sex": "M",
@@ -36752,7 +36752,7 @@ window.glclResults = [
     },
     {
         "pos": 224,
-        "bib": "0",
+        "bib": "1093",
         "name": "Yangi VUNDAMINA",
         "age": 0,
         "sex": "F",
@@ -36773,7 +36773,7 @@ window.glclResults = [
     },
     {
         "pos": 225,
-        "bib": "0",
+        "bib": "6038",
         "name": "Martin CROUCHER",
         "age": 0,
         "sex": "M",
@@ -36794,7 +36794,7 @@ window.glclResults = [
     },
     {
         "pos": 226,
-        "bib": "0",
+        "bib": "2068",
         "name": "Paul GRIFFITHS",
         "age": 0,
         "sex": "M",
@@ -36815,7 +36815,7 @@ window.glclResults = [
     },
     {
         "pos": 227,
-        "bib": "0",
+        "bib": "6112",
         "name": "Jane LEWIS",
         "age": 0,
         "sex": "F",
@@ -36836,7 +36836,7 @@ window.glclResults = [
     },
     {
         "pos": 228,
-        "bib": "0",
+        "bib": "6009",
         "name": "Edward BENTLEY",
         "age": 0,
         "sex": "M",
@@ -36857,7 +36857,7 @@ window.glclResults = [
     },
     {
         "pos": 229,
-        "bib": "0",
+        "bib": "2069",
         "name": "Amanda HAEFFNER",
         "age": 0,
         "sex": "F",
@@ -36878,7 +36878,7 @@ window.glclResults = [
     },
     {
         "pos": 230,
-        "bib": "0",
+        "bib": "1463",
         "name": "Christopher JONES",
         "age": 0,
         "sex": "M",
@@ -36899,7 +36899,7 @@ window.glclResults = [
     },
     {
         "pos": 231,
-        "bib": "0",
+        "bib": "5041",
         "name": "Bryony LEWIS",
         "age": 0,
         "sex": "F",
@@ -36920,7 +36920,7 @@ window.glclResults = [
     },
     {
         "pos": 232,
-        "bib": "0",
+        "bib": "7018",
         "name": "Jeremy CREASEY",
         "age": 0,
         "sex": "M",
@@ -36941,7 +36941,7 @@ window.glclResults = [
     },
     {
         "pos": 233,
-        "bib": "0",
+        "bib": "6103",
         "name": "Martyn JONES",
         "age": 0,
         "sex": "M",
@@ -36962,7 +36962,7 @@ window.glclResults = [
     },
     {
         "pos": 234,
-        "bib": "0",
+        "bib": "1086",
         "name": "Abbie THOMAS",
         "age": 0,
         "sex": "F",
@@ -36983,7 +36983,7 @@ window.glclResults = [
     },
     {
         "pos": 235,
-        "bib": "0",
+        "bib": "1015",
         "name": "Antony DERRICK",
         "age": 0,
         "sex": "M",
@@ -37004,7 +37004,7 @@ window.glclResults = [
     },
     {
         "pos": 236,
-        "bib": "0",
+        "bib": "5080",
         "name": "Andrew ADAMS",
         "age": 0,
         "sex": "M",
@@ -37025,7 +37025,7 @@ window.glclResults = [
     },
     {
         "pos": 237,
-        "bib": "0",
+        "bib": "5037",
         "name": "Michelle JOHNSON",
         "age": 0,
         "sex": "F",
@@ -37046,7 +37046,7 @@ window.glclResults = [
     },
     {
         "pos": 238,
-        "bib": "0",
+        "bib": "6064",
         "name": "Nigel FOULKES-NOCK",
         "age": 0,
         "sex": "M",
@@ -37067,7 +37067,7 @@ window.glclResults = [
     },
     {
         "pos": 239,
-        "bib": "0",
+        "bib": "8085",
         "name": "Daniel PEARCE",
         "age": 0,
         "sex": "M",
@@ -37088,7 +37088,7 @@ window.glclResults = [
     },
     {
         "pos": 240,
-        "bib": "0",
+        "bib": "3003",
         "name": "Andy BAKER",
         "age": 0,
         "sex": "M",
@@ -37109,7 +37109,7 @@ window.glclResults = [
     },
     {
         "pos": 241,
-        "bib": "0",
+        "bib": "1516",
         "name": "Rhys WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -37130,7 +37130,7 @@ window.glclResults = [
     },
     {
         "pos": 242,
-        "bib": "0",
+        "bib": "1339",
         "name": "Charlotte MELLOR",
         "age": 0,
         "sex": "F",
@@ -37151,7 +37151,7 @@ window.glclResults = [
     },
     {
         "pos": 243,
-        "bib": "0",
+        "bib": "9083",
         "name": "Martin STARK",
         "age": 0,
         "sex": "M",
@@ -37172,7 +37172,7 @@ window.glclResults = [
     },
     {
         "pos": 244,
-        "bib": "0",
+        "bib": "9093",
         "name": "Tom WARWICK",
         "age": 0,
         "sex": "M",
@@ -37193,7 +37193,7 @@ window.glclResults = [
     },
     {
         "pos": 245,
-        "bib": "0",
+        "bib": "1002",
         "name": "Debbie ANDREW",
         "age": 0,
         "sex": "F",
@@ -37214,7 +37214,7 @@ window.glclResults = [
     },
     {
         "pos": 246,
-        "bib": "0",
+        "bib": "5012",
         "name": "Rebecca DAVIES",
         "age": 0,
         "sex": "F",
@@ -37235,7 +37235,7 @@ window.glclResults = [
     },
     {
         "pos": 247,
-        "bib": "0",
+        "bib": "1072",
         "name": "James REYNOLDS",
         "age": 0,
         "sex": "M",
@@ -37256,7 +37256,7 @@ window.glclResults = [
     },
     {
         "pos": 248,
-        "bib": "0",
+        "bib": "6168",
         "name": "Mike WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -37277,7 +37277,7 @@ window.glclResults = [
     },
     {
         "pos": 249,
-        "bib": "0",
+        "bib": "5132",
         "name": "David JOSEPH",
         "age": 0,
         "sex": "M",
@@ -37298,7 +37298,7 @@ window.glclResults = [
     },
     {
         "pos": 250,
-        "bib": "0",
+        "bib": "4071",
         "name": "Jennifer MCPADDEN",
         "age": 0,
         "sex": "F",
@@ -37319,7 +37319,7 @@ window.glclResults = [
     },
     {
         "pos": 251,
-        "bib": "0",
+        "bib": "5113",
         "name": "Kevin HARLEY",
         "age": 0,
         "sex": "M",
@@ -37340,7 +37340,7 @@ window.glclResults = [
     },
     {
         "pos": 252,
-        "bib": "0",
+        "bib": "8029",
         "name": "Clair EDWARDS",
         "age": 0,
         "sex": "F",
@@ -37361,7 +37361,7 @@ window.glclResults = [
     },
     {
         "pos": 253,
-        "bib": "0",
+        "bib": "5007",
         "name": "Sheryl CLARK",
         "age": 0,
         "sex": "F",
@@ -37382,7 +37382,7 @@ window.glclResults = [
     },
     {
         "pos": 254,
-        "bib": "0",
+        "bib": "1099",
         "name": "Neil WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -37403,7 +37403,7 @@ window.glclResults = [
     },
     {
         "pos": 255,
-        "bib": "0",
+        "bib": "6100",
         "name": "Iona JONES",
         "age": 0,
         "sex": "F",
@@ -37424,7 +37424,7 @@ window.glclResults = [
     },
     {
         "pos": 256,
-        "bib": "0",
+        "bib": "4075",
         "name": "Mikiko MINTY",
         "age": 0,
         "sex": "F",
@@ -37445,7 +37445,7 @@ window.glclResults = [
     },
     {
         "pos": 257,
-        "bib": "0",
+        "bib": "6058",
         "name": "Spencer ENGLISH",
         "age": 0,
         "sex": "M",
@@ -37466,7 +37466,7 @@ window.glclResults = [
     },
     {
         "pos": 258,
-        "bib": "0",
+        "bib": "3038",
         "name": "Julie LEES",
         "age": 0,
         "sex": "F",
@@ -37487,7 +37487,7 @@ window.glclResults = [
     },
     {
         "pos": 259,
-        "bib": "0",
+        "bib": "5062",
         "name": "Stacey RENDALL",
         "age": 0,
         "sex": "F",
@@ -37508,7 +37508,7 @@ window.glclResults = [
     },
     {
         "pos": 260,
-        "bib": "0",
+        "bib": "5023",
         "name": "Amanda HAMM",
         "age": 0,
         "sex": "F",
@@ -37529,7 +37529,7 @@ window.glclResults = [
     },
     {
         "pos": 261,
-        "bib": "0",
+        "bib": "2032",
         "name": "John COBBE",
         "age": 0,
         "sex": "M",
@@ -37550,7 +37550,7 @@ window.glclResults = [
     },
     {
         "pos": 262,
-        "bib": "0",
+        "bib": "2095",
         "name": "Barbara MADDISON",
         "age": 0,
         "sex": "F",
@@ -37571,7 +37571,7 @@ window.glclResults = [
     },
     {
         "pos": 263,
-        "bib": "0",
+        "bib": "2056",
         "name": "Mike EVANS",
         "age": 0,
         "sex": "M",
@@ -37592,7 +37592,7 @@ window.glclResults = [
     },
     {
         "pos": 264,
-        "bib": "0",
+        "bib": "2071",
         "name": "Mia HAEFFNER",
         "age": 0,
         "sex": "F",
@@ -37613,7 +37613,7 @@ window.glclResults = [
     },
     {
         "pos": 265,
-        "bib": "0",
+        "bib": "1458",
         "name": "Christopher GUY",
         "age": 0,
         "sex": "M",
@@ -37634,7 +37634,7 @@ window.glclResults = [
     },
     {
         "pos": 266,
-        "bib": "0",
+        "bib": "7001",
         "name": "Chris BABER",
         "age": 0,
         "sex": "M",
@@ -37655,7 +37655,7 @@ window.glclResults = [
     },
     {
         "pos": 267,
-        "bib": "0",
+        "bib": "3006",
         "name": "Tia BARTER",
         "age": 0,
         "sex": "F",
@@ -37676,7 +37676,7 @@ window.glclResults = [
     },
     {
         "pos": 268,
-        "bib": "0",
+        "bib": "6182",
         "name": "Hayley QUINN",
         "age": 0,
         "sex": "F",
@@ -37697,7 +37697,7 @@ window.glclResults = [
     },
     {
         "pos": 269,
-        "bib": "0",
+        "bib": "2070",
         "name": "Eve HAEFFNER",
         "age": 0,
         "sex": "F",
@@ -37718,7 +37718,7 @@ window.glclResults = [
     },
     {
         "pos": 270,
-        "bib": "0",
+        "bib": "7017",
         "name": "Helen SHEPHERD",
         "age": 0,
         "sex": "F",
@@ -37739,7 +37739,7 @@ window.glclResults = [
     },
     {
         "pos": 271,
-        "bib": "0",
+        "bib": "2013",
         "name": "Jenni BELL",
         "age": 0,
         "sex": "F",
@@ -37760,7 +37760,7 @@ window.glclResults = [
     },
     {
         "pos": 272,
-        "bib": "0",
+        "bib": "2116",
         "name": "Brett REGULSKI",
         "age": 0,
         "sex": "M",
@@ -37781,7 +37781,7 @@ window.glclResults = [
     },
     {
         "pos": 273,
-        "bib": "0",
+        "bib": "5019",
         "name": "Julie GOULD",
         "age": 0,
         "sex": "F",
@@ -37802,7 +37802,7 @@ window.glclResults = [
     },
     {
         "pos": 274,
-        "bib": "0",
+        "bib": "4209573",
         "name": "Niamh GRIFFITHS-JONES",
         "age": 0,
         "sex": "F",
@@ -37823,7 +37823,7 @@ window.glclResults = [
     },
     {
         "pos": 275,
-        "bib": "0",
+        "bib": "5108",
         "name": "Keston GRIFFITHS",
         "age": 0,
         "sex": "M",
@@ -37844,7 +37844,7 @@ window.glclResults = [
     },
     {
         "pos": 276,
-        "bib": "0",
+        "bib": "4046",
         "name": "David HOBBS",
         "age": 0,
         "sex": "M",
@@ -37865,7 +37865,7 @@ window.glclResults = [
     },
     {
         "pos": 277,
-        "bib": "0",
+        "bib": "6115",
         "name": "Ian MACRORY",
         "age": 0,
         "sex": "M",
@@ -37886,7 +37886,7 @@ window.glclResults = [
     },
     {
         "pos": 278,
-        "bib": "0",
+        "bib": "2055",
         "name": "Denise EVANS",
         "age": 0,
         "sex": "F",
@@ -37907,7 +37907,7 @@ window.glclResults = [
     },
     {
         "pos": 279,
-        "bib": "0",
+        "bib": "4065",
         "name": "Cj LEWIS",
         "age": 0,
         "sex": "M",
@@ -37928,7 +37928,7 @@ window.glclResults = [
     },
     {
         "pos": 280,
-        "bib": "0",
+        "bib": "2044",
         "name": "Alan DOBBS",
         "age": 0,
         "sex": "M",
@@ -37949,7 +37949,7 @@ window.glclResults = [
     },
     {
         "pos": 281,
-        "bib": "0",
+        "bib": "6094",
         "name": "Cheryl JONES",
         "age": 0,
         "sex": "F",
@@ -37970,7 +37970,7 @@ window.glclResults = [
     },
     {
         "pos": 282,
-        "bib": "0",
+        "bib": "8114",
         "name": "Kathryn WILES",
         "age": 0,
         "sex": "F",
@@ -37991,7 +37991,7 @@ window.glclResults = [
     },
     {
         "pos": 283,
-        "bib": "0",
+        "bib": "3007",
         "name": "Richard BOWIE",
         "age": 0,
         "sex": "M",
@@ -38012,7 +38012,7 @@ window.glclResults = [
     },
     {
         "pos": 284,
-        "bib": "0",
+        "bib": "9092",
         "name": "Cariad WARRILOW",
         "age": 0,
         "sex": "F",
@@ -38033,7 +38033,7 @@ window.glclResults = [
     },
     {
         "pos": 285,
-        "bib": "0",
+        "bib": "5126",
         "name": "Evan JAMES",
         "age": 0,
         "sex": "M",
@@ -38054,7 +38054,7 @@ window.glclResults = [
     },
     {
         "pos": 286,
-        "bib": "0",
+        "bib": "4088",
         "name": "Ellie ROBINS",
         "age": 0,
         "sex": "F",
@@ -38075,7 +38075,7 @@ window.glclResults = [
     },
     {
         "pos": 287,
-        "bib": "0",
+        "bib": "5179",
         "name": "Luke PERROTT",
         "age": 0,
         "sex": "M",
@@ -38096,7 +38096,7 @@ window.glclResults = [
     },
     {
         "pos": 288,
-        "bib": "0",
+        "bib": "1018",
         "name": "Meghan BRICKLEY",
         "age": 0,
         "sex": "F",
@@ -38117,7 +38117,7 @@ window.glclResults = [
     },
     {
         "pos": 289,
-        "bib": "0",
+        "bib": "9034",
         "name": "Kyle GREENHALF",
         "age": 0,
         "sex": "M",
@@ -38138,7 +38138,7 @@ window.glclResults = [
     },
     {
         "pos": 290,
-        "bib": "0",
+        "bib": "3067",
         "name": "Garry WOODS",
         "age": 0,
         "sex": "M",
@@ -38159,7 +38159,7 @@ window.glclResults = [
     },
     {
         "pos": 291,
-        "bib": "0",
+        "bib": "5059",
         "name": "Hilary PREECE",
         "age": 0,
         "sex": "F",
@@ -38180,7 +38180,7 @@ window.glclResults = [
     },
     {
         "pos": 292,
-        "bib": "0",
+        "bib": "1012",
         "name": "Hattie JENKINS",
         "age": 0,
         "sex": "F",
@@ -38201,7 +38201,7 @@ window.glclResults = [
     },
     {
         "pos": 293,
-        "bib": "0",
+        "bib": "5104",
         "name": "Gerald EVANS",
         "age": 0,
         "sex": "M",
@@ -38222,7 +38222,7 @@ window.glclResults = [
     },
     {
         "pos": 294,
-        "bib": "0",
+        "bib": "3053",
         "name": "Stewart SEABORNE",
         "age": 0,
         "sex": "M",
@@ -38243,7 +38243,7 @@ window.glclResults = [
     },
     {
         "pos": 295,
-        "bib": "0",
+        "bib": "1007",
         "name": "Michelle CLABON",
         "age": 0,
         "sex": "F",
@@ -38264,7 +38264,7 @@ window.glclResults = [
     },
     {
         "pos": 296,
-        "bib": "0",
+        "bib": "1433",
         "name": "Chloe NORTON",
         "age": 0,
         "sex": "F",
@@ -38285,7 +38285,7 @@ window.glclResults = [
     },
     {
         "pos": 297,
-        "bib": "0",
+        "bib": "5155",
         "name": "Andrew PRICE-STEPHENS",
         "age": 0,
         "sex": "M",
@@ -38306,7 +38306,7 @@ window.glclResults = [
     },
     {
         "pos": 298,
-        "bib": "0",
+        "bib": "2026",
         "name": "Marc CARLTON",
         "age": 0,
         "sex": "M",
@@ -38327,7 +38327,7 @@ window.glclResults = [
     },
     {
         "pos": 299,
-        "bib": "0",
+        "bib": "6045",
         "name": "Dawn DAVIS",
         "age": 0,
         "sex": "F",
@@ -38348,7 +38348,7 @@ window.glclResults = [
     },
     {
         "pos": 300,
-        "bib": "0",
+        "bib": "9076",
         "name": "Mandy ROBINSON",
         "age": 0,
         "sex": "F",
@@ -38369,7 +38369,7 @@ window.glclResults = [
     },
     {
         "pos": 301,
-        "bib": "0",
+        "bib": "1449",
         "name": "Kathryn COLLINS",
         "age": 0,
         "sex": "F",
@@ -38390,7 +38390,7 @@ window.glclResults = [
     },
     {
         "pos": 302,
-        "bib": "0",
+        "bib": "6185",
         "name": "Morgan WESTACOTT",
         "age": 0,
         "sex": "F",
@@ -38411,7 +38411,7 @@ window.glclResults = [
     },
     {
         "pos": 303,
-        "bib": "0",
+        "bib": "6063",
         "name": "Joshua FORD",
         "age": 0,
         "sex": "M",
@@ -38432,7 +38432,7 @@ window.glclResults = [
     },
     {
         "pos": 304,
-        "bib": "0",
+        "bib": "5107",
         "name": "Andrew GOULD",
         "age": 0,
         "sex": "M",
@@ -38453,7 +38453,7 @@ window.glclResults = [
     },
     {
         "pos": 305,
-        "bib": "0",
+        "bib": "4080",
         "name": "Barrie PARHAM",
         "age": 0,
         "sex": "M",
@@ -38474,7 +38474,7 @@ window.glclResults = [
     },
     {
         "pos": 306,
-        "bib": "0",
+        "bib": "4115",
         "name": "Anna WILKINSON",
         "age": 0,
         "sex": "F",
@@ -38495,7 +38495,7 @@ window.glclResults = [
     },
     {
         "pos": 307,
-        "bib": "0",
+        "bib": "6044",
         "name": "Liz DAVIS",
         "age": 0,
         "sex": "F",
@@ -38516,7 +38516,7 @@ window.glclResults = [
     },
     {
         "pos": 308,
-        "bib": "0",
+        "bib": "1021",
         "name": "Tina FLETCHER",
         "age": 0,
         "sex": "F",
@@ -38537,7 +38537,7 @@ window.glclResults = [
     },
     {
         "pos": 309,
-        "bib": "0",
+        "bib": "3024",
         "name": "Adrian GWILLIAM",
         "age": 0,
         "sex": "M",
@@ -38558,7 +38558,7 @@ window.glclResults = [
     },
     {
         "pos": 310,
-        "bib": "0",
+        "bib": "1438",
         "name": "Charlie MATTHEWS",
         "age": 0,
         "sex": "F",
@@ -38579,7 +38579,7 @@ window.glclResults = [
     },
     {
         "pos": 311,
-        "bib": "0",
+        "bib": "4098",
         "name": "Erika SKIVINGTON",
         "age": 0,
         "sex": "F",
@@ -38600,7 +38600,7 @@ window.glclResults = [
     },
     {
         "pos": 312,
-        "bib": "0",
+        "bib": "4041",
         "name": "Paul HANCOX",
         "age": 0,
         "sex": "M",
@@ -38621,7 +38621,7 @@ window.glclResults = [
     },
     {
         "pos": 313,
-        "bib": "0",
+        "bib": "6057",
         "name": "Maria ENGLISH",
         "age": 0,
         "sex": "F",
@@ -38642,7 +38642,7 @@ window.glclResults = [
     },
     {
         "pos": 314,
-        "bib": "0",
+        "bib": "8002",
         "name": "Rhoslyn BAKER",
         "age": 0,
         "sex": "F",
@@ -38663,7 +38663,7 @@ window.glclResults = [
     },
     {
         "pos": 315,
-        "bib": "0",
+        "bib": "4031",
         "name": "Stuart FRANCIS",
         "age": 0,
         "sex": "M",
@@ -38684,7 +38684,7 @@ window.glclResults = [
     },
     {
         "pos": 316,
-        "bib": "0",
+        "bib": "4092",
         "name": "Wayne RUDALL",
         "age": 0,
         "sex": "M",
@@ -38705,7 +38705,7 @@ window.glclResults = [
     },
     {
         "pos": 317,
-        "bib": "0",
+        "bib": "1025",
         "name": "Incy GIBSON",
         "age": 0,
         "sex": "F",
@@ -38726,7 +38726,7 @@ window.glclResults = [
     },
     {
         "pos": 318,
-        "bib": "0",
+        "bib": "6046",
         "name": "Nigel DAVIS",
         "age": 0,
         "sex": "M",
@@ -38747,7 +38747,7 @@ window.glclResults = [
     },
     {
         "pos": 319,
-        "bib": "0",
+        "bib": "6090",
         "name": "Trudy HURFORD",
         "age": 0,
         "sex": "F",
@@ -38768,7 +38768,7 @@ window.glclResults = [
     },
     {
         "pos": 320,
-        "bib": "0",
+        "bib": "5020",
         "name": "Rebecca GRIST",
         "age": 0,
         "sex": "F",
@@ -38789,7 +38789,7 @@ window.glclResults = [
     },
     {
         "pos": 321,
-        "bib": "0",
+        "bib": "1019",
         "name": "Caroline DUNN",
         "age": 0,
         "sex": "F",
@@ -38810,7 +38810,7 @@ window.glclResults = [
     },
     {
         "pos": 322,
-        "bib": "0",
+        "bib": "1016",
         "name": "Jane DERRICK",
         "age": 0,
         "sex": "F",
@@ -38831,7 +38831,7 @@ window.glclResults = [
     },
     {
         "pos": 323,
-        "bib": "0",
+        "bib": "3059",
         "name": "Nyree TEMBY",
         "age": 0,
         "sex": "F",
@@ -38852,7 +38852,7 @@ window.glclResults = [
     },
     {
         "pos": 324,
-        "bib": "0",
+        "bib": "3029",
         "name": "Evie HOARE",
         "age": 0,
         "sex": "F",
@@ -38873,7 +38873,7 @@ window.glclResults = [
     },
     {
         "pos": 325,
-        "bib": "0",
+        "bib": "3012",
         "name": "Cerris DAWE",
         "age": 0,
         "sex": "F",
@@ -38894,7 +38894,7 @@ window.glclResults = [
     },
     {
         "pos": 326,
-        "bib": "0",
+        "bib": "6088",
         "name": "Eleanor HOWELL",
         "age": 0,
         "sex": "F",
@@ -38915,7 +38915,7 @@ window.glclResults = [
     },
     {
         "pos": 327,
-        "bib": "0",
+        "bib": "6093",
         "name": "Michelle JOHNSTON",
         "age": 0,
         "sex": "F",
@@ -38936,7 +38936,7 @@ window.glclResults = [
     },
     {
         "pos": 328,
-        "bib": "0",
+        "bib": "3011",
         "name": "Alison DAVIS",
         "age": 0,
         "sex": "F",
@@ -38957,7 +38957,7 @@ window.glclResults = [
     },
     {
         "pos": 329,
-        "bib": "0",
+        "bib": "3519",
         "name": "Julian GUY",
         "age": 0,
         "sex": "M",
@@ -38978,7 +38978,7 @@ window.glclResults = [
     },
     {
         "pos": 330,
-        "bib": "0",
+        "bib": "1081",
         "name": "Rachael STEPHENS",
         "age": 0,
         "sex": "F",
@@ -38999,7 +38999,7 @@ window.glclResults = [
     },
     {
         "pos": 331,
-        "bib": "0",
+        "bib": "1009",
         "name": "Steve DANCE",
         "age": 0,
         "sex": "M",
@@ -39020,7 +39020,7 @@ window.glclResults = [
     },
     {
         "pos": 332,
-        "bib": "0",
+        "bib": "4079",
         "name": "Joanne PALING",
         "age": 0,
         "sex": "F",
@@ -39041,7 +39041,7 @@ window.glclResults = [
     },
     {
         "pos": 333,
-        "bib": "0",
+        "bib": "9084",
         "name": "Megan STARK",
         "age": 0,
         "sex": "F",
@@ -39062,7 +39062,7 @@ window.glclResults = [
     },
     {
         "pos": 334,
-        "bib": "0",
+        "bib": "6029",
         "name": "Neil CHIPPER",
         "age": 0,
         "sex": "M",
@@ -39083,7 +39083,7 @@ window.glclResults = [
     },
     {
         "pos": 335,
-        "bib": "0",
+        "bib": "2148",
         "name": "Louise PECKHAM",
         "age": 0,
         "sex": "F",
@@ -39104,7 +39104,7 @@ window.glclResults = [
     },
     {
         "pos": 336,
-        "bib": "0",
+        "bib": "2153",
         "name": "Kevin GILES",
         "age": 0,
         "sex": "M",
@@ -39125,7 +39125,7 @@ window.glclResults = [
     },
     {
         "pos": 337,
-        "bib": "0",
+        "bib": "7043",
         "name": "Alison McMENEMY",
         "age": 0,
         "sex": "F",
@@ -39146,7 +39146,7 @@ window.glclResults = [
     },
     {
         "pos": 338,
-        "bib": "0",
+        "bib": "7044",
         "name": "Stephen McMENEMY",
         "age": 0,
         "sex": "M",
@@ -39167,7 +39167,7 @@ window.glclResults = [
     },
     {
         "pos": 339,
-        "bib": "0",
+        "bib": "2101",
         "name": "Kevin McENTEE",
         "age": 0,
         "sex": "M",
@@ -39188,7 +39188,7 @@ window.glclResults = [
     },
     {
         "pos": 340,
-        "bib": "0",
+        "bib": "7055",
         "name": "Susan LINCOLN",
         "age": 0,
         "sex": "F",
@@ -39209,7 +39209,7 @@ window.glclResults = [
     },
     {
         "pos": 341,
-        "bib": "0",
+        "bib": "7011",
         "name": "Sian BURNS",
         "age": 0,
         "sex": "F",
@@ -39230,7 +39230,7 @@ window.glclResults = [
     },
     {
         "pos": 342,
-        "bib": "0",
+        "bib": "1341",
         "name": "Jaye PRICE",
         "age": 0,
         "sex": "F",
@@ -39251,7 +39251,7 @@ window.glclResults = [
     },
     {
         "pos": 343,
-        "bib": "0",
+        "bib": "9082",
         "name": "Robert SOUTHGATE",
         "age": 0,
         "sex": "M",
@@ -39272,7 +39272,7 @@ window.glclResults = [
     },
     {
         "pos": 344,
-        "bib": "0",
+        "bib": "8059",
         "name": "Sian JONES",
         "age": 0,
         "sex": "F",
@@ -39293,7 +39293,7 @@ window.glclResults = [
     },
     {
         "pos": 345,
-        "bib": "0",
+        "bib": "3072",
         "name": "Nick WILLIAMS",
         "age": 0,
         "sex": "M",
@@ -39314,7 +39314,7 @@ window.glclResults = [
     },
     {
         "pos": 346,
-        "bib": "0",
+        "bib": "9087",
         "name": "Julie STEWART",
         "age": 0,
         "sex": "F",
@@ -39335,7 +39335,7 @@ window.glclResults = [
     },
     {
         "pos": 347,
-        "bib": "0",
+        "bib": "9027",
         "name": "Sarah Jane EVANS",
         "age": 0,
         "sex": "F",
@@ -39356,7 +39356,7 @@ window.glclResults = [
     },
     {
         "pos": 348,
-        "bib": "0",
+        "bib": "3025",
         "name": "Helen GWILLIAM",
         "age": 0,
         "sex": "F",
@@ -39377,7 +39377,7 @@ window.glclResults = [
     },
     {
         "pos": 349,
-        "bib": "0",
+        "bib": "9071",
         "name": "Catherine PRICE",
         "age": 0,
         "sex": "F",
@@ -39398,7 +39398,7 @@ window.glclResults = [
     },
     {
         "pos": 350,
-        "bib": "0",
+        "bib": "1005",
         "name": "Rebecca BUCHANAN",
         "age": 0,
         "sex": "F",
@@ -39419,7 +39419,7 @@ window.glclResults = [
     },
     {
         "pos": 351,
-        "bib": "0",
+        "bib": "4040",
         "name": "Nikki HANCOX",
         "age": 0,
         "sex": "F",
@@ -39440,7 +39440,7 @@ window.glclResults = [
     },
     {
         "pos": 352,
-        "bib": "0",
+        "bib": "9100",
         "name": "Rhiannon DAVIES",
         "age": 0,
         "sex": "F",
@@ -39461,7 +39461,7 @@ window.glclResults = [
     },
     {
         "pos": 353,
-        "bib": "0",
+        "bib": "5040",
         "name": "emma LARSON",
         "age": 0,
         "sex": "F",
@@ -39482,7 +39482,7 @@ window.glclResults = [
     },
     {
         "pos": 354,
-        "bib": "0",
+        "bib": "9050",
         "name": "Susan LAWRENCE",
         "age": 0,
         "sex": "F",
@@ -39503,7 +39503,7 @@ window.glclResults = [
     },
     {
         "pos": 355,
-        "bib": "0",
+        "bib": "1309",
         "name": "Julie GEE",
         "age": 0,
         "sex": "F",
@@ -39524,7 +39524,7 @@ window.glclResults = [
     },
     {
         "pos": 356,
-        "bib": "0",
+        "bib": "7042",
         "name": "Laura McLOUGHLIN",
         "age": 0,
         "sex": "F",
@@ -39545,7 +39545,7 @@ window.glclResults = [
     },
     {
         "pos": 357,
-        "bib": "0",
+        "bib": "5029",
         "name": "Michelle HOCKADAY",
         "age": 0,
         "sex": "F",
@@ -39566,7 +39566,7 @@ window.glclResults = [
     },
     {
         "pos": 358,
-        "bib": "0",
+        "bib": "5121",
         "name": "Jake HOWE",
         "age": 0,
         "sex": "M",
@@ -39587,7 +39587,7 @@ window.glclResults = [
     },
     {
         "pos": 359,
-        "bib": "0",
+        "bib": "5044",
         "name": "Katie LIPPIATT",
         "age": 0,
         "sex": "F",
@@ -39608,7 +39608,7 @@ window.glclResults = [
     },
     {
         "pos": 360,
-        "bib": "0",
+        "bib": "2012",
         "name": "Jane BAYLISS",
         "age": 0,
         "sex": "F",
@@ -39629,7 +39629,7 @@ window.glclResults = [
     },
     {
         "pos": 361,
-        "bib": "0",
+        "bib": "5194",
         "name": "Chelsi EALES",
         "age": 0,
         "sex": "F",
@@ -39650,7 +39650,7 @@ window.glclResults = [
     },
     {
         "pos": 362,
-        "bib": "0",
+        "bib": "5060",
         "name": "Shelly PRICE-STEPHENS",
         "age": 0,
         "sex": "F",
@@ -39671,7 +39671,7 @@ window.glclResults = [
     },
     {
         "pos": 363,
-        "bib": "0",
+        "bib": "1053",
         "name": "Aisling MORGAN",
         "age": 0,
         "sex": "F",
@@ -39692,7 +39692,7 @@ window.glclResults = [
     },
     {
         "pos": 364,
-        "bib": "0",
+        "bib": "5139",
         "name": "William LEWIS",
         "age": 0,
         "sex": "M",
@@ -39713,7 +39713,7 @@ window.glclResults = [
     },
     {
         "pos": 365,
-        "bib": "0",
+        "bib": "5073",
         "name": "Rachael WATKINS",
         "age": 0,
         "sex": "F",
@@ -39734,7 +39734,7 @@ window.glclResults = [
     },
     {
         "pos": 366,
-        "bib": "0",
+        "bib": "1010",
         "name": "David DAVIES",
         "age": 0,
         "sex": "M",
@@ -39755,7 +39755,7 @@ window.glclResults = [
     },
     {
         "pos": 367,
-        "bib": "0",
+        "bib": "3009",
         "name": "Helen BROWN",
         "age": 0,
         "sex": "F",
@@ -39776,7 +39776,7 @@ window.glclResults = [
     },
     {
         "pos": 368,
-        "bib": "0",
+        "bib": "2132",
         "name": "Corinna TANNIAN",
         "age": 0,
         "sex": "F",
@@ -39797,7 +39797,7 @@ window.glclResults = [
     },
     {
         "pos": 369,
-        "bib": "0",
+        "bib": "5178",
         "name": "Roy BEECHAM",
         "age": 0,
         "sex": "M",
@@ -39818,7 +39818,7 @@ window.glclResults = [
     },
     {
         "pos": 370,
-        "bib": "0",
+        "bib": "7060",
         "name": "Cath EALES",
         "age": 0,
         "sex": "F",
@@ -39839,7 +39839,7 @@ window.glclResults = [
     },
     {
         "pos": 371,
-        "bib": "0",
+        "bib": "5065",
         "name": "Lisa THOMAS",
         "age": 0,
         "sex": "F",
@@ -39860,7 +39860,7 @@ window.glclResults = [
     },
     {
         "pos": 372,
-        "bib": "0",
+        "bib": "4110",
         "name": "Yvonne WALKER",
         "age": 0,
         "sex": "F",
@@ -39881,7 +39881,7 @@ window.glclResults = [
     },
     {
         "pos": 373,
-        "bib": "0",
+        "bib": "5076",
         "name": "Emily WELSH",
         "age": 0,
         "sex": "F",
@@ -39902,7 +39902,7 @@ window.glclResults = [
     },
     {
         "pos": 374,
-        "bib": "0",
+        "bib": "6013",
         "name": "Ole BLACK",
         "age": 0,
         "sex": "M",
@@ -39923,7 +39923,7 @@ window.glclResults = [
     },
     {
         "pos": 375,
-        "bib": "0",
+        "bib": "3065",
         "name": "Suzanne WILLAMS",
         "age": 0,
         "sex": "F",

@@ -1,0 +1,253 @@
+{
+  "updated_at": "2026-10-20T18:40:00Z",
+  "clubs": {
+    "Caerleon Running Club": {
+      "code": "CAER",
+      "canonical_name": "Caerleon Running Club",
+      "aliases": ["Caerleon RC", "Caerleon", "Caerleon Runners"],
+      "primary_color": {
+        "hex": "#483090",
+        "name": "Royal Purple",
+        "rgb": [72, 48, 144]
+      },
+      "secondary_color": {
+        "hex": "#c0c0d8",
+        "name": "Silver White",
+        "rgb": [192, 192, 216]
+      },
+      "accent_color": {
+        "hex": "#181828",
+        "name": "Deep Indigo",
+        "rgb": [24, 24, 40]
+      },
+      "kit_description": "Royal purple and violet body with crisp white lettering and chest accents.",
+      "vest_images": [
+        "assets/images/Vests/Caerleon.jpg",
+        "assets/images/Vests/CaerleonAlternativeVest.jpg",
+        "assets/images/Vests/CaerleonTShirt.jpg"
+      ]
+    },
+    "Caldicot Running Club": {
+      "code": "CALD",
+      "canonical_name": "Caldicot Running Club",
+      "aliases": ["Caldicot RC", "Caldicot", "Caldicot Runners"],
+      "primary_color": {
+        "hex": "#502058",
+        "name": "Plum Purple",
+        "rgb": [80, 32, 88]
+      },
+      "secondary_color": {
+        "hex": "#e0e0e0",
+        "name": "Silver White",
+        "rgb": [224, 224, 224]
+      },
+      "accent_color": {
+        "hex": "#181818",
+        "name": "Jet Black",
+        "rgb": [24, 24, 24]
+      },
+      "kit_description": "Deep plum purple body with white side panels and black shoulder trim.",
+      "vest_images": [
+        "assets/images/Vests/CaldicotVest1.jpg",
+        "assets/images/Vests/CaldicotVest2.jpg"
+      ]
+    },
+    "Chepstow Harriers": {
+      "code": "CHEP",
+      "canonical_name": "Chepstow Harriers",
+      "aliases": ["Chepstow", "Chepstow Harriers AC"],
+      "primary_color": {
+        "hex": "#2448a0",
+        "name": "Royal Blue",
+        "rgb": [36, 72, 160]
+      },
+      "secondary_color": {
+        "hex": "#b81824",
+        "name": "Scarlet Red",
+        "rgb": [184, 24, 36]
+      },
+      "accent_color": {
+        "hex": "#ffffff",
+        "name": "White",
+        "rgb": [255, 255, 255]
+      },
+      "kit_description": "Classic royal blue vest featuring a prominent scarlet red horizontal chest band.",
+      "vest_images": [
+        "assets/images/Vests/ChepstowHarriers.jpg"
+      ]
+    },
+    "Fairwater Runners": {
+      "code": "FAIR",
+      "canonical_name": "Fairwater Runners",
+      "aliases": ["Fairwater", "Fairwater Runners Cwmbran"],
+      "primary_color": {
+        "hex": "#4a9cd0",
+        "name": "Sky Blue",
+        "rgb": [74, 156, 208]
+      },
+      "secondary_color": {
+        "hex": "#182438",
+        "name": "Navy Blue",
+        "rgb": [24, 36, 56]
+      },
+      "accent_color": {
+        "hex": "#ffffff",
+        "name": "White",
+        "rgb": [255, 255, 255]
+      },
+      "kit_description": "Sky blue body with dark navy blue shoulder trim and club crest.",
+      "vest_images": [
+        "assets/images/Vests/FairwaterVest.jpg",
+        "assets/images/Vests/FairwaterTShirt.jpg"
+      ]
+    },
+    "Griffithstown Harriers": {
+      "code": "GRIF",
+      "canonical_name": "Griffithstown Harriers",
+      "aliases": ["Griffithstown", "Gfiffithstown Harriers"],
+      "primary_color": {
+        "hex": "#3890a8",
+        "name": "Teal Wave",
+        "rgb": [56, 144, 168]
+      },
+      "secondary_color": {
+        "hex": "#1c2838",
+        "name": "Dark Navy",
+        "rgb": [28, 40, 56]
+      },
+      "accent_color": {
+        "hex": "#84c442",
+        "name": "Lime Accent",
+        "rgb": [132, 196, 66]
+      },
+      "kit_description": "Modern cyan and dark blue wave pattern with lime green detailing.",
+      "vest_images": [
+        "assets/images/Vests/GriffithstownVest.jpg",
+        "assets/images/Vests/GriffithstownRetroVest.jpg",
+        "assets/images/Vests/GriffithstownTShirt.jpg",
+        "assets/images/Vests/GriffithstownTrainingTshirt.jpg"
+      ]
+    },
+    "Islwyn RC": {
+      "code": "ISLW",
+      "canonical_name": "Islwyn RC",
+      "aliases": ["Islwyn", "Islwyn Running Club"],
+      "primary_color": {
+        "hex": "#181818",
+        "name": "Jet Black",
+        "rgb": [24, 24, 24]
+      },
+      "secondary_color": {
+        "hex": "#f0f0f0",
+        "name": "Pure White",
+        "rgb": [240, 240, 240]
+      },
+      "accent_color": {
+        "hex": "#e8b820",
+        "name": "Gold Crest",
+        "rgb": [232, 184, 32]
+      },
+      "kit_description": "Clean monochrome jet black vest featuring a bold white chest stripe and club crest.",
+      "vest_images": [
+        "assets/images/Vests/Islwyn.jpg"
+      ]
+    },
+    "Lliswerry Runners": {
+      "code": "LLIS",
+      "canonical_name": "Lliswerry Runners",
+      "aliases": ["Lliswerry"],
+      "primary_color": {
+        "hex": "#5c1528",
+        "name": "Burgundy",
+        "rgb": [92, 21, 40]
+      },
+      "secondary_color": {
+        "hex": "#ffffff",
+        "name": "Crisp White",
+        "rgb": [255, 255, 255]
+      },
+      "accent_color": {
+        "hex": "#380c18",
+        "name": "Claret Trim",
+        "rgb": [56, 12, 24]
+      },
+      "kit_description": "Traditional deep burgundy/maroon vest with crisp white diagonal side panels and lettering.",
+      "vest_images": [
+        "assets/images/Vests/LliswerryRunners.jpg"
+      ]
+    },
+    "Parc Bryn Bach RC": {
+      "code": "PBBR",
+      "canonical_name": "Parc Bryn Bach RC",
+      "aliases": ["Parc Bryn Bach", "PBB", "ParcBrynBach"],
+      "primary_color": {
+        "hex": "#1b6834",
+        "name": "Racing Green",
+        "rgb": [27, 104, 52]
+      },
+      "secondary_color": {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "rgb": [255, 255, 255]
+      },
+      "accent_color": {
+        "hex": "#c82020",
+        "name": "Dragon Red",
+        "rgb": [200, 32, 32]
+      },
+      "kit_description": "Dual-tone racing green lower torso with white upper chest and red Welsh dragon crest.",
+      "vest_images": [
+        "assets/images/Vests/ParcBrynBach.jpg"
+      ]
+    },
+    "Pont-Y-Pwl & District Runners": {
+      "code": "PONT",
+      "canonical_name": "Pont-Y-Pwl & District Runners",
+      "aliases": ["Pontypool", "Pont-y-pwl", "Pont-y-pwl RC", "Pont-y-Pwl and District Runners"],
+      "primary_color": {
+        "hex": "#c81828",
+        "name": "Crimson Red",
+        "rgb": [200, 24, 40]
+      },
+      "secondary_color": {
+        "hex": "#181818",
+        "name": "Jet Black",
+        "rgb": [24, 24, 24]
+      },
+      "accent_color": {
+        "hex": "#ffffff",
+        "name": "White Crest",
+        "rgb": [255, 255, 255]
+      },
+      "kit_description": "Bright scarlet red vest with contrasting jet black side panels and white club emblem.",
+      "vest_images": [
+        "assets/images/Vests/PontypwlAndDistrict.jpg"
+      ]
+    },
+    "Spirit of Monmouth RC": {
+      "code": "SOMR",
+      "canonical_name": "Spirit of Monmouth RC",
+      "aliases": ["Spirit of Monmouth", "Monmouth", "Monmouth Harriers"],
+      "primary_color": {
+        "hex": "#1e3878",
+        "name": "Navy Royal Blue",
+        "rgb": [30, 56, 120]
+      },
+      "secondary_color": {
+        "hex": "#eeb818",
+        "name": "Gold Sash",
+        "rgb": [238, 184, 24]
+      },
+      "accent_color": {
+        "hex": "#ffffff",
+        "name": "White Crest",
+        "rgb": [255, 255, 255]
+      },
+      "kit_description": "Deep royal blue vest featuring an iconic bright gold/yellow diagonal sash across the chest.",
+      "vest_images": [
+        "assets/images/Vests/SpritOfMonmouthVest.jpg",
+        "assets/images/Vests/SpiritOfMonmouthTshirt.jpg"
+      ]
+    }
+  }
+}

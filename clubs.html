@@ -133,80 +133,105 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const latestSeason = seasons[0] || "";
 
-    const gridContainer = document.getElementById('clubs-grid');
-    gridContainer.innerHTML = '';
+    // Fetch Club Colours JSON for authentic kit swatches
+    let clubColours = {};
+    fetch('assets/data/club_colours.json')
+        .then(res => res.ok ? res.json() : {})
+        .then(data => { clubColours = data.clubs || {}; })
+        .catch(err => console.log('Club colours fetch info:', err))
+        .finally(() => {
+            renderClubs();
+        });
 
-    CLUBS.forEach(clubName => {
-        const targetNormalized = normalizeName(clubName);
+    function renderClubs() {
+        const gridContainer = document.getElementById('clubs-grid');
+        gridContainer.innerHTML = '';
 
-        // Filter using fuzzy/normalized match so variations in data.js match cleanly
-        const clubRecords = allRecords.filter(row => 
-            row.club && normalizeName(row.club) === targetNormalized
-        );
+        CLUBS.forEach(clubName => {
+            const targetNormalized = normalizeName(clubName);
 
-        // Aggregate basic telemetry
-        const totalFinishes = clubRecords.length;
+            // Filter using fuzzy/normalized match so variations in data.js match cleanly
+            const clubRecords = allRecords.filter(row => 
+                row.club && normalizeName(row.club) === targetNormalized
+            );
 
-        // 2. FILTER FOR ACTIVE ROSTERS EXCLUSIVELY FROM THE LATEST CAMPAIGN SEASON
-        const activeSeasonRecords = clubRecords.filter(row => row.season === latestSeason);
-        const uniqueAthletes = new Set(activeSeasonRecords.map(row => row.name?.toUpperCase())).size;
+            // Aggregate basic telemetry
+            const totalFinishes = clubRecords.length;
 
-        const clubUrl = `club.html?name=${encodeURIComponent(clubName)}`;
-        
-        // Pull the exact matching filename from our image map
-        const imageName = clubImageMap[clubName] || "hero_placeholder.jpg";
-        const imageSrc = `/assets/images/clubs/${imageName}`;
+            // 2. FILTER FOR ACTIVE ROSTERS EXCLUSIVELY FROM THE LATEST CAMPAIGN SEASON
+            const activeSeasonRecords = clubRecords.filter(row => row.season === latestSeason);
+            const uniqueAthletes = new Set(activeSeasonRecords.map(row => row.name?.toUpperCase())).size;
 
-        const cardHtml = `
-            <a href="${clubUrl}" class="group block relative bg-slate-900/40 backdrop-blur-sm border border-slate-800/80 hover:border-brand-500 rounded-2xl shadow-xl hover:shadow-[0_0_30px_-5px_rgba(0,102,204,0.3)] transition-all duration-300 hover:-translate-y-1.5 overflow-hidden h-64 flex flex-col justify-end">
-                
-                <!-- Background Image Layer -->
-                <div class="absolute inset-0 z-0">
-                    <img src="${imageSrc}" 
-                         alt="${clubName} background" 
-                         class="w-full h-full object-cover opacity-90 group-hover:opacity-85 group-hover:scale-105 transition-all duration-700 ease-in-out"
-                         onerror="this.src='/assets/images/hero_placeholder.jpg'">
+            const clubUrl = `club.html?name=${encodeURIComponent(clubName)}`;
+            
+            // Pull the exact matching filename from our image map
+            const imageName = clubImageMap[clubName] || "hero_placeholder.jpg";
+            const imageSrc = `assets/images/clubs/${imageName}`;
+
+            // Match club colours
+            const colourInfo = clubColours[clubName] || Object.values(clubColours).find(c => 
+                c.aliases && c.aliases.some(a => normalizeName(a) === targetNormalized)
+            ) || null;
+
+            const primaryHex = colourInfo?.primary_color?.hex || '#0066cc';
+            const secondaryHex = colourInfo?.secondary_color?.hex || '#ffffff';
+            const kitDesc = colourInfo?.kit_description || '';
+
+            const cardHtml = `
+                <a href="${clubUrl}" class="group block relative bg-slate-900/40 backdrop-blur-sm border border-slate-800/80 hover:border-brand-500 rounded-2xl shadow-xl hover:shadow-[0_0_30px_-5px_rgba(0,102,204,0.3)] transition-all duration-300 hover:-translate-y-1.5 overflow-hidden h-64 flex flex-col justify-end">
                     
-                    <!-- Softened gradient overlay: allows much more of the photo to shine through -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent"></div>
-                    
-                    <!-- Subtle blue brand accent overlay on hover -->
-                    <div class="absolute inset-0 bg-brand-500/0 group-hover:bg-brand-500/5 transition-colors duration-500 z-0"></div>
-                </div>
-
-                <!-- Content Overlay Layer -->
-                <div class="relative z-10 p-6 flex flex-col justify-end h-full">
-                    
-                    <!-- Top Badge -->
-                    <div class="mb-auto transform translate-y-1 opacity-90 group-hover:translate-y-0 transition-all duration-300">
-                        <span class="inline-flex items-center text-[10px] font-mono font-black bg-brand-500/10 text-brand-400 border border-brand-500/20 px-2.5 py-1 rounded-md uppercase tracking-widest backdrop-blur-sm shadow-sm">
-                            Member Club
-                        </span>
-                    </div>
-                    
-                    <!-- Bottom Content (Title & Stats) -->
-                    <div class="transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300 ease-out">
-                        <h2 class="text-2xl font-black text-white uppercase tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] mb-3 group-hover:text-brand-400 transition-colors">
-                            ${clubName}
-                        </h2>
+                    <!-- Background Image Layer -->
+                    <div class="absolute inset-0 z-0">
+                        <img src="${imageSrc}" 
+                             alt="${clubName} background" 
+                             class="w-full h-full object-cover opacity-90 group-hover:opacity-85 group-hover:scale-105 transition-all duration-700 ease-in-out"
+                             onerror="this.src='assets/images/hero_placeholder.jpg'">
                         
-                        <div class="grid grid-cols-2 gap-4 pt-3 border-t border-slate-700/40 text-left">
-                            <div>
-                                <span class="block text-[9px] font-black text-slate-400 uppercase tracking-wider">Total Finishes</span>
-                                <span class="text-xl font-black text-slate-100 font-mono mt-0.5 block drop-shadow-md">${totalFinishes}</span>
-                            </div>
-                            <div>
-                                <span class="block text-[9px] font-black text-slate-400 uppercase tracking-wider">Active Runners</span>
-                                <span class="text-xl font-black text-slate-100 font-mono mt-0.5 block drop-shadow-md">${uniqueAthletes}</span>
+                        <!-- Softened gradient overlay: allows much more of the photo to shine through -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent"></div>
+                        
+                        <!-- Subtle blue brand accent overlay on hover -->
+                        <div class="absolute inset-0 bg-brand-500/0 group-hover:bg-brand-500/5 transition-colors duration-500 z-0"></div>
+                    </div>
+
+                    <!-- Content Overlay Layer -->
+                    <div class="relative z-10 p-6 flex flex-col justify-end h-full">
+                        
+                        <!-- Top Badges (Member Club + Authentic Kit Colors) -->
+                        <div class="mb-auto flex items-center justify-between gap-2 transform translate-y-1 opacity-95 group-hover:translate-y-0 transition-all duration-300">
+                            <span class="inline-flex items-center text-[10px] font-mono font-black bg-brand-500/10 text-brand-400 border border-brand-500/20 px-2.5 py-1 rounded-md uppercase tracking-widest backdrop-blur-sm shadow-sm">
+                                Member Club
+                            </span>
+                            <div class="inline-flex items-center gap-1.5 bg-slate-950/70 border border-slate-800/80 px-2 py-1 rounded-md backdrop-blur-sm" title="${kitDesc}">
+                                <span class="w-2.5 h-2.5 rounded-full border border-white/20 shadow-sm" style="background-color: ${primaryHex}"></span>
+                                <span class="w-2.5 h-2.5 rounded-full border border-white/20 shadow-sm" style="background-color: ${secondaryHex}"></span>
                             </div>
                         </div>
-                    </div>
+                        
+                        <!-- Bottom Content (Title & Stats) -->
+                        <div class="transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300 ease-out">
+                            <h2 class="text-2xl font-black text-white uppercase tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] mb-3 group-hover:text-brand-400 transition-colors">
+                                ${clubName}
+                            </h2>
+                            
+                            <div class="grid grid-cols-2 gap-4 pt-3 border-t border-slate-700/40 text-left">
+                                <div>
+                                    <span class="block text-[9px] font-black text-slate-400 uppercase tracking-wider">Total Finishes</span>
+                                    <span class="text-xl font-black text-slate-100 font-mono mt-0.5 block drop-shadow-md">${totalFinishes}</span>
+                                </div>
+                                <div>
+                                    <span class="block text-[9px] font-black text-slate-400 uppercase tracking-wider">Active Runners</span>
+                                    <span class="text-xl font-black text-slate-100 font-mono mt-0.5 block drop-shadow-md">${uniqueAthletes}</span>
+                                </div>
+                            </div>
+                        </div>
 
-                </div>
-            </a>
-        `;
-        gridContainer.insertAdjacentHTML('beforeend', cardHtml);
-    });
+                    </div>
+                </a>
+            `;
+            gridContainer.insertAdjacentHTML('beforeend', cardHtml);
+        });
+    }
 });
     </script>
 

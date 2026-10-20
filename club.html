@@ -71,6 +71,57 @@
             </div>
         </section>
 
+        <!-- OFFICIAL CLUB KIT & COLOURS SECTION -->
+        <section id="club-kit-section" class="pt-6 border-t border-slate-900 hidden space-y-4">
+            <div>
+                <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Official Team Identity</h2>
+                <h3 class="text-xl font-black text-slate-200 tracking-tight mt-0.5">Club Kit & Registered Colours</h3>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Kit Specs Card -->
+                <div class="stat-card p-6 rounded-xl border border-slate-800 shadow-xl space-y-4 lg:col-span-1 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="space-y-1">
+                                <span class="block text-[9px] font-black text-slate-500 uppercase tracking-widest">Primary</span>
+                                <span id="kit-primary-swatch" class="w-10 h-10 rounded-xl shadow-md border border-white/20 block"></span>
+                            </div>
+                            <div class="space-y-1">
+                                <span class="block text-[9px] font-black text-slate-500 uppercase tracking-widest">Secondary</span>
+                                <span id="kit-secondary-swatch" class="w-10 h-10 rounded-xl shadow-md border border-white/20 block"></span>
+                            </div>
+                            <div class="space-y-1">
+                                <span class="block text-[9px] font-black text-slate-500 uppercase tracking-widest">Accent</span>
+                                <span id="kit-accent-swatch" class="w-10 h-10 rounded-xl shadow-md border border-white/20 block"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] font-black uppercase tracking-widest text-slate-500">Kit Specification</span>
+                            <p id="kit-description" class="text-xs text-slate-300 mt-1 leading-relaxed font-medium"></p>
+                        </div>
+                        <div id="kit-palette-list" class="space-y-1.5 pt-3 border-t border-slate-800/80 text-xs font-mono">
+                            <!-- Populated with color names and hex codes -->
+                        </div>
+                    </div>
+                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider pt-3 border-t border-slate-900 flex items-center justify-between">
+                        <span>GWENT LEAGUE OFFICIAL REGISTRATION</span>
+                        <span id="kit-code-badge" class="font-bold text-brand-400"></span>
+                    </div>
+                </div>
+
+                <!-- Authentic Vest Photos Gallery -->
+                <div class="lg:col-span-2 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">Authentic Vest & Teamwear Samples</span>
+                        <span id="vest-count-badge" class="text-[10px] font-mono font-bold text-brand-400 bg-brand-500/10 border border-brand-500/20 px-2 py-0.5 rounded"></span>
+                    </div>
+                    <div id="club-vests-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <!-- Populated dynamically with high-res authentic vest images -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- CLUB RACE PHOTOGRAPHY SECTION -->
         <section id="club-photos-section" class="space-y-4 pt-6 border-t border-slate-900 hidden">
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -703,15 +754,96 @@
             const loadClubPhotos = async () => {
                 let photoTags = {};
                 let fixtureAlbums = {};
+                let clubColours = {};
                 try {
-                    const [tagsRes, albumsRes] = await Promise.all([
+                    const [tagsRes, albumsRes, coloursRes] = await Promise.all([
                         fetch('assets/data/photo_tags.json'),
-                        fetch('assets/data/fixture_photo_albums.json')
+                        fetch('assets/data/fixture_photo_albums.json'),
+                        fetch('assets/data/club_colours.json')
                     ]);
                     if (tagsRes.ok) photoTags = await tagsRes.json();
                     if (albumsRes.ok) fixtureAlbums = await albumsRes.json();
+                    if (coloursRes && coloursRes.ok) {
+                        const cdata = await coloursRes.json();
+                        clubColours = cdata.clubs || {};
+                    }
                 } catch (e) {
                     console.error('Error fetching photo data:', e);
+                }
+
+                // Render Club Kit & Registered Colours
+                const matchedColourInfo = clubColours[targetClub] || Object.values(clubColours).find(c => 
+                    matchesClubName(c.canonical_name, targetClub) || (c.aliases && c.aliases.some(a => matchesClubName(a, targetClub)))
+                );
+
+                if (matchedColourInfo) {
+                    const kitSec = document.getElementById('club-kit-section');
+                    const primaryEl = document.getElementById('kit-primary-swatch');
+                    const secondaryEl = document.getElementById('kit-secondary-swatch');
+                    const accentEl = document.getElementById('kit-accent-swatch');
+                    const descEl = document.getElementById('kit-description');
+                    const codeEl = document.getElementById('kit-code-badge');
+                    const listEl = document.getElementById('kit-palette-list');
+                    const vestGrid = document.getElementById('club-vests-grid');
+                    const vestBadge = document.getElementById('vest-count-badge');
+
+                    if (primaryEl) primaryEl.style.backgroundColor = matchedColourInfo.primary_color?.hex || '#0066cc';
+                    if (secondaryEl) secondaryEl.style.backgroundColor = matchedColourInfo.secondary_color?.hex || '#ffffff';
+                    if (accentEl) accentEl.style.backgroundColor = matchedColourInfo.accent_color?.hex || '#181818';
+                    if (descEl) descEl.textContent = matchedColourInfo.kit_description || '';
+                    if (codeEl) codeEl.textContent = `CODE: ${matchedColourInfo.code || ''}`;
+
+                    if (listEl) {
+                        listEl.innerHTML = `
+                            <div class="flex items-center justify-between text-slate-400">
+                                <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full inline-block" style="background-color: ${matchedColourInfo.primary_color?.hex}"></span> Primary</span>
+                                <span class="font-bold text-slate-200">${matchedColourInfo.primary_color?.name || ''} <span class="text-slate-500 font-normal">(${matchedColourInfo.primary_color?.hex})</span></span>
+                            </div>
+                            <div class="flex items-center justify-between text-slate-400">
+                                <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full inline-block" style="background-color: ${matchedColourInfo.secondary_color?.hex}"></span> Secondary</span>
+                                <span class="font-bold text-slate-200">${matchedColourInfo.secondary_color?.name || ''} <span class="text-slate-500 font-normal">(${matchedColourInfo.secondary_color?.hex})</span></span>
+                            </div>
+                            <div class="flex items-center justify-between text-slate-400">
+                                <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full inline-block" style="background-color: ${matchedColourInfo.accent_color?.hex}"></span> Accent</span>
+                                <span class="font-bold text-slate-200">${matchedColourInfo.accent_color?.name || ''} <span class="text-slate-500 font-normal">(${matchedColourInfo.accent_color?.hex})</span></span>
+                            </div>
+                        `;
+                    }
+
+                    const vestImages = matchedColourInfo.vest_images || [];
+                    if (vestBadge) vestBadge.textContent = `${vestImages.length} Official Sample${vestImages.length > 1 ? 's' : ''}`;
+
+                    if (vestGrid && vestImages.length > 0) {
+                        vestGrid.innerHTML = '';
+                        vestImages.forEach((imgSrc) => {
+                            const filename = imgSrc.split('/').pop().replace(/\.[^/.]+$/, '');
+                            const readableLabel = filename
+                                .replace(/([A-Z])/g, ' $1')
+                                .replace(/Vest(\d+)/g, ' Vest Sample $1')
+                                .replace(/TShirt/g, ' Technical T-Shirt')
+                                .trim();
+
+                            const vCard = document.createElement('div');
+                            vCard.className = 'group relative rounded-xl overflow-hidden border border-slate-800 bg-slate-950 hover:border-brand-500 transition-all cursor-pointer shadow-lg hover:shadow-brand-500/10';
+                            vCard.innerHTML = `
+                                <div class="aspect-[4/3] overflow-hidden bg-slate-900">
+                                    <img src="${imgSrc}" alt="${readableLabel}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                </div>
+                                <div class="p-2.5 bg-slate-950/90 border-t border-slate-800/80 flex items-center justify-between">
+                                    <span class="text-[11px] font-bold text-slate-200 truncate group-hover:text-brand-400 transition-colors">${readableLabel}</span>
+                                    <span class="text-[9px] font-mono text-slate-500 uppercase">View</span>
+                                </div>
+                            `;
+                            vCard.addEventListener('click', () => {
+                                if (typeof openVestLightbox === 'function') {
+                                    openVestLightbox(imgSrc, readableLabel);
+                                }
+                            });
+                            vestGrid.appendChild(vCard);
+                        });
+                    }
+
+                    if (kitSec) kitSec.classList.remove('hidden');
                 }
 
                 // Normalize album lookup dictionary by album_id
@@ -873,6 +1005,20 @@
                     if (index < 0 || index >= matchedPhotos.length) return;
                     currentClubPhotoIndex = index;
                     updateClubLightboxContent();
+                    if (modalPrevBtn) modalPrevBtn.classList.remove('hidden');
+                    if (modalNextBtn) modalNextBtn.classList.remove('hidden');
+                    lightboxModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                };
+
+                const openVestLightbox = (src, label) => {
+                    modalImage.src = src;
+                    modalCounter.textContent = 'Official Teamwear Sample';
+                    modalDirectDownload.href = src;
+                    modalDirectDownload.download = src.split('/').pop();
+                    modalRunnerInfo.innerHTML = `<span class="text-white font-bold">${targetClub}</span> • <span class="text-brand-300">${label}</span>`;
+                    if (modalPrevBtn) modalPrevBtn.classList.add('hidden');
+                    if (modalNextBtn) modalNextBtn.classList.add('hidden');
                     lightboxModal.classList.remove('hidden');
                     document.body.style.overflow = 'hidden';
                 };

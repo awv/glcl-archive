@@ -215,7 +215,9 @@
     "photos": 3269,
     "season": "2022/2023",
     "discipline": "xc",
-    "venue": "Glebelands"
+    "venue": "Glebelands",
+    "race_number": 1,
+    "date": "2022-11-27"
   },
   "2022/2023_road_3": {
     "album_id": "72177720301714105",
@@ -1043,8 +1045,28 @@
     "photos": 3944,
     "season": "2025/2026",
     "discipline": "xc",
-    "race_number": 1,
+    "race_number": 2,
     "venue": "Rogerstone",
-    "date": "1763976864"
+    "date": "2025-11-23"
+  },
+  "2022/2023_xc_1": {
+    "album_id": "72177720304048588",
+    "title": "GLCL XC 2022 \u2014 Glebelands",
+    "photos": 3269,
+    "season": "2022/2023",
+    "discipline": "xc",
+    "venue": "Glebelands",
+    "race_number": 1,
+    "date": "2022-11-27"
+  },
+  "2022_2023_xc_1": {
+    "album_id": "72177720304048588",
+    "title": "GLCL XC 2022 \u2014 Glebelands",
+    "photos": 3269,
+    "season": "2022/2023",
+    "discipline": "xc",
+    "venue": "Glebelands",
+    "race_number": 1,
+    "date": "2022-11-27"
   }
 }

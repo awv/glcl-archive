@@ -117,9 +117,26 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE, mi
         except Exception:
             existing_index = {}
 
+    # Automatically resolve fixture metadata if mapped
+    album_map_file = Path("assets/data/fixture_photo_albums.json")
+    race_number = None
+    venue_name = ""
+    if album_map_file.exists():
+        try:
+            with open(album_map_file) as f:
+                amap = json.load(f)
+            info = amap.get(album_id) or next((v for v in amap.values() if v.get("album_id") == album_id), None)
+            if info:
+                season = info.get("season") or season
+                race_number = info.get("race_number")
+                venue_name = info.get("venue") or ""
+        except Exception:
+            pass
+
     print(f"=================================================================")
     print(f"📸 Streaming Flickr Album: {album_id} (Limit: {limit} photos)")
-    print(f"Season: {season} | Min Subject Sharpness: {min_sharpness}")
+    fix_str = f"Season: {season}" + (f" | Race #{race_number}" if race_number else "") + (f" ({venue_name})" if venue_name else "")
+    print(f"{fix_str} | Min Subject Sharpness: {min_sharpness}")
     print(f"=================================================================")
 
     photos = fetch_album_photos(album_id, max_photos=limit)
@@ -171,6 +188,8 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE, mi
     print(f"\nDownloaded {done_count} previews. Running Apple Vision Neural OCR...\n")
 
     cmd = [str(TAGGER_BIN), str(temp_dir), "--season", season]
+    if race_number:
+        cmd.extend(["--race", str(race_number)])
     proc = subprocess.run(cmd, capture_output=True, text=True)
     output = proc.stdout
 
@@ -242,6 +261,15 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE, mi
     # Save index file
     with open(index_file, "w") as f:
         json.dump(existing_index, f, indent=2)
+
+    # Automatically ground against official fixture finishers
+    try:
+        from reconcile_photo_tags import load_data, build_fixture_indices, reconcile
+        pt, am, gr = load_data()
+        i2f, fr = build_fixture_indices(am, gr)
+        reconcile(pt, i2f, fr, apply_changes=True)
+    except Exception as re_err:
+        print(f"Note: Post-scan reconciliation skipped: {re_err}")
 
     print(f"\n=================================================================")
     print(f"SCAN COMPLETE: Tagged {tagged_count} photos. (Filtered out {skipped_blur_count} blurry photos)")
