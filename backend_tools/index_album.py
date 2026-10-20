@@ -141,6 +141,7 @@ def main():
     parser.add_argument("target", help="Flickr Album URL or ID (e.g. 72177720330513551)")
     parser.add_argument("--season", help="Override season (e.g. 2025/2026)")
     parser.add_argument("--limit", type=int, default=200, help="Max photos to analyze (default: 200)")
+    parser.add_argument("--min-sharpness", type=float, default=250.0, help="Minimum subject sharpness score (default: 250, set 0 to disable)")
     args = parser.parse_args()
 
     album_id = extract_album_id(args.target)
@@ -160,7 +161,7 @@ def main():
     print(f"  Total Size:  {album_meta['photos']} photos on Flickr\n")
 
     # Run scanning & tagging
-    tagged, total_index = scan_album(album_id, season=album_meta['season'], limit=args.limit)
+    tagged, total_index = scan_album(album_id, season=album_meta['season'], limit=args.limit, min_sharpness=args.min_sharpness)
 
     print(f"✨ Successfully indexed {tagged} photos for {album_meta['title']}.")
     print(f"Athletes from this album are now searchable on glcl.uk/photos.html and results.html.")

@@ -560,12 +560,15 @@
                                             bib: p.bib || runnerBib,
                                             name: p.name || formattedName,
                                             club: p.club || displayClub,
+                                            sharpness: p.sharpness || 0,
                                             url_m: p.url_m || (p.server && p.secret ? `https://live.staticflickr.com/${p.server}/${pid}_${p.secret}_m.jpg` : ''),
                                             url_large: p.url_3k || p.url_k || p.url_4k || p.url_h || p.url_l || (p.server && p.secret ? `https://live.staticflickr.com/${p.server}/${pid}_${p.secret}_b.jpg` : (p.url_m || ''))
                                         });
                                     }
                                 }
                             });
+                            // Best Shot First: sort by sharpness
+                            runnerPhotos.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
                         }
 
                         let photoIconHtml = '';

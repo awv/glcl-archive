@@ -98,6 +98,7 @@ def main():
     parser.add_argument("--all", action="store_true", help="Index all available GLCL albums")
     parser.add_argument("--limit", type=int, default=30, help="Max photos to analyze per album (default 30)")
     parser.add_argument("--delay", type=float, default=1.0, help="Delay in seconds between albums (default 1.0)")
+    parser.add_argument("--min-sharpness", type=float, default=250.0, help="Minimum subject sharpness score (default 250, set 0 to disable)")
     args = parser.parse_args()
 
     all_albums = load_albums()
@@ -119,6 +120,7 @@ def main():
     print(f"\n🚀 GLCL BATCH PHOTO INDEXER")
     print(f"Albums queued: {len(target_albums)}")
     print(f"Photo limit per album: {args.limit}")
+    print(f"Min subject sharpness: {args.min_sharpness}")
     print(f"Target index file: {INDEX_FILE}\n")
 
     total_tagged_in_run = 0
@@ -131,7 +133,7 @@ def main():
         print(f"\n[{idx}/{len(target_albums)}] Processing: {title} (ID: {aid}, Season: {season})")
         
         try:
-            tagged, total = scan_album(aid, season=season, limit=args.limit, index_file=INDEX_FILE)
+            tagged, total = scan_album(aid, season=season, limit=args.limit, index_file=INDEX_FILE, min_sharpness=args.min_sharpness)
             total_tagged_in_run += tagged
         except KeyboardInterrupt:
             print("\n⚠️ Batch run interrupted by user. Partial progress saved.")

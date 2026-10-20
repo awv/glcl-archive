@@ -325,6 +325,32 @@
             targetAthlete = masterName; 
             const finalMasterKey = getNameKey(targetAthlete);
 
+            let hasCustomPortrait = false;
+            const applyHeaderPhoto = (photoUrl) => {
+                const header = document.getElementById('athlete-header-container');
+                const mesh = document.getElementById('header-mesh');
+                const glow = document.getElementById('header-glow');
+                const gradient = document.getElementById('header-gradient');
+                
+                if (header) {
+                    header.style.height = ''; 
+                    header.classList.remove('h-[240px]', 'md:h-[400px]');
+                    header.classList.add('h-[350px]', 'md:h-[500px]');
+                    
+                    header.style.backgroundImage = `url('${photoUrl}')`;
+                    header.style.backgroundSize = 'cover';
+                    header.style.backgroundPosition = 'center 25%';
+                    header.style.backgroundRepeat = 'no-repeat';
+                    
+                    if (mesh) mesh.style.display = 'none';
+                    if (glow) glow.style.display = 'none';
+                    
+                    if (gradient) {
+                        gradient.className = "absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/60 to-slate-950/20 z-0";
+                    }
+                }
+            };
+
             const loadProfilePhoto = (name, club) => {
                 const formatSlug = (str) => (str || '')
                     .toLowerCase()
@@ -348,28 +374,8 @@
                     const imgCheck = new Image();
                     imgCheck.src = photoSources[index];
                     imgCheck.onload = () => {
-                        const header = document.getElementById('athlete-header-container');
-                        const mesh = document.getElementById('header-mesh');
-                        const glow = document.getElementById('header-glow');
-                        const gradient = document.getElementById('header-gradient');
-                        
-                        if (header) {
-                            header.style.height = ''; 
-                            header.classList.remove('h-[240px]', 'md:h-[400px]');
-                            header.classList.add('h-[350px]', 'md:h-[500px]');
-                            
-                            header.style.backgroundImage = `url('${photoSources[index]}')`;
-                            header.style.backgroundSize = 'cover';
-                            header.style.backgroundPosition = 'top';
-                            header.style.backgroundRepeat = 'no-repeat';
-                            
-                            if (mesh) mesh.style.display = 'none';
-                            if (glow) glow.style.display = 'none';
-                            
-                            if (gradient) {
-                                gradient.className = "absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/60 to-slate-950/20 z-0";
-                            }
-                        }
+                        hasCustomPortrait = true;
+                        applyHeaderPhoto(photoSources[index]);
                     };
                     imgCheck.onerror = () => tryNextImage(index + 1);
                 };
@@ -1039,6 +1045,18 @@
                     matchedPhotos.push({ id: pid, ...meta });
                 }
             });
+
+            // Best Shot First: Sort photos by sharpness (crispest action shots first)
+            matchedPhotos.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
+
+            // If no custom local portrait was found, feature the athlete's sharpest action photo as banner
+            if (!hasCustomPortrait && matchedPhotos.length > 0) {
+                const bestPhoto = matchedPhotos[0];
+                const bestUrl = bestPhoto.url_l || bestPhoto.url_m;
+                if (bestUrl) {
+                    applyHeaderPhoto(bestUrl);
+                }
+            }
 
             // 8. RENDER PHOTOS SECTION
             const photosSection = document.getElementById('athlete-photos-section');

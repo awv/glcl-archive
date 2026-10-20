@@ -15,6 +15,7 @@ import subprocess
 import argparse
 from pathlib import Path
 import shutil
+from PIL import Image, ImageFilter, ImageStat
 
 FLICKR_API_KEY = os.environ.get("FLICKR_API_KEY", "")
 if not FLICKR_API_KEY:
@@ -32,6 +33,31 @@ INDEX_FILE = Path("assets/data/photo_tags.json")
 TAGGER_BIN = Path("backend_tools/glcl-tagger")
 
 ssl._create_default_https_context = ssl._create_unverified_context
+
+def calculate_subject_sharpness(img_path):
+    """
+    Computes localized subject sharpness using Laplacian edge variance.
+    Divides the frame into a 4x4 grid (16 tiles) and returns the maximum tile sharpness.
+    This protects intentional artistic bokeh (e.g. blurry foreground rocks/crowds or creamy backgrounds)
+    while catching genuine motion blur or missed focus on the subject.
+    """
+    try:
+        im = Image.open(img_path).convert("L")
+        kernel = ImageFilter.Kernel((3, 3), [0, 1, 0, 1, -4, 1, 0, 1, 0], scale=1, offset=128)
+        edges = im.filter(kernel)
+        w, h = im.size
+        grid_w, grid_h = w // 4, h // 4
+        max_var = 0.0
+        for r in range(4):
+            for c in range(4):
+                box = (c * grid_w, r * grid_h, (c + 1) * grid_w, (r + 1) * grid_h)
+                tile = edges.crop(box)
+                var = ImageStat.Stat(tile).var[0]
+                if var > max_var:
+                    max_var = var
+        return round(max_var, 1)
+    except Exception:
+        return 0.0
 
 def fetch_album_photos(photoset_id, max_photos=50):
     photos = []
@@ -75,7 +101,7 @@ def extract_album_id(val):
         val = val.split("/")[-1]
     return val
 
-def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE):
+def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE, min_sharpness=250):
     album_id = extract_album_id(album_id)
     if not TAGGER_BIN.exists():
         print("Error: backend_tools/glcl-tagger binary not found. Please compile it first.")
@@ -93,7 +119,7 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE):
 
     print(f"=================================================================")
     print(f"📸 Streaming Flickr Album: {album_id} (Limit: {limit} photos)")
-    print(f"Season: {season}")
+    print(f"Season: {season} | Min Subject Sharpness: {min_sharpness}")
     print(f"=================================================================")
 
     photos = fetch_album_photos(album_id, max_photos=limit)
@@ -149,6 +175,7 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE):
     output = proc.stdout
 
     tagged_count = 0
+    skipped_blur_count = 0
     import re
     ansi_escape = re.compile(r'\x1b\[[0-9;]*[a-zA-Z]')
 
@@ -174,6 +201,14 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE):
                 else:
                     runner_name = runner_part.split("[")[0].strip()
 
+                temp_img = temp_dir / f"photo_{pid_part}.jpg"
+                sharpness = calculate_subject_sharpness(temp_img) if temp_img.exists() else 0.0
+
+                if min_sharpness > 0 and sharpness > 0 and sharpness < min_sharpness:
+                    skipped_blur_count += 1
+                    print(f"  🟡 Photo {pid_part} skipped: blurry/low sharpness ({sharpness} < {min_sharpness})")
+                    continue
+
                 photo_obj = photo_lookup.get(pid_part, {})
                 server = photo_obj.get("server", "")
                 secret = photo_obj.get("secret", "")
@@ -188,7 +223,8 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE):
                     "server": server,
                     "secret": secret,
                     "url_m": url_m,
-                    "url_l": url_l
+                    "url_l": url_l,
+                    "sharpness": sharpness
                 }
                 for sz_key in ["url_h", "url_k", "url_3k", "url_4k"]:
                     if photo_obj.get(sz_key):
@@ -196,7 +232,7 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE):
 
                 existing_index[pid_part] = entry
                 tagged_count += 1
-                print(f"  🟢 Photo {pid_part} → Bib #{bib_part} ({runner_name} • {runner_club})")
+                print(f"  🟢 Photo {pid_part} → Bib #{bib_part} ({runner_name} • {runner_club}) [Sharpness: {sharpness}]")
             except Exception as e:
                 pass
 
@@ -208,7 +244,7 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE):
         json.dump(existing_index, f, indent=2)
 
     print(f"\n=================================================================")
-    print(f"SCAN COMPLETE: Tagged {tagged_count} photos.")
+    print(f"SCAN COMPLETE: Tagged {tagged_count} photos. (Filtered out {skipped_blur_count} blurry photos)")
     print(f"Updated index saved to: {index_file} (Total indexed: {len(existing_index)})")
     print(f"Zero local storage retained (Temporary previews deleted).")
     print(f"=================================================================\n")
@@ -219,9 +255,10 @@ def main():
     parser.add_argument("album_id", help="Flickr Album/Photoset ID (e.g. 72177720324324441)")
     parser.add_argument("--season", default="2024/2025", help="Season name for bib lookup (e.g. 2024/2025 or 2026/2027)")
     parser.add_argument("--limit", type=int, default=30, help="Maximum number of photos to scan (default 30 for PoC)")
+    parser.add_argument("--min-sharpness", type=float, default=250.0, help="Minimum subject sharpness score to index (default 250, set 0 to disable)")
     args = parser.parse_args()
 
-    scan_album(args.album_id, season=args.season, limit=args.limit)
+    scan_album(args.album_id, season=args.season, limit=args.limit, min_sharpness=args.min_sharpness)
 
 if __name__ == "__main__":
     main()

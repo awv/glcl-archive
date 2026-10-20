@@ -761,6 +761,9 @@
                     }
                 });
 
+                // Best Shot First: Sort photos by sharpness (crispest action shots first)
+                matchedPhotos.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
+
                 const photosSection = document.getElementById('club-photos-section');
                 const photosGrid = document.getElementById('club-photos-grid');
                 const photoBadge = document.getElementById('club-photo-badge');

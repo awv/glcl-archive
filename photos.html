@@ -554,6 +554,7 @@
                         p.indexedBib = meta.bib;
                         p.indexedRunner = meta.name;
                         p.indexedClub = meta.club;
+                        p.sharpness = meta.sharpness || 0;
                         p.tags = (p.tags || "") + ` bib${meta.bib} ${meta.bib} ${meta.name} ${meta.club}`;
                     }
                 });
@@ -660,6 +661,7 @@
                                 indexedBib: meta.bib,
                                 indexedRunner: meta.name,
                                 indexedClub: meta.club,
+                                sharpness: meta.sharpness || 0,
                                 tags: `bib${meta.bib} ${meta.bib} ${meta.name} ${meta.club}`
                             }));
                         }
@@ -733,6 +735,11 @@
                     const tags = (p.tags || "").toLowerCase();
                     return tags.includes(targetClub.toLowerCase()) || (p.title || "").toLowerCase().includes(targetClub.toLowerCase());
                 });
+            }
+
+            // Best Shot First: When searching for a runner, bib, or club, show crispest action shots first
+            if (activeSearchFilter.bib || activeSearchFilter.runnerName || activeSearchFilter.club) {
+                filtered.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
             }
 
             renderGrid(filtered);
