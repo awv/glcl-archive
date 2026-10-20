@@ -1110,19 +1110,12 @@
             // Best Shot First: Sort photos by sharpness (crispest action shots first)
             matchedPhotos.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
 
-            // If no custom local portrait or saved custom header was found, feature the athlete's sharpest action photo as banner
+            // Only apply a header photo if explicitly chosen by the user (or local custom portrait)
             const savedHeaderCheck = getSavedAthleteHeader();
             if (savedHeaderCheck && savedHeaderCheck.url) {
                 hasCustomPortrait = true;
                 currentHeaderPhotoId = savedHeaderCheck.photoId || '';
                 applyHeaderPhoto(savedHeaderCheck.url, savedHeaderCheck.position || 'center 25%');
-            } else if (!hasCustomPortrait && matchedPhotos.length > 0) {
-                const bestPhoto = matchedPhotos[0];
-                const bestUrl = bestPhoto.url_l || bestPhoto.url_m;
-                if (bestUrl) {
-                    currentHeaderPhotoId = bestPhoto.id;
-                    applyHeaderPhoto(bestUrl, 'center 25%');
-                }
             }
 
             // 8. RENDER PHOTOS SECTION
@@ -1689,18 +1682,7 @@
 
                     const checkLocal = (idx) => {
                         if (idx >= photoSources.length) {
-                            if (matchedPhotos.length > 0) {
-                                const best = matchedPhotos[0];
-                                const bestUrl = best.url_l || best.url_m;
-                                if (bestUrl) {
-                                    applyHeaderPhoto(bestUrl, 'center 25%');
-                                    updatePickerPreview(bestUrl, 'center 25%');
-                                    renderPickerPhotosGrid();
-                                    showToast('Reset to sharpest action photo');
-                                    return;
-                                }
-                            }
-                            // Reset to default CSS pattern
+                            // Reset to default CSS pattern (no automatic photo assignment)
                             const header = document.getElementById('athlete-header-container');
                             const mesh = document.getElementById('header-mesh');
                             const glow = document.getElementById('header-glow');
