@@ -9,6 +9,8 @@
     <!-- Combined corrections data overlay mapping profile configurations -->
     <script src="assets/js/corrections.js"></script>
     <script src="site-layout.js"></script>
+    <!-- JSZip for Client-Side in-browser ZIP Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -215,8 +217,12 @@
                     <span id="athlete-photo-badge" class="bg-brand-500/10 border border-brand-500/30 text-brand-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded-full">0 Photos</span>
                 </div>
                 <div class="flex items-center gap-3">
+                    <button id="athlete-download-zip-btn" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-brand-600 hover:bg-brand-500 text-white transition-all shadow-lg shadow-brand-500/20 border border-brand-400/30">
+                        <span>📦</span>
+                        <span>Download All Photos (ZIP)</span>
+                    </button>
                     <a id="athlete-all-photos-link" href="#" class="text-xs font-mono font-bold text-brand-400 hover:text-brand-300 transition flex items-center gap-1">
-                        <span>Search full Flickr archive</span>
+                        <span>Flickr Gallery</span>
                         <span>→</span>
                     </a>
                 </div>
@@ -986,9 +992,9 @@
                     }
 
                     if (photosGrid) {
-                        photosGrid.innerHTML = matchedPhotos.map(photo => {
+                        photosGrid.innerHTML = matchedPhotos.map((photo, idx) => {
                             const imgThumb = photo.url_m || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg` : '');
-                            const imgLarge = photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : imgThumb);
+                            const imgLarge = photo.url_l || photo.url_k || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : imgThumb);
                             
                             let raceTitle = 'GLCL Race';
                             if (photo.album_id && fixtureAlbums[photo.album_id]) {
@@ -997,26 +1003,36 @@
 
                             return `
                                 <div class="group relative bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg hover:border-brand-500/60 transition-all duration-300">
-                                    <div class="aspect-[4/3] bg-slate-950 overflow-hidden relative cursor-pointer">
-                                        <img src="${imgThumb}" alt="${targetAthlete}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                    <div class="aspect-[4/3] bg-slate-950 overflow-hidden relative cursor-pointer athlete-photo-card" data-idx="${idx}">
+                                        <img src="${imgThumb}" alt="${targetAthlete}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none">
                                         <div class="absolute top-2 left-2 z-10 pointer-events-none">
                                             <span class="bg-brand-600/90 backdrop-blur-md text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow border border-brand-400/30">
                                                 Bib #${photo.bib}
                                             </span>
                                         </div>
-                                        <a href="photos.html?album=${photo.album_id || ''}&bib=${photo.bib}" class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2.5">
-                                            <span class="text-[9px] font-mono text-slate-200 font-bold bg-slate-900/90 px-2 py-1 rounded border border-slate-700">View in Gallery →</span>
-                                        </a>
+                                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2.5 pointer-events-none">
+                                            <span class="text-[9px] font-mono text-slate-200 font-bold bg-slate-900/90 px-2 py-1 rounded border border-slate-700">Click to Expand</span>
+                                        </div>
                                     </div>
                                     <div class="p-2.5 flex items-center justify-between text-xs font-mono">
                                         <span class="text-slate-400 truncate max-w-[110px] text-[11px]">${raceTitle}</span>
-                                        <a href="${imgLarge}" download="GLCL_${photo.id}.jpg" target="_blank" class="text-brand-400 hover:text-brand-300 p-1" title="Download High-Res Original">
-                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                                        </a>
+                                        <div class="flex items-center gap-2">
+                                            <a href="photos.html?album=${photo.album_id || ''}&bib=${photo.bib}" class="text-slate-400 hover:text-slate-200 text-[10px] hover:underline" title="View Album">Album →</a>
+                                            <a href="${imgLarge}" download="GLCL_${photo.id}.jpg" target="_blank" class="text-brand-400 hover:text-brand-300 p-1" title="Download High-Res Original">
+                                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             `;
                         }).join('');
+
+                        photosGrid.querySelectorAll('.athlete-photo-card').forEach(card => {
+                            card.addEventListener('click', () => {
+                                const idx = parseInt(card.getAttribute('data-idx'), 10);
+                                openAthleteLightbox(idx);
+                            });
+                        });
                     }
                     photosSection.classList.remove('hidden');
                 } else {
@@ -1111,9 +1127,227 @@
                     `);
                 }
             }
+
+            // 9. LIGHTBOX CONTROLLER
+            let currentAthletePhotoIndex = 0;
+            const lightboxModal = document.getElementById('lightbox-modal');
+            const modalImage = document.getElementById('modal-image');
+            const modalCounter = document.getElementById('modal-counter');
+            const modalRunnerInfo = document.getElementById('modal-runner-info');
+            const modalDirectDownload = document.getElementById('modal-direct-download');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+            const modalPrevBtn = document.getElementById('modal-prev-btn');
+            const modalNextBtn = document.getElementById('modal-next-btn');
+
+            const openAthleteLightbox = (index) => {
+                if (index < 0 || index >= matchedPhotos.length) return;
+                currentAthletePhotoIndex = index;
+                updateAthleteLightboxContent();
+                lightboxModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeAthleteLightbox = () => {
+                lightboxModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            };
+
+            const updateAthleteLightboxContent = () => {
+                const photo = matchedPhotos[currentAthletePhotoIndex];
+                if (!photo) return;
+
+                const highRes = photo.url_l || photo.url_k || photo.url_m || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
+                modalImage.src = highRes;
+                modalCounter.textContent = `Photo ${currentAthletePhotoIndex + 1} of ${matchedPhotos.length}`;
+                modalDirectDownload.href = highRes;
+                modalDirectDownload.download = `GLCL_${photo.id}.jpg`;
+
+                let raceTitle = 'GLCL Race';
+                if (photo.album_id && fixtureAlbums[photo.album_id]) {
+                    raceTitle = fixtureAlbums[photo.album_id].venue || fixtureAlbums[photo.album_id].title || 'GLCL Race';
+                }
+
+                modalRunnerInfo.innerHTML = `Bib #${photo.bib} • <span class="text-white">${targetAthlete}</span> (${photo.club || 'Parc Bryn Bach RC'}) • <span class="text-slate-400 font-normal">${raceTitle}</span>`;
+            };
+
+            if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeAthleteLightbox);
+            if (modalPrevBtn) modalPrevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (currentAthletePhotoIndex > 0) {
+                    currentAthletePhotoIndex--;
+                    updateAthleteLightboxContent();
+                }
+            });
+            if (modalNextBtn) modalNextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (currentAthletePhotoIndex < matchedPhotos.length - 1) {
+                    currentAthletePhotoIndex++;
+                    updateAthleteLightboxContent();
+                }
+            });
+            if (lightboxModal) {
+                lightboxModal.addEventListener('click', (e) => {
+                    if (e.target === lightboxModal) closeAthleteLightbox();
+                });
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (!lightboxModal || lightboxModal.classList.contains('hidden')) return;
+                if (e.key === 'Escape') closeAthleteLightbox();
+                else if (e.key === 'ArrowLeft') {
+                    if (currentAthletePhotoIndex > 0) {
+                        currentAthletePhotoIndex--;
+                        updateAthleteLightboxContent();
+                    }
+                } else if (e.key === 'ArrowRight') {
+                    if (currentAthletePhotoIndex < matchedPhotos.length - 1) {
+                        currentAthletePhotoIndex++;
+                        updateAthleteLightboxContent();
+                    }
+                }
+            });
+
+            // 10. CLIENT-SIDE ZIP DOWNLOAD CONTROLLER
+            const zipDownloadBtn = document.getElementById('athlete-download-zip-btn');
+            const zipModal = document.getElementById('zip-progress-modal');
+            const zipBar = document.getElementById('zip-progress-bar');
+            const zipStatus = document.getElementById('zip-progress-status');
+            const zipCancelBtn = document.getElementById('zip-cancel-btn');
+            let zipAbortController = null;
+
+            const downloadAthleteZip = async () => {
+                if (!matchedPhotos || matchedPhotos.length === 0) return;
+
+                zipModal.classList.remove('hidden');
+                zipBar.style.width = '0%';
+                zipStatus.textContent = `Starting download of ${matchedPhotos.length} photos...`;
+
+                zipAbortController = new AbortController();
+                const zip = new JSZip();
+                const total = matchedPhotos.length;
+                let completed = 0;
+
+                try {
+                    for (let i = 0; i < total; i++) {
+                        if (zipAbortController.signal.aborted) throw new Error('Cancelled by user');
+
+                        const photo = matchedPhotos[i];
+                        const imgUrl = photo.url_l || photo.url_k || photo.url_m || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
+                        const filename = `GLCL_${photo.bib ? 'Bib' + photo.bib + '_' : ''}${photo.id}.jpg`;
+
+                        zipStatus.textContent = `Downloading photo ${i + 1} of ${total}...`;
+                        const res = await fetch(imgUrl, { signal: zipAbortController.signal });
+                        if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+                        const blob = await res.blob();
+                        zip.file(filename, blob);
+
+                        completed++;
+                        const pct = Math.round((completed / total) * 85);
+                        zipBar.style.width = `${pct}%`;
+                    }
+
+                    zipStatus.textContent = 'Compiling ZIP package...';
+                    const zipBlob = await zip.generateAsync({ type: 'blob' }, (metadata) => {
+                        const pct = Math.round(85 + (metadata.percent * 0.15));
+                        zipBar.style.width = `${pct}%`;
+                    });
+
+                    const safeAthleteName = targetAthlete.replace(/[^a-zA-Z0-9_-]/g, '_');
+                    const downloadUrl = URL.createObjectURL(zipBlob);
+                    const a = document.createElement('a');
+                    a.href = downloadUrl;
+                    a.download = `GLCL_${safeAthleteName}_Photos.zip`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(downloadUrl);
+
+                    zipStatus.textContent = 'Complete! ZIP downloaded.';
+                    setTimeout(() => zipModal.classList.add('hidden'), 1200);
+
+                } catch (err) {
+                    if (err.message === 'Cancelled by user') {
+                        zipStatus.textContent = 'Download cancelled';
+                    } else {
+                        console.error('ZIP generation error:', err);
+                        zipStatus.textContent = 'Error downloading photos. Please try individual photos.';
+                    }
+                    setTimeout(() => zipModal.classList.add('hidden'), 2000);
+                }
+            };
+
+            if (zipDownloadBtn) {
+                if (matchedPhotos.length === 0) {
+                    zipDownloadBtn.classList.add('hidden');
+                } else {
+                    zipDownloadBtn.addEventListener('click', downloadAthleteZip);
+                }
+            }
+            if (zipCancelBtn) {
+                zipCancelBtn.addEventListener('click', () => {
+                    if (zipAbortController) zipAbortController.abort();
+                });
+            }
         });
     </script>
-    
+    <div id="lightbox-modal" class="hidden fixed inset-0 z-[9999] bg-slate-950/95 backdrop-blur-md flex flex-col justify-between p-4 md:p-6" role="dialog" aria-modal="true">
+        <!-- Top Toolbar -->
+        <div class="flex items-center justify-between z-10">
+            <div class="space-y-0.5">
+                <span id="modal-counter" class="text-[11px] font-mono text-slate-400">Photo 1 of 10</span>
+                <div id="modal-runner-info" class="text-xs font-bold text-brand-400 uppercase tracking-wider"></div>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <a id="modal-direct-download" href="#" target="_blank" download class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 text-xs font-mono font-bold px-3 py-1.5 rounded-lg transition inline-flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                    Download High-Res
+                </a>
+                <button id="modal-close-btn" class="p-2 text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 rounded-lg border border-slate-800 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Center Image Viewport -->
+        <div class="relative flex-grow flex items-center justify-center my-4 overflow-hidden">
+            <button id="modal-prev-btn" class="absolute left-2 md:left-6 z-20 p-3 rounded-full bg-slate-900/80 hover:bg-brand-600 text-white border border-slate-700 transition" aria-label="Previous Photo">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+
+            <img id="modal-image" src="" alt="GLCL Race Action Photo" class="max-h-[82vh] max-w-full object-contain rounded shadow-2xl transition duration-200 select-none">
+
+            <button id="modal-next-btn" class="absolute right-2 md:right-6 z-20 p-3 rounded-full bg-slate-900/80 hover:bg-brand-600 text-white border border-slate-700 transition" aria-label="Next Photo">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" /></svg>
+            </button>
+        </div>
+
+        <!-- Bottom Caption -->
+        <div class="text-center font-mono text-[11px] text-slate-500">
+            All photos © Robert Gale (Parc Bryn Bach RC). Free for personal running use.
+        </div>
+    </div>
+
+    <!-- ZIP DOWNLOAD PROGRESS MODAL -->
+    <div id="zip-progress-modal" class="hidden fixed inset-0 z-[9999] bg-slate-950/90 backdrop-blur flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-md w-full shadow-2xl text-center space-y-4">
+            <div class="w-12 h-12 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded-full flex items-center justify-center mx-auto text-xl">
+                📦
+            </div>
+            <div>
+                <h4 class="text-base font-black text-slate-100 uppercase tracking-tight">Creating ZIP Download</h4>
+                <p id="zip-progress-status" class="text-xs font-mono text-slate-400 mt-1">Preparing photos...</p>
+            </div>
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-950 rounded-full h-2.5 overflow-hidden border border-slate-800">
+                <div id="zip-progress-bar" class="bg-brand-500 h-full w-0 transition-all duration-150"></div>
+            </div>
+            <button id="zip-cancel-btn" class="text-xs font-mono text-slate-500 hover:text-slate-300 transition">
+                Cancel Download
+            </button>
+        </div>
+    </div>
+
     <!-- INJECTED GLOBAL FOOTER CONTAINER -->
     <div id="global-footer"></div>
 </body>
