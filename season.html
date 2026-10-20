@@ -138,6 +138,8 @@
                         item.name = `${cleanFirstName} ${cleanSurname}`.trim();
                         item.bib = '-';
                         raw = item.name;
+                    } else if (!rawBib || rawBib === '0') {
+                        item.bib = '-';
                     }
 
                     // 3. Repair surnames in club field

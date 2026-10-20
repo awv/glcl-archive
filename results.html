@@ -254,6 +254,8 @@
                     updated.name = `${cleanFirstName} ${cleanSurname}`.trim();
                     updated.bib = '-';
                     raw = updated.name;
+                } else if (!rawBib || rawBib === '0') {
+                    updated.bib = '-';
                 }
 
                 // Repair surnames in club field
