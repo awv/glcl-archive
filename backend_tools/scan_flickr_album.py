@@ -25,16 +25,19 @@ ssl._create_default_https_context = ssl._create_unverified_context
 def fetch_album_photos(photoset_id, max_photos=50):
     photos = []
     page = 1
-    per_page = min(max_photos, 100)
+    # Maximize page size (Flickr allows up to 500 per call) to minimize API query quota
+    per_page = min(max_photos, 500) if (max_photos and max_photos > 0) else 500
     
-    while len(photos) < max_photos:
+    while True:
+        if max_photos and max_photos > 0 and len(photos) >= max_photos:
+            break
         url = (
             f"https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos"
             f"&api_key={FLICKR_API_KEY}&photoset_id={photoset_id}"
             f"&extras=url_m,url_l,url_h,url_k,url_3k,url_4k,tags&per_page={per_page}&page={page}&format=json&nojsoncallback=1"
         )
         try:
-            req = urllib.request.urlopen(url)
+            req = urllib.request.urlopen(url, timeout=15)
             data = json.loads(req.read().decode('utf-8'))
         except Exception as e:
             print(f"Error fetching album metadata: {e}")
@@ -51,7 +54,7 @@ def fetch_album_photos(photoset_id, max_photos=50):
             break
         page += 1
 
-    return photos[:max_photos]
+    return photos if (not max_photos or max_photos <= 0) else photos[:max_photos]
 
 def extract_album_id(val):
     if not val:
@@ -111,11 +114,14 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE):
         if not img_url:
             return False
         temp_img = temp_dir / f"photo_{pid}.jpg"
-        try:
-            urllib.request.urlretrieve(img_url, temp_img)
-            return True
-        except Exception:
-            return False
+        for attempt in range(2):
+            try:
+                urllib.request.urlretrieve(img_url, temp_img)
+                return True
+            except Exception:
+                import time
+                time.sleep(0.3)
+        return False
 
     with ThreadPoolExecutor(max_workers=8) as executor:
         futures = [executor.submit(dl_task, p) for p in to_download]
