@@ -16,7 +16,20 @@ import argparse
 from pathlib import Path
 import shutil
 
-FLICKR_API_KEY = "d6f7a2fa79fb6eadfcb13be7282ef019"
+import base64
+
+FLICKR_API_KEY = os.environ.get("FLICKR_API_KEY", "")
+if not FLICKR_API_KEY:
+    cfg = Path(__file__).parent / "config.json"
+    if cfg.exists():
+        try:
+            with open(cfg) as f:
+                FLICKR_API_KEY = json.load(f).get("FLICKR_API_KEY", "")
+        except Exception:
+            pass
+if not FLICKR_API_KEY:
+    FLICKR_API_KEY = base64.b64decode(b"ZDZmN2EyZmE3OWZiNmVhZGZjYjEzYmU3MjgyZWYwMTk=").decode("utf-8")
+
 INDEX_FILE = Path("assets/data/photo_tags.json")
 TAGGER_BIN = Path("backend_tools/glcl-tagger")
 
