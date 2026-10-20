@@ -216,6 +216,100 @@ func writeTagsToJPEG(url: URL, tags: [String]) -> Bool {
     }
 }
 
+// MARK: - Club Vest Color Validation
+func sampleVestColor(cgImage: CGImage, bibBBox: CGRect) -> (r: CGFloat, g: CGFloat, b: CGFloat)? {
+    // In Vision normalized coordinates: y=0 is bottom, y=1 is top
+    let imgW = CGFloat(cgImage.width)
+    let imgH = CGFloat(cgImage.height)
+    
+    // Chest area is directly above the bib
+    let vestNormY = bibBBox.origin.y + bibBBox.size.height
+    let vestNormH = min(bibBBox.size.height * 1.5, 0.98 - vestNormY)
+    guard vestNormH > 0.01 else { return nil }
+    
+    let vestNormX = max(0.0, bibBBox.origin.x - bibBBox.size.width * 0.2)
+    let vestNormW = min(1.0 - vestNormX, bibBBox.size.width * 1.4)
+    guard vestNormW > 0.01 else { return nil }
+    
+    // Convert to CGImage pixel coordinates (where y=0 is top)
+    let pixelX = Int(vestNormX * imgW)
+    let pixelY = Int((1.0 - (vestNormY + vestNormH)) * imgH)
+    let pixelW = Int(vestNormW * imgW)
+    let pixelH = Int(vestNormH * imgH)
+    
+    guard pixelW > 2 && pixelH > 2 else { return nil }
+    guard let cropped = cgImage.cropping(to: CGRect(x: pixelX, y: pixelY, width: pixelW, height: pixelH)) else {
+        return nil
+    }
+    
+    // Bilinear downsample into a 1x1 context for average RGB
+    let colorSpace = CGColorSpaceCreateDeviceRGB()
+    var pixelData = [UInt8](repeating: 0, count: 4)
+    guard let context = CGContext(
+        data: &pixelData,
+        width: 1,
+        height: 1,
+        bitsPerComponent: 8,
+        bytesPerRow: 4,
+        space: colorSpace,
+        bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+    ) else {
+        return nil
+    }
+    
+    context.interpolationQuality = .medium
+    context.draw(cropped, in: CGRect(x: 0, y: 0, width: 1, height: 1))
+    
+    return (CGFloat(pixelData[0]), CGFloat(pixelData[1]), CGFloat(pixelData[2]))
+}
+
+func isColorCompatibleWithClub(r: CGFloat, g: CGFloat, b: CGFloat, club: String) -> Bool {
+    let norm = club.lowercased()
+    
+    // Chepstow Harriers: Yellow / Gold (Reject strong red PBB or strong orange Lliswerry)
+    if norm.contains("chepstow") {
+        let isStrongRed = (r > 130 && r > g * 1.5 && r > b * 1.5)
+        let isStrongOrange = (r > 150 && g > 70 && g < 140 && b < 70)
+        let isStrongGreen = (g > 120 && g > r * 1.3 && g > b * 1.3)
+        if isStrongRed || isStrongOrange || isStrongGreen {
+            return false
+        }
+        return true
+    }
+    
+    // Parc Bryn Bach RC: Red & Black (Reject strong yellow Chepstow or strong blue Caerleon)
+    if norm.contains("bryn bach") || norm.contains("pbb") {
+        let isStrongYellow = (r > 140 && g > 130 && b < 80)
+        let isStrongGreen = (g > 120 && g > r * 1.3 && g > b * 1.3)
+        let isStrongBlue = (b > 120 && b > r * 1.3 && b > g * 1.3)
+        if isStrongYellow || isStrongGreen || isStrongBlue {
+            return false
+        }
+        return true
+    }
+    
+    // Lliswerry Runners: Orange & Royal Blue (Reject strong green Fairwater)
+    if norm.contains("lliswerry") {
+        let isStrongGreen = (g > 120 && g > r * 1.3 && g > b * 1.3)
+        if isStrongGreen {
+            return false
+        }
+        return true
+    }
+    
+    // Fairwater Runners: Green & White (Reject strong red or bright yellow)
+    if norm.contains("fairwater") {
+        let isStrongRed = (r > 130 && r > g * 1.5 && r > b * 1.5)
+        let isStrongYellow = (r > 160 && g > 150 && b < 70)
+        if isStrongRed || isStrongYellow {
+            return false
+        }
+        return true
+    }
+    
+    return true
+}
+
 // MARK: - OCR Scanner
 func scanPhoto(url: URL, activeBibMap: [String: RunnerRecord], lifetimeBibMap: [String: RunnerRecord], minConfidence: Float) -> MatchResult? {
     guard let source = CGImageSourceCreateWithURL(url as CFURL, nil),
@@ -223,13 +317,13 @@ func scanPhoto(url: URL, activeBibMap: [String: RunnerRecord], lifetimeBibMap: [
         return nil
     }
     
-    var detectedTokens: [(text: String, conf: Float)] = []
+    var detectedTokens: [(text: String, conf: Float, bbox: CGRect)] = []
     
     let request = VNRecognizeTextRequest { req, err in
         guard let observations = req.results as? [VNRecognizedTextObservation] else { return }
         for obs in observations {
             if let top = obs.topCandidates(1).first {
-                detectedTokens.append((top.string, top.confidence))
+                detectedTokens.append((top.string, top.confidence, obs.boundingBox))
             }
         }
     }
@@ -255,8 +349,34 @@ func scanPhoto(url: URL, activeBibMap: [String: RunnerRecord], lifetimeBibMap: [
                     continue
                 }
                 
+                let isShortBib = (numStr.count <= 2)
+                
+                // Spatial & Size Constraints on 1- and 2-digit numbers to eliminate background clutter
+                if isShortBib {
+                    let area = token.bbox.width * token.bbox.height
+                    // Must not be a tiny distant speck or watch
+                    if area < 0.0006 || token.bbox.height < 0.016 {
+                        continue
+                    }
+                    // Must be in the central/torso zone, not extreme borders
+                    if token.bbox.origin.y < 0.06 || token.bbox.origin.y > 0.90 || token.bbox.origin.x < 0.05 || token.bbox.origin.x > 0.95 {
+                        continue
+                    }
+                    // Higher confidence required for short numbers
+                    if token.conf < 0.85 {
+                        continue
+                    }
+                }
+                
+                // Optional Vest Color Check: Sample torso above bib
+                let vestColor = sampleVestColor(cgImage: cgImage, bibBBox: token.bbox)
+                
                 // Tier 1: Active Season Runner match (Highest Priority)
                 if let runner = activeBibMap[numStr] {
+                    if let (r, g, b) = vestColor, !isColorCompatibleWithClub(r: r, g: g, b: b, club: runner.club) {
+                        // Contradiction: runner kit color does not match predicted club!
+                        continue
+                    }
                     if bestMatch == nil || token.conf > bestMatch!.conf || (bestMatch!.runner?.isLifetimeFallback == true) {
                         bestMatch = (numStr, runner, token.conf)
                         continue
@@ -273,6 +393,9 @@ func scanPhoto(url: URL, activeBibMap: [String: RunnerRecord], lifetimeBibMap: [
                 
                 // Tier 3: Ungrounded fallback (Only if no active season roster was provided)
                 if let runner = lifetimeBibMap[numStr] {
+                    if let (r, g, b) = vestColor, !isColorCompatibleWithClub(r: r, g: g, b: b, club: runner.club) {
+                        continue
+                    }
                     if bestMatch == nil || (token.conf > bestMatch!.conf && bestMatch!.runner?.isLifetimeFallback == true) {
                         bestMatch = (numStr, runner, token.conf)
                         continue

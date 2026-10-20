@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLCL Photo Archive Audit & Quality Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a'
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="data.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .photo-card-removed {
+            opacity: 0.25;
+            filter: grayscale(100%);
+            pointer-events: none;
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body class="bg-[#030712] text-slate-100 min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- TOP NAVIGATION & STATUS BAR -->
+    <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80 px-4 lg:px-8 py-3.5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <a href="photos.html" class="text-xs font-mono font-bold text-slate-400 hover:text-white transition flex items-center gap-1">
+                    ← Back to Photos
+                </a>
+                <span class="text-slate-700">|</span>
+                <div class="flex items-center gap-2">
+                    <span class="text-lg">🛡️</span>
+                    <h1 class="text-sm font-black uppercase tracking-wider text-slate-100">
+                        GLCL Photo Audit <span class="text-brand-400 text-xs font-mono font-normal">v1.0</span>
+                    </h1>
+                </div>
+                <span id="active-count-badge" class="text-xs font-mono font-bold text-amber-300 bg-amber-400/10 border border-amber-400/30 px-2 py-0.5 rounded">
+                    Loading...
+                </span>
+            </div>
+
+            <!-- ACTION CONTROLS & SAVE BUTTONS -->
+            <div class="flex items-center gap-2.5 w-full md:w-auto justify-end">
+                <div id="changes-indicator" class="hidden text-xs font-mono font-bold text-amber-400 bg-amber-950/60 border border-amber-500/30 px-2.5 py-1 rounded-lg flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                    <span id="changes-count">0 changes pending</span>
+                </div>
+                <button id="export-json-btn" class="bg-brand-500 hover:bg-brand-400 text-slate-950 text-xs font-mono font-black px-3.5 py-1.5 rounded-lg transition shadow-md flex items-center gap-1.5 cursor-pointer">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+                    <span>Save photo_tags.json</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTROL PANEL / FILTERS -->
+    <section class="bg-slate-900/50 border-b border-slate-800/60 px-4 lg:px-8 py-4">
+        <div class="max-w-7xl mx-auto space-y-3">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                <!-- Search Input -->
+                <div class="relative md:col-span-2">
+                    <input type="text" id="filter-search" placeholder="Search runner name, bib #, or photo ID..." 
+                           class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs font-mono text-slate-200 placeholder-slate-500 focus:outline-none focus:border-brand-500 transition shadow-inner">
+                    <button id="clear-search-btn" class="hidden absolute right-3 top-2 text-slate-500 hover:text-slate-300 text-xs">✕</button>
+                </div>
+
+                <!-- Album Dropdown -->
+                <div>
+                    <select id="filter-album" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs font-mono text-slate-300 focus:outline-none focus:border-brand-500 transition">
+                        <option value="">All Albums (Archive)</option>
+                    </select>
+                </div>
+
+                <!-- Club Dropdown -->
+                <div>
+                    <select id="filter-club" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs font-mono text-slate-300 focus:outline-none focus:border-brand-500 transition">
+                        <option value="">All Member Clubs</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- QUICK FILTER PRESETS -->
+            <div class="flex items-center gap-2 flex-wrap pt-1 text-xs font-mono">
+                <span class="text-slate-500 text-[11px] uppercase tracking-wider font-bold">Quick Presets:</span>
+                <button type="button" data-preset="all" class="preset-btn active bg-slate-800 text-slate-200 border border-slate-700 px-2.5 py-1 rounded-lg hover:border-slate-500 transition">
+                    All Photos
+                </button>
+                <button type="button" data-preset="short-bibs" class="preset-btn bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded-lg hover:bg-amber-500/20 transition flex items-center gap-1">
+                    <span>⚠️ 1 & 2-Digit Bibs</span>
+                    <span class="opacity-60">(Clutter Risk)</span>
+                </button>
+                <button type="button" data-preset="low-sharpness" class="preset-btn bg-rose-500/10 text-rose-300 border border-rose-500/30 px-2.5 py-1 rounded-lg hover:bg-rose-500/20 transition flex items-center gap-1">
+                    <span>🔴 Low Sharpness</span>
+                    <span class="opacity-60">(&lt; 350)</span>
+                </button>
+                <button type="button" data-preset="unregistered" class="preset-btn bg-slate-800 text-slate-400 border border-slate-700 px-2.5 py-1 rounded-lg hover:text-slate-200 transition">
+                    Unmatched Bibs
+                </button>
+                <div class="ml-auto text-[11px] text-slate-500" id="filter-results-stats">
+                    Showing 0 of 0 photos
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN GRID CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 lg:p-8">
+        <div id="audit-loader" class="py-24 text-center space-y-3">
+            <div class="w-8 h-8 border-2 border-brand-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+            <p class="text-xs font-mono text-slate-400">Loading GLCL photo dataset...</p>
+        </div>
+
+        <div id="audit-grid" class="hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5">
+            <!-- Dynamically populated photo cards -->
+        </div>
+
+        <div id="audit-empty" class="hidden py-24 text-center space-y-2 border border-dashed border-slate-800 rounded-2xl bg-slate-950/40">
+            <div class="text-3xl">🔍</div>
+            <h3 class="text-sm font-bold text-slate-300">No photos match the selected criteria</h3>
+            <p class="text-xs text-slate-500 font-mono">Try adjusting your search query, album selector, or preset buttons.</p>
+        </div>
+    </main>
+
+    <!-- REASSIGN RUNNER MODAL -->
+    <div id="reassign-modal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-5 space-y-4 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="space-y-0.5">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider">Reassign Photo</h3>
+                    <p id="reassign-photo-id-label" class="text-[11px] font-mono text-slate-400">Photo #</p>
+                </div>
+                <button id="reassign-close-btn" class="p-1.5 text-slate-400 hover:text-white rounded-lg bg-slate-800 transition">✕</button>
+            </div>
+
+            <div class="space-y-3 text-xs font-mono">
+                <div>
+                    <label class="block text-slate-400 mb-1">Runner Name</label>
+                    <input type="text" id="reassign-name-input" list="runners-datalist" placeholder="e.g. Phillip MATTHEWS" 
+                           class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand-500">
+                    <datalist id="runners-datalist"></datalist>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-slate-400 mb-1">Bib Number</label>
+                        <input type="text" id="reassign-bib-input" placeholder="e.g. 732" 
+                               class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand-500">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1">Club</label>
+                        <select id="reassign-club-select" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand-500">
+                            <option value="">Select Club...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-800 text-xs font-mono">
+                <button id="reassign-cancel-btn" class="px-3 py-1.5 text-slate-400 hover:text-slate-200 transition">Cancel</button>
+                <button id="reassign-save-btn" class="bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold px-4 py-1.5 rounded-lg transition shadow">Apply Reassignment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLIENT SCRIPT -->
+    <script>
+    (() => {
+        let photoTags = {};
+        let fixtureAlbums = {};
+        let originalPhotoTags = {};
+        let pendingCorrections = {}; // pid -> { action: 'delete' | 'update', data: ... }
+        let activePreset = 'all';
+
+        const auditLoader = document.getElementById('audit-loader');
+        const auditGrid = document.getElementById('audit-grid');
+        const auditEmpty = document.getElementById('audit-empty');
+        const activeCountBadge = document.getElementById('active-count-badge');
+        const filterSearch = document.getElementById('filter-search');
+        const clearSearchBtn = document.getElementById('clear-search-btn');
+        const filterAlbum = document.getElementById('filter-album');
+        const filterClub = document.getElementById('filter-club');
+        const filterResultsStats = document.getElementById('filter-results-stats');
+        const exportJsonBtn = document.getElementById('export-json-btn');
+        const changesIndicator = document.getElementById('changes-indicator');
+        const changesCount = document.getElementById('changes-count');
+        const runnersDatalist = document.getElementById('runners-datalist');
+        const reassignModal = document.getElementById('reassign-modal');
+        const reassignPhotoIdLabel = document.getElementById('reassign-photo-id-label');
+        const reassignNameInput = document.getElementById('reassign-name-input');
+        const reassignBibInput = document.getElementById('reassign-bib-input');
+        const reassignClubSelect = document.getElementById('reassign-club-select');
+        const reassignCloseBtn = document.getElementById('reassign-close-btn');
+        const reassignCancelBtn = document.getElementById('reassign-cancel-btn');
+        const reassignSaveBtn = document.getElementById('reassign-save-btn');
+
+        let currentReassignPid = null;
+
+        const CLUBS = [
+            "Caerleon Running Club",
+            "Chepstow Harriers",
+            "Fairwater Runners",
+            "Griffithstown Harriers",
+            "Islwyn RC",
+            "Lliswerry Runners",
+            "Parc Bryn Bach RC",
+            "Pont-Y-Pwl & District Runners",
+            "Spirit Of Monmouth RC"
+        ];
+
+        // 1. INITIALIZE DATA
+        const init = async () => {
+            try {
+                // Populate club selects
+                CLUBS.forEach(c => {
+                    const opt1 = document.createElement('option');
+                    opt1.value = c;
+                    opt1.textContent = c;
+                    filterClub.appendChild(opt1);
+
+                    const opt2 = document.createElement('option');
+                    opt2.value = c;
+                    opt2.textContent = c;
+                    reassignClubSelect.appendChild(opt2);
+                });
+
+                // Populate runners datalist from data.js
+                if (window.glclResults) {
+                    const uniqueNames = Array.from(new Set(window.glclResults.map(r => r.name).filter(Boolean))).sort();
+                    uniqueNames.forEach(name => {
+                        const opt = document.createElement('option');
+                        opt.value = name;
+                        runnersDatalist.appendChild(opt);
+                    });
+                }
+
+                // Load albums
+                const albRes = await fetch('assets/data/fixture_photo_albums.json');
+                if (albRes.ok) {
+                    fixtureAlbums = await albRes.json();
+                    const uniqueAlbums = new Map();
+                    Object.values(fixtureAlbums).forEach(a => {
+                        if (a && a.album_id && !uniqueAlbums.has(a.album_id)) {
+                            uniqueAlbums.set(a.album_id, a);
+                        }
+                    });
+                    Array.from(uniqueAlbums.values()).forEach(a => {
+                        const opt = document.createElement('option');
+                        opt.value = a.album_id;
+                        opt.textContent = `${a.title || a.venue || a.album_id} (${a.season || ''})`;
+                        filterAlbum.appendChild(opt);
+                    });
+                }
+
+                // Load photo tags
+                const tagsRes = await fetch('assets/data/photo_tags.json');
+                if (tagsRes.ok) {
+                    photoTags = await tagsRes.json();
+                    originalPhotoTags = JSON.parse(JSON.stringify(photoTags));
+                }
+
+                activeCountBadge.textContent = `${Object.keys(photoTags).length.toLocaleString()} Photos`;
+                auditLoader.classList.add('hidden');
+                auditGrid.classList.remove('hidden');
+
+                // Check URL params
+                const params = new URLSearchParams(window.location.search);
+                if (params.get('album')) filterAlbum.value = params.get('album');
+                if (params.get('club')) filterClub.value = params.get('club');
+                if (params.get('runner')) filterSearch.value = params.get('runner');
+                if (params.get('preset')) activePreset = params.get('preset');
+
+                renderFilteredGrid();
+
+            } catch (err) {
+                console.error("Audit initialization error:", err);
+                auditLoader.innerHTML = `<p class="text-xs font-mono text-rose-400">Error loading photo data: ${err.message}</p>`;
+            }
+        };
+
+        // 2. FILTER LOGIC
+        const getFilteredEntries = () => {
+            const query = (filterSearch.value || '').toLowerCase().trim();
+            const albumId = filterAlbum.value;
+            const club = filterClub.value.toLowerCase();
+
+            return Object.entries(photoTags).filter(([pid, p]) => {
+                // If deleted in current session, skip from normal view
+                if (pendingCorrections[pid] && pendingCorrections[pid].action === 'delete') {
+                    return false;
+                }
+
+                // Album filter
+                if (albumId && String(p.album_id) !== String(albumId)) return false;
+
+                // Club filter
+                if (club && !(p.club || '').toLowerCase().includes(club)) return false;
+
+                // Query filter
+                if (query) {
+                    const matchPid = pid.includes(query);
+                    const matchName = (p.name || '').toLowerCase().includes(query);
+                    const matchBib = String(p.bib || '').toLowerCase() === query || String(p.bib || '') === query.replace(/^bib/i, '');
+                    if (!matchPid && !matchName && !matchBib) return false;
+                }
+
+                // Presets
+                const bibStr = String(p.bib || '').trim();
+                const sharpness = Number(p.sharpness || 0);
+
+                if (activePreset === 'short-bibs') {
+                    if (!bibStr || bibStr.length > 2) return false;
+                } else if (activePreset === 'low-sharpness') {
+                    if (sharpness === 0 || sharpness >= 350) return false;
+                } else if (activePreset === 'unregistered') {
+                    if (p.name && p.name !== 'Unregistered') return false;
+                }
+
+                return true;
+            });
+        };
+
+        // 3. RENDER GRID
+        const renderFilteredGrid = () => {
+            const entries = getFilteredEntries();
+            const total = entries.length;
+            filterResultsStats.textContent = `Showing ${total.toLocaleString()} of ${Object.keys(photoTags).length.toLocaleString()} photos`;
+
+            if (total === 0) {
+                auditGrid.innerHTML = '';
+                auditEmpty.classList.remove('hidden');
+                return;
+            }
+
+            auditEmpty.classList.add('hidden');
+
+            // Render first 200 items for instant response
+            const pageSlice = entries.slice(0, 250);
+
+            auditGrid.innerHTML = pageSlice.map(([pid, p]) => {
+                const imgThumb = p.url_m || `https://live.staticflickr.com/${p.server}/${pid}_${p.secret}_m.jpg`;
+                const imgLarge = p.url_3k || p.url_k || p.url_l || imgThumb;
+                const bib = p.bib || '-';
+                const name = p.name || 'Unregistered Runner';
+                const club = p.club || 'Independent / Unattached';
+                const sharpness = p.sharpness ? Math.round(p.sharpness) : null;
+                const albumTitle = (p.album_id && fixtureAlbums[p.album_id]?.venue) || (p.album_id && fixtureAlbums[p.album_id]?.title) || 'GLCL Race';
+
+                const isShortBib = bib.length > 0 && bib.length <= 2;
+                const isSoft = sharpness && sharpness < 350;
+
+                return `
+                    <div class="group relative bg-slate-900 border ${isShortBib ? 'border-amber-500/30' : 'border-slate-800'} hover:border-slate-600 rounded-xl overflow-hidden flex flex-col shadow-lg transition-all" id="card-${pid}">
+                        <div class="relative aspect-4/3 bg-slate-950 overflow-hidden">
+                            <img src="${imgThumb}" alt="${name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            
+                            <!-- Badges -->
+                            <div class="absolute top-1.5 left-1.5 flex flex-col gap-1 items-start z-10 pointer-events-none">
+                                <span class="text-[10px] font-mono font-bold ${isShortBib ? 'bg-amber-400 text-slate-950' : 'bg-slate-950/85 text-brand-300 border border-brand-500/30'} px-1.5 py-0.5 rounded backdrop-blur shadow">
+                                    Bib #${bib}
+                                </span>
+                            </div>
+
+                            ${sharpness ? `
+                                <div class="absolute top-1.5 right-1.5 z-10 pointer-events-none">
+                                    <span class="text-[9px] font-mono font-bold ${isSoft ? 'bg-rose-500/80 text-white' : 'bg-slate-950/85 text-slate-300 border border-slate-700/60'} px-1.5 py-0.5 rounded backdrop-blur">
+                                        ⚡ ${sharpness}
+                                    </span>
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <!-- Info & Quick Actions -->
+                        <div class="p-2.5 flex-grow flex flex-col justify-between space-y-2 bg-slate-900/90 text-[11px] font-mono">
+                            <div class="space-y-0.5">
+                                <div class="font-bold text-slate-200 truncate" title="${name}">${name}</div>
+                                <div class="text-[10px] text-slate-400 truncate" title="${club}">${club}</div>
+                                <div class="text-[9px] text-slate-500 truncate" title="${albumTitle}">${albumTitle}</div>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="pt-1.5 border-t border-slate-800 flex items-center justify-between gap-1">
+                                <button type="button" class="btn-remove text-[10px] text-rose-400 hover:text-white hover:bg-rose-500/20 px-2 py-0.5 rounded border border-rose-500/30 transition cursor-pointer" data-pid="${pid}" title="Remove False Match">
+                                    ✕ Remove
+                                </button>
+                                <button type="button" class="btn-reassign text-[10px] text-sky-400 hover:text-white hover:bg-sky-500/20 px-2 py-0.5 rounded border border-sky-500/30 transition cursor-pointer" data-pid="${pid}" title="Reassign to Correct Runner">
+                                    ✏️ Edit
+                                </button>
+                                <a href="${imgLarge}" target="_blank" class="text-[10px] text-slate-500 hover:text-slate-300 p-0.5" title="View Full High-Res">
+                                    ↗
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            if (total > 250) {
+                auditGrid.insertAdjacentHTML('beforeend', `
+                    <div class="col-span-full text-center py-6 text-xs font-mono text-slate-500">
+                        Displaying first 250 matching photos. Narrow filters with the search box to view more specific sets.
+                    </div>
+                `);
+            }
+        };
+
+        // 4. EVENT LISTENERS
+        filterSearch.addEventListener('input', () => {
+            clearSearchBtn.classList.toggle('hidden', !filterSearch.value);
+            renderFilteredGrid();
+        });
+
+        clearSearchBtn.addEventListener('click', () => {
+            filterSearch.value = '';
+            clearSearchBtn.classList.add('hidden');
+            renderFilteredGrid();
+        });
+
+        filterAlbum.addEventListener('change', renderFilteredGrid);
+        filterClub.addEventListener('change', renderFilteredGrid);
+
+        document.querySelectorAll('.preset-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active', 'border-slate-400', 'bg-slate-700'));
+                btn.classList.add('active', 'border-slate-400', 'bg-slate-700');
+                activePreset = btn.dataset.preset;
+                renderFilteredGrid();
+            });
+        });
+
+        // Delegate Card Actions
+        document.addEventListener('click', (e) => {
+            const removeBtn = e.target.closest('.btn-remove');
+            if (removeBtn) {
+                const pid = removeBtn.dataset.pid;
+                if (!pid) return;
+
+                // Stage deletion
+                delete photoTags[pid];
+                pendingCorrections[pid] = { action: 'delete' };
+
+                const card = document.getElementById(`card-${pid}`);
+                if (card) {
+                    card.style.opacity = '0';
+                    setTimeout(() => card.remove(), 150);
+                }
+
+                updatePendingIndicator();
+                return;
+            }
+
+            const reassignBtn = e.target.closest('.btn-reassign');
+            if (reassignBtn) {
+                const pid = reassignBtn.dataset.pid;
+                const p = photoTags[pid];
+                if (!p) return;
+
+                currentReassignPid = pid;
+                reassignPhotoIdLabel.textContent = `Photo #${pid}`;
+                reassignNameInput.value = p.name || '';
+                reassignBibInput.value = p.bib || '';
+                reassignClubSelect.value = p.club || '';
+
+                reassignModal.classList.remove('hidden');
+                reassignNameInput.focus();
+                return;
+            }
+        });
+
+        const closeReassignModal = () => {
+            reassignModal.classList.add('hidden');
+            currentReassignPid = null;
+        };
+
+        reassignCloseBtn.addEventListener('click', closeReassignModal);
+        reassignCancelBtn.addEventListener('click', closeReassignModal);
+
+        reassignSaveBtn.addEventListener('click', () => {
+            if (!currentReassignPid || !photoTags[currentReassignPid]) return;
+
+            const newName = reassignNameInput.value.trim();
+            const newBib = reassignBibInput.value.trim();
+            const newClub = reassignClubSelect.value.trim();
+
+            photoTags[currentReassignPid].name = newName;
+            photoTags[currentReassignPid].bib = newBib;
+            photoTags[currentReassignPid].club = newClub;
+
+            pendingCorrections[currentReassignPid] = {
+                action: 'update',
+                name: newName,
+                bib: newBib,
+                club: newClub
+            };
+
+            closeReassignModal();
+            updatePendingIndicator();
+            renderFilteredGrid();
+        });
+
+        const updatePendingIndicator = () => {
+            const count = Object.keys(pendingCorrections).length;
+            if (count > 0) {
+                changesIndicator.classList.remove('hidden');
+                changesCount.textContent = `${count} change${count > 1 ? 's' : ''} staged`;
+            } else {
+                changesIndicator.classList.add('hidden');
+            }
+        };
+
+        // 5. EXPORT / DOWNLOAD UPDATED PHOTO_TAGS.JSON
+        exportJsonBtn.addEventListener('click', () => {
+            const blob = new Blob([JSON.stringify(photoTags, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'photo_tags.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            // Also offer photo_corrections.json download
+            if (Object.keys(pendingCorrections).length > 0) {
+                const corBlob = new Blob([JSON.stringify(pendingCorrections, null, 2)], { type: 'application/json' });
+                const corUrl = URL.createObjectURL(corBlob);
+                const corA = document.createElement('a');
+                corA.href = corUrl;
+                corA.download = 'photo_corrections.json';
+                document.body.appendChild(corA);
+                corA.click();
+                document.body.removeChild(corA);
+                URL.revokeObjectURL(corUrl);
+            }
+
+            alert("Downloaded updated photo_tags.json! Place it into assets/data/ to apply changes permanently.");
+        });
+
+        init();
+    })();
+    </script>
+</body>
+</html>
