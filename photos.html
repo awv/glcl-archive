@@ -495,7 +495,7 @@
             try {
                 const data = await callFlickr("flickr.photosets.getPhotos", {
                     photoset_id: albumId,
-                    extras: "tags,url_m,url_l,url_k,url_o,date_taken",
+                    extras: "tags,url_m,url_l,url_h,url_k,url_3k,url_4k,url_o,date_taken",
                     per_page: FLICKR_CONFIG.perPage,
                     page: page
                 });
@@ -587,7 +587,7 @@
                     user_id: FLICKR_CONFIG.userId,
                     tags: tagQueries.join(","),
                     tag_mode: "any",
-                    extras: "tags,url_m,url_l,url_k,url_o,date_taken",
+                    extras: "tags,url_m,url_l,url_h,url_k,url_3k,url_4k,url_o,date_taken",
                     per_page: 250
                 });
 
@@ -613,6 +613,10 @@
                                 secret: meta.secret || "",
                                 url_m: meta.url_m || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_m.jpg` : ''),
                                 url_l: meta.url_l || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : ''),
+                                url_h: meta.url_h,
+                                url_k: meta.url_k,
+                                url_3k: meta.url_3k,
+                                url_4k: meta.url_4k,
                                 title: meta.name ? `${meta.name} (Bib #${meta.bib})` : `Photo #${pid}`,
                                 indexedBib: meta.bib,
                                 indexedRunner: meta.name,
@@ -664,6 +668,10 @@
                             secret: meta.secret || "",
                             url_m: meta.url_m || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_m.jpg` : ''),
                             url_l: meta.url_l || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : ''),
+                            url_h: meta.url_h,
+                            url_k: meta.url_k,
+                            url_3k: meta.url_3k,
+                            url_4k: meta.url_4k,
                             title: meta.name ? `${meta.name} (Bib #${meta.bib})` : `Photo #${pid}`,
                             indexedBib: meta.bib,
                             indexedRunner: meta.name,
@@ -715,7 +723,7 @@
 
             photos.forEach((photo, idx) => {
                 const imgThumb = photo.url_m || photo.url_l || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`;
-                const imgLarge = photo.url_l || photo.url_k || photo.url_m || imgThumb;
+                const imgLarge = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || imgThumb;
 
                 const card = document.createElement("div");
                 card.className = "group relative bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg hover:border-brand-500/60 transition-all duration-300 photo-fade";
@@ -777,7 +785,7 @@
             const photo = lightboxList[currentPhotoIndex];
             if (!photo) return;
 
-            const highRes = photo.url_k || photo.url_l || photo.url_m || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
+            const highRes = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || photo.url_m || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
             modalImage.src = highRes;
             modalCounter.textContent = `Photo ${currentPhotoIndex + 1} of ${lightboxList.length}`;
             modalDirectDownload.href = highRes;
@@ -822,8 +830,8 @@
                     if (zipAbortController.signal.aborted) throw new Error("Cancelled by user");
 
                     const photo = photosToZip[i];
-                    // Prefer large 1024 or 2048 for zip download
-                    const imgUrl = photo.url_l || photo.url_k || photo.url_m || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
+                    // Prefer 3K (3072px) or 2K (2048px) for crisp high-resolution downloads
+                    const imgUrl = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
                     const filename = `GLCL_${photo.id}.jpg`;
 
                     zipStatus.textContent = `Downloading photo ${i + 1} of ${total}...`;

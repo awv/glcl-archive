@@ -31,7 +31,7 @@ def fetch_album_photos(photoset_id, max_photos=50):
         url = (
             f"https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos"
             f"&api_key={FLICKR_API_KEY}&photoset_id={photoset_id}"
-            f"&extras=url_l,url_m,tags&per_page={per_page}&page={page}&format=json&nojsoncallback=1"
+            f"&extras=url_m,url_l,url_h,url_k,url_3k,url_4k,tags&per_page={per_page}&page={page}&format=json&nojsoncallback=1"
         )
         try:
             req = urllib.request.urlopen(url)
@@ -141,7 +141,7 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE):
                 url_m = photo_obj.get("url_m") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_m.jpg" if server and secret else "")
                 url_l = photo_obj.get("url_l") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_b.jpg" if server and secret else "")
 
-                existing_index[pid_part] = {
+                entry = {
                     "bib": bib_part,
                     "name": runner_name,
                     "club": runner_club,
@@ -151,6 +151,11 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE):
                     "url_m": url_m,
                     "url_l": url_l
                 }
+                for sz_key in ["url_h", "url_k", "url_3k", "url_4k"]:
+                    if photo_obj.get(sz_key):
+                        entry[sz_key] = photo_obj[sz_key]
+
+                existing_index[pid_part] = entry
                 tagged_count += 1
                 print(f"  🟢 Photo {pid_part} → Bib #{bib_part} ({runner_name} • {runner_club})")
             except Exception as e:

@@ -748,7 +748,7 @@
                         if (photosGrid) {
                             photosGrid.innerHTML = matchedPhotos.map((photo, idx) => {
                                 const imgThumb = photo.url_m || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg` : '');
-                                const imgLarge = photo.url_l || photo.url_k || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : imgThumb);
+                                const imgLarge = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : imgThumb);
 
                                 let raceTitle = 'GLCL Race';
                                 if (photo.album_id && fixtureAlbums[photo.album_id]) {
@@ -852,7 +852,7 @@
                     const photo = matchedPhotos[currentClubPhotoIndex];
                     if (!photo) return;
 
-                    const highRes = photo.url_l || photo.url_k || photo.url_m || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
+                    const highRes = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
                     modalImage.src = highRes;
                     modalCounter.textContent = `Photo ${currentClubPhotoIndex + 1} of ${matchedPhotos.length}`;
                     modalDirectDownload.href = highRes;
@@ -928,7 +928,7 @@
 
                     // Build download queue
                     const items = matchedPhotos.map(photo => {
-                        const imgUrl = photo.url_l || photo.url_k || photo.url_m || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
+                        const imgUrl = photo.url_k || photo.url_3k || photo.url_h || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
                         const nameSlug = photo.name ? photo.name.replace(/[^a-zA-Z0-9]/g, '_') + '_' : '';
                         const bibSlug = photo.bib ? 'Bib' + photo.bib + '_' : '';
                         const filename = `GLCL_${bibSlug}${nameSlug}${photo.id}.jpg`;
