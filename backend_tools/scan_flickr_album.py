@@ -93,20 +93,30 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE):
         print("All requested photos already indexed!")
         return 0, len(existing_index)
 
-    print("Downloading preview thumbnails from Flickr CDN...")
-    for i, p in enumerate(to_download):
+    print("Downloading preview thumbnails from Flickr CDN (parallel)...")
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    def dl_task(p):
         pid = str(p["id"])
         img_url = p.get("url_l") or p.get("url_m")
         if not img_url:
-            continue
+            return False
         temp_img = temp_dir / f"photo_{pid}.jpg"
         try:
             urllib.request.urlretrieve(img_url, temp_img)
-            print(f"  [{i+1}/{len(to_download)}] Downloaded {pid}", end="\r")
-        except Exception as e:
-            print(f"  Error downloading {pid}: {e}")
+            return True
+        except Exception:
+            return False
 
-    print(f"\nDownloaded {len(to_download)} previews. Running Apple Vision Neural OCR...\n")
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        futures = [executor.submit(dl_task, p) for p in to_download]
+        done_count = 0
+        for f in as_completed(futures):
+            if f.result():
+                done_count += 1
+            print(f"  [{done_count}/{len(to_download)}] Downloaded previews", end="\r")
+
+    print(f"\nDownloaded {done_count} previews. Running Apple Vision Neural OCR...\n")
 
     cmd = [str(TAGGER_BIN), str(temp_dir), "--season", season]
     proc = subprocess.run(cmd, capture_output=True, text=True)
