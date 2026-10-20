@@ -53,32 +53,27 @@ def fetch_album_photos(photoset_id, max_photos=50):
 
     return photos[:max_photos]
 
-def main():
-    parser = argparse.ArgumentParser(description="Scan Flickr album and auto-index bibs for glcl.uk/photos.html")
-    parser.add_argument("album_id", help="Flickr Album/Photoset ID (e.g. 72177720324324441)")
-    parser.add_argument("--season", default="2024/2025", help="Season name for bib lookup (e.g. 2024/2025 or 2026/2027)")
-    parser.add_argument("--limit", type=int, default=30, help="Maximum number of photos to scan (default 30 for PoC)")
-    args = parser.parse_args()
-
+def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE):
     if not TAGGER_BIN.exists():
         print("Error: backend_tools/glcl-tagger binary not found. Please compile it first.")
-        sys.exit(1)
+        return 0, 0
 
-    INDEX_FILE.parent.mkdir(parents=True, exist_ok=True)
+    index_file = Path(index_file)
+    index_file.parent.mkdir(parents=True, exist_ok=True)
     existing_index = {}
-    if INDEX_FILE.exists():
+    if index_file.exists():
         try:
-            with open(INDEX_FILE, "r") as f:
+            with open(index_file, "r") as f:
                 existing_index = json.load(f)
         except Exception:
             existing_index = {}
 
     print(f"=================================================================")
-    print(f"📸 Streaming Flickr Album: {args.album_id} (Limit: {args.limit} photos)")
-    print(f"Season: {args.season}")
+    print(f"📸 Streaming Flickr Album: {album_id} (Limit: {limit} photos)")
+    print(f"Season: {season}")
     print(f"=================================================================")
 
-    photos = fetch_album_photos(args.album_id, max_photos=args.limit)
+    photos = fetch_album_photos(album_id, max_photos=limit)
     print(f"Fetched {len(photos)} photos from Flickr album metadata.")
 
     temp_dir = Path("/tmp/glcl_flickr_batch")
@@ -96,7 +91,7 @@ def main():
 
     if not to_download:
         print("All requested photos already indexed!")
-        return
+        return 0, len(existing_index)
 
     print("Downloading preview thumbnails from Flickr CDN...")
     for i, p in enumerate(to_download):
@@ -113,7 +108,7 @@ def main():
 
     print(f"\nDownloaded {len(to_download)} previews. Running Apple Vision Neural OCR...\n")
 
-    cmd = [str(TAGGER_BIN), str(temp_dir), "--season", args.season]
+    cmd = [str(TAGGER_BIN), str(temp_dir), "--season", season]
     proc = subprocess.run(cmd, capture_output=True, text=True)
     output = proc.stdout
 
@@ -150,7 +145,7 @@ def main():
                     "bib": bib_part,
                     "name": runner_name,
                     "club": runner_club,
-                    "album_id": args.album_id,
+                    "album_id": album_id,
                     "server": server,
                     "secret": secret,
                     "url_m": url_m,
@@ -165,14 +160,24 @@ def main():
     shutil.rmtree(temp_dir, ignore_errors=True)
 
     # Save index file
-    with open(INDEX_FILE, "w") as f:
+    with open(index_file, "w") as f:
         json.dump(existing_index, f, indent=2)
 
     print(f"\n=================================================================")
     print(f"SCAN COMPLETE: Tagged {tagged_count} photos.")
-    print(f"Updated index saved to: {INDEX_FILE} (Total indexed: {len(existing_index)})")
+    print(f"Updated index saved to: {index_file} (Total indexed: {len(existing_index)})")
     print(f"Zero local storage retained (Temporary previews deleted).")
     print(f"=================================================================\n")
+    return tagged_count, len(existing_index)
+
+def main():
+    parser = argparse.ArgumentParser(description="Scan Flickr album and auto-index bibs for glcl.uk/photos.html")
+    parser.add_argument("album_id", help="Flickr Album/Photoset ID (e.g. 72177720324324441)")
+    parser.add_argument("--season", default="2024/2025", help="Season name for bib lookup (e.g. 2024/2025 or 2026/2027)")
+    parser.add_argument("--limit", type=int, default=30, help="Maximum number of photos to scan (default 30 for PoC)")
+    args = parser.parse_args()
+
+    scan_album(args.album_id, season=args.season, limit=args.limit)
 
 if __name__ == "__main__":
     main()
