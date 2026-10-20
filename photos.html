@@ -599,13 +599,29 @@
                 // If Flickr search had 0 results, fall back to locally indexed photos
                 if (searchResults.length === 0 && Object.keys(photoIndex).length > 0) {
                     const clean = tag.trim().replace(/^bib/i, "").toLowerCase();
-                    const matchedPids = new Set(
-                        Object.entries(photoIndex)
-                            .filter(([pid, meta]) => (meta.bib && meta.bib.toLowerCase() === clean) || (meta.name && meta.name.toLowerCase().includes(clean)))
-                            .map(([pid]) => pid)
+                    const matchedEntries = Object.entries(photoIndex).filter(([pid, meta]) => 
+                        (meta.bib && meta.bib.toLowerCase() === clean) || 
+                        (meta.name && meta.name.toLowerCase().includes(clean))
                     );
-                    if (matchedPids.size > 0) {
-                        searchResults = currentPhotos.filter(p => matchedPids.has(String(p.id)));
+                    
+                    if (matchedEntries.length > 0) {
+                        const foundInCurrent = currentPhotos.filter(p => matchedEntries.some(([pid]) => String(p.id) === String(pid)));
+                        if (foundInCurrent.length > 0) {
+                            searchResults = foundInCurrent;
+                        } else {
+                            searchResults = matchedEntries.map(([pid, meta]) => ({
+                                id: pid,
+                                server: meta.server || "",
+                                secret: meta.secret || "",
+                                url_m: meta.url_m || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_m.jpg` : ''),
+                                url_l: meta.url_l || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : ''),
+                                title: meta.name ? `${meta.name} (Bib #${meta.bib})` : `Photo #${pid}`,
+                                indexedBib: meta.bib,
+                                indexedRunner: meta.name,
+                                indexedClub: meta.club,
+                                tags: `bib${meta.bib} ${meta.bib} ${meta.name} ${meta.club}`
+                            }));
+                        }
                     }
                 }
 
@@ -640,6 +656,26 @@
                     if (p.indexedRunner && p.indexedRunner.toLowerCase().includes(targetName)) return true;
                     return (p.tags || "").toLowerCase().includes(targetName);
                 });
+
+                if (filtered.length === 0 && Object.keys(photoIndex).length > 0) {
+                    const localMatches = Object.entries(photoIndex)
+                        .filter(([pid, meta]) => meta.name && meta.name.toLowerCase().includes(targetName))
+                        .map(([pid, meta]) => ({
+                            id: pid,
+                            server: meta.server || "",
+                            secret: meta.secret || "",
+                            url_m: meta.url_m || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_m.jpg` : ''),
+                            url_l: meta.url_l || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : ''),
+                            title: meta.name ? `${meta.name} (Bib #${meta.bib})` : `Photo #${pid}`,
+                            indexedBib: meta.bib,
+                            indexedRunner: meta.name,
+                            indexedClub: meta.club,
+                            tags: `bib${meta.bib} ${meta.bib} ${meta.name} ${meta.club}`
+                        }));
+                    if (localMatches.length > 0) {
+                        filtered = localMatches;
+                    }
+                }
             }
 
             // If club filter is active

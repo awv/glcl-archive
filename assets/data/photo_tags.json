@@ -3,114 +3,520 @@
     "bib": "724",
     "name": "Michael LEWIS",
     "club": "Parc Bryn Bach RC",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "f6de1ffbe7",
+    "url_m": "https://live.staticflickr.com/65535/54376147562_f6de1ffbe7_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54376147562_f6de1ffbe7_b.jpg"
   },
   "54376147992": {
     "bib": "724",
     "name": "Michael LEWIS",
     "club": "Parc Bryn Bach RC",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "2fba91da6c",
+    "url_m": "https://live.staticflickr.com/65535/54376147992_2fba91da6c_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54376147992_2fba91da6c_b.jpg"
   },
   "54376148247": {
     "bib": "440",
     "name": "Lloyd COTTRELL",
     "club": "Lliswerry Runners",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "925123d26b",
+    "url_m": "https://live.staticflickr.com/65535/54376148247_925123d26b_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54376148247_925123d26b_b.jpg"
   },
   "54376149002": {
     "bib": "69",
     "name": "Kevin McENTEE",
     "club": "Chepstow Harriers",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "e544284c82",
+    "url_m": "https://live.staticflickr.com/65535/54376149002_e544284c82_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54376149002_e544284c82_b.jpg"
   },
   "54377022356": {
     "bib": "724",
     "name": "Michael LEWIS",
     "club": "Parc Bryn Bach RC",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "163fa8393a",
+    "url_m": "https://live.staticflickr.com/65535/54377022356_163fa8393a_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54377022356_163fa8393a_b.jpg"
   },
   "54377022576": {
     "bib": "724",
     "name": "Michael LEWIS",
     "club": "Parc Bryn Bach RC",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "78af65dfc9",
+    "url_m": "https://live.staticflickr.com/65535/54377022576_78af65dfc9_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54377022576_78af65dfc9_b.jpg"
   },
   "54377022806": {
     "bib": "724",
     "name": "Michael LEWIS",
     "club": "Parc Bryn Bach RC",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "693a640750",
+    "url_m": "https://live.staticflickr.com/65535/54377022806_693a640750_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54377022806_693a640750_b.jpg"
   },
   "54377023106": {
     "bib": "724",
     "name": "Michael LEWIS",
     "club": "Parc Bryn Bach RC",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "724105a4f4",
+    "url_m": "https://live.staticflickr.com/65535/54377023106_724105a4f4_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54377023106_724105a4f4_b.jpg"
   },
   "54377023496": {
     "bib": "724",
     "name": "Michael LEWIS",
     "club": "Parc Bryn Bach RC",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "f863098a0d",
+    "url_m": "https://live.staticflickr.com/65535/54377023496_f863098a0d_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54377023496_f863098a0d_b.jpg"
   },
   "54377024826": {
     "bib": "692",
     "name": "Huw EVANS",
     "club": "Parc Bryn Bach RC",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "5aa276126f",
+    "url_m": "https://live.staticflickr.com/65535/54377024826_5aa276126f_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54377024826_5aa276126f_b.jpg"
   },
   "54377228409": {
     "bib": "692",
     "name": "Huw EVANS",
     "club": "Parc Bryn Bach RC",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "acea517b09",
+    "url_m": "https://live.staticflickr.com/65535/54377228409_acea517b09_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54377228409_acea517b09_b.jpg"
   },
   "54377228564": {
     "bib": "692",
     "name": "Huw EVANS",
     "club": "Parc Bryn Bach RC",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "73ba714ddd",
+    "url_m": "https://live.staticflickr.com/65535/54377228564_73ba714ddd_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54377228564_73ba714ddd_b.jpg"
   },
   "54377258713": {
     "bib": "724",
     "name": "Michael LEWIS",
     "club": "Parc Bryn Bach RC",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "2ebe6f68ab",
+    "url_m": "https://live.staticflickr.com/65535/54377258713_2ebe6f68ab_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54377258713_2ebe6f68ab_b.jpg"
   },
   "54377259318": {
     "bib": "724",
     "name": "Michael LEWIS",
     "club": "Parc Bryn Bach RC",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "16c605ceab",
+    "url_m": "https://live.staticflickr.com/65535/54377259318_16c605ceab_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54377259318_16c605ceab_b.jpg"
   },
   "54377259743": {
     "bib": "440",
     "name": "Lloyd COTTRELL",
     "club": "Lliswerry Runners",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "e669aa281b",
+    "url_m": "https://live.staticflickr.com/65535/54377259743_e669aa281b_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54377259743_e669aa281b_b.jpg"
   },
   "54377415045": {
     "bib": "724",
     "name": "Michael LEWIS",
     "club": "Parc Bryn Bach RC",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "c37859501b",
+    "url_m": "https://live.staticflickr.com/65535/54377415045_c37859501b_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54377415045_c37859501b_b.jpg"
   },
   "54377416905": {
     "bib": "92",
     "name": "Corinna TANNIAN",
     "club": "Chepstow Harriers",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "b6ae96be9c",
+    "url_m": "https://live.staticflickr.com/65535/54377416905_b6ae96be9c_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54377416905_b6ae96be9c_b.jpg"
   },
   "54377417185": {
     "bib": "692",
     "name": "Huw EVANS",
     "club": "Parc Bryn Bach RC",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "45d4ba1fc7",
+    "url_m": "https://live.staticflickr.com/65535/54377417185_45d4ba1fc7_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54377417185_45d4ba1fc7_b.jpg"
   },
   "54377417430": {
     "bib": "29",
     "name": "Jen DANGER HARDING",
     "club": "Chepstow Harriers",
-    "album_id": "72177720324324441"
+    "album_id": "72177720324324441",
+    "server": "65535",
+    "secret": "1a4507c692",
+    "url_m": "https://live.staticflickr.com/65535/54377417430_1a4507c692_m.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54377417430_1a4507c692_b.jpg"
+  },
+  "54942544122": {
+    "bib": "1473",
+    "name": "Daniel BODMAN",
+    "club": "Parc Bryn Bach RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "dc201a4a71",
+    "url_m": "https://live.staticflickr.com/65535/54942544122_dc201a4a71.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54942544122_dc201a4a71_b.jpg"
+  },
+  "54942544407": {
+    "bib": "1473",
+    "name": "Daniel BODMAN",
+    "club": "Parc Bryn Bach RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "2c2754327c",
+    "url_m": "https://live.staticflickr.com/65535/54942544407_2c2754327c.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54942544407_2c2754327c_b.jpg"
+  },
+  "54942545032": {
+    "bib": "39",
+    "name": "Denise EVANS",
+    "club": "Chepstow Harriers",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "e4fee1b057",
+    "url_m": "https://live.staticflickr.com/65535/54942545032_e4fee1b057.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54942545032_e4fee1b057_b.jpg"
+  },
+  "54943420666": {
+    "bib": "1297",
+    "name": "Dane WILLIAMS",
+    "club": "Parc Bryn Bach RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "6fabcdca34",
+    "url_m": "https://live.staticflickr.com/65535/54943420666_6fabcdca34.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943420666_6fabcdca34_b.jpg"
+  },
+  "54943421071": {
+    "bib": "692",
+    "name": "Huw EVANS",
+    "club": "Parc Bryn Bach RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "c59806ea73",
+    "url_m": "https://live.staticflickr.com/65535/54943421071_c59806ea73.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943421071_c59806ea73_b.jpg"
+  },
+  "54943421136": {
+    "bib": "692",
+    "name": "Huw EVANS",
+    "club": "Parc Bryn Bach RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "f707bf229c",
+    "url_m": "https://live.staticflickr.com/65535/54943421136_f707bf229c.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943421136_f707bf229c_b.jpg"
+  },
+  "54943623213": {
+    "bib": "1473",
+    "name": "Daniel BODMAN",
+    "club": "Parc Bryn Bach RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "7cda2f7174",
+    "url_m": "https://live.staticflickr.com/65535/54943623213_7cda2f7174.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943623213_7cda2f7174_b.jpg"
+  },
+  "54943623548": {
+    "bib": "1473",
+    "name": "Daniel BODMAN",
+    "club": "Parc Bryn Bach RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "f20e2395d6",
+    "url_m": "https://live.staticflickr.com/65535/54943623548_f20e2395d6.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943623548_f20e2395d6_b.jpg"
+  },
+  "54943623648": {
+    "bib": "1473",
+    "name": "Daniel BODMAN",
+    "club": "Parc Bryn Bach RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "df0d9fa24d",
+    "url_m": "https://live.staticflickr.com/65535/54943623648_df0d9fa24d.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943623648_df0d9fa24d_b.jpg"
+  },
+  "54943625078": {
+    "bib": "1137",
+    "name": "Liam MOORE",
+    "club": "Caerleon RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "acda5cee8c",
+    "url_m": "https://live.staticflickr.com/65535/54943625078_acda5cee8c.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943625078_acda5cee8c_b.jpg"
+  },
+  "54943677649": {
+    "bib": "14",
+    "name": "Douglas BRIGGS",
+    "club": "Chepstow Harriers",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "ca5a936a59",
+    "url_m": "https://live.staticflickr.com/65535/54943677649_ca5a936a59.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943677649_ca5a936a59_b.jpg"
+  },
+  "54943678079": {
+    "bib": "1297",
+    "name": "Dane WILLIAMS",
+    "club": "Parc Bryn Bach RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "184c26d9d9",
+    "url_m": "https://live.staticflickr.com/65535/54943678079_184c26d9d9.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943678079_184c26d9d9_b.jpg"
+  },
+  "54943678669": {
+    "bib": "1039",
+    "name": "Lee DREW",
+    "club": "Lliswerry Runners",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "d02b604dba",
+    "url_m": "https://live.staticflickr.com/65535/54943678669_d02b604dba.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943678669_d02b604dba_b.jpg"
+  },
+  "54943679009": {
+    "bib": "692",
+    "name": "Huw EVANS",
+    "club": "Parc Bryn Bach RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "99790708c6",
+    "url_m": "https://live.staticflickr.com/65535/54943679009_99790708c6.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943679009_99790708c6_b.jpg"
+  },
+  "54943729940": {
+    "bib": "1297",
+    "name": "Dane WILLIAMS",
+    "club": "Parc Bryn Bach RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "058c4940bf",
+    "url_m": "https://live.staticflickr.com/65535/54943729940_058c4940bf.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943729940_058c4940bf_b.jpg"
+  },
+  "54943730025": {
+    "bib": "1297",
+    "name": "Dane WILLIAMS",
+    "club": "Parc Bryn Bach RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "f5bf1985cc",
+    "url_m": "https://live.staticflickr.com/65535/54943730025_f5bf1985cc.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943730025_f5bf1985cc_b.jpg"
+  },
+  "54943730375": {
+    "bib": "1039",
+    "name": "Lee DREW",
+    "club": "Lliswerry Runners",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "3bdc2358f6",
+    "url_m": "https://live.staticflickr.com/65535/54943730375_3bdc2358f6.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943730375_3bdc2358f6_b.jpg"
+  },
+  "54943730580": {
+    "bib": "692",
+    "name": "Huw EVANS",
+    "club": "Parc Bryn Bach RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "6ca4402875",
+    "url_m": "https://live.staticflickr.com/65535/54943730580_6ca4402875.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943730580_6ca4402875_b.jpg"
+  },
+  "54943730945": {
+    "bib": "692",
+    "name": "Huw EVANS",
+    "club": "Parc Bryn Bach RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "efb846320a",
+    "url_m": "https://live.staticflickr.com/65535/54943730945_efb846320a.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943730945_efb846320a_b.jpg"
+  },
+  "54943731185": {
+    "bib": "1137",
+    "name": "Liam MOORE",
+    "club": "Caerleon RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "3b6bd4fa0b",
+    "url_m": "https://live.staticflickr.com/65535/54943731185_3b6bd4fa0b.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943731185_3b6bd4fa0b_b.jpg"
+  },
+  "54943731280": {
+    "bib": "1137",
+    "name": "Liam MOORE",
+    "club": "Caerleon RC",
+    "album_id": "72177720330513551",
+    "server": "65535",
+    "secret": "9d1cab7cb6",
+    "url_m": "https://live.staticflickr.com/65535/54943731280_9d1cab7cb6.jpg",
+    "url_l": "https://live.staticflickr.com/65535/54943731280_9d1cab7cb6_b.jpg"
+  },
+  "55442820782": {
+    "bib": "604",
+    "name": "Tracy BAKER",
+    "club": "Pont-Y-Pwl & District Runners",
+    "album_id": "72177720334996716",
+    "server": "65535",
+    "secret": "ac353c50fb",
+    "url_m": "https://live.staticflickr.com/65535/55442820782_ac353c50fb.jpg",
+    "url_l": "https://live.staticflickr.com/65535/55442820782_ac353c50fb_b.jpg"
+  },
+  "55442820937": {
+    "bib": "2010",
+    "name": "Gary CLARK",
+    "club": "Fairwater Runners",
+    "album_id": "72177720334996716",
+    "server": "65535",
+    "secret": "a06950d499",
+    "url_m": "https://live.staticflickr.com/65535/55442820937_a06950d499.jpg",
+    "url_l": "https://live.staticflickr.com/65535/55442820937_a06950d499_b.jpg"
+  },
+  "55443784161": {
+    "bib": "2010",
+    "name": "Gary CLARK",
+    "club": "Fairwater Runners",
+    "album_id": "72177720334996716",
+    "server": "65535",
+    "secret": "406ecaebd0",
+    "url_m": "https://live.staticflickr.com/65535/55443784161_406ecaebd0.jpg",
+    "url_l": "https://live.staticflickr.com/65535/55443784161_406ecaebd0_b.jpg"
+  },
+  "55443784371": {
+    "bib": "2010",
+    "name": "Gary CLARK",
+    "club": "Fairwater Runners",
+    "album_id": "72177720334996716",
+    "server": "65535",
+    "secret": "a0451f69c4",
+    "url_m": "https://live.staticflickr.com/65535/55443784371_a0451f69c4.jpg",
+    "url_l": "https://live.staticflickr.com/65535/55443784371_a0451f69c4_b.jpg"
+  },
+  "55443910083": {
+    "bib": "81",
+    "name": "Ruth RICHARDSON",
+    "club": "Chepstow Harriers",
+    "album_id": "72177720334996716",
+    "server": "65535",
+    "secret": "1b633ee790",
+    "url_m": "https://live.staticflickr.com/65535/55443910083_1b633ee790.jpg",
+    "url_l": "https://live.staticflickr.com/65535/55443910083_1b633ee790_b.jpg"
+  },
+  "55443910498": {
+    "bib": "814",
+    "name": "Yangi VUNDAMINA",
+    "club": "Caerleon RC",
+    "album_id": "72177720334996716",
+    "server": "65535",
+    "secret": "b258dcd948",
+    "url_m": "https://live.staticflickr.com/65535/55443910498_b258dcd948.jpg",
+    "url_l": "https://live.staticflickr.com/65535/55443910498_b258dcd948_b.jpg"
+  },
+  "55443910708": {
+    "bib": "807",
+    "name": "Katie PRICE",
+    "club": "Spirit of Monmouth RC",
+    "album_id": "72177720334996716",
+    "server": "65535",
+    "secret": "20821cebd4",
+    "url_m": "https://live.staticflickr.com/65535/55443910708_20821cebd4.jpg",
+    "url_l": "https://live.staticflickr.com/65535/55443910708_20821cebd4_b.jpg"
+  },
+  "55443911078": {
+    "bib": "2010",
+    "name": "Gary CLARK",
+    "club": "Fairwater Runners",
+    "album_id": "72177720334996716",
+    "server": "65535",
+    "secret": "db14cf48f2",
+    "url_m": "https://live.staticflickr.com/65535/55443911078_db14cf48f2.jpg",
+    "url_l": "https://live.staticflickr.com/65535/55443911078_db14cf48f2_b.jpg"
+  },
+  "55443911468": {
+    "bib": "2010",
+    "name": "Gary CLARK",
+    "club": "Fairwater Runners",
+    "album_id": "72177720334996716",
+    "server": "65535",
+    "secret": "8d4d489f49",
+    "url_m": "https://live.staticflickr.com/65535/55443911468_8d4d489f49.jpg",
+    "url_l": "https://live.staticflickr.com/65535/55443911468_8d4d489f49_b.jpg"
+  },
+  "55444180075": {
+    "bib": "2010",
+    "name": "Gary CLARK",
+    "club": "Fairwater Runners",
+    "album_id": "72177720334996716",
+    "server": "65535",
+    "secret": "1b35b78638",
+    "url_m": "https://live.staticflickr.com/65535/55444180075_1b35b78638.jpg",
+    "url_l": "https://live.staticflickr.com/65535/55444180075_1b35b78638_b.jpg"
+  },
+  "55444180425": {
+    "bib": "2010",
+    "name": "Gary CLARK",
+    "club": "Fairwater Runners",
+    "album_id": "72177720334996716",
+    "server": "65535",
+    "secret": "188da5c34f",
+    "url_m": "https://live.staticflickr.com/65535/55444180425_188da5c34f.jpg",
+    "url_l": "https://live.staticflickr.com/65535/55444180425_188da5c34f_b.jpg"
+  },
+  "55444180665": {
+    "bib": "2010",
+    "name": "Gary CLARK",
+    "club": "Fairwater Runners",
+    "album_id": "72177720334996716",
+    "server": "65535",
+    "secret": "68d83e255e",
+    "url_m": "https://live.staticflickr.com/65535/55444180665_68d83e255e.jpg",
+    "url_l": "https://live.staticflickr.com/65535/55444180665_68d83e255e_b.jpg"
   }
 }

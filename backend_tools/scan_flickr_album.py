@@ -121,6 +121,8 @@ def main():
     import re
     ansi_escape = re.compile(r'\x1b\[[0-9;]*[a-zA-Z]')
 
+    photo_lookup = {str(p["id"]): p for p in photos}
+
     for raw_line in output.splitlines():
         line = ansi_escape.sub('', raw_line)
         if "photo_" in line and "Bib #" in line:
@@ -138,11 +140,21 @@ def main():
                 else:
                     runner_name = runner_part.split("[")[0].strip()
 
+                photo_obj = photo_lookup.get(pid_part, {})
+                server = photo_obj.get("server", "")
+                secret = photo_obj.get("secret", "")
+                url_m = photo_obj.get("url_m") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_m.jpg" if server and secret else "")
+                url_l = photo_obj.get("url_l") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_b.jpg" if server and secret else "")
+
                 existing_index[pid_part] = {
                     "bib": bib_part,
                     "name": runner_name,
                     "club": runner_club,
-                    "album_id": args.album_id
+                    "album_id": args.album_id,
+                    "server": server,
+                    "secret": secret,
+                    "url_m": url_m,
+                    "url_l": url_l
                 }
                 tagged_count += 1
                 print(f"  🟢 Photo {pid_part} → Bib #{bib_part} ({runner_name} • {runner_club})")
