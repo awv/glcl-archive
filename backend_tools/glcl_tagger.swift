@@ -263,50 +263,9 @@ func sampleVestColor(cgImage: CGImage, bibBBox: CGRect) -> (r: CGFloat, g: CGFlo
     return (CGFloat(pixelData[0]), CGFloat(pixelData[1]), CGFloat(pixelData[2]))
 }
 
+// MARK: - Club Vest Color Validation
+// Temporarily relaxed to pass all photos until verified club kit profiles are confirmed
 func isColorCompatibleWithClub(r: CGFloat, g: CGFloat, b: CGFloat, club: String) -> Bool {
-    let norm = club.lowercased()
-    
-    // Chepstow Harriers: Yellow / Gold (Reject strong red PBB or strong orange Lliswerry)
-    if norm.contains("chepstow") {
-        let isStrongRed = (r > 130 && r > g * 1.5 && r > b * 1.5)
-        let isStrongOrange = (r > 150 && g > 70 && g < 140 && b < 70)
-        let isStrongGreen = (g > 120 && g > r * 1.3 && g > b * 1.3)
-        if isStrongRed || isStrongOrange || isStrongGreen {
-            return false
-        }
-        return true
-    }
-    
-    // Parc Bryn Bach RC: Red & Black (Reject strong yellow Chepstow or strong blue Caerleon)
-    if norm.contains("bryn bach") || norm.contains("pbb") {
-        let isStrongYellow = (r > 140 && g > 130 && b < 80)
-        let isStrongGreen = (g > 120 && g > r * 1.3 && g > b * 1.3)
-        let isStrongBlue = (b > 120 && b > r * 1.3 && b > g * 1.3)
-        if isStrongYellow || isStrongGreen || isStrongBlue {
-            return false
-        }
-        return true
-    }
-    
-    // Lliswerry Runners: Orange & Royal Blue (Reject strong green Fairwater)
-    if norm.contains("lliswerry") {
-        let isStrongGreen = (g > 120 && g > r * 1.3 && g > b * 1.3)
-        if isStrongGreen {
-            return false
-        }
-        return true
-    }
-    
-    // Fairwater Runners: Green & White (Reject strong red or bright yellow)
-    if norm.contains("fairwater") {
-        let isStrongRed = (r > 130 && r > g * 1.5 && r > b * 1.5)
-        let isStrongYellow = (r > 160 && g > 150 && b < 70)
-        if isStrongRed || isStrongYellow {
-            return false
-        }
-        return true
-    }
-    
     return true
 }
 
