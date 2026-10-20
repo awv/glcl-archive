@@ -1,5 +1,8 @@
 # GLCL Archive — Results Import Guide
 
+> [!TIP]
+> For the comprehensive, all-scenario guide (including registration sync, barcode resolution, tagging, and photo controls), please see the **[Master Operations Playbook](file:///Users/robgale/Documents/glcl-archive/backend_tools/OPERATIONS_PLAYBOOK.md)**.
+
 A complete reference guide for importing new race results from PDFs into `data.js`.
 
 ---
