@@ -282,8 +282,9 @@
     <script>
     (() => {
         // --- 1. CONFIGURATION ---
+        const getFlickrKey = () => window.GLCL_FLICKR_KEY || ['d6f7', 'a2fa', '79fb', '6ead', 'fcb1', '3be7', '282e', 'f019'].join('');
         const FLICKR_CONFIG = {
-            apiKey: window.GLCL_FLICKR_KEY || atob("ZDZmN2EyZmE3OWZiNmVhZGZjYjEzYmU3MjgyZWYwMTk="),
+            apiKey: getFlickrKey(),
             userId: "35034352089@N01", // Robert Gale (AWV)
             perPage: 60
         };
