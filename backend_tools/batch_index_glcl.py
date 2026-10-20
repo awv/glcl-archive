@@ -93,6 +93,7 @@ def print_summary():
 def main():
     parser = argparse.ArgumentParser(description="Batch index GLCL Flickr albums")
     parser.add_argument("--recent", action="store_true", help="Index recent seasons (2024/2025 and 2025/2026)")
+    parser.add_argument("--historical", action="store_true", help="Index historical seasons (2017–2024)")
     parser.add_argument("--season", help="Index a specific season (e.g. 2024/2025)")
     parser.add_argument("--all", action="store_true", help="Index all available GLCL albums")
     parser.add_argument("--limit", type=int, default=30, help="Max photos to analyze per album (default 30)")
@@ -106,6 +107,8 @@ def main():
         target_albums = [a for a in all_albums if a.get("season") == args.season]
     elif args.recent:
         target_albums = [a for a in all_albums if a.get("season") in ("2024/2025", "2025/2026")]
+    elif args.historical:
+        target_albums = [a for a in all_albums if a.get("season") not in ("2024/2025", "2025/2026")]
     elif args.all:
         target_albums = all_albums
     else:
