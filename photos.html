@@ -409,16 +409,14 @@
                     per_page: 500
                 });
                 
-                const sets = data.photosets?.photoset || [];
-                // Prioritize GLCL race albums
+                // Filter strictly for GLCL race albums (excluding non-GLCL championships)
                 allAlbums = sets.filter(s => {
                     const title = (s.title?._content || "").toLowerCase();
-                    return title.includes("glcl") || title.includes("cross country") || title.includes("road series");
+                    if (title.includes("welsh") || title.includes("british and irish") || title.includes("championship")) {
+                        return false;
+                    }
+                    return title.includes("glcl");
                 });
-
-                if (allAlbums.length === 0) {
-                    allAlbums = sets.slice(0, 50); // Fallback to recent sets
-                }
 
                 albumSelector.innerHTML = "";
                 allAlbums.forEach((album, idx) => {
