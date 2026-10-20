@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Master Club configuration array matching your dropdown names exactly
     const CLUBS = [
         "Caerleon Running Club",
+        "Caldicot Running Club",
         "Chepstow Harriers",
         "Fairwater Runners",
         "Griffithstown Harriers",
@@ -96,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Remapped filename targets to look for your existing banner images
     const clubImageMap = {
         "Caerleon Running Club": "caerleon-running-club.jpg",
+        "Caldicot Running Club": "caldicot-running-club.jpg",
         "Chepstow Harriers": "chepstow-harriers.jpg",
         "Fairwater Runners": "fairwater-runners.jpg",
         "Griffithstown Harriers": "griffithstown-harriers.jpg",
@@ -111,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!name) return "";
         const clean = name.trim().toLowerCase();
         if (clean.includes("caerleon")) return "caerleon running club";
+        if (clean.includes("caldicot")) return "caldicot running club";
         if (clean.includes("islwyn")) return "islwyn rc";
         if (clean.includes("lliswerry")) return "lliswerry runners";
         if (clean.includes("chepstow")) return "chepstow harriers";

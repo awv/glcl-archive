@@ -264,8 +264,88 @@ func sampleVestColor(cgImage: CGImage, bibBBox: CGRect) -> (r: CGFloat, g: CGFlo
 }
 
 // MARK: - Club Vest Color Validation
-// Temporarily relaxed to pass all photos until verified club kit profiles are confirmed
+// Grounded against verified reference race photos in assets/images/Vests (10 GLCL clubs)
 func isColorCompatibleWithClub(r: CGFloat, g: CGFloat, b: CGFloat, club: String) -> Bool {
+    let c = club.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+    
+    // 1. SAFETY DEFAULTS FOR CROSS-COUNTRY CONDITIONS:
+    // Runners frequently wear black or white thermal underlayers, grey garments,
+    // or carry race numbers pinned high. Mud and heavy shadow also neutralize color.
+    // ALWAYS accept neutral, grayscale, black, or white torso samples.
+    
+    // Dark clothing / Black base tops / heavy shadows
+    if r < 75 && g < 75 && b < 75 {
+        return true
+    }
+    
+    // White upper chest / white base tops / bib background paper
+    if r > 185 && g > 185 && b > 185 {
+        return true
+    }
+    
+    // Low saturation / Grayscale / Neutral / Mud
+    let maxChannel = max(r, max(g, b))
+    let minChannel = min(r, min(g, b))
+    let delta = maxChannel - minChannel
+    if delta < 28 {
+        return true
+    }
+    
+    // 2. DETECT DOMINANT CHROMATIC COLOR FAMILIES:
+    // Bright / Kelly Green (Parc Bryn Bach, Griffithstown)
+    let isGreen = g > 75 && g > r * 1.25 && g > b * 1.20
+    
+    // Bold Red (Pont-Y-Pwl, Chepstow chest band)
+    let isRed = r > 85 && r > g * 1.40 && r > b * 1.40
+    
+    // Deep Maroon / Burgundy (Lliswerry)
+    let isMaroon = r > 60 && r > g * 1.35 && g < 90 && b < r * 0.95 && !isRed
+    
+    // Royal Blue (Chepstow, Spirit of Monmouth, Griffithstown blue half)
+    let isRoyalBlue = b > 80 && b > r * 1.25 && b > g * 1.15
+    
+    // Sky Blue / Light Cyan (Fairwater Runners)
+    let isSkyBlue = b > 85 && g > 75 && b > r * 1.20 && (g > r * 1.05 || b > g * 1.25) && !isRoyalBlue
+    
+    // Purple / Violet (Caerleon, Caldicot)
+    let isPurple = (r > 55 && b > 65) && (min(r, b) > g * 1.20) && (r + b > g * 2.3)
+    
+    // Yellow / Gold (Spirit of Monmouth sash)
+    let isYellow = r > 115 && g > 105 && b < min(r, g) * 0.70
+    
+    // 3. APPLY MUTUAL-EXCLUSION CONTRADICTIONS PER CLUB:
+    if c.contains("parc bryn bach") || c == "pbb" {
+        // Kit: Green lower torso & white upper. Rejects pure maroon, purple, royal blue.
+        if isMaroon || isRoyalBlue || isPurple { return false }
+    } else if c.contains("lliswerry") {
+        // Kit: Deep Burgundy/Maroon & white. Rejects green, royal blue, sky blue, purple, yellow.
+        if isGreen || isRoyalBlue || isSkyBlue || isPurple || isYellow { return false }
+    } else if c.contains("chepstow") {
+        // Kit: Royal Blue & Red band. Rejects green, maroon, purple.
+        if isGreen || isMaroon || isPurple { return false }
+    } else if c.contains("fairwater") {
+        // Kit: Sky Blue & Navy. Rejects green, bold red, maroon, purple, yellow.
+        if isGreen || isRed || isMaroon || isPurple || isYellow { return false }
+    } else if c.contains("pont-y-pwl") || c.contains("pontypool") {
+        // Kit: Bold Red & Black. Rejects green, royal blue, sky blue, purple.
+        if isGreen || isRoyalBlue || isSkyBlue || isPurple { return false }
+    } else if c.contains("monmouth") {
+        // Kit: Royal Blue & Yellow sash. Rejects green, bold red, maroon, purple.
+        if isGreen || isRed || isMaroon || isPurple { return false }
+    } else if c.contains("caerleon") {
+        // Kit: Purple/Indigo & White. Rejects green, bold red, sky blue, yellow.
+        if isGreen || isRed || isSkyBlue || isYellow { return false }
+    } else if c.contains("caldicot") {
+        // Kit: Purple, Black & White. Rejects green, bold red, sky blue, yellow.
+        if isGreen || isRed || isSkyBlue || isYellow { return false }
+    } else if c.contains("griffithstown") {
+        // Kit: Green & Blue swirl / retro green-blue / lime. Rejects bold red, maroon, purple.
+        if isRed || isMaroon || isPurple { return false }
+    } else if c.contains("islwyn") {
+        // Kit: Black & White monochrome. Rejects saturated green, red, sky blue, royal blue, yellow.
+        if isGreen || isRed || isSkyBlue || isRoyalBlue || isYellow { return false }
+    }
+    
     return true
 }
 
