@@ -61,7 +61,7 @@ func parseSeasonYear(_ seasonStr: String) -> Int {
 }
 
 // MARK: - Intelligent Dataset Loader
-func loadBibDatabase(from dataPath: String, targetSeason: String?, targetRace: Int?) -> (activeBibMap: [String: RunnerRecord], lifetimeBibMap: [String: RunnerRecord], inheritedCount: Int) {
+func loadBibDatabase(from dataPath: String, targetSeason: String?, targetRace: Int?, targetDiscipline: String? = nil) -> (activeBibMap: [String: RunnerRecord], lifetimeBibMap: [String: RunnerRecord], inheritedCount: Int) {
     let url = URL(fileURLWithPath: dataPath)
     guard let content = try? String(contentsOf: url, encoding: .utf8) else {
         print("\(Color.red)Error: Could not read dataset at \(dataPath)\(Color.reset)")
@@ -127,9 +127,11 @@ func loadBibDatabase(from dataPath: String, targetSeason: String?, targetRace: I
     var activeBibMap: [String: RunnerRecord] = [:]
     var inheritedCount = 0
     let cleanTargetSeason = targetSeason?.lowercased().trimmingCharacters(in: .whitespaces)
+    let cleanTargetDiscipline = targetDiscipline?.lowercased().trimmingCharacters(in: .whitespaces)
     
     for r in sortedRecords {
         let seasonStr = r["season"] as? String ?? ""
+        let discStr = r["discipline"] as? String ?? ""
         let rawName = r["name"] as? String ?? ""
         let cleanName = cleanRunnerName(rawName)
         let clubStr = r["club"] as? String ?? ""
@@ -142,6 +144,10 @@ func loadBibDatabase(from dataPath: String, targetSeason: String?, targetRace: I
         
         if let ts = cleanTargetSeason, !ts.isEmpty {
             if !seasonStr.lowercased().contains(ts) { continue }
+        }
+        
+        if let td = cleanTargetDiscipline, !td.isEmpty {
+            if !discStr.lowercased().contains(td) { continue }
         }
         
         if let tr = targetRace, let rn = raceNum {
@@ -436,7 +442,7 @@ func scanPhoto(
     var rawCandidates: [RunnerMatch] = []
     
     for token in detectedTokens {
-        let pattern = "\\b\\d{1,4}\\b"
+        let pattern = "\\b\\d{1,7}\\b"
         guard let regex = try? NSRegularExpression(pattern: pattern) else { continue }
         let nsStr = token.text as NSString
         let matches = regex.matches(in: token.text, range: NSRange(location: 0, length: nsStr.length))
@@ -460,7 +466,7 @@ func scanPhoto(
                 if token.bbox.origin.y < 0.06 || token.bbox.origin.y > 0.90 || token.bbox.origin.x < 0.05 || token.bbox.origin.x > 0.95 {
                     continue
                 }
-                if token.conf < 0.85 {
+                if token.conf < 0.60 {
                     continue
                 }
             }
@@ -640,6 +646,7 @@ func main() {
     let targetDir = args[1]
     var season: String? = nil
     var raceNumber: Int? = nil
+    var discipline: String? = nil
     var dataPath: String? = nil
     var writeMode = false
     var jsonOutput = false
@@ -653,6 +660,8 @@ func main() {
             if idx + 1 < args.count { season = args[idx + 1]; idx += 1 }
         case "--race":
             if idx + 1 < args.count { raceNumber = Int(args[idx + 1]); idx += 1 }
+        case "--discipline":
+            if idx + 1 < args.count { discipline = args[idx + 1]; idx += 1 }
         case "--data":
             if idx + 1 < args.count { dataPath = args[idx + 1]; idx += 1 }
         case "--write":
@@ -687,6 +696,7 @@ func main() {
         print("Mode:         \(writeMode ? "\(Color.yellow)\(Color.bold)WRITE (Saving tags into photos)\(Color.reset)" : "\(Color.green)\(Color.bold)DRY-RUN (Safe preview, no files modified)\(Color.reset)")")
         print("Head Filter:  \(requireHead ? "\(Color.green)ENABLED (Headless bib crops omitted)\(Color.reset)" : "\(Color.yellow)DISABLED\(Color.reset)")")
         if let s = season { print("Season:       \(s)") }
+        if let d = discipline { print("Discipline:   \(d.uppercased())") }
         if let r = raceNumber { print("Race #:       \(r)") }
     }
     
@@ -696,7 +706,7 @@ func main() {
     var inheritedCount = 0
     
     if let dp = dataPath {
-        let res = loadBibDatabase(from: dp, targetSeason: season, targetRace: raceNumber)
+        let res = loadBibDatabase(from: dp, targetSeason: season, targetRace: raceNumber, targetDiscipline: discipline)
         activeBibMap = res.activeBibMap
         lifetimeBibMap = res.lifetimeBibMap
         inheritedCount = res.inheritedCount

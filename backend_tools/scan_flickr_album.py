@@ -30,7 +30,7 @@ if not FLICKR_API_KEY:
     raise RuntimeError("FLICKR_API_KEY not set. Please set FLICKR_API_KEY environment variable or populate backend_tools/config.json.")
 
 INDEX_FILE = Path("assets/data/photo_tags.json")
-TAGGER_BIN = Path("backend_tools/glcl-tagger")
+TAGGER_BIN = Path("backend_tools/glcl-tagger").resolve() if Path("backend_tools/glcl-tagger").exists() else Path("./glcl-tagger").resolve()
 
 ssl_ctx = ssl._create_unverified_context()
 ssl._create_default_https_context = ssl._create_unverified_context
