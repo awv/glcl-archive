@@ -608,5 +608,10 @@
     "new_runner": "Chris WREFORD",
     "new_club": "Caerleon RC",
     "reason": "OCR misread digit 9 as 1 (read 821); verified in burst sandwich"
+  },
+  "54942683197": {
+    "action": "strip_phantom",
+    "fixture": "2025/2026 xc R2",
+    "reason": "Bib numbers not found in fixture finisher list"
   }
 }
