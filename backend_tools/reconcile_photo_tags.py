@@ -30,6 +30,7 @@ PHOTO_TAGS_FILE = Path("assets/data/photo_tags.json")
 BACKUP_FILE = Path("assets/data/photo_tags.backup.json")
 CORRECTIONS_FILE = Path("assets/data/photo_corrections.json")
 ALBUM_MAP_FILE = Path("assets/data/fixture_photo_albums.json")
+OVERRIDES_FILE = Path("assets/data/photo_manual_overrides.json")
 DATA_JS_FILE = Path("data.js")
 
 def load_data(source_path=None):
@@ -65,7 +66,13 @@ def load_data(source_path=None):
         sys.exit(1)
     glcl_results = json.loads(m.group(1))
 
-    return photo_tags, album_map, glcl_results
+    overrides = {}
+    if OVERRIDES_FILE.exists():
+        with open(OVERRIDES_FILE) as f:
+            overrides = json.load(f)
+        print(f"📝 Loaded {len(overrides)} verified manual overrides from {OVERRIDES_FILE}")
+
+    return photo_tags, album_map, glcl_results, overrides
 
 def build_fixture_indices(album_map, glcl_results):
     # Map album_id to fixture details
@@ -91,13 +98,17 @@ def build_fixture_indices(album_map, glcl_results):
 
     return id_to_fixture, fixture_results
 
-def reconcile(photo_tags, id_to_fixture, fixture_results, apply_changes=False):
+def reconcile(photo_tags, id_to_fixture, fixture_results, overrides=None, apply_changes=False):
+    if overrides is None:
+        overrides = {}
+
     updated_tags = {}
     corrections_log = {}
 
     stats = {
         "total": len(photo_tags),
         "verified": 0,
+        "manual_overrides": 0,
         "reassigned": 0,
         "phantoms_stripped": 0,
         "already_unassigned": 0,
@@ -112,15 +123,37 @@ def reconcile(photo_tags, id_to_fixture, fixture_results, apply_changes=False):
         aid = str(entry.get("album_id", ""))
         fix_info = id_to_fixture.get(aid)
 
+        s = str(fix_info.get("season")) if fix_info else ""
+        d = str(fix_info.get("discipline", "")).lower() if fix_info else ""
+        rn = int(fix_info.get("race_number", 0)) if fix_info else 0
+        key = (s, d, rn)
+
+        # Check manual overrides first
+        if str(pid) in overrides:
+            ov = overrides[str(pid)]
+            stats["verified"] += 1
+            stats["manual_overrides"] += 1
+            entry["bib"] = str(ov.get("bib", entry.get("bib", ""))).strip()
+            entry["name"] = ov.get("name", "").strip()
+            entry["club"] = ov.get("club", "").strip()
+            updated_tags[pid] = entry
+
+            corrections_log[pid] = {
+                "action": "manual_override",
+                "bib": entry["bib"],
+                "fixture": f"{s} {d} R{rn}" if fix_info else "unmapped",
+                "old_bib": str(tag.get("bib", "")),
+                "old_runner": tag.get("name", ""),
+                "new_runner": entry["name"],
+                "new_club": entry["club"],
+                "reason": ov.get("reason", "")
+            }
+            continue
+
         if not fix_info:
             stats["unmapped_album"] += 1
             updated_tags[pid] = entry
             continue
-
-        s = str(fix_info.get("season"))
-        d = str(fix_info.get("discipline", "")).lower()
-        rn = int(fix_info.get("race_number", 0))
-        key = (s, d, rn)
 
         bib = str(entry.get("bib", "")).strip()
         tag_name = entry.get("name", "").strip()
@@ -187,6 +220,7 @@ def reconcile(photo_tags, id_to_fixture, fixture_results, apply_changes=False):
     print("=" * 70)
     print(f"Total Photos Processed:              {stats['total']}")
     print(f"✅ Exact Verified Finisher Matches:   {stats['verified']}")
+    print(f"📝 Verified Manual Overrides:        {stats.get('manual_overrides', 0)}")
     print(f"🔄 Reassigned to Correct Finisher:   {stats['reassigned']}")
     print(f"🗑️ Phantom Tags Stripped:             {stats['phantoms_stripped']}")
     print(f"📷 Clean Unassigned Photos:          {stats['already_unassigned']}")
@@ -242,9 +276,9 @@ def main():
         print("Please specify either --dry-run or --apply.")
         sys.exit(1)
 
-    photo_tags, album_map, glcl_results = load_data(args.source)
+    photo_tags, album_map, glcl_results, overrides = load_data(args.source)
     id_to_fixture, fixture_results = build_fixture_indices(album_map, glcl_results)
-    reconcile(photo_tags, id_to_fixture, fixture_results, apply_changes=args.apply)
+    reconcile(photo_tags, id_to_fixture, fixture_results, overrides=overrides, apply_changes=args.apply)
 
 if __name__ == "__main__":
     main()

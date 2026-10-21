@@ -258,12 +258,14 @@
     "new_club": "Chepstow Harriers"
   },
   "55366739782": {
-    "action": "strip_phantom",
-    "old_bib": "813",
+    "action": "manual_override",
+    "bib": "8073",
     "fixture": "2025/2026 road R4",
-    "stripped_runner": "Rachel WATERS",
-    "stripped_club": "Spirit of Monmouth RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "813",
+    "old_runner": "Rachel WATERS",
+    "new_runner": "Phillip MATTHEWS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR partial read 813 for 8073; verified in Cwmbran 2026 sequence"
   },
   "55366740262": {
     "action": "strip_phantom",
@@ -290,12 +292,14 @@
     "reason": "Bib number was not worn by any finisher in this fixture"
   },
   "55367828023": {
-    "action": "strip_phantom",
-    "old_bib": "813",
+    "action": "manual_override",
+    "bib": "8073",
     "fixture": "2025/2026 road R4",
-    "stripped_runner": "Rachel WATERS",
-    "stripped_club": "Spirit of Monmouth RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "813",
+    "old_runner": "Rachel WATERS",
+    "new_runner": "Phillip MATTHEWS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR partial read 813 for 8073; verified in Cwmbran 2026 sequence"
   },
   "55367829248": {
     "action": "strip_phantom",
@@ -331,12 +335,14 @@
     "new_club": "Chepstow Harriers"
   },
   "55368083060": {
-    "action": "strip_phantom",
-    "old_bib": "813",
+    "action": "manual_override",
+    "bib": "8073",
     "fixture": "2025/2026 road R4",
-    "stripped_runner": "Rachel WATERS",
-    "stripped_club": "Spirit of Monmouth RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "813",
+    "old_runner": "Rachel WATERS",
+    "new_runner": "Phillip MATTHEWS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR partial read 813 for 8073; verified in Cwmbran 2026 sequence"
   },
   "55280938807": {
     "action": "reassign",
@@ -416,12 +422,14 @@
     "new_club": "Chepstow Harriers"
   },
   "55282256410": {
-    "action": "strip_phantom",
-    "old_bib": "732",
+    "action": "manual_override",
+    "bib": "8073",
     "fixture": "2025/2026 road R2",
-    "stripped_runner": "Phillip MATTHEWS",
-    "stripped_club": "Parc Bryn Bach RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "732",
+    "old_runner": "Phillip MATTHEWS",
+    "new_runner": "Phillip MATTHEWS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR partial read 732 for 8073; verified in Blaenavon 2026 sequence"
   },
   "55282257765": {
     "action": "strip_phantom",
@@ -1296,12 +1304,14 @@
     "reason": "Bib number was not worn by any finisher in this fixture"
   },
   "55444184395": {
-    "action": "strip_phantom",
-    "old_bib": "1079",
+    "action": "manual_override",
+    "bib": "8079",
     "fixture": "2025/2026 road R5",
-    "stripped_runner": "Mike VISSER",
-    "stripped_club": "Spirit of Monmouth RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "1079",
+    "old_runner": "Mike VISSER",
+    "new_runner": "Nick OSMAN",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8079 as 1079; verified in Parc Bryn Bach 2026 sequence"
   },
   "55444184475": {
     "action": "strip_phantom",
@@ -1640,12 +1650,14 @@
     "new_club": "Griffithstown Harriers"
   },
   "55367679776": {
-    "action": "strip_phantom",
-    "old_bib": "1079",
+    "action": "manual_override",
+    "bib": "8079",
     "fixture": "2025/2026 road R4",
-    "stripped_runner": "Mike VISSER",
-    "stripped_club": "Spirit of Monmouth RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "1079",
+    "old_runner": "Mike VISSER",
+    "new_runner": "Nick OSMAN",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8079 as 1079; verified in Cwmbran 2026 sequence"
   },
   "55367679866": {
     "action": "reassign",
@@ -2731,12 +2743,14 @@
     "new_club": "Islwyn RC"
   },
   "55281866561": {
-    "action": "strip_phantom",
-    "old_bib": "1061",
+    "action": "manual_override",
+    "bib": "8061",
     "fixture": "2025/2026 road R2",
-    "stripped_runner": "Carl URQUHART",
-    "stripped_club": "Lliswerry Runners",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "1061",
+    "old_runner": "Carl URQUHART",
+    "new_runner": "Joanne KILBY",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8061 as 1061; verified in Blaenavon 2026 sequence"
   },
   "55281866771": {
     "action": "strip_phantom",
@@ -2922,12 +2936,14 @@
     "reason": "Bib number was not worn by any finisher in this fixture"
   },
   "55282004803": {
-    "action": "strip_phantom",
-    "old_bib": "1079",
+    "action": "manual_override",
+    "bib": "8079",
     "fixture": "2025/2026 road R2",
-    "stripped_runner": "Mike VISSER",
-    "stripped_club": "Spirit of Monmouth RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "1079",
+    "old_runner": "Mike VISSER",
+    "new_runner": "Nick OSMAN",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8079 as 1079; verified in Blaenavon 2026 sequence"
   },
   "55282004943": {
     "action": "strip_phantom",
@@ -2938,20 +2954,24 @@
     "reason": "Bib number was not worn by any finisher in this fixture"
   },
   "55282005108": {
-    "action": "strip_phantom",
-    "old_bib": "1061",
+    "action": "manual_override",
+    "bib": "8061",
     "fixture": "2025/2026 road R2",
-    "stripped_runner": "Carl URQUHART",
-    "stripped_club": "Lliswerry Runners",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "1061",
+    "old_runner": "Carl URQUHART",
+    "new_runner": "Joanne KILBY",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8061 as 1061; verified in Blaenavon 2026 sequence"
   },
   "55282005163": {
-    "action": "strip_phantom",
-    "old_bib": "1061",
+    "action": "manual_override",
+    "bib": "8061",
     "fixture": "2025/2026 road R2",
-    "stripped_runner": "Carl URQUHART",
-    "stripped_club": "Lliswerry Runners",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "1061",
+    "old_runner": "Carl URQUHART",
+    "new_runner": "Joanne KILBY",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8061 as 1061; verified in Blaenavon 2026 sequence"
   },
   "55282005568": {
     "action": "reassign",
@@ -4646,12 +4666,14 @@
     "reason": "Bib number was not worn by any finisher in this fixture"
   },
   "53832250958": {
-    "action": "strip_phantom",
-    "old_bib": "349",
+    "action": "manual_override",
+    "bib": "849",
     "fixture": "2023/2024 road R4",
-    "stripped_runner": "Paul HAYWARD",
-    "stripped_club": "Islwyn RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "349",
+    "old_runner": "Paul HAYWARD",
+    "new_runner": "Anthony MALARCZYK",
+    "new_club": "Islwyn RC",
+    "reason": "OCR misread digit 8 as 3 (read 349); verified in burst sandwich"
   },
   "53832251058": {
     "action": "strip_phantom",
@@ -8501,12 +8523,14 @@
     "reason": "Bib number was not worn by any finisher in this fixture"
   },
   "55442831387": {
-    "action": "strip_phantom",
-    "old_bib": "1079",
+    "action": "manual_override",
+    "bib": "8079",
     "fixture": "2025/2026 road R5",
-    "stripped_runner": "Mike VISSER",
-    "stripped_club": "Spirit of Monmouth RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "1079",
+    "old_runner": "Mike VISSER",
+    "new_runner": "Nick OSMAN",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8079 as 1079; verified in Parc Bryn Bach 2026 sequence"
   },
   "55442831737": {
     "action": "reassign",
@@ -10515,6 +10539,16 @@
     "new_runner": "Phillip MATTHEWS",
     "new_club": "Parc Bryn Bach RC"
   },
+  "55368098270": {
+    "action": "manual_override",
+    "bib": "8073",
+    "fixture": "2025/2026 road R4",
+    "old_bib": "261",
+    "old_runner": "",
+    "new_runner": "Phillip MATTHEWS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR partial read 261 for 8073; verified in Cwmbran 2026 sequence"
+  },
   "55368098520": {
     "action": "reassign",
     "bib": "8073",
@@ -10852,6 +10886,36 @@
     "old_club": "",
     "new_runner": "Keith DAVIES",
     "new_club": "Islwyn RC"
+  },
+  "55281874691": {
+    "action": "manual_override",
+    "bib": "8041",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "1041",
+    "old_runner": "",
+    "new_runner": "Vincent GREGORY",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8041 as 1041; verified in Blaenavon 2026 sequence"
+  },
+  "55281875191": {
+    "action": "manual_override",
+    "bib": "1092",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "8092",
+    "old_runner": "",
+    "new_runner": "Grahame VINER",
+    "new_club": "Caerleon RC",
+    "reason": "OCR misread bib 1092 as 8092; verified in Blaenavon 2026 sequence"
+  },
+  "55281875391": {
+    "action": "manual_override",
+    "bib": "1092",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "8092",
+    "old_runner": "",
+    "new_runner": "Grahame VINER",
+    "new_club": "Caerleon RC",
+    "reason": "OCR misread bib 1092 as 8092; verified in Blaenavon 2026 sequence"
   },
   "55281875536": {
     "action": "reassign",
@@ -11396,6 +11460,16 @@
     "stripped_club": "Chepstow Harriers",
     "reason": "Bib number was not worn by any finisher in this fixture"
   },
+  "55282100044": {
+    "action": "manual_override",
+    "bib": "8041",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "1041",
+    "old_runner": "",
+    "new_runner": "Vincent GREGORY",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8041 as 1041; verified in Blaenavon 2026 sequence"
+  },
   "55282100199": {
     "action": "reassign",
     "bib": "6065",
@@ -11556,6 +11630,16 @@
     "old_club": "",
     "new_runner": "Stephen DALLOW",
     "new_club": "Parc Bryn Bach RC"
+  },
+  "55282268580": {
+    "action": "manual_override",
+    "bib": "1054",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "8054",
+    "old_runner": "",
+    "new_runner": "Ffion MORGAN",
+    "new_club": "Caerleon RC",
+    "reason": "OCR misread bib 1054 as 8054; verified in Blaenavon 2026 sequence"
   },
   "55282268610": {
     "action": "reassign",
@@ -13719,6 +13803,16 @@
     "new_runner": "Elizabeth SIMS",
     "new_club": "Caerleon RC"
   },
+  "55443975924": {
+    "action": "manual_override",
+    "bib": "1078",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "078",
+    "old_runner": "",
+    "new_runner": "Elizabeth SIMS",
+    "new_club": "Caerleon RC",
+    "reason": "OCR dropped leading digit 1 (read 078); verified in burst sandwich"
+  },
   "55443976079": {
     "action": "reassign",
     "bib": "1078",
@@ -15320,6 +15414,16 @@
     "new_runner": "Chris WATKINS",
     "new_club": "Lliswerry Runners"
   },
+  "55367717721": {
+    "action": "manual_override",
+    "bib": "6154",
+    "fixture": "2025/2026 road R4",
+    "old_bib": "615",
+    "old_runner": "",
+    "new_runner": "Chris WATKINS",
+    "new_club": "Lliswerry Runners",
+    "reason": "OCR cut off digit 4 (read 615); verified in burst sandwich"
+  },
   "55367717916": {
     "action": "reassign",
     "bib": "6154",
@@ -15328,6 +15432,16 @@
     "old_club": "",
     "new_runner": "Chris WATKINS",
     "new_club": "Lliswerry Runners"
+  },
+  "55367844888": {
+    "action": "manual_override",
+    "bib": "8073",
+    "fixture": "2025/2026 road R4",
+    "old_bib": "1073",
+    "old_runner": "",
+    "new_runner": "Phillip MATTHEWS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8073 as 1073 (vest fold on digit 8); verified in Cwmbran 2026 sequence"
   },
   "55367845153": {
     "action": "reassign",
@@ -15402,12 +15516,14 @@
     "new_club": "Parc Bryn Bach RC"
   },
   "55367851633": {
-    "action": "strip_phantom",
-    "old_bib": "813",
+    "action": "manual_override",
+    "bib": "8073",
     "fixture": "2025/2026 road R4",
-    "stripped_runner": "Rachel WATERS",
-    "stripped_club": "Spirit of Monmouth RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "813",
+    "old_runner": "Rachel WATERS",
+    "new_runner": "Phillip MATTHEWS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR partial read 813 for 8073; verified in Cwmbran 2026 sequence"
   },
   "55367852483": {
     "action": "reassign",
@@ -15541,6 +15657,16 @@
     "old_club": "",
     "new_runner": "Jack ROWLAND",
     "new_club": "Lliswerry Runners"
+  },
+  "55367860788": {
+    "action": "manual_override",
+    "bib": "8061",
+    "fixture": "2025/2026 road R4",
+    "old_bib": "1061",
+    "old_runner": "",
+    "new_runner": "Joanne KILBY",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8061 as 1061; verified in Cwmbran 2026 sequence"
   },
   "55367861778": {
     "action": "reassign",
@@ -15720,12 +15846,14 @@
     "reason": "Bib number was not worn by any finisher in this fixture"
   },
   "55367868778": {
-    "action": "strip_phantom",
-    "old_bib": "409",
+    "action": "manual_override",
+    "bib": "8073",
     "fixture": "2025/2026 road R4",
-    "stripped_runner": "Tracey ARTHUR",
-    "stripped_club": "Lliswerry Runners",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "409",
+    "old_runner": "Tracey ARTHUR",
+    "new_runner": "Phillip MATTHEWS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR partial read 409 for 8073; verified in Cwmbran 2026 sequence"
   },
   "55367869688": {
     "action": "reassign",
@@ -15868,6 +15996,16 @@
     "stripped_runner": "Dave ANDREWS",
     "stripped_club": "Chepstow Harriers",
     "reason": "Bib number was not worn by any finisher in this fixture"
+  },
+  "55367901654": {
+    "action": "manual_override",
+    "bib": "8058",
+    "fixture": "2025/2026 road R4",
+    "old_bib": "1058",
+    "old_runner": "",
+    "new_runner": "Sam JONES",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8058 as 1058; verified in Cwmbran 2026 sequence"
   },
   "55367901889": {
     "action": "reassign",
@@ -16449,12 +16587,14 @@
     "new_club": "Lliswerry Runners"
   },
   "55368120615": {
-    "action": "strip_phantom",
-    "old_bib": "1079",
+    "action": "manual_override",
+    "bib": "8079",
     "fixture": "2025/2026 road R4",
-    "stripped_runner": "Mike VISSER",
-    "stripped_club": "Spirit of Monmouth RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "1079",
+    "old_runner": "Mike VISSER",
+    "new_runner": "Nick OSMAN",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8079 as 1079; verified in Cwmbran 2026 sequence"
   },
   "55368122060": {
     "action": "reassign",
@@ -17146,6 +17286,16 @@
     "old_club": "",
     "new_runner": "Alastair MASTERTON",
     "new_club": "Parc Bryn Bach RC"
+  },
+  "55281894431": {
+    "action": "manual_override",
+    "bib": "8030",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "1030",
+    "old_runner": "",
+    "new_runner": "Thomas EDWARDS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8030 as 1030; verified in Blaenavon 2026 sequence"
   },
   "55281894621": {
     "action": "reassign",
@@ -18048,6 +18198,16 @@
     "old_club": "",
     "new_runner": "Phillip MATTHEWS",
     "new_club": "Parc Bryn Bach RC"
+  },
+  "55282286375": {
+    "action": "manual_override",
+    "bib": "8073",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "807",
+    "old_runner": "",
+    "new_runner": "Phillip MATTHEWS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR partial read 807 for 8073; verified in Blaenavon 2026 sequence"
   },
   "55282286765": {
     "action": "reassign",
@@ -19979,6 +20139,16 @@
     "stripped_runner": "Dave ANDREWS",
     "stripped_club": "Chepstow Harriers",
     "reason": "Bib number was not worn by any finisher in this fixture"
+  },
+  "54377074501": {
+    "action": "manual_override",
+    "bib": "829",
+    "fixture": "2024/2025 xc R5",
+    "old_bib": "821",
+    "old_runner": "",
+    "new_runner": "Chris WREFORD",
+    "new_club": "Caerleon RC",
+    "reason": "OCR misread digit 9 as 1 (read 821); verified in burst sandwich"
   },
   "54377074671": {
     "action": "strip_phantom",

@@ -1125,13 +1125,12 @@
                 const metaName = (meta.name || '').trim();
                 const metaBib = meta.bib ? String(meta.bib).trim() : '';
 
-                // A photo explicitly tagged with a different athlete's name should NEVER match
-                if (metaName) {
-                    const isNameMatch = (getNameKey(metaName) === finalMasterKey);
-                    if (!isNameMatch) {
-                        return;
-                    }
-                }
+                // A photo MUST have a verified runner name matching this athlete.
+                // Ungrounded photos (where name was stripped due to OCR error, spectators, etc.) never match.
+                if (!metaName) return;
+
+                const isNameMatch = (getNameKey(metaName) === finalMasterKey);
+                if (!isNameMatch) return;
 
                 // If album season is known and athlete has recorded bibs for that season, bib must not contradict
                 if (photoSeason && athleteSeasonBibs.has(photoSeason)) {
@@ -1146,16 +1145,8 @@
                     return;
                 }
 
-                // A match is confirmed if:
-                // 1) Explicit name match (and no season/bib/club contradiction above)
-                // 2) OR photoSeason is known and metaBib matches athlete's bib in that season
-                const explicitNameMatch = Boolean(metaName && getNameKey(metaName) === finalMasterKey);
-                const seasonBibMatch = Boolean(photoSeason && metaBib && athleteSeasonBibs.has(photoSeason) && athleteSeasonBibs.get(photoSeason).has(metaBib));
-
-                if (explicitNameMatch || seasonBibMatch) {
-                    seenPhotoIds.add(pid);
-                    matchedPhotos.push({ id: pid, ...meta });
-                }
+                seenPhotoIds.add(pid);
+                matchedPhotos.push({ id: pid, ...meta });
             });
 
             // Best Shot First: Sort photos by sharpness (crispest action shots first)

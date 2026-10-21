@@ -922,21 +922,12 @@
                     const photoSeason = album ? album.season : null;
                     const metaBib = meta.bib ? String(meta.bib).trim() : '';
 
-                    // If photo has an explicit club tag, it MUST match targetClub
-                    if (meta.club) {
-                        if (!matchesClubName(meta.club, targetClub)) {
-                            return; // Explicitly belongs to another club!
-                        }
-                        seenPhotoIds.add(pid);
-                        matchedPhotos.push({ id: pid, ...meta });
+                    // A photo MUST have an explicit verified club matching targetClub
+                    if (!meta.club || !matchesClubName(meta.club, targetClub)) {
                         return;
                     }
-
-                    // If photo has no club tag, match only if bib belongs to targetClub in this photo's season
-                    if (photoSeason && metaBib && clubSeasonBibs.has(photoSeason) && clubSeasonBibs.get(photoSeason).has(metaBib)) {
-                        seenPhotoIds.add(pid);
-                        matchedPhotos.push({ id: pid, ...meta });
-                    }
+                    seenPhotoIds.add(pid);
+                    matchedPhotos.push({ id: pid, ...meta });
                 });
 
                 // Best Shot First: Sort photos by sharpness (crispest action shots first)

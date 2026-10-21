@@ -555,9 +555,9 @@
                             Object.entries(photoTags).forEach(([pid, p]) => {
                                 const albumMatches = !fixtureAlbum || String(p.album_id) === String(fixtureAlbum.album_id);
                                 if (albumMatches) {
-                                    const bibMatch = runnerBib && String(p.bib) === runnerBib;
-                                    const nameMatch = p.name && p.name.toLowerCase() === runnerNameClean;
-                                    if (bibMatch || nameMatch) {
+                                    const nameMatch = Boolean(p.name && p.name.toLowerCase() === runnerNameClean);
+                                    const bibMatch = Boolean(runnerBib && String(p.bib) === runnerBib && (!p.name || p.name.toLowerCase() === runnerNameClean));
+                                    if (nameMatch || bibMatch) {
                                         runnerPhotos.push({
                                             id: pid,
                                             bib: p.bib || runnerBib,
