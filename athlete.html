@@ -24,6 +24,35 @@
     </script>
     <style>
         body { background-color: #030712; }
+
+        @keyframes gallery-jiggle-nudge {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(-24px); }
+            45% { transform: translateX(10px); }
+            65% { transform: translateX(-4px); }
+            85% { transform: translateX(2px); }
+            100% { transform: translateX(0); }
+        }
+
+        .animate-gallery-jiggle {
+            animation: gallery-jiggle-nudge 0.85s cubic-bezier(0.25, 1, 0.5, 1) both;
+        }
+
+        @keyframes arrow-bounce-x {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(4px); }
+        }
+
+        .animate-arrow-hint {
+            animation: arrow-bounce-x 1.5s ease-in-out infinite;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-gallery-jiggle,
+            .animate-arrow-hint {
+                animation: none !important;
+            }
+        }
     </style>
 </head>
 <body class="text-slate-300 font-sans antialiased flex flex-col min-h-full">
@@ -151,10 +180,27 @@
             </div>
             
             <!-- Mini Gallery Strip: Single-row horizontal scrollable previews -->
-            <div class="relative">
+            <div class="relative group/strip">
+                <!-- Left Fade Gradient -->
+                <div id="athlete-strip-fade-left" class="pointer-events-none absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-slate-950 via-slate-950/70 to-transparent z-10 transition-opacity duration-300 opacity-0"></div>
+
+                <!-- Left Scroll Arrow Button -->
+                <button id="athlete-strip-scroll-left" type="button" class="hidden absolute left-1 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-900/90 hover:bg-amber-400 hover:text-slate-950 text-slate-200 border border-slate-700/80 shadow-xl flex items-center justify-center backdrop-blur-md transition-all cursor-pointer hover:scale-110 active:scale-95" aria-label="Scroll photos left">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+
+                <!-- Scrollable strip -->
                 <div id="athlete-photos-strip" class="flex items-center gap-3 overflow-x-auto py-1 scroll-smooth" style="scrollbar-width: thin; scrollbar-color: #334155 transparent;">
                     <!-- Dynamically populated compact photo previews -->
                 </div>
+
+                <!-- Right Fade Gradient -->
+                <div id="athlete-strip-fade-right" class="pointer-events-none absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-slate-950 via-slate-950/70 to-transparent z-10 transition-opacity duration-300"></div>
+
+                <!-- Right Scroll Arrow Button (indicates more photos to scroll to) -->
+                <button id="athlete-strip-scroll-right" type="button" class="hidden absolute right-1 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-900/90 hover:bg-amber-400 hover:text-slate-950 text-amber-300 border border-amber-400/40 shadow-xl flex items-center justify-center backdrop-blur-md transition-all cursor-pointer hover:scale-110 active:scale-95 animate-arrow-hint" aria-label="Scroll photos right">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                </button>
             </div>
         </section>
 
@@ -1222,6 +1268,81 @@
                                 openAthleteLightbox(isNaN(idx) ? 0 : idx);
                             });
                         });
+                        // Scroll arrows and edge fade indicator handling
+                        const stripScrollLeftBtn = document.getElementById('athlete-strip-scroll-left');
+                        const stripScrollRightBtn = document.getElementById('athlete-strip-scroll-right');
+                        const stripFadeLeft = document.getElementById('athlete-strip-fade-left');
+                        const stripFadeRight = document.getElementById('athlete-strip-fade-right');
+
+                        const updateStripScrollButtons = () => {
+                            if (!photosStrip) return;
+                            const isOverflowing = photosStrip.scrollWidth > photosStrip.clientWidth + 5;
+                            
+                            if (!isOverflowing) {
+                                if (stripScrollLeftBtn) stripScrollLeftBtn.classList.add('hidden');
+                                if (stripScrollRightBtn) stripScrollRightBtn.classList.add('hidden');
+                                if (stripFadeLeft) stripFadeLeft.classList.add('opacity-0');
+                                if (stripFadeRight) stripFadeRight.classList.add('opacity-0');
+                                return;
+                            }
+
+                            const canScrollLeft = photosStrip.scrollLeft > 15;
+                            const canScrollRight = photosStrip.scrollLeft + photosStrip.clientWidth < photosStrip.scrollWidth - 15;
+
+                            if (stripScrollLeftBtn) {
+                                if (canScrollLeft) stripScrollLeftBtn.classList.remove('hidden');
+                                else stripScrollLeftBtn.classList.add('hidden');
+                            }
+                            if (stripFadeLeft) {
+                                if (canScrollLeft) stripFadeLeft.classList.remove('opacity-0');
+                                else stripFadeLeft.classList.add('opacity-0');
+                            }
+
+                            if (stripScrollRightBtn) {
+                                if (canScrollRight) stripScrollRightBtn.classList.remove('hidden');
+                                else stripScrollRightBtn.classList.add('hidden');
+                            }
+                            if (stripFadeRight) {
+                                if (canScrollRight) stripFadeRight.classList.remove('opacity-0');
+                                else stripFadeRight.classList.add('opacity-0');
+                            }
+                        };
+
+                        if (stripScrollLeftBtn) {
+                            stripScrollLeftBtn.addEventListener('click', () => {
+                                if (photosStrip) photosStrip.scrollBy({ left: -260, behavior: 'smooth' });
+                            });
+                        }
+                        if (stripScrollRightBtn) {
+                            stripScrollRightBtn.addEventListener('click', () => {
+                                if (photosStrip) photosStrip.scrollBy({ left: 260, behavior: 'smooth' });
+                            });
+                        }
+
+                        if (photosStrip) {
+                            photosStrip.addEventListener('scroll', updateStripScrollButtons, { passive: true });
+                            setTimeout(updateStripScrollButtons, 60);
+                            window.addEventListener('resize', updateStripScrollButtons, { passive: true });
+                        }
+
+                        // Subtle jiggle animation on scroll-into-view
+                        if (photosSection && 'IntersectionObserver' in window) {
+                            const jiggleObserver = new IntersectionObserver((entries) => {
+                                entries.forEach(entry => {
+                                    if (entry.isIntersecting) {
+                                        if (photosStrip && photosStrip.scrollWidth > photosStrip.clientWidth + 10) {
+                                            photosStrip.classList.add('animate-gallery-jiggle');
+                                            setTimeout(() => {
+                                                photosStrip.classList.remove('animate-gallery-jiggle');
+                                            }, 1000);
+                                        }
+                                        jiggleObserver.unobserve(entry.target);
+                                    }
+                                });
+                            }, { threshold: 0.25 });
+
+                            jiggleObserver.observe(photosSection);
+                        }
                     }
 
                     if (openLightboxBtn) {
