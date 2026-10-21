@@ -608,13 +608,5 @@
     "new_runner": "Chris WREFORD",
     "new_club": "Caerleon RC",
     "reason": "OCR misread digit 9 as 1 (read 821); verified in burst sandwich"
-  },
-  "55444149071": {
-    "action": "strip_phantom",
-    "old_bib": "108",
-    "fixture": "2025/2026 road R5",
-    "stripped_runner": "Michelle CLABON",
-    "stripped_club": "Caerleon RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
   }
 }

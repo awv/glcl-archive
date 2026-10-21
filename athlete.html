@@ -1122,31 +1122,30 @@
 
                 const album = (meta.album_id && albumById[meta.album_id]) || fixtureAlbums[meta.album_id] || null;
                 const photoSeason = album ? album.season : null;
-                const metaName = (meta.name || '').trim();
-                const metaBib = meta.bib ? String(meta.bib).trim() : '';
 
-                // A photo MUST have a verified runner name matching this athlete.
-                // Ungrounded photos (where name was stripped due to OCR error, spectators, etc.) never match.
-                if (!metaName) return;
+                const runnerList = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
+                    ? meta.runners
+                    : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
 
-                const isNameMatch = (getNameKey(metaName) === finalMasterKey);
-                if (!isNameMatch) return;
+                if (runnerList.length === 0) return;
 
-                // If album season is known and athlete has recorded bibs for that season, bib must not contradict
-                if (photoSeason && athleteSeasonBibs.has(photoSeason)) {
-                    const validBibsThisSeason = athleteSeasonBibs.get(photoSeason);
-                    if (metaBib && !validBibsThisSeason.has(metaBib)) {
-                        return; // Athlete wore a different bib in this season
+                const matchesThisAthlete = runnerList.some(r => {
+                    const rName = (r.name || '').trim();
+                    if (!rName) return false;
+                    if (getNameKey(rName) !== finalMasterKey) return false;
+                    const rBib = r.bib ? String(r.bib).trim() : '';
+                    if (photoSeason && athleteSeasonBibs.has(photoSeason)) {
+                        const validBibsThisSeason = athleteSeasonBibs.get(photoSeason);
+                        if (rBib && !validBibsThisSeason.has(rBib)) return false;
                     }
-                }
+                    if (r.club && !matchesAthleteClub(r.club)) return false;
+                    return true;
+                });
 
-                // Check club compatibility if photo has club metadata
-                if (meta.club && !matchesAthleteClub(meta.club)) {
-                    return;
+                if (matchesThisAthlete) {
+                    seenPhotoIds.add(pid);
+                    matchedPhotos.push({ id: pid, ...meta });
                 }
-
-                seenPhotoIds.add(pid);
-                matchedPhotos.push({ id: pid, ...meta });
             });
 
             // Best Shot First: Sort photos by sharpness (crispest action shots first)

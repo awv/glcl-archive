@@ -555,8 +555,17 @@
                         p.indexedBib = meta.bib;
                         p.indexedRunner = meta.name;
                         p.indexedClub = meta.club;
+                        p.indexedRunners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
+                            ? meta.runners
+                            : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
                         p.sharpness = meta.sharpness || 0;
-                        p.tags = (p.tags || "") + ` bib${meta.bib} ${meta.bib} ${meta.name} ${meta.club}`;
+                        let extraTags = ` bib${meta.bib} ${meta.bib} ${meta.name} ${meta.club}`;
+                        if (meta.runners && Array.isArray(meta.runners)) {
+                            meta.runners.forEach(r => {
+                                extraTags += ` bib${r.bib} ${r.bib} ${r.name} ${r.club}`;
+                            });
+                        }
+                        p.tags = (p.tags || "") + extraTags;
                     }
                 });
 
@@ -638,33 +647,45 @@
                 // If Flickr search had 0 results, fall back to locally indexed photos
                 if (searchResults.length === 0 && Object.keys(photoIndex).length > 0) {
                     const clean = tag.trim().replace(/^bib/i, "").toLowerCase();
-                    const matchedEntries = Object.entries(photoIndex).filter(([pid, meta]) => 
-                        (meta.bib && meta.bib.toLowerCase() === clean) || 
-                        (meta.name && meta.name.toLowerCase().includes(clean))
-                    );
+                    const matchedEntries = Object.entries(photoIndex).filter(([pid, meta]) => {
+                        const runners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
+                            ? meta.runners
+                            : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
+                        return runners.some(r => 
+                            (r.bib && String(r.bib).toLowerCase() === clean) || 
+                            (r.name && r.name.toLowerCase().includes(clean))
+                        );
+                    });
                     
                     if (matchedEntries.length > 0) {
                         const foundInCurrent = currentPhotos.filter(p => matchedEntries.some(([pid]) => String(p.id) === String(pid)));
                         if (foundInCurrent.length > 0) {
                             searchResults = foundInCurrent;
                         } else {
-                            searchResults = matchedEntries.map(([pid, meta]) => ({
-                                id: pid,
-                                server: meta.server || "",
-                                secret: meta.secret || "",
-                                url_m: meta.url_m || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_m.jpg` : ''),
-                                url_l: meta.url_l || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : ''),
-                                url_h: meta.url_h,
-                                url_k: meta.url_k,
-                                url_3k: meta.url_3k,
-                                url_4k: meta.url_4k,
-                                title: meta.name ? `${meta.name} (Bib #${meta.bib})` : `Photo #${pid}`,
-                                indexedBib: meta.bib,
-                                indexedRunner: meta.name,
-                                indexedClub: meta.club,
-                                sharpness: meta.sharpness || 0,
-                                tags: `bib${meta.bib} ${meta.bib} ${meta.name} ${meta.club}`
-                            }));
+                            searchResults = matchedEntries.map(([pid, meta]) => {
+                                const runners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
+                                    ? meta.runners
+                                    : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
+                                const runnerTitles = runners.map(r => `${r.name} (Bib #${r.bib})`).join(" & ");
+                                return {
+                                    id: pid,
+                                    server: meta.server || "",
+                                    secret: meta.secret || "",
+                                    url_m: meta.url_m || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_m.jpg` : ''),
+                                    url_l: meta.url_l || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : ''),
+                                    url_h: meta.url_h,
+                                    url_k: meta.url_k,
+                                    url_3k: meta.url_3k,
+                                    url_4k: meta.url_4k,
+                                    title: runnerTitles || (meta.name ? `${meta.name} (Bib #${meta.bib})` : `Photo #${pid}`),
+                                    indexedBib: meta.bib,
+                                    indexedRunner: meta.name,
+                                    indexedClub: meta.club,
+                                    indexedRunners: runners,
+                                    sharpness: meta.sharpness || 0,
+                                    tags: `bib${meta.bib} ${meta.bib} ${meta.name} ${meta.club}`
+                                };
+                            });
                         }
                     }
                 }
@@ -687,6 +708,7 @@
             if (activeSearchFilter.bib) {
                 const searchNum = activeSearchFilter.bib.toLowerCase().trim().replace(/^bib/i, "");
                 filtered = filtered.filter(p => {
+                    if (p.indexedRunners && p.indexedRunners.some(r => r.bib && String(r.bib).toLowerCase() === searchNum)) return true;
                     if (p.indexedBib && p.indexedBib.toLowerCase() === searchNum) return true;
                     const tagList = (p.tags || "").toLowerCase().split(/\s+/).filter(Boolean);
                     return tagList.includes(`bib${searchNum}`) || tagList.includes(searchNum);
@@ -697,29 +719,42 @@
             if (activeSearchFilter.runnerName) {
                 const targetName = activeSearchFilter.runnerName.toLowerCase().trim();
                 filtered = filtered.filter(p => {
+                    if (p.indexedRunners && p.indexedRunners.some(r => r.name && r.name.toLowerCase().includes(targetName))) return true;
                     if (p.indexedRunner && p.indexedRunner.toLowerCase().includes(targetName)) return true;
                     return (p.tags || "").toLowerCase().includes(targetName);
                 });
 
                 if (filtered.length === 0 && Object.keys(photoIndex).length > 0) {
                     const localMatches = Object.entries(photoIndex)
-                        .filter(([pid, meta]) => meta.name && meta.name.toLowerCase().includes(targetName))
-                        .map(([pid, meta]) => ({
-                            id: pid,
-                            server: meta.server || "",
-                            secret: meta.secret || "",
-                            url_m: meta.url_m || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_m.jpg` : ''),
-                            url_l: meta.url_l || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : ''),
-                            url_h: meta.url_h,
-                            url_k: meta.url_k,
-                            url_3k: meta.url_3k,
-                            url_4k: meta.url_4k,
-                            title: meta.name ? `${meta.name} (Bib #${meta.bib})` : `Photo #${pid}`,
-                            indexedBib: meta.bib,
-                            indexedRunner: meta.name,
-                            indexedClub: meta.club,
-                            tags: `bib${meta.bib} ${meta.bib} ${meta.name} ${meta.club}`
-                        }));
+                        .filter(([pid, meta]) => {
+                            const runners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
+                                ? meta.runners
+                                : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
+                            return runners.some(r => r.name && r.name.toLowerCase().includes(targetName));
+                        })
+                        .map(([pid, meta]) => {
+                            const runners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
+                                ? meta.runners
+                                : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
+                            const runnerTitles = runners.map(r => `${r.name} (Bib #${r.bib})`).join(" & ");
+                            return {
+                                id: pid,
+                                server: meta.server || "",
+                                secret: meta.secret || "",
+                                url_m: meta.url_m || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_m.jpg` : ''),
+                                url_l: meta.url_l || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : ''),
+                                url_h: meta.url_h,
+                                url_k: meta.url_k,
+                                url_3k: meta.url_3k,
+                                url_4k: meta.url_4k,
+                                title: runnerTitles || (meta.name ? `${meta.name} (Bib #${meta.bib})` : `Photo #${pid}`),
+                                indexedBib: meta.bib,
+                                indexedRunner: meta.name,
+                                indexedClub: meta.club,
+                                indexedRunners: runners,
+                                tags: `bib${meta.bib} ${meta.bib} ${meta.name} ${meta.club}`
+                            };
+                        });
                     if (localMatches.length > 0) {
                         filtered = localMatches;
                     }

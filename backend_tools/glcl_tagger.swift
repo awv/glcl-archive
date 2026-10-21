@@ -14,11 +14,19 @@ struct RunnerRecord {
     let isLifetimeFallback: Bool
 }
 
-struct MatchResult {
-    let photoURL: URL
+struct RunnerMatch: Codable {
     let bib: String
-    let runner: RunnerRecord?
+    let name: String
+    let club: String
     let confidence: Float
+    let isInherited: Bool
+    let isLifetimeFallback: Bool
+    let bbox: [CGFloat] // [origin.x, origin.y, width, height]
+}
+
+struct MultiMatchResult {
+    let photoURL: URL
+    let matches: [RunnerMatch]
     let detectedWords: [String]
 }
 
@@ -268,7 +276,7 @@ func sampleVestColor(cgImage: CGImage, bibBBox: CGRect) -> (r: CGFloat, g: CGFlo
 func isColorCompatibleWithClub(r: CGFloat, g: CGFloat, b: CGFloat, club: String) -> Bool {
     let c = club.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
     
-    // 1. SAFETY DEFAULTS FOR CROSS-COUNTRY CONDITIONS:
+    // 1. SAFETY DEFAULTS FOR CROSS-COUNTRY & ROAD CONDITIONS:
     // Runners frequently wear black or white thermal underlayers, grey garments,
     // or carry race numbers pinned high. Mud and heavy shadow also neutralize color.
     // ALWAYS accept neutral, grayscale, black, or white torso samples.
@@ -292,73 +300,111 @@ func isColorCompatibleWithClub(r: CGFloat, g: CGFloat, b: CGFloat, club: String)
     }
     
     // 2. DETECT DOMINANT CHROMATIC COLOR FAMILIES:
-    // Bright / Kelly Green (Parc Bryn Bach, Griffithstown)
     let isGreen = g > 75 && g > r * 1.25 && g > b * 1.20
-    
-    // Bold Red (Pont-Y-Pwl, Chepstow chest band)
     let isRed = r > 85 && r > g * 1.40 && r > b * 1.40
-    
-    // Deep Maroon / Burgundy (Lliswerry)
     let isMaroon = r > 60 && r > g * 1.35 && g < 90 && b < r * 0.95 && !isRed
-    
-    // Royal Blue (Chepstow, Spirit of Monmouth, Griffithstown blue half)
     let isRoyalBlue = b > 80 && b > r * 1.25 && b > g * 1.15
-    
-    // Sky Blue / Light Cyan (Fairwater Runners)
     let isSkyBlue = b > 85 && g > 75 && b > r * 1.20 && (g > r * 1.05 || b > g * 1.25) && !isRoyalBlue
-    
-    // Purple / Violet (Caerleon, Caldicot)
     let isPurple = (r > 55 && b > 65) && (min(r, b) > g * 1.20) && (r + b > g * 2.3)
-    
-    // Yellow / Gold (Spirit of Monmouth sash)
     let isYellow = r > 115 && g > 105 && b < min(r, g) * 0.70
     
     // 3. APPLY MUTUAL-EXCLUSION CONTRADICTIONS PER CLUB:
     if c.contains("parc bryn bach") || c == "pbb" {
-        // Kit: Green lower torso & white upper. Rejects pure maroon, purple, royal blue.
         if isMaroon || isRoyalBlue || isPurple { return false }
     } else if c.contains("lliswerry") {
-        // Kit: Deep Burgundy/Maroon & white. Rejects green, royal blue, sky blue, purple, yellow.
         if isGreen || isRoyalBlue || isSkyBlue || isPurple || isYellow { return false }
     } else if c.contains("chepstow") {
-        // Kit: Royal Blue & Red band. Rejects green, maroon, purple.
         if isGreen || isMaroon || isPurple { return false }
     } else if c.contains("fairwater") {
-        // Kit: Sky Blue & Navy. Rejects green, bold red, maroon, purple, yellow.
         if isGreen || isRed || isMaroon || isPurple || isYellow { return false }
     } else if c.contains("pont-y-pwl") || c.contains("pontypool") {
-        // Kit: Bold Red & Black. Rejects green, royal blue, sky blue, purple.
         if isGreen || isRoyalBlue || isSkyBlue || isPurple { return false }
     } else if c.contains("monmouth") {
-        // Kit: Royal Blue & Yellow sash. Rejects green, bold red, maroon, purple.
         if isGreen || isRed || isMaroon || isPurple { return false }
     } else if c.contains("caerleon") {
-        // Kit: Purple/Indigo & White. Rejects green, bold red, sky blue, yellow.
         if isGreen || isRed || isSkyBlue || isYellow { return false }
     } else if c.contains("caldicot") {
-        // Kit: Purple, Black & White. Rejects green, bold red, sky blue, yellow.
         if isGreen || isRed || isSkyBlue || isYellow { return false }
     } else if c.contains("griffithstown") {
-        // Kit: Green & Blue swirl / retro green-blue / lime. Rejects bold red, maroon, purple.
         if isRed || isMaroon || isPurple { return false }
     } else if c.contains("islwyn") {
-        // Kit: Black & White monochrome. Rejects saturated green, red, sky blue, royal blue, yellow.
         if isGreen || isRed || isSkyBlue || isRoyalBlue || isYellow { return false }
     }
     
     return true
 }
 
-// MARK: - OCR Scanner
-func scanPhoto(url: URL, activeBibMap: [String: RunnerRecord], lifetimeBibMap: [String: RunnerRecord], minConfidence: Float) -> MatchResult? {
+// MARK: - Head & Body Grounding Filter
+/// Verifies that a detected bib has a head/face above it belonging to this runner.
+/// Discards partial glimpses of numbers where the runner's head is cropped out of frame.
+func hasHeadAboveBib(bibBox: CGRect, faces: [VNFaceObservation], humans: [VNHumanObservation]) -> Bool {
+    let bibMidX = bibBox.midX
+    let bibMidY = bibBox.midY
+    let bibMaxY = bibBox.origin.y + bibBox.size.height
+
+    // 1. Direct Face Detection
+    for face in faces {
+        let fBox = face.boundingBox
+        // Face must be vertically above the bib center
+        guard fBox.midY > bibMidY else { continue }
+        // Face chin should not be far below the bib top
+        guard fBox.origin.y >= (bibBox.origin.y - bibBox.size.height * 0.35) else { continue }
+        
+        // Horizontal alignment: face center and bib center should be in the same vertical column
+        let maxHOffset = max(fBox.size.width * 1.6, bibBox.size.width * 1.4, 0.09)
+        guard abs(fBox.midX - bibMidX) <= maxHOffset else { continue }
+        
+        // Proportional scale check: face width vs bib width
+        let ratio = fBox.size.width / max(bibBox.size.width, 0.001)
+        guard ratio >= 0.18 && ratio <= 4.5 else { continue }
+        
+        // Vertical distance check: face chin shouldn't be excessively far from bib top
+        let verticalGap = fBox.origin.y - bibMaxY
+        let maxGap = max(bibBox.size.height * 5.0, fBox.size.height * 4.0, 0.40)
+        guard verticalGap <= maxGap else { continue }
+        
+        return true
+    }
+
+    // 2. Human Upper-Body Detection (handles tilted heads, caps, dark sunglasses, profile angles)
+    for human in humans {
+        let hBox = human.boundingBox
+        // Human box must encompass bib horizontally
+        let minX = hBox.origin.x - 0.06
+        let maxX = hBox.origin.x + hBox.size.width + 0.06
+        guard bibMidX >= minX && bibMidX <= maxX else { continue }
+        
+        // Human box bottom must be near or below the bib
+        guard hBox.origin.y <= bibMidY + bibBox.size.height * 0.6 else { continue }
+        
+        // AND human box top must extend significantly above the bib to contain head/neck
+        let humanTop = hBox.origin.y + hBox.size.height
+        guard humanTop >= bibMaxY + max(bibBox.size.height * 0.6, 0.05) else { continue }
+        
+        return true
+    }
+
+    return false
+}
+
+// MARK: - OCR & Vision Multi-Runner Scanner
+func scanPhoto(
+    url: URL,
+    activeBibMap: [String: RunnerRecord],
+    lifetimeBibMap: [String: RunnerRecord],
+    minConfidence: Float,
+    requireHead: Bool = true
+) -> MultiMatchResult? {
     guard let source = CGImageSourceCreateWithURL(url as CFURL, nil),
           let cgImage = CGImageSourceCreateImageAtIndex(source, 0, nil) else {
         return nil
     }
     
     var detectedTokens: [(text: String, conf: Float, bbox: CGRect)] = []
+    var faceObservations: [VNFaceObservation] = []
+    var humanObservations: [VNHumanObservation] = []
     
-    let request = VNRecognizeTextRequest { req, err in
+    let textRequest = VNRecognizeTextRequest { req, err in
         guard let observations = req.results as? [VNRecognizedTextObservation] else { return }
         for obs in observations {
             if let top = obs.topCandidates(1).first {
@@ -366,126 +412,216 @@ func scanPhoto(url: URL, activeBibMap: [String: RunnerRecord], lifetimeBibMap: [
             }
         }
     }
-    request.revision = VNRecognizeTextRequestRevision2
-    request.recognitionLevel = .accurate
-    request.usesLanguageCorrection = false
+    // Revision 2 pinned to avoid macOS E5RT Neural Engine driver bug
+    textRequest.revision = VNRecognizeTextRequestRevision2
+    textRequest.recognitionLevel = .accurate
+    textRequest.usesLanguageCorrection = false
+    
+    let faceRequest = VNDetectFaceRectanglesRequest { req, err in
+        if let obs = req.results as? [VNFaceObservation] {
+            faceObservations = obs
+        }
+    }
+    
+    let humanRequest = VNDetectHumanRectanglesRequest { req, err in
+        if let obs = req.results as? [VNHumanObservation] {
+            humanObservations = obs
+        }
+    }
+    humanRequest.upperBodyOnly = true
     
     let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
-    try? handler.perform([request])
+    try? handler.perform([textRequest, faceRequest, humanRequest])
     
-    var bestMatch: (bib: String, runner: RunnerRecord?, conf: Float)? = nil
+    var rawCandidates: [RunnerMatch] = []
     
     for token in detectedTokens {
         let pattern = "\\b\\d{1,4}\\b"
-        if let regex = try? NSRegularExpression(pattern: pattern) {
-            let nsStr = token.text as NSString
-            let matches = regex.matches(in: token.text, range: NSRange(location: 0, length: nsStr.length))
+        guard let regex = try? NSRegularExpression(pattern: pattern) else { continue }
+        let nsStr = token.text as NSString
+        let matches = regex.matches(in: token.text, range: NSRange(location: 0, length: nsStr.length))
+        
+        for m in matches {
+            let numStr = nsStr.substring(with: m.range)
             
-            for m in matches {
-                let numStr = nsStr.substring(with: m.range)
-                
-                // Skip common calendar year numbers
-                if ["2024", "2025", "2026", "2027", "24", "25", "26", "27"].contains(numStr) {
+            // Skip common calendar year numbers
+            if ["2024", "2025", "2026", "2027", "24", "25", "26", "27"].contains(numStr) {
+                continue
+            }
+            
+            let isShortBib = (numStr.count <= 2)
+            
+            // Spatial & Size Constraints on 1- and 2-digit numbers to eliminate background clutter
+            if isShortBib {
+                let area = token.bbox.width * token.bbox.height
+                if area < 0.0006 || token.bbox.height < 0.016 {
                     continue
                 }
-                
-                let isShortBib = (numStr.count <= 2)
-                
-                // Spatial & Size Constraints on 1- and 2-digit numbers to eliminate background clutter
-                if isShortBib {
-                    let area = token.bbox.width * token.bbox.height
-                    // Must not be a tiny distant speck or watch
-                    if area < 0.0006 || token.bbox.height < 0.016 {
-                        continue
-                    }
-                    // Must be in the central/torso zone, not extreme borders
-                    if token.bbox.origin.y < 0.06 || token.bbox.origin.y > 0.90 || token.bbox.origin.x < 0.05 || token.bbox.origin.x > 0.95 {
-                        continue
-                    }
-                    // Higher confidence required for short numbers
-                    if token.conf < 0.85 {
-                        continue
-                    }
-                }
-                
-                // Optional Vest Color Check: Sample torso above bib
-                let vestColor = sampleVestColor(cgImage: cgImage, bibBBox: token.bbox)
-                
-                // Tier 1: Active Season Runner match (Highest Priority)
-                if let runner = activeBibMap[numStr] {
-                    if let (r, g, b) = vestColor, !isColorCompatibleWithClub(r: r, g: g, b: b, club: runner.club) {
-                        // Contradiction: runner kit color does not match predicted club!
-                        continue
-                    }
-                    if bestMatch == nil || token.conf > bestMatch!.conf || (bestMatch!.runner?.isLifetimeFallback == true) {
-                        bestMatch = (numStr, runner, token.conf)
-                        continue
-                    }
-                }
-                
-                // Tier 2: Unregistered candidate within active season (Confirms bib number without guessing wrong runner)
-                if !activeBibMap.isEmpty {
-                    if token.conf >= minConfidence && (bestMatch == nil || (bestMatch!.runner == nil && token.conf > bestMatch!.conf)) {
-                        bestMatch = (numStr, nil, token.conf)
-                    }
+                if token.bbox.origin.y < 0.06 || token.bbox.origin.y > 0.90 || token.bbox.origin.x < 0.05 || token.bbox.origin.x > 0.95 {
                     continue
                 }
-                
-                // Tier 3: Ungrounded fallback (Only if no active season roster was provided)
-                if let runner = lifetimeBibMap[numStr] {
-                    if let (r, g, b) = vestColor, !isColorCompatibleWithClub(r: r, g: g, b: b, club: runner.club) {
-                        continue
-                    }
-                    if bestMatch == nil || (token.conf > bestMatch!.conf && bestMatch!.runner?.isLifetimeFallback == true) {
-                        bestMatch = (numStr, runner, token.conf)
-                        continue
-                    }
+                if token.conf < 0.85 {
+                    continue
                 }
-                
-                // Tier 4: Unregistered candidate when no database is available
-                if token.conf >= minConfidence && (bestMatch == nil || token.conf > bestMatch!.conf) {
-                    bestMatch = (numStr, nil, token.conf)
+            }
+            
+            // HEAD FILTER: Must have head/face detected above this bib
+            if requireHead {
+                let hasHead = hasHeadAboveBib(bibBox: token.bbox, faces: faceObservations, humans: humanObservations)
+                if !hasHead {
+                    continue
                 }
+            }
+            
+            // Optional Vest Color Check: Sample torso above bib
+            let vestColor = sampleVestColor(cgImage: cgImage, bibBBox: token.bbox)
+            let bboxArr: [CGFloat] = [token.bbox.origin.x, token.bbox.origin.y, token.bbox.size.width, token.bbox.size.height]
+            
+            // Tier 1: Active Season Runner match (Highest Priority)
+            if let runner = activeBibMap[numStr] {
+                if let (r, g, b) = vestColor, !isColorCompatibleWithClub(r: r, g: g, b: b, club: runner.club) {
+                    continue
+                }
+                rawCandidates.append(RunnerMatch(
+                    bib: numStr,
+                    name: runner.name,
+                    club: runner.club,
+                    confidence: token.conf,
+                    isInherited: runner.isInherited,
+                    isLifetimeFallback: false,
+                    bbox: bboxArr
+                ))
+                continue
+            }
+            
+            // Tier 2: Unregistered candidate within active season
+            if !activeBibMap.isEmpty {
+                if token.conf >= minConfidence {
+                    rawCandidates.append(RunnerMatch(
+                        bib: numStr,
+                        name: "",
+                        club: "",
+                        confidence: token.conf,
+                        isInherited: false,
+                        isLifetimeFallback: false,
+                        bbox: bboxArr
+                    ))
+                }
+                continue
+            }
+            
+            // Tier 3: Ungrounded fallback (Only if no active season roster was provided)
+            if let runner = lifetimeBibMap[numStr] {
+                if let (r, g, b) = vestColor, !isColorCompatibleWithClub(r: r, g: g, b: b, club: runner.club) {
+                    continue
+                }
+                rawCandidates.append(RunnerMatch(
+                    bib: numStr,
+                    name: runner.name,
+                    club: runner.club,
+                    confidence: token.conf,
+                    isInherited: runner.isInherited,
+                    isLifetimeFallback: true,
+                    bbox: bboxArr
+                ))
+                continue
+            }
+            
+            // Tier 4: Unregistered candidate when no database is available
+            if token.conf >= minConfidence {
+                rawCandidates.append(RunnerMatch(
+                    bib: numStr,
+                    name: "",
+                    club: "",
+                    confidence: token.conf,
+                    isInherited: false,
+                    isLifetimeFallback: false,
+                    bbox: bboxArr
+                ))
             }
         }
     }
     
-    if let match = bestMatch {
-        return MatchResult(
-            photoURL: url,
-            bib: match.bib,
-            runner: match.runner,
-            confidence: match.conf,
-            detectedWords: detectedTokens.map { $0.text }
-        )
+    // Deduplicate candidate bibs per photo:
+    // Grounded active runners first, then by confidence descending, then by bib length descending
+    let sortedCandidates = rawCandidates.sorted { c1, c2 in
+        let g1 = (!c1.name.isEmpty && !c1.isLifetimeFallback) ? 1 : 0
+        let g2 = (!c2.name.isEmpty && !c2.isLifetimeFallback) ? 1 : 0
+        if g1 != g2 { return g1 > g2 }
+        if c1.bib.count != c2.bib.count { return c1.bib.count > c2.bib.count }
+        return c1.confidence > c2.confidence
     }
     
-    return nil
+    var uniqueMatches: [RunnerMatch] = []
+    
+    for candidate in sortedCandidates {
+        // Skip duplicate bib number on same runner
+        if uniqueMatches.contains(where: { $0.bib == candidate.bib }) {
+            continue
+        }
+        
+        let cBox = CGRect(x: candidate.bbox[0], y: candidate.bbox[1], width: candidate.bbox[2], height: candidate.bbox[3])
+        var isSpatialDuplicate = false
+        
+        for existing in uniqueMatches {
+            let eBox = CGRect(x: existing.bbox[0], y: existing.bbox[1], width: existing.bbox[2], height: existing.bbox[3])
+            let intersection = cBox.intersection(eBox)
+            if !intersection.isNull && !intersection.isEmpty {
+                let minArea = min(cBox.width * cBox.height, eBox.width * eBox.height)
+                if minArea > 0 {
+                    let overlapRatio = (intersection.width * intersection.height) / minArea
+                    if overlapRatio > 0.30 {
+                        isSpatialDuplicate = true
+                        break
+                    }
+                }
+            }
+        }
+        
+        if !isSpatialDuplicate {
+            uniqueMatches.append(candidate)
+        }
+    }
+    
+    // Sort unique matches by prominence: largest bib bounding box first (closest subject)
+    uniqueMatches.sort { m1, m2 in
+        let area1 = m1.bbox[2] * m1.bbox[3]
+        let area2 = m2.bbox[2] * m2.bbox[3]
+        return area1 > area2
+    }
+    
+    return MultiMatchResult(
+        photoURL: url,
+        matches: uniqueMatches,
+        detectedWords: detectedTokens.map { $0.text }
+    )
 }
 
 // MARK: - Main CLI
 func printUsage() {
     print("""
-    \(Color.bold)GLCL Race Photo Tagger (Apple Neural Engine + Persistent Bib Intelligence)\(Color.reset)
+    \(Color.bold)GLCL Race Photo Tagger (Apple Neural Engine + Multi-Runner Intelligence)\(Color.reset)
     
     Usage:
       glcl-tagger <directory-of-photos> [options]
       
     Options:
-      --season <name>     Target season (e.g. "2026/2027"). Automatically resolves persistent
-                          bibs carried over from prior seasons if numbers were omitted in results.
-      --race <num>        Filter to race fixture number (e.g. 1)
-      --data <path>       Path to data.js (default: looks in ./data.js)
-      --write             Write tags into JPEG files (Default is safe DRY-RUN mode)
-      --min-conf <float>  Minimum OCR confidence threshold (default: 0.6)
-      -h, --help          Show this help message
+      --season <name>       Target season (e.g. "2024/2025" or "2026/2027"). Automatically resolves
+                            persistent bibs carried over from prior seasons.
+      --race <num>          Filter to race fixture number (e.g. 5)
+      --data <path>         Path to data.js (default: looks in ./data.js)
+      --json                Output machine-readable JSON lines for streaming ingestion
+      --no-head-filter      Disable head/face requirement (by default, headless bibs are omitted)
+      --write               Write tags into JPEG files (Default is safe DRY-RUN mode)
+      --min-conf <float>    Minimum OCR confidence threshold (default: 0.6)
+      -h, --help            Show this help message
       
     Examples:
-      # 1. Preview tags for Sunday's Glebelands race in dry-run mode:
-      ./backend_tools/glcl-tagger ~/Pictures/XC_Glebelands --season 2026/2027
+      # 1. Preview multi-runner tags for Sunday's race:
+      ./backend_tools/glcl-tagger ~/Pictures/Road_Race5 --season 2025/2026 --race 5
       
-      # 2. Save tags into photos before uploading to Flickr:
-      ./backend_tools/glcl-tagger ~/Pictures/XC_Glebelands --season 2026/2027 --write
+      # 2. Stream JSON to indexing pipeline:
+      ./backend_tools/glcl-tagger /tmp/batch --season 2025/2026 --race 5 --json
     """)
 }
 
@@ -506,6 +642,8 @@ func main() {
     var raceNumber: Int? = nil
     var dataPath: String? = nil
     var writeMode = false
+    var jsonOutput = false
+    var requireHead = true
     var minConfidence: Float = 0.6
     
     var idx = 2
@@ -519,6 +657,10 @@ func main() {
             if idx + 1 < args.count { dataPath = args[idx + 1]; idx += 1 }
         case "--write":
             writeMode = true
+        case "--json":
+            jsonOutput = true
+        case "--no-head-filter":
+            requireHead = false
         case "--min-conf":
             if idx + 1 < args.count { minConfidence = Float(args[idx + 1]) ?? 0.6; idx += 1 }
         default:
@@ -537,13 +679,16 @@ func main() {
         }
     }
     
-    print("\(Color.bold)=================================================================\(Color.reset)")
-    print("\(Color.cyan)\(Color.bold)🏃 GLCL Race Photo Tagger (Apple Neural Engine + Bib Intelligence)\(Color.reset)")
-    print("\(Color.bold)=================================================================\(Color.reset)")
-    print("Folder:       \(targetDir)")
-    print("Mode:         \(writeMode ? "\(Color.yellow)\(Color.bold)WRITE (Saving tags into photos)\(Color.reset)" : "\(Color.green)\(Color.bold)DRY-RUN (Safe preview, no files modified)\(Color.reset)")")
-    if let s = season { print("Season:       \(s)") }
-    if let r = raceNumber { print("Race #:       \(r)") }
+    if !jsonOutput {
+        print("\(Color.bold)=================================================================\(Color.reset)")
+        print("\(Color.cyan)\(Color.bold)🏃 GLCL Race Photo Tagger (Apple Neural Engine + Multi-Runner Intelligence)\(Color.reset)")
+        print("\(Color.bold)=================================================================\(Color.reset)")
+        print("Folder:       \(targetDir)")
+        print("Mode:         \(writeMode ? "\(Color.yellow)\(Color.bold)WRITE (Saving tags into photos)\(Color.reset)" : "\(Color.green)\(Color.bold)DRY-RUN (Safe preview, no files modified)\(Color.reset)")")
+        print("Head Filter:  \(requireHead ? "\(Color.green)ENABLED (Headless bib crops omitted)\(Color.reset)" : "\(Color.yellow)DISABLED\(Color.reset)")")
+        if let s = season { print("Season:       \(s)") }
+        if let r = raceNumber { print("Race #:       \(r)") }
+    }
     
     let t0 = Date()
     var activeBibMap: [String: RunnerRecord] = [:]
@@ -555,16 +700,18 @@ func main() {
         activeBibMap = res.activeBibMap
         lifetimeBibMap = res.lifetimeBibMap
         inheritedCount = res.inheritedCount
-        let parseTime = Date().timeIntervalSince(t0)
-        print("Database:     \(dp) (\(lifetimeBibMap.count) lifetime GLCL bibs indexed in \(String(format: "%.2f", parseTime))s)")
-        if inheritedCount > 0 {
-            print("Intelligence: \(Color.green)\(Color.bold)\(inheritedCount)\(Color.reset) persistent runner bibs carried over for Season \(season ?? "current")")
+        if !jsonOutput {
+            let parseTime = Date().timeIntervalSince(t0)
+            print("Database:     \(dp) (\(lifetimeBibMap.count) lifetime GLCL bibs indexed in \(String(format: "%.2f", parseTime))s)")
+            if inheritedCount > 0 {
+                print("Intelligence: \(Color.green)\(Color.bold)\(inheritedCount)\(Color.reset) persistent runner bibs carried over for Season \(season ?? "current")")
+            }
+            print("-----------------------------------------------------------------")
+            fflush(stdout)
         }
-    } else {
+    } else if !jsonOutput {
         print("\(Color.yellow)Warning: data.js not found. Running in ungrounded mode.\(Color.reset)")
     }
-    print("-----------------------------------------------------------------")
-    fflush(stdout)
     
     let fileManager = FileManager.default
     let dirURL = URL(fileURLWithPath: targetDir)
@@ -582,42 +729,102 @@ func main() {
     photoURLs.sort { $0.lastPathComponent < $1.lastPathComponent }
     
     if photoURLs.isEmpty {
-        print("\(Color.red)No JPEG photos found in \(targetDir)\(Color.reset)")
+        if !jsonOutput {
+            print("\(Color.red)No JPEG photos found in \(targetDir)\(Color.reset)")
+        }
         exit(1)
     }
     
-    print("Processing \(Color.bold)\(photoURLs.count)\(Color.reset) photos...\n")
-    fflush(stdout)
+    if !jsonOutput {
+        print("Processing \(Color.bold)\(photoURLs.count)\(Color.reset) photos...\n")
+        fflush(stdout)
+    }
     
-    var matchedCount = 0
+    var matchedPhotosCount = 0
+    var totalRunnersTagged = 0
     let scanStart = Date()
     
     for (i, url) in photoURLs.enumerated() {
         let prefix = "[\(i + 1)/\(photoURLs.count)] \(url.lastPathComponent): "
         
-        if let match = scanPhoto(url: url, activeBibMap: activeBibMap, lifetimeBibMap: lifetimeBibMap, minConfidence: minConfidence) {
-            matchedCount += 1
-            var runnerDesc = "Unregistered"
-            if let r = match.runner {
-                var badge = ""
-                if r.isInherited {
-                    badge = " \(Color.yellow)[inherited bib]\(Color.reset)"
-                } else if r.isLifetimeFallback {
-                    badge = " \(Color.magenta)[GLCL persistent: \(r.season)]\(Color.reset)"
-                }
-                runnerDesc = "\(r.name) (\(r.club))\(badge)"
+        let result = scanPhoto(
+            url: url,
+            activeBibMap: activeBibMap,
+            lifetimeBibMap: lifetimeBibMap,
+            minConfidence: minConfidence,
+            requireHead: requireHead
+        )
+        
+        let matches = result?.matches ?? []
+        
+        if jsonOutput {
+            var matchDicts: [[String: Any]] = []
+            for m in matches {
+                matchDicts.append([
+                    "bib": m.bib,
+                    "name": m.name,
+                    "club": m.club,
+                    "conf": Double(round(m.confidence * 100.0) / 100.0),
+                    "is_inherited": m.isInherited,
+                    "is_lifetime": m.isLifetimeFallback,
+                    "bbox": m.bbox.map { Double(round($0 * 1000.0) / 1000.0) }
+                ])
             }
-            print("\(prefix)\(Color.green)\(Color.bold)Bib #\(match.bib)\(Color.reset) → \(runnerDesc) \(Color.dim)[conf: \(String(format: "%.2f", match.confidence))]\(Color.reset)")
+            let outObj: [String: Any] = [
+                "photo": url.lastPathComponent,
+                "matches": matchDicts
+            ]
+            if let data = try? JSONSerialization.data(withJSONObject: outObj, options: []),
+               let jsonStr = String(data: data, encoding: .utf8) {
+                print(jsonStr)
+            }
+            fflush(stdout)
+            continue
+        }
+        
+        if !matches.isEmpty {
+            matchedPhotosCount += 1
+            totalRunnersTagged += matches.count
+            
+            if matches.count == 1 {
+                let m = matches[0]
+                var runnerDesc = "Unregistered"
+                if !m.name.isEmpty {
+                    var badge = ""
+                    if m.isInherited {
+                        badge = " \(Color.yellow)[inherited bib]\(Color.reset)"
+                    } else if m.isLifetimeFallback {
+                        badge = " \(Color.magenta)[lifetime fallback]\(Color.reset)"
+                    }
+                    runnerDesc = "\(m.name) (\(m.club))\(badge)"
+                }
+                print("\(prefix)\(Color.green)\(Color.bold)Bib #\(m.bib)\(Color.reset) → \(runnerDesc) \(Color.dim)[conf: \(String(format: "%.2f", m.confidence))]\(Color.reset)")
+            } else {
+                print("\(prefix)\(Color.green)\(Color.bold)\(matches.count) Runners Detected\(Color.reset):")
+                for m in matches {
+                    var runnerDesc = "Unregistered"
+                    if !m.name.isEmpty {
+                        var badge = ""
+                        if m.isInherited { badge = " \(Color.yellow)[inherited bib]\(Color.reset)" }
+                        else if m.isLifetimeFallback { badge = " \(Color.magenta)[lifetime fallback]\(Color.reset)" }
+                        runnerDesc = "\(m.name) (\(m.club))\(badge)"
+                    }
+                    print("  \(Color.cyan)↳ Bib #\(m.bib)\(Color.reset) → \(runnerDesc) \(Color.dim)[conf: \(String(format: "%.2f", m.confidence))]\(Color.reset)")
+                }
+            }
             
             if writeMode {
-                var tags = ["bib\(match.bib)", match.bib]
-                if let r = match.runner {
-                    tags.append(r.name)
-                    if !r.club.isEmpty { tags.append(r.club) }
+                var allTags: [String] = []
+                for m in matches {
+                    allTags.append("bib\(m.bib)")
+                    allTags.append(m.bib)
+                    if !m.name.isEmpty { allTags.append(m.name) }
+                    if !m.club.isEmpty { allTags.append(m.club) }
                 }
-                let ok = writeTagsToJPEG(url: url, tags: tags)
+                let uniqueTags = Array(NSOrderedSet(array: allTags)) as? [String] ?? allTags
+                let ok = writeTagsToJPEG(url: url, tags: uniqueTags)
                 if ok {
-                    print("  \(Color.green)↳ Saved tags: \(tags.joined(separator: ", "))\(Color.reset)")
+                    print("  \(Color.green)↳ Saved tags: \(uniqueTags.joined(separator: ", "))\(Color.reset)")
                 } else {
                     print("  \(Color.red)↳ Failed to write metadata\(Color.reset)")
                 }
@@ -628,18 +835,21 @@ func main() {
         fflush(stdout)
     }
     
-    let elapsed = Date().timeIntervalSince(scanStart)
-    let avgPerPhoto = photoURLs.count > 0 ? elapsed / Double(photoURLs.count) : 0
-    
-    print("\n\(Color.bold)=================================================================\(Color.reset)")
-    print("\(Color.bold)SCAN COMPLETE\(Color.reset)")
-    print("Total Photos:   \(photoURLs.count)")
-    print("Bibs Tagged:    \(Color.green)\(Color.bold)\(matchedCount)\(Color.reset) (\(Int(Double(matchedCount)/Double(photoURLs.count)*100))%)")
-    print("Scan Duration:  \(String(format: "%.2f", elapsed))s (avg \(String(format: "%.3f", avgPerPhoto))s/photo)")
-    if !writeMode && matchedCount > 0 {
-        print("\n\(Color.yellow)\(Color.bold)💡 Tip:\(Color.reset) This was a dry-run. Add \(Color.cyan)--write\(Color.reset) to save tags into the photos before uploading to Flickr.")
+    if !jsonOutput {
+        let elapsed = Date().timeIntervalSince(scanStart)
+        let avgPerPhoto = photoURLs.count > 0 ? elapsed / Double(photoURLs.count) : 0
+        
+        print("\n\(Color.bold)=================================================================\(Color.reset)")
+        print("\(Color.bold)SCAN COMPLETE\(Color.reset)")
+        print("Total Photos:    \(photoURLs.count)")
+        print("Photos Matched:  \(Color.green)\(Color.bold)\(matchedPhotosCount)\(Color.reset) (\(Int(Double(matchedPhotosCount)/Double(photoURLs.count)*100))%)")
+        print("Runners Tagged:  \(Color.cyan)\(Color.bold)\(totalRunnersTagged)\(Color.reset)")
+        print("Scan Duration:   \(String(format: "%.2f", elapsed))s (avg \(String(format: "%.3f", avgPerPhoto))s/photo)")
+        if !writeMode && matchedPhotosCount > 0 {
+            print("\n\(Color.yellow)\(Color.bold)💡 Tip:\(Color.reset) This was a dry-run. Add \(Color.cyan)--write\(Color.reset) to save tags into the photos before uploading to Flickr.")
+        }
+        print("\(Color.bold)=================================================================\(Color.reset)\n")
     }
-    print("\(Color.bold)=================================================================\(Color.reset)\n")
 }
 
 main()

@@ -32,7 +32,11 @@ if not FLICKR_API_KEY:
 INDEX_FILE = Path("assets/data/photo_tags.json")
 TAGGER_BIN = Path("backend_tools/glcl-tagger")
 
+ssl_ctx = ssl._create_unverified_context()
 ssl._create_default_https_context = ssl._create_unverified_context
+opener = urllib.request.build_opener(urllib.request.HTTPSHandler(context=ssl_ctx))
+opener.addheaders = [("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")]
+urllib.request.install_opener(opener)
 
 def calculate_subject_sharpness(img_path):
     """
@@ -101,7 +105,7 @@ def extract_album_id(val):
         val = val.split("/")[-1]
     return val
 
-def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE, min_sharpness=250):
+def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE, min_sharpness=250, force=False):
     album_id = extract_album_id(album_id)
     if not TAGGER_BIN.exists():
         print("Error: backend_tools/glcl-tagger binary not found. Please compile it first.")
@@ -150,7 +154,7 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE, mi
     to_download = []
     for p in photos:
         pid = str(p["id"])
-        if pid not in existing_index:
+        if force or pid not in existing_index:
             to_download.append(p)
 
     print(f"Photos to analyze: {len(to_download)} (Already indexed: {len(photos) - len(to_download)})\n")
@@ -205,7 +209,7 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE, mi
 
         print(f"\nDownloaded {done_count} previews. Running Apple Vision Neural OCR...\n")
 
-        cmd = [str(TAGGER_BIN), str(temp_dir), "--season", season]
+        cmd = [str(TAGGER_BIN), str(temp_dir), "--season", season, "--json"]
         if race_number:
             cmd.extend(["--race", str(race_number)])
         proc = subprocess.run(cmd, capture_output=True, text=True)
@@ -213,95 +217,85 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE, mi
 
         batch_tagged = 0
         for raw_line in output.splitlines():
-            line = ansi_escape.sub('', raw_line)
-            if "photo_" in line and "Bib #" in line:
-                try:
-                    pid_part = line.split("photo_")[1].split(".jpg")[0]
-                    bib_part = line.split("Bib #")[1].split(" → ")[0].strip()
-                    runner_part = line.split(" → ")[1]
-                    
-                    runner_name = ""
-                    runner_club = ""
-                    if "Unregistered" in runner_part:
-                        runner_name = ""
-                        runner_club = ""
-                    elif "(" in runner_part:
-                        runner_name = runner_part.split("(")[0].strip()
-                        runner_club = runner_part.split("(")[1].split(")")[0].strip()
-                    else:
-                        runner_name = runner_part.split("[")[0].strip()
+            raw_line = raw_line.strip()
+            if not (raw_line.startswith("{") and raw_line.endswith("}")):
+                continue
+            try:
+                res = json.loads(raw_line)
+            except Exception:
+                continue
 
-                    temp_img = temp_dir / f"photo_{pid_part}.jpg"
-                    sharpness = calculate_subject_sharpness(temp_img) if temp_img.exists() else 0.0
+            photo_fn = res.get("photo", "")
+            if "photo_" not in photo_fn:
+                continue
+            pid_part = photo_fn.replace("photo_", "").split(".")[0]
+            matches = res.get("matches", [])
 
-                    photo_obj = photo_lookup.get(pid_part, {})
-                    server = photo_obj.get("server", "")
-                    secret = photo_obj.get("secret", "")
-                    url_m = photo_obj.get("url_m") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_m.jpg" if server and secret else "")
-                    url_l = photo_obj.get("url_l") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_b.jpg" if server and secret else "")
+            photo_obj = photo_lookup.get(pid_part, {})
+            server = photo_obj.get("server", "")
+            secret = photo_obj.get("secret", "")
+            url_m = photo_obj.get("url_m") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_m.jpg" if server and secret else "")
+            url_l = photo_obj.get("url_l") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_b.jpg" if server and secret else "")
 
-                    if min_sharpness > 0 and sharpness > 0 and sharpness < min_sharpness:
-                        skipped_blur_count += 1
-                        print(f"  🟡 Photo {pid_part} skipped: blurry/low sharpness ({sharpness} < {min_sharpness})")
-                        entry = {
-                            "bib": "",
-                            "name": "",
-                            "club": "",
-                            "album_id": album_id,
-                            "server": server,
-                            "secret": secret,
-                            "url_m": url_m,
-                            "url_l": url_l,
-                            "sharpness": sharpness
-                        }
-                    else:
-                        entry = {
-                            "bib": bib_part,
-                            "name": runner_name,
-                            "club": runner_club,
-                            "album_id": album_id,
-                            "server": server,
-                            "secret": secret,
-                            "url_m": url_m,
-                            "url_l": url_l,
-                            "sharpness": sharpness
-                        }
-                        tagged_count += 1
-                        batch_tagged += 1
-                        print(f"  🟢 Photo {pid_part} → Bib #{bib_part} ({runner_name} • {runner_club}) [Sharpness: {sharpness}]")
+            temp_img = temp_dir / f"photo_{pid_part}.jpg"
+            sharpness = calculate_subject_sharpness(temp_img) if temp_img.exists() else 0.0
 
-                    for sz_key in ["url_h", "url_k", "url_3k", "url_4k"]:
-                        if photo_obj.get(sz_key):
-                            entry[sz_key] = photo_obj[sz_key]
+            if not matches:
+                entry = {
+                    "bib": "",
+                    "name": "",
+                    "club": "",
+                    "runners": [],
+                    "album_id": album_id,
+                    "server": server,
+                    "secret": secret,
+                    "url_m": url_m,
+                    "url_l": url_l,
+                    "sharpness": 0.0
+                }
+            elif min_sharpness > 0 and sharpness > 0 and sharpness < min_sharpness:
+                skipped_blur_count += 1
+                print(f"  🟡 Photo {pid_part} skipped: blurry/low sharpness ({sharpness} < {min_sharpness})")
+                entry = {
+                    "bib": "",
+                    "name": "",
+                    "club": "",
+                    "runners": [],
+                    "album_id": album_id,
+                    "server": server,
+                    "secret": secret,
+                    "url_m": url_m,
+                    "url_l": url_l,
+                    "sharpness": sharpness
+                }
+            else:
+                primary = matches[0]
+                runner_list = [{"bib": m["bib"], "name": m.get("name", ""), "club": m.get("club", "")} for m in matches]
+                entry = {
+                    "bib": primary["bib"],
+                    "name": primary.get("name", ""),
+                    "club": primary.get("club", ""),
+                    "runners": runner_list,
+                    "album_id": album_id,
+                    "server": server,
+                    "secret": secret,
+                    "url_m": url_m,
+                    "url_l": url_l,
+                    "sharpness": sharpness
+                }
+                tagged_count += 1
+                batch_tagged += 1
+                if len(runner_list) > 1:
+                    desc_str = ", ".join([f"Bib #{r['bib']} ({r['name'] or 'Unregistered'})" for r in runner_list])
+                    print(f"  🟢 Photo {pid_part} → {len(runner_list)} RUNNERS: {desc_str} [Sharpness: {sharpness}]")
+                else:
+                    print(f"  🟢 Photo {pid_part} → Bib #{primary['bib']} ({primary.get('name', '')} • {primary.get('club', '')}) [Sharpness: {sharpness}]")
 
-                    existing_index[pid_part] = entry
-                except Exception:
-                    pass
-            elif "photo_" in line and "No bib detected" in line:
-                try:
-                    pid_part = line.split("photo_")[1].split(".jpg")[0]
-                    photo_obj = photo_lookup.get(pid_part, {})
-                    server = photo_obj.get("server", "")
-                    secret = photo_obj.get("secret", "")
-                    url_m = photo_obj.get("url_m") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_m.jpg" if server and secret else "")
-                    url_l = photo_obj.get("url_l") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_b.jpg" if server and secret else "")
-                    entry = {
-                        "bib": "",
-                        "name": "",
-                        "club": "",
-                        "album_id": album_id,
-                        "server": server,
-                        "secret": secret,
-                        "url_m": url_m,
-                        "url_l": url_l,
-                        "sharpness": 0.0
-                    }
-                    for sz_key in ["url_h", "url_k", "url_3k", "url_4k"]:
-                        if photo_obj.get(sz_key):
-                            entry[sz_key] = photo_obj[sz_key]
-                    existing_index[pid_part] = entry
-                except Exception:
-                    pass
+            for sz_key in ["url_h", "url_k", "url_3k", "url_4k"]:
+                if photo_obj.get(sz_key):
+                    entry[sz_key] = photo_obj[sz_key]
+
+            existing_index[pid_part] = entry
 
         # Clean up batch temp folder
         shutil.rmtree(temp_dir, ignore_errors=True)
@@ -333,9 +327,10 @@ def main():
     parser.add_argument("--season", default="2024/2025", help="Season name for bib lookup (e.g. 2024/2025 or 2026/2027)")
     parser.add_argument("--limit", type=int, default=30, help="Maximum number of photos to scan (default 30, set 0 for all photos in album)")
     parser.add_argument("--min-sharpness", type=float, default=250.0, help="Minimum subject sharpness score to index (default 250, set 0 to disable)")
+    parser.add_argument("--force", action="store_true", help="Re-scan and overwrite photos even if already in index")
     args = parser.parse_args()
 
-    scan_album(args.album_id, season=args.season, limit=args.limit, min_sharpness=args.min_sharpness)
+    scan_album(args.album_id, season=args.season, limit=args.limit, min_sharpness=args.min_sharpness, force=args.force)
 
 if __name__ == "__main__":
     main()

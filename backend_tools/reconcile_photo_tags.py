@@ -159,59 +159,84 @@ def reconcile(photo_tags, id_to_fixture, fixture_results, overrides=None, apply_
 
         fix_runners = fixture_results.get(key, {})
 
-        if bib and bib in fix_runners:
-            finisher = fix_runners[bib]
-            f_name = finisher.get("name", "").strip()
-            f_club = finisher.get("club", "").strip()
-
-            if f_name.lower() == tag_name.lower():
-                stats["verified"] += 1
-                updated_tags[pid] = entry
+        # Handle runners array (support multi-runner per photo)
+        raw_runners = entry.get("runners")
+        if not raw_runners or not isinstance(raw_runners, list):
+            if bib or tag_name:
+                raw_runners = [{"bib": bib, "name": tag_name, "club": tag_club}]
             else:
+                raw_runners = []
+
+        reconciled_runners = []
+        had_reassignment = False
+        had_strip = False
+
+        for r_item in raw_runners:
+            r_bib = str(r_item.get("bib", "")).strip()
+            r_name = str(r_item.get("name", "")).strip()
+            r_club = str(r_item.get("club", "")).strip()
+
+            if r_bib and r_bib in fix_runners:
+                finisher = fix_runners[r_bib]
+                f_name = finisher.get("name", "").strip()
+                f_club = finisher.get("club", "").strip()
+
+                if f_name.lower() != r_name.lower():
+                    had_reassignment = True
+                    if len(reassigned_samples) < 10:
+                        reassigned_samples.append((pid, r_bib, r_name, f_name, f_club, key))
+
+                reconciled_runners.append({
+                    "bib": r_bib,
+                    "name": f_name,
+                    "club": f_club
+                })
+            else:
+                # Phantom bib not in fixture
+                if r_name:
+                    had_strip = True
+                    if len(phantom_samples) < 10:
+                        phantom_samples.append((pid, r_bib, r_name, r_club, key))
+
+        # Deduplicate reconciled runners by bib
+        unique_reconciled = []
+        for ur in reconciled_runners:
+            if not any(x["bib"] == ur["bib"] for x in unique_reconciled):
+                unique_reconciled.append(ur)
+
+        if unique_reconciled:
+            entry["runners"] = unique_reconciled
+            entry["bib"] = unique_reconciled[0]["bib"]
+            entry["name"] = unique_reconciled[0]["name"]
+            entry["club"] = unique_reconciled[0]["club"]
+
+            if had_reassignment:
                 stats["reassigned"] += 1
-                if len(reassigned_samples) < 10:
-                    reassigned_samples.append((pid, bib, tag_name, f_name, f_club, key))
-
-                entry["name"] = f_name
-                entry["club"] = f_club
-                updated_tags[pid] = entry
-
                 corrections_log[pid] = {
                     "action": "reassign",
-                    "bib": bib,
                     "fixture": f"{s} {d} R{rn}",
-                    "old_runner": tag_name,
-                    "old_club": tag_club,
-                    "new_runner": f_name,
-                    "new_club": f_club
+                    "runners": unique_reconciled
                 }
+            else:
+                stats["verified"] += 1
         else:
-            # Bib NOT in fixture finisher list
-            if tag_name:
-                stats["phantoms_stripped"] += 1
-                if len(phantom_samples) < 10:
-                    phantom_samples.append((pid, bib, tag_name, tag_club, key))
+            entry["runners"] = []
+            entry["name"] = ""
+            entry["club"] = ""
+            if len(bib) <= 2 or had_strip:
+                entry["bib"] = ""
 
+            if had_strip:
+                stats["phantoms_stripped"] += 1
                 corrections_log[pid] = {
                     "action": "strip_phantom",
-                    "old_bib": bib,
                     "fixture": f"{s} {d} R{rn}",
-                    "stripped_runner": tag_name,
-                    "stripped_club": tag_club,
-                    "reason": "Bib number was not worn by any finisher in this fixture"
+                    "reason": "Bib numbers not found in fixture finisher list"
                 }
-
-                entry["name"] = ""
-                entry["club"] = ""
-                # Clear phantom 1- or 2-digit bib reads (e.g. '2', '14', '29', '39')
-                if len(bib) <= 2:
-                    entry["bib"] = ""
-                updated_tags[pid] = entry
             else:
                 stats["already_unassigned"] += 1
-                if len(bib) <= 2:
-                    entry["bib"] = ""
-                updated_tags[pid] = entry
+
+        updated_tags[pid] = entry
 
     print("=" * 70)
     print("📊 GLCL PHOTO TAGS RECONCILIATION AUDIT")

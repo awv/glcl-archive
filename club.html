@@ -920,14 +920,16 @@
 
                     const album = (meta.album_id && albumById[meta.album_id]) || fixtureAlbums[meta.album_id] || null;
                     const photoSeason = album ? album.season : null;
-                    const metaBib = meta.bib ? String(meta.bib).trim() : '';
 
-                    // A photo MUST have an explicit verified club matching targetClub
-                    if (!meta.club || !matchesClubName(meta.club, targetClub)) {
-                        return;
+                    const runnerList = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
+                        ? meta.runners
+                        : (meta.club ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
+
+                    const matchesThisClub = runnerList.some(r => r.club && matchesClubName(r.club, targetClub));
+                    if (matchesThisClub) {
+                        seenPhotoIds.add(pid);
+                        matchedPhotos.push({ id: pid, ...meta });
                     }
-                    seenPhotoIds.add(pid);
-                    matchedPhotos.push({ id: pid, ...meta });
                 });
 
                 // Best Shot First: Sort photos by sharpness (crispest action shots first)
