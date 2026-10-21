@@ -8434,13 +8434,13 @@
   },
   "55442819842": {
     "action": "manual_override",
-    "bib": "8141",
+    "bib": "8142",
     "fixture": "2025/2026 road R5",
     "old_bib": "8142",
     "old_runner": "",
-    "new_runner": "Ryan ROBERTS",
+    "new_runner": "Dominic DAVIES",
     "new_club": "Parc Bryn Bach RC",
-    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+    "reason": "Dominic Davies wore reassigned bib 8142 (registered as was 8022); verified in Parc Bryn Bach 2026 Road R5 sequence"
   },
   "55442820642": {
     "action": "reassign",
@@ -8641,13 +8641,13 @@
   },
   "55443782976": {
     "action": "manual_override",
-    "bib": "8141",
+    "bib": "8142",
     "fixture": "2025/2026 road R5",
     "old_bib": "8142",
     "old_runner": "",
-    "new_runner": "Ryan ROBERTS",
+    "new_runner": "Dominic DAVIES",
     "new_club": "Parc Bryn Bach RC",
-    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+    "reason": "Dominic Davies wore reassigned bib 8142 (registered as was 8022); verified in Parc Bryn Bach 2026 Road R5 sequence"
   },
   "55443784516": {
     "action": "reassign",
@@ -8894,23 +8894,23 @@
   },
   "55443910323": {
     "action": "manual_override",
-    "bib": "8141",
+    "bib": "8142",
     "fixture": "2025/2026 road R5",
     "old_bib": "8142",
     "old_runner": "",
-    "new_runner": "Ryan ROBERTS",
+    "new_runner": "Dominic DAVIES",
     "new_club": "Parc Bryn Bach RC",
-    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+    "reason": "Dominic Davies wore reassigned bib 8142 (registered as was 8022); verified in Parc Bryn Bach 2026 Road R5 sequence"
   },
   "55443910603": {
     "action": "manual_override",
-    "bib": "8141",
+    "bib": "8142",
     "fixture": "2025/2026 road R5",
     "old_bib": "8142",
     "old_runner": "",
-    "new_runner": "Ryan ROBERTS",
+    "new_runner": "Dominic DAVIES",
     "new_club": "Parc Bryn Bach RC",
-    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+    "reason": "Dominic Davies wore reassigned bib 8142 (registered as was 8022); verified in Parc Bryn Bach 2026 Road R5 sequence"
   },
   "55443911963": {
     "action": "reassign",
@@ -9048,13 +9048,13 @@
   },
   "55443953449": {
     "action": "manual_override",
-    "bib": "8141",
+    "bib": "8142",
     "fixture": "2025/2026 road R5",
     "old_bib": "8142",
     "old_runner": "",
-    "new_runner": "Ryan ROBERTS",
+    "new_runner": "Dominic DAVIES",
     "new_club": "Parc Bryn Bach RC",
-    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+    "reason": "Dominic Davies wore reassigned bib 8142 (registered as was 8022); verified in Parc Bryn Bach 2026 Road R5 sequence"
   },
   "55443955429": {
     "action": "reassign",
@@ -9219,23 +9219,23 @@
   },
   "55444179205": {
     "action": "manual_override",
-    "bib": "8141",
+    "bib": "8142",
     "fixture": "2025/2026 road R5",
     "old_bib": "8142",
     "old_runner": "",
-    "new_runner": "Ryan ROBERTS",
+    "new_runner": "Dominic DAVIES",
     "new_club": "Parc Bryn Bach RC",
-    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+    "reason": "Dominic Davies wore reassigned bib 8142 (registered as was 8022); verified in Parc Bryn Bach 2026 Road R5 sequence"
   },
   "55444179590": {
     "action": "manual_override",
-    "bib": "8141",
+    "bib": "8142",
     "fixture": "2025/2026 road R5",
     "old_bib": "8142",
     "old_runner": "",
-    "new_runner": "Ryan ROBERTS",
+    "new_runner": "Dominic DAVIES",
     "new_club": "Parc Bryn Bach RC",
-    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+    "reason": "Dominic Davies wore reassigned bib 8142 (registered as was 8022); verified in Parc Bryn Bach 2026 Road R5 sequence"
   },
   "55444182675": {
     "action": "reassign",
