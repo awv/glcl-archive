@@ -40,9 +40,16 @@
         <div class="absolute inset-0 hero-gradient"></div>
         
         <div class="relative max-w-[1400px] w-full mx-auto px-4 pb-6 z-10 space-y-1.5">
-            <div class="flex items-center space-x-3 mb-3">
-                <div class="bg-brand-500 text-white font-black px-2.5 py-0.5 rounded text-xs tracking-tighter">CLUB PROFILE</div>
-                <span class="text-xs font-mono tracking-widest text-slate-400 uppercase">GLCL Member Group</span>
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-brand-500 text-white font-black px-2.5 py-0.5 rounded text-xs tracking-tighter">CLUB PROFILE</div>
+                    <span class="text-xs font-mono tracking-widest text-slate-400 uppercase">GLCL Member Group</span>
+                </div>
+                <div id="hero-photo-link-container" class="hidden">
+                    <a href="#club-photos-section" class="inline-flex items-center gap-1.5 text-xs font-mono font-bold bg-slate-950/80 hover:bg-brand-500 text-slate-300 hover:text-white border border-slate-700/80 hover:border-brand-500/40 px-3 py-1 rounded-lg backdrop-blur shadow transition">
+                        <span>📸</span> <span id="hero-photo-count">0 Photos</span> <span class="text-[10px]">↓</span>
+                    </a>
+                </div>
             </div>
             <h1 id="club-title" class="text-3xl md:text-5xl font-black text-slate-100 tracking-tight uppercase max-w-4xl">
                 Loading Club Profile...
@@ -119,31 +126,6 @@
                         <!-- Populated dynamically with high-res authentic vest images -->
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- CLUB RACE PHOTOGRAPHY SECTION -->
-        <section id="club-photos-section" class="space-y-4 pt-6 border-t border-slate-900 hidden">
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div class="flex items-center gap-3">
-                    <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Club Race Photography</h2>
-                    <span id="club-photo-badge" class="bg-brand-500/10 border border-brand-500/30 text-brand-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded-full">0 Photos</span>
-                </div>
-                <div class="flex items-center gap-3">
-                    <button id="club-download-zip-btn" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-brand-600 hover:bg-brand-500 text-white transition-all shadow-lg shadow-brand-500/20 border border-brand-400/30">
-                        <span>📦</span>
-                        <span>Download Club Photos (ZIP)</span>
-                    </button>
-                    <a id="club-all-photos-link" href="#" class="text-xs font-mono font-bold text-brand-400 hover:text-brand-300 transition flex items-center gap-1">
-                        <span>Flickr Gallery</span>
-                        <span>→</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Photos Grid -->
-            <div id="club-photos-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                <!-- Dynamically populated -->
             </div>
         </section>
 
@@ -266,6 +248,69 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLUB RACE PHOTOGRAPHY SECTION -->
+        <section id="club-photos-section" class="space-y-6 pt-6 border-t border-slate-900 hidden scroll-mt-20">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Gallery & Action Shots</h2>
+                    <div class="flex items-center gap-3 mt-0.5">
+                        <h3 class="text-xl font-black text-slate-200 tracking-tight">Club Race Photography</h3>
+                        <span id="club-photo-badge" class="bg-brand-500/10 border border-brand-500/30 text-brand-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded-full">0 Photos</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="club-download-zip-btn" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-brand-600 hover:bg-brand-500 text-white transition-all shadow-lg shadow-brand-500/20 border border-brand-400/30 cursor-pointer">
+                        <span>📦</span>
+                        <span>Download Club Photos (ZIP)</span>
+                    </button>
+                    <a id="club-all-photos-link" href="#" class="text-xs font-mono font-bold text-brand-400 hover:text-brand-300 transition flex items-center gap-1">
+                        <span>Flickr Gallery</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Photos Grid -->
+            <div id="club-photos-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- Dynamically populated with paged slice -->
+            </div>
+
+            <!-- Pagination Controls Bar -->
+            <div id="club-photo-pagination" class="hidden flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-900 font-mono text-xs">
+                <!-- Left: Page status & Jump -->
+                <div class="flex items-center gap-3 text-slate-400">
+                    <span id="club-pagination-info">Page 1 of 1</span>
+                    <span class="text-slate-700">•</span>
+                    <label class="flex items-center gap-1.5 text-slate-400">
+                        <span>Go to page:</span>
+                        <input type="number" id="club-page-jump-input" min="1" max="1" value="1" 
+                            class="w-14 bg-slate-900 border border-slate-800 text-slate-100 rounded-lg px-2 py-1 text-center focus:outline-none focus:border-brand-500 font-bold">
+                    </label>
+                </div>
+
+                <!-- Right: Navigation Buttons -->
+                <div class="flex items-center gap-1.5">
+                    <button id="club-page-first-btn" class="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition cursor-pointer" title="First Page">
+                        ««
+                    </button>
+                    <button id="club-page-prev-btn" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition flex items-center gap-1 cursor-pointer">
+                        ‹ Prev
+                    </button>
+
+                    <div id="club-page-numbers-container" class="hidden md:flex items-center gap-1">
+                        <!-- Dynamic page number buttons -->
+                    </div>
+
+                    <button id="club-page-next-btn" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition flex items-center gap-1 cursor-pointer">
+                        Next ›
+                    </button>
+                    <button id="club-page-last-btn" class="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition cursor-pointer" title="Last Page">
+                        »»
+                    </button>
                 </div>
             </div>
         </section>
@@ -902,71 +947,197 @@
                 const photoBadge = document.getElementById('club-photo-badge');
                 const allPhotosLink = document.getElementById('club-all-photos-link');
                 const downloadZipBtn = document.getElementById('club-download-zip-btn');
+                const heroLinkContainer = document.getElementById('hero-photo-link-container');
+                const heroPhotoCount = document.getElementById('hero-photo-count');
+
+                // Pagination Elements
+                const paginationContainer = document.getElementById('club-photo-pagination');
+                const paginationInfo = document.getElementById('club-pagination-info');
+                const pageJumpInput = document.getElementById('club-page-jump-input');
+                const pageFirstBtn = document.getElementById('club-page-first-btn');
+                const pagePrevBtn = document.getElementById('club-page-prev-btn');
+                const pageNextBtn = document.getElementById('club-page-next-btn');
+                const pageLastBtn = document.getElementById('club-page-last-btn');
+                const pageNumbersContainer = document.getElementById('club-page-numbers-container');
+
+                const PHOTOS_PER_PAGE = 20;
+                let currentClubPhotoPage = 1;
+                const totalClubPhotoPages = Math.ceil(matchedPhotos.length / PHOTOS_PER_PAGE);
 
                 if (photosSection) {
                     if (matchedPhotos.length > 0) {
-                        if (photoBadge) photoBadge.textContent = `${matchedPhotos.length} Photo${matchedPhotos.length > 1 ? 's' : ''}`;
+                        const countStr = `${matchedPhotos.length.toLocaleString()} Photo${matchedPhotos.length > 1 ? 's' : ''}`;
+                        if (photoBadge) photoBadge.textContent = countStr;
+                        if (heroLinkContainer && heroPhotoCount) {
+                            heroPhotoCount.textContent = countStr;
+                            heroLinkContainer.classList.remove('hidden');
+                        }
                         if (allPhotosLink) {
                             allPhotosLink.href = `photos.html?club=${encodeURIComponent(targetClub)}`;
                         }
 
-                        if (photosGrid) {
-                            photosGrid.innerHTML = matchedPhotos.map((photo, idx) => {
-                                const imgThumb = photo.url_m || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg` : '');
-                                const imgLarge = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : imgThumb);
+                        const updatePaginationUI = () => {
+                            if (!paginationContainer) return;
+                            if (totalClubPhotoPages <= 1) {
+                                paginationContainer.classList.add('hidden');
+                                return;
+                            }
 
-                                let raceTitle = 'GLCL Race';
-                                const album = (photo.album_id && albumById[photo.album_id]) || fixtureAlbums[photo.album_id];
-                                if (album) {
-                                    raceTitle = album.venue || album.title || 'GLCL Race';
+                            paginationContainer.classList.remove('hidden');
+                            const startIdx = (currentClubPhotoPage - 1) * PHOTOS_PER_PAGE + 1;
+                            const endIdx = Math.min(currentClubPhotoPage * PHOTOS_PER_PAGE, matchedPhotos.length);
+                            paginationInfo.textContent = `Page ${currentClubPhotoPage} of ${totalClubPhotoPages} • Showing ${startIdx}–${endIdx} of ${matchedPhotos.length.toLocaleString()}`;
+
+                            if (pageJumpInput) {
+                                pageJumpInput.value = currentClubPhotoPage;
+                                pageJumpInput.max = totalClubPhotoPages;
+                            }
+
+                            if (pageFirstBtn) pageFirstBtn.disabled = currentClubPhotoPage <= 1;
+                            if (pagePrevBtn) pagePrevBtn.disabled = currentClubPhotoPage <= 1;
+                            if (pageNextBtn) pageNextBtn.disabled = currentClubPhotoPage >= totalClubPhotoPages;
+                            if (pageLastBtn) pageLastBtn.disabled = currentClubPhotoPage >= totalClubPhotoPages;
+
+                            if (pageNumbersContainer) {
+                                pageNumbersContainer.innerHTML = '';
+                                let startP = Math.max(1, currentClubPhotoPage - 2);
+                                let endP = Math.min(totalClubPhotoPages, startP + 4);
+                                if (endP - startP < 4) startP = Math.max(1, endP - 4);
+
+                                for (let p = startP; p <= endP; p++) {
+                                    const btn = document.createElement('button');
+                                    btn.className = `w-8 h-8 rounded-lg font-bold text-xs transition cursor-pointer ${
+                                        p === currentClubPhotoPage
+                                            ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/20'
+                                            : 'bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-100 border border-slate-800'
+                                    }`;
+                                    btn.textContent = p;
+                                    btn.addEventListener('click', () => {
+                                        if (p !== currentClubPhotoPage) {
+                                            renderClubPhotosPage(p);
+                                            photosSection.scrollIntoView({ behavior: 'smooth' });
+                                        }
+                                    });
+                                    pageNumbersContainer.appendChild(btn);
                                 }
+                            }
+                        };
 
-                                const runnerName = photo.name || '';
+                        const renderClubPhotosPage = (page) => {
+                            currentClubPhotoPage = Math.max(1, Math.min(page, totalClubPhotoPages));
+                            const startIdx = (currentClubPhotoPage - 1) * PHOTOS_PER_PAGE;
+                            const endIdx = Math.min(startIdx + PHOTOS_PER_PAGE, matchedPhotos.length);
+                            const pagePhotos = matchedPhotos.slice(startIdx, endIdx);
 
-                                return `
-                                    <div class="group relative bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg hover:border-brand-500/60 transition-all duration-300">
-                                        <div class="aspect-[4/3] bg-slate-950 overflow-hidden relative cursor-pointer club-photo-card" data-idx="${idx}">
-                                            <img src="${imgThumb}" alt="${runnerName || targetClub}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none">
-                                            <div class="absolute top-2 left-2 z-10 pointer-events-none flex flex-col gap-1 items-start">
-                                                ${photo.bib ? `
-                                                    <span class="bg-brand-600/90 backdrop-blur-md text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow border border-brand-400/30">
-                                                        Bib #${photo.bib}
-                                                    </span>
-                                                ` : ''}
+                            if (photosGrid) {
+                                photosGrid.innerHTML = pagePhotos.map((photo, localIdx) => {
+                                    const absoluteIdx = startIdx + localIdx;
+                                    const imgThumb = photo.url_m || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg` : '');
+                                    const imgLarge = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : imgThumb);
+
+                                    let raceTitle = 'GLCL Race';
+                                    const album = (photo.album_id && albumById[photo.album_id]) || fixtureAlbums[photo.album_id];
+                                    if (album) {
+                                        raceTitle = album.venue || album.title || 'GLCL Race';
+                                    }
+
+                                    const runnerName = photo.name || '';
+
+                                    return `
+                                        <div class="group relative bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg hover:border-brand-500/60 transition-all duration-300 flex flex-col justify-between">
+                                            <div class="aspect-[4/3] bg-slate-950 overflow-hidden relative cursor-pointer club-photo-card" data-idx="${absoluteIdx}">
+                                                <img src="${imgThumb}" alt="${runnerName || targetClub}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none">
+                                                <div class="absolute top-2 left-2 z-10 pointer-events-none flex flex-col gap-1 items-start">
+                                                    ${photo.bib ? `
+                                                        <span class="bg-brand-600/90 backdrop-blur-md text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow border border-brand-400/30">
+                                                            Bib #${photo.bib}
+                                                        </span>
+                                                    ` : ''}
+                                                </div>
+                                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2.5 pointer-events-none">
+                                                    <span class="text-[9px] font-mono text-slate-200 font-bold bg-slate-900/90 px-2 py-1 rounded border border-slate-700">Click to Expand</span>
+                                                </div>
                                             </div>
-                                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2.5 pointer-events-none">
-                                                <span class="text-[9px] font-mono text-slate-200 font-bold bg-slate-900/90 px-2 py-1 rounded border border-slate-700">Click to Expand</span>
-                                            </div>
-                                        </div>
-                                        <div class="p-2.5 flex items-center justify-between text-xs font-mono">
-                                            <div class="truncate max-w-[120px]">
-                                                ${runnerName ? `
-                                                    <a href="athlete.html?name=${encodeURIComponent(runnerName)}" class="font-bold text-slate-200 hover:text-brand-400 block truncate" title="${runnerName}">
-                                                        ${runnerName}
+                                            <div class="p-2.5 flex items-center justify-between text-xs font-mono">
+                                                <div class="truncate max-w-[120px]">
+                                                    ${runnerName ? `
+                                                        <a href="athlete.html?name=${encodeURIComponent(runnerName)}" class="font-bold text-slate-200 hover:text-brand-400 block truncate" title="${runnerName}">
+                                                            ${runnerName}
+                                                        </a>
+                                                        <span class="text-slate-500 text-[10px] block truncate">${raceTitle}</span>
+                                                    ` : `
+                                                        <span class="text-slate-400 text-[11px] block truncate">${raceTitle}</span>
+                                                    `}
+                                                </div>
+                                                <div class="flex items-center gap-1.5 shrink-0">
+                                                    <a href="photos.html?album=${photo.album_id || ''}&bib=${photo.bib || ''}" class="text-slate-400 hover:text-slate-200 text-[10px] hover:underline" title="View in Gallery">Album →</a>
+                                                    <a href="${imgLarge}" download="GLCL_${photo.id}.jpg" target="_blank" class="text-brand-400 hover:text-brand-300 p-1" title="Download High-Res Original">
+                                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                                                     </a>
-                                                    <span class="text-slate-500 text-[10px] block truncate">${raceTitle}</span>
-                                                ` : `
-                                                    <span class="text-slate-400 text-[11px] block truncate">${raceTitle}</span>
-                                                `}
-                                            </div>
-                                            <div class="flex items-center gap-1.5 shrink-0">
-                                                <a href="photos.html?album=${photo.album_id || ''}&bib=${photo.bib || ''}" class="text-slate-400 hover:text-slate-200 text-[10px] hover:underline" title="View in Gallery">Album →</a>
-                                                <a href="${imgLarge}" download="GLCL_${photo.id}.jpg" target="_blank" class="text-brand-400 hover:text-brand-300 p-1" title="Download High-Res Original">
-                                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                                                </a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                `;
-                            }).join('');
+                                    `;
+                                }).join('');
 
-                            photosGrid.querySelectorAll('.club-photo-card').forEach(card => {
-                                card.addEventListener('click', () => {
-                                    const idx = parseInt(card.getAttribute('data-idx'), 10);
-                                    openClubLightbox(idx);
+                                photosGrid.querySelectorAll('.club-photo-card').forEach(card => {
+                                    card.addEventListener('click', () => {
+                                        const idx = parseInt(card.getAttribute('data-idx'), 10);
+                                        openClubLightbox(idx);
+                                    });
                                 });
+                            }
+
+                            updatePaginationUI();
+                        };
+
+                        // Pagination Button Listeners
+                        if (pageFirstBtn) {
+                            pageFirstBtn.addEventListener('click', () => {
+                                if (currentClubPhotoPage > 1) {
+                                    renderClubPhotosPage(1);
+                                    photosSection.scrollIntoView({ behavior: 'smooth' });
+                                }
                             });
                         }
+                        if (pagePrevBtn) {
+                            pagePrevBtn.addEventListener('click', () => {
+                                if (currentClubPhotoPage > 1) {
+                                    renderClubPhotosPage(currentClubPhotoPage - 1);
+                                    photosSection.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            });
+                        }
+                        if (pageNextBtn) {
+                            pageNextBtn.addEventListener('click', () => {
+                                if (currentClubPhotoPage < totalClubPhotoPages) {
+                                    renderClubPhotosPage(currentClubPhotoPage + 1);
+                                    photosSection.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            });
+                        }
+                        if (pageLastBtn) {
+                            pageLastBtn.addEventListener('click', () => {
+                                if (currentClubPhotoPage < totalClubPhotoPages) {
+                                    renderClubPhotosPage(totalClubPhotoPages);
+                                    photosSection.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            });
+                        }
+                        if (pageJumpInput) {
+                            pageJumpInput.addEventListener('change', () => {
+                                const p = parseInt(pageJumpInput.value, 10);
+                                if (!isNaN(p) && p >= 1 && p <= totalClubPhotoPages && p !== currentClubPhotoPage) {
+                                    renderClubPhotosPage(p);
+                                    photosSection.scrollIntoView({ behavior: 'smooth' });
+                                } else {
+                                    pageJumpInput.value = currentClubPhotoPage;
+                                }
+                            });
+                        }
+
+                        // Initial render of page 1
+                        renderClubPhotosPage(1);
                         photosSection.classList.remove('hidden');
                     } else {
                         photosSection.innerHTML = `
