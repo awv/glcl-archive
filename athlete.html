@@ -1196,11 +1196,6 @@
                             return `
                                 <div class="athlete-mini-card flex-shrink-0 w-28 sm:w-36 aspect-[4/3] rounded-lg overflow-hidden border border-slate-800 hover:border-amber-400 bg-slate-900 relative group cursor-pointer transition-all duration-200 hover:scale-[1.03] shadow-md" data-idx="${idx}" title="Click to view full photo">
                                     <img src="${imgThumb}" alt="${targetAthlete}" loading="lazy" class="w-full h-full object-cover pointer-events-none">
-                                    <div class="absolute top-1.5 left-1.5 pointer-events-none">
-                                        <span class="bg-slate-950/85 backdrop-blur-md text-amber-300 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border border-amber-400/30 shadow">
-                                            Bib #${photo.bib}
-                                        </span>
-                                    </div>
                                     <div class="absolute bottom-0 inset-x-0 p-1.5 bg-gradient-to-t from-slate-950/90 via-slate-950/60 to-transparent pointer-events-none">
                                         <span class="text-[9px] font-mono text-slate-300 truncate block">${raceTitle}</span>
                                     </div>
@@ -1314,13 +1309,11 @@
             const modalImage = document.getElementById('modal-image');
             const modalImageSpinner = document.getElementById('modal-image-spinner');
             const modalCounter = document.getElementById('modal-counter');
-            const modalBibBadge = document.getElementById('modal-bib-badge');
             const modalRunnerName = document.getElementById('modal-runner-name');
             const modalRunnerClub = document.getElementById('modal-runner-club');
             const modalDirectDownload = document.getElementById('modal-direct-download');
             const modalAlbumLink = document.getElementById('modal-album-link');
             const modalMobileAlbumLink = document.getElementById('modal-mobile-album-link');
-            const modalImgBibOverlay = document.getElementById('modal-img-bib-overlay');
             const modalImgVenueOverlay = document.getElementById('modal-img-venue-overlay');
             const modalCloseBtn = document.getElementById('modal-close-btn');
             const modalPrevBtn = document.getElementById('modal-prev-btn');
@@ -1381,16 +1374,7 @@
                 if (modalCounter) modalCounter.textContent = `${currentAthletePhotoIndex + 1} of ${matchedPhotos.length}`;
                 if (modalDirectDownload) {
                     modalDirectDownload.href = highRes;
-                    modalDirectDownload.download = `GLCL_${photo.bib ? 'Bib' + photo.bib + '_' : ''}${photo.id}.jpg`;
-                }
-
-                if (modalBibBadge) {
-                    if (photo.bib) {
-                        modalBibBadge.textContent = `Bib #${photo.bib}`;
-                        modalBibBadge.classList.remove('hidden');
-                    } else {
-                        modalBibBadge.classList.add('hidden');
-                    }
+                    modalDirectDownload.download = `GLCL_${photo.id}.jpg`;
                 }
 
                 if (modalRunnerName) modalRunnerName.textContent = targetAthlete;
@@ -1400,15 +1384,6 @@
                 const album = (photo.album_id && albumById[photo.album_id]) || fixtureAlbums[photo.album_id];
                 if (album) {
                     raceTitle = album.venue || album.title || 'GLCL Race';
-                }
-
-                if (modalImgBibOverlay) {
-                    if (photo.bib) {
-                        modalImgBibOverlay.textContent = `Bib #${photo.bib}`;
-                        modalImgBibOverlay.classList.remove('hidden');
-                    } else {
-                        modalImgBibOverlay.classList.add('hidden');
-                    }
                 }
 
                 if (modalImgVenueOverlay) {
@@ -1708,9 +1683,6 @@
                                         ✓ Active
                                     </div>
                                 ` : ''}
-                                <div class="absolute bottom-1 right-1 bg-slate-900/80 text-slate-300 text-[9px] font-mono px-1 py-0.5 rounded">
-                                    Bib #${photo.bib}
-                                </div>
                             </div>
                             <div class="mt-1.5 flex items-center justify-between text-[10px] font-mono">
                                 <span class="text-slate-400 truncate max-w-[85px]">${raceTitle}</span>
@@ -1912,7 +1884,6 @@
                 <span class="text-[11px] md:text-xs font-mono font-bold text-amber-400 bg-amber-400/10 border border-amber-400/30 px-2 py-0.5 rounded shrink-0">
                     📸 <span class="hidden sm:inline">Race Photos</span>
                 </span>
-                <span id="modal-bib-badge" class="text-[11px] md:text-xs font-mono font-bold text-sky-400 bg-sky-400/10 border border-sky-400/30 px-2 py-0.5 rounded shrink-0"></span>
                 <div class="min-w-0 flex items-baseline gap-1.5 truncate">
                     <span id="modal-runner-name" class="font-black text-white text-sm md:text-base truncate"></span>
                     <span id="modal-runner-club" class="text-xs text-slate-400 hidden sm:inline truncate"></span>
@@ -1969,8 +1940,7 @@
 
                 <!-- Floating Overlays on image -->
                 <div class="absolute top-3 left-3 pointer-events-none flex flex-wrap gap-1.5">
-                    <span id="modal-img-bib-overlay" class="text-xs font-mono font-bold bg-slate-950/85 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-md backdrop-blur-md shadow"></span>
-                    <span id="modal-img-venue-overlay" class="text-xs font-mono font-bold bg-slate-950/85 text-slate-300 border border-slate-700/60 px-2 py-0.5 rounded-md backdrop-blur-md shadow"></span>
+                    <span id="modal-img-venue-overlay" class="text-xs font-mono font-bold bg-slate-950/85 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-md backdrop-blur-md shadow"></span>
                 </div>
             </div>
 
