@@ -125,6 +125,39 @@
             </div>
         </section>
 
+        <!-- ATHLETE RACE PHOTOS MINI GALLERY (NEAR TOP, COMPACT REEL) -->
+        <section id="athlete-photos-section" class="hidden bg-slate-950 border border-slate-900 rounded-xl p-3.5 sm:p-4 shadow-xl space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-900 pb-3">
+                <div class="flex items-center gap-2.5 flex-wrap">
+                    <span class="text-base">📸</span>
+                    <h2 class="text-xs font-black tracking-widest text-slate-100 uppercase">Race Action Photos</h2>
+                    <span id="athlete-photo-badge" class="bg-amber-400/10 border border-amber-400/30 text-amber-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded-full">0 Photos</span>
+                    <span class="text-[11px] font-mono text-slate-500 hidden md:inline">• Click any photo to expand in full gallery with filmstrip</span>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button id="athlete-open-lightbox-btn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-amber-400/10 hover:bg-amber-400 hover:text-slate-950 text-amber-300 border border-amber-400/30 transition shadow-sm cursor-pointer" title="Open full-screen photo gallery">
+                        <span>Browse Gallery</span>
+                        <span class="hidden sm:inline">↗</span>
+                    </button>
+                    <button id="athlete-download-zip-btn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 hover:border-slate-700 transition cursor-pointer" title="Download all high-res photos as ZIP archive">
+                        <span>📦</span>
+                        <span class="hidden sm:inline">ZIP Download</span>
+                    </button>
+                    <a id="athlete-all-photos-link" href="#" target="_blank" class="inline-flex items-center gap-1 text-xs font-mono font-bold text-slate-400 hover:text-amber-300 px-2 py-1.5 transition" title="Search Flickr archive">
+                        <span>Flickr</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Mini Gallery Strip: Single-row horizontal scrollable previews -->
+            <div class="relative">
+                <div id="athlete-photos-strip" class="flex items-center gap-3 overflow-x-auto py-1 scroll-smooth" style="scrollbar-width: thin; scrollbar-color: #334155 transparent;">
+                    <!-- Dynamically populated compact photo previews -->
+                </div>
+            </div>
+        </section>
+
         <!-- DYNAMIC INSIGHTS & HISTORICAL TREND SEGMENT -->
         <section id="insights-section" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div class="bg-slate-950 border border-slate-900 p-6 rounded-xl shadow-md flex flex-col justify-between">
@@ -218,31 +251,6 @@
                 Prior to the 2019/20 campaign, Men’s and Women’s fixtures were staged separately. Overall positions for those seasons reflect placement within the runner's individual race rather than a combined field.
             </p>
         </div>
-
-        <!-- ATHLETE RACE PHOTOS SECTION -->
-        <section id="athlete-photos-section" class="space-y-4 hidden">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-900 pb-3">
-                <div class="flex items-center gap-2.5">
-                    <span class="text-base">📸</span>
-                    <h2 class="text-xs font-black tracking-widest text-slate-100 uppercase">Tagged Race Action Photos</h2>
-                    <span id="athlete-photo-badge" class="bg-brand-500/10 border border-brand-500/30 text-brand-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded-full">0 Photos</span>
-                </div>
-                <div class="flex items-center gap-3">
-                    <button id="athlete-download-zip-btn" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-brand-600 hover:bg-brand-500 text-white transition-all shadow-lg shadow-brand-500/20 border border-brand-400/30">
-                        <span>📦</span>
-                        <span>Download All Photos (ZIP)</span>
-                    </button>
-                    <a id="athlete-all-photos-link" href="#" class="text-xs font-mono font-bold text-brand-400 hover:text-brand-300 transition flex items-center gap-1">
-                        <span>Flickr Gallery</span>
-                        <span>→</span>
-                    </a>
-                </div>
-            </div>
-            
-            <div id="athlete-photos-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                <!-- Dynamically populated photo cards -->
-            </div>
-        </section>
 
         <!-- CHRONOLOGICAL CAREER TIMELINE -->
         <section class="space-y-4">
@@ -1159,11 +1167,12 @@
                 applyHeaderPhoto(savedHeaderCheck.url, savedHeaderCheck.position || 'center 25%');
             }
 
-            // 8. RENDER PHOTOS SECTION
+            // 8. RENDER PHOTOS SECTION (MINI GALLERY)
             const photosSection = document.getElementById('athlete-photos-section');
-            const photosGrid = document.getElementById('athlete-photos-grid');
+            const photosStrip = document.getElementById('athlete-photos-strip');
             const photoBadge = document.getElementById('athlete-photo-badge');
             const allPhotosLink = document.getElementById('athlete-all-photos-link');
+            const openLightboxBtn = document.getElementById('athlete-open-lightbox-btn');
 
             if (photosSection) {
                 if (matchedPhotos.length > 0) {
@@ -1172,11 +1181,12 @@
                         allPhotosLink.href = `photos.html?name=${encodeURIComponent(targetAthlete)}`;
                     }
 
-                    if (photosGrid) {
-                        photosGrid.innerHTML = matchedPhotos.map((photo, idx) => {
+                    if (photosStrip) {
+                        const maxPreview = 10;
+                        const previewPhotos = matchedPhotos.slice(0, maxPreview);
+
+                        let stripHtml = previewPhotos.map((photo, idx) => {
                             const imgThumb = photo.url_m || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg` : '');
-                            const imgLarge = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : imgThumb);
-                            
                             let raceTitle = 'GLCL Race';
                             const album = (photo.album_id && albumById[photo.album_id]) || fixtureAlbums[photo.album_id];
                             if (album) {
@@ -1184,58 +1194,45 @@
                             }
 
                             return `
-                                <div class="group relative bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg hover:border-brand-500/60 transition-all duration-300">
-                                    <div class="aspect-[4/3] bg-slate-950 overflow-hidden relative cursor-pointer athlete-photo-card" data-idx="${idx}">
-                                        <img src="${imgThumb}" alt="${targetAthlete}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none">
-                                        <div class="absolute top-2 left-2 z-10 pointer-events-none">
-                                            <span class="bg-brand-600/90 backdrop-blur-md text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow border border-brand-400/30">
-                                                Bib #${photo.bib}
-                                            </span>
-                                        </div>
-                                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2.5 pointer-events-none">
-                                            <span class="text-[9px] font-mono text-slate-200 font-bold bg-slate-900/90 px-2 py-1 rounded border border-slate-700">Click to Expand</span>
-                                        </div>
+                                <div class="athlete-mini-card flex-shrink-0 w-28 sm:w-36 aspect-[4/3] rounded-lg overflow-hidden border border-slate-800 hover:border-amber-400 bg-slate-900 relative group cursor-pointer transition-all duration-200 hover:scale-[1.03] shadow-md" data-idx="${idx}" title="Click to view full photo">
+                                    <img src="${imgThumb}" alt="${targetAthlete}" loading="lazy" class="w-full h-full object-cover pointer-events-none">
+                                    <div class="absolute top-1.5 left-1.5 pointer-events-none">
+                                        <span class="bg-slate-950/85 backdrop-blur-md text-amber-300 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border border-amber-400/30 shadow">
+                                            Bib #${photo.bib}
+                                        </span>
                                     </div>
-                                    <div class="p-2 flex items-center justify-between text-xs font-mono">
-                                        <span class="text-slate-400 truncate max-w-[85px] text-[10px]">${raceTitle}</span>
-                                        <div class="flex items-center gap-1">
-                                            ${isAdminMode ? `<button class="set-header-card-btn text-[10px] text-brand-400 hover:text-white bg-brand-500/10 hover:bg-brand-500 border border-brand-500/20 px-1.5 py-0.5 rounded transition font-bold" data-idx="${idx}" title="Set as Header Photo">★ Header</button>` : ''}
-                                            <a href="photos.html?album=${photo.album_id || ''}&bib=${photo.bib}" class="text-slate-400 hover:text-slate-200 text-[10px] hover:underline" title="View Album">Album →</a>
-                                            <a href="${imgLarge}" download="GLCL_${photo.id}.jpg" target="_blank" class="text-brand-400 hover:text-brand-300 p-0.5" title="Download High-Res Original">
-                                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                                            </a>
-                                        </div>
+                                    <div class="absolute bottom-0 inset-x-0 p-1.5 bg-gradient-to-t from-slate-950/90 via-slate-950/60 to-transparent pointer-events-none">
+                                        <span class="text-[9px] font-mono text-slate-300 truncate block">${raceTitle}</span>
                                     </div>
+                                    <div class="absolute inset-0 bg-amber-400/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                                 </div>
                             `;
                         }).join('');
 
-                        photosGrid.querySelectorAll('.athlete-photo-card').forEach(card => {
+                        if (matchedPhotos.length > maxPreview) {
+                            stripHtml += `
+                                <div class="athlete-mini-card-more flex-shrink-0 w-28 sm:w-36 aspect-[4/3] rounded-lg border border-dashed border-amber-400/50 hover:border-amber-400 bg-slate-900/60 hover:bg-slate-900/90 flex flex-col items-center justify-center gap-1 cursor-pointer transition-all p-2 text-center group" data-idx="${maxPreview}">
+                                    <span class="text-base group-hover:scale-110 transition-transform">📸</span>
+                                    <span class="text-xs font-mono font-bold text-amber-300">+${matchedPhotos.length - maxPreview} More</span>
+                                    <span class="text-[9px] font-mono text-slate-400">View All</span>
+                                </div>
+                            `;
+                        }
+
+                        photosStrip.innerHTML = stripHtml;
+
+                        photosStrip.querySelectorAll('.athlete-mini-card, .athlete-mini-card-more').forEach(card => {
                             card.addEventListener('click', () => {
                                 const idx = parseInt(card.getAttribute('data-idx'), 10);
-                                openAthleteLightbox(idx);
-                            });
-                        });
-
-                        photosGrid.querySelectorAll('.set-header-card-btn').forEach(btn => {
-                            btn.addEventListener('click', (e) => {
-                                e.stopPropagation();
-                                const idx = parseInt(btn.getAttribute('data-idx'), 10);
-                                const photo = matchedPhotos[idx];
-                                if (!photo) return;
-                                const url = photo.url_l || photo.url_m || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
-                                currentHeaderPhotoId = photo.id;
-                                applyHeaderPhoto(url, currentActiveHeaderPos || 'center 25%');
-                                saveAthleteHeaderConfig({
-                                    url: url,
-                                    photoId: photo.id,
-                                    position: currentActiveHeaderPos || 'center 25%',
-                                    source: 'flickr'
-                                });
-                                showToast(`✓ Set as header photo for ${targetAthlete}`);
+                                openAthleteLightbox(isNaN(idx) ? 0 : idx);
                             });
                         });
                     }
+
+                    if (openLightboxBtn) {
+                        openLightboxBtn.addEventListener('click', () => openAthleteLightbox(0));
+                    }
+
                     photosSection.classList.remove('hidden');
                 } else {
                     photosSection.classList.add('hidden');
@@ -1249,11 +1246,15 @@
                 
                 if (matchedPhotos.length > 0) {
                     badgeContainer.insertAdjacentHTML('beforeend', `
-                        <a href="#athlete-photos-section" class="inline-flex items-center gap-1.5 text-[10px] font-mono font-bold bg-brand-500/10 hover:bg-brand-500 text-brand-300 hover:text-white border border-brand-500/40 px-2.5 py-1 rounded shadow-sm transition">
+                        <button type="button" id="athlete-hero-photos-badge" class="inline-flex items-center gap-1.5 text-[10px] font-mono font-bold bg-amber-400/10 hover:bg-amber-400 hover:text-slate-950 text-amber-300 border border-amber-400/30 px-2.5 py-1 rounded shadow-sm transition cursor-pointer" title="View all ${matchedPhotos.length} race photos in full lightbox gallery">
                             <span>📸</span>
                             <span>${matchedPhotos.length} Race Photo${matchedPhotos.length > 1 ? 's' : ''}</span>
-                        </a>
+                        </button>
                     `);
+                    const heroPhotosBadge = document.getElementById('athlete-hero-photos-badge');
+                    if (heroPhotosBadge) {
+                        heroPhotosBadge.addEventListener('click', () => openAthleteLightbox(0));
+                    }
                 }
 
                 if (overallWins > 0) {
@@ -1307,83 +1308,227 @@
                 }
             }
 
-            // 9. LIGHTBOX CONTROLLER
+            // 9. LIGHTBOX CONTROLLER (WITH FILMSTRIP THUMBNAILS BENEATH)
             let currentAthletePhotoIndex = 0;
             const lightboxModal = document.getElementById('lightbox-modal');
             const modalImage = document.getElementById('modal-image');
+            const modalImageSpinner = document.getElementById('modal-image-spinner');
             const modalCounter = document.getElementById('modal-counter');
-            const modalRunnerInfo = document.getElementById('modal-runner-info');
+            const modalBibBadge = document.getElementById('modal-bib-badge');
+            const modalRunnerName = document.getElementById('modal-runner-name');
+            const modalRunnerClub = document.getElementById('modal-runner-club');
             const modalDirectDownload = document.getElementById('modal-direct-download');
+            const modalAlbumLink = document.getElementById('modal-album-link');
+            const modalMobileAlbumLink = document.getElementById('modal-mobile-album-link');
+            const modalImgBibOverlay = document.getElementById('modal-img-bib-overlay');
+            const modalImgVenueOverlay = document.getElementById('modal-img-venue-overlay');
             const modalCloseBtn = document.getElementById('modal-close-btn');
             const modalPrevBtn = document.getElementById('modal-prev-btn');
             const modalNextBtn = document.getElementById('modal-next-btn');
+            const modalStage = document.getElementById('modal-stage');
+            const lightboxFilmstripContainer = document.getElementById('lightbox-filmstrip-container');
+            const lightboxFilmstrip = document.getElementById('lightbox-filmstrip');
 
             const openAthleteLightbox = (index) => {
                 if (index < 0 || index >= matchedPhotos.length) return;
                 currentAthletePhotoIndex = index;
+
+                // Populate filmstrip thumbnails
+                if (lightboxFilmstrip && matchedPhotos.length > 1) {
+                    if (lightboxFilmstripContainer) lightboxFilmstripContainer.classList.remove('hidden');
+                    lightboxFilmstrip.innerHTML = matchedPhotos.map((p, idx) => {
+                        const thumbUrl = p.url_m || (p.server && p.secret ? `https://live.staticflickr.com/${p.server}/${p.id}_${p.secret}_m.jpg` : '');
+                        return `
+                            <button type="button" 
+                                    class="lightbox-thumb aspect-[4/3] w-14 sm:w-16 md:w-20 rounded-lg overflow-hidden border-2 transition-all shrink-0 bg-slate-900 cursor-pointer ${idx === index ? 'border-amber-400 scale-105 opacity-100 ring-2 ring-amber-400/40' : 'border-slate-800 opacity-40 hover:opacity-90'}"
+                                    data-index="${idx}"
+                                    aria-label="View photo ${idx + 1}">
+                                <img src="${thumbUrl}" alt="" loading="lazy" class="w-full h-full object-cover pointer-events-none">
+                            </button>
+                        `;
+                    }).join('');
+                } else if (lightboxFilmstripContainer) {
+                    lightboxFilmstripContainer.classList.add('hidden');
+                    if (lightboxFilmstrip) lightboxFilmstrip.innerHTML = '';
+                }
+
                 updateAthleteLightboxContent();
                 lightboxModal.classList.remove('hidden');
                 document.body.style.overflow = 'hidden';
             };
 
             const closeAthleteLightbox = () => {
-                lightboxModal.classList.add('hidden');
+                if (lightboxModal) lightboxModal.classList.add('hidden');
                 document.body.style.overflow = '';
             };
 
             const updateAthleteLightboxContent = () => {
+                if (!matchedPhotos || matchedPhotos.length === 0) return;
                 const photo = matchedPhotos[currentAthletePhotoIndex];
                 if (!photo) return;
 
-                const highRes = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
-                modalImage.src = highRes;
-                modalCounter.textContent = `Photo ${currentAthletePhotoIndex + 1} of ${matchedPhotos.length}`;
-                modalDirectDownload.href = highRes;
-                modalDirectDownload.download = `GLCL_${photo.id}.jpg`;
+                if (modalImageSpinner) modalImageSpinner.classList.remove('hidden');
+                modalImage.onload = () => {
+                    if (modalImageSpinner) modalImageSpinner.classList.add('hidden');
+                };
+                modalImage.onerror = () => {
+                    if (modalImageSpinner) modalImageSpinner.classList.add('hidden');
+                };
 
-                let raceTitle = 'GLCL Race';
-                if (photo.album_id && fixtureAlbums[photo.album_id]) {
-                    raceTitle = fixtureAlbums[photo.album_id].venue || fixtureAlbums[photo.album_id].title || 'GLCL Race';
+                const highRes = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : (photo.url_m || ''));
+                modalImage.src = highRes;
+
+                if (modalCounter) modalCounter.textContent = `${currentAthletePhotoIndex + 1} of ${matchedPhotos.length}`;
+                if (modalDirectDownload) {
+                    modalDirectDownload.href = highRes;
+                    modalDirectDownload.download = `GLCL_${photo.bib ? 'Bib' + photo.bib + '_' : ''}${photo.id}.jpg`;
                 }
 
-                modalRunnerInfo.innerHTML = `Bib #${photo.bib} • <span class="text-white">${targetAthlete}</span> (${photo.club || 'Parc Bryn Bach RC'}) • <span class="text-slate-400 font-normal">${raceTitle}</span>`;
+                if (modalBibBadge) {
+                    if (photo.bib) {
+                        modalBibBadge.textContent = `Bib #${photo.bib}`;
+                        modalBibBadge.classList.remove('hidden');
+                    } else {
+                        modalBibBadge.classList.add('hidden');
+                    }
+                }
+
+                if (modalRunnerName) modalRunnerName.textContent = targetAthlete;
+                if (modalRunnerClub) modalRunnerClub.textContent = targetClub || photo.club ? `• ${targetClub || photo.club}` : '';
+
+                let raceTitle = 'GLCL Race';
+                const album = (photo.album_id && albumById[photo.album_id]) || fixtureAlbums[photo.album_id];
+                if (album) {
+                    raceTitle = album.venue || album.title || 'GLCL Race';
+                }
+
+                if (modalImgBibOverlay) {
+                    if (photo.bib) {
+                        modalImgBibOverlay.textContent = `Bib #${photo.bib}`;
+                        modalImgBibOverlay.classList.remove('hidden');
+                    } else {
+                        modalImgBibOverlay.classList.add('hidden');
+                    }
+                }
+
+                if (modalImgVenueOverlay) {
+                    modalImgVenueOverlay.textContent = raceTitle;
+                    modalImgVenueOverlay.classList.remove('hidden');
+                }
+
+                if (photo.album_id) {
+                    const searchParam = photo.bib ? `bib=${photo.bib}` : `name=${encodeURIComponent(targetAthlete)}`;
+                    const albumUrl = `photos.html?album=${photo.album_id}&${searchParam}`;
+                    if (modalAlbumLink) {
+                        modalAlbumLink.href = albumUrl;
+                        modalAlbumLink.classList.remove('hidden');
+                    }
+                    if (modalMobileAlbumLink) {
+                        modalMobileAlbumLink.href = albumUrl;
+                        modalMobileAlbumLink.classList.remove('hidden');
+                    }
+                } else {
+                    if (modalAlbumLink) modalAlbumLink.classList.add('hidden');
+                    if (modalMobileAlbumLink) modalMobileAlbumLink.classList.add('hidden');
+                }
+
+                if (modalPrevBtn) modalPrevBtn.disabled = currentAthletePhotoIndex === 0;
+                if (modalNextBtn) modalNextBtn.disabled = currentAthletePhotoIndex === matchedPhotos.length - 1;
+
+                // Sync filmstrip active state and scroll into view smoothly
+                if (lightboxFilmstrip) {
+                    const allThumbs = lightboxFilmstrip.querySelectorAll('.lightbox-thumb');
+                    allThumbs.forEach((thumb, idx) => {
+                        if (idx === currentAthletePhotoIndex) {
+                            thumb.classList.add('border-amber-400', 'scale-105', 'opacity-100', 'ring-2', 'ring-amber-400/40');
+                            thumb.classList.remove('border-slate-800', 'opacity-40');
+                            thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                        } else {
+                            thumb.classList.remove('border-amber-400', 'scale-105', 'opacity-100', 'ring-2', 'ring-amber-400/40');
+                            thumb.classList.add('border-slate-800', 'opacity-40');
+                        }
+                    });
+                }
+            };
+
+            const goToPrevAthletePhoto = () => {
+                if (currentAthletePhotoIndex > 0) {
+                    currentAthletePhotoIndex--;
+                    updateAthleteLightboxContent();
+                }
+            };
+
+            const goToNextAthletePhoto = () => {
+                if (currentAthletePhotoIndex < matchedPhotos.length - 1) {
+                    currentAthletePhotoIndex++;
+                    updateAthleteLightboxContent();
+                }
             };
 
             if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeAthleteLightbox);
             if (modalPrevBtn) modalPrevBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                if (currentAthletePhotoIndex > 0) {
-                    currentAthletePhotoIndex--;
-                    updateAthleteLightboxContent();
-                }
+                goToPrevAthletePhoto();
             });
             if (modalNextBtn) modalNextBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                if (currentAthletePhotoIndex < matchedPhotos.length - 1) {
-                    currentAthletePhotoIndex++;
-                    updateAthleteLightboxContent();
-                }
+                goToNextAthletePhoto();
             });
+
+            if (lightboxFilmstrip) {
+                lightboxFilmstrip.addEventListener('click', (e) => {
+                    const thumb = e.target.closest('.lightbox-thumb');
+                    if (!thumb) return;
+                    const idx = parseInt(thumb.getAttribute('data-index'), 10);
+                    if (!isNaN(idx) && idx !== currentAthletePhotoIndex) {
+                        currentAthletePhotoIndex = idx;
+                        updateAthleteLightboxContent();
+                    }
+                });
+            }
+
             if (lightboxModal) {
                 lightboxModal.addEventListener('click', (e) => {
-                    if (e.target === lightboxModal) closeAthleteLightbox();
+                    if (e.target === lightboxModal || e.target === modalStage) closeAthleteLightbox();
                 });
+            }
+
+            // Mobile Touch Swipe Handling
+            if (modalStage) {
+                let touchStartX = 0;
+                let touchStartY = 0;
+                let touchEndX = 0;
+                let touchEndY = 0;
+
+                modalStage.addEventListener('touchstart', (e) => {
+                    if (!e.touches || e.touches.length === 0) return;
+                    touchStartX = e.touches[0].clientX;
+                    touchStartY = e.touches[0].clientY;
+                }, { passive: true });
+
+                modalStage.addEventListener('touchend', (e) => {
+                    if (!e.changedTouches || e.changedTouches.length === 0) return;
+                    touchEndX = e.changedTouches[0].clientX;
+                    touchEndY = e.changedTouches[0].clientY;
+
+                    const deltaX = touchEndX - touchStartX;
+                    const deltaY = touchEndY - touchStartY;
+
+                    if (Math.abs(deltaX) > 35 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
+                        if (deltaX < 0) {
+                            goToNextAthletePhoto();
+                        } else {
+                            goToPrevAthletePhoto();
+                        }
+                    }
+                }, { passive: true });
             }
 
             document.addEventListener('keydown', (e) => {
                 if (!lightboxModal || lightboxModal.classList.contains('hidden')) return;
                 if (e.key === 'Escape') closeAthleteLightbox();
-                else if (e.key === 'ArrowLeft') {
-                    if (currentAthletePhotoIndex > 0) {
-                        currentAthletePhotoIndex--;
-                        updateAthleteLightboxContent();
-                    }
-                } else if (e.key === 'ArrowRight') {
-                    if (currentAthletePhotoIndex < matchedPhotos.length - 1) {
-                        currentAthletePhotoIndex++;
-                        updateAthleteLightboxContent();
-                    }
-                }
+                else if (e.key === 'ArrowLeft') goToPrevAthletePhoto();
+                else if (e.key === 'ArrowRight') goToNextAthletePhoto();
             });
 
             // 10. CLIENT-SIDE ZIP DOWNLOAD CONTROLLER
@@ -1757,46 +1902,101 @@
             }
         });
     </script>
-    <div id="lightbox-modal" class="hidden fixed inset-0 z-[9999] bg-slate-950/95 backdrop-blur-md flex flex-col justify-between p-4 md:p-6" role="dialog" aria-modal="true">
-        <!-- Top Toolbar -->
-        <div class="flex items-center justify-between z-10">
-            <div class="space-y-0.5">
-                <span id="modal-counter" class="text-[11px] font-mono text-slate-400">Photo 1 of 10</span>
-                <div id="modal-runner-info" class="text-xs font-bold text-brand-400 uppercase tracking-wider"></div>
+    <!-- ATHLETE RACE PHOTO VIEWER LIGHTBOX (WITH FILMSTRIP THUMBNAILS BENEATH) -->
+    <div id="lightbox-modal" class="hidden fixed inset-0 z-[9999] bg-slate-950/95 backdrop-blur-md flex flex-col justify-between select-none" role="dialog" aria-modal="true" aria-label="Athlete Race Photos">
+        
+        <!-- TOP HEADER / ACTION BAR -->
+        <header class="p-3 md:p-4 border-b border-slate-900 bg-slate-950/80 flex items-center justify-between gap-2 md:gap-4 z-20 flex-shrink-0">
+            <!-- Left: Runner Identity & Badges -->
+            <div class="flex items-center gap-2 md:gap-3 min-w-0">
+                <span class="text-[11px] md:text-xs font-mono font-bold text-amber-400 bg-amber-400/10 border border-amber-400/30 px-2 py-0.5 rounded shrink-0">
+                    📸 <span class="hidden sm:inline">Race Photos</span>
+                </span>
+                <span id="modal-bib-badge" class="text-[11px] md:text-xs font-mono font-bold text-sky-400 bg-sky-400/10 border border-sky-400/30 px-2 py-0.5 rounded shrink-0"></span>
+                <div class="min-w-0 flex items-baseline gap-1.5 truncate">
+                    <span id="modal-runner-name" class="font-black text-white text-sm md:text-base truncate"></span>
+                    <span id="modal-runner-club" class="text-xs text-slate-400 hidden sm:inline truncate"></span>
+                </div>
             </div>
-            
-            <div class="flex items-center gap-2">
-                <button id="modal-set-header-btn" class="hidden bg-brand-600 hover:bg-brand-500 text-white border border-brand-400/30 text-xs font-mono font-bold px-3 py-1.5 rounded-lg transition inline-flex items-center gap-1.5 shadow-lg" title="Set this photo as athlete hero header">
+
+            <!-- Right: Actions & Counter -->
+            <div class="flex items-center gap-1.5 md:gap-2 shrink-0">
+                <!-- Photo Counter Pill -->
+                <span id="modal-counter" class="text-[11px] font-mono text-slate-300 bg-slate-900 px-2 md:px-2.5 py-1 rounded-lg border border-slate-800">
+                    1 of 1
+                </span>
+
+                <!-- Admin: Set as Header Button -->
+                <button id="modal-set-header-btn" class="hidden bg-brand-600 hover:bg-brand-500 text-white border border-brand-400/30 text-xs font-mono font-bold px-2.5 md:px-3 py-1.5 rounded-lg transition inline-flex items-center gap-1.5 shadow-lg" title="Set this photo as athlete hero header">
                     <span>★</span>
-                    <span>Set as Header</span>
+                    <span class="hidden sm:inline">Set Header</span>
                 </button>
-                <a id="modal-direct-download" href="#" target="_blank" download class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 text-xs font-mono font-bold px-3 py-1.5 rounded-lg transition inline-flex items-center gap-1.5">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                    Download High-Res
+
+                <!-- High-Res 3K Download Button -->
+                <a id="modal-direct-download" href="#" target="_blank" download class="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-white bg-brand-600 hover:bg-brand-500 border border-brand-400/30 px-2.5 md:px-3 py-1.5 rounded-lg transition shadow-sm" title="Download High-Resolution Photo">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    <span class="hidden sm:inline">Download</span>
                 </a>
-                <button id="modal-close-btn" class="p-2 text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 rounded-lg border border-slate-800 transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+
+                <!-- Flickr Album Link -->
+                <a id="modal-album-link" href="#" target="_blank" class="hidden md:inline-flex items-center gap-1 text-xs font-mono font-bold text-amber-300 hover:text-amber-200 bg-amber-400/10 hover:bg-amber-400/20 border border-amber-400/30 px-2.5 py-1.5 rounded-lg transition" title="Search all photos in this fixture album">
+                    <span>Flickr</span>
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+
+                <!-- Close Button -->
+                <button id="modal-close-btn" class="p-1.5 md:p-2 text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 rounded-lg border border-slate-800 transition cursor-pointer" aria-label="Close photo viewer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
-        </div>
+        </header>
 
-        <!-- Center Image Viewport -->
-        <div class="relative flex-grow flex items-center justify-center my-4 overflow-hidden">
-            <button id="modal-prev-btn" class="absolute left-2 md:left-6 z-20 p-3 rounded-full bg-slate-900/80 hover:bg-brand-600 text-white border border-slate-700 transition" aria-label="Previous Photo">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" /></svg>
+        <!-- MAIN PHOTO STAGE (SWIPEABLE & FULLBLEED) -->
+        <div id="modal-stage" class="relative flex-grow flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-hidden touch-pan-y">
+            <!-- Left Prev Button -->
+            <button id="modal-prev-btn" class="absolute left-2 md:left-6 z-30 p-2.5 md:p-3.5 rounded-full bg-slate-900/85 hover:bg-brand-600 text-white border border-slate-700/80 backdrop-blur-sm transition-all shadow-xl disabled:opacity-20 disabled:pointer-events-none cursor-pointer" aria-label="Previous photo">
+                <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
             </button>
 
-            <img id="modal-image" src="" alt="GLCL Race Action Photo" class="max-h-[82vh] max-w-full object-contain rounded shadow-2xl transition duration-200 select-none">
+            <!-- Active Main Image Wrapper -->
+            <div class="relative max-h-full max-w-full flex items-center justify-center">
+                <img id="modal-image" src="" alt="GLCL Race Action Photo" class="max-h-[58vh] sm:max-h-[64vh] md:max-h-[70vh] max-w-full object-contain rounded-xl shadow-2xl transition duration-150 select-none">
+                
+                <!-- Loading Spinner -->
+                <div id="modal-image-spinner" class="hidden absolute inset-0 flex items-center justify-center bg-slate-950/40 rounded-xl backdrop-blur-sm">
+                    <div class="animate-spin w-8 h-8 border-4 border-brand-500 border-t-transparent rounded-full"></div>
+                </div>
 
-            <button id="modal-next-btn" class="absolute right-2 md:right-6 z-20 p-3 rounded-full bg-slate-900/80 hover:bg-brand-600 text-white border border-slate-700 transition" aria-label="Next Photo">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" /></svg>
+                <!-- Floating Overlays on image -->
+                <div class="absolute top-3 left-3 pointer-events-none flex flex-wrap gap-1.5">
+                    <span id="modal-img-bib-overlay" class="text-xs font-mono font-bold bg-slate-950/85 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-md backdrop-blur-md shadow"></span>
+                    <span id="modal-img-venue-overlay" class="text-xs font-mono font-bold bg-slate-950/85 text-slate-300 border border-slate-700/60 px-2 py-0.5 rounded-md backdrop-blur-md shadow"></span>
+                </div>
+            </div>
+
+            <!-- Right Next Button -->
+            <button id="modal-next-btn" class="absolute right-2 md:right-6 z-30 p-2.5 md:p-3.5 rounded-full bg-slate-900/85 hover:bg-brand-600 text-white border border-slate-700/80 backdrop-blur-sm transition-all shadow-xl disabled:opacity-20 disabled:pointer-events-none cursor-pointer" aria-label="Next photo">
+                <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
             </button>
         </div>
 
-        <!-- Bottom Caption -->
-        <div class="text-center font-mono text-[11px] text-slate-500">
-            All photos © Robert Gale (Parc Bryn Bach RC). Free for personal running use.
-        </div>
+        <!-- BOTTOM SECTION: FILMSTRIP THUMBNAILS BENEATH & CONTROLS -->
+        <footer class="border-t border-slate-900 bg-slate-950/90 p-2 md:p-3 flex flex-col gap-2 z-20 flex-shrink-0">
+            <!-- Filmstrip Carousel -->
+            <div id="lightbox-filmstrip-container" class="w-full flex items-center justify-center">
+                <div id="lightbox-filmstrip" class="flex items-center gap-2 overflow-x-auto max-w-full py-1 px-2 scroll-smooth" style="scrollbar-width: thin; scrollbar-color: #334155 transparent;">
+                    <!-- Dynamically populated thumbnails -->
+                </div>
+            </div>
+
+            <!-- Bottom Meta -->
+            <div class="flex items-center justify-between text-[11px] font-mono text-slate-500 px-2 pt-1 border-t border-slate-900/60">
+                <span class="truncate">All photos © Robert Gale (Parc Bryn Bach RC) • Free personal use</span>
+                <a id="modal-mobile-album-link" href="#" target="_blank" class="md:hidden text-amber-400 hover:text-amber-300 font-bold shrink-0 ml-2">
+                    Flickr Album →
+                </a>
+            </div>
+        </footer>
     </div>
 
     <!-- ZIP DOWNLOAD PROGRESS MODAL -->
