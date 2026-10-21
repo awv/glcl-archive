@@ -437,7 +437,8 @@ func scanPhoto(
     humanRequest.upperBodyOnly = true
     
     let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
-    try? handler.perform([textRequest, faceRequest, humanRequest])
+    try? handler.perform([textRequest])
+    try? handler.perform([faceRequest, humanRequest])
     
     var rawCandidates: [RunnerMatch] = []
     
@@ -466,7 +467,7 @@ func scanPhoto(
                 if token.bbox.origin.y < 0.06 || token.bbox.origin.y > 0.90 || token.bbox.origin.x < 0.05 || token.bbox.origin.x > 0.95 {
                     continue
                 }
-                if token.conf < 0.60 {
+                if token.conf < 0.35 {
                     continue
                 }
             }

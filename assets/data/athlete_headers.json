@@ -1,1 +1,144 @@
-{}
+{
+  "evans huw": {
+    "url": "assets/images/athletes/huw-evans.jpg",
+    "position": "center 0%",
+    "athlete": "Huw Evans",
+    "updatedAt": "2026-10-20T12:45:54.126Z"
+  },
+  "martin thomas": {
+    "url": "https://live.staticflickr.com/65535/54943626343_ec133a974f_b.jpg",
+    "photoId": "54943626343",
+    "position": "center 6%",
+    "source": "flickr",
+    "athlete": "Martin Thomas",
+    "updatedAt": "2026-10-20T12:46:17.443Z"
+  },
+  "jarvis patrick": {
+    "url": "https://live.staticflickr.com/65535/54304086118_25b16fbf0a_b.jpg",
+    "photoId": "54304086118",
+    "position": "center 27%",
+    "source": "flickr",
+    "athlete": "Patrick Jarvis",
+    "updatedAt": "2026-10-20T12:47:06.743Z"
+  },
+  "batchelor tim": {
+    "url": "assets/images/athletes/tim-batchelor.jpg",
+    "position": "center 11%",
+    "athlete": "Tim Batchelor",
+    "updatedAt": "2026-10-20T12:47:22.576Z"
+  },
+  "adam grey": {
+    "url": "assets/images/athletes/adam-grey.jpg",
+    "position": "center 8%",
+    "athlete": "Adam Grey",
+    "updatedAt": "2026-10-20T12:47:33.659Z"
+  },
+  "jones toby": {
+    "url": "https://live.staticflickr.com/65535/54942548267_fa7413eb44_b.jpg",
+    "photoId": "54942548267",
+    "position": "center 1%",
+    "source": "flickr",
+    "athlete": "Toby Jones",
+    "updatedAt": "2026-10-20T12:48:02.959Z"
+  },
+  "gillett mark": {
+    "url": "https://live.staticflickr.com/65535/54303837331_88d0dd1806_b.jpg",
+    "photoId": "54303837331",
+    "position": "center 5%",
+    "source": "flickr",
+    "athlete": "Mark Gillett",
+    "updatedAt": "2026-10-20T12:49:15.859Z"
+  },
+  "paul white": {
+    "url": "https://live.staticflickr.com/65535/54943424321_8caa85af65_b.jpg",
+    "photoId": "54943424321",
+    "position": "center 25%",
+    "source": "flickr",
+    "athlete": "Paul White",
+    "updatedAt": "2026-10-20T12:49:49.160Z"
+  },
+  "jones sian": {
+    "url": "assets/images/athletes/sian-jones.jpg",
+    "position": "center 7%",
+    "athlete": "Sian Jones",
+    "updatedAt": "2026-10-20T13:02:17.609Z"
+  },
+  "davies ian": {
+    "url": "assets/images/athletes/ian-davies.jpg",
+    "position": "center 8%",
+    "athlete": "Ian Davies",
+    "updatedAt": "2026-10-20T13:02:29.843Z"
+  },
+  "roberts vicky": {
+    "url": "assets/images/athletes/vicky-roberts.jpg",
+    "position": "center 0%",
+    "athlete": "Vicky Roberts",
+    "updatedAt": "2026-10-21T13:45:07.190Z"
+  },
+  "hinshelwood kani": {
+    "url": "assets/images/athletes/kani-hinshelwood.jpg",
+    "position": "center 0%",
+    "athlete": "Kani Hinshelwood",
+    "updatedAt": "2026-10-21T14:44:00.905Z"
+  },
+  "antoinette rose": {
+    "url": "assets/images/athletes/antoinette-rose.jpg",
+    "position": "center 0%",
+    "athlete": "Antoinette Rose",
+    "updatedAt": "2026-10-21T14:44:38.305Z"
+  },
+  "beth jones": {
+    "url": "assets/images/athletes/beth-jones.jpg",
+    "position": "center 0%",
+    "athlete": "Beth Jones",
+    "updatedAt": "2026-10-21T14:44:50.655Z"
+  },
+  "kimberley price": {
+    "url": "assets/images/athletes/kimberley-price.jpg",
+    "position": "center 7%",
+    "athlete": "Kimberley Price",
+    "updatedAt": "2026-10-21T14:45:09.972Z"
+  },
+  "ciesielska ewelina": {
+    "url": "assets/images/athletes/ewelina-ciesielska.jpg",
+    "position": "center 6%",
+    "athlete": "Ewelina Ciesielska",
+    "updatedAt": "2026-10-21T14:45:41.422Z"
+  },
+  "chipper sandra": {
+    "url": "assets/images/athletes/sandra-chipper.jpg",
+    "position": "center 0%",
+    "athlete": "Sandra Chipper",
+    "updatedAt": "2026-10-21T14:46:04.539Z"
+  },
+  "liz richards": {
+    "url": "assets/images/athletes/liz-richards.jpg",
+    "position": "center 7%",
+    "athlete": "Liz Richards",
+    "updatedAt": "2026-10-21T14:47:24.098Z"
+  },
+  "morgan niki": {
+    "url": "assets/images/athletes/niki-morgan.jpg",
+    "position": "center 5%",
+    "athlete": "Niki Morgan",
+    "updatedAt": "2026-10-21T14:47:32.998Z"
+  },
+  "jeremiah sarah": {
+    "url": "assets/images/athletes/sarah-jeremiah.jpg",
+    "position": "center 9%",
+    "athlete": "Sarah Jeremiah",
+    "updatedAt": "2026-10-21T14:47:42.922Z"
+  },
+  "andrei arcana": {
+    "url": "assets/images/athletes/andrei-arcana.jpg",
+    "position": "center 2%",
+    "athlete": "Andrei Arcana",
+    "updatedAt": "2026-10-21T14:48:08.739Z"
+  },
+  "dane williams": {
+    "url": "assets/images/athletes/dane-williams.jpg",
+    "position": "center 0%",
+    "athlete": "Dane Williams",
+    "updatedAt": "2026-10-21T15:15:48.325Z"
+  }
+}

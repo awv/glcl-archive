@@ -12770,9 +12770,9 @@
     ]
   },
   "55023869427": {
-    "bib": "",
-    "name": "",
-    "club": "",
+    "bib": "1125",
+    "name": "Saul COOKE-BLACK",
+    "club": "Pont-Y-Pwl & District Runners",
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "f37b34cb7c",
@@ -12782,7 +12782,19 @@
     "url_k": "https://live.staticflickr.com/65535/55023869427_d7ca1f1f8a_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55023869427_546b4c3f27_3k.jpg",
     "url_4k": "https://live.staticflickr.com/65535/55023869427_e9d4bd4ca3_4k.jpg",
-    "runners": []
+    "runners": [
+      {
+        "bib": "1125",
+        "name": "Saul COOKE-BLACK",
+        "club": "Pont-Y-Pwl & District Runners"
+      },
+      {
+        "bib": "1335",
+        "name": "Jason LEWIS",
+        "club": "Parc Bryn Bach RC"
+      }
+    ],
+    "sharpness": 400.6
   },
   "55023869752": {
     "bib": "1063",
@@ -13088,9 +13100,9 @@
     ]
   },
   "55023876377": {
-    "bib": "",
-    "name": "",
-    "club": "",
+    "bib": "91",
+    "name": "Pamela SUTER",
+    "club": "Chepstow Harriers",
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "c6e9eeb8ca",
@@ -13100,7 +13112,19 @@
     "url_k": "https://live.staticflickr.com/65535/55023876377_de363455f9_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55023876377_b0f72a3001_3k.jpg",
     "url_4k": "https://live.staticflickr.com/65535/55023876377_bda636a55c_4k.jpg",
-    "runners": []
+    "runners": [
+      {
+        "bib": "91",
+        "name": "Pamela SUTER",
+        "club": "Chepstow Harriers"
+      },
+      {
+        "bib": "108",
+        "name": "Michelle CLABON",
+        "club": "Caerleon RC"
+      }
+    ],
+    "sharpness": 311.0
   },
   "55023876592": {
     "bib": "108",
@@ -68925,9 +68949,9 @@
     ]
   },
   "55023882717": {
-    "bib": "",
-    "name": "",
-    "club": "",
+    "bib": "1380",
+    "name": "Jonathan FORD",
+    "club": "Fairwater Runners",
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "d7887ca7aa",
@@ -68937,7 +68961,14 @@
     "url_k": "https://live.staticflickr.com/65535/55023882717_984159c5a4_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55023882717_ecddf97a5d_3k.jpg",
     "url_4k": "https://live.staticflickr.com/65535/55023882717_6817ba1038_4k.jpg",
-    "runners": []
+    "runners": [
+      {
+        "bib": "1380",
+        "name": "Jonathan FORD",
+        "club": "Fairwater Runners"
+      }
+    ],
+    "sharpness": 1598.7
   },
   "55023883707": {
     "bib": "1380",
@@ -68982,9 +69013,9 @@
     ]
   },
   "55023884312": {
-    "bib": "",
-    "name": "",
-    "club": "",
+    "bib": "1473",
+    "name": "Daniel BODMAN",
+    "club": "Parc Bryn Bach RC",
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "39f7e6126d",
@@ -68994,12 +69025,19 @@
     "url_k": "https://live.staticflickr.com/65535/55023884312_a76a3e5cb1_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55023884312_9820228c1d_3k.jpg",
     "url_4k": "https://live.staticflickr.com/65535/55023884312_b71fed5b83_4k.jpg",
-    "runners": []
+    "runners": [
+      {
+        "bib": "1473",
+        "name": "Daniel BODMAN",
+        "club": "Parc Bryn Bach RC"
+      }
+    ],
+    "sharpness": 1433.7
   },
   "55023886377": {
-    "bib": "039",
-    "name": "",
-    "club": "",
+    "bib": "620",
+    "name": "Adam GREY",
+    "club": "Pont-Y-Pwl & District Runners",
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "3c3ecb801b",
@@ -69009,7 +69047,14 @@
     "url_k": "https://live.staticflickr.com/65535/55023886377_529d7ff1e7_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55023886377_98606eab61_3k.jpg",
     "url_4k": "https://live.staticflickr.com/65535/55023886377_761b837132_4k.jpg",
-    "runners": []
+    "runners": [
+      {
+        "bib": "620",
+        "name": "Adam GREY",
+        "club": "Pont-Y-Pwl & District Runners"
+      }
+    ],
+    "sharpness": 953.0
   },
   "55023886512": {
     "bib": "1039",
@@ -101377,9 +101422,9 @@
     ]
   },
   "55023887772": {
-    "bib": "",
-    "name": "",
-    "club": "",
+    "bib": "1297",
+    "name": "Dane WILLIAMS",
+    "club": "Parc Bryn Bach RC",
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "4760713c1e",
@@ -101389,7 +101434,14 @@
     "url_k": "https://live.staticflickr.com/65535/55023887772_d997d25804_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55023887772_b03cdbd5aa_3k.jpg",
     "url_4k": "https://live.staticflickr.com/65535/55023887772_140c96f617_4k.jpg",
-    "runners": []
+    "runners": [
+      {
+        "bib": "1297",
+        "name": "Dane WILLIAMS",
+        "club": "Parc Bryn Bach RC"
+      }
+    ],
+    "sharpness": 706.1
   },
   "55023887922": {
     "bib": "",
@@ -101674,9 +101726,9 @@
     ]
   },
   "55023899262": {
-    "bib": "",
-    "name": "",
-    "club": "",
+    "bib": "798",
+    "name": "Kirk HILL",
+    "club": "Spirit of Monmouth RC",
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "ee14638dc0",
@@ -101686,7 +101738,14 @@
     "url_k": "https://live.staticflickr.com/65535/55023899262_a2c29f810d_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55023899262_df770782c7_3k.jpg",
     "url_4k": "https://live.staticflickr.com/65535/55023899262_ce98f3177f_4k.jpg",
-    "runners": []
+    "runners": [
+      {
+        "bib": "798",
+        "name": "Kirk HILL",
+        "club": "Spirit of Monmouth RC"
+      }
+    ],
+    "sharpness": 868.5
   },
   "55023899757": {
     "bib": "1335",
@@ -101935,9 +101994,9 @@
     ]
   },
   "55023906857": {
-    "bib": "",
-    "name": "",
-    "club": "",
+    "bib": "249",
+    "name": "Marc CROSS",
+    "club": "Griffithstown Harriers",
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "278ecf24ec",
@@ -101947,7 +102006,14 @@
     "url_k": "https://live.staticflickr.com/65535/55023906857_69d099c0e9_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55023906857_9cf36567a0_3k.jpg",
     "url_4k": "https://live.staticflickr.com/65535/55023906857_5b653f459e_4k.jpg",
-    "runners": []
+    "runners": [
+      {
+        "bib": "249",
+        "name": "Marc CROSS",
+        "club": "Griffithstown Harriers"
+      }
+    ],
+    "sharpness": 1067.6
   },
   "55023907172": {
     "bib": "249",
@@ -101992,9 +102058,9 @@
     ]
   },
   "55023908622": {
-    "bib": "",
-    "name": "",
-    "club": "",
+    "bib": "345",
+    "name": "Dai HAMM",
+    "club": "Islwyn RC",
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "53471005e2",
@@ -102004,12 +102070,19 @@
     "url_k": "https://live.staticflickr.com/65535/55023908622_6a18cbe222_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55023908622_987433c884_3k.jpg",
     "url_4k": "https://live.staticflickr.com/65535/55023908622_7166b87374_4k.jpg",
-    "runners": []
+    "runners": [
+      {
+        "bib": "345",
+        "name": "Dai HAMM",
+        "club": "Islwyn RC"
+      }
+    ],
+    "sharpness": 1402.7
   },
   "55023909872": {
-    "bib": "",
-    "name": "",
-    "club": "",
+    "bib": "1144",
+    "name": "Rob BEVES",
+    "club": "Chepstow Harriers",
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "bac985857a",
@@ -102019,7 +102092,14 @@
     "url_k": "https://live.staticflickr.com/65535/55023909872_4b60c43f20_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55023909872_6770433bc2_3k.jpg",
     "url_4k": "https://live.staticflickr.com/65535/55023909872_8b57cce00b_4k.jpg",
-    "runners": []
+    "runners": [
+      {
+        "bib": "1144",
+        "name": "Rob BEVES",
+        "club": "Chepstow Harriers"
+      }
+    ],
+    "sharpness": 536.8
   },
   "55023910137": {
     "bib": "830",
@@ -102064,9 +102144,9 @@
     ]
   },
   "55023910532": {
-    "bib": "",
-    "name": "",
-    "club": "",
+    "bib": "1098",
+    "name": "Andrew SMITH",
+    "club": "Griffithstown Harriers",
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "38e71d5fc8",
@@ -102076,7 +102156,19 @@
     "url_k": "https://live.staticflickr.com/65535/55023910532_dd1d07c642_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55023910532_f3b7004f6f_3k.jpg",
     "url_4k": "https://live.staticflickr.com/65535/55023910532_5659a18bd6_4k.jpg",
-    "runners": []
+    "runners": [
+      {
+        "bib": "1098",
+        "name": "Andrew SMITH",
+        "club": "Griffithstown Harriers"
+      },
+      {
+        "bib": "388",
+        "name": "Neil PROFIT",
+        "club": "Islwyn RC"
+      }
+    ],
+    "sharpness": 1898.7
   },
   "55023910707": {
     "bib": "1098",
@@ -329645,10 +329737,21 @@
     "url_4k": "https://live.staticflickr.com/65535/55023914302_d07a0dec7f_4k.jpg"
   },
   "55023914672": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "1227",
+    "name": "Jamie FRASER",
+    "club": "Lliswerry Runners",
+    "runners": [
+      {
+        "bib": "1227",
+        "name": "Jamie FRASER",
+        "club": "Lliswerry Runners"
+      },
+      {
+        "bib": "867",
+        "name": "Renske BOUWENS",
+        "club": "Spirit of Monmouth RC"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "d0ce24452c",
@@ -329749,16 +329852,22 @@
     "url_4k": "https://live.staticflickr.com/65535/55023916327_2fa2a22643_4k.jpg"
   },
   "55023916717": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "35",
+    "name": "Caroline DUDER",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "35",
+        "name": "Caroline DUDER",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "82117738fd",
     "url_m": "https://live.staticflickr.com/65535/55023916717_82117738fd.jpg",
     "url_l": "https://live.staticflickr.com/65535/55023916717_82117738fd_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 1044.0,
     "url_h": "https://live.staticflickr.com/65535/55023916717_fc83f06211_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55023916717_6d5f9e4cc2_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55023916717_38b517f5f0_3k.jpg",
@@ -330048,10 +330157,21 @@
     "url_4k": "https://live.staticflickr.com/65535/55023921462_d9b43db3bd_4k.jpg"
   },
   "55023923037": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "791",
+    "name": "Sian FIELDING",
+    "club": "Spirit of Monmouth RC",
+    "runners": [
+      {
+        "bib": "791",
+        "name": "Sian FIELDING",
+        "club": "Spirit of Monmouth RC"
+      },
+      {
+        "bib": "97",
+        "name": "Andrew WALL",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "4ff95102ac",
@@ -336218,16 +336338,22 @@
     "url_4k": "https://live.staticflickr.com/65535/55023941672_bce5591c6a_4k.jpg"
   },
   "55023942037": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "5",
+    "name": "Brenda AVERY",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "5",
+        "name": "Brenda AVERY",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "6d1a70f162",
     "url_m": "https://live.staticflickr.com/65535/55023942037_6d1a70f162.jpg",
     "url_l": "https://live.staticflickr.com/65535/55023942037_6d1a70f162_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 484.9,
     "url_h": "https://live.staticflickr.com/65535/55023942037_0887763f0b_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55023942037_47697b92ab_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55023942037_5b5d2d5b98_3k.jpg",
@@ -336502,16 +336628,22 @@
     "url_4k": "https://live.staticflickr.com/65535/55023947897_413741b383_4k.jpg"
   },
   "55023947982": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "9",
+    "name": "Jane BAYLISS",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "9",
+        "name": "Jane BAYLISS",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "c2b327a9f4",
     "url_m": "https://live.staticflickr.com/65535/55023947982_c2b327a9f4.jpg",
     "url_l": "https://live.staticflickr.com/65535/55023947982_c2b327a9f4_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 612.1,
     "url_h": "https://live.staticflickr.com/65535/55023947982_37a998ae10_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55023947982_826b0c5c24_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55023947982_a1ae12ba3c_3k.jpg",
@@ -343363,16 +343495,22 @@
     "url_4k": "https://live.staticflickr.com/65535/55024002757_6263a62591_4k.jpg"
   },
   "55024003787": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "19",
+    "name": "Jonathan CARTER",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "19",
+        "name": "Jonathan CARTER",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "309a36a404",
     "url_m": "https://live.staticflickr.com/65535/55024003787_309a36a404.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024003787_309a36a404_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 493.2,
     "url_h": "https://live.staticflickr.com/65535/55024003787_b9096dfb9e_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024003787_c4eb4e05b8_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024003787_1d9028dd35_3k.jpg",
@@ -343395,16 +343533,22 @@
     "url_4k": "https://live.staticflickr.com/65535/55024003947_9cb5ddb5a3_4k.jpg"
   },
   "55024004357": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "19",
+    "name": "Jonathan CARTER",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "19",
+        "name": "Jonathan CARTER",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "06690d46f1",
     "url_m": "https://live.staticflickr.com/65535/55024004357_06690d46f1.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024004357_06690d46f1_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 623.0,
     "url_h": "https://live.staticflickr.com/65535/55024004357_6057702434_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024004357_6bb5bd12a7_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024004357_dbb41d5923_3k.jpg",
@@ -343433,16 +343577,22 @@
     "url_4k": "https://live.staticflickr.com/65535/55024005247_914e538f2a_4k.jpg"
   },
   "55024005322": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "19",
+    "name": "Jonathan CARTER",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "19",
+        "name": "Jonathan CARTER",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "37ff80cee7",
     "url_m": "https://live.staticflickr.com/65535/55024005322_37ff80cee7.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024005322_37ff80cee7_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 738.3,
     "url_h": "https://live.staticflickr.com/65535/55024005322_cb5619a888_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024005322_a90e73de53_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024005322_0505402a6a_3k.jpg",
@@ -343852,16 +344002,22 @@
     "url_4k": "https://live.staticflickr.com/65535/55024014537_0bc2c8d2cf_4k.jpg"
   },
   "55024014887": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "33",
+    "name": "Paul DODD",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "33",
+        "name": "Paul DODD",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "6203a18e2b",
     "url_m": "https://live.staticflickr.com/65535/55024014887_6203a18e2b.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024014887_6203a18e2b_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 906.0,
     "url_h": "https://live.staticflickr.com/65535/55024014887_c398e7b5cf_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024014887_22e6923544_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024014887_5729acd278_3k.jpg",
@@ -344210,16 +344366,22 @@
     "url_4k": "https://live.staticflickr.com/65535/55024869016_3f33025e86_4k.jpg"
   },
   "55024869726": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "8",
+    "name": "Tim BATCHELOR",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "8",
+        "name": "Tim BATCHELOR",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "3e9dc3a1a7",
     "url_m": "https://live.staticflickr.com/65535/55024869726_3e9dc3a1a7.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024869726_3e9dc3a1a7_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 439.0,
     "url_h": "https://live.staticflickr.com/65535/55024869726_c9b4ab9b1e_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024869726_18f3632683_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024869726_bd9ce5cd6d_3k.jpg",
@@ -344849,32 +345011,44 @@
     "url_4k": "https://live.staticflickr.com/65535/55024887721_7d6072114e_4k.jpg"
   },
   "55024887971": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "67",
+    "name": "Tony MARSHALL",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "67",
+        "name": "Tony MARSHALL",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "cb51dc71b6",
     "url_m": "https://live.staticflickr.com/65535/55024887971_cb51dc71b6.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024887971_cb51dc71b6_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 337.5,
     "url_h": "https://live.staticflickr.com/65535/55024887971_228a627135_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024887971_83a771b400_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024887971_57b0aaf4e1_3k.jpg",
     "url_4k": "https://live.staticflickr.com/65535/55024887971_896ed3ea41_4k.jpg"
   },
   "55024888076": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "14",
+    "name": "Douglas BRIGGS",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "14",
+        "name": "Douglas BRIGGS",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "cef4264eeb",
     "url_m": "https://live.staticflickr.com/65535/55024888076_cef4264eeb.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024888076_cef4264eeb_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 875.4,
     "url_h": "https://live.staticflickr.com/65535/55024888076_71ca86157c_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024888076_f02400ae7e_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024888076_19f8400797_3k.jpg",
@@ -344947,16 +345121,22 @@
     "url_4k": "https://live.staticflickr.com/65535/55024889036_8f34d8336e_4k.jpg"
   },
   "55024891651": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "19",
+    "name": "Jonathan CARTER",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "19",
+        "name": "Jonathan CARTER",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "d6b4154cb3",
     "url_m": "https://live.staticflickr.com/65535/55024891651_d6b4154cb3.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024891651_d6b4154cb3_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 571.4,
     "url_h": "https://live.staticflickr.com/65535/55024891651_c8505eeebe_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024891651_1adab54e56_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024891651_8a02120729_3k.jpg",
@@ -350464,16 +350644,22 @@
     "url_4k": "https://live.staticflickr.com/65535/55024038317_82368cb7da_4k.jpg"
   },
   "55024038807": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "59",
+    "name": "Lisa JEFFREY",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "59",
+        "name": "Lisa JEFFREY",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "0de91d9334",
     "url_m": "https://live.staticflickr.com/65535/55024038807_0de91d9334.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024038807_0de91d9334_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 607.3,
     "url_h": "https://live.staticflickr.com/65535/55024038807_f5848d635c_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024038807_56f8a6a278_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024038807_668ceb4201_3k.jpg",
@@ -350616,10 +350802,16 @@
     "url_4k": "https://live.staticflickr.com/65535/55024043937_8987993386_4k.jpg"
   },
   "55024044627": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "146",
+    "name": "Michael REEVES",
+    "club": "Caerleon RC",
+    "runners": [
+      {
+        "bib": "146",
+        "name": "Michael REEVES",
+        "club": "Caerleon RC"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "9ca5089f2c",
@@ -350942,16 +351134,22 @@
     "url_4k": "https://live.staticflickr.com/65535/55024050642_2d3ff9a2b1_4k.jpg"
   },
   "55024051012": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "35",
+    "name": "Caroline DUDER",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "35",
+        "name": "Caroline DUDER",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "227aa5cf50",
     "url_m": "https://live.staticflickr.com/65535/55024051012_227aa5cf50.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024051012_227aa5cf50_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 1604.2,
     "url_h": "https://live.staticflickr.com/65535/55024051012_1dd7e25531_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024051012_2c04c3ea38_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024051012_8629169940_3k.jpg",
@@ -356656,16 +356854,22 @@
     "url_4k": "https://live.staticflickr.com/65535/55024077367_899c26f1de_4k.jpg"
   },
   "55024079112": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "62",
+    "name": "Mark JONES",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "62",
+        "name": "Mark JONES",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "77de8a17b0",
     "url_m": "https://live.staticflickr.com/65535/55024079112_77de8a17b0.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024079112_77de8a17b0_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 550.3,
     "url_h": "https://live.staticflickr.com/65535/55024079112_cef88cf25d_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024079112_dd58eab14b_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024079112_079f91a3b2_3k.jpg",
@@ -357547,32 +357751,44 @@
     "url_4k": "https://live.staticflickr.com/65535/55024953876_baf2177029_4k.jpg"
   },
   "55024954611": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "30",
+    "name": "Bridget DAVIES",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "30",
+        "name": "Bridget DAVIES",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "a96d9deee3",
     "url_m": "https://live.staticflickr.com/65535/55024954611_a96d9deee3.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024954611_a96d9deee3_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 1845.0,
     "url_h": "https://live.staticflickr.com/65535/55024954611_c56f6f9b5c_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024954611_c6ecacb9eb_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024954611_bbddb2e51a_3k.jpg",
     "url_4k": "https://live.staticflickr.com/65535/55024954611_1a84845de6_4k.jpg"
   },
   "55024955131": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "30",
+    "name": "Bridget DAVIES",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "30",
+        "name": "Bridget DAVIES",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "d4319a8b77",
     "url_m": "https://live.staticflickr.com/65535/55024955131_d4319a8b77.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024955131_d4319a8b77_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 705.3,
     "url_h": "https://live.staticflickr.com/65535/55024955131_af6d371e98_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024955131_ba07b2b6f3_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024955131_7cf351b763_3k.jpg",
@@ -363082,16 +363298,22 @@
     "url_4k": "https://live.staticflickr.com/65535/55024094272_aaf23c250f_4k.jpg"
   },
   "55024094807": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "50",
+    "name": "Paul GRIFFITHS",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "50",
+        "name": "Paul GRIFFITHS",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "b18eb745b9",
     "url_m": "https://live.staticflickr.com/65535/55024094807_b18eb745b9.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024094807_b18eb745b9_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 1058.0,
     "url_h": "https://live.staticflickr.com/65535/55024094807_d0733dcb9b_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024094807_fbf8b59b08_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024094807_fa8894e50e_3k.jpg",
@@ -363716,32 +363938,44 @@
     "url_4k": "https://live.staticflickr.com/65535/55024113932_fdc91f3d77_4k.jpg"
   },
   "55024114582": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "9",
+    "name": "Jane BAYLISS",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "9",
+        "name": "Jane BAYLISS",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "1439ec8e3a",
     "url_m": "https://live.staticflickr.com/65535/55024114582_1439ec8e3a.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024114582_1439ec8e3a_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 732.3,
     "url_h": "https://live.staticflickr.com/65535/55024114582_f44910d989_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024114582_34cdbcdb84_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024114582_dae2742708_3k.jpg",
     "url_4k": "https://live.staticflickr.com/65535/55024114582_6189e7b505_4k.jpg"
   },
   "55024114702": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "9",
+    "name": "Jane BAYLISS",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "9",
+        "name": "Jane BAYLISS",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "f5fbb64099",
     "url_m": "https://live.staticflickr.com/65535/55024114702_f5fbb64099.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024114702_f5fbb64099_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 687.3,
     "url_h": "https://live.staticflickr.com/65535/55024114702_4f2f43cc47_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024114702_7ce9cfaef0_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024114702_2f13440768_3k.jpg",
@@ -364142,16 +364376,22 @@
     "url_4k": "https://live.staticflickr.com/65535/55024127867_01cfee874a_4k.jpg"
   },
   "55024129267": {
-    "bib": "",
-    "name": "",
-    "club": "",
-    "runners": [],
+    "bib": "99",
+    "name": "Jacqueline WEBB",
+    "club": "Chepstow Harriers",
+    "runners": [
+      {
+        "bib": "99",
+        "name": "Jacqueline WEBB",
+        "club": "Chepstow Harriers"
+      }
+    ],
     "album_id": "72177720331281422",
     "server": "65535",
     "secret": "4cf20dab6f",
     "url_m": "https://live.staticflickr.com/65535/55024129267_4cf20dab6f.jpg",
     "url_l": "https://live.staticflickr.com/65535/55024129267_4cf20dab6f_b.jpg",
-    "sharpness": 0.0,
+    "sharpness": 1298.4,
     "url_h": "https://live.staticflickr.com/65535/55024129267_80a47313f0_h.jpg",
     "url_k": "https://live.staticflickr.com/65535/55024129267_789ee98c6c_k.jpg",
     "url_3k": "https://live.staticflickr.com/65535/55024129267_8b1b0efba5_3k.jpg",
