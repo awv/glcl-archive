@@ -366,6 +366,7 @@ func scanPhoto(url: URL, activeBibMap: [String: RunnerRecord], lifetimeBibMap: [
             }
         }
     }
+    request.revision = VNRecognizeTextRequestRevision2
     request.recognitionLevel = .accurate
     request.usesLanguageCorrection = false
     

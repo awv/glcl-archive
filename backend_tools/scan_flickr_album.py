@@ -159,115 +159,164 @@ def scan_album(album_id, season="2024/2025", limit=30, index_file=INDEX_FILE, mi
         print("All requested photos already indexed!")
         return 0, len(existing_index)
 
-    print("Downloading preview thumbnails from Flickr CDN (parallel)...")
-    from concurrent.futures import ThreadPoolExecutor, as_completed
-
-    def dl_task(p):
-        pid = str(p["id"])
-        img_url = p.get("url_l") or p.get("url_m")
-        if not img_url:
-            return False
-        temp_img = temp_dir / f"photo_{pid}.jpg"
-        for attempt in range(2):
-            try:
-                urllib.request.urlretrieve(img_url, temp_img)
-                return True
-            except Exception:
-                import time
-                time.sleep(0.3)
-        return False
-
-    with ThreadPoolExecutor(max_workers=8) as executor:
-        futures = [executor.submit(dl_task, p) for p in to_download]
-        done_count = 0
-        for f in as_completed(futures):
-            if f.result():
-                done_count += 1
-            print(f"  [{done_count}/{len(to_download)}] Downloaded previews", end="\r")
-
-    print(f"\nDownloaded {done_count} previews. Running Apple Vision Neural OCR...\n")
-
-    cmd = [str(TAGGER_BIN), str(temp_dir), "--season", season]
-    if race_number:
-        cmd.extend(["--race", str(race_number)])
-    proc = subprocess.run(cmd, capture_output=True, text=True)
-    output = proc.stdout
+    CHUNK_SIZE = 350
+    chunks = [to_download[i:i + CHUNK_SIZE] for i in range(0, len(to_download), CHUNK_SIZE)]
+    print(f"Processing in {len(chunks)} batch(es) of up to {CHUNK_SIZE} photos each...\n")
 
     tagged_count = 0
     skipped_blur_count = 0
     import re
     ansi_escape = re.compile(r'\x1b\[[0-9;]*[a-zA-Z]')
-
     photo_lookup = {str(p["id"]): p for p in photos}
 
-    for raw_line in output.splitlines():
-        line = ansi_escape.sub('', raw_line)
-        if "photo_" in line and "Bib #" in line:
-            # Format: [1/15] photo_54377022356.jpg: Bib #724 → Michael LEWIS (Parc Bryn Bach RC) ...
-            try:
-                pid_part = line.split("photo_")[1].split(".jpg")[0]
-                bib_part = line.split("Bib #")[1].split(" → ")[0].strip()
-                runner_part = line.split(" → ")[1]
-                
-                runner_name = ""
-                runner_club = ""
-                if "Unregistered" in runner_part:
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    for chunk_idx, chunk in enumerate(chunks, 1):
+        print(f"\n=================================================================")
+        print(f"📦 Batch {chunk_idx}/{len(chunks)}: Analyzing {len(chunk)} photos...")
+        print(f"=================================================================")
+
+        if temp_dir.exists():
+            shutil.rmtree(temp_dir)
+        temp_dir.mkdir(parents=True, exist_ok=True)
+
+        def dl_task(p):
+            pid = str(p["id"])
+            img_url = p.get("url_l") or p.get("url_m")
+            if not img_url:
+                return False
+            temp_img = temp_dir / f"photo_{pid}.jpg"
+            for attempt in range(2):
+                try:
+                    urllib.request.urlretrieve(img_url, temp_img)
+                    return True
+                except Exception:
+                    import time
+                    time.sleep(0.3)
+            return False
+
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            futures = [executor.submit(dl_task, p) for p in chunk]
+            done_count = 0
+            for f in as_completed(futures):
+                if f.result():
+                    done_count += 1
+                print(f"  [{done_count}/{len(chunk)}] Downloaded previews", end="\r")
+
+        print(f"\nDownloaded {done_count} previews. Running Apple Vision Neural OCR...\n")
+
+        cmd = [str(TAGGER_BIN), str(temp_dir), "--season", season]
+        if race_number:
+            cmd.extend(["--race", str(race_number)])
+        proc = subprocess.run(cmd, capture_output=True, text=True)
+        output = proc.stdout
+
+        batch_tagged = 0
+        for raw_line in output.splitlines():
+            line = ansi_escape.sub('', raw_line)
+            if "photo_" in line and "Bib #" in line:
+                try:
+                    pid_part = line.split("photo_")[1].split(".jpg")[0]
+                    bib_part = line.split("Bib #")[1].split(" → ")[0].strip()
+                    runner_part = line.split(" → ")[1]
+                    
                     runner_name = ""
                     runner_club = ""
-                elif "(" in runner_part:
-                    runner_name = runner_part.split("(")[0].strip()
-                    runner_club = runner_part.split("(")[1].split(")")[0].strip()
-                else:
-                    runner_name = runner_part.split("[")[0].strip()
+                    if "Unregistered" in runner_part:
+                        runner_name = ""
+                        runner_club = ""
+                    elif "(" in runner_part:
+                        runner_name = runner_part.split("(")[0].strip()
+                        runner_club = runner_part.split("(")[1].split(")")[0].strip()
+                    else:
+                        runner_name = runner_part.split("[")[0].strip()
 
-                temp_img = temp_dir / f"photo_{pid_part}.jpg"
-                sharpness = calculate_subject_sharpness(temp_img) if temp_img.exists() else 0.0
+                    temp_img = temp_dir / f"photo_{pid_part}.jpg"
+                    sharpness = calculate_subject_sharpness(temp_img) if temp_img.exists() else 0.0
 
-                if min_sharpness > 0 and sharpness > 0 and sharpness < min_sharpness:
-                    skipped_blur_count += 1
-                    print(f"  🟡 Photo {pid_part} skipped: blurry/low sharpness ({sharpness} < {min_sharpness})")
-                    continue
+                    photo_obj = photo_lookup.get(pid_part, {})
+                    server = photo_obj.get("server", "")
+                    secret = photo_obj.get("secret", "")
+                    url_m = photo_obj.get("url_m") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_m.jpg" if server and secret else "")
+                    url_l = photo_obj.get("url_l") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_b.jpg" if server and secret else "")
 
-                photo_obj = photo_lookup.get(pid_part, {})
-                server = photo_obj.get("server", "")
-                secret = photo_obj.get("secret", "")
-                url_m = photo_obj.get("url_m") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_m.jpg" if server and secret else "")
-                url_l = photo_obj.get("url_l") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_b.jpg" if server and secret else "")
+                    if min_sharpness > 0 and sharpness > 0 and sharpness < min_sharpness:
+                        skipped_blur_count += 1
+                        print(f"  🟡 Photo {pid_part} skipped: blurry/low sharpness ({sharpness} < {min_sharpness})")
+                        entry = {
+                            "bib": "",
+                            "name": "",
+                            "club": "",
+                            "album_id": album_id,
+                            "server": server,
+                            "secret": secret,
+                            "url_m": url_m,
+                            "url_l": url_l,
+                            "sharpness": sharpness
+                        }
+                    else:
+                        entry = {
+                            "bib": bib_part,
+                            "name": runner_name,
+                            "club": runner_club,
+                            "album_id": album_id,
+                            "server": server,
+                            "secret": secret,
+                            "url_m": url_m,
+                            "url_l": url_l,
+                            "sharpness": sharpness
+                        }
+                        tagged_count += 1
+                        batch_tagged += 1
+                        print(f"  🟢 Photo {pid_part} → Bib #{bib_part} ({runner_name} • {runner_club}) [Sharpness: {sharpness}]")
 
-                entry = {
-                    "bib": bib_part,
-                    "name": runner_name,
-                    "club": runner_club,
-                    "album_id": album_id,
-                    "server": server,
-                    "secret": secret,
-                    "url_m": url_m,
-                    "url_l": url_l,
-                    "sharpness": sharpness
-                }
-                for sz_key in ["url_h", "url_k", "url_3k", "url_4k"]:
-                    if photo_obj.get(sz_key):
-                        entry[sz_key] = photo_obj[sz_key]
+                    for sz_key in ["url_h", "url_k", "url_3k", "url_4k"]:
+                        if photo_obj.get(sz_key):
+                            entry[sz_key] = photo_obj[sz_key]
 
-                existing_index[pid_part] = entry
-                tagged_count += 1
-                print(f"  🟢 Photo {pid_part} → Bib #{bib_part} ({runner_name} • {runner_club}) [Sharpness: {sharpness}]")
-            except Exception as e:
-                pass
+                    existing_index[pid_part] = entry
+                except Exception:
+                    pass
+            elif "photo_" in line and "No bib detected" in line:
+                try:
+                    pid_part = line.split("photo_")[1].split(".jpg")[0]
+                    photo_obj = photo_lookup.get(pid_part, {})
+                    server = photo_obj.get("server", "")
+                    secret = photo_obj.get("secret", "")
+                    url_m = photo_obj.get("url_m") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_m.jpg" if server and secret else "")
+                    url_l = photo_obj.get("url_l") or (f"https://live.staticflickr.com/{server}/{pid_part}_{secret}_b.jpg" if server and secret else "")
+                    entry = {
+                        "bib": "",
+                        "name": "",
+                        "club": "",
+                        "album_id": album_id,
+                        "server": server,
+                        "secret": secret,
+                        "url_m": url_m,
+                        "url_l": url_l,
+                        "sharpness": 0.0
+                    }
+                    for sz_key in ["url_h", "url_k", "url_3k", "url_4k"]:
+                        if photo_obj.get(sz_key):
+                            entry[sz_key] = photo_obj[sz_key]
+                    existing_index[pid_part] = entry
+                except Exception:
+                    pass
 
-    # Clean up temp folder
-    shutil.rmtree(temp_dir, ignore_errors=True)
+        # Clean up batch temp folder
+        shutil.rmtree(temp_dir, ignore_errors=True)
 
-    # Save index file
-    with open(index_file, "w") as f:
-        json.dump(existing_index, f, indent=2)
+        # Save index file incrementally after every batch
+        with open(index_file, "w") as f:
+            json.dump(existing_index, f, indent=2)
+        print(f"💾 Batch {chunk_idx} complete: {batch_tagged} photos tagged. Total in index: {len(existing_index)}")
 
     # Automatically ground against official fixture finishers
     try:
         from reconcile_photo_tags import load_data, build_fixture_indices, reconcile
-        pt, am, gr = load_data()
+        pt, am, gr, ov = load_data(source_path=index_file)
         i2f, fr = build_fixture_indices(am, gr)
-        reconcile(pt, i2f, fr, apply_changes=True)
+        reconcile(pt, i2f, fr, overrides=ov, apply_changes=True)
     except Exception as re_err:
         print(f"Note: Post-scan reconciliation skipped: {re_err}")
 
@@ -282,7 +331,7 @@ def main():
     parser = argparse.ArgumentParser(description="Scan Flickr album and auto-index bibs for glcl.uk/photos.html")
     parser.add_argument("album_id", help="Flickr Album/Photoset ID (e.g. 72177720324324441)")
     parser.add_argument("--season", default="2024/2025", help="Season name for bib lookup (e.g. 2024/2025 or 2026/2027)")
-    parser.add_argument("--limit", type=int, default=30, help="Maximum number of photos to scan (default 30 for PoC)")
+    parser.add_argument("--limit", type=int, default=30, help="Maximum number of photos to scan (default 30, set 0 for all photos in album)")
     parser.add_argument("--min-sharpness", type=float, default=250.0, help="Minimum subject sharpness score to index (default 250, set 0 to disable)")
     args = parser.parse_args()
 

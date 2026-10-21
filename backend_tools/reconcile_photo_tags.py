@@ -36,8 +36,6 @@ DATA_JS_FILE = Path("data.js")
 def load_data(source_path=None):
     if source_path:
         src = Path(source_path)
-    elif BACKUP_FILE.exists():
-        src = BACKUP_FILE
     else:
         src = PHOTO_TAGS_FILE
 
@@ -267,7 +265,7 @@ def reconcile(photo_tags, id_to_fixture, fixture_results, overrides=None, apply_
 
 def main():
     parser = argparse.ArgumentParser(description="Reconcile GLCL photo tags with fixture results")
-    parser.add_argument("--source", type=str, default=None, help="Path to input photo tags file (defaults to photo_tags.backup.json if available)")
+    parser.add_argument("--source", type=str, default=None, help="Path to input photo tags file (defaults to assets/data/photo_tags.json)")
     parser.add_argument("--dry-run", action="store_true", help="Perform audit without modifying files")
     parser.add_argument("--apply", action="store_true", help="Apply reconciliation and update photo_tags.json")
     args = parser.parse_args()
