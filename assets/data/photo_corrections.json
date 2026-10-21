@@ -354,12 +354,14 @@
     "new_club": "Chepstow Harriers"
   },
   "55280939072": {
-    "action": "strip_phantom",
-    "old_bib": "3017",
+    "action": "manual_override",
+    "bib": "3071",
     "fixture": "2025/2026 road R2",
-    "stripped_runner": "Michael BUNSTON",
-    "stripped_club": "Islwyn RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "3017",
+    "old_runner": "Michael BUNSTON",
+    "new_runner": "Ben POMEROY",
+    "new_club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
   },
   "55281857816": {
     "action": "reassign",
@@ -405,12 +407,14 @@
     "reason": "Bib number was not worn by any finisher in this fixture"
   },
   "55282083319": {
-    "action": "strip_phantom",
-    "old_bib": "3017",
+    "action": "manual_override",
+    "bib": "3071",
     "fixture": "2025/2026 road R2",
-    "stripped_runner": "Michael BUNSTON",
-    "stripped_club": "Islwyn RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "3017",
+    "old_runner": "Michael BUNSTON",
+    "new_runner": "Ben POMEROY",
+    "new_club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
   },
   "55282083404": {
     "action": "reassign",
@@ -449,20 +453,24 @@
     "new_club": "Chepstow Harriers"
   },
   "55282258535": {
-    "action": "strip_phantom",
-    "old_bib": "3017",
+    "action": "manual_override",
+    "bib": "3071",
     "fixture": "2025/2026 road R2",
-    "stripped_runner": "Michael BUNSTON",
-    "stripped_club": "Islwyn RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "3017",
+    "old_runner": "Michael BUNSTON",
+    "new_runner": "Ben POMEROY",
+    "new_club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
   },
   "55282258580": {
-    "action": "strip_phantom",
-    "old_bib": "3017",
+    "action": "manual_override",
+    "bib": "3071",
     "fixture": "2025/2026 road R2",
-    "stripped_runner": "Michael BUNSTON",
-    "stripped_club": "Islwyn RC",
-    "reason": "Bib number was not worn by any finisher in this fixture"
+    "old_bib": "3017",
+    "old_runner": "Michael BUNSTON",
+    "new_runner": "Ben POMEROY",
+    "new_club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
   },
   "55025007859": {
     "action": "strip_phantom",
@@ -8424,6 +8432,16 @@
     "stripped_club": "Chepstow Harriers",
     "reason": "Bib number was not worn by any finisher in this fixture"
   },
+  "55442819842": {
+    "action": "manual_override",
+    "bib": "8141",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "8142",
+    "old_runner": "",
+    "new_runner": "Ryan ROBERTS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+  },
   "55442820642": {
     "action": "reassign",
     "bib": "8073",
@@ -8620,6 +8638,16 @@
     "old_club": "",
     "new_runner": "Nicholas BARTLE",
     "new_club": "Parc Bryn Bach RC"
+  },
+  "55443782976": {
+    "action": "manual_override",
+    "bib": "8141",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "8142",
+    "old_runner": "",
+    "new_runner": "Ryan ROBERTS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
   },
   "55443784516": {
     "action": "reassign",
@@ -8864,6 +8892,26 @@
     "new_runner": "Scott GREAVES",
     "new_club": "Parc Bryn Bach RC"
   },
+  "55443910323": {
+    "action": "manual_override",
+    "bib": "8141",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "8142",
+    "old_runner": "",
+    "new_runner": "Ryan ROBERTS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+  },
+  "55443910603": {
+    "action": "manual_override",
+    "bib": "8141",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "8142",
+    "old_runner": "",
+    "new_runner": "Ryan ROBERTS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+  },
   "55443911963": {
     "action": "reassign",
     "bib": "6032",
@@ -8997,6 +9045,16 @@
     "old_club": "",
     "new_runner": "Ian LINE",
     "new_club": "Parc Bryn Bach RC"
+  },
+  "55443953449": {
+    "action": "manual_override",
+    "bib": "8141",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "8142",
+    "old_runner": "",
+    "new_runner": "Ryan ROBERTS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
   },
   "55443955429": {
     "action": "reassign",
@@ -9158,6 +9216,26 @@
     "stripped_runner": "Steve DANCE",
     "stripped_club": "Caerleon RC",
     "reason": "Bib number was not worn by any finisher in this fixture"
+  },
+  "55444179205": {
+    "action": "manual_override",
+    "bib": "8141",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "8142",
+    "old_runner": "",
+    "new_runner": "Ryan ROBERTS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+  },
+  "55444179590": {
+    "action": "manual_override",
+    "bib": "8141",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "8142",
+    "old_runner": "",
+    "new_runner": "Ryan ROBERTS",
+    "new_club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
   },
   "55444182675": {
     "action": "reassign",
@@ -9875,6 +9953,26 @@
     "old_club": "",
     "new_runner": "Daniel BODMAN",
     "new_club": "Parc Bryn Bach RC"
+  },
+  "55367829913": {
+    "action": "manual_override",
+    "bib": "9038",
+    "fixture": "2025/2026 road R4",
+    "old_bib": "9088",
+    "old_runner": "",
+    "new_runner": "Lee HARVEY",
+    "new_club": "Pont-Y-Pwl & District Runners",
+    "reason": "OCR misread bib 9038 as 9088 (crease on digit 3); verified in Cwmbran and Blaenavon 2026 sequences"
+  },
+  "55367829993": {
+    "action": "manual_override",
+    "bib": "9038",
+    "fixture": "2025/2026 road R4",
+    "old_bib": "9088",
+    "old_runner": "",
+    "new_runner": "Lee HARVEY",
+    "new_club": "Pont-Y-Pwl & District Runners",
+    "reason": "OCR misread bib 9038 as 9088 (crease on digit 3); verified in Cwmbran and Blaenavon 2026 sequences"
   },
   "55367830493": {
     "action": "reassign",
@@ -12882,6 +12980,16 @@
     "new_runner": "Andy BAKER",
     "new_club": "Fairwater Runners"
   },
+  "55442847397": {
+    "action": "manual_override",
+    "bib": "3003",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "6177",
+    "old_runner": "",
+    "new_runner": "Andy BAKER",
+    "new_club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
+  },
   "55442848947": {
     "action": "reassign",
     "bib": "3005",
@@ -13201,6 +13309,26 @@
     "old_club": "",
     "new_runner": "Mike EVANS",
     "new_club": "Chepstow Harriers"
+  },
+  "55443810076": {
+    "action": "manual_override",
+    "bib": "3003",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "6177",
+    "old_runner": "",
+    "new_runner": "Andy BAKER",
+    "new_club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
+  },
+  "55443810631": {
+    "action": "manual_override",
+    "bib": "3003",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "6177",
+    "old_runner": "",
+    "new_runner": "Andy BAKER",
+    "new_club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
   },
   "55443810726": {
     "action": "strip_phantom",
@@ -13564,6 +13692,16 @@
     "old_club": "",
     "new_runner": "Andy BAKER",
     "new_club": "Fairwater Runners"
+  },
+  "55443938648": {
+    "action": "manual_override",
+    "bib": "3003",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "6177",
+    "old_runner": "",
+    "new_runner": "Andy BAKER",
+    "new_club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
   },
   "55443938833": {
     "action": "strip_phantom",
@@ -13975,6 +14113,16 @@
     "new_runner": "Andy BAKER",
     "new_club": "Fairwater Runners"
   },
+  "55443981369": {
+    "action": "manual_override",
+    "bib": "3003",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "6177",
+    "old_runner": "",
+    "new_runner": "Andy BAKER",
+    "new_club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
+  },
   "55443981839": {
     "action": "reassign",
     "bib": "1019",
@@ -13983,6 +14131,16 @@
     "old_club": "",
     "new_runner": "Caroline DUNN",
     "new_club": "Caerleon RC"
+  },
+  "55443981934": {
+    "action": "manual_override",
+    "bib": "3003",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "6177",
+    "old_runner": "",
+    "new_runner": "Andy BAKER",
+    "new_club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
   },
   "55443982104": {
     "action": "strip_phantom",
@@ -14361,6 +14519,36 @@
     "stripped_runner": "Daniel SYMMONDS",
     "stripped_club": "Caerleon RC",
     "reason": "Bib number was not worn by any finisher in this fixture"
+  },
+  "55444206585": {
+    "action": "manual_override",
+    "bib": "3003",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "6177",
+    "old_runner": "",
+    "new_runner": "Andy BAKER",
+    "new_club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
+  },
+  "55444206660": {
+    "action": "manual_override",
+    "bib": "3003",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "6177",
+    "old_runner": "",
+    "new_runner": "Andy BAKER",
+    "new_club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
+  },
+  "55444206800": {
+    "action": "manual_override",
+    "bib": "3003",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "6177",
+    "old_runner": "",
+    "new_runner": "Andy BAKER",
+    "new_club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
   },
   "55444207805": {
     "action": "reassign",
@@ -15200,6 +15388,16 @@
     "stripped_club": "Chepstow Harriers",
     "reason": "Bib number was not worn by any finisher in this fixture"
   },
+  "55367704321": {
+    "action": "manual_override",
+    "bib": "9038",
+    "fixture": "2025/2026 road R4",
+    "old_bib": "9088",
+    "old_runner": "",
+    "new_runner": "Lee HARVEY",
+    "new_club": "Pont-Y-Pwl & District Runners",
+    "reason": "OCR misread bib 9038 as 9088 (crease on digit 3); verified in Cwmbran and Blaenavon 2026 sequences"
+  },
   "55367704966": {
     "action": "reassign",
     "bib": "6137",
@@ -15622,6 +15820,16 @@
     "old_club": "",
     "new_runner": "Tom NEWMAN",
     "new_club": "Caerleon RC"
+  },
+  "55367858408": {
+    "action": "manual_override",
+    "bib": "9038",
+    "fixture": "2025/2026 road R4",
+    "old_bib": "9088",
+    "old_runner": "",
+    "new_runner": "Lee HARVEY",
+    "new_club": "Pont-Y-Pwl & District Runners",
+    "reason": "OCR misread bib 9038 as 9088 (crease on digit 3); verified in Cwmbran and Blaenavon 2026 sequences"
   },
   "55367858638": {
     "action": "reassign",
@@ -16810,6 +17018,16 @@
     "new_runner": "Phillip MATTHEWS",
     "new_club": "Parc Bryn Bach RC"
   },
+  "55280967487": {
+    "action": "manual_override",
+    "bib": "3071",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "3017",
+    "old_runner": "",
+    "new_runner": "Ben POMEROY",
+    "new_club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
+  },
   "55280967757": {
     "action": "strip_phantom",
     "old_bib": "301",
@@ -16950,6 +17168,16 @@
     "old_club": "",
     "new_runner": "Jack ROWLAND",
     "new_club": "Lliswerry Runners"
+  },
+  "55280977072": {
+    "action": "manual_override",
+    "bib": "9038",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "9088",
+    "old_runner": "",
+    "new_runner": "Lee HARVEY",
+    "new_club": "Pont-Y-Pwl & District Runners",
+    "reason": "OCR misread bib 9038 as 9088 (crease on digit 3); verified in Cwmbran and Blaenavon 2026 sequences"
   },
   "55280977387": {
     "action": "reassign",
@@ -17189,6 +17417,36 @@
     "old_club": "",
     "new_runner": "Phillip MATTHEWS",
     "new_club": "Parc Bryn Bach RC"
+  },
+  "55281886401": {
+    "action": "manual_override",
+    "bib": "3071",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "3017",
+    "old_runner": "",
+    "new_runner": "Ben POMEROY",
+    "new_club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
+  },
+  "55281886656": {
+    "action": "manual_override",
+    "bib": "3071",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "3017",
+    "old_runner": "",
+    "new_runner": "Ben POMEROY",
+    "new_club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
+  },
+  "55281886816": {
+    "action": "manual_override",
+    "bib": "3071",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "3017",
+    "old_runner": "",
+    "new_runner": "Ben POMEROY",
+    "new_club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
   },
   "55281887471": {
     "action": "reassign",
@@ -17710,6 +17968,16 @@
     "old_club": "",
     "new_runner": "Jack ROWLAND",
     "new_club": "Lliswerry Runners"
+  },
+  "55282034368": {
+    "action": "manual_override",
+    "bib": "9038",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "9088",
+    "old_runner": "",
+    "new_runner": "Lee HARVEY",
+    "new_club": "Pont-Y-Pwl & District Runners",
+    "reason": "OCR misread bib 9038 as 9088 (crease on digit 3); verified in Cwmbran and Blaenavon 2026 sequences"
   },
   "55282036448": {
     "action": "reassign",
@@ -18244,6 +18512,16 @@
     "stripped_club": "Chepstow Harriers",
     "reason": "Bib number was not worn by any finisher in this fixture"
   },
+  "55282287410": {
+    "action": "manual_override",
+    "bib": "3071",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "3017",
+    "old_runner": "",
+    "new_runner": "Ben POMEROY",
+    "new_club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
+  },
   "55282287470": {
     "action": "reassign",
     "bib": "3011",
@@ -18252,6 +18530,16 @@
     "old_club": "",
     "new_runner": "Alison DAVIS",
     "new_club": "Fairwater Runners"
+  },
+  "55282287795": {
+    "action": "manual_override",
+    "bib": "3071",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "3017",
+    "old_runner": "",
+    "new_runner": "Ben POMEROY",
+    "new_club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
   },
   "55282288390": {
     "action": "strip_phantom",

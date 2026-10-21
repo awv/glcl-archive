@@ -172,5 +172,197 @@
     "name": "Anthony MALARCZYK",
     "club": "Islwyn RC",
     "reason": "OCR misread digit 8 as 3 (read 349); verified in burst sandwich"
+  },
+  "55280939072": {
+    "bib": "3071",
+    "name": "Ben POMEROY",
+    "club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
+  },
+  "55282083319": {
+    "bib": "3071",
+    "name": "Ben POMEROY",
+    "club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
+  },
+  "55282258535": {
+    "bib": "3071",
+    "name": "Ben POMEROY",
+    "club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
+  },
+  "55282258580": {
+    "bib": "3071",
+    "name": "Ben POMEROY",
+    "club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
+  },
+  "55280967487": {
+    "bib": "3071",
+    "name": "Ben POMEROY",
+    "club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
+  },
+  "55281886401": {
+    "bib": "3071",
+    "name": "Ben POMEROY",
+    "club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
+  },
+  "55281886656": {
+    "bib": "3071",
+    "name": "Ben POMEROY",
+    "club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
+  },
+  "55281886816": {
+    "bib": "3071",
+    "name": "Ben POMEROY",
+    "club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
+  },
+  "55282287410": {
+    "bib": "3071",
+    "name": "Ben POMEROY",
+    "club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
+  },
+  "55282287795": {
+    "bib": "3071",
+    "name": "Ben POMEROY",
+    "club": "Fairwater Runners",
+    "reason": "OCR misread bib 3071 as 3017 (digits 7 and 1 swapped/folded); verified in Blaenavon 2026 sequence"
+  },
+  "55442819842": {
+    "bib": "8141",
+    "name": "Ryan ROBERTS",
+    "club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+  },
+  "55443782976": {
+    "bib": "8141",
+    "name": "Ryan ROBERTS",
+    "club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+  },
+  "55443910323": {
+    "bib": "8141",
+    "name": "Ryan ROBERTS",
+    "club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+  },
+  "55443910603": {
+    "bib": "8141",
+    "name": "Ryan ROBERTS",
+    "club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+  },
+  "55443953449": {
+    "bib": "8141",
+    "name": "Ryan ROBERTS",
+    "club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+  },
+  "55444179205": {
+    "bib": "8141",
+    "name": "Ryan ROBERTS",
+    "club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+  },
+  "55444179590": {
+    "bib": "8141",
+    "name": "Ryan ROBERTS",
+    "club": "Parc Bryn Bach RC",
+    "reason": "OCR misread bib 8141 as 8142 (vest fold on digit 1); verified running with Phillip Matthews in Parc Bryn Bach 2026 sequence"
+  },
+  "55442847397": {
+    "bib": "3003",
+    "name": "Andy BAKER",
+    "club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
+  },
+  "55443810076": {
+    "bib": "3003",
+    "name": "Andy BAKER",
+    "club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
+  },
+  "55443810631": {
+    "bib": "3003",
+    "name": "Andy BAKER",
+    "club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
+  },
+  "55443938648": {
+    "bib": "3003",
+    "name": "Andy BAKER",
+    "club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
+  },
+  "55443981369": {
+    "bib": "3003",
+    "name": "Andy BAKER",
+    "club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
+  },
+  "55443981934": {
+    "bib": "3003",
+    "name": "Andy BAKER",
+    "club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
+  },
+  "55444206585": {
+    "bib": "3003",
+    "name": "Andy BAKER",
+    "club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
+  },
+  "55444206660": {
+    "bib": "3003",
+    "name": "Andy BAKER",
+    "club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
+  },
+  "55444206800": {
+    "bib": "3003",
+    "name": "Andy BAKER",
+    "club": "Fairwater Runners",
+    "reason": "Foreground runner Andy Baker (#3003) ignored due to background runner bib 6177 detection; verified in Parc Bryn Bach 2026 sequence"
+  },
+  "55367829913": {
+    "bib": "9038",
+    "name": "Lee HARVEY",
+    "club": "Pont-Y-Pwl & District Runners",
+    "reason": "OCR misread bib 9038 as 9088 (crease on digit 3); verified in Cwmbran and Blaenavon 2026 sequences"
+  },
+  "55367829993": {
+    "bib": "9038",
+    "name": "Lee HARVEY",
+    "club": "Pont-Y-Pwl & District Runners",
+    "reason": "OCR misread bib 9038 as 9088 (crease on digit 3); verified in Cwmbran and Blaenavon 2026 sequences"
+  },
+  "55367704321": {
+    "bib": "9038",
+    "name": "Lee HARVEY",
+    "club": "Pont-Y-Pwl & District Runners",
+    "reason": "OCR misread bib 9038 as 9088 (crease on digit 3); verified in Cwmbran and Blaenavon 2026 sequences"
+  },
+  "55367858408": {
+    "bib": "9038",
+    "name": "Lee HARVEY",
+    "club": "Pont-Y-Pwl & District Runners",
+    "reason": "OCR misread bib 9038 as 9088 (crease on digit 3); verified in Cwmbran and Blaenavon 2026 sequences"
+  },
+  "55280977072": {
+    "bib": "9038",
+    "name": "Lee HARVEY",
+    "club": "Pont-Y-Pwl & District Runners",
+    "reason": "OCR misread bib 9038 as 9088 (crease on digit 3); verified in Cwmbran and Blaenavon 2026 sequences"
+  },
+  "55282034368": {
+    "bib": "9038",
+    "name": "Lee HARVEY",
+    "club": "Pont-Y-Pwl & District Runners",
+    "reason": "OCR misread bib 9038 as 9088 (crease on digit 3); verified in Cwmbran and Blaenavon 2026 sequences"
   }
 }
