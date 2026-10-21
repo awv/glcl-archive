@@ -104,16 +104,18 @@
                 <button type="button" data-preset="all" class="preset-btn active bg-slate-800 text-slate-200 border border-slate-700 px-2.5 py-1 rounded-lg hover:border-slate-500 transition">
                     All Photos
                 </button>
-                <button type="button" data-preset="short-bibs" class="preset-btn bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded-lg hover:bg-amber-500/20 transition flex items-center gap-1">
+                <button type="button" data-preset="unmatched-bibs" class="preset-btn bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded-lg hover:bg-amber-500/20 transition flex items-center gap-1">
+                    <span>🏷️ Unmatched Bibs</span>
+                </button>
+                <button type="button" data-preset="unassigned" class="preset-btn bg-slate-800 text-slate-400 border border-slate-700 px-2.5 py-1 rounded-lg hover:text-slate-200 transition">
+                    All Unassigned
+                </button>
+                <button type="button" data-preset="short-bibs" class="preset-btn bg-slate-800 text-slate-400 border border-slate-700 px-2.5 py-1 rounded-lg hover:text-slate-200 transition flex items-center gap-1">
                     <span>⚠️ 1 & 2-Digit Bibs</span>
-                    <span class="opacity-60">(Clutter Risk)</span>
                 </button>
                 <button type="button" data-preset="low-sharpness" class="preset-btn bg-rose-500/10 text-rose-300 border border-rose-500/30 px-2.5 py-1 rounded-lg hover:bg-rose-500/20 transition flex items-center gap-1">
                     <span>🔴 Low Sharpness</span>
                     <span class="opacity-60">(&lt; 350)</span>
-                </button>
-                <button type="button" data-preset="unregistered" class="preset-btn bg-slate-800 text-slate-400 border border-slate-700 px-2.5 py-1 rounded-lg hover:text-slate-200 transition">
-                    Unmatched Bibs
                 </button>
                 <div class="ml-auto text-[11px] text-slate-500" id="filter-results-stats">
                     Showing 0 of 0 photos
@@ -331,7 +333,10 @@
                     if (!bibStr || bibStr.length > 2) return false;
                 } else if (activePreset === 'low-sharpness') {
                     if (sharpness === 0 || sharpness >= 350) return false;
-                } else if (activePreset === 'unregistered') {
+                } else if (activePreset === 'unmatched-bibs' || activePreset === 'unregistered') {
+                    if (!bibStr) return false;
+                    if (p.name && p.name !== 'Unregistered') return false;
+                } else if (activePreset === 'unassigned') {
                     if (p.name && p.name !== 'Unregistered') return false;
                 }
 
@@ -353,30 +358,33 @@
 
             auditEmpty.classList.add('hidden');
 
-            // Render first 200 items for instant response
+            // Render first 250 items for instant response
             const pageSlice = entries.slice(0, 250);
 
             auditGrid.innerHTML = pageSlice.map(([pid, p]) => {
                 const imgThumb = p.url_m || `https://live.staticflickr.com/${p.server}/${pid}_${p.secret}_m.jpg`;
                 const imgLarge = p.url_3k || p.url_k || p.url_l || imgThumb;
                 const bib = p.bib || '-';
-                const name = p.name || 'Unregistered Runner';
-                const club = p.club || 'Independent / Unattached';
+                const hasRunner = Boolean(p.name && p.name !== 'Unregistered' && p.name !== 'Unregistered Runner');
+                const name = hasRunner ? p.name : 'Unregistered Runner';
+                const club = hasRunner ? p.club : (p.bib ? 'Unmatched in Race Results' : 'No Bib Detected');
                 const sharpness = p.sharpness ? Math.round(p.sharpness) : null;
-                const albumTitle = (p.album_id && fixtureAlbums[p.album_id]?.venue) || (p.album_id && fixtureAlbums[p.album_id]?.title) || 'GLCL Race';
+                const alb = p.album_id && fixtureAlbums[p.album_id] ? fixtureAlbums[p.album_id] : null;
+                const albumTitle = alb ? `${alb.venue || alb.title} (${alb.season || ''} R${alb.race_number || ''})` : (p.album_id ? 'GLCL Race' : '');
 
                 const isShortBib = bib.length > 0 && bib.length <= 2;
                 const isSoft = sharpness && sharpness < 350;
+                const isUnmatchedBib = !hasRunner && bib !== '-';
 
                 return `
-                    <div class="group relative bg-slate-900 border ${isShortBib ? 'border-amber-500/30' : 'border-slate-800'} hover:border-slate-600 rounded-xl overflow-hidden flex flex-col shadow-lg transition-all" id="card-${pid}">
+                    <div class="group relative bg-slate-900 border ${isUnmatchedBib ? 'border-amber-500/40' : (isShortBib ? 'border-amber-500/30' : 'border-slate-800')} hover:border-slate-600 rounded-xl overflow-hidden flex flex-col shadow-lg transition-all" id="card-${pid}">
                         <div class="relative aspect-4/3 bg-slate-950 overflow-hidden">
                             <img src="${imgThumb}" alt="${name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                             
                             <!-- Badges -->
                             <div class="absolute top-1.5 left-1.5 flex flex-col gap-1 items-start z-10 pointer-events-none">
-                                <span class="text-[10px] font-mono font-bold ${isShortBib ? 'bg-amber-400 text-slate-950' : 'bg-slate-950/85 text-brand-300 border border-brand-500/30'} px-1.5 py-0.5 rounded backdrop-blur shadow">
-                                    Bib #${bib}
+                                <span class="text-[10px] font-mono font-bold ${isUnmatchedBib ? 'bg-amber-400 text-slate-950' : (isShortBib ? 'bg-amber-400 text-slate-950' : 'bg-slate-950/85 text-brand-300 border border-brand-500/30')} px-1.5 py-0.5 rounded backdrop-blur shadow">
+                                    Bib #${bib}${isUnmatchedBib ? ' ⚠️' : ''}
                                 </span>
                             </div>
 

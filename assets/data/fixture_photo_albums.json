@@ -59,16 +59,6 @@
     "venue": "Glebelands",
     "date": "2025-10-19"
   },
-  "2024/2025_road_3": {
-    "album_id": "72177720319367711",
-    "title": "GLCL Road Series 2024 \u2014 Parc Bryn Bach",
-    "photos": 3827,
-    "season": "2024/2025",
-    "discipline": "road",
-    "race_number": 3,
-    "venue": "Parc Penallta",
-    "date": "2025-06-03"
-  },
   "2024/2025_road_4": {
     "album_id": "72177720327260925",
     "title": "GLCL Road Series 2024/25 \u2014 Cwmbran",
@@ -159,16 +149,6 @@
     "venue": "Parc Bryn Bach",
     "date": "2024-03-10"
   },
-  "2023/2024_xc_4": {
-    "album_id": "72177720305818348",
-    "title": "GLCL XC 2023 \u2014 Risca",
-    "photos": 3112,
-    "season": "2023/2024",
-    "discipline": "xc",
-    "race_number": 4,
-    "venue": "Risca",
-    "date": "2024-02-04"
-  },
   "72177720313894426": {
     "album_id": "72177720313894426",
     "title": "GLCL XC \u2014 Garway",
@@ -195,9 +175,9 @@
     "photos": 3641,
     "season": "2022/2023",
     "discipline": "road",
-    "race_number": 2,
-    "venue": "Parc Penallta",
-    "date": "2023-06-06"
+    "race_number": 3,
+    "venue": "Cwmbran",
+    "date": "2023-07-04"
   },
   "2023/2024_road_3": {
     "album_id": "72177720317615917",
@@ -220,24 +200,14 @@
     "date": "2022-11-27"
   },
   "2022/2023_road_3": {
-    "album_id": "72177720301714105",
-    "title": "GLCL 2022 - Race 5 - Cwmbran",
-    "photos": 2839,
+    "album_id": "72177720309563804",
+    "title": "GLCL Road Series 2023 \u2014 Race 2",
+    "photos": 3641,
     "season": "2022/2023",
     "discipline": "road",
     "race_number": 3,
     "venue": "Cwmbran",
     "date": "2023-07-04"
-  },
-  "2022/2023_road_4": {
-    "album_id": "72177720300341137",
-    "title": "GLCL 2022 - Race 3 - Pontypool",
-    "photos": 3520,
-    "season": "2022/2023",
-    "discipline": "road",
-    "race_number": 4,
-    "venue": "Pontypool",
-    "date": "2023-08-01"
   },
   "72177720299985776": {
     "album_id": "72177720299985776",
@@ -249,25 +219,15 @@
     "venue": "Parc Bryn Bach",
     "date": "2022-06-21"
   },
-  "2022/2023_road_2": {
-    "album_id": "72177720309563804",
-    "title": "GLCL Road Series 2023 \u2014 Race 2",
-    "photos": 3641,
-    "season": "2022/2023",
-    "discipline": "road",
-    "race_number": 2,
-    "venue": "Parc Penallta",
-    "date": "2023-06-06"
-  },
   "72177720297319860": {
     "album_id": "72177720297319860",
     "title": "GLCL XC Risca",
     "photos": 3174,
-    "season": "2022/2023",
+    "season": "2021/2022",
     "discipline": "xc",
     "race_number": 4,
     "venue": "Risca",
-    "date": "2023-02-05"
+    "date": "2022-03-13"
   },
   "72157713406828796": {
     "album_id": "72157713406828796",
@@ -619,16 +579,6 @@
     "venue": "Glebelands",
     "date": "2023-11-26"
   },
-  "2022_2023_road_2": {
-    "album_id": "72177720309563804",
-    "title": "GLCL Road Series 2023 \u2014 Race 2",
-    "photos": 3641,
-    "season": "2022/2023",
-    "discipline": "road",
-    "race_number": 2,
-    "venue": "Parc Penallta",
-    "date": "2023-06-06"
-  },
   "2021/2022_road_2": {
     "album_id": "72177720299985776",
     "title": "GLCL 2022 - Race 2 - PBB",
@@ -650,9 +600,9 @@
     "date": "2022-06-21"
   },
   "2022/2023_xc_4": {
-    "album_id": "72177720297319860",
-    "title": "GLCL XC Risca",
-    "photos": 3174,
+    "album_id": "72177720305818348",
+    "title": "GLCL XC 2023 \u2014 Risca",
+    "photos": 3112,
     "season": "2022/2023",
     "discipline": "xc",
     "race_number": 4,
@@ -660,9 +610,9 @@
     "date": "2023-02-05"
   },
   "2022_2023_xc_4": {
-    "album_id": "72177720297319860",
-    "title": "GLCL XC Risca",
-    "photos": 3174,
+    "album_id": "72177720305818348",
+    "title": "GLCL XC 2023 \u2014 Risca",
+    "photos": 3112,
     "season": "2022/2023",
     "discipline": "xc",
     "race_number": 4,
@@ -949,16 +899,6 @@
     "venue": "Glebelands",
     "date": "2025-10-19"
   },
-  "2024_2025_road_3": {
-    "album_id": "72177720319367711",
-    "title": "GLCL Road Series 2024 \u2014 Parc Bryn Bach",
-    "photos": 3827,
-    "season": "2024/2025",
-    "discipline": "road",
-    "race_number": 3,
-    "venue": "Parc Penallta",
-    "date": "2025-06-03"
-  },
   "2024_2025_road_4": {
     "album_id": "72177720327260925",
     "title": "GLCL Road Series 2024/25 \u2014 Cwmbran",
@@ -999,35 +939,15 @@
     "venue": "Rogerstone",
     "date": "2024-11-25"
   },
-  "2023_2024_xc_4": {
-    "album_id": "72177720305818348",
-    "title": "GLCL XC 2023 \u2014 Risca",
-    "photos": 3112,
-    "season": "2023/2024",
-    "discipline": "xc",
-    "race_number": 4,
-    "venue": "Risca",
-    "date": "2024-02-04"
-  },
   "2022_2023_road_3": {
-    "album_id": "72177720301714105",
-    "title": "GLCL 2022 - Race 5 - Cwmbran",
-    "photos": 2839,
+    "album_id": "72177720309563804",
+    "title": "GLCL Road Series 2023 \u2014 Race 2",
+    "photos": 3641,
     "season": "2022/2023",
     "discipline": "road",
     "race_number": 3,
     "venue": "Cwmbran",
     "date": "2023-07-04"
-  },
-  "2022_2023_road_4": {
-    "album_id": "72177720300341137",
-    "title": "GLCL 2022 - Race 3 - Pontypool",
-    "photos": 3520,
-    "season": "2022/2023",
-    "discipline": "road",
-    "race_number": 4,
-    "venue": "Pontypool",
-    "date": "2023-08-01"
   },
   "2019_2020_xc_1": {
     "album_id": "72157706977077111",
@@ -1068,5 +988,185 @@
     "venue": "Glebelands",
     "race_number": 1,
     "date": "2022-11-27"
+  },
+  "72177720319367711": {
+    "album_id": "72177720319367711",
+    "title": "GLCL Road Series 2024 \u2014 Parc Bryn Bach",
+    "photos": 3827,
+    "season": "2023/2024",
+    "discipline": "road",
+    "race_number": 5,
+    "venue": "Parc Bryn Bach",
+    "date": "2024-08-06"
+  },
+  "72177720305818348": {
+    "album_id": "72177720305818348",
+    "title": "GLCL XC 2023 \u2014 Risca",
+    "photos": 3112,
+    "season": "2022/2023",
+    "discipline": "xc",
+    "race_number": 4,
+    "venue": "Risca",
+    "date": "2023-02-05"
+  },
+  "72177720300341137": {
+    "album_id": "72177720300341137",
+    "title": "GLCL 2022 - Race 3 - Pontypool",
+    "photos": 3520,
+    "season": "2021/2022",
+    "discipline": "road",
+    "race_number": 3,
+    "venue": "Pontypool",
+    "date": "2022-07-05"
+  },
+  "72177720301714105": {
+    "album_id": "72177720301714105",
+    "title": "GLCL 2022 - Race 5 - Cwmbran",
+    "photos": 2839,
+    "season": "2021/2022",
+    "discipline": "road",
+    "race_number": 5,
+    "venue": "Cwmbran",
+    "date": "2022-09-30"
+  },
+  "2023/2024_road_5": {
+    "album_id": "72177720319367711",
+    "title": "GLCL Road Series 2024 \u2014 Parc Bryn Bach",
+    "photos": 3827,
+    "season": "2023/2024",
+    "discipline": "road",
+    "race_number": 5,
+    "venue": "Parc Bryn Bach",
+    "date": "2024-08-06"
+  },
+  "2023_2024_road_5": {
+    "album_id": "72177720319367711",
+    "title": "GLCL Road Series 2024 \u2014 Parc Bryn Bach",
+    "photos": 3827,
+    "season": "2023/2024",
+    "discipline": "road",
+    "race_number": 5,
+    "venue": "Parc Bryn Bach",
+    "date": "2024-08-06"
+  },
+  "2021/2022_road_3": {
+    "album_id": "72177720300341137",
+    "title": "GLCL 2022 - Race 3 - Pontypool",
+    "photos": 3520,
+    "season": "2021/2022",
+    "discipline": "road",
+    "race_number": 3,
+    "venue": "Pontypool",
+    "date": "2022-07-05"
+  },
+  "2021_2022_road_3": {
+    "album_id": "72177720300341137",
+    "title": "GLCL 2022 - Race 3 - Pontypool",
+    "photos": 3520,
+    "season": "2021/2022",
+    "discipline": "road",
+    "race_number": 3,
+    "venue": "Pontypool",
+    "date": "2022-07-05"
+  },
+  "2021/2022_road_5": {
+    "album_id": "72177720301714105",
+    "title": "GLCL 2022 - Race 5 - Cwmbran",
+    "photos": 2839,
+    "season": "2021/2022",
+    "discipline": "road",
+    "race_number": 5,
+    "venue": "Cwmbran",
+    "date": "2022-09-30"
+  },
+  "2021_2022_road_5": {
+    "album_id": "72177720301714105",
+    "title": "GLCL 2022 - Race 5 - Cwmbran",
+    "photos": 2839,
+    "season": "2021/2022",
+    "discipline": "road",
+    "race_number": 5,
+    "venue": "Cwmbran",
+    "date": "2022-09-30"
+  },
+  "2021/2022_xc_4": {
+    "album_id": "72177720297319860",
+    "title": "GLCL XC Risca",
+    "photos": 3174,
+    "season": "2021/2022",
+    "discipline": "xc",
+    "race_number": 4,
+    "venue": "Risca",
+    "date": "2022-03-13"
+  },
+  "2021_2022_xc_4": {
+    "album_id": "72177720297319860",
+    "title": "GLCL XC Risca",
+    "photos": 3174,
+    "season": "2021/2022",
+    "discipline": "xc",
+    "race_number": 4,
+    "venue": "Risca",
+    "date": "2022-03-13"
+  },
+  "72177720329797557": {
+    "album_id": "72177720329797557",
+    "title": "GLCL XC 25/26 \u2014 Glebelands",
+    "photos": 2826,
+    "season": "2025/2026",
+    "discipline": "xc",
+    "race_number": 1,
+    "venue": "Glebelands",
+    "date": "2025-10-19"
+  },
+  "72177720327260925": {
+    "album_id": "72177720327260925",
+    "title": "GLCL Road Series 2024/25 \u2014 Cwmbran",
+    "photos": 3641,
+    "season": "2024/2025",
+    "discipline": "road",
+    "race_number": 4,
+    "venue": "Cwmbran",
+    "date": "2025-07-01"
+  },
+  "72177720324324441": {
+    "album_id": "72177720324324441",
+    "title": "GLCL XC 24/25 \u2014 Glebelands",
+    "photos": 5172,
+    "season": "2024/2025",
+    "discipline": "xc",
+    "race_number": 5,
+    "venue": "Glebelands",
+    "date": "2025-03-09"
+  },
+  "72177720323588648": {
+    "album_id": "72177720323588648",
+    "title": "GLCL XC 24/25 \u2014 Parc Bryn Bach",
+    "photos": 4069,
+    "season": "2024/2025",
+    "discipline": "xc",
+    "race_number": 4,
+    "venue": "Parc Bryn Bach",
+    "date": "2025-02-02"
+  },
+  "72177720322155766": {
+    "album_id": "72177720322155766",
+    "title": "GLCL XC 24/25 \u2014 Rogerstone",
+    "photos": 3601,
+    "season": "2024/2025",
+    "discipline": "xc",
+    "race_number": 2,
+    "venue": "Rogerstone",
+    "date": "2024-11-25"
+  },
+  "72157706977077111": {
+    "album_id": "72157706977077111",
+    "title": "GLCL Road Series 2019/20 - Parc Bryn Bach",
+    "photos": 4159,
+    "season": "2019/2020",
+    "discipline": "xc",
+    "race_number": 1,
+    "venue": "Parc Bryn Bach",
+    "date": "2019-10-20"
   }
 }

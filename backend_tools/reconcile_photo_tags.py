@@ -32,11 +32,19 @@ CORRECTIONS_FILE = Path("assets/data/photo_corrections.json")
 ALBUM_MAP_FILE = Path("assets/data/fixture_photo_albums.json")
 DATA_JS_FILE = Path("data.js")
 
-def load_data():
-    if not PHOTO_TAGS_FILE.exists():
-        print(f"Error: {PHOTO_TAGS_FILE} not found.")
+def load_data(source_path=None):
+    if source_path:
+        src = Path(source_path)
+    elif BACKUP_FILE.exists():
+        src = BACKUP_FILE
+    else:
+        src = PHOTO_TAGS_FILE
+
+    if not src.exists():
+        print(f"Error: {src} not found.")
         sys.exit(1)
-    with open(PHOTO_TAGS_FILE) as f:
+    print(f"📖 Loading input photo tags from: {src}")
+    with open(src) as f:
         photo_tags = json.load(f)
 
     if not ALBUM_MAP_FILE.exists():
@@ -203,10 +211,13 @@ def reconcile(photo_tags, id_to_fixture, fixture_results, apply_changes=False):
 
     if apply_changes:
         print("\n💾 Applying changes...")
-        # 1. Backup original
-        with open(BACKUP_FILE, "w") as f:
-            json.dump(photo_tags, f, indent=2)
-        print(f"  ✅ Backed up original to {BACKUP_FILE}")
+        # 1. Backup original only if master backup does not already exist
+        if not BACKUP_FILE.exists():
+            with open(BACKUP_FILE, "w") as f:
+                json.dump(photo_tags, f, indent=2)
+            print(f"  ✅ Backed up original master tags to {BACKUP_FILE}")
+        else:
+            print(f"  ℹ️ Preserved existing master backup at {BACKUP_FILE}")
 
         # 2. Save updated index
         with open(PHOTO_TAGS_FILE, "w") as f:
@@ -222,6 +233,7 @@ def reconcile(photo_tags, id_to_fixture, fixture_results, apply_changes=False):
 
 def main():
     parser = argparse.ArgumentParser(description="Reconcile GLCL photo tags with fixture results")
+    parser.add_argument("--source", type=str, default=None, help="Path to input photo tags file (defaults to photo_tags.backup.json if available)")
     parser.add_argument("--dry-run", action="store_true", help="Perform audit without modifying files")
     parser.add_argument("--apply", action="store_true", help="Apply reconciliation and update photo_tags.json")
     args = parser.parse_args()
@@ -230,7 +242,7 @@ def main():
         print("Please specify either --dry-run or --apply.")
         sys.exit(1)
 
-    photo_tags, album_map, glcl_results = load_data()
+    photo_tags, album_map, glcl_results = load_data(args.source)
     id_to_fixture, fixture_results = build_fixture_indices(album_map, glcl_results)
     reconcile(photo_tags, id_to_fixture, fixture_results, apply_changes=args.apply)
 
