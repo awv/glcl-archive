@@ -1,5 +1,5 @@
 // assets/js/stats-engine.js
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     // 1. READ URL PARAMETERS FOR SELECTED SEASON & DISCIPLINE
     const urlParams = new URLSearchParams(window.location.search);
     const rawSeasonParam = urlParams.get('season'); 
@@ -8,6 +8,15 @@ document.addEventListener("DOMContentLoaded", () => {
     let selectedSeason = "2025/2026"; 
     if (rawSeasonParam) {
         selectedSeason = rawSeasonParam.replace('_', '/');
+    }
+
+    // Load photo albums mapping
+    let fixtureAlbums = {};
+    try {
+        const albumRes = await fetch('assets/data/fixture_photo_albums.json');
+        if (albumRes.ok) fixtureAlbums = await albumRes.json();
+    } catch (e) {
+        console.log("Fixture photo albums fallback", e);
     }
 
     // 2. FILTER MASTER RECORDS TO THE EXACT CAMPAIGN SERIES
@@ -141,13 +150,42 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
+            // Resolve photo album if available for this fixture
+            const normSeason = selectedSeason.replace('/', '_');
+            const disc = disciplineParam.toLowerCase();
+            const raceNum = fix.race_number;
+            const key1 = `${selectedSeason}_${disc}_${raceNum}`;
+            const key2 = `${normSeason}_${disc}_${raceNum}`;
+
+            let fixAlbum = fixtureAlbums[key1] || fixtureAlbums[key2] || null;
+            if (!fixAlbum) {
+                fixAlbum = Object.values(fixtureAlbums).find(a => 
+                    a && typeof a === 'object' &&
+                    (a.season === selectedSeason || (a.season && a.season.replace('/', '_') === normSeason)) &&
+                    a.discipline && a.discipline.toLowerCase() === disc &&
+                    Number(a.race_number) === Number(raceNum)
+                ) || null;
+            }
+
+            const photoBtnHtml = fixAlbum ? `
+                <button type="button" 
+                        class="btn-fixture-photo inline-flex items-center gap-1 text-[11px] font-mono font-bold text-brand-300 bg-brand-500/15 hover:bg-brand-500 hover:text-white border border-brand-500/30 hover:border-brand-400 px-1.5 py-0.5 rounded transition-all shadow-sm cursor-pointer" 
+                        data-album="${fixAlbum.album_id}"
+                        title="View ${Number(fixAlbum.photos || 0).toLocaleString()} race photos">
+                    <span>📸</span>
+                </button>
+            ` : '';
+
             if (fix.status === 'Cancelled') {
                 const cancelledHtml = `
                     <a href="results.html?season=${selectedSeason.replace('/', '_')}&discipline=${disciplineParam.toLowerCase()}&race=${fix.race_number}" class="stat-card p-5 rounded-xl shadow-md flex flex-col justify-between border border-red-900/30 bg-red-950/5 hover:border-red-500 transition-all block group relative overflow-hidden">
                         <div>
                             <div class="flex justify-between items-start mb-2">
                                 <span class="text-[10px] font-black tracking-widest text-slate-500 uppercase">Fixture ${fix.race_number}</span>
-                                <span class="text-xs font-mono font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded">CANCELLED</span>
+                                <div class="flex items-center gap-1.5">
+                                    ${photoBtnHtml}
+                                    <span class="text-xs font-mono font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded">CANCELLED</span>
+                                </div>
                             </div>
                             <h4 class="text-base font-black text-slate-400 tracking-tight uppercase line-through group-hover:text-red-400 transition-colors">${fix.venue}</h4>
                             <p class="text-xs font-medium text-slate-600 mt-0.5">${formattedDate}</p>
@@ -168,7 +206,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div>
                             <div class="flex justify-between items-start mb-2">
                                 <span class="text-[10px] font-black tracking-widest text-slate-500 uppercase">Fixture ${fix.race_number}</span>
-                                <span class="text-xs font-mono font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">MISSING</span>
+                                <div class="flex items-center gap-1.5">
+                                    ${photoBtnHtml}
+                                    <span class="text-xs font-mono font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">MISSING</span>
+                                </div>
                             </div>
                             <h4 class="text-base font-black text-slate-300 tracking-tight uppercase group-hover:text-amber-400 transition-colors">${fix.venue}</h4>
                             <p class="text-xs font-medium text-slate-500 mt-0.5">${formattedDate}</p>
@@ -213,7 +254,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div>
                             <div class="flex justify-between items-start mb-2">
                                 <span class="text-[10px] font-black tracking-widest text-slate-400 uppercase">Fixture ${fix.race_number}</span>
-                                <span class="text-xs font-mono font-bold text-brand-500 bg-brand-500/10 px-2 py-0.5 rounded group-hover:bg-brand-500 group-hover:text-white transition-all">${fix.discipline.toUpperCase()}</span>
+                                <div class="flex items-center gap-1.5">
+                                    ${photoBtnHtml}
+                                    <span class="text-xs font-mono font-bold text-brand-500 bg-brand-500/10 px-2 py-0.5 rounded group-hover:bg-brand-500 group-hover:text-white transition-all">${fix.discipline.toUpperCase()}</span>
+                                </div>
                             </div>
                             <h4 class="text-base font-black text-slate-100 tracking-tight uppercase group-hover:text-brand-500 transition-colors">${fix.venue}</h4>
                             <p class="text-xs font-medium text-slate-500 mt-0.5">${formattedDate}</p>
@@ -243,6 +287,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 `;
                 fixtureGrid.insertAdjacentHTML('beforeend', cardHtml);
             }
+        });
+
+        // Attach direct photo album jump handlers
+        fixtureGrid.querySelectorAll('.btn-fixture-photo').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const albId = btn.dataset.album;
+                if (albId) {
+                    window.location.href = `photos.html?album=${albId}`;
+                }
+            });
         });
     }
 

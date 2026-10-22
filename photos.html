@@ -23,6 +23,9 @@
         };
     </script>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body { background-color: #030712; }
         .hero-gradient {
             background: linear-gradient(to bottom, rgba(3,7,18,0.4) 0%, rgba(3,7,18,1) 100%);
@@ -36,6 +39,13 @@
             from { opacity: 0; transform: scale(0.98); }
             to { opacity: 1; transform: scale(1); }
         }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="text-slate-300 font-sans antialiased flex flex-col min-h-full">
@@ -46,28 +56,28 @@
     </nav>
 
     <!-- CINEMATIC HERO HEADER -->
-    <header class="relative min-h-[35vh] md:min-h-[42vh] flex items-center justify-center overflow-hidden border-b border-slate-900 w-full py-12">
+    <header class="relative min-h-[22vh] md:min-h-[40vh] flex items-center justify-center overflow-hidden border-b border-slate-900 w-full py-8 md:py-14">
         <img src="assets/images/hero_placeholder.jpg" alt="GLCL Race Photography" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 filter brightness-[0.4] contrast-125">
         <div class="absolute inset-0 hero-gradient"></div>
 
-        <div class="relative max-w-4xl mx-auto px-4 w-full z-10 text-center space-y-4">
+        <div class="relative max-w-4xl mx-auto px-4 w-full z-10 text-center space-y-3 md:space-y-4">
             <span class="text-xs font-mono font-bold tracking-widest text-brand-400 uppercase bg-brand-500/10 px-3.5 py-1 rounded-full border border-brand-500/20 inline-block">
-                Robert Gale Photography • Flickr Archive
+                GLCL Photo Archive
             </span>
-            <h1 class="text-3xl md:text-5xl font-black text-slate-100 tracking-tight uppercase">
+            <h1 class="text-2xl sm:text-3xl md:text-5xl font-black text-slate-100 tracking-tight uppercase">
                 Find Your Race Photos
             </h1>
-            <p class="max-w-2xl mx-auto text-sm md:text-base text-slate-400 leading-relaxed font-medium">
+            <p class="max-w-2xl mx-auto text-xs sm:text-sm md:text-base text-slate-400 leading-relaxed font-medium">
                 Search by bib number, runner name, or club to find your race action shots. Free for personal runner download.
             </p>
         </div>
     </header>
 
     <!-- MAIN SEARCH & GALLERY WORKSPACE -->
-    <main class="max-w-[1500px] mx-auto px-4 py-8 space-y-8 w-full flex-grow">
+    <main class="max-w-[1500px] mx-auto px-4 py-4 md:py-8 space-y-6 md:space-y-8 w-full flex-grow">
 
         <!-- MODERN SEARCH & FILTER PANEL -->
-        <section class="bg-slate-950 border border-slate-900 rounded-2xl p-5 md:p-6 shadow-2xl space-y-5">
+        <section id="search-panel" class="bg-slate-950 border border-slate-900 rounded-2xl p-4 md:p-6 shadow-2xl space-y-4 md:space-y-5 scroll-mt-20">
             <!-- Top Controls Row: Race Selector + Omni-Search -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
                 <!-- Race / Fixture Dropdown (Col 1-5) -->
@@ -113,7 +123,7 @@
             </div>
 
             <!-- Fixture Context & Info Banner (Appears when a fixture is selected) -->
-            <div id="fixture-info-banner" class="hidden bg-slate-900/60 border border-slate-800/80 rounded-xl p-3 md:p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono">
+            <div id="fixture-info-banner" class="hidden bg-slate-900/60 border border-slate-800/80 rounded-xl p-3 md:p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono scroll-mt-20">
                 <div class="space-y-1">
                     <div class="flex items-center gap-2 flex-wrap">
                         <span id="fixture-banner-title" class="font-bold text-slate-200 text-sm">Race Venue</span>
@@ -141,12 +151,12 @@
             </div>
 
             <!-- Dynamic Club Filter Chips Container (Only when a specific race is selected) -->
-            <div id="club-chips-container" class="space-y-2 pt-1 border-t border-slate-900/80">
+            <div id="club-chips-container" class="space-y-2 pt-1 border-t border-slate-900/80 scroll-mt-20">
                 <div class="flex items-center justify-between text-[11px] font-mono">
                     <span class="font-bold uppercase tracking-wider text-slate-400">Filter by Club:</span>
                     <span id="club-chips-hint" class="text-slate-500">Showing clubs in this race</span>
                 </div>
-                <div id="club-chips-list" class="flex flex-wrap gap-2">
+                <div id="club-chips-list" class="flex flex-nowrap md:flex-wrap overflow-x-auto pb-1.5 md:pb-0 gap-2 no-scrollbar">
                     <!-- Injected dynamic chips -->
                 </div>
             </div>
@@ -169,7 +179,7 @@
         </section>
 
         <!-- PHOTO RESULTS GRID -->
-        <section id="gallery-container">
+        <section id="gallery-container" class="scroll-mt-20">
             <!-- Loading Indicator -->
             <div id="gallery-loader" class="py-16 text-center space-y-3">
                 <div class="inline-block animate-spin w-8 h-8 border-4 border-brand-500 border-t-transparent rounded-full"></div>
@@ -502,7 +512,7 @@
             // "All Photos" Chip
             const allBtn = document.createElement("button");
             allBtn.type = "button";
-            allBtn.className = `px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
+            allBtn.className = `px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer shrink-0 ${
                 !activeClub
                     ? 'bg-brand-500 text-white shadow-lg ring-1 ring-brand-400'
                     : 'bg-slate-900 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
@@ -529,7 +539,7 @@
                 const isSelected = matchesClubName(activeClub, clubName);
                 const btn = document.createElement("button");
                 btn.type = "button";
-                btn.className = `px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                btn.className = `px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer shrink-0 flex items-center gap-1.5 ${
                     isSelected
                         ? 'bg-amber-400 text-slate-950 font-black shadow-lg ring-1 ring-amber-300'
                         : 'bg-slate-900 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
@@ -1275,6 +1285,31 @@
 
             albumSelector.value = targetAlbum;
             await selectAlbum(targetAlbum);
+
+            // Auto-scroll on arrival if deep-linked to a specific album, runner, club, or gallery anchor
+            if (paramAlbum || paramClub || paramBib || paramName || window.location.hash) {
+                setTimeout(() => {
+                    const isMobile = window.innerWidth < 768;
+                    let targetEl = null;
+
+                    if (window.location.hash === "#gallery" || window.location.hash === "#photos") {
+                        targetEl = document.getElementById("gallery-container");
+                    } else if (isMobile) {
+                        // On mobile, scroll directly to fixture banner (if visible) or club chips / gallery
+                        // so the photo workspace is immediately in view below the header
+                        targetEl = (fixtureInfoBanner && !fixtureInfoBanner.classList.contains("hidden"))
+                            ? fixtureInfoBanner
+                            : (document.getElementById("club-chips-container") || document.getElementById("gallery-container"));
+                    } else {
+                        // On desktop, scroll to search panel
+                        targetEl = document.getElementById("search-panel") || fixtureInfoBanner || document.getElementById("gallery-container");
+                    }
+
+                    if (targetEl) {
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 120);
+            }
         });
     })();
     </script>
