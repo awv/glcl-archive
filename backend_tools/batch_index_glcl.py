@@ -53,13 +53,19 @@ def load_albums():
                 "season": v.get("season", "Unknown"),
                 "photos": v.get("photos", 0),
                 "discipline": v.get("discipline", "xc"),
-                "venue": v.get("venue", "")
+                "venue": v.get("venue", ""),
+                "date": v.get("date", ""),
+                "race_number": v.get("race_number")
             }
         elif not albums[aid].get("season") and v.get("season"):
             albums[aid]["season"] = v["season"]
             albums[aid]["venue"] = v.get("venue", "")
+            albums[aid]["date"] = v.get("date", "")
+            albums[aid]["race_number"] = v.get("race_number")
 
-    return list(albums.values())
+    res = list(albums.values())
+    res.sort(key=lambda x: (x.get("season", ""), str(x.get("date", ""))), reverse=True)
+    return res
 
 def print_summary():
     if not INDEX_FILE.exists():
