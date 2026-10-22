@@ -39965,7 +39965,7 @@ window.glclResults = [
     },
     {
         "pos": 2,
-        "bib": "8142",
+        "bib": "8022",
         "name": "Dominic DAVIES",
         "age": 0,
         "sex": "M",

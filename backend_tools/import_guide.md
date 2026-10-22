@@ -44,9 +44,11 @@ Open the generated `.txt` file in `results_source/` (e.g. `road_2025_2026_5.txt`
 # DATE: 2026-08-04
 # DISTANCE: 5.14 Miles
 # STATUS: Confirmed
+# ALBUM: https://www.flickr.com/photos/awv/albums/72177720334996716
 ```
 * **Status Check:** Ensure `# STATUS:` is set to `Confirmed` (change it if it parsed as `Pending`).
 * **Metadata Check:** Verify that `# VENUE:` and `# DATE:` parsed accurately from the PDF header.
+* **Photo Album (Optional):** Add `# ALBUM:` with your Flickr album link or ID. When you run `node backend_tools/parse_fixtures.js`, it will automatically link the fixture to your race photos across results tables, fixture cards, and athlete profiles!
 
 ### Step 4: Build Master `data.js`
 Run the Node compiler script:
