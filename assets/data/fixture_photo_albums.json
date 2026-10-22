@@ -1,213 +1,318 @@
 {
   "72177720334996716": {
     "album_id": "72177720334996716",
-    "title": "GLCL Road Series 2026 \u2014 Parc Bryn Bach",
+    "title": "GLCL Road Series 2026 — Parc Bryn Bach",
     "photos": 3356,
     "season": "2025/2026",
     "discipline": "road",
     "race_number": 5,
     "venue": "Parc Bryn Bach",
-    "date": "2026-08-04"
+    "date": "2026-08-04",
+    "cover_url": "https://live.staticflickr.com/65535/55444009703_4cf1d3af64_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/55444009703_4cf1d3af64_b.jpg",
+    "cover_id": "55444009703",
+    "cover_server": "65535",
+    "cover_secret": "4cf1d3af64"
   },
   "72177720334463720": {
     "album_id": "72177720334463720",
-    "title": "GLCL Road Series 2026 \u2014 Cwmbran",
+    "title": "GLCL Road Series 2026 — Cwmbran",
     "photos": 3556,
     "season": "2025/2026",
     "discipline": "road",
     "race_number": 4,
     "venue": "Cwmbran",
-    "date": "2026-06-30"
+    "date": "2026-06-30",
+    "cover_url": "https://live.staticflickr.com/65535/55368176080_cc2f41ab7c_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/55368176080_cc2f41ab7c_b.jpg",
+    "cover_id": "55368176080",
+    "cover_server": "65535",
+    "cover_secret": "cc2f41ab7c"
   },
   "72177720333773749": {
     "album_id": "72177720333773749",
-    "title": "GLCL Road Series 2026\u2014 Blaenavon",
+    "title": "GLCL Road Series 2026— Blaenavon",
     "photos": 2936,
     "season": "2025/2026",
     "discipline": "road",
     "race_number": 2,
     "venue": "Blaenavon",
-    "date": "2026-05-19"
+    "date": "2026-05-19",
+    "cover_url": "https://live.staticflickr.com/65535/55282160104_ba5ec65e66_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/55282160104_ba5ec65e66_b.jpg",
+    "cover_id": "55282160104",
+    "cover_server": "65535",
+    "cover_secret": "ba5ec65e66"
   },
   "72177720331281422": {
     "album_id": "72177720331281422",
-    "title": "GLCL XC 25/26 \u2014 Monmouth",
+    "title": "GLCL XC 25/26 — Monmouth",
     "photos": 2526,
     "season": "2025/2026",
     "discipline": "xc",
     "race_number": 3,
     "venue": "Oldfield Farm",
-    "date": "2026-01-04"
+    "date": "2026-01-04",
+    "cover_url": "https://live.staticflickr.com/65535/55025038038_4346597014_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/55025038038_4346597014_b.jpg",
+    "cover_id": "55025038038",
+    "cover_server": "65535",
+    "cover_secret": "4346597014"
   },
   "2025/2026_xc_2": {
     "album_id": "72177720330513551",
-    "title": "GLCL XC 25/26 \u2014 Rogerstone",
+    "title": "GLCL XC 25/26 — Rogerstone",
     "photos": 3944,
     "season": "2025/2026",
     "discipline": "xc",
     "race_number": 2,
     "venue": "Rogerstone",
-    "date": "2025-11-23"
+    "date": "2025-11-23",
+    "cover_url": "https://live.staticflickr.com/65535/54943835825_ef0fb57eb2_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54943835825_ef0fb57eb2_b.jpg",
+    "cover_id": "54943835825",
+    "cover_server": "65535",
+    "cover_secret": "ef0fb57eb2"
   },
   "2025/2026_xc_1": {
     "album_id": "72177720329797557",
-    "title": "GLCL XC 25/26 \u2014 Glebelands",
+    "title": "GLCL XC 25/26 — Glebelands",
     "photos": 2826,
     "season": "2025/2026",
     "discipline": "xc",
     "race_number": 1,
     "venue": "Glebelands",
-    "date": "2025-10-19"
+    "date": "2025-10-19",
+    "cover_url": "https://live.staticflickr.com/65535/54867198890_af38188333_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54867198890_af38188333_b.jpg",
+    "cover_id": "54867198890",
+    "cover_server": "65535",
+    "cover_secret": "af38188333"
   },
   "2024/2025_road_4": {
     "album_id": "72177720327260925",
-    "title": "GLCL Road Series 2024/25 \u2014 Cwmbran",
+    "title": "GLCL Road Series 2024/25 — Cwmbran",
     "photos": 3641,
     "season": "2024/2025",
     "discipline": "road",
     "race_number": 4,
     "venue": "Cwmbran",
-    "date": "2025-07-01"
+    "date": "2025-07-01",
+    "cover_url": "https://live.staticflickr.com/65535/54627245972_6d22d5c904_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54627245972_6d22d5c904_b.jpg",
+    "cover_id": "54627245972",
+    "cover_server": "65535",
+    "cover_secret": "6d22d5c904"
   },
   "72177720326263531": {
     "album_id": "72177720326263531",
-    "title": "GLCL Road Series 2025 \u2014 Blaenavon",
+    "title": "GLCL Road Series 2025 — Blaenavon",
     "photos": 3126,
     "season": "2024/2025",
     "discipline": "road",
     "race_number": 2,
     "venue": "Blaenavon",
-    "date": "2025-05-20"
+    "date": "2025-05-20",
+    "cover_url": "https://live.staticflickr.com/65535/54534678911_5c0bf3cbd7_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54534678911_5c0bf3cbd7_b.jpg",
+    "cover_id": "54534678911",
+    "cover_server": "65535",
+    "cover_secret": "5c0bf3cbd7"
   },
   "2024/2025_xc_5": {
     "album_id": "72177720324324441",
-    "title": "GLCL XC 24/25 \u2014 Glebelands",
+    "title": "GLCL XC 24/25 — Glebelands",
     "photos": 5172,
     "season": "2024/2025",
     "discipline": "xc",
     "race_number": 5,
     "venue": "Glebelands",
-    "date": "2025-03-09"
+    "date": "2025-03-09",
+    "cover_url": "https://live.staticflickr.com/65535/54376218867_21124ff8f2_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54376218867_21124ff8f2_b.jpg",
+    "cover_id": "54376218867",
+    "cover_server": "65535",
+    "cover_secret": "21124ff8f2"
   },
   "2024/2025_xc_4": {
     "album_id": "72177720323588648",
-    "title": "GLCL XC 24/25 \u2014 Parc Bryn Bach",
+    "title": "GLCL XC 24/25 — Parc Bryn Bach",
     "photos": 4069,
     "season": "2024/2025",
     "discipline": "xc",
     "race_number": 4,
     "venue": "Parc Bryn Bach",
-    "date": "2025-02-02"
+    "date": "2025-02-02",
+    "cover_url": "https://live.staticflickr.com/65535/54303114622_aa79a6f910_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54303114622_aa79a6f910_b.jpg",
+    "cover_id": "54303114622",
+    "cover_server": "65535",
+    "cover_secret": "aa79a6f910"
   },
   "2024/2025_xc_2": {
     "album_id": "72177720322155766",
-    "title": "GLCL XC 24/25 \u2014 Rogerstone",
+    "title": "GLCL XC 24/25 — Rogerstone",
     "photos": 3601,
     "season": "2024/2025",
     "discipline": "xc",
     "race_number": 2,
     "venue": "Rogerstone",
-    "date": "2024-11-25"
+    "date": "2024-11-25",
+    "cover_url": "https://live.staticflickr.com/65535/54163781560_c65831862e_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54163781560_c65831862e_b.jpg",
+    "cover_id": "54163781560",
+    "cover_server": "65535",
+    "cover_secret": "c65831862e"
   },
   "72177720318456329": {
     "album_id": "72177720318456329",
-    "title": "GLCL Road Series \u2014 Blaenavon",
+    "title": "GLCL Road Series — Blaenavon",
     "photos": 3994,
     "season": "2023/2024",
     "discipline": "road",
     "race_number": 4,
     "venue": "Blaenavon",
-    "date": "2024-07-02"
+    "date": "2024-07-02",
+    "cover_url": "https://live.staticflickr.com/65535/53832358298_302b63fab3_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53832358298_302b63fab3_b.jpg",
+    "cover_id": "53832358298",
+    "cover_server": "65535",
+    "cover_secret": "302b63fab3"
   },
   "72177720317615917": {
     "album_id": "72177720317615917",
-    "title": "GLCL Road Series 2024 \u2014 Race 3",
+    "title": "GLCL Road Series 2024 — Race 3",
     "photos": 2870,
     "season": "2023/2024",
     "discipline": "road",
     "race_number": 3,
     "venue": "Parc Penallta",
-    "date": "2024-06-04"
+    "date": "2024-06-04",
+    "cover_url": "https://live.staticflickr.com/65535/53770700496_c81393a4ba_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53770700496_c81393a4ba_b.jpg",
+    "cover_id": "53770700496",
+    "cover_server": "65535",
+    "cover_secret": "c81393a4ba"
   },
   "72177720317202894": {
     "album_id": "72177720317202894",
-    "title": "GLCL Road Series 2024 \u2014 Race 2",
+    "title": "GLCL Road Series 2024 — Race 2",
     "photos": 4042,
     "season": "2023/2024",
     "discipline": "road",
     "race_number": 2,
     "venue": "Cwmbran",
-    "date": "2024-05-21"
+    "date": "2024-05-21",
+    "cover_url": "https://live.staticflickr.com/65535/53737506252_d99bba08e1_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53737506252_d99bba08e1_b.jpg",
+    "cover_id": "53737506252",
+    "cover_server": "65535",
+    "cover_secret": "d99bba08e1"
   },
   "72177720315370258": {
     "album_id": "72177720315370258",
-    "title": "GLCL 23/24 \u2014 PBB",
+    "title": "GLCL 23/24 — PBB",
     "photos": 3401,
     "season": "2023/2024",
     "discipline": "xc",
     "race_number": 5,
     "venue": "Parc Bryn Bach",
-    "date": "2024-03-10"
+    "date": "2024-03-10",
+    "cover_url": "https://live.staticflickr.com/65535/53580493151_4e0404004b_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53580493151_4e0404004b_b.jpg",
+    "cover_id": "53580493151",
+    "cover_server": "65535",
+    "cover_secret": "4e0404004b"
   },
   "72177720313894426": {
     "album_id": "72177720313894426",
-    "title": "GLCL XC \u2014 Garway",
+    "title": "GLCL XC — Garway",
     "photos": 3667,
     "season": "2023/2024",
     "discipline": "xc",
     "race_number": 3,
     "venue": "Oldfield Farm",
-    "date": "2024-01-07"
+    "date": "2024-01-07",
+    "cover_url": "https://live.staticflickr.com/65535/53451010194_cb9e5a3655_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53451010194_cb9e5a3655_b.jpg",
+    "cover_id": "53451010194",
+    "cover_server": "65535",
+    "cover_secret": "cb9e5a3655"
   },
   "72177720312968669": {
     "album_id": "72177720312968669",
-    "title": "GLCL 23/24 \u2014 Newport",
+    "title": "GLCL 23/24 — Newport",
     "photos": 2772,
     "season": "2023/2024",
     "discipline": "xc",
     "race_number": 2,
     "venue": "Glebelands",
-    "date": "2023-11-26"
+    "date": "2023-11-26",
+    "cover_url": "https://live.staticflickr.com/65535/53359346590_f4f8af8e3a_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53359346590_f4f8af8e3a_b.jpg",
+    "cover_id": "53359346590",
+    "cover_server": "65535",
+    "cover_secret": "f4f8af8e3a"
   },
   "72177720309563804": {
     "album_id": "72177720309563804",
-    "title": "GLCL Road Series 2023 \u2014 Race 2",
+    "title": "GLCL Road Series 2023 — Race 2",
     "photos": 3641,
     "season": "2022/2023",
     "discipline": "road",
     "race_number": 3,
     "venue": "Cwmbran",
-    "date": "2023-07-04"
+    "date": "2023-07-04",
+    "cover_url": "https://live.staticflickr.com/65535/53023584987_b864c69bcc_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53023584987_b864c69bcc_b.jpg",
+    "cover_id": "53023584987",
+    "cover_server": "65535",
+    "cover_secret": "b864c69bcc"
   },
   "2023/2024_road_3": {
     "album_id": "72177720317615917",
-    "title": "GLCL Road Series 2024 \u2014 Race 3",
+    "title": "GLCL Road Series 2024 — Race 3",
     "photos": 2870,
     "season": "2023/2024",
     "discipline": "road",
     "race_number": 3,
     "venue": "Parc Penallta",
-    "date": "2024-06-04"
+    "date": "2024-06-04",
+    "cover_url": "https://live.staticflickr.com/65535/53770700496_c81393a4ba_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53770700496_c81393a4ba_b.jpg",
+    "cover_id": "53770700496",
+    "cover_server": "65535",
+    "cover_secret": "c81393a4ba"
   },
   "72177720304048588": {
     "album_id": "72177720304048588",
-    "title": "GLCL XC 2022 \u2014 Glebelands",
+    "title": "GLCL XC 2022 — Glebelands",
     "photos": 3269,
     "season": "2022/2023",
     "discipline": "xc",
     "venue": "Glebelands",
     "race_number": 1,
-    "date": "2022-11-27"
+    "date": "2022-11-27",
+    "cover_url": "https://live.staticflickr.com/65535/52528176242_1251b9f796_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/52528176242_1251b9f796_b.jpg",
+    "cover_id": "52528176242",
+    "cover_server": "65535",
+    "cover_secret": "1251b9f796"
   },
   "2022/2023_road_3": {
     "album_id": "72177720309563804",
-    "title": "GLCL Road Series 2023 \u2014 Race 2",
+    "title": "GLCL Road Series 2023 — Race 2",
     "photos": 3641,
     "season": "2022/2023",
     "discipline": "road",
     "race_number": 3,
     "venue": "Cwmbran",
-    "date": "2023-07-04"
+    "date": "2023-07-04",
+    "cover_url": "https://live.staticflickr.com/65535/53023584987_b864c69bcc_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53023584987_b864c69bcc_b.jpg",
+    "cover_id": "53023584987",
+    "cover_server": "65535",
+    "cover_secret": "b864c69bcc"
   },
   "72177720299985776": {
     "album_id": "72177720299985776",
@@ -217,7 +322,12 @@
     "discipline": "road",
     "race_number": 2,
     "venue": "Parc Bryn Bach",
-    "date": "2022-06-21"
+    "date": "2022-06-21",
+    "cover_url": "https://live.staticflickr.com/65535/52165242600_2b9b979199_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/52165242600_2b9b979199_b.jpg",
+    "cover_id": "52165242600",
+    "cover_server": "65535",
+    "cover_secret": "2b9b979199"
   },
   "72177720297319860": {
     "album_id": "72177720297319860",
@@ -227,7 +337,12 @@
     "discipline": "xc",
     "race_number": 4,
     "venue": "Risca",
-    "date": "2022-03-13"
+    "date": "2022-03-13",
+    "cover_url": "https://live.staticflickr.com/65535/51936429568_506b84992c_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/51936429568_506b84992c_b.jpg",
+    "cover_id": "51936429568",
+    "cover_server": "65535",
+    "cover_secret": "506b84992c"
   },
   "72157713406828796": {
     "album_id": "72157713406828796",
@@ -237,7 +352,12 @@
     "discipline": "xc",
     "race_number": 5,
     "venue": "Rogerstone",
-    "date": "2020-03-08"
+    "date": "2020-03-08",
+    "cover_url": "https://live.staticflickr.com/65535/49634514751_8d83bb3294_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/49634514751_8d83bb3294_b.jpg",
+    "cover_id": "49634514751",
+    "cover_server": "65535",
+    "cover_secret": "8d83bb3294"
   },
   "72157712940625011": {
     "album_id": "72157712940625011",
@@ -247,7 +367,12 @@
     "discipline": "xc",
     "race_number": 4,
     "venue": "Risca",
-    "date": "2020-02-02"
+    "date": "2020-02-02",
+    "cover_url": "https://live.staticflickr.com/65535/49477492216_6d33f938e2_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/49477492216_6d33f938e2_b.jpg",
+    "cover_id": "49477492216",
+    "cover_server": "65535",
+    "cover_secret": "6d33f938e2"
   },
   "72157712525076817": {
     "album_id": "72157712525076817",
@@ -257,7 +382,12 @@
     "discipline": "xc",
     "race_number": 3,
     "venue": "Monmouth",
-    "date": "2020-01-05"
+    "date": "2020-01-05",
+    "cover_url": "https://live.staticflickr.com/65535/49333000298_f122ace6d3_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/49333000298_f122ace6d3_b.jpg",
+    "cover_id": "49333000298",
+    "cover_server": "65535",
+    "cover_secret": "f122ace6d3"
   },
   "72157711817783697": {
     "album_id": "72157711817783697",
@@ -267,7 +397,12 @@
     "discipline": "xc",
     "race_number": 2,
     "venue": "Pontllanfraith",
-    "date": "2019-11-17"
+    "date": "2019-11-17",
+    "cover_url": "https://live.staticflickr.com/65535/49083694998_a93637fe9f_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/49083694998_a93637fe9f_b.jpg",
+    "cover_id": "49083694998",
+    "cover_server": "65535",
+    "cover_secret": "a93637fe9f"
   },
   "2019/2020_xc_1": {
     "album_id": "72157706977077111",
@@ -277,7 +412,12 @@
     "discipline": "xc",
     "race_number": 1,
     "venue": "Parc Bryn Bach",
-    "date": "2019-10-20"
+    "date": "2019-10-20",
+    "cover_url": "https://live.staticflickr.com/65535/33922794838_8459446634_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/33922794838_8459446634_b.jpg",
+    "cover_id": "33922794838",
+    "cover_server": "65535",
+    "cover_secret": "8459446634"
   },
   "72157710143702266": {
     "album_id": "72157710143702266",
@@ -287,7 +427,12 @@
     "discipline": "road",
     "race_number": 5,
     "venue": "Cwmbran",
-    "date": "2019-08-06"
+    "date": "2019-08-06",
+    "cover_url": "https://live.staticflickr.com/65535/48477339712_243fd6795c_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/48477339712_243fd6795c_b.jpg",
+    "cover_id": "48477339712",
+    "cover_server": "65535",
+    "cover_secret": "243fd6795c"
   },
   "72157709391597676": {
     "album_id": "72157709391597676",
@@ -297,7 +442,12 @@
     "discipline": "road",
     "race_number": 4,
     "venue": "Machen",
-    "date": "2019-07-02"
+    "date": "2019-07-02",
+    "cover_url": "https://live.staticflickr.com/65535/48185460722_a55c3b5292_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/48185460722_a55c3b5292_b.jpg",
+    "cover_id": "48185460722",
+    "cover_server": "65535",
+    "cover_secret": "a55c3b5292"
   },
   "72157703954295112": {
     "album_id": "72157703954295112",
@@ -307,7 +457,12 @@
     "discipline": "xc",
     "race_number": 5,
     "venue": "Glebelands",
-    "date": "2019-03-10"
+    "date": "2019-03-10",
+    "cover_url": "https://live.staticflickr.com/7896/33462958028_0528a677c3_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/7896/33462958028_0528a677c3_b.jpg",
+    "cover_id": "33462958028",
+    "cover_server": "7896",
+    "cover_secret": "0528a677c3"
   },
   "72157705412308555": {
     "album_id": "72157705412308555",
@@ -317,7 +472,12 @@
     "discipline": "xc",
     "race_number": 3,
     "venue": "Monmouth",
-    "date": "2019-01-06"
+    "date": "2019-01-06",
+    "cover_url": "https://live.staticflickr.com/4869/45717154255_0e3bb4aebe_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/4869/45717154255_0e3bb4aebe_b.jpg",
+    "cover_id": "45717154255",
+    "cover_server": "4869",
+    "cover_secret": "0e3bb4aebe"
   },
   "72157673636189377": {
     "album_id": "72157673636189377",
@@ -327,7 +487,12 @@
     "discipline": "xc",
     "race_number": 2,
     "venue": "Pontnewynydd",
-    "date": "2018-11-18"
+    "date": "2018-11-18",
+    "cover_url": "https://live.staticflickr.com/4813/30998851427_d4b03f4819_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/4813/30998851427_d4b03f4819_b.jpg",
+    "cover_id": "30998851427",
+    "cover_server": "4813",
+    "cover_secret": "d4b03f4819"
   },
   "72157694132911690": {
     "album_id": "72157694132911690",
@@ -337,7 +502,12 @@
     "discipline": "road",
     "race_number": 5,
     "venue": "Cwmbran",
-    "date": "2018-08-07"
+    "date": "2018-08-07",
+    "cover_url": "https://live.staticflickr.com/1797/42107488580_d4e84a2baa_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/1797/42107488580_d4e84a2baa_b.jpg",
+    "cover_id": "42107488580",
+    "cover_server": "1797",
+    "cover_secret": "d4e84a2baa"
   },
   "72157668750056517": {
     "album_id": "72157668750056517",
@@ -347,7 +517,12 @@
     "discipline": "road",
     "race_number": 4,
     "venue": "Machen",
-    "date": "2018-07-03"
+    "date": "2018-07-03",
+    "cover_url": "https://live.staticflickr.com/926/41370782000_4dd87615d2_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/926/41370782000_4dd87615d2_b.jpg",
+    "cover_id": "41370782000",
+    "cover_server": "926",
+    "cover_secret": "4dd87615d2"
   },
   "72157693626403014": {
     "album_id": "72157693626403014",
@@ -357,7 +532,12 @@
     "discipline": "xc",
     "race_number": 5,
     "venue": "Glebelands",
-    "date": "2018-03-11"
+    "date": "2018-03-11",
+    "cover_url": "https://live.staticflickr.com/4789/25884559967_8d64363809_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/4789/25884559967_8d64363809_b.jpg",
+    "cover_id": "25884559967",
+    "cover_server": "4789",
+    "cover_secret": "8d64363809"
   },
   "72157689456226884": {
     "album_id": "72157689456226884",
@@ -367,217 +547,327 @@
     "discipline": "xc",
     "race_number": 2,
     "venue": "Rogerstone",
-    "date": "2017-11-19"
+    "date": "2017-11-19",
+    "cover_url": "https://live.staticflickr.com/4517/37649973205_b03ae54d9f_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/4517/37649973205_b03ae54d9f_b.jpg",
+    "cover_id": "37649973205",
+    "cover_server": "4517",
+    "cover_secret": "b03ae54d9f"
   },
   "2025/2026_road_5": {
     "album_id": "72177720334996716",
-    "title": "GLCL Road Series 2026 \u2014 Parc Bryn Bach",
+    "title": "GLCL Road Series 2026 — Parc Bryn Bach",
     "photos": 3356,
     "season": "2025/2026",
     "discipline": "road",
     "race_number": 5,
     "venue": "Parc Bryn Bach",
-    "date": "2026-08-04"
+    "date": "2026-08-04",
+    "cover_url": "https://live.staticflickr.com/65535/55444009703_4cf1d3af64_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/55444009703_4cf1d3af64_b.jpg",
+    "cover_id": "55444009703",
+    "cover_server": "65535",
+    "cover_secret": "4cf1d3af64"
   },
   "2025_2026_road_5": {
     "album_id": "72177720334996716",
-    "title": "GLCL Road Series 2026 \u2014 Parc Bryn Bach",
+    "title": "GLCL Road Series 2026 — Parc Bryn Bach",
     "photos": 3356,
     "season": "2025/2026",
     "discipline": "road",
     "race_number": 5,
     "venue": "Parc Bryn Bach",
-    "date": "2026-08-04"
+    "date": "2026-08-04",
+    "cover_url": "https://live.staticflickr.com/65535/55444009703_4cf1d3af64_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/55444009703_4cf1d3af64_b.jpg",
+    "cover_id": "55444009703",
+    "cover_server": "65535",
+    "cover_secret": "4cf1d3af64"
   },
   "2025/2026_road_4": {
     "album_id": "72177720334463720",
-    "title": "GLCL Road Series 2026 \u2014 Cwmbran",
+    "title": "GLCL Road Series 2026 — Cwmbran",
     "photos": 3556,
     "season": "2025/2026",
     "discipline": "road",
     "race_number": 4,
     "venue": "Cwmbran",
-    "date": "2026-06-30"
+    "date": "2026-06-30",
+    "cover_url": "https://live.staticflickr.com/65535/55368176080_cc2f41ab7c_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/55368176080_cc2f41ab7c_b.jpg",
+    "cover_id": "55368176080",
+    "cover_server": "65535",
+    "cover_secret": "cc2f41ab7c"
   },
   "2025_2026_road_4": {
     "album_id": "72177720334463720",
-    "title": "GLCL Road Series 2026 \u2014 Cwmbran",
+    "title": "GLCL Road Series 2026 — Cwmbran",
     "photos": 3556,
     "season": "2025/2026",
     "discipline": "road",
     "race_number": 4,
     "venue": "Cwmbran",
-    "date": "2026-06-30"
+    "date": "2026-06-30",
+    "cover_url": "https://live.staticflickr.com/65535/55368176080_cc2f41ab7c_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/55368176080_cc2f41ab7c_b.jpg",
+    "cover_id": "55368176080",
+    "cover_server": "65535",
+    "cover_secret": "cc2f41ab7c"
   },
   "2025/2026_road_2": {
     "album_id": "72177720333773749",
-    "title": "GLCL Road Series 2026\u2014 Blaenavon",
+    "title": "GLCL Road Series 2026— Blaenavon",
     "photos": 2936,
     "season": "2025/2026",
     "discipline": "road",
     "race_number": 2,
     "venue": "Blaenavon",
-    "date": "2026-05-19"
+    "date": "2026-05-19",
+    "cover_url": "https://live.staticflickr.com/65535/55282160104_ba5ec65e66_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/55282160104_ba5ec65e66_b.jpg",
+    "cover_id": "55282160104",
+    "cover_server": "65535",
+    "cover_secret": "ba5ec65e66"
   },
   "2025_2026_road_2": {
     "album_id": "72177720333773749",
-    "title": "GLCL Road Series 2026\u2014 Blaenavon",
+    "title": "GLCL Road Series 2026— Blaenavon",
     "photos": 2936,
     "season": "2025/2026",
     "discipline": "road",
     "race_number": 2,
     "venue": "Blaenavon",
-    "date": "2026-05-19"
+    "date": "2026-05-19",
+    "cover_url": "https://live.staticflickr.com/65535/55282160104_ba5ec65e66_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/55282160104_ba5ec65e66_b.jpg",
+    "cover_id": "55282160104",
+    "cover_server": "65535",
+    "cover_secret": "ba5ec65e66"
   },
   "2025/2026_xc_3": {
     "album_id": "72177720331281422",
-    "title": "GLCL XC 25/26 \u2014 Monmouth",
+    "title": "GLCL XC 25/26 — Monmouth",
     "photos": 2526,
     "season": "2025/2026",
     "discipline": "xc",
     "race_number": 3,
     "venue": "Oldfield Farm",
-    "date": "2026-01-04"
+    "date": "2026-01-04",
+    "cover_url": "https://live.staticflickr.com/65535/55025038038_4346597014_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/55025038038_4346597014_b.jpg",
+    "cover_id": "55025038038",
+    "cover_server": "65535",
+    "cover_secret": "4346597014"
   },
   "2025_2026_xc_3": {
     "album_id": "72177720331281422",
-    "title": "GLCL XC 25/26 \u2014 Monmouth",
+    "title": "GLCL XC 25/26 — Monmouth",
     "photos": 2526,
     "season": "2025/2026",
     "discipline": "xc",
     "race_number": 3,
     "venue": "Oldfield Farm",
-    "date": "2026-01-04"
+    "date": "2026-01-04",
+    "cover_url": "https://live.staticflickr.com/65535/55025038038_4346597014_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/55025038038_4346597014_b.jpg",
+    "cover_id": "55025038038",
+    "cover_server": "65535",
+    "cover_secret": "4346597014"
   },
   "2024/2025_road_2": {
     "album_id": "72177720326263531",
-    "title": "GLCL Road Series 2025 \u2014 Blaenavon",
+    "title": "GLCL Road Series 2025 — Blaenavon",
     "photos": 3126,
     "season": "2024/2025",
     "discipline": "road",
     "race_number": 2,
     "venue": "Blaenavon",
-    "date": "2025-05-20"
+    "date": "2025-05-20",
+    "cover_url": "https://live.staticflickr.com/65535/54534678911_5c0bf3cbd7_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54534678911_5c0bf3cbd7_b.jpg",
+    "cover_id": "54534678911",
+    "cover_server": "65535",
+    "cover_secret": "5c0bf3cbd7"
   },
   "2024_2025_road_2": {
     "album_id": "72177720326263531",
-    "title": "GLCL Road Series 2025 \u2014 Blaenavon",
+    "title": "GLCL Road Series 2025 — Blaenavon",
     "photos": 3126,
     "season": "2024/2025",
     "discipline": "road",
     "race_number": 2,
     "venue": "Blaenavon",
-    "date": "2025-05-20"
+    "date": "2025-05-20",
+    "cover_url": "https://live.staticflickr.com/65535/54534678911_5c0bf3cbd7_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54534678911_5c0bf3cbd7_b.jpg",
+    "cover_id": "54534678911",
+    "cover_server": "65535",
+    "cover_secret": "5c0bf3cbd7"
   },
   "2023/2024_road_4": {
     "album_id": "72177720318456329",
-    "title": "GLCL Road Series \u2014 Blaenavon",
+    "title": "GLCL Road Series — Blaenavon",
     "photos": 3994,
     "season": "2023/2024",
     "discipline": "road",
     "race_number": 4,
     "venue": "Blaenavon",
-    "date": "2024-07-02"
+    "date": "2024-07-02",
+    "cover_url": "https://live.staticflickr.com/65535/53832358298_302b63fab3_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53832358298_302b63fab3_b.jpg",
+    "cover_id": "53832358298",
+    "cover_server": "65535",
+    "cover_secret": "302b63fab3"
   },
   "2023_2024_road_4": {
     "album_id": "72177720318456329",
-    "title": "GLCL Road Series \u2014 Blaenavon",
+    "title": "GLCL Road Series — Blaenavon",
     "photos": 3994,
     "season": "2023/2024",
     "discipline": "road",
     "race_number": 4,
     "venue": "Blaenavon",
-    "date": "2024-07-02"
+    "date": "2024-07-02",
+    "cover_url": "https://live.staticflickr.com/65535/53832358298_302b63fab3_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53832358298_302b63fab3_b.jpg",
+    "cover_id": "53832358298",
+    "cover_server": "65535",
+    "cover_secret": "302b63fab3"
   },
   "2023_2024_road_3": {
     "album_id": "72177720317615917",
-    "title": "GLCL Road Series 2024 \u2014 Race 3",
+    "title": "GLCL Road Series 2024 — Race 3",
     "photos": 2870,
     "season": "2023/2024",
     "discipline": "road",
     "race_number": 3,
     "venue": "Parc Penallta",
-    "date": "2024-06-04"
+    "date": "2024-06-04",
+    "cover_url": "https://live.staticflickr.com/65535/53770700496_c81393a4ba_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53770700496_c81393a4ba_b.jpg",
+    "cover_id": "53770700496",
+    "cover_server": "65535",
+    "cover_secret": "c81393a4ba"
   },
   "2023/2024_road_2": {
     "album_id": "72177720317202894",
-    "title": "GLCL Road Series 2024 \u2014 Race 2",
+    "title": "GLCL Road Series 2024 — Race 2",
     "photos": 4042,
     "season": "2023/2024",
     "discipline": "road",
     "race_number": 2,
     "venue": "Cwmbran",
-    "date": "2024-05-21"
+    "date": "2024-05-21",
+    "cover_url": "https://live.staticflickr.com/65535/53737506252_d99bba08e1_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53737506252_d99bba08e1_b.jpg",
+    "cover_id": "53737506252",
+    "cover_server": "65535",
+    "cover_secret": "d99bba08e1"
   },
   "2023_2024_road_2": {
     "album_id": "72177720317202894",
-    "title": "GLCL Road Series 2024 \u2014 Race 2",
+    "title": "GLCL Road Series 2024 — Race 2",
     "photos": 4042,
     "season": "2023/2024",
     "discipline": "road",
     "race_number": 2,
     "venue": "Cwmbran",
-    "date": "2024-05-21"
+    "date": "2024-05-21",
+    "cover_url": "https://live.staticflickr.com/65535/53737506252_d99bba08e1_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53737506252_d99bba08e1_b.jpg",
+    "cover_id": "53737506252",
+    "cover_server": "65535",
+    "cover_secret": "d99bba08e1"
   },
   "2023/2024_xc_5": {
     "album_id": "72177720315370258",
-    "title": "GLCL 23/24 \u2014 PBB",
+    "title": "GLCL 23/24 — PBB",
     "photos": 3401,
     "season": "2023/2024",
     "discipline": "xc",
     "race_number": 5,
     "venue": "Parc Bryn Bach",
-    "date": "2024-03-10"
+    "date": "2024-03-10",
+    "cover_url": "https://live.staticflickr.com/65535/53580493151_4e0404004b_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53580493151_4e0404004b_b.jpg",
+    "cover_id": "53580493151",
+    "cover_server": "65535",
+    "cover_secret": "4e0404004b"
   },
   "2023_2024_xc_5": {
     "album_id": "72177720315370258",
-    "title": "GLCL 23/24 \u2014 PBB",
+    "title": "GLCL 23/24 — PBB",
     "photos": 3401,
     "season": "2023/2024",
     "discipline": "xc",
     "race_number": 5,
     "venue": "Parc Bryn Bach",
-    "date": "2024-03-10"
+    "date": "2024-03-10",
+    "cover_url": "https://live.staticflickr.com/65535/53580493151_4e0404004b_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53580493151_4e0404004b_b.jpg",
+    "cover_id": "53580493151",
+    "cover_server": "65535",
+    "cover_secret": "4e0404004b"
   },
   "2023/2024_xc_3": {
     "album_id": "72177720313894426",
-    "title": "GLCL XC \u2014 Garway",
+    "title": "GLCL XC — Garway",
     "photos": 3667,
     "season": "2023/2024",
     "discipline": "xc",
     "race_number": 3,
     "venue": "Oldfield Farm",
-    "date": "2024-01-07"
+    "date": "2024-01-07",
+    "cover_url": "https://live.staticflickr.com/65535/53451010194_cb9e5a3655_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53451010194_cb9e5a3655_b.jpg",
+    "cover_id": "53451010194",
+    "cover_server": "65535",
+    "cover_secret": "cb9e5a3655"
   },
   "2023_2024_xc_3": {
     "album_id": "72177720313894426",
-    "title": "GLCL XC \u2014 Garway",
+    "title": "GLCL XC — Garway",
     "photos": 3667,
     "season": "2023/2024",
     "discipline": "xc",
     "race_number": 3,
     "venue": "Oldfield Farm",
-    "date": "2024-01-07"
+    "date": "2024-01-07",
+    "cover_url": "https://live.staticflickr.com/65535/53451010194_cb9e5a3655_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53451010194_cb9e5a3655_b.jpg",
+    "cover_id": "53451010194",
+    "cover_server": "65535",
+    "cover_secret": "cb9e5a3655"
   },
   "2023/2024_xc_2": {
     "album_id": "72177720312968669",
-    "title": "GLCL 23/24 \u2014 Newport",
+    "title": "GLCL 23/24 — Newport",
     "photos": 2772,
     "season": "2023/2024",
     "discipline": "xc",
     "race_number": 2,
     "venue": "Glebelands",
-    "date": "2023-11-26"
+    "date": "2023-11-26",
+    "cover_url": "https://live.staticflickr.com/65535/53359346590_f4f8af8e3a_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53359346590_f4f8af8e3a_b.jpg",
+    "cover_id": "53359346590",
+    "cover_server": "65535",
+    "cover_secret": "f4f8af8e3a"
   },
   "2023_2024_xc_2": {
     "album_id": "72177720312968669",
-    "title": "GLCL 23/24 \u2014 Newport",
+    "title": "GLCL 23/24 — Newport",
     "photos": 2772,
     "season": "2023/2024",
     "discipline": "xc",
     "race_number": 2,
     "venue": "Glebelands",
-    "date": "2023-11-26"
+    "date": "2023-11-26",
+    "cover_url": "https://live.staticflickr.com/65535/53359346590_f4f8af8e3a_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53359346590_f4f8af8e3a_b.jpg",
+    "cover_id": "53359346590",
+    "cover_server": "65535",
+    "cover_secret": "f4f8af8e3a"
   },
   "2021/2022_road_2": {
     "album_id": "72177720299985776",
@@ -587,7 +877,12 @@
     "discipline": "road",
     "race_number": 2,
     "venue": "Parc Bryn Bach",
-    "date": "2022-06-21"
+    "date": "2022-06-21",
+    "cover_url": "https://live.staticflickr.com/65535/52165242600_2b9b979199_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/52165242600_2b9b979199_b.jpg",
+    "cover_id": "52165242600",
+    "cover_server": "65535",
+    "cover_secret": "2b9b979199"
   },
   "2021_2022_road_2": {
     "album_id": "72177720299985776",
@@ -597,27 +892,42 @@
     "discipline": "road",
     "race_number": 2,
     "venue": "Parc Bryn Bach",
-    "date": "2022-06-21"
+    "date": "2022-06-21",
+    "cover_url": "https://live.staticflickr.com/65535/52165242600_2b9b979199_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/52165242600_2b9b979199_b.jpg",
+    "cover_id": "52165242600",
+    "cover_server": "65535",
+    "cover_secret": "2b9b979199"
   },
   "2022/2023_xc_4": {
     "album_id": "72177720305818348",
-    "title": "GLCL XC 2023 \u2014 Risca",
+    "title": "GLCL XC 2023 — Risca",
     "photos": 3112,
     "season": "2022/2023",
     "discipline": "xc",
     "race_number": 4,
     "venue": "Risca",
-    "date": "2023-02-05"
+    "date": "2023-02-05",
+    "cover_url": "https://live.staticflickr.com/65535/52672186061_2ffa67baa9_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/52672186061_2ffa67baa9_b.jpg",
+    "cover_id": "52672186061",
+    "cover_server": "65535",
+    "cover_secret": "2ffa67baa9"
   },
   "2022_2023_xc_4": {
     "album_id": "72177720305818348",
-    "title": "GLCL XC 2023 \u2014 Risca",
+    "title": "GLCL XC 2023 — Risca",
     "photos": 3112,
     "season": "2022/2023",
     "discipline": "xc",
     "race_number": 4,
     "venue": "Risca",
-    "date": "2023-02-05"
+    "date": "2023-02-05",
+    "cover_url": "https://live.staticflickr.com/65535/52672186061_2ffa67baa9_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/52672186061_2ffa67baa9_b.jpg",
+    "cover_id": "52672186061",
+    "cover_server": "65535",
+    "cover_secret": "2ffa67baa9"
   },
   "2019/2020_xc_5": {
     "album_id": "72157713406828796",
@@ -627,7 +937,12 @@
     "discipline": "xc",
     "race_number": 5,
     "venue": "Rogerstone",
-    "date": "2020-03-08"
+    "date": "2020-03-08",
+    "cover_url": "https://live.staticflickr.com/65535/49634514751_8d83bb3294_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/49634514751_8d83bb3294_b.jpg",
+    "cover_id": "49634514751",
+    "cover_server": "65535",
+    "cover_secret": "8d83bb3294"
   },
   "2019_2020_xc_5": {
     "album_id": "72157713406828796",
@@ -637,7 +952,12 @@
     "discipline": "xc",
     "race_number": 5,
     "venue": "Rogerstone",
-    "date": "2020-03-08"
+    "date": "2020-03-08",
+    "cover_url": "https://live.staticflickr.com/65535/49634514751_8d83bb3294_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/49634514751_8d83bb3294_b.jpg",
+    "cover_id": "49634514751",
+    "cover_server": "65535",
+    "cover_secret": "8d83bb3294"
   },
   "2019/2020_xc_4": {
     "album_id": "72157712940625011",
@@ -647,7 +967,12 @@
     "discipline": "xc",
     "race_number": 4,
     "venue": "Risca",
-    "date": "2020-02-02"
+    "date": "2020-02-02",
+    "cover_url": "https://live.staticflickr.com/65535/49477492216_6d33f938e2_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/49477492216_6d33f938e2_b.jpg",
+    "cover_id": "49477492216",
+    "cover_server": "65535",
+    "cover_secret": "6d33f938e2"
   },
   "2019_2020_xc_4": {
     "album_id": "72157712940625011",
@@ -657,7 +982,12 @@
     "discipline": "xc",
     "race_number": 4,
     "venue": "Risca",
-    "date": "2020-02-02"
+    "date": "2020-02-02",
+    "cover_url": "https://live.staticflickr.com/65535/49477492216_6d33f938e2_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/49477492216_6d33f938e2_b.jpg",
+    "cover_id": "49477492216",
+    "cover_server": "65535",
+    "cover_secret": "6d33f938e2"
   },
   "2019/2020_xc_3": {
     "album_id": "72157712525076817",
@@ -667,7 +997,12 @@
     "discipline": "xc",
     "race_number": 3,
     "venue": "Monmouth",
-    "date": "2020-01-05"
+    "date": "2020-01-05",
+    "cover_url": "https://live.staticflickr.com/65535/49333000298_f122ace6d3_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/49333000298_f122ace6d3_b.jpg",
+    "cover_id": "49333000298",
+    "cover_server": "65535",
+    "cover_secret": "f122ace6d3"
   },
   "2019_2020_xc_3": {
     "album_id": "72157712525076817",
@@ -677,7 +1012,12 @@
     "discipline": "xc",
     "race_number": 3,
     "venue": "Monmouth",
-    "date": "2020-01-05"
+    "date": "2020-01-05",
+    "cover_url": "https://live.staticflickr.com/65535/49333000298_f122ace6d3_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/49333000298_f122ace6d3_b.jpg",
+    "cover_id": "49333000298",
+    "cover_server": "65535",
+    "cover_secret": "f122ace6d3"
   },
   "2019/2020_xc_2": {
     "album_id": "72157711817783697",
@@ -687,7 +1027,12 @@
     "discipline": "xc",
     "race_number": 2,
     "venue": "Pontllanfraith",
-    "date": "2019-11-17"
+    "date": "2019-11-17",
+    "cover_url": "https://live.staticflickr.com/65535/49083694998_a93637fe9f_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/49083694998_a93637fe9f_b.jpg",
+    "cover_id": "49083694998",
+    "cover_server": "65535",
+    "cover_secret": "a93637fe9f"
   },
   "2019_2020_xc_2": {
     "album_id": "72157711817783697",
@@ -697,7 +1042,12 @@
     "discipline": "xc",
     "race_number": 2,
     "venue": "Pontllanfraith",
-    "date": "2019-11-17"
+    "date": "2019-11-17",
+    "cover_url": "https://live.staticflickr.com/65535/49083694998_a93637fe9f_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/49083694998_a93637fe9f_b.jpg",
+    "cover_id": "49083694998",
+    "cover_server": "65535",
+    "cover_secret": "a93637fe9f"
   },
   "2018/2019_road_5": {
     "album_id": "72157710143702266",
@@ -707,7 +1057,12 @@
     "discipline": "road",
     "race_number": 5,
     "venue": "Cwmbran",
-    "date": "2019-08-06"
+    "date": "2019-08-06",
+    "cover_url": "https://live.staticflickr.com/65535/48477339712_243fd6795c_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/48477339712_243fd6795c_b.jpg",
+    "cover_id": "48477339712",
+    "cover_server": "65535",
+    "cover_secret": "243fd6795c"
   },
   "2018_2019_road_5": {
     "album_id": "72157710143702266",
@@ -717,7 +1072,12 @@
     "discipline": "road",
     "race_number": 5,
     "venue": "Cwmbran",
-    "date": "2019-08-06"
+    "date": "2019-08-06",
+    "cover_url": "https://live.staticflickr.com/65535/48477339712_243fd6795c_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/48477339712_243fd6795c_b.jpg",
+    "cover_id": "48477339712",
+    "cover_server": "65535",
+    "cover_secret": "243fd6795c"
   },
   "2018/2019_road_4": {
     "album_id": "72157709391597676",
@@ -727,7 +1087,12 @@
     "discipline": "road",
     "race_number": 4,
     "venue": "Machen",
-    "date": "2019-07-02"
+    "date": "2019-07-02",
+    "cover_url": "https://live.staticflickr.com/65535/48185460722_a55c3b5292_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/48185460722_a55c3b5292_b.jpg",
+    "cover_id": "48185460722",
+    "cover_server": "65535",
+    "cover_secret": "a55c3b5292"
   },
   "2018_2019_road_4": {
     "album_id": "72157709391597676",
@@ -737,7 +1102,12 @@
     "discipline": "road",
     "race_number": 4,
     "venue": "Machen",
-    "date": "2019-07-02"
+    "date": "2019-07-02",
+    "cover_url": "https://live.staticflickr.com/65535/48185460722_a55c3b5292_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/48185460722_a55c3b5292_b.jpg",
+    "cover_id": "48185460722",
+    "cover_server": "65535",
+    "cover_secret": "a55c3b5292"
   },
   "2018/2019_xc_5": {
     "album_id": "72157703954295112",
@@ -747,7 +1117,12 @@
     "discipline": "xc",
     "race_number": 5,
     "venue": "Glebelands",
-    "date": "2019-03-10"
+    "date": "2019-03-10",
+    "cover_url": "https://live.staticflickr.com/7896/33462958028_0528a677c3_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/7896/33462958028_0528a677c3_b.jpg",
+    "cover_id": "33462958028",
+    "cover_server": "7896",
+    "cover_secret": "0528a677c3"
   },
   "2018_2019_xc_5": {
     "album_id": "72157703954295112",
@@ -757,7 +1132,12 @@
     "discipline": "xc",
     "race_number": 5,
     "venue": "Glebelands",
-    "date": "2019-03-10"
+    "date": "2019-03-10",
+    "cover_url": "https://live.staticflickr.com/7896/33462958028_0528a677c3_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/7896/33462958028_0528a677c3_b.jpg",
+    "cover_id": "33462958028",
+    "cover_server": "7896",
+    "cover_secret": "0528a677c3"
   },
   "2018/2019_xc_3": {
     "album_id": "72157705412308555",
@@ -767,7 +1147,12 @@
     "discipline": "xc",
     "race_number": 3,
     "venue": "Monmouth",
-    "date": "2019-01-06"
+    "date": "2019-01-06",
+    "cover_url": "https://live.staticflickr.com/4869/45717154255_0e3bb4aebe_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/4869/45717154255_0e3bb4aebe_b.jpg",
+    "cover_id": "45717154255",
+    "cover_server": "4869",
+    "cover_secret": "0e3bb4aebe"
   },
   "2018_2019_xc_3": {
     "album_id": "72157705412308555",
@@ -777,7 +1162,12 @@
     "discipline": "xc",
     "race_number": 3,
     "venue": "Monmouth",
-    "date": "2019-01-06"
+    "date": "2019-01-06",
+    "cover_url": "https://live.staticflickr.com/4869/45717154255_0e3bb4aebe_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/4869/45717154255_0e3bb4aebe_b.jpg",
+    "cover_id": "45717154255",
+    "cover_server": "4869",
+    "cover_secret": "0e3bb4aebe"
   },
   "2018/2019_xc_2": {
     "album_id": "72157673636189377",
@@ -787,7 +1177,12 @@
     "discipline": "xc",
     "race_number": 2,
     "venue": "Pontnewynydd",
-    "date": "2018-11-18"
+    "date": "2018-11-18",
+    "cover_url": "https://live.staticflickr.com/4813/30998851427_d4b03f4819_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/4813/30998851427_d4b03f4819_b.jpg",
+    "cover_id": "30998851427",
+    "cover_server": "4813",
+    "cover_secret": "d4b03f4819"
   },
   "2018_2019_xc_2": {
     "album_id": "72157673636189377",
@@ -797,7 +1192,12 @@
     "discipline": "xc",
     "race_number": 2,
     "venue": "Pontnewynydd",
-    "date": "2018-11-18"
+    "date": "2018-11-18",
+    "cover_url": "https://live.staticflickr.com/4813/30998851427_d4b03f4819_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/4813/30998851427_d4b03f4819_b.jpg",
+    "cover_id": "30998851427",
+    "cover_server": "4813",
+    "cover_secret": "d4b03f4819"
   },
   "2017/2018_road_5": {
     "album_id": "72157694132911690",
@@ -807,7 +1207,12 @@
     "discipline": "road",
     "race_number": 5,
     "venue": "Cwmbran",
-    "date": "2018-08-07"
+    "date": "2018-08-07",
+    "cover_url": "https://live.staticflickr.com/1797/42107488580_d4e84a2baa_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/1797/42107488580_d4e84a2baa_b.jpg",
+    "cover_id": "42107488580",
+    "cover_server": "1797",
+    "cover_secret": "d4e84a2baa"
   },
   "2017_2018_road_5": {
     "album_id": "72157694132911690",
@@ -817,7 +1222,12 @@
     "discipline": "road",
     "race_number": 5,
     "venue": "Cwmbran",
-    "date": "2018-08-07"
+    "date": "2018-08-07",
+    "cover_url": "https://live.staticflickr.com/1797/42107488580_d4e84a2baa_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/1797/42107488580_d4e84a2baa_b.jpg",
+    "cover_id": "42107488580",
+    "cover_server": "1797",
+    "cover_secret": "d4e84a2baa"
   },
   "2017/2018_road_4": {
     "album_id": "72157668750056517",
@@ -827,7 +1237,12 @@
     "discipline": "road",
     "race_number": 4,
     "venue": "Machen",
-    "date": "2018-07-03"
+    "date": "2018-07-03",
+    "cover_url": "https://live.staticflickr.com/926/41370782000_4dd87615d2_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/926/41370782000_4dd87615d2_b.jpg",
+    "cover_id": "41370782000",
+    "cover_server": "926",
+    "cover_secret": "4dd87615d2"
   },
   "2017_2018_road_4": {
     "album_id": "72157668750056517",
@@ -837,7 +1252,12 @@
     "discipline": "road",
     "race_number": 4,
     "venue": "Machen",
-    "date": "2018-07-03"
+    "date": "2018-07-03",
+    "cover_url": "https://live.staticflickr.com/926/41370782000_4dd87615d2_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/926/41370782000_4dd87615d2_b.jpg",
+    "cover_id": "41370782000",
+    "cover_server": "926",
+    "cover_secret": "4dd87615d2"
   },
   "2017/2018_xc_5": {
     "album_id": "72157693626403014",
@@ -847,7 +1267,12 @@
     "discipline": "xc",
     "race_number": 5,
     "venue": "Glebelands",
-    "date": "2018-03-11"
+    "date": "2018-03-11",
+    "cover_url": "https://live.staticflickr.com/4789/25884559967_8d64363809_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/4789/25884559967_8d64363809_b.jpg",
+    "cover_id": "25884559967",
+    "cover_server": "4789",
+    "cover_secret": "8d64363809"
   },
   "2017_2018_xc_5": {
     "album_id": "72157693626403014",
@@ -857,7 +1282,12 @@
     "discipline": "xc",
     "race_number": 5,
     "venue": "Glebelands",
-    "date": "2018-03-11"
+    "date": "2018-03-11",
+    "cover_url": "https://live.staticflickr.com/4789/25884559967_8d64363809_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/4789/25884559967_8d64363809_b.jpg",
+    "cover_id": "25884559967",
+    "cover_server": "4789",
+    "cover_secret": "8d64363809"
   },
   "2017/2018_xc_2": {
     "album_id": "72157689456226884",
@@ -867,7 +1297,12 @@
     "discipline": "xc",
     "race_number": 2,
     "venue": "Rogerstone",
-    "date": "2017-11-19"
+    "date": "2017-11-19",
+    "cover_url": "https://live.staticflickr.com/4517/37649973205_b03ae54d9f_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/4517/37649973205_b03ae54d9f_b.jpg",
+    "cover_id": "37649973205",
+    "cover_server": "4517",
+    "cover_secret": "b03ae54d9f"
   },
   "2017_2018_xc_2": {
     "album_id": "72157689456226884",
@@ -877,77 +1312,117 @@
     "discipline": "xc",
     "race_number": 2,
     "venue": "Rogerstone",
-    "date": "2017-11-19"
+    "date": "2017-11-19",
+    "cover_url": "https://live.staticflickr.com/4517/37649973205_b03ae54d9f_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/4517/37649973205_b03ae54d9f_b.jpg",
+    "cover_id": "37649973205",
+    "cover_server": "4517",
+    "cover_secret": "b03ae54d9f"
   },
   "2025_2026_xc_2": {
     "album_id": "72177720330513551",
-    "title": "GLCL XC 25/26 \u2014 Rogerstone",
+    "title": "GLCL XC 25/26 — Rogerstone",
     "photos": 3944,
     "season": "2025/2026",
     "discipline": "xc",
     "race_number": 2,
     "venue": "Rogerstone",
-    "date": "2025-11-23"
+    "date": "2025-11-23",
+    "cover_url": "https://live.staticflickr.com/65535/54943835825_ef0fb57eb2_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54943835825_ef0fb57eb2_b.jpg",
+    "cover_id": "54943835825",
+    "cover_server": "65535",
+    "cover_secret": "ef0fb57eb2"
   },
   "2025_2026_xc_1": {
     "album_id": "72177720329797557",
-    "title": "GLCL XC 25/26 \u2014 Glebelands",
+    "title": "GLCL XC 25/26 — Glebelands",
     "photos": 2826,
     "season": "2025/2026",
     "discipline": "xc",
     "race_number": 1,
     "venue": "Glebelands",
-    "date": "2025-10-19"
+    "date": "2025-10-19",
+    "cover_url": "https://live.staticflickr.com/65535/54867198890_af38188333_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54867198890_af38188333_b.jpg",
+    "cover_id": "54867198890",
+    "cover_server": "65535",
+    "cover_secret": "af38188333"
   },
   "2024_2025_road_4": {
     "album_id": "72177720327260925",
-    "title": "GLCL Road Series 2024/25 \u2014 Cwmbran",
+    "title": "GLCL Road Series 2024/25 — Cwmbran",
     "photos": 3641,
     "season": "2024/2025",
     "discipline": "road",
     "race_number": 4,
     "venue": "Cwmbran",
-    "date": "2025-07-01"
+    "date": "2025-07-01",
+    "cover_url": "https://live.staticflickr.com/65535/54627245972_6d22d5c904_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54627245972_6d22d5c904_b.jpg",
+    "cover_id": "54627245972",
+    "cover_server": "65535",
+    "cover_secret": "6d22d5c904"
   },
   "2024_2025_xc_5": {
     "album_id": "72177720324324441",
-    "title": "GLCL XC 24/25 \u2014 Glebelands",
+    "title": "GLCL XC 24/25 — Glebelands",
     "photos": 5172,
     "season": "2024/2025",
     "discipline": "xc",
     "race_number": 5,
     "venue": "Glebelands",
-    "date": "2025-03-09"
+    "date": "2025-03-09",
+    "cover_url": "https://live.staticflickr.com/65535/54376218867_21124ff8f2_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54376218867_21124ff8f2_b.jpg",
+    "cover_id": "54376218867",
+    "cover_server": "65535",
+    "cover_secret": "21124ff8f2"
   },
   "2024_2025_xc_4": {
     "album_id": "72177720323588648",
-    "title": "GLCL XC 24/25 \u2014 Parc Bryn Bach",
+    "title": "GLCL XC 24/25 — Parc Bryn Bach",
     "photos": 4069,
     "season": "2024/2025",
     "discipline": "xc",
     "race_number": 4,
     "venue": "Parc Bryn Bach",
-    "date": "2025-02-02"
+    "date": "2025-02-02",
+    "cover_url": "https://live.staticflickr.com/65535/54303114622_aa79a6f910_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54303114622_aa79a6f910_b.jpg",
+    "cover_id": "54303114622",
+    "cover_server": "65535",
+    "cover_secret": "aa79a6f910"
   },
   "2024_2025_xc_2": {
     "album_id": "72177720322155766",
-    "title": "GLCL XC 24/25 \u2014 Rogerstone",
+    "title": "GLCL XC 24/25 — Rogerstone",
     "photos": 3601,
     "season": "2024/2025",
     "discipline": "xc",
     "race_number": 2,
     "venue": "Rogerstone",
-    "date": "2024-11-25"
+    "date": "2024-11-25",
+    "cover_url": "https://live.staticflickr.com/65535/54163781560_c65831862e_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54163781560_c65831862e_b.jpg",
+    "cover_id": "54163781560",
+    "cover_server": "65535",
+    "cover_secret": "c65831862e"
   },
   "2022_2023_road_3": {
     "album_id": "72177720309563804",
-    "title": "GLCL Road Series 2023 \u2014 Race 2",
+    "title": "GLCL Road Series 2023 — Race 2",
     "photos": 3641,
     "season": "2022/2023",
     "discipline": "road",
     "race_number": 3,
     "venue": "Cwmbran",
-    "date": "2023-07-04"
+    "date": "2023-07-04",
+    "cover_url": "https://live.staticflickr.com/65535/53023584987_b864c69bcc_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53023584987_b864c69bcc_b.jpg",
+    "cover_id": "53023584987",
+    "cover_server": "65535",
+    "cover_secret": "b864c69bcc"
   },
   "2019_2020_xc_1": {
     "album_id": "72157706977077111",
@@ -957,57 +1432,87 @@
     "discipline": "xc",
     "race_number": 1,
     "venue": "Parc Bryn Bach",
-    "date": "2019-10-20"
+    "date": "2019-10-20",
+    "cover_url": "https://live.staticflickr.com/65535/33922794838_8459446634_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/33922794838_8459446634_b.jpg",
+    "cover_id": "33922794838",
+    "cover_server": "65535",
+    "cover_secret": "8459446634"
   },
   "72177720330513551": {
     "album_id": "72177720330513551",
-    "title": "GLCL XC 25/26 \u2014 Rogerstone",
+    "title": "GLCL XC 25/26 — Rogerstone",
     "photos": 3944,
     "season": "2025/2026",
     "discipline": "xc",
     "race_number": 2,
     "venue": "Rogerstone",
-    "date": "2025-11-23"
+    "date": "2025-11-23",
+    "cover_url": "https://live.staticflickr.com/65535/54943835825_ef0fb57eb2_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54943835825_ef0fb57eb2_b.jpg",
+    "cover_id": "54943835825",
+    "cover_server": "65535",
+    "cover_secret": "ef0fb57eb2"
   },
   "2022/2023_xc_1": {
     "album_id": "72177720304048588",
-    "title": "GLCL XC 2022 \u2014 Glebelands",
+    "title": "GLCL XC 2022 — Glebelands",
     "photos": 3269,
     "season": "2022/2023",
     "discipline": "xc",
     "venue": "Glebelands",
     "race_number": 1,
-    "date": "2022-11-27"
+    "date": "2022-11-27",
+    "cover_url": "https://live.staticflickr.com/65535/52528176242_1251b9f796_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/52528176242_1251b9f796_b.jpg",
+    "cover_id": "52528176242",
+    "cover_server": "65535",
+    "cover_secret": "1251b9f796"
   },
   "2022_2023_xc_1": {
     "album_id": "72177720304048588",
-    "title": "GLCL XC 2022 \u2014 Glebelands",
+    "title": "GLCL XC 2022 — Glebelands",
     "photos": 3269,
     "season": "2022/2023",
     "discipline": "xc",
     "venue": "Glebelands",
     "race_number": 1,
-    "date": "2022-11-27"
+    "date": "2022-11-27",
+    "cover_url": "https://live.staticflickr.com/65535/52528176242_1251b9f796_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/52528176242_1251b9f796_b.jpg",
+    "cover_id": "52528176242",
+    "cover_server": "65535",
+    "cover_secret": "1251b9f796"
   },
   "72177720319367711": {
     "album_id": "72177720319367711",
-    "title": "GLCL Road Series 2024 \u2014 Parc Bryn Bach",
+    "title": "GLCL Road Series 2024 — Parc Bryn Bach",
     "photos": 3827,
     "season": "2023/2024",
     "discipline": "road",
     "race_number": 5,
     "venue": "Parc Bryn Bach",
-    "date": "2024-08-06"
+    "date": "2024-08-06",
+    "cover_url": "https://live.staticflickr.com/65535/53908087905_b590b5e27d_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53908087905_b590b5e27d_b.jpg",
+    "cover_id": "53908087905",
+    "cover_server": "65535",
+    "cover_secret": "b590b5e27d"
   },
   "72177720305818348": {
     "album_id": "72177720305818348",
-    "title": "GLCL XC 2023 \u2014 Risca",
+    "title": "GLCL XC 2023 — Risca",
     "photos": 3112,
     "season": "2022/2023",
     "discipline": "xc",
     "race_number": 4,
     "venue": "Risca",
-    "date": "2023-02-05"
+    "date": "2023-02-05",
+    "cover_url": "https://live.staticflickr.com/65535/52672186061_2ffa67baa9_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/52672186061_2ffa67baa9_b.jpg",
+    "cover_id": "52672186061",
+    "cover_server": "65535",
+    "cover_secret": "2ffa67baa9"
   },
   "72177720300341137": {
     "album_id": "72177720300341137",
@@ -1017,7 +1522,12 @@
     "discipline": "road",
     "race_number": 3,
     "venue": "Pontypool",
-    "date": "2022-07-05"
+    "date": "2022-07-05",
+    "cover_url": "https://live.staticflickr.com/65535/52197798104_9184033254_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/52197798104_9184033254_b.jpg",
+    "cover_id": "52197798104",
+    "cover_server": "65535",
+    "cover_secret": "9184033254"
   },
   "72177720301714105": {
     "album_id": "72177720301714105",
@@ -1027,27 +1537,42 @@
     "discipline": "road",
     "race_number": 5,
     "venue": "Cwmbran",
-    "date": "2022-09-30"
+    "date": "2022-09-30",
+    "cover_url": "https://live.staticflickr.com/65535/52324132765_9cc88f24b4_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/52324132765_9cc88f24b4_b.jpg",
+    "cover_id": "52324132765",
+    "cover_server": "65535",
+    "cover_secret": "9cc88f24b4"
   },
   "2023/2024_road_5": {
     "album_id": "72177720319367711",
-    "title": "GLCL Road Series 2024 \u2014 Parc Bryn Bach",
+    "title": "GLCL Road Series 2024 — Parc Bryn Bach",
     "photos": 3827,
     "season": "2023/2024",
     "discipline": "road",
     "race_number": 5,
     "venue": "Parc Bryn Bach",
-    "date": "2024-08-06"
+    "date": "2024-08-06",
+    "cover_url": "https://live.staticflickr.com/65535/53908087905_b590b5e27d_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53908087905_b590b5e27d_b.jpg",
+    "cover_id": "53908087905",
+    "cover_server": "65535",
+    "cover_secret": "b590b5e27d"
   },
   "2023_2024_road_5": {
     "album_id": "72177720319367711",
-    "title": "GLCL Road Series 2024 \u2014 Parc Bryn Bach",
+    "title": "GLCL Road Series 2024 — Parc Bryn Bach",
     "photos": 3827,
     "season": "2023/2024",
     "discipline": "road",
     "race_number": 5,
     "venue": "Parc Bryn Bach",
-    "date": "2024-08-06"
+    "date": "2024-08-06",
+    "cover_url": "https://live.staticflickr.com/65535/53908087905_b590b5e27d_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/53908087905_b590b5e27d_b.jpg",
+    "cover_id": "53908087905",
+    "cover_server": "65535",
+    "cover_secret": "b590b5e27d"
   },
   "2021/2022_road_3": {
     "album_id": "72177720300341137",
@@ -1057,7 +1582,12 @@
     "discipline": "road",
     "race_number": 3,
     "venue": "Pontypool",
-    "date": "2022-07-05"
+    "date": "2022-07-05",
+    "cover_url": "https://live.staticflickr.com/65535/52197798104_9184033254_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/52197798104_9184033254_b.jpg",
+    "cover_id": "52197798104",
+    "cover_server": "65535",
+    "cover_secret": "9184033254"
   },
   "2021_2022_road_3": {
     "album_id": "72177720300341137",
@@ -1067,7 +1597,12 @@
     "discipline": "road",
     "race_number": 3,
     "venue": "Pontypool",
-    "date": "2022-07-05"
+    "date": "2022-07-05",
+    "cover_url": "https://live.staticflickr.com/65535/52197798104_9184033254_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/52197798104_9184033254_b.jpg",
+    "cover_id": "52197798104",
+    "cover_server": "65535",
+    "cover_secret": "9184033254"
   },
   "2021/2022_road_5": {
     "album_id": "72177720301714105",
@@ -1077,7 +1612,12 @@
     "discipline": "road",
     "race_number": 5,
     "venue": "Cwmbran",
-    "date": "2022-09-30"
+    "date": "2022-09-30",
+    "cover_url": "https://live.staticflickr.com/65535/52324132765_9cc88f24b4_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/52324132765_9cc88f24b4_b.jpg",
+    "cover_id": "52324132765",
+    "cover_server": "65535",
+    "cover_secret": "9cc88f24b4"
   },
   "2021_2022_road_5": {
     "album_id": "72177720301714105",
@@ -1087,7 +1627,12 @@
     "discipline": "road",
     "race_number": 5,
     "venue": "Cwmbran",
-    "date": "2022-09-30"
+    "date": "2022-09-30",
+    "cover_url": "https://live.staticflickr.com/65535/52324132765_9cc88f24b4_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/52324132765_9cc88f24b4_b.jpg",
+    "cover_id": "52324132765",
+    "cover_server": "65535",
+    "cover_secret": "9cc88f24b4"
   },
   "2021/2022_xc_4": {
     "album_id": "72177720297319860",
@@ -1097,7 +1642,12 @@
     "discipline": "xc",
     "race_number": 4,
     "venue": "Risca",
-    "date": "2022-03-13"
+    "date": "2022-03-13",
+    "cover_url": "https://live.staticflickr.com/65535/51936429568_506b84992c_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/51936429568_506b84992c_b.jpg",
+    "cover_id": "51936429568",
+    "cover_server": "65535",
+    "cover_secret": "506b84992c"
   },
   "2021_2022_xc_4": {
     "album_id": "72177720297319860",
@@ -1107,57 +1657,87 @@
     "discipline": "xc",
     "race_number": 4,
     "venue": "Risca",
-    "date": "2022-03-13"
+    "date": "2022-03-13",
+    "cover_url": "https://live.staticflickr.com/65535/51936429568_506b84992c_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/51936429568_506b84992c_b.jpg",
+    "cover_id": "51936429568",
+    "cover_server": "65535",
+    "cover_secret": "506b84992c"
   },
   "72177720329797557": {
     "album_id": "72177720329797557",
-    "title": "GLCL XC 25/26 \u2014 Glebelands",
+    "title": "GLCL XC 25/26 — Glebelands",
     "photos": 2826,
     "season": "2025/2026",
     "discipline": "xc",
     "race_number": 1,
     "venue": "Glebelands",
-    "date": "2025-10-19"
+    "date": "2025-10-19",
+    "cover_url": "https://live.staticflickr.com/65535/54867198890_af38188333_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54867198890_af38188333_b.jpg",
+    "cover_id": "54867198890",
+    "cover_server": "65535",
+    "cover_secret": "af38188333"
   },
   "72177720327260925": {
     "album_id": "72177720327260925",
-    "title": "GLCL Road Series 2024/25 \u2014 Cwmbran",
+    "title": "GLCL Road Series 2024/25 — Cwmbran",
     "photos": 3641,
     "season": "2024/2025",
     "discipline": "road",
     "race_number": 4,
     "venue": "Cwmbran",
-    "date": "2025-07-01"
+    "date": "2025-07-01",
+    "cover_url": "https://live.staticflickr.com/65535/54627245972_6d22d5c904_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54627245972_6d22d5c904_b.jpg",
+    "cover_id": "54627245972",
+    "cover_server": "65535",
+    "cover_secret": "6d22d5c904"
   },
   "72177720324324441": {
     "album_id": "72177720324324441",
-    "title": "GLCL XC 24/25 \u2014 Glebelands",
+    "title": "GLCL XC 24/25 — Glebelands",
     "photos": 5172,
     "season": "2024/2025",
     "discipline": "xc",
     "race_number": 5,
     "venue": "Glebelands",
-    "date": "2025-03-09"
+    "date": "2025-03-09",
+    "cover_url": "https://live.staticflickr.com/65535/54376218867_21124ff8f2_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54376218867_21124ff8f2_b.jpg",
+    "cover_id": "54376218867",
+    "cover_server": "65535",
+    "cover_secret": "21124ff8f2"
   },
   "72177720323588648": {
     "album_id": "72177720323588648",
-    "title": "GLCL XC 24/25 \u2014 Parc Bryn Bach",
+    "title": "GLCL XC 24/25 — Parc Bryn Bach",
     "photos": 4069,
     "season": "2024/2025",
     "discipline": "xc",
     "race_number": 4,
     "venue": "Parc Bryn Bach",
-    "date": "2025-02-02"
+    "date": "2025-02-02",
+    "cover_url": "https://live.staticflickr.com/65535/54303114622_aa79a6f910_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54303114622_aa79a6f910_b.jpg",
+    "cover_id": "54303114622",
+    "cover_server": "65535",
+    "cover_secret": "aa79a6f910"
   },
   "72177720322155766": {
     "album_id": "72177720322155766",
-    "title": "GLCL XC 24/25 \u2014 Rogerstone",
+    "title": "GLCL XC 24/25 — Rogerstone",
     "photos": 3601,
     "season": "2024/2025",
     "discipline": "xc",
     "race_number": 2,
     "venue": "Rogerstone",
-    "date": "2024-11-25"
+    "date": "2024-11-25",
+    "cover_url": "https://live.staticflickr.com/65535/54163781560_c65831862e_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/54163781560_c65831862e_b.jpg",
+    "cover_id": "54163781560",
+    "cover_server": "65535",
+    "cover_secret": "c65831862e"
   },
   "72157706977077111": {
     "album_id": "72157706977077111",
@@ -1167,6 +1747,11 @@
     "discipline": "xc",
     "race_number": 1,
     "venue": "Parc Bryn Bach",
-    "date": "2019-10-20"
+    "date": "2019-10-20",
+    "cover_url": "https://live.staticflickr.com/65535/33922794838_8459446634_m.jpg",
+    "cover_url_large": "https://live.staticflickr.com/65535/33922794838_8459446634_b.jpg",
+    "cover_id": "33922794838",
+    "cover_server": "65535",
+    "cover_secret": "8459446634"
   }
 }

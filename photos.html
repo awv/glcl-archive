@@ -23,29 +23,18 @@
         };
     </script>
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
         body { background-color: #030712; }
         .hero-gradient {
-            background: linear-gradient(to bottom, rgba(3,7,18,0.4) 0%, rgba(3,7,18,1) 100%);
+            background: linear-gradient(to bottom, rgba(3,7,18,0.45) 0%, rgba(3,7,18,0.85) 65%, rgba(3,7,18,1) 100%);
         }
-        .stat-card { background-color: #090d16; }
-        /* Smooth fade-in for image loading */
-        .photo-fade {
-            animation: fadeIn 0.3s ease-in-out;
-        }
+        .photo-fade { animation: fadeIn 0.25s ease-in-out; }
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(0.98); }
             to { opacity: 1; transform: scale(1); }
         }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="text-slate-300 font-sans antialiased flex flex-col min-h-full">
@@ -55,159 +44,204 @@
         <!-- Injected automatically via site-layout.js -->
     </nav>
 
-    <!-- CINEMATIC HERO HEADER -->
-    <header class="relative min-h-[22vh] md:min-h-[40vh] flex items-center justify-center overflow-hidden border-b border-slate-900 w-full py-8 md:py-14">
-        <img src="assets/images/hero_placeholder.jpg" alt="GLCL Race Photography" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 filter brightness-[0.4] contrast-125">
+    <!-- CINEMATIC HERO BANNER & PROMINENT SEARCH -->
+    <header class="relative min-h-[38vh] md:min-h-[46vh] flex items-center justify-center overflow-hidden border-b border-slate-900 w-full py-10 md:py-16">
+        <img src="assets/images/hero_placeholder.jpg" alt="GLCL Race Photography" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 filter brightness-[0.38] contrast-125">
         <div class="absolute inset-0 hero-gradient"></div>
 
-        <div class="relative max-w-4xl mx-auto px-4 w-full z-10 text-center space-y-3 md:space-y-4">
-            <span class="text-xs font-mono font-bold tracking-widest text-brand-400 uppercase bg-brand-500/10 px-3.5 py-1 rounded-full border border-brand-500/20 inline-block">
+        <div class="relative max-w-4xl mx-auto px-4 w-full z-10 text-center space-y-4 md:space-y-5">
+            <span class="text-xs font-mono font-bold tracking-widest text-brand-400 uppercase bg-brand-500/10 px-3.5 py-1 rounded-full border border-brand-500/20 inline-block shadow-sm">
                 GLCL Photo Archive
             </span>
-            <h1 class="text-2xl sm:text-3xl md:text-5xl font-black text-slate-100 tracking-tight uppercase">
+            <h1 class="text-3xl sm:text-4xl md:text-6xl font-black text-slate-100 tracking-tight uppercase">
                 Find Your Race Photos
             </h1>
             <p class="max-w-2xl mx-auto text-xs sm:text-sm md:text-base text-slate-400 leading-relaxed font-medium">
-                Search by bib number, runner name, or club to find your race action shots. Free for personal runner download.
+                Search by runner name or bib number across all 39 GLCL race albums (65,000+ photos). Free for personal runner download.
             </p>
+
+            <!-- PROMINENT SEARCH INPUT (Exact homepage style, elevated) -->
+            <div class="max-w-2xl mx-auto relative pt-2 text-left">
+                <div class="relative">
+                    <input type="text" id="main-search-input" placeholder="Search runner name or bib number (e.g. Paul Murrin or #32)..." autocomplete="off" 
+                        class="w-full bg-slate-950/95 backdrop-blur-md border-2 border-slate-800 text-slate-100 placeholder-slate-500 rounded-2xl pl-12 pr-12 py-3.5 sm:py-4 text-sm sm:text-base md:text-lg focus:outline-none focus:border-brand-500 font-medium transition-colors shadow-2xl">
+                    
+                    <!-- Search Icon on Left -->
+                    <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+
+                    <!-- Clear Button on Right -->
+                    <button id="clear-search-btn" class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer" title="Clear search">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
+
+                <!-- Autocomplete Dropdown -->
+                <div id="autocomplete-results" class="hidden absolute left-0 right-0 top-full mt-2 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl z-50 max-h-72 overflow-y-auto divide-y divide-slate-950 font-sans text-xs">
+                    <!-- Populated dynamically -->
+                </div>
+
+                <div class="flex items-center justify-between text-[11px] font-mono text-slate-500 px-2 pt-2">
+                    <span>💡 Search by your name or bib number across all seasons</span>
+                    <span id="search-status-hint" class="text-slate-400 font-medium"></span>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- MAIN SEARCH & GALLERY WORKSPACE -->
-    <main class="max-w-[1500px] mx-auto px-4 py-4 md:py-8 space-y-6 md:space-y-8 w-full flex-grow">
+    <!-- MAIN WORKSPACE -->
+    <main class="max-w-[1500px] mx-auto px-4 py-6 md:py-10 space-y-8 w-full flex-grow">
 
-        <!-- MODERN SEARCH & FILTER PANEL -->
-        <section id="search-panel" class="bg-slate-950 border border-slate-900 rounded-2xl p-4 md:p-6 shadow-2xl space-y-4 md:space-y-5 scroll-mt-20">
-            <!-- Top Controls Row: Race Selector + Omni-Search -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
-                <!-- Race / Fixture Dropdown (Col 1-5) -->
-                <div class="lg:col-span-5 space-y-1.5">
-                    <label for="album-selector" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">
-                        Race / Fixture
-                    </label>
-                    <div class="relative">
-                        <select id="album-selector" class="w-full bg-slate-900 border border-slate-800 text-slate-200 text-xs md:text-sm font-medium rounded-xl px-4 py-3 appearance-none focus:outline-none focus:border-brand-500 transition-colors cursor-pointer">
-                            <option value="" disabled selected>Loading race albums...</option>
-                        </select>
-                        <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-                        </div>
-                    </div>
+        <!-- ========================================== -->
+        <!-- VIEW 1: RACE ALBUMS GRID (When not searching) -->
+        <!-- ========================================== -->
+        <section id="albums-view" class="space-y-6">
+            <!-- Filter Bar & Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-900 pb-4">
+                <div>
+                    <span class="text-[10px] font-mono font-bold tracking-widest text-brand-400 uppercase">Archive Catalog</span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-100 uppercase tracking-tight mt-0.5">
+                        Browse Race Albums
+                    </h2>
+                    <p class="text-xs text-slate-400 mt-1">
+                        Select any fixture below to explore all action shots from that race.
+                    </p>
                 </div>
 
-                <!-- Omni Search Input (Col 6-12) -->
-                <div class="lg:col-span-7 space-y-1.5 relative">
-                    <label for="bib-search-input" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">
-                        Search Runner or Bib Number
-                    </label>
-                    <div class="relative">
-                        <input type="text" id="bib-search-input" placeholder="e.g. Harry Woodward or bib #32..." autocomplete="off"
-                            class="w-full bg-slate-900 border border-slate-800 text-slate-100 placeholder-slate-500 rounded-xl px-4 py-3 text-xs md:text-sm font-medium focus:outline-none focus:border-brand-500 transition-colors shadow-inner pl-10 pr-12">
-                        <div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </div>
-                        <div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
-                            <button id="clear-search-btn" class="hidden text-slate-500 hover:text-slate-300 p-1" title="Clear search">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                            </button>
-                        </div>
+                <!-- Filters: Season Tabs & Discipline Toggle -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                    <!-- Discipline Chips -->
+                    <div id="discipline-filter-tabs" class="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800/80 font-mono text-[11px] font-bold">
+                        <button type="button" class="disc-btn px-2.5 py-1 rounded-lg bg-brand-500 text-white shadow transition cursor-pointer" data-discipline="all">All</button>
+                        <button type="button" class="disc-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-900 transition cursor-pointer" data-discipline="xc">XC</button>
+                        <button type="button" class="disc-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-900 transition cursor-pointer" data-discipline="road">Road</button>
                     </div>
 
-                    <!-- Runner Autocomplete Dropdown -->
-                    <div id="bib-autocomplete" class="hidden absolute left-0 right-0 top-full mt-1.5 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl z-50 max-h-56 overflow-y-auto divide-y divide-slate-950 font-sans text-xs">
-                        <!-- Injected dynamic suggestions -->
+                    <!-- Season Dropdown -->
+                    <div class="relative">
+                        <select id="season-selector" class="bg-slate-950 border border-slate-800 text-slate-200 text-xs font-mono font-bold rounded-xl px-3.5 py-2 pr-8 appearance-none focus:outline-none focus:border-brand-500 transition cursor-pointer">
+                            <option value="all">All Seasons (39 Races)</option>
+                            <!-- Injected dynamically -->
+                        </select>
+                        <div class="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Fixture Context & Info Banner (Appears when a fixture is selected) -->
-            <div id="fixture-info-banner" class="hidden bg-slate-900/60 border border-slate-800/80 rounded-xl p-3 md:p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono scroll-mt-20">
+            <!-- Albums Grid -->
+            <div id="albums-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                <!-- Dynamically populated album cards -->
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 2: PHOTO GALLERY (Search results or single album) -->
+        <!-- ========================================== -->
+        <section id="gallery-view" class="hidden space-y-6">
+            
+            <!-- Top Controls & Breadcrumb -->
+            <div class="flex items-center justify-between gap-4 border-b border-slate-900 pb-3">
+                <button id="back-to-albums-btn" type="button" class="inline-flex items-center gap-2 text-xs font-mono font-bold text-slate-300 hover:text-brand-400 bg-slate-900 hover:bg-slate-800 px-3.5 py-2 rounded-xl border border-slate-800 transition cursor-pointer shadow-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                    <span>Back to All Race Albums</span>
+                </button>
+
+                <div class="flex items-center gap-2 text-xs font-mono">
+                    <span id="gallery-results-count" class="text-slate-300 font-bold">Loading photos...</span>
+                </div>
+            </div>
+
+            <!-- Context Banner A: Specific Fixture Album Details -->
+            <div id="fixture-info-banner" class="hidden bg-slate-950 border border-slate-900 rounded-2xl p-4 md:p-5 shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div class="space-y-1">
                     <div class="flex items-center gap-2 flex-wrap">
-                        <span id="fixture-banner-title" class="font-bold text-slate-200 text-sm">Race Venue</span>
-                        <span id="fixture-banner-badge" class="bg-brand-500/20 text-brand-300 border border-brand-500/30 px-2 py-0.5 rounded text-[10px] font-bold">Season</span>
+                        <span id="fixture-banner-title" class="font-bold text-slate-100 text-base md:text-lg">Race Venue</span>
+                        <span id="fixture-banner-badge" class="bg-brand-500/20 text-brand-300 border border-brand-500/30 px-2.5 py-0.5 rounded text-[11px] font-mono font-bold">Season Round</span>
                     </div>
-                    <div id="fixture-banner-meta" class="text-slate-400 text-[11px] flex items-center gap-2 flex-wrap">
-                        <!-- e.g. 4 Aug 2026 • 3,356 photos -->
+                    <div id="fixture-banner-meta" class="text-slate-400 text-xs font-mono flex items-center gap-2 flex-wrap">
+                        <!-- Date • Photo count -->
                     </div>
                 </div>
-                <div id="fixture-banner-actions" class="flex items-center gap-2 shrink-0">
-                    <a id="fixture-results-link" href="#" class="hidden inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg text-xs font-bold transition border border-slate-700">
+                <div class="flex items-center gap-2.5 shrink-0">
+                    <a id="fixture-results-link" href="#" class="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-brand-400 px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition border border-slate-800 shadow">
                         <span>📊 View Results</span>
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                     </a>
                 </div>
             </div>
 
-            <!-- Global Archive Search Notice (Appears when 'ALL' is selected) -->
-            <div id="global-search-banner" class="hidden bg-brand-500/10 border border-brand-500/20 rounded-xl p-3 md:p-4 flex items-center gap-3 text-xs">
-                <span class="text-lg">🌐</span>
-                <div class="text-slate-300 leading-relaxed font-mono">
-                    <span class="font-bold text-brand-400">All GLCL Races Archive:</span>
-                    Searching across all 39 GLCL race albums (65,000+ photos). Type a runner name or bib number above to find all their race action shots across every season!
+            <!-- Context Banner B: Global Search Summary -->
+            <div id="search-summary-banner" class="hidden bg-brand-500/10 border border-brand-500/20 rounded-2xl p-4 md:p-5 shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl">🏃‍♂️</span>
+                    <div>
+                        <div class="text-slate-200 font-bold text-sm">
+                            <span id="search-query-label">Search Results</span>
+                        </div>
+                        <div class="text-slate-400 text-xs mt-0.5">
+                            Showing matching action shots across all 39 GLCL race albums
+                        </div>
+                    </div>
+                </div>
+                <button id="clear-search-view-btn" type="button" class="text-xs font-mono font-bold text-brand-400 hover:underline shrink-0 cursor-pointer">
+                    Clear Search & Browse Albums →
+                </button>
+            </div>
+
+            <!-- Dynamic Filter Chips: By Race Venue (When searching across archive) -->
+            <div id="venue-chips-container" class="hidden space-y-2 pt-1">
+                <div class="flex items-center justify-between text-[11px] font-mono text-slate-400">
+                    <span class="font-bold uppercase tracking-wider">Filter by Race Venue:</span>
+                    <span id="venue-chips-hint" class="text-slate-500"></span>
+                </div>
+                <div id="venue-chips-list" class="flex flex-nowrap md:flex-wrap overflow-x-auto pb-1.5 md:pb-0 gap-2 no-scrollbar">
+                    <!-- Injected venue chips -->
                 </div>
             </div>
 
-            <!-- Dynamic Club Filter Chips Container (Only when a specific race is selected) -->
-            <div id="club-chips-container" class="space-y-2 pt-1 border-t border-slate-900/80 scroll-mt-20">
-                <div class="flex items-center justify-between text-[11px] font-mono">
-                    <span class="font-bold uppercase tracking-wider text-slate-400">Filter by Club:</span>
-                    <span id="club-chips-hint" class="text-slate-500">Showing clubs in this race</span>
+            <!-- Dynamic Filter Chips: By Club (When viewing single fixture or search) -->
+            <div id="club-chips-container" class="hidden space-y-2 pt-1">
+                <div class="flex items-center justify-between text-[11px] font-mono text-slate-400">
+                    <span class="font-bold uppercase tracking-wider">Filter by Club:</span>
+                    <span id="club-chips-hint" class="text-slate-500"></span>
                 </div>
                 <div id="club-chips-list" class="flex flex-nowrap md:flex-wrap overflow-x-auto pb-1.5 md:pb-0 gap-2 no-scrollbar">
-                    <!-- Injected dynamic chips -->
+                    <!-- Injected club chips -->
                 </div>
             </div>
 
-            <!-- Active Search Summary & Action Bar -->
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-3 border-t border-slate-900/80">
-                <div class="flex items-center gap-2 text-xs font-mono flex-wrap">
-                    <span id="results-count" class="text-slate-300 font-bold">Ready</span>
-                    <span id="active-tag-badge" class="hidden bg-brand-500/20 text-brand-300 border border-brand-500/30 px-2 py-0.5 rounded text-[10px] font-bold"></span>
-                    <span id="active-club-badge" class="hidden bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded text-[10px] font-bold"></span>
-                </div>
-                
-                <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                    <!-- Reset Filters Button -->
-                    <button id="reset-filters-btn" class="text-xs font-mono font-bold text-slate-400 hover:text-slate-200 bg-slate-900 hover:bg-slate-800 px-3 py-2 rounded-xl border border-slate-800 transition cursor-pointer">
-                        Reset Filters
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- PHOTO RESULTS GRID -->
-        <section id="gallery-container" class="scroll-mt-20">
-            <!-- Loading Indicator -->
-            <div id="gallery-loader" class="py-16 text-center space-y-3">
+            <!-- Gallery Loading Indicator -->
+            <div id="gallery-loader" class="py-20 text-center space-y-3">
                 <div class="inline-block animate-spin w-8 h-8 border-4 border-brand-500 border-t-transparent rounded-full"></div>
-                <p class="text-xs font-mono text-slate-500">Connecting to Flickr Photostream...</p>
+                <p class="text-xs font-mono text-slate-500">Loading photos...</p>
             </div>
 
-            <!-- Empty / Initial State Prompt -->
+            <!-- Empty State Prompt -->
             <div id="gallery-empty" class="hidden py-16 text-center max-w-md mx-auto space-y-3">
                 <div class="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 text-slate-500 flex items-center justify-center mx-auto text-xl">
                     📷
                 </div>
                 <h3 class="text-base font-bold text-slate-200 uppercase tracking-tight">No Photos Found</h3>
-                <p id="empty-message-text" class="text-xs text-slate-500 leading-relaxed">
-                    Try searching for another bib number, clearing the club filter, or browsing all photos in the album.
+                <p id="empty-message-text" class="text-xs text-slate-500 leading-relaxed font-mono">
+                    Try searching for another runner name, bib number, or browse all race albums.
                 </p>
-                <button id="show-all-photos-btn" class="mt-2 text-xs font-mono font-bold text-brand-400 hover:underline">
-                    Browse All Album Photos →
+                <button id="empty-browse-albums-btn" class="mt-2 text-xs font-mono font-bold text-brand-400 hover:underline cursor-pointer">
+                    ← Return to Race Albums
                 </button>
             </div>
 
             <!-- Photos Grid -->
             <div id="photos-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <!-- Dynamically populated cards -->
+                <!-- Dynamically populated photo cards -->
             </div>
 
             <!-- Pagination Controls Bar -->
             <div id="pagination-container" class="hidden flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-slate-900 font-mono text-xs">
-                <!-- Left: Page status & Jump -->
                 <div class="flex items-center gap-3 text-slate-400">
                     <span id="pagination-info">Page 1 of 1</span>
                     <span class="text-slate-700">•</span>
@@ -218,27 +252,23 @@
                     </label>
                 </div>
 
-                <!-- Right: Navigation Buttons -->
                 <div class="flex items-center gap-1.5">
-                    <button id="page-first-btn" class="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition" title="First Page">
+                    <button id="page-first-btn" class="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition cursor-pointer" title="First Page">
                         ««
                     </button>
-                    <button id="page-prev-btn" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition flex items-center gap-1">
+                    <button id="page-prev-btn" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition flex items-center gap-1 cursor-pointer">
                         ‹ Prev
                     </button>
-
-                    <div id="page-numbers-container" class="hidden md:flex items-center gap-1">
-                        <!-- Dynamic page number buttons -->
-                    </div>
-
-                    <button id="page-next-btn" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition flex items-center gap-1">
+                    <div id="page-numbers-container" class="hidden md:flex items-center gap-1"></div>
+                    <button id="page-next-btn" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition flex items-center gap-1 cursor-pointer">
                         Next ›
                     </button>
-                    <button id="page-last-btn" class="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition" title="Last Page">
+                    <button id="page-last-btn" class="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 text-slate-300 font-bold transition cursor-pointer" title="Last Page">
                         »»
                     </button>
                 </div>
             </div>
+
         </section>
 
     </main>
@@ -253,11 +283,11 @@
             </div>
             
             <div class="flex items-center gap-2">
-                <a id="modal-direct-download" href="#" target="_blank" download class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 text-xs font-mono font-bold px-3 py-1.5 rounded-lg transition inline-flex items-center gap-1.5">
+                <a id="modal-direct-download" href="#" target="_blank" download class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 text-xs font-mono font-bold px-3 py-1.5 rounded-lg transition inline-flex items-center gap-1.5 shadow">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                     Download High-Res
                 </a>
-                <button id="modal-close-btn" class="p-2 text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 rounded-lg border border-slate-800 transition">
+                <button id="modal-close-btn" class="p-2 text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 rounded-lg border border-slate-800 transition cursor-pointer" title="Close Lightbox (Esc)">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
             </div>
@@ -265,13 +295,13 @@
 
         <!-- Center Image Viewport -->
         <div class="relative flex-grow flex items-center justify-center my-4 overflow-hidden">
-            <button id="modal-prev-btn" class="absolute left-2 p-3 text-slate-400 hover:text-white bg-slate-900/60 hover:bg-slate-900 rounded-full border border-slate-800/80 transition z-20 focus:outline-none">
+            <button id="modal-prev-btn" class="absolute left-2 p-3 text-slate-400 hover:text-white bg-slate-900/70 hover:bg-slate-900 rounded-full border border-slate-800/80 transition z-20 focus:outline-none cursor-pointer" title="Previous (Left Arrow)">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" /></svg>
             </button>
 
             <img id="modal-image" src="" alt="Race Photo" class="max-h-[75vh] max-w-full object-contain rounded-lg shadow-2xl transition-opacity duration-200">
 
-            <button id="modal-next-btn" class="absolute right-2 p-3 text-slate-400 hover:text-white bg-slate-900/60 hover:bg-slate-900 rounded-full border border-slate-800/80 transition z-20 focus:outline-none">
+            <button id="modal-next-btn" class="absolute right-2 p-3 text-slate-400 hover:text-white bg-slate-900/70 hover:bg-slate-900 rounded-full border border-slate-800/80 transition z-20 focus:outline-none cursor-pointer" title="Next (Right Arrow)">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" /></svg>
             </button>
         </div>
@@ -285,87 +315,108 @@
     <!-- INJECTED GLOBAL FOOTER CONTAINER -->
     <div id="global-footer"></div>
 
-    <!-- CLIENT LOGIC & FLICKR CONNECTOR -->
+    <!-- CORE JAVASCRIPT & PHOTO SEARCH ENGINE -->
     <script>
     (() => {
-        // --- 1. CONFIGURATION ---
-        const getFlickrKey = () => window.GLCL_FLICKR_KEY || ['d6f7', 'a2fa', '79fb', '6ead', 'fcb1', '3be7', '282e', 'f019'].join('');
+        // --- 1. CONFIGURATION & STATE ---
         const FLICKR_CONFIG = {
-            apiKey: getFlickrKey(),
-            userId: "35034352089@N01", // Robert Gale (AWV)
-            perPage: 60
+            apiKey: window.GLCL_FLICKR_KEY || ['d6f7', 'a2fa', '79fb', '6ead', 'fcb1', '3be7', '282e', 'f019'].join(''),
+            userId: "35034352089@N01"
         };
 
-        // --- 2. STATE ---
         let fixtureAlbumsMap = {};
-        let ALLOWED_ALBUM_IDS = new Set();
-        let allAlbumsList = [];
-        let selectedAlbumId = null;
-        let selectedAlbumObj = null;
-        const albumPhotosCache = new Map();
+        let uniqueAlbumsList = [];
         let athletePhotosIndex = null;
         let isFetchingAthleteIndex = false;
+        const albumCache = new Map();
 
-        let rawAlbumPhotos = [];
-        let activeClub = "";
-        let activeSearchQuery = "";
-        let currentFilteredPhotos = [];
+        // Current View State: 'albums' | 'gallery'
+        let currentView = 'albums';
+        let currentMode = 'albums'; // 'albums' | 'album' | 'search'
+        let activeAlbumId = null;
+        let activeAlbumObj = null;
+
+        // Filtering State
+        let selectedSeasonFilter = 'all';
+        let selectedDisciplineFilter = 'all';
+        let activeSearchQuery = '';
+        let activeVenueFilter = '';
+        let activeClubFilter = '';
+
+        // Photos Rendering State
+        let rawPhotosList = [];
+        let filteredPhotosList = [];
         let currentPage = 1;
         const pageSize = 60;
         let totalPages = 1;
 
+        // Lightbox State
         let lightboxList = [];
         let currentPhotoIndex = 0;
 
-        // --- 3. DOM ELEMENTS ---
-        const albumSelector = document.getElementById("album-selector");
-        const bibInput = document.getElementById("bib-search-input");
-        const autocompleteBox = document.getElementById("bib-autocomplete");
-        const clearSearchBtn = document.getElementById("clear-search-btn");
-        const resetFiltersBtn = document.getElementById("reset-filters-btn");
-        const resultsCountEl = document.getElementById("results-count");
-        const activeTagBadge = document.getElementById("active-tag-badge");
-        const activeClubBadge = document.getElementById("active-club-badge");
+        // --- 2. DOM REFERENCES ---
+        const mainSearchInput = document.getElementById('main-search-input');
+        const clearSearchBtn = document.getElementById('clear-search-btn');
+        const autocompleteBox = document.getElementById('autocomplete-results');
+        const searchStatusHint = document.getElementById('search-status-hint');
 
-        const fixtureInfoBanner = document.getElementById("fixture-info-banner");
-        const fixtureBannerTitle = document.getElementById("fixture-banner-title");
-        const fixtureBannerBadge = document.getElementById("fixture-banner-badge");
-        const fixtureBannerMeta = document.getElementById("fixture-banner-meta");
-        const fixtureResultsLink = document.getElementById("fixture-results-link");
-        const globalSearchBanner = document.getElementById("global-search-banner");
+        // Views
+        const albumsView = document.getElementById('albums-view');
+        const galleryView = document.getElementById('gallery-view');
+        const albumsGrid = document.getElementById('albums-grid');
+        const seasonSelector = document.getElementById('season-selector');
+        const disciplineFilterTabs = document.getElementById('discipline-filter-tabs');
 
-        const clubChipsContainer = document.getElementById("club-chips-container");
-        const clubChipsList = document.getElementById("club-chips-list");
-        const clubChipsHint = document.getElementById("club-chips-hint");
+        // Gallery Elements
+        const backToAlbumsBtn = document.getElementById('back-to-albums-btn');
+        const galleryResultsCount = document.getElementById('gallery-results-count');
+        const fixtureInfoBanner = document.getElementById('fixture-info-banner');
+        const fixtureBannerTitle = document.getElementById('fixture-banner-title');
+        const fixtureBannerBadge = document.getElementById('fixture-banner-badge');
+        const fixtureBannerMeta = document.getElementById('fixture-banner-meta');
+        const fixtureResultsLink = document.getElementById('fixture-results-link');
 
-        const photosGrid = document.getElementById("photos-grid");
-        const galleryLoader = document.getElementById("gallery-loader");
-        const galleryEmpty = document.getElementById("gallery-empty");
-        const emptyMessageText = document.getElementById("empty-message-text");
-        const showAllPhotosBtn = document.getElementById("show-all-photos-btn");
+        const searchSummaryBanner = document.getElementById('search-summary-banner');
+        const searchQueryLabel = document.getElementById('search-query-label');
+        const clearSearchViewBtn = document.getElementById('clear-search-view-btn');
 
-        // Pagination Elements
-        const paginationContainer = document.getElementById("pagination-container");
-        const paginationInfo = document.getElementById("pagination-info");
-        const pageJumpInput = document.getElementById("page-jump-input");
-        const pageFirstBtn = document.getElementById("page-first-btn");
-        const pagePrevBtn = document.getElementById("page-prev-btn");
-        const pageNextBtn = document.getElementById("page-next-btn");
-        const pageLastBtn = document.getElementById("page-last-btn");
-        const pageNumbersContainer = document.getElementById("page-numbers-container");
+        const venueChipsContainer = document.getElementById('venue-chips-container');
+        const venueChipsList = document.getElementById('venue-chips-list');
+        const venueChipsHint = document.getElementById('venue-chips-hint');
 
-        // Lightbox Elements
-        const lightboxModal = document.getElementById("lightbox-modal");
-        const modalImage = document.getElementById("modal-image");
-        const modalCounter = document.getElementById("modal-counter");
-        const modalRunnerInfo = document.getElementById("modal-runner-info");
-        const modalDirectDownload = document.getElementById("modal-direct-download");
-        const modalCloseBtn = document.getElementById("modal-close-btn");
-        const modalPrevBtn = document.getElementById("modal-prev-btn");
-        const modalNextBtn = document.getElementById("modal-next-btn");
+        const clubChipsContainer = document.getElementById('club-chips-container');
+        const clubChipsList = document.getElementById('club-chips-list');
+        const clubChipsHint = document.getElementById('club-chips-hint');
 
-        // --- 4. HELPERS ---
-        const normClub = (c) => (c || '').replace('&', 'and').replace(/[^a-z0-9]/gi, '').toLowerCase();
+        const galleryLoader = document.getElementById('gallery-loader');
+        const galleryEmpty = document.getElementById('gallery-empty');
+        const emptyMessageText = document.getElementById('empty-message-text');
+        const emptyBrowseAlbumsBtn = document.getElementById('empty-browse-albums-btn');
+        const photosGrid = document.getElementById('photos-grid');
+
+        // Pagination
+        const paginationContainer = document.getElementById('pagination-container');
+        const paginationInfo = document.getElementById('pagination-info');
+        const pageJumpInput = document.getElementById('page-jump-input');
+        const pageFirstBtn = document.getElementById('page-first-btn');
+        const pagePrevBtn = document.getElementById('page-prev-btn');
+        const pageNextBtn = document.getElementById('page-next-btn');
+        const pageLastBtn = document.getElementById('page-last-btn');
+        const pageNumbersContainer = document.getElementById('page-numbers-container');
+
+        // Lightbox
+        const lightboxModal = document.getElementById('lightbox-modal');
+        const modalImage = document.getElementById('modal-image');
+        const modalCounter = document.getElementById('modal-counter');
+        const modalRunnerInfo = document.getElementById('modal-runner-info');
+        const modalDirectDownload = document.getElementById('modal-direct-download');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        const modalPrevBtn = document.getElementById('modal-prev-btn');
+        const modalNextBtn = document.getElementById('modal-next-btn');
+
+        // --- 3. STRING & CLUB HELPERS ---
+        const norm = (s) => (s || '').toString().toLowerCase().trim();
+        const normClub = (c) => norm(c).replace('&', 'and').replace(/[^a-z0-9]/gi, '');
         const matchesClubName = (c1, c2) => {
             if (!c1 || !c2) return false;
             const n1 = normClub(c1);
@@ -373,263 +424,247 @@
             return n1 === n2 || n1.includes(n2) || n2.includes(n1);
         };
 
-        const getAllRunners = () => {
-            const rawResults = window.glclResults || [];
-            const map = new Map();
-            rawResults.forEach(r => {
-                if (r.name && r.name !== 'Unknown Runner') {
-                    const key = r.name.toLowerCase();
-                    if (!map.has(key)) {
-                        map.set(key, {
-                            name: r.name,
-                            club: r.club || 'Independent',
-                            bib: r.bib || ''
-                        });
-                    }
-                }
-            });
-            return Array.from(map.values());
-        };
-
-        const callFlickr = async (method, params = {}) => {
-            const url = new URL("https://api.flickr.com/services/rest/");
-            url.searchParams.set("method", method);
-            url.searchParams.set("api_key", FLICKR_CONFIG.apiKey);
-            url.searchParams.set("format", "json");
-            url.searchParams.set("nojsoncallback", "1");
-            Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
-
-            const res = await fetch(url.toString());
-            if (!res.ok) throw new Error(`Flickr HTTP error: ${res.status}`);
-            const data = await res.json();
-            if (data.stat !== "ok") throw new Error(data.message || "Flickr API error");
-            return data;
-        };
-
-        // --- 5. INITIALIZE ALBUMS & SELECTOR ---
+        // --- 4. PRELOAD & DATA LOADERS ---
         const loadFixtureAlbums = async () => {
             try {
-                const res = await fetch("assets/data/fixture_photo_albums.json");
+                const res = await fetch('assets/data/fixture_photo_albums.json');
                 if (res.ok) {
                     fixtureAlbumsMap = await res.json();
-                    ALLOWED_ALBUM_IDS = new Set(
-                        Object.values(fixtureAlbumsMap)
-                            .map(a => a && a.album_id)
-                            .filter(Boolean)
-                    );
-                }
-            } catch (err) {
-                console.error("Failed to load fixture photo albums map:", err);
-            }
-        };
+                    const uniqueMap = new Map();
+                    Object.values(fixtureAlbumsMap).forEach(a => {
+                        if (a && a.album_id && !uniqueMap.has(a.album_id)) {
+                            uniqueMap.set(a.album_id, {
+                                id: a.album_id,
+                                title: a.title || `GLCL ${a.venue || a.season}`,
+                                photos: Number(a.photos) || 0,
+                                season: a.season || 'Historical',
+                                discipline: (a.discipline || 'xc').toLowerCase(),
+                                race_number: a.race_number || 1,
+                                venue: a.venue || 'GLCL Race',
+                                date: a.date || '',
+                                cover_url: a.cover_url || (a.cover_server && a.cover_id ? `https://live.staticflickr.com/${a.cover_server}/${a.cover_id}_${a.cover_secret}_m.jpg` : 'assets/images/hero_placeholder.jpg'),
+                                cover_url_large: a.cover_url_large || ''
+                            });
+                        }
+                    });
 
-        const populateAlbumSelector = () => {
-            const uniqueMap = new Map();
-            Object.values(fixtureAlbumsMap).forEach(alb => {
-                if (alb && alb.album_id && !uniqueMap.has(alb.album_id)) {
-                    uniqueMap.set(alb.album_id, {
-                        id: alb.album_id,
-                        title: alb.title || `GLCL ${alb.venue || alb.season}`,
-                        photos: Number(alb.photos) || 0,
-                        season: alb.season || "Historical",
-                        discipline: (alb.discipline || "xc").toUpperCase(),
-                        race_number: alb.race_number || 1,
-                        venue: alb.venue || "GLCL Race",
-                        date: alb.date || ""
+                    // Sort albums: latest season first, then descending race number
+                    uniqueAlbumsList = Array.from(uniqueMap.values()).sort((a, b) => {
+                        const sComp = b.season.localeCompare(a.season);
+                        if (sComp !== 0) return sComp;
+                        return (b.race_number || 0) - (a.race_number || 0);
                     });
                 }
-            });
-
-            allAlbumsList = Array.from(uniqueMap.values());
-
-            albumSelector.innerHTML = "";
-
-            // Top Option: All GLCL Races Archive
-            const optAll = document.createElement("option");
-            optAll.value = "ALL";
-            optAll.textContent = "🌐 All GLCL Races (Search entire archive)";
-            albumSelector.appendChild(optAll);
-
-            // Group albums by season
-            const seasonGroups = new Map();
-            allAlbumsList.forEach(alb => {
-                const s = alb.season;
-                if (!seasonGroups.has(s)) seasonGroups.set(s, []);
-                seasonGroups.get(s).push(alb);
-            });
-
-            // Sort seasons descending (e.g. 2025/2026 first)
-            const sortedSeasons = Array.from(seasonGroups.keys()).sort().reverse();
-
-            sortedSeasons.forEach(season => {
-                const optgroup = document.createElement("optgroup");
-                optgroup.label = `${season} Season`;
-                const seasonAlbums = seasonGroups.get(season);
-                
-                // Sort by race number descending
-                seasonAlbums.sort((a, b) => (b.race_number || 0) - (a.race_number || 0));
-
-                seasonAlbums.forEach(alb => {
-                    const opt = document.createElement("option");
-                    opt.value = alb.id;
-                    const raceLabel = `${alb.discipline} #${alb.race_number}`;
-                    const countLabel = alb.photos ? `${alb.photos.toLocaleString()} photos` : 'Photos';
-                    opt.textContent = `${alb.venue} (${raceLabel}) • ${countLabel}`;
-                    optgroup.appendChild(opt);
-                });
-                albumSelector.appendChild(optgroup);
-            });
+            } catch (err) {
+                console.error('Failed to load fixture albums:', err);
+            }
         };
 
-        // --- 6. DYNAMIC CLUB FILTER CHIPS ---
-        const renderClubChips = (photos) => {
-            if (!clubChipsList) return;
-            clubChipsList.innerHTML = "";
-
-            if (!photos || photos.length === 0) {
-                clubChipsContainer.classList.add("hidden");
-                return;
-            }
-
-            clubChipsContainer.classList.remove("hidden");
-
-            // Calculate club counts across all photos in this fixture
-            const clubCounts = new Map();
-            photos.forEach(p => {
-                const runners = (p.runners && Array.isArray(p.runners) && p.runners.length > 0)
-                    ? p.runners
-                    : (p.club ? [{ club: p.club }] : []);
-                
-                const seenClubsInPhoto = new Set();
-                runners.forEach(r => {
-                    if (r.club && !seenClubsInPhoto.has(r.club)) {
-                        seenClubsInPhoto.add(r.club);
-                        clubCounts.set(r.club, (clubCounts.get(r.club) || 0) + 1);
-                    }
-                });
-            });
-
-            // "All Photos" Chip
-            const allBtn = document.createElement("button");
-            allBtn.type = "button";
-            allBtn.className = `px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer shrink-0 ${
-                !activeClub
-                    ? 'bg-brand-500 text-white shadow-lg ring-1 ring-brand-400'
-                    : 'bg-slate-900 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
-            }`;
-            allBtn.textContent = `All Photos (${photos.length.toLocaleString()})`;
-            allBtn.addEventListener("click", () => {
-                activeClub = "";
-                activeClubBadge.classList.add("hidden");
-                renderClubChips(photos);
-                applyFilters();
-            });
-            clubChipsList.appendChild(allBtn);
-
-            // Sort clubs by photo count descending
-            const sortedClubs = Array.from(clubCounts.entries())
-                .filter(([c, count]) => count > 0)
-                .sort((a, b) => b[1] - a[1]);
-
-            if (clubChipsHint) {
-                clubChipsHint.textContent = `${sortedClubs.length} clubs identified`;
-            }
-
-            sortedClubs.forEach(([clubName, count]) => {
-                const isSelected = matchesClubName(activeClub, clubName);
-                const btn = document.createElement("button");
-                btn.type = "button";
-                btn.className = `px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer shrink-0 flex items-center gap-1.5 ${
-                    isSelected
-                        ? 'bg-amber-400 text-slate-950 font-black shadow-lg ring-1 ring-amber-300'
-                        : 'bg-slate-900 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
-                }`;
-                btn.innerHTML = `
-                    <span>${clubName}</span>
-                    <span class="${isSelected ? 'text-slate-900/80' : 'text-slate-500'} text-[10px] font-bold">(${count.toLocaleString()})</span>
-                `;
-                btn.addEventListener("click", () => {
-                    if (isSelected) {
-                        activeClub = "";
-                        activeClubBadge.classList.add("hidden");
-                    } else {
-                        activeClub = clubName;
-                        activeClubBadge.textContent = clubName;
-                        activeClubBadge.classList.remove("hidden");
-                    }
-                    renderClubChips(photos);
-                    applyFilters();
-                });
-                clubChipsList.appendChild(btn);
-            });
-        };
-
-        // --- 7. LOAD ALBUM PHOTOS ---
-        const selectAlbum = async (albumId, initialPage = 1) => {
-            selectedAlbumId = albumId;
-
-            // Mode 1: Search Across All GLCL Fixtures
-            if (albumId === "ALL") {
-                selectedAlbumObj = null;
-                fixtureInfoBanner.classList.add("hidden");
-                globalSearchBanner.classList.remove("hidden");
-                clubChipsContainer.classList.add("hidden");
-                activeClub = "";
-                activeClubBadge.classList.add("hidden");
-                rawAlbumPhotos = [];
-
-                if (activeSearchQuery) {
-                    performGlobalSearch(activeSearchQuery);
-                } else {
-                    photosGrid.innerHTML = "";
-                    galleryLoader.classList.add("hidden");
-                    galleryEmpty.classList.remove("hidden");
-                    emptyMessageText.innerHTML = "Type a runner name or bib number above to find their photos across the entire GLCL archive.";
-                    showAllPhotosBtn.classList.add("hidden");
-                    resultsCountEl.textContent = "Search ready";
-                    paginationContainer.classList.add("hidden");
+        const preloadAthleteIndex = async () => {
+            if (athletePhotosIndex || isFetchingAthleteIndex) return;
+            isFetchingAthleteIndex = true;
+            try {
+                const res = await fetch('assets/data/athlete_photos.json');
+                if (res.ok) {
+                    athletePhotosIndex = await res.json();
                 }
+            } catch (err) {
+                console.error('Failed to preload athlete photos:', err);
+            } finally {
+                isFetchingAthleteIndex = false;
+            }
+        };
+
+        // --- 5. RENDER RACE ALBUMS GRID ---
+        const populateSeasonSelector = () => {
+            const seasons = [...new Set(uniqueAlbumsList.map(a => a.season))].sort().reverse();
+            seasonSelector.innerHTML = '<option value="all">All Seasons (39 Races)</option>';
+            seasons.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s;
+                opt.textContent = `${s} Season`;
+                seasonSelector.appendChild(opt);
+            });
+        };
+
+        const renderAlbumsGrid = () => {
+            albumsGrid.innerHTML = '';
+
+            let list = uniqueAlbumsList;
+
+            // Filter Season
+            if (selectedSeasonFilter !== 'all') {
+                list = list.filter(a => a.season === selectedSeasonFilter);
+            }
+
+            // Filter Discipline
+            if (selectedDisciplineFilter !== 'all') {
+                list = list.filter(a => a.discipline === selectedDisciplineFilter);
+            }
+
+            if (list.length === 0) {
+                albumsGrid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-slate-500 font-mono text-xs">
+                        No race albums found for this season / discipline filter.
+                    </div>
+                `;
                 return;
             }
 
-            // Mode 2: Specific Fixture Album
-            globalSearchBanner.classList.add("hidden");
-            selectedAlbumObj = allAlbumsList.find(a => a.id === albumId) || fixtureAlbumsMap[albumId] || null;
+            list.forEach(alb => {
+                const isXc = alb.discipline === 'xc';
+                const discBadge = isXc 
+                    ? '<span class="bg-emerald-600/90 text-white font-mono font-black text-[10px] px-2 py-0.5 rounded shadow">XC</span>'
+                    : '<span class="bg-amber-600/90 text-white font-mono font-black text-[10px] px-2 py-0.5 rounded shadow">ROAD</span>';
 
-            if (selectedAlbumObj) {
-                fixtureInfoBanner.classList.remove("hidden");
-                fixtureBannerTitle.textContent = selectedAlbumObj.venue || selectedAlbumObj.title;
-                fixtureBannerBadge.textContent = `${selectedAlbumObj.season} ${selectedAlbumObj.discipline} #${selectedAlbumObj.race_number}`;
-                const photoCountStr = selectedAlbumObj.photos ? `${Number(selectedAlbumObj.photos).toLocaleString()} photos` : '';
-                const dateStr = selectedAlbumObj.date || '';
-                fixtureBannerMeta.textContent = [dateStr, photoCountStr].filter(Boolean).join(" • ");
+                const photoCountStr = alb.photos ? `${alb.photos.toLocaleString()} photos` : 'Photos';
+                const roundStr = `Round ${alb.race_number}`;
 
-                // Link to race results
-                if (selectedAlbumObj.season && selectedAlbumObj.discipline && selectedAlbumObj.race_number) {
-                    const seasonParam = String(selectedAlbumObj.season).replace('/', '_');
-                    const discParam = String(selectedAlbumObj.discipline).toLowerCase();
-                    fixtureResultsLink.href = `results.html?season=${seasonParam}&discipline=${discParam}&race=${selectedAlbumObj.race_number}`;
-                    fixtureResultsLink.classList.remove("hidden");
+                const card = document.createElement('div');
+                card.className = "group relative bg-slate-900 border border-slate-800 hover:border-brand-500/60 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between cursor-pointer photo-fade";
+                card.innerHTML = `
+                    <div class="aspect-[16/10] bg-slate-950 overflow-hidden relative">
+                        <img src="${alb.cover_url}" alt="${alb.venue}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20"></div>
+
+                        <!-- Top Badges -->
+                        <div class="absolute top-2.5 left-2.5 z-10 flex items-center gap-1.5">
+                            ${discBadge}
+                            <span class="bg-slate-950/80 backdrop-blur-md text-slate-200 border border-slate-700/80 font-mono font-bold text-[10px] px-2 py-0.5 rounded shadow">
+                                ${alb.season}
+                            </span>
+                        </div>
+
+                        <!-- Top Right Photo Count -->
+                        <div class="absolute top-2.5 right-2.5 z-10">
+                            <span class="bg-slate-950/80 backdrop-blur-md text-amber-300 border border-amber-400/30 font-mono font-bold text-[10px] px-2 py-0.5 rounded shadow flex items-center gap-1">
+                                <span>📸</span>
+                                <span>${photoCountStr}</span>
+                            </span>
+                        </div>
+
+                        <!-- Bottom Venue Overlay Text -->
+                        <div class="absolute bottom-2.5 left-3 right-3 z-10">
+                            <h3 class="text-base sm:text-lg font-black text-slate-100 uppercase tracking-tight group-hover:text-brand-400 transition-colors truncate">
+                                ${alb.venue}
+                            </h3>
+                            <div class="text-[11px] font-mono text-slate-400 flex items-center gap-2">
+                                <span>${roundStr}</span>
+                                ${alb.date ? `<span>•</span><span>${alb.date}</span>` : ''}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Footer Action -->
+                    <div class="p-3 bg-slate-950/60 border-t border-slate-900 flex items-center justify-between text-xs font-mono">
+                        <span class="text-slate-400 font-medium">Browse Full Album</span>
+                        <span class="text-brand-400 font-bold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                            <span>Open</span>
+                            <span>→</span>
+                        </span>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => {
+                    openAlbumView(alb.id);
+                });
+
+                albumsGrid.appendChild(card);
+            });
+        };
+
+        // --- 6. SWITCHING VIEWS ---
+        const showAlbumsView = () => {
+            currentView = 'albums';
+            currentMode = 'albums';
+            activeAlbumId = null;
+            activeAlbumObj = null;
+            activeSearchQuery = '';
+            activeVenueFilter = '';
+            activeClubFilter = '';
+
+            albumsView.classList.remove('hidden');
+            galleryView.classList.add('hidden');
+            fixtureInfoBanner.classList.add('hidden');
+            searchSummaryBanner.classList.add('hidden');
+            venueChipsContainer.classList.add('hidden');
+            clubChipsContainer.classList.add('hidden');
+
+            mainSearchInput.value = '';
+            clearSearchBtn.classList.add('hidden');
+            searchStatusHint.textContent = '';
+
+            // Clean URL query params without reloading
+            if (window.history.pushState) {
+                const url = new URL(window.location);
+                url.search = '';
+                window.history.pushState({}, '', url);
+            }
+
+            renderAlbumsGrid();
+        };
+
+        const openAlbumView = async (albumId) => {
+            currentView = 'gallery';
+            currentMode = 'album';
+            activeAlbumId = albumId;
+            activeAlbumObj = uniqueAlbumsList.find(a => a.id === albumId) || fixtureAlbumsMap[albumId] || null;
+            activeVenueFilter = '';
+            activeClubFilter = '';
+
+            albumsView.classList.add('hidden');
+            galleryView.classList.remove('hidden');
+            searchSummaryBanner.classList.add('hidden');
+            venueChipsContainer.classList.add('hidden');
+
+            // Populate fixture banner
+            if (activeAlbumObj) {
+                fixtureInfoBanner.classList.remove('hidden');
+                fixtureBannerTitle.textContent = activeAlbumObj.venue || activeAlbumObj.title;
+                fixtureBannerBadge.textContent = `${activeAlbumObj.season} ${activeAlbumObj.discipline.toUpperCase()} #${activeAlbumObj.race_number}`;
+                const photoStr = activeAlbumObj.photos ? `${Number(activeAlbumObj.photos).toLocaleString()} photos` : '';
+                const dateStr = activeAlbumObj.date || '';
+                fixtureBannerMeta.textContent = [dateStr, photoStr].filter(Boolean).join(' • ');
+
+                if (activeAlbumObj.season && activeAlbumObj.discipline && activeAlbumObj.race_number) {
+                    const seasonParam = String(activeAlbumObj.season).replace('/', '_');
+                    const discParam = String(activeAlbumObj.discipline).toLowerCase();
+                    fixtureResultsLink.href = `results.html?season=${seasonParam}&discipline=${discParam}&race=${activeAlbumObj.race_number}`;
+                    fixtureResultsLink.classList.remove('hidden');
                 } else {
-                    fixtureResultsLink.classList.add("hidden");
+                    fixtureResultsLink.classList.add('hidden');
                 }
             } else {
-                fixtureInfoBanner.classList.add("hidden");
+                fixtureInfoBanner.classList.add('hidden');
             }
 
-            // Check Cache
-            if (albumPhotosCache.has(albumId)) {
-                rawAlbumPhotos = albumPhotosCache.get(albumId);
-                renderClubChips(rawAlbumPhotos);
-                applyFilters();
+            // Update URL without reload
+            if (window.history.pushState) {
+                const url = new URL(window.location);
+                url.searchParams.set('album', albumId);
+                url.searchParams.delete('name');
+                url.searchParams.delete('bib');
+                window.history.pushState({}, '', url);
+            }
+
+            // Fetch Album Photos
+            await loadSingleAlbumPhotos(albumId);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        const loadSingleAlbumPhotos = async (albumId) => {
+            galleryLoader.classList.remove('hidden');
+            photosGrid.innerHTML = '';
+            galleryEmpty.classList.add('hidden');
+            paginationContainer.classList.add('hidden');
+
+            if (albumCache.has(albumId)) {
+                rawPhotosList = albumCache.get(albumId);
+                galleryLoader.classList.add('hidden');
+                renderClubChips(rawPhotosList);
+                applyGalleryFilters();
                 return;
             }
-
-            // Fetch Local Per-Album JSON (Fast & Offline)
-            galleryLoader.classList.remove("hidden");
-            photosGrid.innerHTML = "";
-            galleryEmpty.classList.add("hidden");
-            paginationContainer.classList.add("hidden");
 
             try {
                 const res = await fetch(`assets/data/albums/${albumId}.json`);
@@ -639,268 +674,380 @@
                         const runners = (p.runners && Array.isArray(p.runners) && p.runners.length > 0)
                             ? p.runners
                             : (p.name ? [{ bib: p.bib, name: p.name, club: p.club }] : []);
-                        
-                        let extraTags = ` bib${p.bib || ''} ${p.bib || ''} ${p.name || ''} ${p.club || ''}`;
-                        runners.forEach(r => {
-                            extraTags += ` bib${r.bib || ''} ${r.bib || ''} ${r.name || ''} ${r.club || ''}`;
-                        });
 
                         return {
                             id: p.id,
                             album_id: p.album_id || albumId,
-                            server: p.server || "65535",
-                            secret: p.secret || "",
-                            url_m: p.url_m || `https://live.staticflickr.com/${p.server || "65535"}/${p.id}_${p.secret}_m.jpg`,
-                            url_l: p.url_l || `https://live.staticflickr.com/${p.server || "65535"}/${p.id}_${p.secret}_b.jpg`,
-                            url_h: p.url_h,
-                            url_k: p.url_k,
-                            url_3k: p.url_3k,
-                            url_4k: p.url_4k,
-                            title: runners.map(r => `${r.name} (Bib #${r.bib})`).join(" & ") || (p.name ? `${p.name} (Bib #${p.bib})` : `Photo #${p.id}`),
-                            indexedBib: p.bib,
-                            indexedRunner: p.name,
-                            indexedClub: p.club,
+                            server: p.server || '65535',
+                            secret: p.secret || '',
+                            url_m: p.url_m || `https://live.staticflickr.com/${p.server || '65535'}/${p.id}_${p.secret}_m.jpg`,
+                            url_l: p.url_l || `https://live.staticflickr.com/${p.server || '65535'}/${p.id}_${p.secret}_b.jpg`,
+                            title: runners.map(r => `${r.name} (Bib #${r.bib})`).join(' & ') || (p.name ? `${p.name} (Bib #${p.bib})` : `Photo #${p.id}`),
+                            indexedBib: p.bib || (runners[0] && runners[0].bib) || '',
+                            indexedRunner: p.name || (runners[0] && runners[0].name) || '',
+                            indexedClub: p.club || (runners[0] && runners[0].club) || '',
                             indexedRunners: runners,
                             sharpness: p.sharpness || 0,
-                            tags: extraTags
+                            tags: p.tags || ''
                         };
                     });
 
-                    albumPhotosCache.set(albumId, photosArr);
-                    galleryLoader.classList.add("hidden");
-                    rawAlbumPhotos = photosArr;
-                    renderClubChips(rawAlbumPhotos);
-                    applyFilters();
+                    albumCache.set(albumId, photosArr);
+                    galleryLoader.classList.add('hidden');
+                    rawPhotosList = photosArr;
+                    renderClubChips(rawPhotosList);
+                    applyGalleryFilters();
                     return;
                 }
             } catch (err) {
-                console.log("Local album JSON not found, falling back to Flickr API:", err);
+                console.log('Local album JSON fallback to Flickr:', err);
             }
 
-            // Fallback: Fetch directly from Flickr API
+            // Flickr API Fallback
             try {
-                const data = await callFlickr("flickr.photosets.getPhotos", {
-                    photoset_id: albumId,
-                    extras: "tags,url_m,url_l,url_h,url_k,url_3k,url_4k,url_o,date_taken",
-                    per_page: 500,
-                    page: initialPage
-                });
+                const url = new URL("https://api.flickr.com/services/rest/");
+                url.searchParams.set("method", "flickr.photosets.getPhotos");
+                url.searchParams.set("api_key", FLICKR_CONFIG.apiKey);
+                url.searchParams.set("photoset_id", albumId);
+                url.searchParams.set("extras", "tags,url_m,url_l,url_h,url_k,url_3k,url_4k,url_o");
+                url.searchParams.set("per_page", "500");
+                url.searchParams.set("format", "json");
+                url.searchParams.set("nojsoncallback", "1");
 
-                galleryLoader.classList.add("hidden");
-                const photoset = data.photoset || {};
-                const photosArr = (photoset.photo || []).map(p => {
-                    const tagList = (p.tags || "").split(/\s+/);
-                    const bibTag = tagList.find(t => /^bib\d+$/i.test(t));
-                    const bib = bibTag ? bibTag.replace(/^bib/i, "") : "";
-                    return {
-                        id: p.id,
-                        album_id: albumId,
-                        server: p.server,
-                        secret: p.secret,
-                        url_m: p.url_m,
-                        url_l: p.url_l,
-                        url_h: p.url_h,
-                        url_k: p.url_k,
-                        url_3k: p.url_3k,
-                        url_4k: p.url_4k,
-                        title: p.title || `Photo #${p.id}`,
-                        indexedBib: bib,
-                        indexedRunner: "",
-                        indexedClub: "",
-                        indexedRunners: bib ? [{ bib, name: "", club: "" }] : [],
-                        sharpness: 0,
-                        tags: p.tags || ""
-                    };
-                });
+                const fres = await fetch(url.toString());
+                const fdata = await fres.json();
+                galleryLoader.classList.add('hidden');
 
-                albumPhotosCache.set(albumId, photosArr);
-                rawAlbumPhotos = photosArr;
-                renderClubChips(rawAlbumPhotos);
-                applyFilters();
+                if (fdata.stat === 'ok' && fdata.photoset) {
+                    const photosArr = (fdata.photoset.photo || []).map(p => {
+                        const tagList = (p.tags || '').split(/\s+/);
+                        const bibTag = tagList.find(t => /^bib\d+$/i.test(t));
+                        const bib = bibTag ? bibTag.replace(/^bib/i, '') : '';
+                        return {
+                            id: p.id,
+                            album_id: albumId,
+                            server: p.server,
+                            secret: p.secret,
+                            url_m: p.url_m || `https://live.staticflickr.com/${p.server}/${p.id}_${p.secret}_m.jpg`,
+                            url_l: p.url_l || `https://live.staticflickr.com/${p.server}/${p.id}_${p.secret}_b.jpg`,
+                            title: p.title || `Photo #${p.id}`,
+                            indexedBib: bib,
+                            indexedRunner: '',
+                            indexedClub: '',
+                            indexedRunners: bib ? [{ bib, name: '', club: '' }] : [],
+                            sharpness: 0,
+                            tags: p.tags || ''
+                        };
+                    });
 
-            } catch (err) {
-                console.error("Flickr fetch error:", err);
-                galleryLoader.classList.add("hidden");
-                showError("Unable to load photos for this album. Please try again.");
+                    albumCache.set(albumId, photosArr);
+                    rawPhotosList = photosArr;
+                    renderClubChips(rawPhotosList);
+                    applyGalleryFilters();
+                } else {
+                    showGalleryError('Unable to load photos for this album. Please try again.');
+                }
+            } catch (ferr) {
+                console.error('Flickr fetch error:', ferr);
+                galleryLoader.classList.add('hidden');
+                showGalleryError('Unable to connect to photo stream.');
             }
         };
 
-        // --- 8. GLOBAL ARCHIVE SEARCH ("ALL") ---
-        const performGlobalSearch = async (query) => {
-            galleryLoader.classList.remove("hidden");
-            photosGrid.innerHTML = "";
-            galleryEmpty.classList.add("hidden");
-            paginationContainer.classList.add("hidden");
-
-            const clean = query.trim().toLowerCase().replace(/^bib/i, "");
-
-            // Lazy load athlete_photos.json once
-            if (!athletePhotosIndex && !isFetchingAthleteIndex) {
-                isFetchingAthleteIndex = true;
-                try {
-                    const res = await fetch("assets/data/athlete_photos.json");
-                    if (res.ok) {
-                        athletePhotosIndex = await res.json();
-                    }
-                } catch (err) {
-                    console.error("Failed to load athlete photos index:", err);
-                } finally {
-                    isFetchingAthleteIndex = false;
-                }
+        // --- 7. SEARCH ARCHIVE (ACROSS ALL 39 RACES) ---
+        const executeSearch = async (query) => {
+            if (!query || !query.trim()) {
+                showAlbumsView();
+                return;
             }
 
-            galleryLoader.classList.add("hidden");
+            const rawQuery = query.trim();
+            activeSearchQuery = rawQuery;
+            currentView = 'gallery';
+            currentMode = 'search';
+            activeAlbumId = null;
+            activeAlbumObj = null;
+            activeVenueFilter = '';
+            activeClubFilter = '';
+
+            albumsView.classList.add('hidden');
+            galleryView.classList.remove('hidden');
+            fixtureInfoBanner.classList.add('hidden');
+            clubChipsContainer.classList.add('hidden');
+            venueChipsContainer.classList.add('hidden');
+
+            searchSummaryBanner.classList.remove('hidden');
+            searchQueryLabel.textContent = `Search results for "${rawQuery}"`;
+
+            // Update URL without reload
+            if (window.history.pushState) {
+                const url = new URL(window.location);
+                const isBib = /^[#\s]*bib[\s#]*\d+$/i.test(rawQuery) || /^\d+$/.test(rawQuery);
+                url.search = '';
+                if (isBib) {
+                    url.searchParams.set('bib', rawQuery.replace(/[^0-9]/g, ''));
+                } else {
+                    url.searchParams.set('name', rawQuery);
+                }
+                window.history.pushState({}, '', url);
+            }
+
+            galleryLoader.classList.remove('hidden');
+            photosGrid.innerHTML = '';
+            galleryEmpty.classList.add('hidden');
+            paginationContainer.classList.add('hidden');
+            searchStatusHint.textContent = 'Searching 65,000+ photos...';
+
+            // Ensure athlete photos index is loaded
+            if (!athletePhotosIndex) {
+                await preloadAthleteIndex();
+            }
+
+            galleryLoader.classList.add('hidden');
+            searchStatusHint.textContent = '';
 
             if (!athletePhotosIndex) {
-                showError("Global photo search index is currently loading. Please try again in a moment.");
+                showGalleryError('Search index is loading. Please try again in a moment.');
                 return;
             }
 
-            let matches = [];
+            // Normalise query terms
+            const cleanBib = rawQuery.replace(/^[#\s]*bib[\s#]*/i, '').replace(/^[#\s]+/, '').trim();
+            const isBibSearch = /^\d+$/.test(cleanBib);
+            const queryTerms = norm(rawQuery).replace(/[,#-]/g, ' ').split(/\s+/).filter(Boolean);
 
-            // Match athlete by name or bib
-            Object.entries(athletePhotosIndex).forEach(([runnerNameKey, photos]) => {
-                if (runnerNameKey.includes(clean)) {
-                    matches.push(...photos);
-                } else if (/^\d+$/.test(clean)) {
-                    // Search bib
-                    photos.forEach(p => {
-                        if (String(p.bib) === clean) matches.push(p);
-                    });
-                }
+            const matchedPhotos = [];
+            const seenPids = new Set();
+
+            Object.entries(athletePhotosIndex).forEach(([key, photos]) => {
+                // Name or Club search
+                const nameMatch = queryTerms.length > 0 && queryTerms.every(term => key.includes(term));
+
+                photos.forEach(p => {
+                    let isHit = false;
+                    if (nameMatch) {
+                        isHit = true;
+                    } else if (isBibSearch && String(p.bib).trim() === cleanBib) {
+                        isHit = true;
+                    }
+
+                    if (isHit && !seenPids.has(p.id)) {
+                        seenPids.add(p.id);
+
+                        // Enrich with fixture details
+                        const alb = fixtureAlbumsMap[p.album_id] || null;
+                        const venueName = alb ? (alb.venue || alb.title) : 'GLCL Race';
+                        const seasonLabel = alb ? alb.season : '';
+
+                        matchedPhotos.push({
+                            id: p.id,
+                            album_id: p.album_id,
+                            server: p.server,
+                            secret: p.secret,
+                            url_m: p.url_m || `https://live.staticflickr.com/${p.server}/${p.id}_${p.secret}_m.jpg`,
+                            url_l: p.url_l || `https://live.staticflickr.com/${p.server}/${p.id}_${p.secret}_b.jpg`,
+                            indexedRunner: p.name,
+                            indexedBib: p.bib,
+                            indexedClub: p.club,
+                            indexedRunners: [{ bib: p.bib, name: p.name, club: p.club }],
+                            fixtureVenue: venueName,
+                            fixtureSeason: seasonLabel,
+                            title: `${p.name || 'Runner'} (Bib #${p.bib || '-'}) • ${venueName}`,
+                            sharpness: p.sharpness || 0
+                        });
+                    }
+                });
             });
 
-            // De-duplicate matched photos by ID
-            const uniqueMap = new Map();
-            matches.forEach(p => {
-                if (!uniqueMap.has(p.id)) {
-                    // Enrich with fixture details
-                    const alb = fixtureAlbumsMap[p.album_id] || null;
-                    const venueStr = alb ? `${alb.venue || alb.title} (${alb.season || ''})` : 'GLCL Fixture';
-                    uniqueMap.set(p.id, {
-                        ...p,
-                        fixtureVenue: alb ? alb.venue : 'GLCL Race',
-                        fixtureSeason: alb ? alb.season : '',
-                        fixtureTitle: venueStr,
-                        url_m: p.url_m || (p.server && p.secret ? `https://live.staticflickr.com/${p.server}/${p.id}_${p.secret}_m.jpg` : ''),
-                        url_l: p.url_l || (p.server && p.secret ? `https://live.staticflickr.com/${p.server}/${p.id}_${p.secret}_b.jpg` : ''),
-                        indexedRunner: p.name,
-                        indexedBib: p.bib,
-                        indexedClub: p.club,
-                        indexedRunners: [{ bib: p.bib, name: p.name, club: p.club }],
-                        title: `${p.name} (Bib #${p.bib}) • ${venueStr}`
-                    });
-                }
-            });
-
-            currentFilteredPhotos = Array.from(uniqueMap.values());
             // Sort crispest action shots first
-            currentFilteredPhotos.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
+            matchedPhotos.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
 
-            currentPage = 1;
-            renderCurrentPage();
+            rawPhotosList = matchedPhotos;
+            renderVenueChips(rawPhotosList);
+            applyGalleryFilters();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
-        // --- 9. CLIENT FILTERING & BEST SHOT FIRST ---
-        const applyFilters = () => {
-            if (selectedAlbumId === "ALL") {
-                if (activeSearchQuery) performGlobalSearch(activeSearchQuery);
+        // --- 8. DYNAMIC FILTER CHIPS ---
+        const renderVenueChips = (photos) => {
+            venueChipsList.innerHTML = '';
+            if (!photos || photos.length === 0) {
+                venueChipsContainer.classList.add('hidden');
                 return;
             }
 
-            let filtered = rawAlbumPhotos;
+            const venueCounts = new Map();
+            photos.forEach(p => {
+                const v = p.fixtureVenue || 'Other';
+                venueCounts.set(v, (venueCounts.get(v) || 0) + 1);
+            });
 
-            // 1. Club Filter
-            if (activeClub) {
-                filtered = filtered.filter(p => {
-                    if (p.indexedRunners && p.indexedRunners.some(r => matchesClubName(r.club, activeClub))) return true;
-                    if (p.indexedClub && matchesClubName(p.indexedClub, activeClub)) return true;
-                    const tags = (p.tags || "").toLowerCase();
-                    return tags.includes(normClub(activeClub));
+            if (venueCounts.size <= 1) {
+                venueChipsContainer.classList.add('hidden');
+                return;
+            }
+
+            venueChipsContainer.classList.remove('hidden');
+            venueChipsHint.textContent = `${venueCounts.size} venues with photos`;
+
+            // "All Venues" Chip
+            const allBtn = document.createElement('button');
+            allBtn.type = 'button';
+            allBtn.className = `px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition cursor-pointer shrink-0 ${
+                !activeVenueFilter
+                    ? 'bg-brand-500 text-white shadow-lg ring-1 ring-brand-400'
+                    : 'bg-slate-900 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
+            }`;
+            allBtn.textContent = `All Venues (${photos.length})`;
+            allBtn.addEventListener('click', () => {
+                activeVenueFilter = '';
+                renderVenueChips(photos);
+                applyGalleryFilters();
+            });
+            venueChipsList.appendChild(allBtn);
+
+            // Sorted venue chips
+            const sorted = Array.from(venueCounts.entries()).sort((a, b) => b[1] - a[1]);
+            sorted.forEach(([venue, count]) => {
+                const isSelected = activeVenueFilter === venue;
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition cursor-pointer shrink-0 flex items-center gap-1.5 ${
+                    isSelected
+                        ? 'bg-amber-400 text-slate-950 font-black shadow-lg ring-1 ring-amber-300'
+                        : 'bg-slate-900 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
+                }`;
+                btn.innerHTML = `<span>📍 ${venue}</span><span class="${isSelected ? 'text-slate-900/80' : 'text-slate-500'} text-[10px]">(${count})</span>`;
+                btn.addEventListener('click', () => {
+                    activeVenueFilter = isSelected ? '' : venue;
+                    renderVenueChips(photos);
+                    applyGalleryFilters();
                 });
-            }
-
-            // 2. Bib or Runner Name Search Filter
-            if (activeSearchQuery) {
-                const clean = activeSearchQuery.toLowerCase().trim().replace(/^bib/i, "");
-                filtered = filtered.filter(p => {
-                    // Bib exact match
-                    if (p.indexedRunners && p.indexedRunners.some(r => r.bib && String(r.bib).toLowerCase() === clean)) return true;
-                    if (p.indexedBib && String(p.indexedBib).toLowerCase() === clean) return true;
-                    // Runner name match
-                    if (p.indexedRunners && p.indexedRunners.some(r => r.name && r.name.toLowerCase().includes(clean))) return true;
-                    if (p.indexedRunner && p.indexedRunner.toLowerCase().includes(clean)) return true;
-                    // Tag match
-                    const tagList = (p.tags || "").toLowerCase();
-                    return tagList.includes(clean) || tagList.includes(`bib${clean}`);
-                });
-            }
-
-            // 3. Best Shot First: If any search or club filter is active, sort by sharpness
-            if (activeClub || activeSearchQuery) {
-                filtered.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
-            }
-
-            currentFilteredPhotos = filtered;
-            currentPage = 1;
-            renderCurrentPage();
+                venueChipsList.appendChild(btn);
+            });
         };
 
-        // --- 10. RENDER GALLERY PAGE & PAGINATION ---
-        const renderCurrentPage = () => {
-            const total = currentFilteredPhotos.length;
-            photosGrid.innerHTML = "";
+        const renderClubChips = (photos) => {
+            clubChipsList.innerHTML = '';
+            if (!photos || photos.length === 0) {
+                clubChipsContainer.classList.add('hidden');
+                return;
+            }
+
+            const clubCounts = new Map();
+            photos.forEach(p => {
+                const runners = (p.indexedRunners && p.indexedRunners.length > 0) ? p.indexedRunners : (p.indexedClub ? [{ club: p.indexedClub }] : []);
+                const seen = new Set();
+                runners.forEach(r => {
+                    if (r.club && !seen.has(r.club)) {
+                        seen.add(r.club);
+                        clubCounts.set(r.club, (clubCounts.get(r.club) || 0) + 1);
+                    }
+                });
+            });
+
+            if (clubCounts.size === 0) {
+                clubChipsContainer.classList.add('hidden');
+                return;
+            }
+
+            clubChipsContainer.classList.remove('hidden');
+            clubChipsHint.textContent = `${clubCounts.size} clubs in album`;
+
+            // All Chip
+            const allBtn = document.createElement('button');
+            allBtn.type = 'button';
+            allBtn.className = `px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition cursor-pointer shrink-0 ${
+                !activeClubFilter
+                    ? 'bg-brand-500 text-white shadow-lg ring-1 ring-brand-400'
+                    : 'bg-slate-900 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
+            }`;
+            allBtn.textContent = `All Photos (${photos.length.toLocaleString()})`;
+            allBtn.addEventListener('click', () => {
+                activeClubFilter = '';
+                renderClubChips(photos);
+                applyGalleryFilters();
+            });
+            clubChipsList.appendChild(allBtn);
+
+            // Individual club chips
+            const sorted = Array.from(clubCounts.entries()).sort((a, b) => b[1] - a[1]);
+            sorted.forEach(([clubName, count]) => {
+                const isSelected = matchesClubName(activeClubFilter, clubName);
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition cursor-pointer shrink-0 flex items-center gap-1.5 ${
+                    isSelected
+                        ? 'bg-amber-400 text-slate-950 font-black shadow-lg ring-1 ring-amber-300'
+                        : 'bg-slate-900 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
+                }`;
+                btn.innerHTML = `<span>${clubName}</span><span class="${isSelected ? 'text-slate-900/80' : 'text-slate-500'} text-[10px]">(${count.toLocaleString()})</span>`;
+                btn.addEventListener('click', () => {
+                    activeClubFilter = isSelected ? '' : clubName;
+                    renderClubChips(photos);
+                    applyGalleryFilters();
+                });
+                clubChipsList.appendChild(btn);
+            });
+        };
+
+        // --- 9. APPLY GALLERY FILTERS & RENDER ---
+        const applyGalleryFilters = () => {
+            let list = rawPhotosList;
+
+            // Filter Venue (Search Mode)
+            if (activeVenueFilter) {
+                list = list.filter(p => p.fixtureVenue === activeVenueFilter);
+            }
+
+            // Filter Club
+            if (activeClubFilter) {
+                list = list.filter(p => {
+                    if (p.indexedRunners && p.indexedRunners.some(r => matchesClubName(r.club, activeClubFilter))) return true;
+                    if (p.indexedClub && matchesClubName(p.indexedClub, activeClubFilter)) return true;
+                    const tags = (p.tags || '').toLowerCase();
+                    return tags.includes(normClub(activeClubFilter));
+                });
+            }
+
+            filteredPhotosList = list;
+            currentPage = 1;
+            renderCurrentGalleryPage();
+        };
+
+        const renderCurrentGalleryPage = () => {
+            const total = filteredPhotosList.length;
+            photosGrid.innerHTML = '';
 
             if (total === 0) {
-                galleryEmpty.classList.remove("hidden");
-                paginationContainer.classList.add("hidden");
-                resultsCountEl.textContent = "0 photos";
+                galleryEmpty.classList.remove('hidden');
+                paginationContainer.classList.add('hidden');
+                galleryResultsCount.textContent = '0 photos';
 
-                if (activeSearchQuery) {
-                    emptyMessageText.innerHTML = `No photos found matching "<strong>${activeSearchQuery}</strong>" in this race.<br><button id="btn-search-archive" class="mt-3 px-3.5 py-1.5 bg-brand-500 hover:bg-brand-400 text-white font-mono text-xs font-bold rounded-xl transition cursor-pointer">Search Across All 39 GLCL Races →</button>`;
-                    setTimeout(() => {
-                        const btn = document.getElementById("btn-search-archive");
-                        if (btn) {
-                            btn.addEventListener("click", () => {
-                                albumSelector.value = "ALL";
-                                selectAlbum("ALL");
-                            });
-                        }
-                    }, 50);
+                if (currentMode === 'search') {
+                    emptyMessageText.innerHTML = `No photos found matching "<strong>${activeSearchQuery}</strong>".<br>Try checking the bib number or runner spelling.`;
                 } else {
-                    emptyMessageText.textContent = "No photos found matching your current filter criteria.";
+                    emptyMessageText.textContent = 'No photos found for the selected club filter.';
                 }
                 return;
             }
 
-            galleryEmpty.classList.add("hidden");
-            
-            // Results Summary text
-            if (activeClub && activeSearchQuery) {
-                resultsCountEl.textContent = `${total.toLocaleString()} photo${total === 1 ? '' : 's'} for ${activeSearchQuery} in ${activeClub}`;
-            } else if (activeClub) {
-                resultsCountEl.textContent = `${total.toLocaleString()} photo${total === 1 ? '' : 's'} for ${activeClub}`;
-            } else if (activeSearchQuery) {
-                resultsCountEl.textContent = `${total.toLocaleString()} photo${total === 1 ? '' : 's'} for "${activeSearchQuery}"`;
-            } else if (selectedAlbumObj) {
-                resultsCountEl.textContent = `${total.toLocaleString()} photos in fixture`;
-            } else {
-                resultsCountEl.textContent = `${total.toLocaleString()} photos found`;
-            }
+            galleryEmpty.classList.add('hidden');
+            galleryResultsCount.textContent = `${total.toLocaleString()} photo${total === 1 ? '' : 's'}`;
 
             totalPages = Math.max(1, Math.ceil(total / pageSize));
 
-            // Paginate slice
+            // Paginate
             const startIdx = (currentPage - 1) * pageSize;
             const endIdx = Math.min(total, startIdx + pageSize);
-            const pagePhotos = currentFilteredPhotos.slice(startIdx, endIdx);
+            const pagePhotos = filteredPhotosList.slice(startIdx, endIdx);
 
             pagePhotos.forEach((photo, idx) => {
                 const globalIndex = startIdx + idx;
-                const imgThumb = photo.url_m || photo.url_l || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`;
-                const imgLarge = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || imgThumb;
+                const imgThumb = photo.url_m || photo.url_l;
+                const imgLarge = photo.url_l || imgThumb;
 
-                const card = document.createElement("div");
+                const card = document.createElement('div');
                 card.className = "group relative bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg hover:border-brand-500/60 transition-all duration-300 photo-fade flex flex-col justify-between";
 
                 const mainRunner = (photo.indexedRunners && photo.indexedRunners.length > 0) ? photo.indexedRunners[0] : null;
@@ -908,8 +1055,8 @@
                 card.innerHTML = `
                     <div class="aspect-[4/3] bg-slate-950 overflow-hidden relative cursor-pointer">
                         <img src="${imgThumb}" alt="${photo.title || 'GLCL Race Photo'}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        
-                        <!-- Runner Pill Badge -->
+
+                        <!-- Runner Pill -->
                         ${mainRunner && mainRunner.name ? `
                             <div class="absolute top-2 left-2 z-10 pointer-events-none">
                                 <span class="bg-brand-600/90 backdrop-blur-md text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow border border-brand-400/30 flex items-center gap-1.5 max-w-[200px] truncate">
@@ -919,10 +1066,10 @@
                             </div>
                         ` : ''}
 
-                        <!-- Fixture Venue Badge (When in ALL mode) -->
+                        <!-- Fixture Venue Badge (When searching across archive) -->
                         ${photo.fixtureVenue ? `
                             <div class="absolute bottom-2 left-2 z-10">
-                                <button type="button" class="btn-jump-fixture bg-slate-950/85 hover:bg-brand-600 backdrop-blur-md text-slate-200 hover:text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow border border-slate-700/80 transition-colors flex items-center gap-1" data-album="${photo.album_id}">
+                                <button type="button" class="btn-jump-fixture bg-slate-950/85 hover:bg-brand-600 backdrop-blur-md text-slate-200 hover:text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow border border-slate-700/80 transition flex items-center gap-1 cursor-pointer" data-album="${photo.album_id}">
                                     <span>📍 ${photo.fixtureVenue}</span>
                                     <span class="text-[9px] opacity-75">${photo.fixtureSeason ? `'${photo.fixtureSeason.slice(2, 4)}` : ''}</span>
                                 </button>
@@ -953,24 +1100,22 @@
                     </div>
                 `;
 
-                // Card Click -> Open Lightbox
-                const clickTarget = card.querySelector(".cursor-pointer");
+                // Card Click -> Lightbox
+                const clickTarget = card.querySelector('.cursor-pointer');
                 if (clickTarget) {
-                    clickTarget.addEventListener("click", () => {
-                        openLightbox(globalIndex, currentFilteredPhotos);
+                    clickTarget.addEventListener('click', () => {
+                        openLightbox(globalIndex, filteredPhotosList);
                     });
                 }
 
-                // Fixture badge click -> jump to fixture album
-                const jumpBtn = card.querySelector(".btn-jump-fixture");
+                // Fixture badge click -> open that album
+                const jumpBtn = card.querySelector('.btn-jump-fixture');
                 if (jumpBtn) {
-                    jumpBtn.addEventListener("click", (e) => {
+                    jumpBtn.addEventListener('click', (e) => {
                         e.stopPropagation();
                         const albId = jumpBtn.dataset.album;
                         if (albId) {
-                            albumSelector.value = albId;
-                            selectAlbum(albId);
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                            openAlbumView(albId);
                         }
                     });
                 }
@@ -981,14 +1126,14 @@
             updatePaginationUI(total);
         };
 
-        // --- 11. PAGINATION UI ---
+        // --- 10. PAGINATION UI ---
         const updatePaginationUI = (total) => {
             if (totalPages <= 1) {
-                paginationContainer.classList.add("hidden");
+                paginationContainer.classList.add('hidden');
                 return;
             }
 
-            paginationContainer.classList.remove("hidden");
+            paginationContainer.classList.remove('hidden');
             const startPhotoNum = ((currentPage - 1) * pageSize) + 1;
             const endPhotoNum = Math.min(total, currentPage * pageSize);
             paginationInfo.textContent = `Showing ${startPhotoNum}–${endPhotoNum} of ${total.toLocaleString()} photos`;
@@ -1001,50 +1146,49 @@
             pageNextBtn.disabled = currentPage >= totalPages;
             pageLastBtn.disabled = currentPage >= totalPages;
 
-            // Generate page pill buttons
-            pageNumbersContainer.innerHTML = "";
+            pageNumbersContainer.innerHTML = '';
             let startP = Math.max(1, currentPage - 2);
             let endP = Math.min(totalPages, startP + 4);
             if (endP - startP < 4) startP = Math.max(1, endP - 4);
 
             for (let p = startP; p <= endP; p++) {
-                const btn = document.createElement("button");
+                const btn = document.createElement('button');
                 btn.className = `w-8 h-8 rounded-lg font-bold text-xs transition cursor-pointer ${
                     p === currentPage
                         ? 'bg-brand-500 text-white shadow-lg'
                         : 'bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-100 border border-slate-800'
                 }`;
                 btn.textContent = p;
-                btn.addEventListener("click", () => {
+                btn.addEventListener('click', () => {
                     if (p !== currentPage) {
                         currentPage = p;
-                        renderCurrentPage();
-                        document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
+                        renderCurrentGalleryPage();
+                        galleryView.scrollIntoView({ behavior: 'smooth' });
                     }
                 });
                 pageNumbersContainer.appendChild(btn);
             }
         };
 
-        // --- 12. LIGHTBOX ---
+        // --- 11. LIGHTBOX ---
         const openLightbox = (index, photos) => {
             lightboxList = photos;
             currentPhotoIndex = index;
             updateLightboxContent();
-            lightboxModal.classList.remove("hidden");
-            document.body.style.overflow = "hidden";
+            lightboxModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         };
 
         const closeLightbox = () => {
-            lightboxModal.classList.add("hidden");
-            document.body.style.overflow = "";
+            lightboxModal.classList.add('hidden');
+            document.body.style.overflow = '';
         };
 
         const updateLightboxContent = () => {
             const photo = lightboxList[currentPhotoIndex];
             if (!photo) return;
 
-            const highRes = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || photo.url_m || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
+            const highRes = photo.url_l || photo.url_m || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
             modalImage.src = highRes;
             modalCounter.textContent = `Photo ${currentPhotoIndex + 1} of ${lightboxList.length}`;
             modalDirectDownload.href = highRes;
@@ -1054,261 +1198,281 @@
             if (mainRunner && mainRunner.name) {
                 modalRunnerInfo.innerHTML = `${mainRunner.bib ? `Bib #${mainRunner.bib} • ` : ''}<a href="athlete.html?name=${encodeURIComponent(mainRunner.name)}" class="hover:underline text-brand-300 font-bold">${mainRunner.name}</a> (${mainRunner.club || 'Independent'})${photo.fixtureVenue ? ` • ${photo.fixtureVenue}` : ''}`;
             } else {
-                modalRunnerInfo.textContent = photo.title || (selectedAlbumObj ? selectedAlbumObj.venue : 'GLCL Race');
+                modalRunnerInfo.textContent = photo.title || (activeAlbumObj ? activeAlbumObj.venue : 'GLCL Race');
             }
         };
 
-        // --- 13. AUTOCOMPLETE ---
+        const showGalleryError = (msg) => {
+            galleryLoader.classList.add('hidden');
+            galleryEmpty.classList.remove('hidden');
+            emptyMessageText.textContent = msg;
+        };
+
+        // --- 12. AUTOCOMPLETE SETUP ---
         const setupAutocomplete = () => {
-            const runners = getAllRunners();
+            let debounceTimer = null;
 
-            bibInput.addEventListener("input", (e) => {
+            mainSearchInput.addEventListener('input', (e) => {
                 const val = e.target.value.trim();
-                clearSearchBtn.classList.toggle("hidden", !val);
+                clearSearchBtn.classList.toggle('hidden', !val);
 
+                clearTimeout(debounceTimer);
                 if (val.length < 2) {
-                    autocompleteBox.classList.add("hidden");
-                    if (val === "") {
-                        activeSearchQuery = "";
-                        activeTagBadge.classList.add("hidden");
-                        applyFilters();
+                    autocompleteBox.classList.add('hidden');
+                    return;
+                }
+
+                debounceTimer = setTimeout(() => {
+                    const clean = norm(val);
+                    const cleanBib = val.replace(/^[#\s]*bib[\s#]*/i, '').replace(/^[#\s]+/, '').trim();
+                    const isBib = /^\d+$/.test(cleanBib);
+
+                    autocompleteBox.innerHTML = '';
+                    let matchCount = 0;
+
+                    // Bib Option
+                    if (isBib) {
+                        const bibRow = document.createElement('div');
+                        bibRow.className = "px-4 py-3 hover:bg-slate-800 cursor-pointer flex items-center justify-between transition border-b border-slate-950 bg-brand-500/10";
+                        bibRow.innerHTML = `
+                            <div class="flex items-center gap-2">
+                                <span class="text-base">🔍</span>
+                                <span class="font-bold text-brand-300">Search all photos for Bib #${cleanBib}</span>
+                            </div>
+                            <span class="text-[10px] font-mono bg-brand-500/20 text-brand-300 px-2 py-0.5 rounded font-bold">Search Bib</span>
+                        `;
+                        bibRow.addEventListener('click', () => {
+                            mainSearchInput.value = `#${cleanBib}`;
+                            autocompleteBox.classList.add('hidden');
+                            executeSearch(`#${cleanBib}`);
+                        });
+                        autocompleteBox.appendChild(bibRow);
+                        matchCount++;
                     }
-                    return;
-                }
 
-                const matches = runners.filter(r => 
-                    r.name.toLowerCase().includes(val.toLowerCase()) || 
-                    String(r.bib) === val
-                ).slice(0, 8);
+                    // Athlete Matches from athletePhotosIndex if ready, or window.glclResults
+                    if (athletePhotosIndex) {
+                        const terms = clean.replace(/[,#-]/g, ' ').split(/\s+/).filter(Boolean);
+                        const athleteEntries = Object.entries(athletePhotosIndex);
 
-                if (matches.length === 0) {
-                    autocompleteBox.classList.add("hidden");
-                    return;
-                }
+                        for (const [key, photos] of athleteEntries) {
+                            if (key.startsWith('_')) continue;
+                            if (terms.every(t => key.includes(t))) {
+                                const sample = photos[0] || {};
+                                const row = document.createElement('div');
+                                row.className = "px-4 py-2.5 hover:bg-slate-800 cursor-pointer flex justify-between items-center transition";
+                                row.innerHTML = `
+                                    <div>
+                                        <span class="font-bold text-slate-100">${sample.name || key}</span>
+                                        <span class="text-[10px] font-mono text-slate-500 block">${sample.club || 'GLCL Runner'}</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-[10px] font-mono bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-bold">${photos.length} photo${photos.length === 1 ? '' : 's'}</span>
+                                    </div>
+                                `;
+                                row.addEventListener('click', () => {
+                                    mainSearchInput.value = sample.name || key;
+                                    autocompleteBox.classList.add('hidden');
+                                    executeSearch(sample.name || key);
+                                });
+                                autocompleteBox.appendChild(row);
+                                matchCount++;
+                                if (matchCount >= 8) break;
+                            }
+                        }
+                    }
 
-                autocompleteBox.innerHTML = "";
-                matches.forEach(m => {
-                    const row = document.createElement("div");
-                    row.className = "px-4 py-2.5 hover:bg-slate-800 cursor-pointer flex justify-between items-center transition";
-                    row.innerHTML = `
-                        <div>
-                            <span class="font-bold text-slate-100">${m.name}</span>
-                            <span class="text-[10px] font-mono text-slate-500 block">${m.club}</span>
-                        </div>
-                        ${m.bib ? `<span class="text-[10px] font-mono bg-brand-500/20 text-brand-300 px-2 py-0.5 rounded font-bold">Bib #${m.bib}</span>` : ''}
-                    `;
-                    row.addEventListener("click", () => {
-                        bibInput.value = m.name;
-                        autocompleteBox.classList.add("hidden");
-                        activeSearchQuery = m.name;
-                        activeTagBadge.textContent = m.name;
-                        activeTagBadge.classList.remove("hidden");
-                        applyFilters();
-                    });
-                    autocompleteBox.appendChild(row);
-                });
-
-                autocompleteBox.classList.remove("hidden");
-            });
-
-            bibInput.addEventListener("keydown", (e) => {
-                if (e.key === "Enter") {
-                    autocompleteBox.classList.add("hidden");
-                    const val = bibInput.value.trim();
-                    activeSearchQuery = val;
-                    if (val) {
-                        activeTagBadge.textContent = /^\d+$/.test(val) ? `Bib #${val}` : val;
-                        activeTagBadge.classList.remove("hidden");
+                    if (matchCount > 0) {
+                        autocompleteBox.classList.remove('hidden');
                     } else {
-                        activeTagBadge.classList.add("hidden");
+                        autocompleteBox.classList.add('hidden');
                     }
-                    applyFilters();
+                }, 120);
+            });
+
+            mainSearchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    autocompleteBox.classList.add('hidden');
+                    const val = mainSearchInput.value.trim();
+                    if (val) {
+                        executeSearch(val);
+                    } else {
+                        showAlbumsView();
+                    }
                 }
             });
 
-            document.addEventListener("click", (e) => {
-                if (!bibInput.contains(e.target) && !autocompleteBox.contains(e.target)) {
-                    autocompleteBox.classList.add("hidden");
+            document.addEventListener('click', (e) => {
+                if (!mainSearchInput.contains(e.target) && !autocompleteBox.contains(e.target)) {
+                    autocompleteBox.classList.add('hidden');
                 }
             });
         };
 
-        // --- 15. EVENT LISTENERS ---
-        albumSelector.addEventListener("change", (e) => {
-            selectAlbum(e.target.value);
+        // --- 13. EVENT LISTENERS ---
+        clearSearchBtn.addEventListener('click', () => {
+            mainSearchInput.value = '';
+            clearSearchBtn.classList.add('hidden');
+            autocompleteBox.classList.add('hidden');
+            showAlbumsView();
         });
 
-        clearSearchBtn.addEventListener("click", () => {
-            bibInput.value = "";
-            clearSearchBtn.classList.add("hidden");
-            activeSearchQuery = "";
-            activeTagBadge.classList.add("hidden");
-            applyFilters();
+        clearSearchViewBtn.addEventListener('click', () => {
+            showAlbumsView();
         });
 
-        resetFiltersBtn.addEventListener("click", () => {
-            bibInput.value = "";
-            clearSearchBtn.classList.add("hidden");
-            activeSearchQuery = "";
-            activeClub = "";
-            activeTagBadge.classList.add("hidden");
-            activeClubBadge.classList.add("hidden");
-            if (selectedAlbumId && selectedAlbumId !== "ALL") {
-                renderClubChips(rawAlbumPhotos);
-            }
-            applyFilters();
+        backToAlbumsBtn.addEventListener('click', () => {
+            showAlbumsView();
         });
 
-        showAllPhotosBtn.addEventListener("click", () => {
-            bibInput.value = "";
-            clearSearchBtn.classList.add("hidden");
-            activeSearchQuery = "";
-            activeClub = "";
-            activeTagBadge.classList.add("hidden");
-            activeClubBadge.classList.add("hidden");
-            applyFilters();
+        emptyBrowseAlbumsBtn.addEventListener('click', () => {
+            showAlbumsView();
+        });
+
+        // Season Filter
+        seasonSelector.addEventListener('change', (e) => {
+            selectedSeasonFilter = e.target.value;
+            renderAlbumsGrid();
+        });
+
+        // Discipline Filter Tabs
+        disciplineFilterTabs.querySelectorAll('.disc-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                disciplineFilterTabs.querySelectorAll('.disc-btn').forEach(b => {
+                    b.classList.remove('bg-brand-500', 'text-white', 'shadow');
+                    b.classList.add('text-slate-400');
+                });
+                btn.classList.add('bg-brand-500', 'text-white', 'shadow');
+                btn.classList.remove('text-slate-400');
+
+                selectedDisciplineFilter = btn.dataset.discipline;
+                renderAlbumsGrid();
+            });
         });
 
         // Pagination buttons
-        pageFirstBtn.addEventListener("click", () => {
+        pageFirstBtn.addEventListener('click', () => {
             if (currentPage > 1) {
                 currentPage = 1;
-                renderCurrentPage();
-                document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
+                renderCurrentGalleryPage();
+                galleryView.scrollIntoView({ behavior: 'smooth' });
             }
         });
-        pagePrevBtn.addEventListener("click", () => {
+        pagePrevBtn.addEventListener('click', () => {
             if (currentPage > 1) {
                 currentPage--;
-                renderCurrentPage();
-                document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
+                renderCurrentGalleryPage();
+                galleryView.scrollIntoView({ behavior: 'smooth' });
             }
         });
-        pageNextBtn.addEventListener("click", () => {
+        pageNextBtn.addEventListener('click', () => {
             if (currentPage < totalPages) {
                 currentPage++;
-                renderCurrentPage();
-                document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
+                renderCurrentGalleryPage();
+                galleryView.scrollIntoView({ behavior: 'smooth' });
             }
         });
-        pageLastBtn.addEventListener("click", () => {
+        pageLastBtn.addEventListener('click', () => {
             if (currentPage < totalPages) {
                 currentPage = totalPages;
-                renderCurrentPage();
-                document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
+                renderCurrentGalleryPage();
+                galleryView.scrollIntoView({ behavior: 'smooth' });
             }
         });
-        pageJumpInput.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                let targetPage = parseInt(pageJumpInput.value, 10);
-                if (!isNaN(targetPage) && targetPage >= 1 && targetPage <= totalPages) {
-                    currentPage = targetPage;
-                    renderCurrentPage();
-                    document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
+        pageJumpInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                let p = parseInt(pageJumpInput.value, 10);
+                if (!isNaN(p) && p >= 1 && p <= totalPages) {
+                    currentPage = p;
+                    renderCurrentGalleryPage();
+                    galleryView.scrollIntoView({ behavior: 'smooth' });
                 }
             }
         });
 
         // Lightbox buttons
-        modalCloseBtn.addEventListener("click", closeLightbox);
-        modalPrevBtn.addEventListener("click", () => {
+        modalCloseBtn.addEventListener('click', closeLightbox);
+        modalPrevBtn.addEventListener('click', () => {
             if (currentPhotoIndex > 0) {
                 currentPhotoIndex--;
                 updateLightboxContent();
             }
         });
-        modalNextBtn.addEventListener("click", () => {
+        modalNextBtn.addEventListener('click', () => {
             if (currentPhotoIndex < lightboxList.length - 1) {
                 currentPhotoIndex++;
                 updateLightboxContent();
             }
         });
-        document.addEventListener("keydown", (e) => {
-            if (lightboxModal.classList.contains("hidden")) return;
-            if (e.key === "Escape") closeLightbox();
-            if (e.key === "ArrowLeft" && currentPhotoIndex > 0) {
+        document.addEventListener('keydown', (e) => {
+            if (lightboxModal.classList.contains('hidden')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft' && currentPhotoIndex > 0) {
                 currentPhotoIndex--;
                 updateLightboxContent();
             }
-            if (e.key === "ArrowRight" && currentPhotoIndex < lightboxList.length - 1) {
+            if (e.key === 'ArrowRight' && currentPhotoIndex < lightboxList.length - 1) {
                 currentPhotoIndex++;
                 updateLightboxContent();
             }
         });
 
-        const showError = (msg) => {
-            galleryLoader.classList.add("hidden");
-            galleryEmpty.classList.remove("hidden");
-            emptyMessageText.textContent = msg;
-        };
+        // Mobile swipe support for lightbox
+        let touchStartX = 0;
+        let touchStartY = 0;
+        lightboxModal.addEventListener('touchstart', (e) => {
+            if (e.touches && e.touches.length > 0) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+        lightboxModal.addEventListener('touchend', (e) => {
+            if (e.changedTouches && e.changedTouches.length > 0) {
+                const diffX = e.changedTouches[0].clientX - touchStartX;
+                const diffY = e.changedTouches[0].clientY - touchStartY;
+                if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY) * 1.3) {
+                    if (diffX < 0 && currentPhotoIndex < lightboxList.length - 1) {
+                        currentPhotoIndex++;
+                        updateLightboxContent();
+                    } else if (diffX > 0 && currentPhotoIndex > 0) {
+                        currentPhotoIndex--;
+                        updateLightboxContent();
+                    }
+                }
+            }
+        }, { passive: true });
 
-        // --- 16. INITIALIZATION ---
-        document.addEventListener("DOMContentLoaded", async () => {
+        // --- 14. INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', async () => {
             await loadFixtureAlbums();
-            populateAlbumSelector();
+            populateSeasonSelector();
             setupAutocomplete();
 
-            const urlParams = new URLSearchParams(window.location.search);
-            const paramAlbum = urlParams.get("album");
-            const paramClub = urlParams.get("club");
-            const paramBib = urlParams.get("bib");
-            const paramName = urlParams.get("name");
+            // Preload athlete index in background for instant search
+            preloadAthleteIndex();
 
-            if (paramClub) {
-                activeClub = paramClub;
-                activeClubBadge.textContent = paramClub;
-                activeClubBadge.classList.remove("hidden");
-            }
+            const params = new URLSearchParams(window.location.search);
+            const pAlbum = params.get('album');
+            const pName = params.get('name');
+            const pBib = params.get('bib');
+            const pClub = params.get('club');
 
-            if (paramBib) {
-                bibInput.value = paramBib;
-                activeSearchQuery = paramBib;
-                activeTagBadge.textContent = `Bib #${paramBib}`;
-                activeTagBadge.classList.remove("hidden");
-                clearSearchBtn.classList.remove("hidden");
-            } else if (paramName) {
-                bibInput.value = paramName;
-                activeSearchQuery = paramName;
-                activeTagBadge.textContent = paramName;
-                activeTagBadge.classList.remove("hidden");
-                clearSearchBtn.classList.remove("hidden");
-            }
-
-            // Determine target album
-            let targetAlbum = "ALL";
-            if (paramAlbum && (ALLOWED_ALBUM_IDS.has(paramAlbum) || paramAlbum === "ALL")) {
-                targetAlbum = paramAlbum;
-            } else if (allAlbumsList.length > 0 && !paramName && !paramBib) {
-                // Default to latest race album if no specific query
-                targetAlbum = allAlbumsList[0].id;
-            }
-
-            albumSelector.value = targetAlbum;
-            await selectAlbum(targetAlbum);
-
-            // Auto-scroll on arrival if deep-linked to a specific album, runner, club, or gallery anchor
-            if (paramAlbum || paramClub || paramBib || paramName || window.location.hash) {
-                setTimeout(() => {
-                    const isMobile = window.innerWidth < 768;
-                    let targetEl = null;
-
-                    if (window.location.hash === "#gallery" || window.location.hash === "#photos") {
-                        targetEl = document.getElementById("gallery-container");
-                    } else if (isMobile) {
-                        // On mobile, scroll directly to fixture banner (if visible) or club chips / gallery
-                        // so the photo workspace is immediately in view below the header
-                        targetEl = (fixtureInfoBanner && !fixtureInfoBanner.classList.contains("hidden"))
-                            ? fixtureInfoBanner
-                            : (document.getElementById("club-chips-container") || document.getElementById("gallery-container"));
-                    } else {
-                        // On desktop, scroll to search panel
-                        targetEl = document.getElementById("search-panel") || fixtureInfoBanner || document.getElementById("gallery-container");
-                    }
-
-                    if (targetEl) {
-                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                }, 120);
+            if (pName) {
+                mainSearchInput.value = pName;
+                clearSearchBtn.classList.remove('hidden');
+                await executeSearch(pName);
+            } else if (pBib) {
+                mainSearchInput.value = `#${pBib}`;
+                clearSearchBtn.classList.remove('hidden');
+                await executeSearch(`#${pBib}`);
+            } else if (pAlbum) {
+                await openAlbumView(pAlbum);
+                if (pClub) {
+                    activeClubFilter = pClub;
+                    applyGalleryFilters();
+                }
+            } else {
+                showAlbumsView();
             }
         });
     })();
