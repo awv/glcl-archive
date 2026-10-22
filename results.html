@@ -199,14 +199,71 @@
 
             const selectedSeason = rawSeason.replace('_', '/');
 
-            // Load photo albums mapping
+            // Load photo albums mapping & club kit colours
             let fixtureAlbums = {};
+            let clubColours = {};
             try {
-                const albumRes = await fetch('assets/data/fixture_photo_albums.json');
+                const [albumRes, coloursRes] = await Promise.all([
+                    fetch('assets/data/fixture_photo_albums.json'),
+                    fetch('assets/data/club_colours.json')
+                ]);
                 if (albumRes.ok) fixtureAlbums = await albumRes.json();
+                if (coloursRes && coloursRes.ok) {
+                    const cData = await coloursRes.json();
+                    clubColours = cData.clubs || {};
+                }
             } catch (e) {
-                console.log("Fixture photo albums fallback", e);
+                console.log("Metadata fallback", e);
             }
+
+            const normClubKey = (c) => (c || '').replace('&', 'and').replace(/[^a-z0-9]/gi, '').toLowerCase();
+
+            const getClubShieldSvg = (clubName) => {
+                if (!clubName || clubName === 'Unattached' || clubName === 'Unknown' || clubName === 'N/A' || clubName === '-') {
+                    return '';
+                }
+
+                const cleanName = normClubKey(clubName);
+
+                // Match in clubColours dictionary
+                let matched = null;
+                for (const [canonical, data] of Object.entries(clubColours)) {
+                    if (normClubKey(canonical) === cleanName || (data.aliases && data.aliases.some(a => normClubKey(a) === cleanName))) {
+                        matched = data;
+                        break;
+                    }
+                }
+
+                let primary = '#3b82f6';
+                let secondary = '#1e3a8a';
+                let desc = clubName;
+
+                if (matched) {
+                    primary = matched.primary_color?.hex || primary;
+                    secondary = matched.secondary_color?.hex || secondary;
+                    desc = `${matched.canonical_name}${matched.kit_description ? ' • ' + matched.kit_description : ''}`;
+                } else {
+                    // Fallbacks for known league clubs
+                    if (cleanName.includes('abertillery')) { primary = '#6b1d2f'; secondary = '#ffffff'; }
+                    else if (cleanName.includes('club69')) { primary = '#181818'; secondary = '#e5a93c'; }
+                    else if (cleanName.includes('usk')) { primary = '#1e40af'; secondary = '#ffffff'; }
+                    else if (cleanName.includes('sandomenico')) { primary = '#107040'; secondary = '#205090'; }
+                    else if (cleanName.includes('builth')) { primary = '#1c4e80'; secondary = '#f07c24'; }
+                    else if (cleanName.includes('brecon')) { primary = '#1b365d'; secondary = '#ffffff'; }
+                    else return '';
+                }
+
+                return `
+                    <svg class="w-3.5 h-4 shrink-0 drop-shadow inline-block select-none" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg" title="${desc}">
+                        <!-- Left half (Primary) -->
+                        <path d="M10 1.5L2 4.5V11C2 16.5 5.5 21 10 22.5V1.5Z" fill="${primary}" stroke="#0f172a" stroke-width="0.75"/>
+                        <!-- Right half (Secondary) -->
+                        <path d="M10 1.5L18 4.5V11C18 16.5 14.5 21 10 22.5V1.5Z" fill="${secondary}" stroke="#0f172a" stroke-width="0.75"/>
+                        <!-- Outer Shield Highlight -->
+                        <path d="M10 1.5L2 4.5V11C2 16.5 5.5 21 10 22.5C14.5 21 18 16.5 18 11V4.5L10 1.5Z" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="0.75"/>
+                    </svg>
+                `;
+            };
 
             const fixtureKey1 = `${selectedSeason}_${discipline.toLowerCase()}_${raceNum}`;
             const fixtureKey2 = `${rawSeason}_${discipline.toLowerCase()}_${raceNum}`;
@@ -487,23 +544,32 @@
                     ? `<a href="athlete.html?name=${encodeURIComponent(femaleFormattedName)}&club=${encodeURIComponent(femaleWinnerObj.club)}" class="hover:text-brand-500 transition-colors">${femaleFormattedName}</a>` 
                     : '<span class="text-slate-600 font-normal">N/A</span>';
 
+                const maleShield = maleWinnerObj ? getClubShieldSvg(maleWinnerObj.club) : '';
+                const femaleShield = femaleWinnerObj ? getClubShieldSvg(femaleWinnerObj.club) : '';
+
                 const cardHtml = `
                     <div class="cat-card p-4 rounded-xl border border-slate-800 flex flex-col justify-between shadow-md">
                         <h4 class="text-xs font-black text-brand-500 uppercase tracking-widest border-b border-slate-800 pb-1.5 mb-2">
                             ${cat}
                         </h4>
                         <div class="space-y-1.5 text-[11px]">
-                            <div class="flex justify-between items-center">
-                                <span class="font-mono text-slate-500 font-bold uppercase">M</span>
-                                <span class="font-bold text-slate-200 truncate max-w-[120px] text-right" title="${maleFormattedName || 'N/A'}">
-                                    ${maleWinnerHtml}
-                                </span>
+                            <div class="flex justify-between items-center gap-2">
+                                <span class="font-mono text-slate-500 font-bold uppercase shrink-0">M</span>
+                                <div class="flex items-center gap-1.5 justify-end truncate max-w-[140px]">
+                                    ${maleShield}
+                                    <span class="font-bold text-slate-200 truncate" title="${maleFormattedName || 'N/A'}">
+                                        ${maleWinnerHtml}
+                                    </span>
+                                </div>
                             </div>
-                            <div class="flex justify-between items-center">
-                                <span class="font-mono text-slate-500 font-bold uppercase">F</span>
-                                <span class="font-bold text-slate-200 truncate max-w-[120px] text-right" title="${femaleFormattedName || 'N/A'}">
-                                    ${femaleWinnerHtml}
-                                </span>
+                            <div class="flex justify-between items-center gap-2">
+                                <span class="font-mono text-slate-500 font-bold uppercase shrink-0">F</span>
+                                <div class="flex items-center gap-1.5 justify-end truncate max-w-[140px]">
+                                    ${femaleShield}
+                                    <span class="font-bold text-slate-200 truncate" title="${femaleFormattedName || 'N/A'}">
+                                        ${femaleWinnerHtml}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -580,24 +646,49 @@
                         });
                         runnerPhotos.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
 
-                        let photoIconHtml = '';
+                        let photoAvatarHtml = '';
                         if (runnerPhotos.length > 0) {
                             const photosJsonStr = encodeURIComponent(JSON.stringify(runnerPhotos));
                             const albumId = fixtureAlbum ? fixtureAlbum.album_id : '';
-                            photoIconHtml = `
-                                <button type="button" 
-                                        class="results-photo-badge inline-flex items-center gap-1 text-[10px] font-mono font-bold text-amber-300 bg-amber-400/10 hover:bg-amber-400 hover:text-slate-950 px-1.5 py-0.5 rounded transition border border-amber-400/30 ml-2 shadow-sm cursor-pointer"
-                                        data-runner="${encodeURIComponent(formattedName)}"
-                                        data-bib="${runnerBib}"
-                                        data-club="${encodeURIComponent(displayClub)}"
-                                        data-album="${albumId}"
-                                        data-photos="${photosJsonStr}"
-                                        title="View ${runnerPhotos.length} photo${runnerPhotos.length > 1 ? 's' : ''} for ${formattedName}">
-                                    <span>📸</span>
-                                    <span>${runnerPhotos.length}</span>
-                                </button>
-                            `;
+                            const p0 = runnerPhotos[0];
+                            const thumbUrl = p0.url_m || (p0.server && p0.secret ? `https://live.staticflickr.com/${p0.server}/${p0.id}_${p0.secret}_m.jpg` : '');
+
+                            if (thumbUrl) {
+                                photoAvatarHtml = `
+                                    <button type="button" 
+                                            class="results-photo-badge group/avatar relative shrink-0 w-7 h-7 rounded-full overflow-hidden ring-2 ring-amber-400 hover:ring-brand-400 hover:scale-110 transition-all shadow-md mr-2.5 cursor-pointer bg-slate-900"
+                                            data-runner="${encodeURIComponent(formattedName)}"
+                                            data-bib="${runnerBib}"
+                                            data-club="${encodeURIComponent(displayClub)}"
+                                            data-album="${albumId}"
+                                            data-photos="${photosJsonStr}"
+                                            title="View ${runnerPhotos.length} race photo${runnerPhotos.length > 1 ? 's' : ''} for ${formattedName}">
+                                        <img src="${thumbUrl}" alt="" loading="lazy" class="w-full h-full object-cover pointer-events-none">
+                                        ${runnerPhotos.length > 1 ? `
+                                            <span class="absolute -bottom-0.5 -right-0.5 bg-amber-400 text-slate-950 font-black text-[8px] font-mono px-1 py-0 rounded-full leading-none shadow">
+                                                +${runnerPhotos.length - 1}
+                                            </span>
+                                        ` : ''}
+                                    </button>
+                                `;
+                            } else {
+                                photoAvatarHtml = `
+                                    <button type="button" 
+                                            class="results-photo-badge inline-flex items-center gap-1 text-[10px] font-mono font-bold text-amber-300 bg-amber-400/10 hover:bg-amber-400 hover:text-slate-950 px-1.5 py-0.5 rounded transition border border-amber-400/30 mr-2 shadow-sm cursor-pointer"
+                                            data-runner="${encodeURIComponent(formattedName)}"
+                                            data-bib="${runnerBib}"
+                                            data-club="${encodeURIComponent(displayClub)}"
+                                            data-album="${albumId}"
+                                            data-photos="${photosJsonStr}"
+                                            title="View ${runnerPhotos.length} race photo${runnerPhotos.length > 1 ? 's' : ''} for ${formattedName}">
+                                        <span>📸</span>
+                                        <span>${runnerPhotos.length}</span>
+                                    </button>
+                                `;
+                            }
                         }
+
+                        const clubShieldSvg = getClubShieldSvg(displayClub);
 
                         return `
                             <tr class="transition-colors ${podiumRowBg}">
@@ -605,13 +696,18 @@
                                 <td class="py-3 px-4 text-center font-mono text-slate-500">${row.bib || '-'}</td>
                                 <td class="py-3 px-4 font-bold text-slate-200">
                                     <div class="flex items-center">
+                                        ${photoAvatarHtml}
                                         <a href="${athleteUrl}" class="hover:text-brand-500 transition-colors">${formattedName}</a>
-                                        ${photoIconHtml}
                                     </div>
                                 </td>
                                 <td class="py-3 px-4 text-center font-black ${sexColor}">${normSex}</td>
                                 <td class="py-3 px-4 uppercase tracking-tight text-slate-400 font-medium">${normCat}</td>
-                                <td class="py-3 px-4 font-medium"><a href="club.html?name=${encodeURIComponent(displayClub)}" class="hover:text-brand-500 transition-colors">${displayClub}</a></td>
+                                <td class="py-3 px-4 font-medium">
+                                    <div class="flex items-center gap-2">
+                                        ${clubShieldSvg}
+                                        <a href="club.html?name=${encodeURIComponent(displayClub)}" class="hover:text-brand-500 transition-colors">${displayClub}</a>
+                                    </div>
+                                </td>
                                 <td class="py-2 px-4 text-center">${catPosHtml}</td>
                                 <td class="py-3 px-4 text-center font-mono text-slate-400">Pos ${row.gender_pos}</td>
                                 <td class="py-3 px-4 text-right font-mono font-bold pr-6 text-brand-500">${row.time}</td>
