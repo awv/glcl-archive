@@ -8,8 +8,6 @@
     <script src="data.js"></script>
     <script src="assets/js/corrections.js"></script>
     <script src="site-layout.js"></script>
-    <!-- JSZip for Client-Side in-browser ZIP Generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -166,12 +164,6 @@
                     <button id="reset-filters-btn" class="text-xs font-mono font-bold text-slate-400 hover:text-slate-200 bg-slate-900 hover:bg-slate-800 px-3 py-2 rounded-xl border border-slate-800 transition cursor-pointer">
                         Reset Filters
                     </button>
-
-                    <!-- In-Browser ZIP Downloader Button -->
-                    <button id="download-zip-btn" disabled class="disabled:opacity-40 disabled:cursor-not-allowed inline-flex items-center gap-1.5 bg-brand-500 hover:bg-brand-400 text-white text-xs font-mono font-bold uppercase tracking-wider px-4 py-2 rounded-xl transition shadow-lg cursor-pointer">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                        <span>Download ZIP</span>
-                    </button>
                 </div>
             </div>
         </section>
@@ -280,26 +272,6 @@
         </div>
     </div>
 
-    <!-- ZIP DOWNLOAD PROGRESS MODAL -->
-    <div id="zip-progress-modal" class="hidden fixed inset-0 z-[9999] bg-slate-950/90 backdrop-blur flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-md w-full shadow-2xl text-center space-y-4">
-            <div class="w-12 h-12 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded-full flex items-center justify-center mx-auto text-xl">
-                📦
-            </div>
-            <div>
-                <h4 class="text-base font-black text-slate-100 uppercase tracking-tight">Creating ZIP Download</h4>
-                <p id="zip-progress-status" class="text-xs font-mono text-slate-400 mt-1">Preparing photos...</p>
-            </div>
-            <!-- Progress Bar -->
-            <div class="w-full bg-slate-950 rounded-full h-2.5 overflow-hidden border border-slate-800">
-                <div id="zip-progress-bar" class="bg-brand-500 h-full w-0 transition-all duration-150"></div>
-            </div>
-            <button id="zip-cancel-btn" class="text-xs font-mono text-slate-500 hover:text-slate-300 transition">
-                Cancel Download
-            </button>
-        </div>
-    </div>
-
     <!-- INJECTED GLOBAL FOOTER CONTAINER -->
     <div id="global-footer"></div>
 
@@ -334,7 +306,6 @@
 
         let lightboxList = [];
         let currentPhotoIndex = 0;
-        let zipAbortController = null;
 
         // --- 3. DOM ELEMENTS ---
         const albumSelector = document.getElementById("album-selector");
@@ -345,7 +316,6 @@
         const resultsCountEl = document.getElementById("results-count");
         const activeTagBadge = document.getElementById("active-tag-badge");
         const activeClubBadge = document.getElementById("active-club-badge");
-        const downloadZipBtn = document.getElementById("download-zip-btn");
 
         const fixtureInfoBanner = document.getElementById("fixture-info-banner");
         const fixtureBannerTitle = document.getElementById("fixture-banner-title");
@@ -383,12 +353,6 @@
         const modalCloseBtn = document.getElementById("modal-close-btn");
         const modalPrevBtn = document.getElementById("modal-prev-btn");
         const modalNextBtn = document.getElementById("modal-next-btn");
-
-        // Progress Modal Elements
-        const zipModal = document.getElementById("zip-progress-modal");
-        const zipStatus = document.getElementById("zip-progress-status");
-        const zipBar = document.getElementById("zip-progress-bar");
-        const zipCancelBtn = document.getElementById("zip-cancel-btn");
 
         // --- 4. HELPERS ---
         const normClub = (c) => (c || '').replace('&', 'and').replace(/[^a-z0-9]/gi, '').toLowerCase();
@@ -613,7 +577,6 @@
                     emptyMessageText.innerHTML = "Type a runner name or bib number above to find their photos across the entire GLCL archive.";
                     showAllPhotosBtn.classList.add("hidden");
                     resultsCountEl.textContent = "Search ready";
-                    downloadZipBtn.disabled = true;
                     paginationContainer.classList.add("hidden");
                 }
                 return;
@@ -880,7 +843,6 @@
 
             if (total === 0) {
                 galleryEmpty.classList.remove("hidden");
-                downloadZipBtn.disabled = true;
                 paginationContainer.classList.add("hidden");
                 resultsCountEl.textContent = "0 photos";
 
@@ -902,7 +864,6 @@
             }
 
             galleryEmpty.classList.add("hidden");
-            downloadZipBtn.disabled = false;
             
             // Results Summary text
             if (activeClub && activeSearchQuery) {
@@ -1087,69 +1048,7 @@
             }
         };
 
-        // --- 13. IN-BROWSER ZIP GENERATOR ---
-        const downloadAsZip = async () => {
-            const photosToZip = currentFilteredPhotos;
-            if (photosToZip.length === 0) return;
-
-            zipModal.classList.remove("hidden");
-            zipBar.style.width = "0%";
-            zipStatus.textContent = `Preparing ${photosToZip.length} photos...`;
-
-            zipAbortController = new AbortController();
-            const zip = new JSZip();
-            const total = Math.min(photosToZip.length, 150); // Safe batch limit
-            let completed = 0;
-
-            try {
-                for (let i = 0; i < total; i++) {
-                    if (zipAbortController.signal.aborted) throw new Error("Cancelled by user");
-
-                    const photo = photosToZip[i];
-                    const imgUrl = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
-                    const filename = `GLCL_${photo.id}.jpg`;
-
-                    zipStatus.textContent = `Downloading photo ${i + 1} of ${total}...`;
-                    const response = await fetch(imgUrl, { signal: zipAbortController.signal });
-                    const blob = await response.blob();
-                    zip.file(filename, blob);
-
-                    completed++;
-                    const pct = Math.round((completed / total) * 100);
-                    zipBar.style.width = `${pct}%`;
-                }
-
-                zipStatus.textContent = "Compiling ZIP bundle...";
-                const zipBlob = await zip.generateAsync({ type: "blob" }, (metadata) => {
-                    zipBar.style.width = `${Math.round(metadata.percent)}%`;
-                });
-
-                const downloadUrl = URL.createObjectURL(zipBlob);
-                const a = document.createElement("a");
-                a.href = downloadUrl;
-                const safeName = (activeSearchQuery || activeClub || (selectedAlbumObj ? selectedAlbumObj.venue : "GLCL_Photos"))
-                    .replace(/[^a-zA-Z0-9_-]/g, "_");
-                a.download = `GLCL_${safeName}.zip`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(downloadUrl);
-
-                zipStatus.textContent = "Complete!";
-                setTimeout(() => zipModal.classList.add("hidden"), 1000);
-
-            } catch (err) {
-                if (err.message === "Cancelled by user") {
-                    console.log("ZIP download aborted");
-                } else {
-                    console.error("ZIP bundling error:", err);
-                    alert("Unable to compile ZIP. Browser may have run low on memory.");
-                }
-                zipModal.classList.add("hidden");
-            }
-        };
-
-        // --- 14. AUTOCOMPLETE ---
+        // --- 13. AUTOCOMPLETE ---
         const setupAutocomplete = () => {
             const runners = getAllRunners();
 
@@ -1298,11 +1197,6 @@
                     document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
                 }
             }
-        });
-
-        downloadZipBtn.addEventListener("click", downloadAsZip);
-        zipCancelBtn.addEventListener("click", () => {
-            if (zipAbortController) zipAbortController.abort();
         });
 
         // Lightbox buttons
