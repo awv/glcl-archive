@@ -608,5 +608,60 @@
     "new_runner": "Chris WREFORD",
     "new_club": "Caerleon RC",
     "reason": "OCR misread digit 9 as 1 (read 821); verified in burst sandwich"
+  },
+  "54162461997": {
+    "action": "strip_phantom",
+    "fixture": "2024/2025 xc R2",
+    "reason": "Bib numbers not found in fixture finisher list"
+  },
+  "54162471202": {
+    "action": "strip_phantom",
+    "fixture": "2024/2025 xc R2",
+    "reason": "Bib numbers not found in fixture finisher list"
+  },
+  "54163794175": {
+    "action": "strip_phantom",
+    "fixture": "2024/2025 xc R2",
+    "reason": "Bib numbers not found in fixture finisher list"
+  },
+  "54164202480": {
+    "action": "strip_phantom",
+    "fixture": "2024/2025 xc R2",
+    "reason": "Bib numbers not found in fixture finisher list"
+  },
+  "54164211340": {
+    "action": "strip_phantom",
+    "fixture": "2024/2025 xc R2",
+    "reason": "Bib numbers not found in fixture finisher list"
+  },
+  "54162908142": {
+    "action": "strip_phantom",
+    "fixture": "2024/2025 xc R2",
+    "reason": "Bib numbers not found in fixture finisher list"
+  },
+  "54164060648": {
+    "action": "strip_phantom",
+    "fixture": "2024/2025 xc R2",
+    "reason": "Bib numbers not found in fixture finisher list"
+  },
+  "54164262760": {
+    "action": "strip_phantom",
+    "fixture": "2024/2025 xc R2",
+    "reason": "Bib numbers not found in fixture finisher list"
+  },
+  "54164523328": {
+    "action": "strip_phantom",
+    "fixture": "2024/2025 xc R2",
+    "reason": "Bib numbers not found in fixture finisher list"
+  },
+  "54165832010": {
+    "action": "strip_phantom",
+    "fixture": "2024/2025 xc R2",
+    "reason": "Bib numbers not found in fixture finisher list"
+  },
+  "54164703832": {
+    "action": "strip_phantom",
+    "fixture": "2024/2025 xc R2",
+    "reason": "Bib numbers not found in fixture finisher list"
   }
 }
