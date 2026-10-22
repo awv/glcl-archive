@@ -1202,7 +1202,8 @@
 
                 if (photoSeason && athleteSeasonBibs.has(photoSeason)) {
                     const validBibsThisSeason = athleteSeasonBibs.get(photoSeason);
-                    if (rBib && !validBibsThisSeason.has(rBib)) return;
+                    const isNameVerified = Boolean(meta.name && getNameKey(meta.name) === finalMasterKey);
+                    if (!isNameVerified && rBib && !validBibsThisSeason.has(rBib)) return;
                 }
                 if (meta.club && !matchesAthleteClub(meta.club)) return;
 

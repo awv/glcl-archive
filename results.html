@@ -543,7 +543,9 @@
                         const runnerNameClean = formattedName.toLowerCase();
                         
                         // O(1) Instant Photo Lookup
-                        const candidatePhotos = (runnerBib && fixturePhotoMap.get(runnerBib)) || fixturePhotoMap.get(runnerNameClean) || [];
+                        const byBib = (runnerBib && fixturePhotoMap.get(runnerBib)) || [];
+                        const byName = fixturePhotoMap.get(runnerNameClean) || [];
+                        const candidatePhotos = [...byBib, ...byName];
                         const runnerPhotos = [];
                         const seenPids = new Set();
                         candidatePhotos.forEach(p => {
