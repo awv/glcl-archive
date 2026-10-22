@@ -128,6 +128,16 @@ python3 backend_tools/index_album.py --album-id <FLICKR_ALBUM_ID> --race-id xc_2
 python3 backend_tools/manage_tags.py --review assets/data/photos/xc_2026_race_1.json
 ```
 
+### 4. Historical & Unbibbed Race Photos
+For historical fixtures where bibs weren't worn (or obscured):
+- **Never guess based on early pack order / finish position.** In cross country, positions shuffle continuously across laps.
+- Tagging requires:
+  1. Direct, high-confidence facial match against known athlete galleries.
+  2. Distinctive physical markers (tattoos, personalized kit like *"OLLIE"* or *"JON"*).
+  3. Exact burst continuity (within 1–3s of a verified runner).
+- Any ambiguity must remain **unassigned** (`runners: []`).
+- Always run `python3 backend_tools/reconcile_photo_tags.py --apply` after updating tags to regenerate `assets/data/albums/<album_id>.json` and athlete photo indices.
+
 ---
 
 ## 🎨 Playbook D: Athlete Hero Header Photos & Framing

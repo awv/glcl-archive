@@ -64,3 +64,29 @@ Whenever new official race results arrive:
 * **Athlete Names**: Standardised format is `Forename SURNAME` (e.g. `Joby EYNON`, `Huw EVANS`).
 * **Name Changes / Merges**: Add married/changed names to `window.glclCorrections.nameChanges` in `assets/js/corrections.js` so past and present results merge under one career profile.
 * **Club Aliases**: Any new spelling variations or shorthand names must be registered in both `clubAliases` in `backend_tools/parse_fixtures.js` and `assets/js/corrections.js`.
+
+---
+
+## 📸 Historical & Unbibbed Photography Protocol
+
+For historical races (e.g. 2017/2018 XC) where bib numbers were not worn or were obscured:
+
+1. **Strict Zero-False-Data Standard**:
+   - **Never** infer runner identity solely from pack order / finish position early in the race (runners swap positions constantly during laps).
+   - Tagging requires:
+     - Direct, high-confidence facial match against verified anchor photos.
+     - Physical markers (distinctive tattoos, named shirts e.g. "OLLIE", "JON").
+     - Immediate multi-shot burst continuity (within 1–3s of a verified runner).
+   - If there is any ambiguity, the photo must remain **unassigned** (`runners: []`).
+
+2. **Per-Album Index Build**:
+   - Whenever photo tags are updated, run:
+     ```bash
+     python3 backend_tools/reconcile_photo_tags.py --apply
+     ```
+   - This writes lightweight per-album files to `assets/data/albums/<album_id>.json` and synchronises `assets/data/athlete_photos.json`.
+
+3. **Photo Viewer UX**:
+   - `athlete.html` displays race photos directly within native lightboxes with zero external links to Flickr.
+   - Bulk high-resolution ZIP downloading is strictly reserved for individual athletes on their own profile page (`athlete.html`).
+
