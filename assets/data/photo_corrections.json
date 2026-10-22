@@ -6968,5 +6968,145 @@
         "club": "Chepstow Harriers"
       }
     ]
+  },
+  "55443944761": {
+    "action": "manual_override",
+    "bib": "32",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "",
+    "old_runner": "",
+    "new_runner": "Harry WOODWARD",
+    "new_club": "Caldicot Running Club",
+    "reason": "Wore guest bib #32 on race day; mid-race loop in Parc Bryn Bach 2026"
+  },
+  "55443945046": {
+    "action": "manual_override",
+    "bib": "32",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "",
+    "old_runner": "",
+    "new_runner": "Harry WOODWARD",
+    "new_club": "Caldicot Running Club",
+    "reason": "Wore guest bib #32 on race day; mid-race loop in Parc Bryn Bach 2026"
+  },
+  "55444074878": {
+    "action": "manual_override",
+    "bib": "32",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "",
+    "old_runner": "",
+    "new_runner": "Harry WOODWARD",
+    "new_club": "Caldicot Running Club",
+    "reason": "Wore guest bib #32 on race day (UKA URN 7050036 in results file); finish straight sprint in Parc Bryn Bach 2026"
+  },
+  "55444075043": {
+    "action": "manual_override",
+    "bib": "32",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "",
+    "old_runner": "",
+    "new_runner": "Harry WOODWARD",
+    "new_club": "Caldicot Running Club",
+    "reason": "Wore guest bib #32 on race day; finish line crossing in Parc Bryn Bach 2026"
+  },
+  "55444116244": {
+    "action": "manual_override",
+    "bib": "32",
+    "fixture": "2025/2026 road R5",
+    "old_bib": "",
+    "old_runner": "",
+    "new_runner": "Harry WOODWARD",
+    "new_club": "Caldicot Running Club",
+    "reason": "Wore guest bib #32 on race day; finish funnel in Parc Bryn Bach 2026"
+  },
+  "55367779186": {
+    "action": "manual_override",
+    "bib": "32",
+    "fixture": "2025/2026 road R4",
+    "old_bib": "",
+    "old_runner": "",
+    "new_runner": "Harry WOODWARD",
+    "new_club": "Caldicot Running Club",
+    "reason": "Wore guest bib #32 on race day; verified in Cwmbran 2026 sequence"
+  },
+  "55367779996": {
+    "action": "manual_override",
+    "bib": "32",
+    "fixture": "2025/2026 road R4",
+    "old_bib": "",
+    "old_runner": "",
+    "new_runner": "Harry WOODWARD",
+    "new_club": "Caldicot Running Club",
+    "reason": "Wore guest bib #32 on race day; verified in Cwmbran 2026 sequence"
+  },
+  "55366896227": {
+    "action": "manual_override",
+    "bib": "32",
+    "fixture": "2025/2026 road R4",
+    "old_bib": "",
+    "old_runner": "",
+    "new_runner": "Harry WOODWARD",
+    "new_club": "Caldicot Running Club",
+    "reason": "Wore guest bib #32 on race day (UKA URN 7050036 in results file); verified in Cwmbran 2026 sequence"
+  },
+  "55366896537": {
+    "action": "manual_override",
+    "bib": "32",
+    "fixture": "2025/2026 road R4",
+    "old_bib": "",
+    "old_runner": "",
+    "new_runner": "Harry WOODWARD",
+    "new_club": "Caldicot Running Club",
+    "reason": "Wore guest bib #32 on race day; verified in Cwmbran 2026 sequence"
+  },
+  "55281032387": {
+    "action": "manual_override",
+    "bib": "32",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "",
+    "old_runner": "",
+    "new_runner": "Harry WOODWARD",
+    "new_club": "Caldicot Running Club",
+    "reason": "Wore guest bib #32 on race day (UKA URN 7050036 in results file); verified in Blaenavon 2026 sequence"
+  },
+  "55281033157": {
+    "action": "manual_override",
+    "bib": "32",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "",
+    "old_runner": "",
+    "new_runner": "Harry WOODWARD",
+    "new_club": "Caldicot Running Club",
+    "reason": "Wore guest bib #32 alongside #2099 Joseph Matthews; verified in Blaenavon 2026 sequence"
+  },
+  "55281951336": {
+    "action": "manual_override",
+    "bib": "32",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "2099",
+    "old_runner": "Joseph MATTHEWS",
+    "new_runner": "Harry WOODWARD",
+    "new_club": "Caldicot Running Club",
+    "reason": "Wore guest bib #32 alongside #2099 Joseph Matthews; verified in Blaenavon 2026 sequence"
+  },
+  "55281951926": {
+    "action": "manual_override",
+    "bib": "32",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "",
+    "old_runner": "",
+    "new_runner": "Harry WOODWARD",
+    "new_club": "Caldicot Running Club",
+    "reason": "Wore guest bib #32 on race day; verified in Blaenavon 2026 sequence"
+  },
+  "55281952446": {
+    "action": "manual_override",
+    "bib": "32",
+    "fixture": "2025/2026 road R2",
+    "old_bib": "",
+    "old_runner": "",
+    "new_runner": "Harry WOODWARD",
+    "new_club": "Caldicot Running Club",
+    "reason": "Wore guest bib #32 on race day; verified in Blaenavon 2026 sequence"
   }
 }

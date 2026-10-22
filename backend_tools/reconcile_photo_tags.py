@@ -140,6 +140,14 @@ def reconcile(photo_tags, id_to_fixture, fixture_results, overrides=None, apply_
             entry["bib"] = str(ov.get("bib", entry.get("bib", ""))).strip()
             entry["name"] = ov.get("name", "").strip()
             entry["club"] = ov.get("club", "").strip()
+            if "runners" in ov and isinstance(ov["runners"], list):
+                entry["runners"] = ov["runners"]
+            elif entry["name"]:
+                existing_runners = list(entry.get("runners") or [])
+                names_in_existing = [r.get("name", "").lower() for r in existing_runners]
+                if entry["name"].lower() not in names_in_existing:
+                    existing_runners.append({"bib": entry["bib"], "name": entry["name"], "club": entry["club"]})
+                entry["runners"] = existing_runners
             updated_tags[pid] = entry
 
             corrections_log[pid] = {
