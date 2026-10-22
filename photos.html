@@ -414,55 +414,54 @@
             return data;
         };
 
-        // Fetch user's albums
-        const loadAlbums = async () => {
-            try {
-                const data = await callFlickr("flickr.photosets.getList", {
-                    user_id: FLICKR_CONFIG.userId,
-                    per_page: 500
-                });
-                
-                const sets = data.photosets?.photoset || [];
+        let fixtureAlbumsMap = {};
+        let ALLOWED_ALBUM_IDS = new Set();
 
-                // Filter strictly for GLCL race albums (excluding non-GLCL championships)
-                allAlbums = sets.filter(s => {
-                    const title = (s.title?._content || "").toLowerCase();
-                    if (title.includes("welsh") || title.includes("british and irish") || title.includes("championship")) {
-                        return false;
-                    }
-                    return title.includes("glcl");
-                });
-            } catch (err) {
-                console.warn("Flickr API getList failed, falling back to local fixture albums:", err);
-                try {
-                    const localRes = await fetch("assets/data/fixture_photo_albums.json");
-                    if (localRes.ok) {
-                        const localData = await localRes.json();
-                        const uniqueMap = new Map();
-                        Object.values(localData).forEach(alb => {
-                            if (alb && alb.album_id && !uniqueMap.has(alb.album_id)) {
-                                uniqueMap.set(alb.album_id, {
-                                    id: alb.album_id,
-                                    title: { _content: alb.title || `GLCL ${alb.venue || alb.season}` },
-                                    photos: alb.photos || 0
-                                });
-                            }
-                        });
-                        allAlbums = Array.from(uniqueMap.values());
-                    }
-                } catch (localErr) {
-                    console.error("Local albums fallback failed:", localErr);
+        const loadFixtureAlbums = async () => {
+            try {
+                const res = await fetch("assets/data/fixture_photo_albums.json");
+                if (res.ok) {
+                    fixtureAlbumsMap = await res.json();
+                    ALLOWED_ALBUM_IDS = new Set(
+                        Object.values(fixtureAlbumsMap)
+                            .map(a => a && a.album_id)
+                            .filter(Boolean)
+                    );
                 }
+            } catch (err) {
+                console.error("Failed to load fixture photo albums map:", err);
             }
+        };
+
+        // Fetch albums strictly from verified fixture albums whitelist
+        const loadAlbums = async () => {
+            if (ALLOWED_ALBUM_IDS.size === 0) {
+                await loadFixtureAlbums();
+            }
+
+            const uniqueMap = new Map();
+            Object.values(fixtureAlbumsMap).forEach(alb => {
+                if (alb && alb.album_id && !uniqueMap.has(alb.album_id)) {
+                    uniqueMap.set(alb.album_id, {
+                        id: alb.album_id,
+                        title: { _content: alb.title || `GLCL ${alb.venue || alb.season}` },
+                        photos: alb.photos || 0,
+                        season: alb.season || "",
+                        venue: alb.venue || ""
+                    });
+                }
+            });
+
+            allAlbums = Array.from(uniqueMap.values());
 
             if (!allAlbums || allAlbums.length === 0) {
                 albumSelector.innerHTML = '<option value="" disabled selected>Unable to load albums</option>';
-                showError("Unable to load Flickr albums. Please check connection.");
+                showError("Unable to load GLCL photo albums.");
                 return;
             }
 
             albumSelector.innerHTML = "";
-            allAlbums.forEach((album, idx) => {
+            allAlbums.forEach((album) => {
                 const opt = document.createElement("option");
                 opt.value = album.id;
                 opt.textContent = `${album.title?._content || "Untitled"} (${album.photos || 0} photos)`;
@@ -474,7 +473,7 @@
                 const paramAlbum = urlParams.get("album");
                 
                 let targetIdx = 0;
-                if (paramAlbum) {
+                if (paramAlbum && ALLOWED_ALBUM_IDS.has(paramAlbum)) {
                     const found = allAlbums.findIndex(a => a.id === paramAlbum);
                     if (found !== -1) targetIdx = found;
                 }
@@ -485,8 +484,6 @@
                 selectedAlbumTotalPhotos = Number(allAlbums[targetIdx].photos) || 0;
                 
                 const paramPage = parseInt(urlParams.get("page"), 10) || 1;
-                await fetchAlbumPhotos(selectedAlbumId, paramPage);
-
                 const paramBib = urlParams.get("bib");
                 const paramName = urlParams.get("name");
                 const paramClub = urlParams.get("club");
@@ -495,6 +492,7 @@
                     clubFilter.value = paramClub;
                     activeSearchFilter.club = paramClub;
                 }
+
                 if (paramBib) {
                     bibInput.value = paramBib;
                     activeSearchFilter.bib = paramBib;
@@ -507,6 +505,8 @@
                     activeTagBadge.textContent = paramName;
                     activeTagBadge.classList.remove("hidden");
                     applyClientFilters();
+                } else {
+                    await fetchAlbumPhotos(selectedAlbumId, paramPage);
                 }
             } catch (initErr) {
                 console.error("Error initializing selected album:", initErr);
@@ -526,6 +526,12 @@
 
         // Fetch photos from selected album
         const fetchAlbumPhotos = async (albumId, page = 1) => {
+            if (!ALLOWED_ALBUM_IDS.has(String(albumId))) {
+                console.error("Blocked unauthorized album ID:", albumId);
+                showError("The requested album is not part of the GLCL archive.");
+                return;
+            }
+
             galleryLoader.classList.remove("hidden");
             photosGrid.innerHTML = "";
             galleryEmpty.classList.add("hidden");
@@ -622,82 +628,89 @@
         };
 
         // Search photos tagged with specific bib number
-        const searchPhotosByTag = async (tag) => {
+        const searchPhotosByTag = (tag) => {
             galleryLoader.classList.remove("hidden");
             photosGrid.innerHTML = "";
             galleryEmpty.classList.add("hidden");
             paginationContainer.classList.add("hidden");
 
-            try {
-                // Try searching with prefix variants: e.g. "bib104" and "104"
-                const cleanTag = tag.trim().replace(/^bib/i, "");
-                const tagQueries = [`bib${cleanTag}`, cleanTag];
-                
-                const data = await callFlickr("flickr.photos.search", {
-                    user_id: FLICKR_CONFIG.userId,
-                    tags: tagQueries.join(","),
-                    tag_mode: "any",
-                    extras: "tags,url_m,url_l,url_h,url_k,url_3k,url_4k,url_o,date_taken",
-                    per_page: 250
+            const cleanTag = tag.trim().replace(/^bib/i, "").toLowerCase();
+            
+            // Search solely within the verified offline photo index (assets/data/photo_tags.json)
+            // NEVER query Flickr account-level search across the user's personal account!
+            const matchedEntries = Object.entries(photoIndex).filter(([pid, meta]) => {
+                // Security check: Must belong to a verified GLCL fixture album
+                if (meta.album_id && !ALLOWED_ALBUM_IDS.has(String(meta.album_id))) {
+                    return false;
+                }
+                // If a specific album is currently selected, scope search to that album
+                if (selectedAlbumId && meta.album_id && String(meta.album_id) !== String(selectedAlbumId)) {
+                    return false;
+                }
+                const runners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
+                    ? meta.runners
+                    : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
+                return runners.some(r => 
+                    (r.bib && String(r.bib).toLowerCase() === cleanTag) || 
+                    (r.name && r.name.toLowerCase().includes(cleanTag))
+                );
+            });
+
+            let searchResults = [];
+            if (matchedEntries.length > 0) {
+                searchResults = matchedEntries.map(([pid, meta]) => {
+                    const runners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
+                        ? meta.runners
+                        : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
+                    const runnerTitles = runners.map(r => `${r.name} (Bib #${r.bib})`).join(" & ");
+                    return {
+                        id: pid,
+                        album_id: meta.album_id || selectedAlbumId,
+                        server: meta.server || "",
+                        secret: meta.secret || "",
+                        url_m: meta.url_m || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_m.jpg` : ''),
+                        url_l: meta.url_l || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : ''),
+                        url_h: meta.url_h,
+                        url_k: meta.url_k,
+                        url_3k: meta.url_3k,
+                        url_4k: meta.url_4k,
+                        title: runnerTitles || (meta.name ? `${meta.name} (Bib #${meta.bib})` : `Photo #${pid}`),
+                        indexedBib: meta.bib,
+                        indexedRunner: meta.name,
+                        indexedClub: meta.club,
+                        indexedRunners: runners,
+                        sharpness: meta.sharpness || 0,
+                        tags: `bib${meta.bib} ${meta.name} ${meta.club}`
+                    };
+                });
+            } else if (selectedAlbumId) {
+                // If 0 matches in this album, check if this bib has photos in other GLCL races
+                const otherMatches = Object.entries(photoIndex).filter(([pid, meta]) => {
+                    if (meta.album_id && !ALLOWED_ALBUM_IDS.has(String(meta.album_id))) return false;
+                    const runners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
+                        ? meta.runners
+                        : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
+                    return runners.some(r => (r.bib && String(r.bib).toLowerCase() === cleanTag));
                 });
 
-                galleryLoader.classList.add("hidden");
-                let searchResults = data.photos?.photo || [];
-
-                // If Flickr search had 0 results, fall back to locally indexed photos
-                if (searchResults.length === 0 && Object.keys(photoIndex).length > 0) {
-                    const clean = tag.trim().replace(/^bib/i, "").toLowerCase();
-                    const matchedEntries = Object.entries(photoIndex).filter(([pid, meta]) => {
-                        const runners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
-                            ? meta.runners
-                            : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
-                        return runners.some(r => 
-                            (r.bib && String(r.bib).toLowerCase() === clean) || 
-                            (r.name && r.name.toLowerCase().includes(clean))
-                        );
-                    });
-                    
-                    if (matchedEntries.length > 0) {
-                        const foundInCurrent = currentPhotos.filter(p => matchedEntries.some(([pid]) => String(p.id) === String(pid)));
-                        if (foundInCurrent.length > 0) {
-                            searchResults = foundInCurrent;
-                        } else {
-                            searchResults = matchedEntries.map(([pid, meta]) => {
-                                const runners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
-                                    ? meta.runners
-                                    : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
-                                const runnerTitles = runners.map(r => `${r.name} (Bib #${r.bib})`).join(" & ");
-                                return {
-                                    id: pid,
-                                    server: meta.server || "",
-                                    secret: meta.secret || "",
-                                    url_m: meta.url_m || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_m.jpg` : ''),
-                                    url_l: meta.url_l || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : ''),
-                                    url_h: meta.url_h,
-                                    url_k: meta.url_k,
-                                    url_3k: meta.url_3k,
-                                    url_4k: meta.url_4k,
-                                    title: runnerTitles || (meta.name ? `${meta.name} (Bib #${meta.bib})` : `Photo #${pid}`),
-                                    indexedBib: meta.bib,
-                                    indexedRunner: meta.name,
-                                    indexedClub: meta.club,
-                                    indexedRunners: runners,
-                                    sharpness: meta.sharpness || 0,
-                                    tags: `bib${meta.bib} ${meta.bib} ${meta.name} ${meta.club}`
-                                };
+                if (otherMatches.length > 0) {
+                    emptyMessageText.innerHTML = `No photos found for Bib #${cleanTag} in this race.<br><button id="btn-search-all-albums" class="mt-3 px-3 py-1.5 bg-brand-500 hover:bg-brand-400 text-white font-mono text-xs font-bold rounded-lg transition cursor-pointer">View ${otherMatches.length} photo(s) across other GLCL fixtures</button>`;
+                    setTimeout(() => {
+                        const btn = document.getElementById("btn-search-all-albums");
+                        if (btn) {
+                            btn.addEventListener("click", () => {
+                                selectedAlbumId = null;
+                                albumSelector.value = "";
+                                searchPhotosByTag(tag);
                             });
                         }
-                    }
+                    }, 50);
                 }
-
-                currentPhotos = searchResults;
-                applyClientFilters();
-
-            } catch (err) {
-                console.error("Tag search failed:", err);
-                galleryLoader.classList.add("hidden");
-                showError("Error searching Flickr by tag.");
             }
+
+            galleryLoader.classList.add("hidden");
+            currentPhotos = searchResults;
+            applyClientFilters();
         };
 
         // --- 4. FILTERING & RENDERING ---
@@ -709,9 +722,9 @@
                 const searchNum = activeSearchFilter.bib.toLowerCase().trim().replace(/^bib/i, "");
                 filtered = filtered.filter(p => {
                     if (p.indexedRunners && p.indexedRunners.some(r => r.bib && String(r.bib).toLowerCase() === searchNum)) return true;
-                    if (p.indexedBib && p.indexedBib.toLowerCase() === searchNum) return true;
+                    if (p.indexedBib && String(p.indexedBib).toLowerCase() === searchNum) return true;
                     const tagList = (p.tags || "").toLowerCase().split(/\s+/).filter(Boolean);
-                    return tagList.includes(`bib${searchNum}`) || tagList.includes(searchNum);
+                    return tagList.includes(`bib${searchNum}`);
                 });
             }
 
@@ -727,6 +740,8 @@
                 if (filtered.length === 0 && Object.keys(photoIndex).length > 0) {
                     const localMatches = Object.entries(photoIndex)
                         .filter(([pid, meta]) => {
+                            if (meta.album_id && !ALLOWED_ALBUM_IDS.has(String(meta.album_id))) return false;
+                            if (selectedAlbumId && meta.album_id && String(meta.album_id) !== String(selectedAlbumId)) return false;
                             const runners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
                                 ? meta.runners
                                 : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
@@ -752,7 +767,7 @@
                                 indexedRunner: meta.name,
                                 indexedClub: meta.club,
                                 indexedRunners: runners,
-                                tags: `bib${meta.bib} ${meta.bib} ${meta.name} ${meta.club}`
+                                tags: `bib${meta.bib} ${meta.name} ${meta.club}`
                             };
                         });
                     if (localMatches.length > 0) {
@@ -870,7 +885,7 @@
                 modalRunnerInfo.innerHTML = `Bib #${photo.indexedBib} • <a href="athlete.html?name=${encodeURIComponent(photo.indexedRunner)}" class="hover:underline text-brand-300 font-bold">${photo.indexedRunner}</a> (${photo.indexedClub || 'Independent'})`;
             } else {
                 const tags = (photo.tags || "").split(/\s+/);
-                const foundBibs = tags.map(t => t.replace(/^bib/i, "")).filter(t => /^\d+$/.test(t));
+                const foundBibs = tags.filter(t => /^bib\d+$/i.test(t)).map(t => t.replace(/^bib/i, ""));
                 
                 if (foundBibs.length > 0) {
                     const bibNum = foundBibs[0];
@@ -1147,10 +1162,11 @@
 
         // --- 9. INITIALIZATION ---
         document.addEventListener("DOMContentLoaded", async () => {
+            await loadFixtureAlbums();
             await loadPhotoIndex();
             populateClubs();
             setupAutocomplete();
-            loadAlbums();
+            await loadAlbums();
         });
     })();
     </script>

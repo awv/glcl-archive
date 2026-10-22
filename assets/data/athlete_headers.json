@@ -22,10 +22,12 @@
     "updatedAt": "2026-10-20T12:47:06.743Z"
   },
   "batchelor tim": {
-    "url": "assets/images/athletes/tim-batchelor.jpg",
+    "url": "https://live.staticflickr.com/65535/55368175425_0d0f6a5a94_b.jpg",
+    "photoId": "55368175425",
     "position": "center 11%",
+    "source": "flickr",
     "athlete": "Tim Batchelor",
-    "updatedAt": "2026-10-20T12:47:22.576Z"
+    "updatedAt": "2026-10-21T16:49:01.325Z"
   },
   "adam grey": {
     "url": "assets/images/athletes/adam-grey.jpg",
@@ -140,5 +142,121 @@
     "position": "center 0%",
     "athlete": "Dane Williams",
     "updatedAt": "2026-10-21T15:15:48.325Z"
+  },
+  "blore james": {
+    "url": "assets/images/athletes/james-blore.jpg",
+    "position": "center 0%",
+    "athlete": "James Blore",
+    "updatedAt": "2026-10-22T05:24:56.128Z"
+  },
+  "adam roberts": {
+    "url": "https://live.staticflickr.com/65535/54943798260_6be0c26dd0_b.jpg",
+    "photoId": "54943798260",
+    "position": "center 0%",
+    "source": "flickr",
+    "athlete": "Adam Roberts",
+    "updatedAt": "2026-10-22T05:25:38.928Z"
+  },
+  "joseph matthews": {
+    "url": "https://live.staticflickr.com/65535/55282090453_31285b1013_b.jpg",
+    "photoId": "55282090453",
+    "position": "center 9%",
+    "source": "flickr",
+    "athlete": "Joseph Matthews",
+    "updatedAt": "2026-10-22T05:25:59.161Z"
+  },
+  "jones sam": {
+    "url": "assets/images/athletes/sam-jones.jpg",
+    "position": "center 0%",
+    "athlete": "Sam Jones",
+    "updatedAt": "2026-10-22T05:26:32.544Z"
+  },
+  "jed wherlock": {
+    "url": "assets/images/athletes/jed-wherlock.jpg",
+    "position": "center 3%",
+    "athlete": "Jed Wherlock",
+    "updatedAt": "2026-10-22T05:26:47.795Z"
+  },
+  "iestyn rhodes": {
+    "url": "assets/images/athletes/iestyn-rhodes.jpg",
+    "position": "center 0%",
+    "athlete": "Iestyn Rhodes",
+    "updatedAt": "2026-10-22T05:27:02.061Z"
+  },
+  "chinnick tom": {
+    "url": "https://live.staticflickr.com/65535/55367940843_596567157c_b.jpg",
+    "photoId": "55367940843",
+    "position": "center 24%",
+    "source": "flickr",
+    "athlete": "Tom Chinnick",
+    "updatedAt": "2026-10-22T05:27:24.844Z"
+  },
+  "ricci watts": {
+    "url": "https://live.staticflickr.com/65535/54943912029_a9cf5c2e55_b.jpg",
+    "photoId": "54943912029",
+    "position": "center 17%",
+    "source": "flickr",
+    "athlete": "Ricci Watts",
+    "updatedAt": "2026-10-22T05:27:44.927Z"
+  },
+  "campbell-adams eddie": {
+    "url": "assets/images/athletes/eddie-campbell-adams.jpg",
+    "position": "center 6%",
+    "athlete": "Eddie Campbell-adams",
+    "updatedAt": "2026-10-22T05:27:54.860Z"
+  },
+  "ben saunders": {
+    "url": "https://live.staticflickr.com/65535/55025073713_284fbbe693_b.jpg",
+    "photoId": "55025073713",
+    "position": "center 17%",
+    "source": "flickr",
+    "athlete": "Ben Saunders",
+    "updatedAt": "2026-10-22T05:28:09.344Z"
+  },
+  "harvey william": {
+    "url": "https://live.staticflickr.com/65535/55444012539_f3ed2d949c_b.jpg",
+    "photoId": "55444012539",
+    "position": "center 25%",
+    "source": "flickr",
+    "athlete": "William Harvey",
+    "updatedAt": "2026-10-22T05:28:25.286Z"
+  },
+  "goncalves ryan": {
+    "url": "assets/images/athletes/ryan-goncalves.jpg",
+    "position": "center 5%",
+    "athlete": "Ryan Goncalves",
+    "updatedAt": "2026-10-22T05:28:43.010Z"
+  },
+  "brisco thomas williams": {
+    "url": "https://live.staticflickr.com/65535/55368020719_4c6fe82da2_b.jpg",
+    "photoId": "55368020719",
+    "position": "center 9%",
+    "source": "flickr",
+    "athlete": "Thomas Brisco Williams",
+    "updatedAt": "2026-10-22T05:28:56.861Z"
+  },
+  "briggs douglas": {
+    "url": "https://live.staticflickr.com/65535/55443974788_59c5a889d1_b.jpg",
+    "photoId": "55443974788",
+    "position": "center 25%",
+    "source": "flickr",
+    "athlete": "Douglas Briggs",
+    "updatedAt": "2026-10-22T05:29:19.653Z"
+  },
+  "emma wookey": {
+    "url": "https://live.staticflickr.com/65535/54943866894_01a81073f1_b.jpg",
+    "photoId": "54943866894",
+    "position": "center 6%",
+    "source": "flickr",
+    "athlete": "Emma Wookey",
+    "updatedAt": "2026-10-22T05:29:34.786Z"
+  },
+  "christian murphy": {
+    "url": "https://live.staticflickr.com/65535/55443847566_90ded4414a_b.jpg",
+    "photoId": "55443847566",
+    "position": "center 17%",
+    "source": "flickr",
+    "athlete": "Christian Murphy",
+    "updatedAt": "2026-10-22T05:30:00.777Z"
   }
 }
