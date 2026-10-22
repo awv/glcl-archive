@@ -1450,8 +1450,6 @@
             const modalRunnerName = document.getElementById('modal-runner-name');
             const modalRunnerClub = document.getElementById('modal-runner-club');
             const modalDirectDownload = document.getElementById('modal-direct-download');
-            const modalAlbumLink = document.getElementById('modal-album-link');
-            const modalMobileAlbumLink = document.getElementById('modal-mobile-album-link');
             const modalImgVenueOverlay = document.getElementById('modal-img-venue-overlay');
             const modalCloseBtn = document.getElementById('modal-close-btn');
             const modalPrevBtn = document.getElementById('modal-prev-btn');
@@ -1527,25 +1525,6 @@
                 if (modalImgVenueOverlay) {
                     modalImgVenueOverlay.textContent = raceTitle;
                     modalImgVenueOverlay.classList.remove('hidden');
-                }
-
-                if (photo.album_id) {
-                    const albumUrl = `photos.html?album=${photo.album_id}`;
-                    if (modalAlbumLink) {
-                        modalAlbumLink.href = albumUrl;
-                        modalAlbumLink.removeAttribute("target");
-                        modalAlbumLink.removeAttribute("rel");
-                        modalAlbumLink.classList.remove('hidden');
-                    }
-                    if (modalMobileAlbumLink) {
-                        modalMobileAlbumLink.href = albumUrl;
-                        modalMobileAlbumLink.removeAttribute("target");
-                        modalMobileAlbumLink.removeAttribute("rel");
-                        modalMobileAlbumLink.classList.remove('hidden');
-                    }
-                } else {
-                    if (modalAlbumLink) modalAlbumLink.classList.add('hidden');
-                    if (modalMobileAlbumLink) modalMobileAlbumLink.classList.add('hidden');
                 }
 
                 if (modalPrevBtn) modalPrevBtn.disabled = currentAthletePhotoIndex === 0;
@@ -2054,12 +2033,6 @@
                     <span class="hidden sm:inline">Download</span>
                 </a>
 
-                <!-- Flickr Album Link -->
-                <a id="modal-album-link" href="#" target="_blank" class="hidden md:inline-flex items-center gap-1 text-xs font-mono font-bold text-amber-300 hover:text-amber-200 bg-amber-400/10 hover:bg-amber-400/20 border border-amber-400/30 px-2.5 py-1.5 rounded-lg transition" title="Search all photos in this fixture album">
-                    <span>Flickr</span>
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                </a>
-
                 <!-- Close Button -->
                 <button id="modal-close-btn" class="p-1.5 md:p-2 text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 rounded-lg border border-slate-800 transition cursor-pointer" aria-label="Close photo viewer">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -2105,11 +2078,8 @@
             </div>
 
             <!-- Bottom Meta -->
-            <div class="flex items-center justify-between text-[11px] font-mono text-slate-500 px-2 pt-1 border-t border-slate-900/60">
+            <div class="flex items-center justify-center text-[11px] font-mono text-slate-500 px-2 pt-1 border-t border-slate-900/60 text-center">
                 <span class="truncate">All photos © Robert Gale (Parc Bryn Bach RC) • Free personal use</span>
-                <a id="modal-mobile-album-link" href="#" target="_blank" class="md:hidden text-amber-400 hover:text-amber-300 font-bold shrink-0 ml-2">
-                    Flickr Album →
-                </a>
             </div>
         </footer>
     </div>
