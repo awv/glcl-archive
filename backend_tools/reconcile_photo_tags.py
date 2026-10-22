@@ -102,6 +102,12 @@ def reconcile(photo_tags, id_to_fixture, fixture_results, overrides=None, apply_
 
     updated_tags = {}
     corrections_log = {}
+    if CORRECTIONS_FILE.exists():
+        try:
+            with open(CORRECTIONS_FILE) as f:
+                corrections_log = json.load(f)
+        except Exception:
+            corrections_log = {}
 
     stats = {
         "total": len(photo_tags),
