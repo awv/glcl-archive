@@ -445,7 +445,11 @@
             const getSavedAthleteHeader = () => {
                 const local = JSON.parse(localStorage.getItem('glcl_athlete_headers') || '{}');
                 const merged = { ...athleteHeadersFile, ...local };
-                return merged[finalMasterKey] || null;
+                const saved = merged[finalMasterKey] || null;
+                if (saved && saved.url && typeof saved.url === 'string' && saved.url.includes('staticflickr.com')) {
+                    saved.url = saved.url.replace(/_[msqtnzcw]\.jpg$/i, '_b.jpg');
+                }
+                return saved;
             };
 
             const saveAthleteHeaderConfig = (config) => {
@@ -453,8 +457,13 @@
                 if (!config) {
                     delete local[finalMasterKey];
                 } else {
+                    let saveUrl = config.url || '';
+                    if (saveUrl && typeof saveUrl === 'string' && saveUrl.includes('staticflickr.com')) {
+                        saveUrl = saveUrl.replace(/_[msqtnzcw]\.jpg$/i, '_b.jpg');
+                    }
                     local[finalMasterKey] = {
                         ...config,
+                        url: saveUrl,
                         athlete: targetAthlete,
                         updatedAt: new Date().toISOString()
                     };
@@ -476,6 +485,9 @@
             };
 
             const applyHeaderPhoto = (photoUrl, position = 'center 25%') => {
+                if (photoUrl && typeof photoUrl === 'string' && photoUrl.includes('staticflickr.com')) {
+                    photoUrl = photoUrl.replace(/_[msqtnzcw]\.jpg$/i, '_b.jpg');
+                }
                 const header = document.getElementById('athlete-header-container');
                 const mesh = document.getElementById('header-mesh');
                 const glow = document.getElementById('header-glow');
@@ -1195,6 +1207,7 @@
                 if (meta.club && !matchesAthleteClub(meta.club)) return;
 
                 seenPhotoIds.add(pid);
+                const highResUrl = meta.url_large || meta.url_l || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : (meta.url_m || ''));
                 matchedPhotos.push({
                     id: pid,
                     album_id: meta.album_id,
@@ -1205,7 +1218,8 @@
                     club: meta.club || targetClub,
                     sharpness: meta.sharpness || 0,
                     url_m: meta.url_m || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_m.jpg` : ''),
-                    url_large: meta.url_large || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : (meta.url_m || ''))
+                    url_large: highResUrl,
+                    url_l: highResUrl
                 });
             });
 
@@ -1724,8 +1738,8 @@
                         e.stopPropagation();
                         const photo = matchedPhotos[currentAthletePhotoIndex];
                         if (!photo) return;
-                        const highRes = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
-                        const url = photo.url_l || photo.url_m || highRes;
+                        const highRes = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_large || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
+                        const url = highRes || photo.url_m;
                         currentHeaderPhotoId = photo.id;
                         applyHeaderPhoto(url, currentActiveHeaderPos || 'center 25%');
                         saveAthleteHeaderConfig({
@@ -1770,7 +1784,11 @@
             const updatePickerPreview = (url, pos) => {
                 if (pickerLivePreview) {
                     if (url) {
-                        pickerLivePreview.style.backgroundImage = `url('${url}')`;
+                        let previewUrl = url;
+                        if (typeof previewUrl === 'string' && previewUrl.includes('staticflickr.com')) {
+                            previewUrl = previewUrl.replace(/_[msqtnzcw]\.jpg$/i, '_b.jpg');
+                        }
+                        pickerLivePreview.style.backgroundImage = `url('${previewUrl}')`;
                         pickerLivePreview.style.backgroundPosition = pos;
                         pickerLivePreview.style.display = '';
                     } else {
@@ -1794,8 +1812,8 @@
 
                 pickerPhotosGrid.innerHTML = matchedPhotos.map((photo, idx) => {
                     const imgThumb = photo.url_m || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg` : '');
-                    const photoUrl = photo.url_l || photo.url_m || imgThumb;
-                    const isCurrent = (currentHeaderPhotoId && photo.id === currentHeaderPhotoId) || (currentActiveHeaderUrl && (photoUrl === currentActiveHeaderUrl || (photo.url_l && photo.url_l === currentActiveHeaderUrl)));
+                    const photoUrl = photo.url_large || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : imgThumb);
+                    const isCurrent = (currentHeaderPhotoId && photo.id === currentHeaderPhotoId) || (currentActiveHeaderUrl && (photoUrl === currentActiveHeaderUrl || (photo.url_large && photo.url_large === currentActiveHeaderUrl) || (photo.url_l && photo.url_l === currentActiveHeaderUrl)));
 
                     let raceTitle = 'GLCL Race';
                     const album = (photo.album_id && albumById[photo.album_id]) || fixtureAlbums[photo.album_id];
@@ -1827,7 +1845,7 @@
                         const idx = parseInt(el.getAttribute('data-idx'), 10);
                         const photo = matchedPhotos[idx];
                         if (!photo) return;
-                        const url = photo.url_l || photo.url_m || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : '');
+                        const url = photo.url_large || photo.url_l || (photo.server && photo.secret ? `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg` : photo.url_m);
                         currentHeaderPhotoId = photo.id;
                         applyHeaderPhoto(url, currentActiveHeaderPos);
                         updatePickerPreview(url, currentActiveHeaderPos);

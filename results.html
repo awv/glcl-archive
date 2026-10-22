@@ -363,17 +363,17 @@
 
             if (fixtureAlbum) {
                 const photoCountStr = Number(fixtureAlbum.photos || 0).toLocaleString();
-                const flickrUrl = `https://www.flickr.com/photos/awv/albums/${fixtureAlbum.album_id}`;
+                const photosUrl = `photos.html?album=${fixtureAlbum.album_id}`;
                 
-                // Inject Header Photo Button (single, sleek, non-intrusive link to full album)
+                // Inject Header Photo Button (links to on-site race photography gallery)
                 const headerPhotoContainer = document.getElementById('fixture-photo-header-btn');
                 if (headerPhotoContainer) {
                     headerPhotoContainer.innerHTML = `
-                        <a href="${flickrUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold bg-brand-500/10 hover:bg-brand-500 text-brand-300 hover:text-white border border-brand-500/30 transition-all shadow-sm group" title="Open official Flickr photo album in new tab (${photoCountStr} photos)">
+                        <a href="${photosUrl}" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold bg-brand-500/10 hover:bg-brand-500 text-brand-300 hover:text-white border border-brand-500/30 transition-all shadow-sm group" title="View all ${photoCountStr} race photos on the site">
                             <span>📸</span>
                             <span>View Race Photos</span>
                             <span class="bg-brand-500/20 group-hover:bg-brand-400/30 text-[10px] font-mono px-1.5 py-0.5 rounded text-brand-200">${photoCountStr}</span>
-                            <span class="group-hover:translate-x-0.5 transition-transform">↗</span>
+                            <span class="group-hover:translate-x-0.5 transition-transform">→</span>
                         </a>
                     `;
                 }
@@ -726,14 +726,14 @@
                 }
 
                 if (albumId) {
-                    const albumUrl = `https://www.flickr.com/photos/awv/albums/${albumId}`;
+                    const albumUrl = `photos.html?album=${albumId}`;
                     viewerAlbumBtn.href = albumUrl;
-                    viewerAlbumBtn.target = "_blank";
-                    viewerAlbumBtn.rel = "noopener noreferrer";
+                    viewerAlbumBtn.removeAttribute("target");
+                    viewerAlbumBtn.removeAttribute("rel");
                     viewerAlbumBtn.classList.remove('hidden');
                     viewerMobileAlbumLink.href = albumUrl;
-                    viewerMobileAlbumLink.target = "_blank";
-                    viewerMobileAlbumLink.rel = "noopener noreferrer";
+                    viewerMobileAlbumLink.removeAttribute("target");
+                    viewerMobileAlbumLink.removeAttribute("rel");
                     viewerMobileAlbumLink.classList.remove('hidden');
                 } else {
                     viewerAlbumBtn.classList.add('hidden');

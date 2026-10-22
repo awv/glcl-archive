@@ -4,24 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GLCL Archive — Race Photography Search</title>
-    <script>
-        // Seamless redirection for legacy photo links
-        (function() {
-            const p = new URLSearchParams(window.location.search);
-            const name = p.get('name') || p.get('runner');
-            const bib = p.get('bib');
-            const album = p.get('album');
-            if (name) {
-                window.location.replace(`athlete.html?name=${encodeURIComponent(name)}`);
-            } else if (bib) {
-                window.location.replace(`athlete.html?bib=${encodeURIComponent(bib)}`);
-            } else if (album) {
-                window.location.replace(`https://www.flickr.com/photos/awv/albums/${album}`);
-            } else {
-                window.location.replace('gallery.html');
-            }
-        })();
-    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="data.js"></script>
     <script src="assets/js/corrections.js"></script>
