@@ -291,6 +291,67 @@ def reconcile(photo_tags, id_to_fixture, fixture_results, overrides=None, apply_
         with open(CORRECTIONS_FILE, "w") as f:
             json.dump(corrections_log, f, indent=2)
         print(f"  ✅ Logged {len(corrections_log)} corrections to {CORRECTIONS_FILE}")
+
+        # 4. Export lightweight per-album photo indices and athlete photo index for ultra-fast frontend loading
+        try:
+            albums_dir = Path("assets/data/albums")
+            albums_dir.mkdir(parents=True, exist_ok=True)
+            by_album = {}
+            athlete_map = {}
+
+            for pid, p in updated_tags.items():
+                aid = p.get("album_id")
+                runners = p.get("runners") or []
+                if runners or p.get("name") or p.get("bib"):
+                    # Per album
+                    if aid:
+                        if aid not in by_album:
+                            by_album[aid] = {}
+                        by_album[aid][pid] = {
+                            "id": pid,
+                            "album_id": aid,
+                            "server": p.get("server", ""),
+                            "secret": p.get("secret", ""),
+                            "bib": p.get("bib", ""),
+                            "name": p.get("name", ""),
+                            "club": p.get("club", ""),
+                            "runners": runners,
+                            "sharpness": p.get("sharpness", 0)
+                        }
+                    # Athlete index
+                    if not runners and p.get("name"):
+                        runners = [{"name": p["name"], "bib": p.get("bib", ""), "club": p.get("club", "")}]
+                    for r in runners:
+                        name = r.get("name", "").strip()
+                        if not name or name.lower() == "unknown":
+                            continue
+                        key = name.lower()
+                        if key not in athlete_map:
+                            athlete_map[key] = []
+                        athlete_map[key].append({
+                            "id": pid,
+                            "album_id": aid or "",
+                            "server": p.get("server", ""),
+                            "secret": p.get("secret", ""),
+                            "bib": r.get("bib", p.get("bib", "")),
+                            "name": name,
+                            "club": r.get("club", p.get("club", "")),
+                            "sharpness": p.get("sharpness", 0)
+                        })
+
+            for aid, alb_photos in by_album.items():
+                with open(albums_dir / f"{aid}.json", "w") as af:
+                    json.dump(alb_photos, af, separators=(",", ":"))
+
+            for k in athlete_map:
+                athlete_map[k].sort(key=lambda x: x.get("sharpness", 0), reverse=True)
+
+            with open("assets/data/athlete_photos.json", "w") as atf:
+                json.dump(athlete_map, atf, separators=(",", ":"))
+
+            print(f"  ✅ Exported {len(by_album)} per-album photo files and athlete_photos.json ({len(athlete_map)} athletes)")
+        except Exception as exp_err:
+            print(f"  ⚠️ Lightweight index export failed: {exp_err}")
     else:
         print("\nℹ️ Dry-run complete. Run with --apply to write changes to disk.")
 

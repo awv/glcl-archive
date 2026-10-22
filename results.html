@@ -66,11 +66,6 @@
 
     <main class="max-w-[1400px] w-full mx-auto px-4 py-12 space-y-12 flex-grow">
 
-        <!-- FIXTURE PHOTO ALBUM BANNER SECTION -->
-        <section id="fixture-photo-banner-section" class="hidden">
-            <!-- Dynamically populated if race photo album exists -->
-        </section>
-
         <!-- CATEGORY WINNERS GRID SECTION -->
         <section id="category-winners-section" class="space-y-4">
             <h2 class="text-xs font-black tracking-widest text-slate-500 uppercase">Age Category Winners</h2>
@@ -204,18 +199,45 @@
 
             const selectedSeason = rawSeason.replace('_', '/');
 
-            // Load photo albums and verified photo tags mapping
+            // Load photo albums mapping
             let fixtureAlbums = {};
-            let photoTags = {};
             try {
-                const [albumRes, tagRes] = await Promise.all([
-                    fetch('assets/data/fixture_photo_albums.json'),
-                    fetch('assets/data/photo_tags.json')
-                ]);
+                const albumRes = await fetch('assets/data/fixture_photo_albums.json');
                 if (albumRes.ok) fixtureAlbums = await albumRes.json();
-                if (tagRes.ok) photoTags = await tagRes.json();
             } catch (e) {
-                console.log("Photo data loading fallback", e);
+                console.log("Fixture photo albums fallback", e);
+            }
+
+            const fixtureKey1 = `${selectedSeason}_${discipline.toLowerCase()}_${raceNum}`;
+            const fixtureKey2 = `${rawSeason}_${discipline.toLowerCase()}_${raceNum}`;
+            const fixtureAlbum = fixtureAlbums[fixtureKey1] || fixtureAlbums[fixtureKey2] || null;
+
+            // Load lightweight photo tags strictly for this fixture album (only ~400KB, instant load)
+            const fixturePhotoMap = new Map();
+            if (fixtureAlbum && fixtureAlbum.album_id) {
+                try {
+                    const albumPhotosRes = await fetch(`assets/data/albums/${fixtureAlbum.album_id}.json`);
+                    if (albumPhotosRes.ok) {
+                        const albumPhotos = await albumPhotosRes.json();
+                        Object.values(albumPhotos).forEach(p => {
+                            const runners = (p.runners && p.runners.length > 0) ? p.runners : [{ bib: p.bib, name: p.name, club: p.club }];
+                            runners.forEach(r => {
+                                if (r.bib) {
+                                    const b = String(r.bib).trim();
+                                    if (!fixturePhotoMap.has(b)) fixturePhotoMap.set(b, []);
+                                    fixturePhotoMap.get(b).push(p);
+                                }
+                                if (r.name) {
+                                    const n = r.name.toLowerCase().trim();
+                                    if (!fixturePhotoMap.has(n)) fixturePhotoMap.set(n, []);
+                                    fixturePhotoMap.get(n).push(p);
+                                }
+                            });
+                        });
+                    }
+                } catch (err) {
+                    console.log("Fixture album photo tags fallback", err);
+                }
             }
             
             window.addEventListener('navLoaded', () => {
@@ -339,51 +361,21 @@
             document.getElementById('fixture-meta').textContent = `Fixture ${raceNum} — GLCL ${discipline.toUpperCase()}`;
             document.getElementById('fixture-sub').textContent = `${meta.date} • Course Distance: ${meta.distance || 'N/A'}`;
 
-            // Check if Flickr race photography album is available for this fixture
-            const fixtureKey1 = `${selectedSeason}_${discipline.toLowerCase()}_${raceNum}`;
-            const fixtureKey2 = `${rawSeason}_${discipline.toLowerCase()}_${raceNum}`;
-            const fixtureAlbum = fixtureAlbums[fixtureKey1] || fixtureAlbums[fixtureKey2] || null;
-
             if (fixtureAlbum) {
                 const photoCountStr = Number(fixtureAlbum.photos || 0).toLocaleString();
+                const flickrUrl = `https://www.flickr.com/photos/awv/albums/${fixtureAlbum.album_id}`;
                 
-                // Inject Header Photo Button
+                // Inject Header Photo Button (single, sleek, non-intrusive link to full album)
                 const headerPhotoContainer = document.getElementById('fixture-photo-header-btn');
                 if (headerPhotoContainer) {
                     headerPhotoContainer.innerHTML = `
-                        <a href="photos.html?album=${fixtureAlbum.album_id}" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold bg-brand-500/10 hover:bg-brand-500 text-brand-300 hover:text-white border border-brand-500/30 transition-all shadow-sm group">
+                        <a href="${flickrUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold bg-brand-500/10 hover:bg-brand-500 text-brand-300 hover:text-white border border-brand-500/30 transition-all shadow-sm group" title="Open official Flickr photo album in new tab (${photoCountStr} photos)">
                             <span>📸</span>
                             <span>View Race Photos</span>
                             <span class="bg-brand-500/20 group-hover:bg-brand-400/30 text-[10px] font-mono px-1.5 py-0.5 rounded text-brand-200">${photoCountStr}</span>
-                            <span class="group-hover:translate-x-0.5 transition-transform">→</span>
+                            <span class="group-hover:translate-x-0.5 transition-transform">↗</span>
                         </a>
                     `;
-                }
-
-                // Inject Photo Banner Section
-                const photoBannerSection = document.getElementById('fixture-photo-banner-section');
-                if (photoBannerSection) {
-                    photoBannerSection.innerHTML = `
-                        <div class="border border-brand-500/30 bg-gradient-to-r from-brand-950/40 via-slate-900/60 to-slate-950 rounded-2xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xl">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-2xl shrink-0">
-                                    📸
-                                </div>
-                                <div>
-                                    <div class="flex items-center gap-2 flex-wrap">
-                                        <h3 class="text-sm font-bold text-slate-100 uppercase tracking-wider">${fixtureAlbum.title || 'Official Race Photography'}</h3>
-                                        <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/30 font-bold">${photoCountStr} Photos</span>
-                                    </div>
-                                    <p class="text-xs text-slate-400 mt-1">High-resolution race photography by Robert Gale. Search by bib number, runner name, or club to find your action shots.</p>
-                                </div>
-                            </div>
-                            <a href="photos.html?album=${fixtureAlbum.album_id}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-brand-600 hover:bg-brand-500 text-white transition-all shrink-0 shadow-lg shadow-brand-500/20 border border-brand-400/30">
-                                <span>Browse Race Photos</span>
-                                <span>→</span>
-                            </a>
-                        </div>
-                    `;
-                    photoBannerSection.classList.remove('hidden');
                 }
             }
 
@@ -550,41 +542,26 @@
                         const runnerBib = row.bib && row.bib !== '-' ? String(row.bib).trim() : '';
                         const runnerNameClean = formattedName.toLowerCase();
                         
+                        // O(1) Instant Photo Lookup
+                        const candidatePhotos = (runnerBib && fixturePhotoMap.get(runnerBib)) || fixturePhotoMap.get(runnerNameClean) || [];
                         const runnerPhotos = [];
-                        if (photoTags) {
-                            Object.entries(photoTags).forEach(([pid, p]) => {
-                                const albumMatches = !fixtureAlbum || String(p.album_id) === String(fixtureAlbum.album_id);
-                                if (albumMatches) {
-                                    let matchesThisRunner = false;
-                                    if (p.runners && Array.isArray(p.runners) && p.runners.length > 0) {
-                                        matchesThisRunner = p.runners.some(r => {
-                                            const nameMatch = Boolean(r.name && r.name.toLowerCase() === runnerNameClean);
-                                            const bibMatch = Boolean(runnerBib && String(r.bib) === runnerBib && (!r.name || r.name.toLowerCase() === runnerNameClean));
-                                            return nameMatch || bibMatch;
-                                        });
-                                    } else {
-                                        const nameMatch = Boolean(p.name && p.name.toLowerCase() === runnerNameClean);
-                                        const bibMatch = Boolean(runnerBib && String(p.bib) === runnerBib && (!p.name || p.name.toLowerCase() === runnerNameClean));
-                                        matchesThisRunner = nameMatch || bibMatch;
-                                    }
-
-                                    if (matchesThisRunner) {
-                                        runnerPhotos.push({
-                                            id: pid,
-                                            bib: p.bib || runnerBib,
-                                            name: p.name || formattedName,
-                                            club: p.club || displayClub,
-                                            runners: p.runners || [{ bib: p.bib || runnerBib, name: p.name || formattedName, club: p.club || displayClub }],
-                                            sharpness: p.sharpness || 0,
-                                            url_m: p.url_m || (p.server && p.secret ? `https://live.staticflickr.com/${p.server}/${pid}_${p.secret}_m.jpg` : ''),
-                                            url_large: p.url_3k || p.url_k || p.url_4k || p.url_h || p.url_l || (p.server && p.secret ? `https://live.staticflickr.com/${p.server}/${pid}_${p.secret}_b.jpg` : (p.url_m || ''))
-                                        });
-                                    }
-                                }
-                            });
-                            // Best Shot First: sort by sharpness
-                            runnerPhotos.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
-                        }
+                        const seenPids = new Set();
+                        candidatePhotos.forEach(p => {
+                            if (!seenPids.has(p.id)) {
+                                seenPids.add(p.id);
+                                runnerPhotos.push({
+                                    id: p.id,
+                                    bib: p.bib || runnerBib,
+                                    name: p.name || formattedName,
+                                    club: p.club || displayClub,
+                                    runners: p.runners || [{ bib: p.bib || runnerBib, name: p.name || formattedName, club: p.club || displayClub }],
+                                    sharpness: p.sharpness || 0,
+                                    url_m: p.url_m || (p.server && p.secret ? `https://live.staticflickr.com/${p.server}/${p.id}_${p.secret}_m.jpg` : ''),
+                                    url_large: p.url_large || (p.server && p.secret ? `https://live.staticflickr.com/${p.server}/${p.id}_${p.secret}_b.jpg` : (p.url_m || ''))
+                                });
+                            }
+                        });
+                        runnerPhotos.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
 
                         let photoIconHtml = '';
                         if (runnerPhotos.length > 0) {
@@ -602,16 +579,6 @@
                                     <span>📸</span>
                                     <span>${runnerPhotos.length}</span>
                                 </button>
-                            `;
-                        } else if (fixtureAlbum) {
-                            const searchParam = runnerBib ? `bib=${runnerBib}` : `name=${encodeURIComponent(formattedName)}`;
-                            photoIconHtml = `
-                                <a href="photos.html?album=${fixtureAlbum.album_id}&${searchParam}" 
-                                   title="Search photos for ${runnerBib ? `Bib #${runnerBib}` : formattedName}"
-                                   class="text-slate-600 hover:text-brand-400 transition ml-2 text-xs opacity-60 hover:opacity-100"
-                                   aria-label="Search race photos">
-                                    📸
-                                </a>
                             `;
                         }
 
@@ -759,11 +726,14 @@
                 }
 
                 if (albumId) {
-                    const searchParam = runnerBib ? `bib=${runnerBib}` : `name=${encodeURIComponent(runnerName)}`;
-                    const albumUrl = `photos.html?album=${albumId}&${searchParam}`;
+                    const albumUrl = `https://www.flickr.com/photos/awv/albums/${albumId}`;
                     viewerAlbumBtn.href = albumUrl;
+                    viewerAlbumBtn.target = "_blank";
+                    viewerAlbumBtn.rel = "noopener noreferrer";
                     viewerAlbumBtn.classList.remove('hidden');
                     viewerMobileAlbumLink.href = albumUrl;
+                    viewerMobileAlbumLink.target = "_blank";
+                    viewerMobileAlbumLink.rel = "noopener noreferrer";
                     viewerMobileAlbumLink.classList.remove('hidden');
                 } else {
                     viewerAlbumBtn.classList.add('hidden');

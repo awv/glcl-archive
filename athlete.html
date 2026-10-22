@@ -172,10 +172,6 @@
                         <span>📦</span>
                         <span class="hidden sm:inline">ZIP Download</span>
                     </button>
-                    <a id="athlete-all-photos-link" href="#" target="_blank" class="inline-flex items-center gap-1 text-xs font-mono font-bold text-slate-400 hover:text-amber-300 px-2 py-1.5 transition" title="Search Flickr archive">
-                        <span>Flickr</span>
-                        <span>→</span>
-                    </a>
                 </div>
             </div>
             
@@ -394,17 +390,17 @@
                 return;
             }
 
-            // Load verified photo tags, fixture albums mapping, and custom athlete headers
-            let photoTags = {};
+            // Load verified athlete photo index, fixture albums mapping, and custom athlete headers
+            let athletePhotos = {};
             let fixtureAlbums = {};
             let athleteHeadersFile = {};
             try {
-                const [tagRes, albumRes, hdrRes] = await Promise.all([
-                    fetch('assets/data/photo_tags.json'),
+                const [photoRes, albumRes, hdrRes] = await Promise.all([
+                    fetch('assets/data/athlete_photos.json'),
                     fetch('assets/data/fixture_photo_albums.json'),
                     fetch('assets/data/athlete_headers.json')
                 ]);
-                if (tagRes.ok) photoTags = await tagRes.json();
+                if (photoRes.ok) athletePhotos = await photoRes.json();
                 if (albumRes.ok) fixtureAlbums = await albumRes.json();
                 if (hdrRes.ok) athleteHeadersFile = await hdrRes.json();
             } catch (e) {
@@ -1091,12 +1087,12 @@
 
                     let rowPhotoLink = '';
                     if (fixAlbum) {
-                        const bibParam = row.bib && row.bib !== '-' ? `bib=${row.bib}` : `name=${encodeURIComponent(targetAthlete)}`;
                         rowPhotoLink = `
-                            <a href="photos.html?album=${fixAlbum.album_id}&${bibParam}" 
-                               title="View race photos for ${row.venue}" 
+                            <a href="https://www.flickr.com/photos/awv/albums/${fixAlbum.album_id}" 
+                               target="_blank" rel="noopener noreferrer"
+                               title="View official Flickr photo album for ${row.venue}" 
                                class="text-slate-500 hover:text-amber-400 ml-2 transition text-xs opacity-60 hover:opacity-100"
-                               aria-label="View race photos">
+                               aria-label="View official race photo album">
                                 📸
                             </a>
                         `;
@@ -1171,35 +1167,46 @@
             const matchedPhotos = [];
             const seenPhotoIds = new Set();
 
-            Object.entries(photoTags).forEach(([pid, meta]) => {
-                if (seenPhotoIds.has(pid)) return;
+            // Direct candidate lookup from athlete_photos.json (instant O(1))
+            const targetLower = targetAthlete.toLowerCase().trim();
+            const rawCandidates = athletePhotos[targetLower] || [];
+            
+            // Also check order-independent key if direct key didn't yield matches
+            let candidateList = rawCandidates;
+            if (candidateList.length === 0) {
+                const foundKey = Object.keys(athletePhotos).find(k => getNameKey(k) === finalMasterKey);
+                if (foundKey) {
+                    candidateList = athletePhotos[foundKey] || [];
+                }
+            }
+
+            candidateList.forEach(meta => {
+                const pid = meta.id;
+                if (!pid || seenPhotoIds.has(pid)) return;
 
                 const album = (meta.album_id && albumById[meta.album_id]) || fixtureAlbums[meta.album_id] || null;
                 const photoSeason = album ? album.season : null;
+                const rBib = meta.bib ? String(meta.bib).trim() : '';
 
-                const runnerList = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
-                    ? meta.runners
-                    : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
-
-                if (runnerList.length === 0) return;
-
-                const matchesThisAthlete = runnerList.some(r => {
-                    const rName = (r.name || '').trim();
-                    if (!rName) return false;
-                    if (getNameKey(rName) !== finalMasterKey) return false;
-                    const rBib = r.bib ? String(r.bib).trim() : '';
-                    if (photoSeason && athleteSeasonBibs.has(photoSeason)) {
-                        const validBibsThisSeason = athleteSeasonBibs.get(photoSeason);
-                        if (rBib && !validBibsThisSeason.has(rBib)) return false;
-                    }
-                    if (r.club && !matchesAthleteClub(r.club)) return false;
-                    return true;
-                });
-
-                if (matchesThisAthlete) {
-                    seenPhotoIds.add(pid);
-                    matchedPhotos.push({ id: pid, ...meta });
+                if (photoSeason && athleteSeasonBibs.has(photoSeason)) {
+                    const validBibsThisSeason = athleteSeasonBibs.get(photoSeason);
+                    if (rBib && !validBibsThisSeason.has(rBib)) return;
                 }
+                if (meta.club && !matchesAthleteClub(meta.club)) return;
+
+                seenPhotoIds.add(pid);
+                matchedPhotos.push({
+                    id: pid,
+                    album_id: meta.album_id,
+                    server: meta.server,
+                    secret: meta.secret,
+                    bib: meta.bib,
+                    name: meta.name || targetAthlete,
+                    club: meta.club || targetClub,
+                    sharpness: meta.sharpness || 0,
+                    url_m: meta.url_m || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_m.jpg` : ''),
+                    url_large: meta.url_large || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : (meta.url_m || ''))
+                });
             });
 
             // Best Shot First: Sort photos by sharpness (crispest action shots first)
@@ -1217,15 +1224,11 @@
             const photosSection = document.getElementById('athlete-photos-section');
             const photosStrip = document.getElementById('athlete-photos-strip');
             const photoBadge = document.getElementById('athlete-photo-badge');
-            const allPhotosLink = document.getElementById('athlete-all-photos-link');
             const openLightboxBtn = document.getElementById('athlete-open-lightbox-btn');
 
             if (photosSection) {
                 if (matchedPhotos.length > 0) {
                     if (photoBadge) photoBadge.textContent = `${matchedPhotos.length} Photo${matchedPhotos.length > 1 ? 's' : ''}`;
-                    if (allPhotosLink) {
-                        allPhotosLink.href = `photos.html?name=${encodeURIComponent(targetAthlete)}`;
-                    }
 
                     if (photosStrip) {
                         const maxPreview = 10;
@@ -1513,14 +1516,17 @@
                 }
 
                 if (photo.album_id) {
-                    const searchParam = photo.bib ? `bib=${photo.bib}` : `name=${encodeURIComponent(targetAthlete)}`;
-                    const albumUrl = `photos.html?album=${photo.album_id}&${searchParam}`;
+                    const albumUrl = `https://www.flickr.com/photos/awv/albums/${photo.album_id}`;
                     if (modalAlbumLink) {
                         modalAlbumLink.href = albumUrl;
+                        modalAlbumLink.target = "_blank";
+                        modalAlbumLink.rel = "noopener noreferrer";
                         modalAlbumLink.classList.remove('hidden');
                     }
                     if (modalMobileAlbumLink) {
                         modalMobileAlbumLink.href = albumUrl;
+                        modalMobileAlbumLink.target = "_blank";
+                        modalMobileAlbumLink.rel = "noopener noreferrer";
                         modalMobileAlbumLink.classList.remove('hidden');
                     }
                 } else {
