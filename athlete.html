@@ -1100,11 +1100,10 @@
                     let rowPhotoLink = '';
                     if (fixAlbum) {
                         rowPhotoLink = `
-                            <a href="https://www.flickr.com/photos/awv/albums/${fixAlbum.album_id}" 
-                               target="_blank" rel="noopener noreferrer"
-                               title="View official Flickr photo album for ${row.venue}" 
+                            <a href="photos.html?album=${fixAlbum.album_id}" 
+                               title="View race photo gallery for ${row.venue}" 
                                class="text-slate-500 hover:text-amber-400 ml-2 transition text-xs opacity-60 hover:opacity-100"
-                               aria-label="View official race photo album">
+                               aria-label="View race photo gallery">
                                 📸
                             </a>
                         `;
@@ -1531,17 +1530,17 @@
                 }
 
                 if (photo.album_id) {
-                    const albumUrl = `https://www.flickr.com/photos/awv/albums/${photo.album_id}`;
+                    const albumUrl = `photos.html?album=${photo.album_id}`;
                     if (modalAlbumLink) {
                         modalAlbumLink.href = albumUrl;
-                        modalAlbumLink.target = "_blank";
-                        modalAlbumLink.rel = "noopener noreferrer";
+                        modalAlbumLink.removeAttribute("target");
+                        modalAlbumLink.removeAttribute("rel");
                         modalAlbumLink.classList.remove('hidden');
                     }
                     if (modalMobileAlbumLink) {
                         modalMobileAlbumLink.href = albumUrl;
-                        modalMobileAlbumLink.target = "_blank";
-                        modalMobileAlbumLink.rel = "noopener noreferrer";
+                        modalMobileAlbumLink.removeAttribute("target");
+                        modalMobileAlbumLink.removeAttribute("rel");
                         modalMobileAlbumLink.classList.remove('hidden');
                     }
                 } else {

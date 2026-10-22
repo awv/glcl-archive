@@ -251,8 +251,42 @@
 
             const allRecords = window.glclResults || [];
 
-            // PASS 1: AUTO-REPAIR & CLEAN DATASET
-            const repairedRecords = allRecords.map(row => {
+            // FILTER FIRST: Isolate records for this fixture before doing repairs (<1ms vs 3000ms!)
+            const targetDiscipline = discipline.toLowerCase();
+            const rawMatched = allRecords.filter(row => {
+                const s = row.season;
+                const d = (row.discipline || '').toLowerCase();
+                const r = parseInt(row.race_number, 10);
+                return (s === selectedSeason || s === rawSeason) && d === targetDiscipline && r === raceNum;
+            });
+
+            if (rawMatched.length === 0) {
+                document.getElementById('fixture-title').textContent = "No Records Found";
+                return;
+            }
+
+            // Quick lookup of runner->club across the dataset only for runners in this fixture who need club resolution
+            const athletesNeedingClub = new Set(
+                rawMatched
+                    .filter(r => !r.club || r.club === 'Unattached' || r.club === '1')
+                    .map(r => (r.name || '').toLowerCase())
+                    .filter(Boolean)
+            );
+            const athleteClubMap = {};
+            if (athletesNeedingClub.size > 0) {
+                for (let i = 0; i < allRecords.length; i++) {
+                    const row = allRecords[i];
+                    if (row.name && row.club && row.club !== 'Unattached' && row.club !== '1') {
+                        const n = row.name.toLowerCase();
+                        if (athletesNeedingClub.has(n)) {
+                            athleteClubMap[n] = formatClubName(row.club);
+                        }
+                    }
+                }
+            }
+
+            // PASS 1: AUTO-REPAIR & CLEAN ONLY THE FIXTURE'S ~300 RECORDS
+            const allMatched = rawMatched.map(row => {
                 let updated = { ...row };
                 let raw = updated.name || '';
                 let rawBib = updated.bib ? String(updated.bib).trim() : '';
@@ -324,32 +358,13 @@
                 if (updated.age_cat) updated.age_cat = formatAgeCat(updated.age_cat);
                 if (updated.club) updated.club = formatClubName(updated.club);
 
+                if ((!updated.club || updated.club === 'Unattached') && updated.name) {
+                    const knownClub = athleteClubMap[updated.name.toLowerCase()];
+                    if (knownClub) updated.club = knownClub;
+                }
+
                 return updated;
             });
-
-            // PASS 2: BUILD MASTER ATHLETE-TO-CLUB DICTIONARY FROM VALID ENTRIES
-            const athleteClubMap = {};
-            repairedRecords.forEach(row => {
-                if (row.name && row.club && row.club !== 'Unattached') {
-                    athleteClubMap[row.name.toLowerCase()] = row.club;
-                }
-            });
-
-            // PASS 3: INHERIT KNOWN CLUBS FOR UNATTACHED RECORDS
-            repairedRecords.forEach(row => {
-                if (row.club === 'Unattached' && row.name) {
-                    const knownClub = athleteClubMap[row.name.toLowerCase()];
-                    if (knownClub) {
-                        row.club = knownClub;
-                    }
-                }
-            });
-
-            const allMatched = repairedRecords.filter(row => 
-                row.season === selectedSeason && 
-                row.discipline.toLowerCase() === discipline.toLowerCase() && 
-                parseInt(row.race_number, 10) === raceNum
-            );
 
             if (allMatched.length === 0) {
                 document.getElementById('fixture-title').textContent = "No Records Found";

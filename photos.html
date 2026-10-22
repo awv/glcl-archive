@@ -68,18 +68,18 @@
     <!-- MAIN SEARCH & GALLERY WORKSPACE -->
     <main class="max-w-[1500px] mx-auto px-4 py-8 space-y-8 w-full flex-grow">
 
-        <!-- SEARCH CONTROLS PANEL -->
+        <!-- MODERN SEARCH & FILTER PANEL -->
         <section class="bg-slate-950 border border-slate-900 rounded-2xl p-5 md:p-6 shadow-2xl space-y-5">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
-                
-                <!-- 1. Event / Album Selector (Col 1-4) -->
-                <div class="md:col-span-4 space-y-1.5">
+            <!-- Top Controls Row: Race Selector + Omni-Search -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+                <!-- Race / Fixture Dropdown (Col 1-5) -->
+                <div class="lg:col-span-5 space-y-1.5">
                     <label for="album-selector" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">
-                        1. Select Race / Album
+                        Race / Fixture
                     </label>
                     <div class="relative">
-                        <select id="album-selector" class="w-full bg-slate-900 border border-slate-800 text-slate-200 text-xs font-medium rounded-xl px-4 py-3 appearance-none focus:outline-none focus:border-brand-500 transition-colors cursor-pointer">
-                            <option value="" disabled selected>Loading Flickr albums...</option>
+                        <select id="album-selector" class="w-full bg-slate-900 border border-slate-800 text-slate-200 text-xs md:text-sm font-medium rounded-xl px-4 py-3 appearance-none focus:outline-none focus:border-brand-500 transition-colors cursor-pointer">
+                            <option value="" disabled selected>Loading race albums...</option>
                         </select>
                         <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
@@ -87,22 +87,23 @@
                     </div>
                 </div>
 
-                <!-- 2. Search by Bib or Runner Name (Col 5-8) -->
-                <div class="md:col-span-5 space-y-1.5 relative">
+                <!-- Omni Search Input (Col 6-12) -->
+                <div class="lg:col-span-7 space-y-1.5 relative">
                     <label for="bib-search-input" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">
-                        2. Search Bib # or Runner Name
+                        Search Runner or Bib Number
                     </label>
                     <div class="relative">
-                        <input type="text" id="bib-search-input" placeholder="e.g. 104 or Joby Eynon..." autocomplete="off"
-                            class="w-full bg-slate-900 border border-slate-800 text-slate-100 placeholder-slate-600 rounded-xl px-4 py-3 text-xs md:text-sm font-medium focus:outline-none focus:border-brand-500 transition-colors shadow-inner">
+                        <input type="text" id="bib-search-input" placeholder="e.g. Harry Woodward or bib #32..." autocomplete="off"
+                            class="w-full bg-slate-900 border border-slate-800 text-slate-100 placeholder-slate-500 rounded-xl px-4 py-3 text-xs md:text-sm font-medium focus:outline-none focus:border-brand-500 transition-colors shadow-inner pl-10 pr-12">
+                        <div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
                         <div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
                             <button id="clear-search-btn" class="hidden text-slate-500 hover:text-slate-300 p-1" title="Clear search">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
                             </button>
-                            <span class="text-slate-600">|</span>
-                            <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
                         </div>
                     </div>
 
@@ -111,39 +112,63 @@
                         <!-- Injected dynamic suggestions -->
                     </div>
                 </div>
+            </div>
 
-                <!-- 3. Filter by Club Dropdown (Col 9-10) -->
-                <div class="md:col-span-3 space-y-1.5">
-                    <label for="club-filter" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">
-                        3. Filter by Club
-                    </label>
-                    <div class="relative">
-                        <select id="club-filter" class="w-full bg-slate-900 border border-slate-800 text-slate-200 text-xs font-medium rounded-xl px-4 py-3 appearance-none focus:outline-none focus:border-brand-500 transition-colors cursor-pointer">
-                            <option value="">All Member Clubs</option>
-                            <!-- Injected clubs -->
-                        </select>
-                        <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-                        </div>
+            <!-- Fixture Context & Info Banner (Appears when a fixture is selected) -->
+            <div id="fixture-info-banner" class="hidden bg-slate-900/60 border border-slate-800/80 rounded-xl p-3 md:p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span id="fixture-banner-title" class="font-bold text-slate-200 text-sm">Race Venue</span>
+                        <span id="fixture-banner-badge" class="bg-brand-500/20 text-brand-300 border border-brand-500/30 px-2 py-0.5 rounded text-[10px] font-bold">Season</span>
                     </div>
+                    <div id="fixture-banner-meta" class="text-slate-400 text-[11px] flex items-center gap-2 flex-wrap">
+                        <!-- e.g. 4 Aug 2026 • 3,356 photos -->
+                    </div>
+                </div>
+                <div id="fixture-banner-actions" class="flex items-center gap-2 shrink-0">
+                    <a id="fixture-results-link" href="#" class="hidden inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg text-xs font-bold transition border border-slate-700">
+                        <span>📊 View Results</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Global Archive Search Notice (Appears when 'ALL' is selected) -->
+            <div id="global-search-banner" class="hidden bg-brand-500/10 border border-brand-500/20 rounded-xl p-3 md:p-4 flex items-center gap-3 text-xs">
+                <span class="text-lg">🌐</span>
+                <div class="text-slate-300 leading-relaxed font-mono">
+                    <span class="font-bold text-brand-400">All GLCL Races Archive:</span>
+                    Searching across all 39 GLCL race albums (65,000+ photos). Type a runner name or bib number above to find all their race action shots across every season!
+                </div>
+            </div>
+
+            <!-- Dynamic Club Filter Chips Container (Only when a specific race is selected) -->
+            <div id="club-chips-container" class="space-y-2 pt-1 border-t border-slate-900/80">
+                <div class="flex items-center justify-between text-[11px] font-mono">
+                    <span class="font-bold uppercase tracking-wider text-slate-400">Filter by Club:</span>
+                    <span id="club-chips-hint" class="text-slate-500">Showing clubs in this race</span>
+                </div>
+                <div id="club-chips-list" class="flex flex-wrap gap-2">
+                    <!-- Injected dynamic chips -->
                 </div>
             </div>
 
             <!-- Active Search Summary & Action Bar -->
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-3 border-t border-slate-900/80">
-                <div class="flex items-center gap-2 text-xs font-mono">
-                    <span id="results-count" class="text-slate-400 font-bold">Ready</span>
+                <div class="flex items-center gap-2 text-xs font-mono flex-wrap">
+                    <span id="results-count" class="text-slate-300 font-bold">Ready</span>
                     <span id="active-tag-badge" class="hidden bg-brand-500/20 text-brand-300 border border-brand-500/30 px-2 py-0.5 rounded text-[10px] font-bold"></span>
+                    <span id="active-club-badge" class="hidden bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded text-[10px] font-bold"></span>
                 </div>
                 
                 <div class="flex items-center gap-2.5 w-full sm:w-auto">
                     <!-- Reset Filters Button -->
-                    <button id="reset-filters-btn" class="text-xs font-mono font-bold text-slate-400 hover:text-slate-200 bg-slate-900 hover:bg-slate-800 px-3 py-2 rounded-xl border border-slate-800 transition">
-                        Reset
+                    <button id="reset-filters-btn" class="text-xs font-mono font-bold text-slate-400 hover:text-slate-200 bg-slate-900 hover:bg-slate-800 px-3 py-2 rounded-xl border border-slate-800 transition cursor-pointer">
+                        Reset Filters
                     </button>
 
                     <!-- In-Browser ZIP Downloader Button -->
-                    <button id="download-zip-btn" disabled class="disabled:opacity-40 disabled:cursor-not-allowed inline-flex items-center gap-1.5 bg-brand-500 hover:bg-brand-400 text-white text-xs font-mono font-bold uppercase tracking-wider px-4 py-2 rounded-xl transition shadow-lg">
+                    <button id="download-zip-btn" disabled class="disabled:opacity-40 disabled:cursor-not-allowed inline-flex items-center gap-1.5 bg-brand-500 hover:bg-brand-400 text-white text-xs font-mono font-bold uppercase tracking-wider px-4 py-2 rounded-xl transition shadow-lg cursor-pointer">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                         <span>Download ZIP</span>
                     </button>
@@ -289,35 +314,56 @@
             perPage: 60
         };
 
-        // State
-        let allAlbums = [];
+        // --- 2. STATE ---
+        let fixtureAlbumsMap = {};
+        let ALLOWED_ALBUM_IDS = new Set();
+        let allAlbumsList = [];
         let selectedAlbumId = null;
-        let selectedAlbumTitle = "";
-        let currentPhotos = [];
-        let currentPhotoIndex = 0;
-        let currentPage = 1;
-        let totalPages = 1;
-        let activeSearchFilter = { bib: "", runnerName: "", club: "" };
-        let zipAbortController = null;
-        let photoIndex = {};
-        let selectedAlbumTotalPhotos = 0;
+        let selectedAlbumObj = null;
+        const albumPhotosCache = new Map();
+        let athletePhotosIndex = null;
+        let isFetchingAthleteIndex = false;
 
-        // Elements
+        let rawAlbumPhotos = [];
+        let activeClub = "";
+        let activeSearchQuery = "";
+        let currentFilteredPhotos = [];
+        let currentPage = 1;
+        const pageSize = 60;
+        let totalPages = 1;
+
+        let lightboxList = [];
+        let currentPhotoIndex = 0;
+        let zipAbortController = null;
+
+        // --- 3. DOM ELEMENTS ---
         const albumSelector = document.getElementById("album-selector");
         const bibInput = document.getElementById("bib-search-input");
         const autocompleteBox = document.getElementById("bib-autocomplete");
-        const clubFilter = document.getElementById("club-filter");
         const clearSearchBtn = document.getElementById("clear-search-btn");
         const resetFiltersBtn = document.getElementById("reset-filters-btn");
         const resultsCountEl = document.getElementById("results-count");
         const activeTagBadge = document.getElementById("active-tag-badge");
+        const activeClubBadge = document.getElementById("active-club-badge");
         const downloadZipBtn = document.getElementById("download-zip-btn");
+
+        const fixtureInfoBanner = document.getElementById("fixture-info-banner");
+        const fixtureBannerTitle = document.getElementById("fixture-banner-title");
+        const fixtureBannerBadge = document.getElementById("fixture-banner-badge");
+        const fixtureBannerMeta = document.getElementById("fixture-banner-meta");
+        const fixtureResultsLink = document.getElementById("fixture-results-link");
+        const globalSearchBanner = document.getElementById("global-search-banner");
+
+        const clubChipsContainer = document.getElementById("club-chips-container");
+        const clubChipsList = document.getElementById("club-chips-list");
+        const clubChipsHint = document.getElementById("club-chips-hint");
+
         const photosGrid = document.getElementById("photos-grid");
         const galleryLoader = document.getElementById("gallery-loader");
         const galleryEmpty = document.getElementById("gallery-empty");
         const emptyMessageText = document.getElementById("empty-message-text");
         const showAllPhotosBtn = document.getElementById("show-all-photos-btn");
-        
+
         // Pagination Elements
         const paginationContainer = document.getElementById("pagination-container");
         const paginationInfo = document.getElementById("pagination-info");
@@ -344,7 +390,15 @@
         const zipBar = document.getElementById("zip-progress-bar");
         const zipCancelBtn = document.getElementById("zip-cancel-btn");
 
-        // --- 2. DATASET RUNNER & CLUB LOOKUP HELPERS ---
+        // --- 4. HELPERS ---
+        const normClub = (c) => (c || '').replace('&', 'and').replace(/[^a-z0-9]/gi, '').toLowerCase();
+        const matchesClubName = (c1, c2) => {
+            if (!c1 || !c2) return false;
+            const n1 = normClub(c1);
+            const n2 = normClub(c2);
+            return n1 === n2 || n1.includes(n2) || n2.includes(n1);
+        };
+
         const getAllRunners = () => {
             const rawResults = window.glclResults || [];
             const map = new Map();
@@ -363,42 +417,6 @@
             return Array.from(map.values());
         };
 
-        const normClub = (c) => (c || '').replace('&', 'and').replace(/[^a-z0-9]/gi, '').toLowerCase();
-        const matchesClubName = (c1, c2) => {
-            if (!c1 || !c2) return false;
-            const n1 = normClub(c1);
-            const n2 = normClub(c2);
-            return n1 === n2 || n1.includes(n2) || n2.includes(n1);
-        };
-
-        const getAllClubs = () => {
-            return [
-                "Caerleon Running Club",
-                "Caldicot Running Club",
-                "Chepstow Harriers",
-                "Fairwater Runners",
-                "Griffithstown Harriers",
-                "Islwyn RC",
-                "Lliswerry Runners",
-                "Parc Bryn Bach RC",
-                "Pont-Y-Pwl & District Runners",
-                "Spirit Of Monmouth RC"
-            ];
-        };
-
-        // Populate Club Dropdown
-        const populateClubs = () => {
-            const clubs = getAllClubs();
-            clubFilter.innerHTML = '<option value="">All Member Clubs</option>';
-            clubs.forEach(c => {
-                const opt = document.createElement("option");
-                opt.value = c;
-                opt.textContent = c;
-                clubFilter.appendChild(opt);
-            });
-        };
-
-        // --- 3. FLICKR API CALLS ---
         const callFlickr = async (method, params = {}) => {
             const url = new URL("https://api.flickr.com/services/rest/");
             url.searchParams.set("method", method);
@@ -414,9 +432,7 @@
             return data;
         };
 
-        let fixtureAlbumsMap = {};
-        let ALLOWED_ALBUM_IDS = new Set();
-
+        // --- 5. INITIALIZE ALBUMS & SELECTOR ---
         const loadFixtureAlbums = async () => {
             try {
                 const res = await fetch("assets/data/fixture_photo_albums.json");
@@ -433,168 +449,579 @@
             }
         };
 
-        // Fetch albums strictly from verified fixture albums whitelist
-        const loadAlbums = async () => {
-            if (ALLOWED_ALBUM_IDS.size === 0) {
-                await loadFixtureAlbums();
-            }
-
+        const populateAlbumSelector = () => {
             const uniqueMap = new Map();
             Object.values(fixtureAlbumsMap).forEach(alb => {
                 if (alb && alb.album_id && !uniqueMap.has(alb.album_id)) {
                     uniqueMap.set(alb.album_id, {
                         id: alb.album_id,
-                        title: { _content: alb.title || `GLCL ${alb.venue || alb.season}` },
-                        photos: alb.photos || 0,
-                        season: alb.season || "",
-                        venue: alb.venue || ""
+                        title: alb.title || `GLCL ${alb.venue || alb.season}`,
+                        photos: Number(alb.photos) || 0,
+                        season: alb.season || "Historical",
+                        discipline: (alb.discipline || "xc").toUpperCase(),
+                        race_number: alb.race_number || 1,
+                        venue: alb.venue || "GLCL Race",
+                        date: alb.date || ""
                     });
                 }
             });
 
-            allAlbums = Array.from(uniqueMap.values());
-
-            if (!allAlbums || allAlbums.length === 0) {
-                albumSelector.innerHTML = '<option value="" disabled selected>Unable to load albums</option>';
-                showError("Unable to load GLCL photo albums.");
-                return;
-            }
+            allAlbumsList = Array.from(uniqueMap.values());
 
             albumSelector.innerHTML = "";
-            allAlbums.forEach((album) => {
-                const opt = document.createElement("option");
-                opt.value = album.id;
-                opt.textContent = `${album.title?._content || "Untitled"} (${album.photos || 0} photos)`;
-                albumSelector.appendChild(opt);
+
+            // Top Option: All GLCL Races Archive
+            const optAll = document.createElement("option");
+            optAll.value = "ALL";
+            optAll.textContent = "🌐 All GLCL Races (Search entire archive)";
+            albumSelector.appendChild(optAll);
+
+            // Group albums by season
+            const seasonGroups = new Map();
+            allAlbumsList.forEach(alb => {
+                const s = alb.season;
+                if (!seasonGroups.has(s)) seasonGroups.set(s, []);
+                seasonGroups.get(s).push(alb);
             });
 
-            try {
-                const urlParams = new URLSearchParams(window.location.search);
-                const paramAlbum = urlParams.get("album");
+            // Sort seasons descending (e.g. 2025/2026 first)
+            const sortedSeasons = Array.from(seasonGroups.keys()).sort().reverse();
+
+            sortedSeasons.forEach(season => {
+                const optgroup = document.createElement("optgroup");
+                optgroup.label = `${season} Season`;
+                const seasonAlbums = seasonGroups.get(season);
                 
-                let targetIdx = 0;
-                if (paramAlbum && ALLOWED_ALBUM_IDS.has(paramAlbum)) {
-                    const found = allAlbums.findIndex(a => a.id === paramAlbum);
-                    if (found !== -1) targetIdx = found;
-                }
+                // Sort by race number descending
+                seasonAlbums.sort((a, b) => (b.race_number || 0) - (a.race_number || 0));
 
-                albumSelector.selectedIndex = targetIdx;
-                selectedAlbumId = allAlbums[targetIdx].id;
-                selectedAlbumTitle = allAlbums[targetIdx].title?._content || "";
-                selectedAlbumTotalPhotos = Number(allAlbums[targetIdx].photos) || 0;
-                
-                const paramPage = parseInt(urlParams.get("page"), 10) || 1;
-                const paramBib = urlParams.get("bib");
-                const paramName = urlParams.get("name");
-                const paramClub = urlParams.get("club");
-
-                if (paramClub) {
-                    clubFilter.value = paramClub;
-                    activeSearchFilter.club = paramClub;
-                }
-
-                if (paramBib) {
-                    bibInput.value = paramBib;
-                    activeSearchFilter.bib = paramBib;
-                    activeTagBadge.textContent = `Bib #${paramBib}`;
-                    activeTagBadge.classList.remove("hidden");
-                    searchPhotosByTag(paramBib);
-                } else if (paramName) {
-                    bibInput.value = paramName;
-                    activeSearchFilter.runnerName = paramName;
-                    activeTagBadge.textContent = paramName;
-                    activeTagBadge.classList.remove("hidden");
-                    applyClientFilters();
-                } else {
-                    await fetchAlbumPhotos(selectedAlbumId, paramPage);
-                }
-            } catch (initErr) {
-                console.error("Error initializing selected album:", initErr);
-            }
+                seasonAlbums.forEach(alb => {
+                    const opt = document.createElement("option");
+                    opt.value = alb.id;
+                    const raceLabel = `${alb.discipline} #${alb.race_number}`;
+                    const countLabel = alb.photos ? `${alb.photos.toLocaleString()} photos` : 'Photos';
+                    opt.textContent = `${alb.venue} (${raceLabel}) • ${countLabel}`;
+                    optgroup.appendChild(opt);
+                });
+                albumSelector.appendChild(optgroup);
+            });
         };
 
-        const loadPhotoIndex = async () => {
-            try {
-                const res = await fetch("assets/data/photo_tags.json");
-                if (res.ok) {
-                    photoIndex = await res.json();
-                }
-            } catch (e) {
-                console.log("No local photo index found, using live Flickr tags only");
-            }
-        };
+        // --- 6. DYNAMIC CLUB FILTER CHIPS ---
+        const renderClubChips = (photos) => {
+            if (!clubChipsList) return;
+            clubChipsList.innerHTML = "";
 
-        // Fetch photos from selected album
-        const fetchAlbumPhotos = async (albumId, page = 1) => {
-            if (!ALLOWED_ALBUM_IDS.has(String(albumId))) {
-                console.error("Blocked unauthorized album ID:", albumId);
-                showError("The requested album is not part of the GLCL archive.");
+            if (!photos || photos.length === 0) {
+                clubChipsContainer.classList.add("hidden");
                 return;
             }
 
+            clubChipsContainer.classList.remove("hidden");
+
+            // Calculate club counts across all photos in this fixture
+            const clubCounts = new Map();
+            photos.forEach(p => {
+                const runners = (p.runners && Array.isArray(p.runners) && p.runners.length > 0)
+                    ? p.runners
+                    : (p.club ? [{ club: p.club }] : []);
+                
+                const seenClubsInPhoto = new Set();
+                runners.forEach(r => {
+                    if (r.club && !seenClubsInPhoto.has(r.club)) {
+                        seenClubsInPhoto.add(r.club);
+                        clubCounts.set(r.club, (clubCounts.get(r.club) || 0) + 1);
+                    }
+                });
+            });
+
+            // "All Photos" Chip
+            const allBtn = document.createElement("button");
+            allBtn.type = "button";
+            allBtn.className = `px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
+                !activeClub
+                    ? 'bg-brand-500 text-white shadow-lg ring-1 ring-brand-400'
+                    : 'bg-slate-900 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
+            }`;
+            allBtn.textContent = `All Photos (${photos.length.toLocaleString()})`;
+            allBtn.addEventListener("click", () => {
+                activeClub = "";
+                activeClubBadge.classList.add("hidden");
+                renderClubChips(photos);
+                applyFilters();
+            });
+            clubChipsList.appendChild(allBtn);
+
+            // Sort clubs by photo count descending
+            const sortedClubs = Array.from(clubCounts.entries())
+                .filter(([c, count]) => count > 0)
+                .sort((a, b) => b[1] - a[1]);
+
+            if (clubChipsHint) {
+                clubChipsHint.textContent = `${sortedClubs.length} clubs identified`;
+            }
+
+            sortedClubs.forEach(([clubName, count]) => {
+                const isSelected = matchesClubName(activeClub, clubName);
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = `px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    isSelected
+                        ? 'bg-amber-400 text-slate-950 font-black shadow-lg ring-1 ring-amber-300'
+                        : 'bg-slate-900 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
+                }`;
+                btn.innerHTML = `
+                    <span>${clubName}</span>
+                    <span class="${isSelected ? 'text-slate-900/80' : 'text-slate-500'} text-[10px] font-bold">(${count.toLocaleString()})</span>
+                `;
+                btn.addEventListener("click", () => {
+                    if (isSelected) {
+                        activeClub = "";
+                        activeClubBadge.classList.add("hidden");
+                    } else {
+                        activeClub = clubName;
+                        activeClubBadge.textContent = clubName;
+                        activeClubBadge.classList.remove("hidden");
+                    }
+                    renderClubChips(photos);
+                    applyFilters();
+                });
+                clubChipsList.appendChild(btn);
+            });
+        };
+
+        // --- 7. LOAD ALBUM PHOTOS ---
+        const selectAlbum = async (albumId, initialPage = 1) => {
+            selectedAlbumId = albumId;
+
+            // Mode 1: Search Across All GLCL Fixtures
+            if (albumId === "ALL") {
+                selectedAlbumObj = null;
+                fixtureInfoBanner.classList.add("hidden");
+                globalSearchBanner.classList.remove("hidden");
+                clubChipsContainer.classList.add("hidden");
+                activeClub = "";
+                activeClubBadge.classList.add("hidden");
+                rawAlbumPhotos = [];
+
+                if (activeSearchQuery) {
+                    performGlobalSearch(activeSearchQuery);
+                } else {
+                    photosGrid.innerHTML = "";
+                    galleryLoader.classList.add("hidden");
+                    galleryEmpty.classList.remove("hidden");
+                    emptyMessageText.innerHTML = "Type a runner name or bib number above to find their photos across the entire GLCL archive.";
+                    showAllPhotosBtn.classList.add("hidden");
+                    resultsCountEl.textContent = "Search ready";
+                    downloadZipBtn.disabled = true;
+                    paginationContainer.classList.add("hidden");
+                }
+                return;
+            }
+
+            // Mode 2: Specific Fixture Album
+            globalSearchBanner.classList.add("hidden");
+            selectedAlbumObj = allAlbumsList.find(a => a.id === albumId) || fixtureAlbumsMap[albumId] || null;
+
+            if (selectedAlbumObj) {
+                fixtureInfoBanner.classList.remove("hidden");
+                fixtureBannerTitle.textContent = selectedAlbumObj.venue || selectedAlbumObj.title;
+                fixtureBannerBadge.textContent = `${selectedAlbumObj.season} ${selectedAlbumObj.discipline} #${selectedAlbumObj.race_number}`;
+                const photoCountStr = selectedAlbumObj.photos ? `${Number(selectedAlbumObj.photos).toLocaleString()} photos` : '';
+                const dateStr = selectedAlbumObj.date || '';
+                fixtureBannerMeta.textContent = [dateStr, photoCountStr].filter(Boolean).join(" • ");
+
+                // Link to race results
+                if (selectedAlbumObj.season && selectedAlbumObj.discipline && selectedAlbumObj.race_number) {
+                    const seasonParam = String(selectedAlbumObj.season).replace('/', '_');
+                    const discParam = String(selectedAlbumObj.discipline).toLowerCase();
+                    fixtureResultsLink.href = `results.html?season=${seasonParam}&discipline=${discParam}&race=${selectedAlbumObj.race_number}`;
+                    fixtureResultsLink.classList.remove("hidden");
+                } else {
+                    fixtureResultsLink.classList.add("hidden");
+                }
+            } else {
+                fixtureInfoBanner.classList.add("hidden");
+            }
+
+            // Check Cache
+            if (albumPhotosCache.has(albumId)) {
+                rawAlbumPhotos = albumPhotosCache.get(albumId);
+                renderClubChips(rawAlbumPhotos);
+                applyFilters();
+                return;
+            }
+
+            // Fetch Local Per-Album JSON (Fast & Offline)
             galleryLoader.classList.remove("hidden");
             photosGrid.innerHTML = "";
             galleryEmpty.classList.add("hidden");
             paginationContainer.classList.add("hidden");
-            currentPhotos = [];
 
+            try {
+                const res = await fetch(`assets/data/albums/${albumId}.json`);
+                if (res.ok) {
+                    const albumData = await res.json();
+                    const photosArr = Object.values(albumData).map(p => {
+                        const runners = (p.runners && Array.isArray(p.runners) && p.runners.length > 0)
+                            ? p.runners
+                            : (p.name ? [{ bib: p.bib, name: p.name, club: p.club }] : []);
+                        
+                        let extraTags = ` bib${p.bib || ''} ${p.bib || ''} ${p.name || ''} ${p.club || ''}`;
+                        runners.forEach(r => {
+                            extraTags += ` bib${r.bib || ''} ${r.bib || ''} ${r.name || ''} ${r.club || ''}`;
+                        });
+
+                        return {
+                            id: p.id,
+                            album_id: p.album_id || albumId,
+                            server: p.server || "65535",
+                            secret: p.secret || "",
+                            url_m: p.url_m || `https://live.staticflickr.com/${p.server || "65535"}/${p.id}_${p.secret}_m.jpg`,
+                            url_l: p.url_l || `https://live.staticflickr.com/${p.server || "65535"}/${p.id}_${p.secret}_b.jpg`,
+                            url_h: p.url_h,
+                            url_k: p.url_k,
+                            url_3k: p.url_3k,
+                            url_4k: p.url_4k,
+                            title: runners.map(r => `${r.name} (Bib #${r.bib})`).join(" & ") || (p.name ? `${p.name} (Bib #${p.bib})` : `Photo #${p.id}`),
+                            indexedBib: p.bib,
+                            indexedRunner: p.name,
+                            indexedClub: p.club,
+                            indexedRunners: runners,
+                            sharpness: p.sharpness || 0,
+                            tags: extraTags
+                        };
+                    });
+
+                    albumPhotosCache.set(albumId, photosArr);
+                    galleryLoader.classList.add("hidden");
+                    rawAlbumPhotos = photosArr;
+                    renderClubChips(rawAlbumPhotos);
+                    applyFilters();
+                    return;
+                }
+            } catch (err) {
+                console.log("Local album JSON not found, falling back to Flickr API:", err);
+            }
+
+            // Fallback: Fetch directly from Flickr API
             try {
                 const data = await callFlickr("flickr.photosets.getPhotos", {
                     photoset_id: albumId,
                     extras: "tags,url_m,url_l,url_h,url_k,url_3k,url_4k,url_o,date_taken",
-                    per_page: FLICKR_CONFIG.perPage,
-                    page: page
+                    per_page: 500,
+                    page: initialPage
                 });
 
                 galleryLoader.classList.add("hidden");
-
                 const photoset = data.photoset || {};
-                const newPhotos = photoset.photo || [];
-                currentPage = Number(photoset.page) || 1;
-                totalPages = Number(photoset.pages) || 1;
-                selectedAlbumTotalPhotos = Number(photoset.total) || selectedAlbumTotalPhotos;
-
-                // Enrich photos with local index if available
-                newPhotos.forEach(p => {
-                    const meta = photoIndex[p.id];
-                    if (meta) {
-                        p.indexedBib = meta.bib;
-                        p.indexedRunner = meta.name;
-                        p.indexedClub = meta.club;
-                        p.indexedRunners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
-                            ? meta.runners
-                            : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
-                        p.sharpness = meta.sharpness || 0;
-                        let extraTags = ` bib${meta.bib} ${meta.bib} ${meta.name} ${meta.club}`;
-                        if (meta.runners && Array.isArray(meta.runners)) {
-                            meta.runners.forEach(r => {
-                                extraTags += ` bib${r.bib} ${r.bib} ${r.name} ${r.club}`;
-                            });
-                        }
-                        p.tags = (p.tags || "") + extraTags;
-                    }
+                const photosArr = (photoset.photo || []).map(p => {
+                    const tagList = (p.tags || "").split(/\s+/);
+                    const bibTag = tagList.find(t => /^bib\d+$/i.test(t));
+                    const bib = bibTag ? bibTag.replace(/^bib/i, "") : "";
+                    return {
+                        id: p.id,
+                        album_id: albumId,
+                        server: p.server,
+                        secret: p.secret,
+                        url_m: p.url_m,
+                        url_l: p.url_l,
+                        url_h: p.url_h,
+                        url_k: p.url_k,
+                        url_3k: p.url_3k,
+                        url_4k: p.url_4k,
+                        title: p.title || `Photo #${p.id}`,
+                        indexedBib: bib,
+                        indexedRunner: "",
+                        indexedClub: "",
+                        indexedRunners: bib ? [{ bib, name: "", club: "" }] : [],
+                        sharpness: 0,
+                        tags: p.tags || ""
+                    };
                 });
 
-                currentPhotos = newPhotos;
-                applyClientFilters();
-                updatePaginationUI();
+                albumPhotosCache.set(albumId, photosArr);
+                rawAlbumPhotos = photosArr;
+                renderClubChips(rawAlbumPhotos);
+                applyFilters();
 
             } catch (err) {
-                console.error("Error fetching album photos:", err);
+                console.error("Flickr fetch error:", err);
                 galleryLoader.classList.add("hidden");
-                showError("Failed to fetch photos for this album.");
+                showError("Unable to load photos for this album. Please try again.");
             }
         };
 
-        const updatePaginationUI = () => {
-            if (totalPages <= 1 || activeSearchFilter.bib || activeSearchFilter.runnerName) {
+        // --- 8. GLOBAL ARCHIVE SEARCH ("ALL") ---
+        const performGlobalSearch = async (query) => {
+            galleryLoader.classList.remove("hidden");
+            photosGrid.innerHTML = "";
+            galleryEmpty.classList.add("hidden");
+            paginationContainer.classList.add("hidden");
+
+            const clean = query.trim().toLowerCase().replace(/^bib/i, "");
+
+            // Lazy load athlete_photos.json once
+            if (!athletePhotosIndex && !isFetchingAthleteIndex) {
+                isFetchingAthleteIndex = true;
+                try {
+                    const res = await fetch("assets/data/athlete_photos.json");
+                    if (res.ok) {
+                        athletePhotosIndex = await res.json();
+                    }
+                } catch (err) {
+                    console.error("Failed to load athlete photos index:", err);
+                } finally {
+                    isFetchingAthleteIndex = false;
+                }
+            }
+
+            galleryLoader.classList.add("hidden");
+
+            if (!athletePhotosIndex) {
+                showError("Global photo search index is currently loading. Please try again in a moment.");
+                return;
+            }
+
+            let matches = [];
+
+            // Match athlete by name or bib
+            Object.entries(athletePhotosIndex).forEach(([runnerNameKey, photos]) => {
+                if (runnerNameKey.includes(clean)) {
+                    matches.push(...photos);
+                } else if (/^\d+$/.test(clean)) {
+                    // Search bib
+                    photos.forEach(p => {
+                        if (String(p.bib) === clean) matches.push(p);
+                    });
+                }
+            });
+
+            // De-duplicate matched photos by ID
+            const uniqueMap = new Map();
+            matches.forEach(p => {
+                if (!uniqueMap.has(p.id)) {
+                    // Enrich with fixture details
+                    const alb = fixtureAlbumsMap[p.album_id] || null;
+                    const venueStr = alb ? `${alb.venue || alb.title} (${alb.season || ''})` : 'GLCL Fixture';
+                    uniqueMap.set(p.id, {
+                        ...p,
+                        fixtureVenue: alb ? alb.venue : 'GLCL Race',
+                        fixtureSeason: alb ? alb.season : '',
+                        fixtureTitle: venueStr,
+                        url_m: p.url_m || (p.server && p.secret ? `https://live.staticflickr.com/${p.server}/${p.id}_${p.secret}_m.jpg` : ''),
+                        url_l: p.url_l || (p.server && p.secret ? `https://live.staticflickr.com/${p.server}/${p.id}_${p.secret}_b.jpg` : ''),
+                        indexedRunner: p.name,
+                        indexedBib: p.bib,
+                        indexedClub: p.club,
+                        indexedRunners: [{ bib: p.bib, name: p.name, club: p.club }],
+                        title: `${p.name} (Bib #${p.bib}) • ${venueStr}`
+                    });
+                }
+            });
+
+            currentFilteredPhotos = Array.from(uniqueMap.values());
+            // Sort crispest action shots first
+            currentFilteredPhotos.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
+
+            currentPage = 1;
+            renderCurrentPage();
+        };
+
+        // --- 9. CLIENT FILTERING & BEST SHOT FIRST ---
+        const applyFilters = () => {
+            if (selectedAlbumId === "ALL") {
+                if (activeSearchQuery) performGlobalSearch(activeSearchQuery);
+                return;
+            }
+
+            let filtered = rawAlbumPhotos;
+
+            // 1. Club Filter
+            if (activeClub) {
+                filtered = filtered.filter(p => {
+                    if (p.indexedRunners && p.indexedRunners.some(r => matchesClubName(r.club, activeClub))) return true;
+                    if (p.indexedClub && matchesClubName(p.indexedClub, activeClub)) return true;
+                    const tags = (p.tags || "").toLowerCase();
+                    return tags.includes(normClub(activeClub));
+                });
+            }
+
+            // 2. Bib or Runner Name Search Filter
+            if (activeSearchQuery) {
+                const clean = activeSearchQuery.toLowerCase().trim().replace(/^bib/i, "");
+                filtered = filtered.filter(p => {
+                    // Bib exact match
+                    if (p.indexedRunners && p.indexedRunners.some(r => r.bib && String(r.bib).toLowerCase() === clean)) return true;
+                    if (p.indexedBib && String(p.indexedBib).toLowerCase() === clean) return true;
+                    // Runner name match
+                    if (p.indexedRunners && p.indexedRunners.some(r => r.name && r.name.toLowerCase().includes(clean))) return true;
+                    if (p.indexedRunner && p.indexedRunner.toLowerCase().includes(clean)) return true;
+                    // Tag match
+                    const tagList = (p.tags || "").toLowerCase();
+                    return tagList.includes(clean) || tagList.includes(`bib${clean}`);
+                });
+            }
+
+            // 3. Best Shot First: If any search or club filter is active, sort by sharpness
+            if (activeClub || activeSearchQuery) {
+                filtered.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
+            }
+
+            currentFilteredPhotos = filtered;
+            currentPage = 1;
+            renderCurrentPage();
+        };
+
+        // --- 10. RENDER GALLERY PAGE & PAGINATION ---
+        const renderCurrentPage = () => {
+            const total = currentFilteredPhotos.length;
+            photosGrid.innerHTML = "";
+
+            if (total === 0) {
+                galleryEmpty.classList.remove("hidden");
+                downloadZipBtn.disabled = true;
+                paginationContainer.classList.add("hidden");
+                resultsCountEl.textContent = "0 photos";
+
+                if (activeSearchQuery) {
+                    emptyMessageText.innerHTML = `No photos found matching "<strong>${activeSearchQuery}</strong>" in this race.<br><button id="btn-search-archive" class="mt-3 px-3.5 py-1.5 bg-brand-500 hover:bg-brand-400 text-white font-mono text-xs font-bold rounded-xl transition cursor-pointer">Search Across All 39 GLCL Races →</button>`;
+                    setTimeout(() => {
+                        const btn = document.getElementById("btn-search-archive");
+                        if (btn) {
+                            btn.addEventListener("click", () => {
+                                albumSelector.value = "ALL";
+                                selectAlbum("ALL");
+                            });
+                        }
+                    }, 50);
+                } else {
+                    emptyMessageText.textContent = "No photos found matching your current filter criteria.";
+                }
+                return;
+            }
+
+            galleryEmpty.classList.add("hidden");
+            downloadZipBtn.disabled = false;
+            
+            // Results Summary text
+            if (activeClub && activeSearchQuery) {
+                resultsCountEl.textContent = `${total.toLocaleString()} photo${total === 1 ? '' : 's'} for ${activeSearchQuery} in ${activeClub}`;
+            } else if (activeClub) {
+                resultsCountEl.textContent = `${total.toLocaleString()} photo${total === 1 ? '' : 's'} for ${activeClub}`;
+            } else if (activeSearchQuery) {
+                resultsCountEl.textContent = `${total.toLocaleString()} photo${total === 1 ? '' : 's'} for "${activeSearchQuery}"`;
+            } else if (selectedAlbumObj) {
+                resultsCountEl.textContent = `${total.toLocaleString()} photos in fixture`;
+            } else {
+                resultsCountEl.textContent = `${total.toLocaleString()} photos found`;
+            }
+
+            totalPages = Math.max(1, Math.ceil(total / pageSize));
+
+            // Paginate slice
+            const startIdx = (currentPage - 1) * pageSize;
+            const endIdx = Math.min(total, startIdx + pageSize);
+            const pagePhotos = currentFilteredPhotos.slice(startIdx, endIdx);
+
+            pagePhotos.forEach((photo, idx) => {
+                const globalIndex = startIdx + idx;
+                const imgThumb = photo.url_m || photo.url_l || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`;
+                const imgLarge = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || imgThumb;
+
+                const card = document.createElement("div");
+                card.className = "group relative bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg hover:border-brand-500/60 transition-all duration-300 photo-fade flex flex-col justify-between";
+
+                const mainRunner = (photo.indexedRunners && photo.indexedRunners.length > 0) ? photo.indexedRunners[0] : null;
+
+                card.innerHTML = `
+                    <div class="aspect-[4/3] bg-slate-950 overflow-hidden relative cursor-pointer">
+                        <img src="${imgThumb}" alt="${photo.title || 'GLCL Race Photo'}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        
+                        <!-- Runner Pill Badge -->
+                        ${mainRunner && mainRunner.name ? `
+                            <div class="absolute top-2 left-2 z-10 pointer-events-none">
+                                <span class="bg-brand-600/90 backdrop-blur-md text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow border border-brand-400/30 flex items-center gap-1.5 max-w-[200px] truncate">
+                                    ${mainRunner.bib ? `<span>#${mainRunner.bib}</span><span class="text-brand-300">•</span>` : ''}
+                                    <span class="truncate">${mainRunner.name}</span>
+                                </span>
+                            </div>
+                        ` : ''}
+
+                        <!-- Fixture Venue Badge (When in ALL mode) -->
+                        ${photo.fixtureVenue ? `
+                            <div class="absolute bottom-2 left-2 z-10">
+                                <button type="button" class="btn-jump-fixture bg-slate-950/85 hover:bg-brand-600 backdrop-blur-md text-slate-200 hover:text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow border border-slate-700/80 transition-colors flex items-center gap-1" data-album="${photo.album_id}">
+                                    <span>📍 ${photo.fixtureVenue}</span>
+                                    <span class="text-[9px] opacity-75">${photo.fixtureSeason ? `'${photo.fixtureSeason.slice(2, 4)}` : ''}</span>
+                                </button>
+                            </div>
+                        ` : ''}
+
+                        <!-- Hover Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-end p-2.5 pointer-events-none">
+                            <span class="text-[10px] font-mono text-slate-200 font-bold bg-slate-900/90 px-2 py-0.5 rounded border border-slate-700">Click to Expand ↗</span>
+                        </div>
+                    </div>
+
+                    <!-- Card Footer -->
+                    <div class="p-3 flex items-center justify-between text-xs font-mono border-t border-slate-900/80">
+                        <div class="truncate max-w-[170px]">
+                            ${mainRunner && mainRunner.name ? `
+                                <a href="athlete.html?name=${encodeURIComponent(mainRunner.name)}" class="text-slate-300 hover:text-brand-400 font-bold truncate block transition-colors">
+                                    ${mainRunner.name}
+                                </a>
+                                <span class="text-[10px] text-slate-500 block truncate">${mainRunner.club || 'Independent'}</span>
+                            ` : `
+                                <span class="text-slate-400 text-[11px] truncate block">${photo.title || `Photo #${photo.id}`}</span>
+                            `}
+                        </div>
+                        <a href="${imgLarge}" download="GLCL_${photo.id}.jpg" target="_blank" class="text-brand-400 hover:text-brand-300 p-1.5 rounded-lg hover:bg-slate-800 transition" title="Download High-Resolution Image">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                        </a>
+                    </div>
+                `;
+
+                // Card Click -> Open Lightbox
+                const clickTarget = card.querySelector(".cursor-pointer");
+                if (clickTarget) {
+                    clickTarget.addEventListener("click", () => {
+                        openLightbox(globalIndex, currentFilteredPhotos);
+                    });
+                }
+
+                // Fixture badge click -> jump to fixture album
+                const jumpBtn = card.querySelector(".btn-jump-fixture");
+                if (jumpBtn) {
+                    jumpBtn.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        const albId = jumpBtn.dataset.album;
+                        if (albId) {
+                            albumSelector.value = albId;
+                            selectAlbum(albId);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                    });
+                }
+
+                photosGrid.appendChild(card);
+            });
+
+            updatePaginationUI(total);
+        };
+
+        // --- 11. PAGINATION UI ---
+        const updatePaginationUI = (total) => {
+            if (totalPages <= 1) {
                 paginationContainer.classList.add("hidden");
                 return;
             }
 
             paginationContainer.classList.remove("hidden");
-            const totalCountText = selectedAlbumTotalPhotos ? ` • ${selectedAlbumTotalPhotos} photos in album` : '';
-            paginationInfo.textContent = `Page ${currentPage} of ${totalPages}${totalCountText}`;
+            const startPhotoNum = ((currentPage - 1) * pageSize) + 1;
+            const endPhotoNum = Math.min(total, currentPage * pageSize);
+            paginationInfo.textContent = `Showing ${startPhotoNum}–${endPhotoNum} of ${total.toLocaleString()} photos`;
+
             pageJumpInput.value = currentPage;
             pageJumpInput.max = totalPages;
 
@@ -603,7 +1030,7 @@
             pageNextBtn.disabled = currentPage >= totalPages;
             pageLastBtn.disabled = currentPage >= totalPages;
 
-            // Generate page pill buttons (current - 2 to current + 2)
+            // Generate page pill buttons
             pageNumbersContainer.innerHTML = "";
             let startP = Math.max(1, currentPage - 2);
             let endP = Math.min(totalPages, startP + 4);
@@ -611,15 +1038,16 @@
 
             for (let p = startP; p <= endP; p++) {
                 const btn = document.createElement("button");
-                btn.className = `w-8 h-8 rounded-lg font-bold text-xs transition ${
+                btn.className = `w-8 h-8 rounded-lg font-bold text-xs transition cursor-pointer ${
                     p === currentPage
                         ? 'bg-brand-500 text-white shadow-lg'
                         : 'bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-100 border border-slate-800'
                 }`;
                 btn.textContent = p;
                 btn.addEventListener("click", () => {
-                    if (p !== currentPage && selectedAlbumId) {
-                        fetchAlbumPhotos(selectedAlbumId, p);
+                    if (p !== currentPage) {
+                        currentPage = p;
+                        renderCurrentPage();
                         document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
                     }
                 });
@@ -627,237 +1055,7 @@
             }
         };
 
-        // Search photos tagged with specific bib number
-        const searchPhotosByTag = (tag) => {
-            galleryLoader.classList.remove("hidden");
-            photosGrid.innerHTML = "";
-            galleryEmpty.classList.add("hidden");
-            paginationContainer.classList.add("hidden");
-
-            const cleanTag = tag.trim().replace(/^bib/i, "").toLowerCase();
-            
-            // Search solely within the verified offline photo index (assets/data/photo_tags.json)
-            // NEVER query Flickr account-level search across the user's personal account!
-            const matchedEntries = Object.entries(photoIndex).filter(([pid, meta]) => {
-                // Security check: Must belong to a verified GLCL fixture album
-                if (meta.album_id && !ALLOWED_ALBUM_IDS.has(String(meta.album_id))) {
-                    return false;
-                }
-                // If a specific album is currently selected, scope search to that album
-                if (selectedAlbumId && meta.album_id && String(meta.album_id) !== String(selectedAlbumId)) {
-                    return false;
-                }
-                const runners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
-                    ? meta.runners
-                    : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
-                return runners.some(r => 
-                    (r.bib && String(r.bib).toLowerCase() === cleanTag) || 
-                    (r.name && r.name.toLowerCase().includes(cleanTag))
-                );
-            });
-
-            let searchResults = [];
-            if (matchedEntries.length > 0) {
-                searchResults = matchedEntries.map(([pid, meta]) => {
-                    const runners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
-                        ? meta.runners
-                        : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
-                    const runnerTitles = runners.map(r => `${r.name} (Bib #${r.bib})`).join(" & ");
-                    return {
-                        id: pid,
-                        album_id: meta.album_id || selectedAlbumId,
-                        server: meta.server || "",
-                        secret: meta.secret || "",
-                        url_m: meta.url_m || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_m.jpg` : ''),
-                        url_l: meta.url_l || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : ''),
-                        url_h: meta.url_h,
-                        url_k: meta.url_k,
-                        url_3k: meta.url_3k,
-                        url_4k: meta.url_4k,
-                        title: runnerTitles || (meta.name ? `${meta.name} (Bib #${meta.bib})` : `Photo #${pid}`),
-                        indexedBib: meta.bib,
-                        indexedRunner: meta.name,
-                        indexedClub: meta.club,
-                        indexedRunners: runners,
-                        sharpness: meta.sharpness || 0,
-                        tags: `bib${meta.bib} ${meta.name} ${meta.club}`
-                    };
-                });
-            } else if (selectedAlbumId) {
-                // If 0 matches in this album, check if this bib has photos in other GLCL races
-                const otherMatches = Object.entries(photoIndex).filter(([pid, meta]) => {
-                    if (meta.album_id && !ALLOWED_ALBUM_IDS.has(String(meta.album_id))) return false;
-                    const runners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
-                        ? meta.runners
-                        : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
-                    return runners.some(r => (r.bib && String(r.bib).toLowerCase() === cleanTag));
-                });
-
-                if (otherMatches.length > 0) {
-                    emptyMessageText.innerHTML = `No photos found for Bib #${cleanTag} in this race.<br><button id="btn-search-all-albums" class="mt-3 px-3 py-1.5 bg-brand-500 hover:bg-brand-400 text-white font-mono text-xs font-bold rounded-lg transition cursor-pointer">View ${otherMatches.length} photo(s) across other GLCL fixtures</button>`;
-                    setTimeout(() => {
-                        const btn = document.getElementById("btn-search-all-albums");
-                        if (btn) {
-                            btn.addEventListener("click", () => {
-                                selectedAlbumId = null;
-                                albumSelector.value = "";
-                                searchPhotosByTag(tag);
-                            });
-                        }
-                    }, 50);
-                }
-            }
-
-            galleryLoader.classList.add("hidden");
-            currentPhotos = searchResults;
-            applyClientFilters();
-        };
-
-        // --- 4. FILTERING & RENDERING ---
-        const applyClientFilters = () => {
-            let filtered = currentPhotos;
-
-            // If bib search is active
-            if (activeSearchFilter.bib) {
-                const searchNum = activeSearchFilter.bib.toLowerCase().trim().replace(/^bib/i, "");
-                filtered = filtered.filter(p => {
-                    if (p.indexedRunners && p.indexedRunners.some(r => r.bib && String(r.bib).toLowerCase() === searchNum)) return true;
-                    if (p.indexedBib && String(p.indexedBib).toLowerCase() === searchNum) return true;
-                    const tagList = (p.tags || "").toLowerCase().split(/\s+/).filter(Boolean);
-                    return tagList.includes(`bib${searchNum}`);
-                });
-            }
-
-            // If runner name search is active
-            if (activeSearchFilter.runnerName) {
-                const targetName = activeSearchFilter.runnerName.toLowerCase().trim();
-                filtered = filtered.filter(p => {
-                    if (p.indexedRunners && p.indexedRunners.some(r => r.name && r.name.toLowerCase().includes(targetName))) return true;
-                    if (p.indexedRunner && p.indexedRunner.toLowerCase().includes(targetName)) return true;
-                    return (p.tags || "").toLowerCase().includes(targetName);
-                });
-
-                if (filtered.length === 0 && Object.keys(photoIndex).length > 0) {
-                    const localMatches = Object.entries(photoIndex)
-                        .filter(([pid, meta]) => {
-                            if (meta.album_id && !ALLOWED_ALBUM_IDS.has(String(meta.album_id))) return false;
-                            if (selectedAlbumId && meta.album_id && String(meta.album_id) !== String(selectedAlbumId)) return false;
-                            const runners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
-                                ? meta.runners
-                                : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
-                            return runners.some(r => r.name && r.name.toLowerCase().includes(targetName));
-                        })
-                        .map(([pid, meta]) => {
-                            const runners = (meta.runners && Array.isArray(meta.runners) && meta.runners.length > 0)
-                                ? meta.runners
-                                : (meta.name ? [{ bib: meta.bib, name: meta.name, club: meta.club }] : []);
-                            const runnerTitles = runners.map(r => `${r.name} (Bib #${r.bib})`).join(" & ");
-                            return {
-                                id: pid,
-                                server: meta.server || "",
-                                secret: meta.secret || "",
-                                url_m: meta.url_m || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_m.jpg` : ''),
-                                url_l: meta.url_l || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : ''),
-                                url_h: meta.url_h,
-                                url_k: meta.url_k,
-                                url_3k: meta.url_3k,
-                                url_4k: meta.url_4k,
-                                title: runnerTitles || (meta.name ? `${meta.name} (Bib #${meta.bib})` : `Photo #${pid}`),
-                                indexedBib: meta.bib,
-                                indexedRunner: meta.name,
-                                indexedClub: meta.club,
-                                indexedRunners: runners,
-                                tags: `bib${meta.bib} ${meta.name} ${meta.club}`
-                            };
-                        });
-                    if (localMatches.length > 0) {
-                        filtered = localMatches;
-                    }
-                }
-            }
-
-            // If club filter is active
-            if (activeSearchFilter.club) {
-                const targetClub = activeSearchFilter.club;
-                filtered = filtered.filter(p => {
-                    if (p.indexedClub) {
-                        return matchesClubName(p.indexedClub, targetClub);
-                    }
-                    const tags = (p.tags || "").toLowerCase();
-                    return tags.includes(targetClub.toLowerCase()) || (p.title || "").toLowerCase().includes(targetClub.toLowerCase());
-                });
-            }
-
-            // Best Shot First: When searching for a runner, bib, or club, show crispest action shots first
-            if (activeSearchFilter.bib || activeSearchFilter.runnerName || activeSearchFilter.club) {
-                filtered.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
-            }
-
-            renderGrid(filtered);
-        };
-
-        const renderGrid = (photos) => {
-            photosGrid.innerHTML = "";
-            const total = photos.length;
-
-            if (total === 0) {
-                galleryEmpty.classList.remove("hidden");
-                downloadZipBtn.disabled = true;
-                resultsCountEl.textContent = "0 photos";
-                return;
-            }
-
-            galleryEmpty.classList.add("hidden");
-            downloadZipBtn.disabled = false;
-            resultsCountEl.textContent = `${total} photo${total === 1 ? '' : 's'}`;
-
-            photos.forEach((photo, idx) => {
-                const imgThumb = photo.url_m || photo.url_l || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`;
-                const imgLarge = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || imgThumb;
-
-                const card = document.createElement("div");
-                card.className = "group relative bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg hover:border-brand-500/60 transition-all duration-300 photo-fade";
-                
-                card.innerHTML = `
-                    <div class="aspect-[4/3] bg-slate-950 overflow-hidden relative cursor-pointer">
-                        <img src="${imgThumb}" alt="${photo.title || 'GLCL Race Photo'}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        ${photo.indexedRunner ? `
-                            <div class="absolute top-2 left-2 z-10 pointer-events-none">
-                                <span class="bg-brand-600/90 backdrop-blur-md text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow border border-brand-400/30 flex items-center gap-1.5">
-                                    <span>Bib #${photo.indexedBib}</span>
-                                    <span class="text-brand-300">•</span>
-                                    <span class="truncate max-w-[130px]">${photo.indexedRunner}</span>
-                                </span>
-                            </div>
-                        ` : ''}
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3 pointer-events-none">
-                            <span class="text-[10px] font-mono text-slate-200 font-bold bg-slate-900/90 px-2 py-1 rounded border border-slate-700">Click to Expand</span>
-                        </div>
-                    </div>
-                    <div class="p-3 flex items-center justify-between text-xs font-mono">
-                        <span class="text-slate-400 truncate max-w-[150px]">${photo.title || `Photo #${idx + 1}`}</span>
-                        <a href="${imgLarge}" download="${photo.id}.jpg" target="_blank" class="text-brand-400 hover:text-brand-300 p-1" title="Download Image">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                        </a>
-                    </div>
-                `;
-
-                // Lightbox Click - bound to container
-                const clickTarget = card.querySelector(".cursor-pointer");
-                if (clickTarget) {
-                    clickTarget.addEventListener("click", (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        openLightbox(idx, photos);
-                    });
-                }
-
-                photosGrid.appendChild(card);
-            });
-        };
-
-        // --- 5. LIGHTBOX MODAL ---
-        let lightboxList = [];
+        // --- 12. LIGHTBOX ---
         const openLightbox = (index, photos) => {
             lightboxList = photos;
             currentPhotoIndex = index;
@@ -880,39 +1078,27 @@
             modalCounter.textContent = `Photo ${currentPhotoIndex + 1} of ${lightboxList.length}`;
             modalDirectDownload.href = highRes;
 
-            // Check if tagged with bib and match runner
-            if (photo.indexedRunner) {
-                modalRunnerInfo.innerHTML = `Bib #${photo.indexedBib} • <a href="athlete.html?name=${encodeURIComponent(photo.indexedRunner)}" class="hover:underline text-brand-300 font-bold">${photo.indexedRunner}</a> (${photo.indexedClub || 'Independent'})`;
+            const mainRunner = (photo.indexedRunners && photo.indexedRunners.length > 0) ? photo.indexedRunners[0] : null;
+
+            if (mainRunner && mainRunner.name) {
+                modalRunnerInfo.innerHTML = `${mainRunner.bib ? `Bib #${mainRunner.bib} • ` : ''}<a href="athlete.html?name=${encodeURIComponent(mainRunner.name)}" class="hover:underline text-brand-300 font-bold">${mainRunner.name}</a> (${mainRunner.club || 'Independent'})${photo.fixtureVenue ? ` • ${photo.fixtureVenue}` : ''}`;
             } else {
-                const tags = (photo.tags || "").split(/\s+/);
-                const foundBibs = tags.filter(t => /^bib\d+$/i.test(t)).map(t => t.replace(/^bib/i, ""));
-                
-                if (foundBibs.length > 0) {
-                    const bibNum = foundBibs[0];
-                    const runner = (window.glclResults || []).find(r => String(r.bib) === bibNum);
-                    if (runner) {
-                        modalRunnerInfo.innerHTML = `Bib #${bibNum} • <a href="athlete.html?name=${encodeURIComponent(runner.name)}" class="hover:underline">${runner.name}</a> (${runner.club || 'Independent'})`;
-                    } else {
-                        modalRunnerInfo.textContent = `Bib #${bibNum}`;
-                    }
-                } else {
-                    modalRunnerInfo.textContent = photo.title || selectedAlbumTitle;
-                }
+                modalRunnerInfo.textContent = photo.title || (selectedAlbumObj ? selectedAlbumObj.venue : 'GLCL Race');
             }
         };
 
-        // --- 6. IN-BROWSER ZIP GENERATOR ---
+        // --- 13. IN-BROWSER ZIP GENERATOR ---
         const downloadAsZip = async () => {
-            const photosToZip = currentPhotos;
+            const photosToZip = currentFilteredPhotos;
             if (photosToZip.length === 0) return;
 
             zipModal.classList.remove("hidden");
             zipBar.style.width = "0%";
-            zipStatus.textContent = `Starting download of ${photosToZip.length} photos...`;
+            zipStatus.textContent = `Preparing ${photosToZip.length} photos...`;
 
             zipAbortController = new AbortController();
             const zip = new JSZip();
-            const total = photosToZip.length;
+            const total = Math.min(photosToZip.length, 150); // Safe batch limit
             let completed = 0;
 
             try {
@@ -920,7 +1106,6 @@
                     if (zipAbortController.signal.aborted) throw new Error("Cancelled by user");
 
                     const photo = photosToZip[i];
-                    // Prefer 3K (3072px) or 2K (2048px) for crisp high-resolution downloads
                     const imgUrl = photo.url_3k || photo.url_k || photo.url_4k || photo.url_h || photo.url_l || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
                     const filename = `GLCL_${photo.id}.jpg`;
 
@@ -939,11 +1124,10 @@
                     zipBar.style.width = `${Math.round(metadata.percent)}%`;
                 });
 
-                // Trigger Save
                 const downloadUrl = URL.createObjectURL(zipBlob);
                 const a = document.createElement("a");
                 a.href = downloadUrl;
-                const safeName = (activeSearchFilter.runnerName || activeSearchFilter.club || activeSearchFilter.bib || selectedAlbumTitle || "GLCL_Photos")
+                const safeName = (activeSearchQuery || activeClub || (selectedAlbumObj ? selectedAlbumObj.venue : "GLCL_Photos"))
                     .replace(/[^a-zA-Z0-9_-]/g, "_");
                 a.download = `GLCL_${safeName}.zip`;
                 document.body.appendChild(a);
@@ -952,7 +1136,7 @@
                 URL.revokeObjectURL(downloadUrl);
 
                 zipStatus.textContent = "Complete!";
-                setTimeout(() => zipModal.classList.add("hidden"), 1200);
+                setTimeout(() => zipModal.classList.add("hidden"), 1000);
 
             } catch (err) {
                 if (err.message === "Cancelled by user") {
@@ -965,7 +1149,7 @@
             }
         };
 
-        // --- 7. AUTOCOMPLETE SEARCH ---
+        // --- 14. AUTOCOMPLETE ---
         const setupAutocomplete = () => {
             const runners = getAllRunners();
 
@@ -975,6 +1159,11 @@
 
                 if (val.length < 2) {
                     autocompleteBox.classList.add("hidden");
+                    if (val === "") {
+                        activeSearchQuery = "";
+                        activeTagBadge.classList.add("hidden");
+                        applyFilters();
+                    }
                     return;
                 }
 
@@ -1002,15 +1191,10 @@
                     row.addEventListener("click", () => {
                         bibInput.value = m.name;
                         autocompleteBox.classList.add("hidden");
-                        activeSearchFilter.runnerName = m.name;
-                        activeSearchFilter.bib = m.bib || "";
+                        activeSearchQuery = m.name;
                         activeTagBadge.textContent = m.name;
                         activeTagBadge.classList.remove("hidden");
-                        if (m.bib) {
-                            searchPhotosByTag(m.bib);
-                        } else {
-                            applyClientFilters();
-                        }
+                        applyFilters();
                     });
                     autocompleteBox.appendChild(row);
                 });
@@ -1018,24 +1202,21 @@
                 autocompleteBox.classList.remove("hidden");
             });
 
-            // Handle Enter key for direct bib search
             bibInput.addEventListener("keydown", (e) => {
                 if (e.key === "Enter") {
                     autocompleteBox.classList.add("hidden");
                     const val = bibInput.value.trim();
-                    if (/^\d+$/.test(val) || /^bib\d+$/i.test(val)) {
-                        activeSearchFilter.bib = val;
-                        activeTagBadge.textContent = `Bib #${val}`;
+                    activeSearchQuery = val;
+                    if (val) {
+                        activeTagBadge.textContent = /^\d+$/.test(val) ? `Bib #${val}` : val;
                         activeTagBadge.classList.remove("hidden");
-                        searchPhotosByTag(val);
                     } else {
-                        activeSearchFilter.runnerName = val;
-                        applyClientFilters();
+                        activeTagBadge.classList.add("hidden");
                     }
+                    applyFilters();
                 }
             });
 
-            // Close autocomplete when clicking outside
             document.addEventListener("click", (e) => {
                 if (!bibInput.contains(e.target) && !autocompleteBox.contains(e.target)) {
                     autocompleteBox.classList.add("hidden");
@@ -1043,79 +1224,77 @@
             });
         };
 
-        // --- 8. EVENT LISTENERS ---
+        // --- 15. EVENT LISTENERS ---
         albumSelector.addEventListener("change", (e) => {
-            selectedAlbumId = e.target.value;
-            const sel = albumSelector.options[albumSelector.selectedIndex];
-            selectedAlbumTitle = sel ? sel.textContent : "";
-            fetchAlbumPhotos(selectedAlbumId, 1);
-        });
-
-        clubFilter.addEventListener("change", (e) => {
-            activeSearchFilter.club = e.target.value;
-            applyClientFilters();
+            selectAlbum(e.target.value);
         });
 
         clearSearchBtn.addEventListener("click", () => {
             bibInput.value = "";
             clearSearchBtn.classList.add("hidden");
-            activeSearchFilter.bib = "";
-            activeSearchFilter.runnerName = "";
+            activeSearchQuery = "";
             activeTagBadge.classList.add("hidden");
-            if (selectedAlbumId) {
-                fetchAlbumPhotos(selectedAlbumId, 1);
-            }
+            applyFilters();
         });
 
         resetFiltersBtn.addEventListener("click", () => {
             bibInput.value = "";
-            clubFilter.selectedIndex = 0;
             clearSearchBtn.classList.add("hidden");
-            activeSearchFilter = { bib: "", runnerName: "", club: "" };
+            activeSearchQuery = "";
+            activeClub = "";
             activeTagBadge.classList.add("hidden");
-            if (selectedAlbumId) {
-                fetchAlbumPhotos(selectedAlbumId, 1);
+            activeClubBadge.classList.add("hidden");
+            if (selectedAlbumId && selectedAlbumId !== "ALL") {
+                renderClubChips(rawAlbumPhotos);
             }
+            applyFilters();
         });
 
         showAllPhotosBtn.addEventListener("click", () => {
             bibInput.value = "";
-            clubFilter.selectedIndex = 0;
-            activeSearchFilter = { bib: "", runnerName: "", club: "" };
+            clearSearchBtn.classList.add("hidden");
+            activeSearchQuery = "";
+            activeClub = "";
             activeTagBadge.classList.add("hidden");
-            fetchAlbumPhotos(selectedAlbumId, 1);
+            activeClubBadge.classList.add("hidden");
+            applyFilters();
         });
 
-        // Pagination controls
+        // Pagination buttons
         pageFirstBtn.addEventListener("click", () => {
-            if (currentPage > 1 && selectedAlbumId) {
-                fetchAlbumPhotos(selectedAlbumId, 1);
+            if (currentPage > 1) {
+                currentPage = 1;
+                renderCurrentPage();
                 document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
             }
         });
         pagePrevBtn.addEventListener("click", () => {
-            if (currentPage > 1 && selectedAlbumId) {
-                fetchAlbumPhotos(selectedAlbumId, currentPage - 1);
+            if (currentPage > 1) {
+                currentPage--;
+                renderCurrentPage();
                 document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
             }
         });
         pageNextBtn.addEventListener("click", () => {
-            if (currentPage < totalPages && selectedAlbumId) {
-                fetchAlbumPhotos(selectedAlbumId, currentPage + 1);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderCurrentPage();
                 document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
             }
         });
         pageLastBtn.addEventListener("click", () => {
-            if (currentPage < totalPages && selectedAlbumId) {
-                fetchAlbumPhotos(selectedAlbumId, totalPages);
+            if (currentPage < totalPages) {
+                currentPage = totalPages;
+                renderCurrentPage();
                 document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
             }
         });
         pageJumpInput.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
                 let targetPage = parseInt(pageJumpInput.value, 10);
-                if (!isNaN(targetPage) && targetPage >= 1 && targetPage <= totalPages && selectedAlbumId) {
-                    fetchAlbumPhotos(selectedAlbumId, targetPage);
+                if (!isNaN(targetPage) && targetPage >= 1 && targetPage <= totalPages) {
+                    currentPage = targetPage;
+                    renderCurrentPage();
                     document.getElementById("gallery-container")?.scrollIntoView({ behavior: 'smooth' });
                 }
             }
@@ -1126,7 +1305,7 @@
             if (zipAbortController) zipAbortController.abort();
         });
 
-        // Lightbox modal controls
+        // Lightbox buttons
         modalCloseBtn.addEventListener("click", closeLightbox);
         modalPrevBtn.addEventListener("click", () => {
             if (currentPhotoIndex > 0) {
@@ -1153,20 +1332,55 @@
             }
         });
 
-        // Helpers
         const showError = (msg) => {
             galleryLoader.classList.add("hidden");
             galleryEmpty.classList.remove("hidden");
             emptyMessageText.textContent = msg;
         };
 
-        // --- 9. INITIALIZATION ---
+        // --- 16. INITIALIZATION ---
         document.addEventListener("DOMContentLoaded", async () => {
             await loadFixtureAlbums();
-            await loadPhotoIndex();
-            populateClubs();
+            populateAlbumSelector();
             setupAutocomplete();
-            await loadAlbums();
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const paramAlbum = urlParams.get("album");
+            const paramClub = urlParams.get("club");
+            const paramBib = urlParams.get("bib");
+            const paramName = urlParams.get("name");
+
+            if (paramClub) {
+                activeClub = paramClub;
+                activeClubBadge.textContent = paramClub;
+                activeClubBadge.classList.remove("hidden");
+            }
+
+            if (paramBib) {
+                bibInput.value = paramBib;
+                activeSearchQuery = paramBib;
+                activeTagBadge.textContent = `Bib #${paramBib}`;
+                activeTagBadge.classList.remove("hidden");
+                clearSearchBtn.classList.remove("hidden");
+            } else if (paramName) {
+                bibInput.value = paramName;
+                activeSearchQuery = paramName;
+                activeTagBadge.textContent = paramName;
+                activeTagBadge.classList.remove("hidden");
+                clearSearchBtn.classList.remove("hidden");
+            }
+
+            // Determine target album
+            let targetAlbum = "ALL";
+            if (paramAlbum && (ALLOWED_ALBUM_IDS.has(paramAlbum) || paramAlbum === "ALL")) {
+                targetAlbum = paramAlbum;
+            } else if (allAlbumsList.length > 0 && !paramName && !paramBib) {
+                // Default to latest race album if no specific query
+                targetAlbum = allAlbumsList[0].id;
+            }
+
+            albumSelector.value = targetAlbum;
+            await selectAlbum(targetAlbum);
         });
     })();
     </script>
