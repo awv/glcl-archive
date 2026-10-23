@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GLCL Archive — Athlete Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="data.js?v=1792780989554"></script>
+    <script src="data.js?v=1792781740069"></script>
     <!-- Combined corrections data overlay mapping profile configurations -->
-    <script src="assets/js/corrections.js?v=1792780989554"></script>
-    <script src="site-layout.js?v=1792780989554"></script>
+    <script src="assets/js/corrections.js?v=1792781740069"></script>
+    <script src="site-layout.js?v=1792781740069"></script>
     <!-- JSZip for Client-Side in-browser ZIP Generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script>
@@ -119,8 +119,8 @@
                 <span id="athlete-career-span" class="text-sky-400">ACTIVE: —</span>
             </div>
 
-            <!-- Dynamic Historical Meta Flags Injection Node -->
-            <div id="athlete-meta-history" class="space-y-2 pt-1"></div>
+            <!-- Dynamic Historical Meta Flags Injection Node (Hidden on mobile to keep portrait hero visible) -->
+            <div id="athlete-meta-history" class="hidden sm:block space-y-2 pt-1"></div>
         </div>
     </header>
 
@@ -396,9 +396,9 @@
             let athleteHeadersFile = {};
             try {
                 const [photoRes, albumRes, hdrRes] = await Promise.all([
-                    fetch('assets/data/athlete_photos.json?v=1792780989554'),
-                    fetch('assets/data/fixture_photo_albums.json?v=1792780989554'),
-                    fetch('assets/data/athlete_headers.json?v=1792780989554')
+                    fetch('assets/data/athlete_photos.json?v=1792781740069'),
+                    fetch('assets/data/fixture_photo_albums.json?v=1792781740069'),
+                    fetch('assets/data/athlete_headers.json?v=1792781740069')
                 ]);
                 if (photoRes.ok) athletePhotos = await photoRes.json();
                 if (albumRes.ok) fixtureAlbums = await albumRes.json();
