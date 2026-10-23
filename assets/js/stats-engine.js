@@ -30,7 +30,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Cache the true raw database name value before mapping overrides
         updatedRow.originalName = row.name;
 
-        if (corrections.nameChanges && corrections.nameChanges[updatedRow.name]) {
+        if (window.resolveRowAthlete && updatedRow.name) {
+            const resolved = window.resolveRowAthlete(updatedRow);
+            if (resolved && resolved.name) updatedRow.name = resolved.name;
+            if (resolved && resolved.club) updatedRow.club = resolved.club;
+        } else if (corrections.nameChanges && corrections.nameChanges[updatedRow.name]) {
             updatedRow.name = corrections.nameChanges[updatedRow.name].primaryName;
         }
         return updatedRow;

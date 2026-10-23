@@ -6,6 +6,7 @@
     <title>GLCL Archive — Season Overview</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="data.js"></script>
+    <script src="assets/js/corrections.js"></script>
 
     <!-- DATA CLEANUP & NAME FLIPPER INTERCEPTOR -->
     <script>
@@ -181,10 +182,21 @@
                         item.sex = 'M';
                     }
 
+                    const rawCheck = item.name || '';
+                    const preserveRaw = rawCheck.includes('†') || /\((snr|jnr|sr|jr)\)/i.test(rawCheck);
                     item.name = formatRunnerName(item.name);
                     item.sex = formatSex(item.sex, item.name);
                     if (item.age_cat) item.age_cat = formatAgeCat(item.age_cat);
                     if (item.club) item.club = formatClubName(item.club);
+
+                    if (window.resolveRowAthlete && item.name) {
+                        const resolved = window.resolveRowAthlete({
+                            ...item,
+                            name: preserveRaw ? rawCheck : item.name
+                        });
+                        if (resolved && resolved.name) item.name = resolved.name;
+                        if (resolved && resolved.club) item.club = resolved.club;
+                    }
                 });
 
                 // PASS 2: BUILD MASTER ATHLETE-TO-CLUB DICTIONARY FROM VALID ENTRIES

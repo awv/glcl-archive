@@ -1,9 +1,10 @@
 {
-  "evans huw": {
+  "evans huw|parc bryn bach rc": {
     "url": "assets/images/athletes/huw-evans.jpg",
     "position": "center 0%",
     "athlete": "Huw Evans",
-    "updatedAt": "2026-10-20T12:45:54.126Z"
+    "updatedAt": "2026-10-20T12:45:54.126Z",
+    "club": "Parc Bryn Bach RC"
   },
   "martin thomas": {
     "url": "https://live.staticflickr.com/65535/54943626343_ec133a974f_b.jpg",
@@ -59,17 +60,19 @@
     "athlete": "Paul White",
     "updatedAt": "2026-10-20T12:49:49.160Z"
   },
-  "jones sian": {
+  "jones sian|parc bryn bach rc": {
     "url": "assets/images/athletes/sian-jones.jpg",
     "position": "center 7%",
     "athlete": "Sian Jones",
-    "updatedAt": "2026-10-20T13:02:17.609Z"
+    "updatedAt": "2026-10-20T13:02:17.609Z",
+    "club": "Parc Bryn Bach RC"
   },
-  "davies ian": {
+  "davies ian|parc bryn bach rc": {
     "url": "assets/images/athletes/ian-davies.jpg",
     "position": "center 8%",
     "athlete": "Ian Davies",
-    "updatedAt": "2026-10-20T13:02:29.843Z"
+    "updatedAt": "2026-10-20T13:02:29.843Z",
+    "club": "Parc Bryn Bach RC"
   },
   "roberts vicky": {
     "url": "assets/images/athletes/vicky-roberts.jpg",
@@ -467,13 +470,14 @@
     "athlete": "Spencer Lewis",
     "updatedAt": "2026-10-22T07:28:04.937Z"
   },
-  "davies steve": {
+  "davies steve|griffithstown harriers": {
     "url": "https://live.staticflickr.com/65535/53357815336_921f50cf9b_b.jpg",
     "photoId": "53357815336",
     "position": "center 11%",
     "source": "flickr",
     "athlete": "Steve Davies",
-    "updatedAt": "2026-10-22T07:28:19.996Z"
+    "updatedAt": "2026-10-22T07:28:19.996Z",
+    "club": "Pont-Y-Pwl & District Runners"
   },
   "edwards stephen": {
     "url": "https://live.staticflickr.com/65535/55366746497_cf9209f326_b.jpg",
@@ -635,11 +639,12 @@
     "athlete": "Martin Blakebrough",
     "updatedAt": "2026-10-22T15:15:42.304Z"
   },
-  "jones richard": {
+  "jones richard|griffithstown harriers": {
     "url": "assets/images/athletes/richard-jones.jpg",
     "position": "center 11%",
     "athlete": "Richard Jones",
-    "updatedAt": "2026-10-22T15:15:54.346Z"
+    "updatedAt": "2026-10-22T15:15:54.346Z",
+    "club": "Griffithstown Harriers"
   },
   "charlotte healy": {
     "url": "https://live.staticflickr.com/65535/53359415865_341fbc289b_b.jpg",
@@ -671,13 +676,14 @@
     "athlete": "Liberty Barlow",
     "updatedAt": "2026-10-22T15:17:02.963Z"
   },
-  "davies keith": {
+  "davies keith|islwyn rc": {
     "url": "https://live.staticflickr.com/65535/51936575833_a24ecdc851_b.jpg",
     "photoId": "51936575833",
     "position": "center 5%",
     "source": "flickr",
     "athlete": "Keith Davies",
-    "updatedAt": "2026-10-22T15:17:16.430Z"
+    "updatedAt": "2026-10-22T15:17:16.430Z",
+    "club": "Islwyn RC"
   },
   "kim wehden": {
     "url": "https://live.staticflickr.com/65535/51935713532_f0b84381a6_b.jpg",
@@ -1061,11 +1067,12 @@
     "athlete": "Michelle Gooch",
     "updatedAt": "2026-10-22T18:36:48.113Z"
   },
-  "christopher jones": {
+  "christopher jones snr": {
     "url": "assets/images/athletes/christopher-jones.jpg",
     "position": "center 20%",
-    "athlete": "Christopher Jones",
-    "updatedAt": "2026-10-22T18:37:03.162Z"
+    "athlete": "Christopher Jones (Snr)",
+    "updatedAt": "2026-10-22T18:37:03.162Z",
+    "club": "Lliswerry Runners"
   },
   "crockett louise nicola": {
     "url": "assets/images/athletes/nicola-louise-crockett.jpg",
@@ -1073,13 +1080,14 @@
     "athlete": "Nicola Louise Crockett",
     "updatedAt": "2026-10-22T18:37:57.562Z"
   },
-  "rhys williams": {
+  "rhys williams|parc bryn bach rc": {
     "url": "https://live.staticflickr.com/65535/54627986106_506c138130_b.jpg",
     "photoId": "54627986106",
     "position": "center 3%",
     "source": "flickr",
     "athlete": "Rhys Williams",
-    "updatedAt": "2026-10-22T18:38:06.795Z"
+    "updatedAt": "2026-10-22T18:38:06.795Z",
+    "club": "Parc Bryn Bach RC"
   },
   "abbie thomas": {
     "url": "https://live.staticflickr.com/65535/54304456855_a96feae027_b.jpg",
@@ -1089,13 +1097,14 @@
     "athlete": "Abbie Thomas",
     "updatedAt": "2026-10-22T18:38:21.279Z"
   },
-  "brown james": {
+  "brown james|lliswerry runners": {
     "url": "https://live.staticflickr.com/65535/52672214951_b233ea59ed_b.jpg",
     "photoId": "52672214951",
     "position": "center 32%",
     "source": "flickr",
     "athlete": "James Brown",
-    "updatedAt": "2026-10-22T18:38:49.136Z"
+    "updatedAt": "2026-10-22T18:38:49.136Z",
+    "club": "Lliswerry Runners"
   },
   "lewis tony": {
     "url": "https://live.staticflickr.com/65535/53832437349_5b480d8dfe_b.jpg",
@@ -1369,13 +1378,14 @@
     "athlete": "Garry Woods",
     "updatedAt": "2026-10-22T18:46:25.895Z"
   },
-  "grace williams": {
+  "grace williams|caerleon rc": {
     "url": "https://live.staticflickr.com/65535/54627231107_34046fc965_b.jpg",
     "photoId": "54627231107",
     "position": "center 25%",
     "source": "flickr",
     "athlete": "Grace Williams",
-    "updatedAt": "2026-10-22T18:46:54.144Z"
+    "updatedAt": "2026-10-22T18:46:54.144Z",
+    "club": "Caerleon RC"
   },
   "megan stark": {
     "url": "https://live.staticflickr.com/65535/52198205750_a97f754f06_b.jpg",

@@ -6,6 +6,7 @@
     <title>GLCL Archive — Club Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="data.js"></script>
+    <script src="assets/js/corrections.js"></script>
     <script src="site-layout.js"></script>
     <!-- JSZip for Client-Side in-browser ZIP Generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -496,6 +497,21 @@
 
                 updated.sex = formatSex(updated.sex, updated.name);
                 updated.club = formatClubName(updated.club);
+
+                if (window.resolveRowAthlete && updated.name) {
+                    const rawCheck = row.name || '';
+                    const preserveRaw = rawCheck.includes('†') || /\((snr|jnr|sr|jr)\)/i.test(rawCheck);
+                    const resolved = window.resolveRowAthlete({
+                        ...updated,
+                        name: preserveRaw ? rawCheck : updated.name
+                    });
+                    if (resolved && resolved.name) {
+                        updated.name = resolved.name;
+                    }
+                    if (resolved && resolved.club) {
+                        updated.club = resolved.club;
+                    }
+                }
 
                 return updated;
             });

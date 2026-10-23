@@ -6,6 +6,7 @@
     <title>GLCL Archive — Fixture Results</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="data.js"></script>
+    <script src="assets/js/corrections.js"></script>
     <script src="site-layout.js"></script>
     <script>
         tailwind.config = {
@@ -418,6 +419,21 @@
                 if ((!updated.club || updated.club === 'Unattached') && updated.name) {
                     const knownClub = athleteClubMap[updated.name.toLowerCase()];
                     if (knownClub) updated.club = knownClub;
+                }
+
+                if (window.resolveRowAthlete && updated.name) {
+                    const rawCheck = row.name || '';
+                    const preserveRaw = rawCheck.includes('†') || /\((snr|jnr|sr|jr)\)/i.test(rawCheck);
+                    const resolved = window.resolveRowAthlete({
+                        ...updated,
+                        name: preserveRaw ? rawCheck : updated.name
+                    });
+                    if (resolved && resolved.name) {
+                        updated.name = resolved.name;
+                    }
+                    if (resolved && resolved.club) {
+                        updated.club = resolved.club;
+                    }
                 }
 
                 return updated;

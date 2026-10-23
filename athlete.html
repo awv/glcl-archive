@@ -414,8 +414,9 @@
 
             const normStr = (str) => (str || '').trim().toLowerCase();
 
-            // Order-independent name key generator (e.g., "AHERNE Lee" & "Lee Aherne" both produce "aherne lee")
+            // Order-independent name key generator (delegates to corrections.js disambiguation helper)
             const getNameKey = (str) => {
+                if (window.getAthleteNameKey) return window.getAthleteNameKey(str);
                 if (!str) return '';
                 return str.replace(/,/g, '')
                           .toLowerCase()
@@ -425,17 +426,24 @@
                           .join(' ');
             };
 
-            const targetNameKey = getNameKey(targetAthlete);
+            const targetProfile = window.resolveTargetProfile
+                ? window.resolveTargetProfile(targetAthlete, targetClub)
+                : {
+                    displayName: targetAthlete,
+                    nameKey: getNameKey(targetAthlete),
+                    baseNameKey: getNameKey(targetAthlete),
+                    targetClub: targetClub || '',
+                    clubGroupKey: '',
+                    profileKey: getNameKey(targetAthlete),
+                    clubHistoryList: null
+                };
 
-            // 1. CASE AND ORDER INSENSITIVE IDENTITY ALIGNMENT
-            let masterName = targetAthlete;
-            Object.entries(nameChanges).forEach(([legacyName, data]) => {
-                if (data && data.primaryName && (getNameKey(legacyName) === targetNameKey || getNameKey(data.primaryName) === targetNameKey)) {
-                    masterName = data.primaryName; 
-                }
-            });
-            targetAthlete = masterName; 
-            const finalMasterKey = getNameKey(targetAthlete);
+            targetAthlete = targetProfile.displayName;
+            const finalMasterKey = targetProfile.nameKey;
+            const targetBaseNameKey = targetProfile.baseNameKey;
+            let activeClubGroupKey = targetProfile.clubGroupKey;
+            let activeProfileKey = targetProfile.profileKey;
+            let activeClubHistoryList = targetProfile.clubHistoryList;
 
             let currentActiveHeaderUrl = '';
             let currentActiveHeaderPos = 'center 25%';
@@ -445,7 +453,7 @@
             const getSavedAthleteHeader = () => {
                 const local = JSON.parse(localStorage.getItem('glcl_athlete_headers') || '{}');
                 const merged = { ...athleteHeadersFile, ...local };
-                const saved = merged[finalMasterKey] || null;
+                const saved = merged[activeProfileKey] || (!activeClubGroupKey ? merged[finalMasterKey] : null) || null;
                 if (saved && saved.url && typeof saved.url === 'string' && saved.url.includes('staticflickr.com')) {
                     saved.url = saved.url.replace(/_[msqtnzcw]\.jpg$/i, '_b.jpg');
                 }
@@ -454,17 +462,19 @@
 
             const saveAthleteHeaderConfig = (config) => {
                 const local = JSON.parse(localStorage.getItem('glcl_athlete_headers') || '{}');
+                const saveKey = activeProfileKey || finalMasterKey;
                 if (!config) {
-                    delete local[finalMasterKey];
+                    delete local[saveKey];
                 } else {
                     let saveUrl = config.url || '';
                     if (saveUrl && typeof saveUrl === 'string' && saveUrl.includes('staticflickr.com')) {
                         saveUrl = saveUrl.replace(/_[msqtnzcw]\.jpg$/i, '_b.jpg');
                     }
-                    local[finalMasterKey] = {
+                    local[saveKey] = {
                         ...config,
                         url: saveUrl,
                         athlete: targetAthlete,
+                        club: targetProfile.targetClub || targetClub || '',
                         updatedAt: new Date().toISOString()
                     };
                 }
@@ -529,7 +539,10 @@
                 if (clubSlug) {
                     photoSources.push(`assets/images/athletes/${nameSlug}-${clubSlug}.jpg`);
                 }
-                photoSources.push(`assets/images/athletes/${nameSlug}.jpg`);
+                // Only fall back to bare nameSlug.jpg if this athlete is NOT a cross-club namesake
+                if (!activeClubGroupKey && finalMasterKey === targetBaseNameKey) {
+                    photoSources.push(`assets/images/athletes/${nameSlug}.jpg`);
+                }
 
                 const tryNextImage = (index) => {
                     if (index >= photoSources.length) return;
@@ -546,20 +559,6 @@
                 tryNextImage(0);
             };
 
-            // Check if runner has an explicitly chosen header photo
-            const initialSavedHeader = getSavedAthleteHeader();
-            if (initialSavedHeader && initialSavedHeader.url) {
-                hasCustomPortrait = true;
-                currentHeaderPhotoId = initialSavedHeader.photoId || '';
-                currentActiveHeaderPos = initialSavedHeader.position || 'center 25%';
-                applyHeaderPhoto(initialSavedHeader.url, currentActiveHeaderPos);
-            } else {
-                loadProfilePhoto(targetAthlete, targetClub);
-            }
-
-            // CASE AND ORDER INSENSITIVE CLUB HISTORY LOOKUP
-            const clubHistoryKey = Object.keys(clubHistory).find(key => getNameKey(key) === finalMasterKey);
-
             const parseSeasonYear = (seasonStr) => {
                 if (!seasonStr) return 0;
                 const clean = String(seasonStr).replace(/[^0-9/_-]/g, '');
@@ -571,14 +570,14 @@
             };
 
             const getClubForSeason = (seasonStr, defaultClub) => {
-                if (!clubHistoryKey || !clubHistory[clubHistoryKey]) {
+                if (!activeClubHistoryList || !Array.isArray(activeClubHistoryList)) {
                     return window.getCanonicalClub ? window.getCanonicalClub(defaultClub) : defaultClub;
                 }
                 
                 const currentYear = parseSeasonYear(seasonStr);
                 let resolvedClub = defaultClub;
 
-                clubHistory[clubHistoryKey].forEach(hist => {
+                activeClubHistoryList.forEach(hist => {
                     if (!hist || !hist.seasons) return;
                     
                     const rangeParts = hist.seasons.replace(/\s+/g, '').split(/[—–-]/);
@@ -586,7 +585,8 @@
                     let startYear = 0;
                     let endYear = Infinity;
 
-                    if (normStr(rangeParts[0]) !== 'debut') {
+                    const firstPart = normStr(rangeParts[0]);
+                    if (firstPart !== 'debut' && firstPart !== 'prior') {
                         startYear = parseSeasonYear(rangeParts[0]);
                     }
 
@@ -595,7 +595,7 @@
                         endYear = parseSeasonYear(rawEnd);
                     }
 
-                    if (currentYear >= startYear && currentYear <= endYear) {
+                    if (currentYear > 0 && currentYear >= startYear && currentYear <= endYear) {
                         resolvedClub = hist.club;
                     }
                 });
@@ -607,25 +607,98 @@
                 let updatedRow = { ...row };
                 updatedRow.originalName = row.name || '';
 
-                if (row.name) {
+                if (window.resolveRowAthlete && row.name) {
+                    const resolved = window.resolveRowAthlete(row);
+                    updatedRow.name = resolved.name;
+                    updatedRow.club = resolved.club;
+                    if (resolved.age_cat) updatedRow.age_cat = resolved.age_cat;
+                    updatedRow.nameKey = resolved.nameKey;
+                    updatedRow.baseNameKey = resolved.baseNameKey;
+                    updatedRow.clubGroupKey = resolved.clubGroupKey;
+                    updatedRow.profileKey = resolved.profileKey;
+                } else if (row.name) {
                     const rowKey = getNameKey(row.name);
-
                     const match = Object.entries(nameChanges).find(([legacyName]) => 
                         getNameKey(legacyName) === rowKey
                     );
-                    
                     if (match && match[1] && match[1].primaryName) {
                         updatedRow.name = match[1].primaryName;
                     }
+                    updatedRow.nameKey = getNameKey(updatedRow.name);
+                    updatedRow.baseNameKey = updatedRow.nameKey;
+                    updatedRow.clubGroupKey = '';
+                    updatedRow.profileKey = updatedRow.nameKey;
                 }
                 return updatedRow;
             });
 
-            // 1. MATCH ATHLETE RACES REGARDLESS OF WORD ORDER OR CASING
+            // If a cross-club namesake URL was visited without ?club=..., pick the most active club group
+            if (!targetProfile.targetClub && !activeClubGroupKey) {
+                const candidateGroups = new Map();
+                correctedRecords.forEach(r => {
+                    if (r.pos > 0 && r.nameKey === finalMasterKey && r.clubGroupKey) {
+                        candidateGroups.set(r.clubGroupKey, (candidateGroups.get(r.clubGroupKey) || 0) + 1);
+                    }
+                });
+                if (candidateGroups.size > 0) {
+                    const topGroup = Array.from(candidateGroups.entries()).sort((a, b) => b[1] - a[1])[0][0];
+                    activeClubGroupKey = topGroup;
+                    activeProfileKey = `${finalMasterKey}|${topGroup}`;
+                    if (window.resolveTargetProfile) {
+                        const refined = window.resolveTargetProfile(targetAthlete, topGroup);
+                        activeClubHistoryList = refined.clubHistoryList;
+                    }
+                }
+            }
+
+            // 1. MATCH ATHLETE RACES BY RESOLVED IDENTITY AND CLUB SCOPE
             let history = correctedRecords.filter(row => {
                 if (!row.name || row.pos <= 0) return false;
-                return getNameKey(row.name) === finalMasterKey;
+                if (row.nameKey !== finalMasterKey) return false;
+                if (activeClubGroupKey && row.clubGroupKey && row.clubGroupKey !== activeClubGroupKey) return false;
+                return true;
             });
+
+            // Collect other runners who share the same base name (for Namesake Disambiguation Banner)
+            const namesakeMap = new Map();
+            correctedRecords.forEach(row => {
+                if (!row.name || row.pos <= 0) return;
+                if (row.baseNameKey !== targetBaseNameKey) return;
+                if (row.profileKey === activeProfileKey) return;
+                // Also skip Unattached rows if they belong to the current runner
+                if (!row.clubGroupKey && row.nameKey === finalMasterKey) return;
+
+                const nKey = row.profileKey || `${row.nameKey}|${(row.club || '').toLowerCase()}`;
+                const seasonYr = parseSeasonYear(row.season);
+                if (!namesakeMap.has(nKey)) {
+                    namesakeMap.set(nKey, {
+                        name: row.name,
+                        club: row.club || 'Unattached',
+                        age_cat: row.age_cat || '',
+                        latestYear: seasonYr,
+                        races: 1
+                    });
+                } else {
+                    const ex = namesakeMap.get(nKey);
+                    ex.races++;
+                    if (seasonYr >= ex.latestYear) {
+                        ex.latestYear = seasonYr;
+                        if (row.club && normStr(row.club) !== 'unattached') ex.club = row.club;
+                        if (row.age_cat) ex.age_cat = row.age_cat;
+                    }
+                }
+            });
+
+            // Check if runner has an explicitly chosen header photo
+            const initialSavedHeader = getSavedAthleteHeader();
+            if (initialSavedHeader && initialSavedHeader.url) {
+                hasCustomPortrait = true;
+                currentHeaderPhotoId = initialSavedHeader.photoId || '';
+                currentActiveHeaderPos = initialSavedHeader.position || 'center 25%';
+                applyHeaderPhoto(initialSavedHeader.url, currentActiveHeaderPos);
+            } else {
+                loadProfilePhoto(targetAthlete, targetProfile.targetClub || targetClub);
+            }
 
             history.sort((a, b) => {
                 const cleanA = (a.season || '').replace(/[-_]/g, '/');
@@ -678,8 +751,8 @@
 
             // RESOLVE CURRENT / LATEST CLUB
             let currentClub = null;
-            if (clubHistoryKey && clubHistory[clubHistoryKey]) {
-                const presentEntry = clubHistory[clubHistoryKey].find(h => h.seasons && normStr(h.seasons).includes('present'));
+            if (activeClubHistoryList && Array.isArray(activeClubHistoryList)) {
+                const presentEntry = activeClubHistoryList.find(h => h.seasons && normStr(h.seasons).includes('present'));
                 if (presentEntry) currentClub = presentEntry.club;
             }
             if (!currentClub) {
@@ -689,7 +762,9 @@
                 currentClub = targetClub || "Unattached";
             }
 
-            loadProfilePhoto(targetAthlete, currentClub);
+            if (!hasCustomPortrait) {
+                loadProfilePhoto(targetAthlete, currentClub);
+            }
             
             const clubHeaderContainer = document.getElementById('athlete-club');
             if (clubHeaderContainer) {
@@ -704,9 +779,11 @@
             const metaContainer = document.getElementById('athlete-meta-history');
             if (metaContainer) {
                 let metaNoticeHtml = '';
+                const shownNotes = new Set();
 
                 Object.entries(nameChanges).forEach(([legacyName, data]) => {
-                    if (data && data.primaryName && getNameKey(data.primaryName) === finalMasterKey) {
+                    if (data && data.primaryName && getNameKey(data.primaryName) === finalMasterKey && data.note && !shownNotes.has(data.note)) {
+                        shownNotes.add(data.note);
                         metaNoticeHtml += `
                             <p class="text-[11px] font-mono text-slate-300 font-semibold uppercase tracking-wider mt-1 bg-slate-900/80 border border-slate-700 px-3 py-1.5 rounded inline-block shadow-sm">
                                 ℹ️ Note: ${data.note} (Effective ${data.effectiveSeason})
@@ -715,10 +792,11 @@
                     }
                 });
 
-                if (clubHistoryKey && clubHistory[clubHistoryKey]) {
+                if (activeClubHistoryList && Array.isArray(activeClubHistoryList)) {
                     let historyRows = '';
-                    clubHistory[clubHistoryKey].forEach(hist => {
-                        if (hist.club && normStr(hist.club) !== "unattached" && normStr(hist.club) !== "independent") {
+                    activeClubHistoryList.forEach(hist => {
+                        const isPriorNonMember = hist.seasons && normStr(hist.seasons).includes('prior');
+                        if (hist.club && normStr(hist.club) !== "unattached" && normStr(hist.club) !== "independent" && !isPriorNonMember) {
                             const clubUrl = `club.html?name=${encodeURIComponent(hist.club)}`;
                             historyRows += `
                                 <a href="${clubUrl}" class="inline-block bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-sky-400 text-[10px] font-mono font-bold text-slate-300 hover:text-sky-300 px-2.5 py-1 rounded transition-all shadow-sm">
@@ -734,6 +812,32 @@
                         }
                     });
                     metaNoticeHtml += `<div class="flex flex-wrap gap-2 pt-1">${historyRows}</div>`;
+                }
+
+                // Namesake Disambiguation Banner (when other runners share the same base name)
+                if (namesakeMap.size > 0) {
+                    const namesakeLinks = Array.from(namesakeMap.values())
+                        .sort((a, b) => b.races - a.races)
+                        .map(ns => {
+                            const url = `athlete.html?name=${encodeURIComponent(ns.name)}&club=${encodeURIComponent(ns.club)}`;
+                            const catLabel = ns.age_cat ? ` • ${ns.age_cat}` : '';
+                            return `
+                                <a href="${url}" class="inline-flex items-center gap-1.5 bg-sky-950/80 hover:bg-sky-900/90 border border-sky-500/40 hover:border-sky-400 text-[10px] font-mono font-bold text-sky-200 hover:text-white px-2.5 py-1 rounded-md transition-all shadow-sm">
+                                    <span>${ns.name}</span>
+                                    <span class="text-sky-400/90">(${ns.club}${catLabel} • ${ns.races} race${ns.races > 1 ? 's' : ''})</span>
+                                    <span>→</span>
+                                </a>
+                            `;
+                        }).join('');
+
+                    metaNoticeHtml += `
+                        <div class="pt-2 flex flex-wrap items-center gap-2">
+                            <span class="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider bg-slate-950/80 border border-slate-800 px-2 py-1 rounded">
+                                👥 Same / Similar Name in GLCL:
+                            </span>
+                            ${namesakeLinks}
+                        </div>
+                    `;
                 }
 
                 metaContainer.innerHTML = metaNoticeHtml;
@@ -1178,18 +1282,22 @@
             const matchedPhotos = [];
             const seenPhotoIds = new Set();
 
-            // Direct candidate lookup from athlete_photos.json (instant O(1))
+            // Direct candidate lookup from athlete_photos.json (supports disambiguated (Snr)/(Jnr) suffixes)
             const targetLower = targetAthlete.toLowerCase().trim();
-            const rawCandidates = athletePhotos[targetLower] || [];
-            
-            // Also check order-independent key if direct key didn't yield matches
-            let candidateList = rawCandidates;
-            if (candidateList.length === 0) {
-                const foundKey = Object.keys(athletePhotos).find(k => getNameKey(k) === finalMasterKey);
-                if (foundKey) {
-                    candidateList = athletePhotos[foundKey] || [];
+            let candidateList = [...(athletePhotos[targetLower] || [])];
+
+            Object.keys(athletePhotos).forEach(k => {
+                if (k === targetLower) return;
+                const kNameKey = getNameKey(k);
+                const kBaseKey = window.getAthleteBaseNameKey ? window.getAthleteBaseNameKey(k) : kNameKey;
+                if (kNameKey === finalMasterKey || (finalMasterKey !== targetBaseNameKey && kBaseKey === targetBaseNameKey && kNameKey === targetBaseNameKey)) {
+                    candidateList.push(...(athletePhotos[k] || []));
                 }
-            }
+            });
+
+            const allValidAthleteBibs = new Set();
+            athleteSeasonBibs.forEach(bibSet => bibSet.forEach(b => allValidAthleteBibs.add(b)));
+            const isDisambiguatedRunner = namesakeMap.size > 0 || Boolean(activeClubGroupKey) || finalMasterKey !== targetBaseNameKey;
 
             candidateList.forEach(meta => {
                 const pid = meta.id;
@@ -1199,12 +1307,15 @@
                 const photoSeason = album ? album.season : null;
                 const rBib = meta.bib ? String(meta.bib).trim() : '';
 
+                if (meta.club && !matchesAthleteClub(meta.club)) return;
+
                 if (photoSeason && athleteSeasonBibs.has(photoSeason)) {
                     const validBibsThisSeason = athleteSeasonBibs.get(photoSeason);
-                    const isNameVerified = Boolean(meta.name && getNameKey(meta.name) === finalMasterKey);
-                    if (!isNameVerified && rBib && !validBibsThisSeason.has(rBib)) return;
+                    const isExactNameMatch = Boolean(meta.name && getNameKey(meta.name) === finalMasterKey);
+                    if ((!isExactNameMatch || isDisambiguatedRunner) && rBib && !validBibsThisSeason.has(rBib)) return;
+                } else if (isDisambiguatedRunner && rBib && allValidAthleteBibs.size > 0 && !allValidAthleteBibs.has(rBib)) {
+                    return;
                 }
-                if (meta.club && !matchesAthleteClub(meta.club)) return;
 
                 seenPhotoIds.add(pid);
                 const highResUrl = meta.url_large || meta.url_l || (meta.server && meta.secret ? `https://live.staticflickr.com/${meta.server}/${pid}_${meta.secret}_b.jpg` : (meta.url_m || ''));

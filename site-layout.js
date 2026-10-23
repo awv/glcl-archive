@@ -119,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const getNameKey = (str) => {
+        if (window.getAthleteNameKey) return window.getAthleteNameKey(str);
         if (!str) return '';
         return str.replace(/,/g, '')
                   .toLowerCase()
@@ -172,17 +173,24 @@ document.addEventListener("DOMContentLoaded", () => {
         const corrections = window.glclCorrections || {};
         const clubHistory = corrections.clubHistory || {};
         const key = getNameKey(athleteName);
-        const clubHistoryKey = Object.keys(clubHistory).find(k => getNameKey(k) === key);
-        
-        if (clubHistoryKey && clubHistory[clubHistoryKey]) {
-            const presentEntry = clubHistory[clubHistoryKey].find(h => h.seasons && h.seasons.toLowerCase().includes('present'));
-            if (presentEntry && presentEntry.club) {
-                return window.getCanonicalClub ? window.getCanonicalClub(presentEntry.club) : presentEntry.club;
+        const canonLatest = window.getCanonicalClub ? window.getCanonicalClub(latestRecordClub || "Unattached") : (latestRecordClub || "Unattached");
+
+        for (const [histKey, histList] of Object.entries(clubHistory)) {
+            const [histNamePart, histClubFilter] = histKey.split('|');
+            if (getNameKey(histNamePart) === key) {
+                if (histClubFilter && window.getCanonicalClub && window.getCanonicalClub(histClubFilter).toLowerCase() !== canonLatest.toLowerCase()) {
+                    continue;
+                }
+                if (histList.some(h => (window.getCanonicalClub ? window.getCanonicalClub(h.club) : h.club).toLowerCase() === canonLatest.toLowerCase())) {
+                    const presentEntry = histList.find(h => h.seasons && h.seasons.toLowerCase().includes('present'));
+                    if (presentEntry && presentEntry.club) {
+                        return window.getCanonicalClub ? window.getCanonicalClub(presentEntry.club) : presentEntry.club;
+                    }
+                }
             }
         }
         
-        const fallback = latestRecordClub || "Unattached";
-        return window.getCanonicalClub ? window.getCanonicalClub(fallback) : fallback;
+        return canonLatest;
     };
 
     const injectSearchModalMarkup = () => {
@@ -227,26 +235,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
             dataset.forEach(item => {
                 if (item && item.name && item.pos > 0) {
-                    const canonicalName = resolveAthleteName(item.name);
-                    const key = getNameKey(canonicalName);
-                    const rawClub = item.club ? item.club.trim() : 'Unattached';
+                    const resolved = window.resolveRowAthlete
+                        ? window.resolveRowAthlete(item)
+                        : {
+                            name: resolveAthleteName(item.name),
+                            club: item.club ? item.club.trim() : 'Unattached',
+                            profileKey: getNameKey(resolveAthleteName(item.name))
+                        };
+
+                    const key = resolved.profileKey || getNameKey(resolved.name);
+                    const rawClub = resolved.club || 'Unattached';
                     const seasonYr = parseSeasonYear(item.season);
 
                     if (!runnersMap.has(key)) {
                         runnersMap.set(key, {
-                            name: canonicalName,
+                            name: resolved.name,
                             rawClub: rawClub,
                             latestYear: seasonYr,
                             sex: item.sex || '—',
-                            age_cat: item.age_cat || '—'
+                            age_cat: resolved.age_cat || item.age_cat || '—',
+                            races: 1
                         });
                     } else {
                         const existing = runnersMap.get(key);
+                        existing.races++;
                         if (seasonYr >= existing.latestYear) {
                             existing.latestYear = seasonYr;
-                            existing.rawClub = rawClub;
+                            if (rawClub && rawClub.toLowerCase() !== 'unattached') {
+                                existing.rawClub = rawClub;
+                            }
                             existing.sex = item.sex || existing.sex;
-                            existing.age_cat = item.age_cat || existing.age_cat;
+                            existing.age_cat = resolved.age_cat || item.age_cat || existing.age_cat;
                         }
                     }
                 }
@@ -256,7 +275,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 name: a.name,
                 club: resolveCurrentClub(a.name, a.rawClub),
                 sex: a.sex,
-                age_cat: a.age_cat
+                age_cat: a.age_cat,
+                races: a.races
             }));
 
             isDatasetInitialized = true;
@@ -336,10 +356,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if (query.length < 2) return;
             initDataset();
 
-            const filtered = uniqueAthletes.filter(athlete => 
-                athlete.name.toLowerCase().includes(query) ||
-                athlete.club.toLowerCase().includes(query)
-            ).slice(0, 15);
+            const queryTokens = query.split(/\s+/).filter(Boolean);
+            const filtered = uniqueAthletes.filter(athlete => {
+                const hay = `${athlete.name} ${athlete.club}`.toLowerCase();
+                return queryTokens.every(tok => hay.includes(tok));
+            }).sort((a, b) => (b.races || 0) - (a.races || 0)).slice(0, 15);
 
             if (filtered.length === 0) {
                 resultsContainer.innerHTML = `
@@ -354,13 +375,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 const item = document.createElement('a');
                 item.href = `athlete.html?name=${encodeURIComponent(athlete.name)}&club=${encodeURIComponent(athlete.club)}`;
                 item.className = 'flex justify-between items-center px-4 py-3 hover:bg-slate-800/40 rounded-xl transition-all cursor-pointer group';
+                const raceCountText = athlete.races ? ` • ${athlete.races}R` : '';
                 item.innerHTML = `
                     <div class="space-y-0.5 text-left">
                         <span class="text-sm font-bold text-slate-200 group-hover:text-brand-400 transition-colors block">${athlete.name}</span>
                         <span class="text-[10px] font-mono font-bold text-slate-500 group-hover:text-slate-400 transition-colors uppercase block">${athlete.club}</span>
                     </div>
                     <span class="text-[9px] font-mono font-bold bg-slate-950 text-slate-400 px-2.5 py-1 rounded-md border border-slate-800 uppercase tracking-wider">
-                        ${athlete.sex} / ${athlete.age_cat}
+                        ${athlete.sex} / ${athlete.age_cat}${raceCountText}
                     </span>
                 `;
                 resultsContainer.appendChild(item);

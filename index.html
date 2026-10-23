@@ -215,8 +215,13 @@
 
                 if (r.pos > 0 && r.name && r.name !== 'Unknown Runner') {
                     totalFinishes++;
-                    const canonicalName = resolveAthleteName(r.name);
-                    runnersSet.add(getNameKey(canonicalName));
+                    if (window.resolveRowAthlete) {
+                        const resolved = window.resolveRowAthlete(r);
+                        runnersSet.add(resolved.profileKey || resolved.nameKey);
+                    } else {
+                        const canonicalName = resolveAthleteName(r.name);
+                        runnersSet.add(getNameKey(canonicalName));
+                    }
 
                     const disc = (r.discipline || '').toLowerCase();
                     if (disc === 'xc') xcCount++;
