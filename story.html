@@ -863,19 +863,26 @@
             });
         }
 
+        // Helper to generate social share card URL
+        const slugify = (text) => (text || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        const runnerSlug = slugify(finalName);
+        const isLiveSite = window.location.hostname.includes('glcl.uk') || window.location.hostname.includes('github.io');
+        const shareBaseOrigin = isLiveSite ? 'https://glcl.uk' : window.location.origin;
+        const shareCardUrl = `${shareBaseOrigin}/share/${runnerSlug}.html`;
+
         // Copy Link
         const copyBtn = document.getElementById('btn-copy-story-link');
         const toast = document.getElementById('toast-message');
         if (copyBtn) {
             copyBtn.addEventListener('click', () => {
-                const currentUrl = window.location.href;
-                navigator.clipboard.writeText(currentUrl).then(() => {
+                const urlToCopy = isLiveSite ? shareCardUrl : window.location.href;
+                navigator.clipboard.writeText(urlToCopy).then(() => {
                     if (toast) {
                         toast.classList.remove('hidden');
                         setTimeout(() => toast.classList.add('hidden'), 2500);
                     }
                 }).catch(() => {
-                    prompt('Copy this link:', currentUrl);
+                    prompt('Copy this link:', urlToCopy);
                 });
             });
         }
@@ -884,9 +891,10 @@
         const fbBtn = document.getElementById('btn-share-facebook');
         if (fbBtn) {
             fbBtn.addEventListener('click', () => {
-                const shareUrl = encodeURIComponent(window.location.href);
-                const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
-                window.open(fbUrl, '_blank', 'width=600,height=500,location=no,toolbar=no');
+                // Share the dedicated Open Graph stub so Facebook crawler displays the runner's real photo & name
+                const targetShareUrl = isLiveSite ? shareCardUrl : window.location.href;
+                const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(targetShareUrl)}`;
+                window.open(fbUrl, '_blank', 'width=620,height=540,location=no,toolbar=no');
             });
         }
 
