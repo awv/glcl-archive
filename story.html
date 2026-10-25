@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="h-full bg-slate-100 text-slate-800 antialiased selection:bg-sky-500 selection:text-white">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLCL Career Story & Milestones — Gwent Leisure Centre League</title>
+    
+    <!-- Open Graph Meta Tags (Dynamic Fallbacks) -->
+    <meta property="og:site_name" content="GLCL Archive">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" id="meta-og-title" content="GLCL Runner Career Story">
+    <meta property="og:description" id="meta-og-desc" content="Explore runner career highlights, race milestones, and league history on the GLCL Archive.">
+    <meta property="og:image" id="meta-og-image" content="https://glcl.co.uk/assets/images/hero_placeholder.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
+                    }
+                }
+            }
+        };
+    </script>
+    
+    <!-- Site Data & Dependencies -->
+    <script src="data.js?v=1792781740069"></script>
+    <script src="assets/js/corrections.js?v=1792781740069"></script>
+    <script src="site-layout.js?v=1792781740069"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap');
+        
+        .stat-card-gradient {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+        }
+        
+        .hero-mesh {
+            background-color: #ffffff;
+            background-image: radial-gradient(at 10% 20%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
+                              radial-gradient(at 90% 80%, rgba(99, 102, 241, 0.07) 0px, transparent 50%),
+                              radial-gradient(at 50% 50%, rgba(244, 244, 245, 0.5) 0px, transparent 100%);
+        }
+
+        /* Subtle animated shimmer for share card badge */
+        @keyframes subtle-shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+        .shimmer-bar::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: translateX(-100%);
+            animation: subtle-shimmer 3.5s infinite;
+        }
+    </style>
+</head>
+
+<body class="min-h-full flex flex-col bg-slate-100/70 font-sans text-slate-800">
+
+    <!-- Global Top Navigation (Dark Header from site layout) -->
+    <header id="global-nav" class="bg-slate-950 border-b border-slate-900 sticky top-0 z-50"></header>
+
+    <!-- Sub-Navbar / Breadcrumbs Bar -->
+    <div class="bg-white border-b border-slate-200/90 shadow-sm sticky top-16 z-40 transition-all">
+        <div class="max-w-[1240px] mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2 text-xs font-mono font-bold">
+                <a href="index.html" class="text-slate-500 hover:text-slate-900 transition-colors">GLCL ARCHIVE</a>
+                <span class="text-slate-300">/</span>
+                <a id="back-to-profile-link" href="athlete.html" class="text-slate-500 hover:text-slate-900 transition-colors">ATHLETE PROFILE</a>
+                <span class="text-slate-300">/</span>
+                <span class="text-sky-600 bg-sky-50 px-2 py-0.5 rounded border border-sky-200 uppercase">CAREER STORY</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <a id="btn-view-stats" href="athlete.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold font-mono text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-300/80 rounded-lg transition-all shadow-sm">
+                    <span>📊 Full Race Logs</span>
+                </a>
+                <button id="btn-scroll-to-share" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold font-mono text-white bg-sky-600 hover:bg-sky-500 rounded-lg shadow-sm hover:shadow transition-all">
+                    <span>📱 Create Share Card</span>
+                    <span>↓</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN STORY CANVAS -->
+    <main class="flex-grow max-w-[1240px] w-full mx-auto px-4 py-8 space-y-8">
+
+        <!-- 1. HERO SPOTLIGHT CARD -->
+        <section class="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden hero-mesh relative">
+            <div id="club-color-bar" class="h-2 w-full bg-gradient-to-r from-sky-500 via-indigo-500 to-sky-600"></div>
+
+            <div class="p-6 md:p-10 lg:p-12">
+                <div class="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
+                    
+                    <!-- Portrait / Featured Action Photo -->
+                    <div class="relative group flex-shrink-0">
+                        <div id="photo-aura" class="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-sky-400 via-indigo-400 to-amber-300 opacity-60 blur-lg group-hover:opacity-90 transition-opacity duration-500"></div>
+                        <div class="relative w-56 h-72 sm:w-64 sm:h-80 md:w-72 md:h-96 rounded-2xl overflow-hidden bg-slate-900 shadow-2xl border-4 border-white flex items-center justify-center">
+                            <img id="runner-featured-photo" 
+                                 src="assets/images/hero_placeholder.jpg" 
+                                 alt="Runner Portrait" 
+                                 class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105">
+                            
+                            <!-- Badges on photo -->
+                            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                                <span id="photo-pill-badge" class="bg-slate-950/85 backdrop-blur-md text-[10px] font-mono font-bold text-amber-300 border border-slate-700/80 px-2.5 py-1 rounded-md shadow-md uppercase">
+                                    📸 Official GLCL Photo
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Change photo trigger (opens modal to pick from available photos) -->
+                        <button id="btn-toggle-photo-picker" class="mt-3 w-full inline-flex items-center justify-center gap-1.5 py-1.5 px-3 text-[11px] font-mono font-bold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/80 border border-slate-300/80 rounded-lg transition-colors">
+                            <span>🔄 Switch Action Photo</span>
+                        </button>
+                    </div>
+
+                    <!-- Runner Intro & Milestone Tagline -->
+                    <div class="flex-grow text-center lg:text-left space-y-4">
+                        
+                        <!-- Club Badge & Category -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1">
+                            <span id="story-club-badge" class="px-3 py-1 rounded-full text-xs font-mono font-extrabold uppercase tracking-wider text-sky-800 bg-sky-100 border border-sky-200 shadow-sm">
+                                Club Name
+                            </span>
+                            <span id="story-category-badge" class="px-2.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider text-slate-600 bg-slate-100 border border-slate-200">
+                                Category
+                            </span>
+                            <span id="story-status-badge" class="px-2.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-200">
+                                🌟 Active Competitor
+                            </span>
+                        </div>
+
+                        <!-- Runner Full Name -->
+                        <h1 id="story-athlete-name" class="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight uppercase leading-none">
+                            Loading Runner...
+                        </h1>
+
+                        <!-- Editorial Career Summary -->
+                        <p id="story-career-tagline" class="text-base sm:text-lg text-slate-600 font-medium max-w-2xl leading-relaxed">
+                            A cornerstone of the Gwent Leisure Centre League, pushing the limits on cross country mud and road tarmac across the years.
+                        </p>
+
+                        <!-- High Impact Metric Grid (Light themed, celebratory) -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-4">
+                            
+                            <div class="bg-white/90 border border-slate-200/90 rounded-2xl p-4 shadow-sm text-center lg:text-left hover:border-sky-300 transition-colors">
+                                <span class="block text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest">Total League Races</span>
+                                <span id="metric-races" class="text-3xl sm:text-4xl font-black text-slate-900 block mt-1">0</span>
+                                <span class="text-[11px] font-mono font-semibold text-slate-500 block mt-0.5">Fixtures Finished</span>
+                            </div>
+
+                            <div class="bg-white/90 border border-slate-200/90 rounded-2xl p-4 shadow-sm text-center lg:text-left hover:border-sky-300 transition-colors">
+                                <span class="block text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest">Seasons Active</span>
+                                <span id="metric-seasons" class="text-3xl sm:text-4xl font-black text-sky-600 block mt-1">0</span>
+                                <span id="metric-season-span" class="text-[11px] font-mono font-semibold text-slate-500 block mt-0.5">—</span>
+                            </div>
+
+                            <div class="bg-white/90 border border-slate-200/90 rounded-2xl p-4 shadow-sm text-center lg:text-left hover:border-amber-300 transition-colors">
+                                <span class="block text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest">Category Podiums</span>
+                                <span id="metric-podiums" class="text-3xl sm:text-4xl font-black text-amber-500 block mt-1">0</span>
+                                <span id="metric-wins-detail" class="text-[11px] font-mono font-semibold text-slate-500 block mt-0.5">0 Category Wins</span>
+                            </div>
+
+                            <div class="bg-white/90 border border-slate-200/90 rounded-2xl p-4 shadow-sm text-center lg:text-left hover:border-indigo-300 transition-colors">
+                                <span class="block text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest">League Miles</span>
+                                <span id="metric-miles" class="text-3xl sm:text-4xl font-black text-indigo-600 block mt-1">0</span>
+                                <span class="text-[11px] font-mono font-semibold text-slate-500 block mt-0.5">Competitive Miles</span>
+                            </div>
+
+                        </div>
+
+                        <!-- Highlights Banner -->
+                        <div id="story-best-highlight" class="p-3.5 bg-sky-50/80 border border-sky-100 rounded-xl text-xs sm:text-sm text-sky-950 font-medium flex items-center gap-3">
+                            <span class="text-lg">🏆</span>
+                            <div>
+                                <span class="font-bold">Career Pinnacle:</span>
+                                <span id="story-best-highlight-text" class="text-slate-700">Loading highest achievements...</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. CAREER MILESTONES & HONOURS -->
+        <section class="space-y-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-lg sm:text-xl font-black text-slate-900 uppercase tracking-tight">Milestone Honours & Achievements</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 font-medium">Distinctive recognition earned through competition in the GLCL</p>
+                </div>
+            </div>
+
+            <div id="milestones-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Dynamically populated achievement plaques -->
+            </div>
+        </section>
+
+        <!-- 3. VISUAL ANALYTICS: ATTENDANCE TIMELINE & DISCIPLINE SPLIT -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- Season-by-Season Attendance Sparkline / Matrix (2 Cols) -->
+            <section class="lg:col-span-2 bg-white rounded-3xl border border-slate-200/90 p-6 md:p-8 shadow-sm space-y-6">
+                <div>
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight">Season-by-Season Journey</h2>
+                        <span class="text-xs font-mono font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded">5 Fixtures / Season</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-1">Full historical attendance map showing continuous league commitment over the years.</p>
+                </div>
+
+                <div id="seasons-timeline-container" class="space-y-3">
+                    <!-- Dynamic Season Bars Injected Here -->
+                </div>
+            </section>
+
+            <!-- Discipline Split & Top Venues (1 Col) -->
+            <section class="bg-white rounded-3xl border border-slate-200/90 p-6 md:p-8 shadow-sm space-y-6 flex flex-col justify-between">
+                <div class="space-y-6">
+                    <div>
+                        <h2 class="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight">Terrain Mastery</h2>
+                        <p class="text-xs text-slate-500 mt-1">Cross country mud vs. road tarmac distribution</p>
+                    </div>
+
+                    <!-- Split Progress Bar -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs font-mono font-bold">
+                            <span class="text-emerald-700 flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                                <span id="label-xc-percent">XC: 0%</span>
+                            </span>
+                            <span class="text-indigo-700 flex items-center gap-1.5">
+                                <span id="label-road-percent">Road: 0%</span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 inline-block"></span>
+                            </span>
+                        </div>
+                        <div class="h-3.5 w-full bg-slate-100 rounded-full overflow-hidden flex shadow-inner border border-slate-200/80">
+                            <div id="bar-xc-split" class="bg-emerald-500 h-full transition-all duration-1000" style="width: 50%;"></div>
+                            <div id="bar-road-split" class="bg-indigo-500 h-full transition-all duration-1000" style="width: 50%;"></div>
+                        </div>
+                        <div class="flex justify-between text-[11px] font-mono text-slate-500">
+                            <span id="label-xc-count">0 Cross Country Races</span>
+                            <span id="label-road-count">0 Road Races</span>
+                        </div>
+                    </div>
+
+                    <!-- Top Venues Conquered -->
+                    <div class="space-y-3 pt-2">
+                        <h3 class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">Top Venues Conquered</h3>
+                        <div id="top-venues-list" class="space-y-2">
+                            <!-- Injected by script -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Longevity Quote Plaque -->
+                <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 text-center">
+                    <span class="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider block">GLCL Heritage</span>
+                    <p id="quote-plaque-text" class="text-xs text-slate-700 font-medium italic mt-1">
+                        "Every finish line in Gwent is part of the story."
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <!-- 4. SOCIAL SHARE CARD CREATOR & EXPORTER SECTION -->
+        <section id="share-card-section" class="bg-gradient-to-br from-slate-900 via-slate-950 to-indigo-950 rounded-3xl p-6 sm:p-10 md:p-12 text-white shadow-2xl relative overflow-hidden">
+            <!-- Background glow accents -->
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 max-w-4xl mx-auto space-y-8">
+                <div class="text-center space-y-2">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold text-sky-300 bg-sky-950/80 border border-sky-800 uppercase tracking-widest">
+                        <span>📲 Share Your Milestone</span>
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-black tracking-tight text-white uppercase">
+                        GLCL Career Share Card
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-300 max-w-xl mx-auto">
+                        Celebrate your racing journey! Download a high-resolution story card or share directly to Facebook and club groups.
+                    </p>
+                </div>
+
+                <!-- Interactive Preview of the 1200x630 Card (Scaled for Screen) -->
+                <div class="max-w-2xl mx-auto">
+                    <div id="card-preview-frame" class="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-slate-700 bg-slate-900 aspect-[1200/630] flex flex-col justify-between p-6 sm:p-8 text-white select-none">
+                        <!-- Top Header inside card -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <img src="assets/images/logo.jpg" class="h-8 w-auto rounded" alt="GLCL">
+                                <div>
+                                    <span class="text-xs font-black tracking-wider uppercase block text-white">GLCL ARCHIVE</span>
+                                    <span class="text-[9px] font-mono text-sky-400 uppercase tracking-widest block">Gwent Leisure Centre League</span>
+                                </div>
+                            </div>
+                            <span id="preview-card-season-tag" class="px-2.5 py-1 rounded text-[10px] font-mono font-extrabold uppercase tracking-wider bg-white/10 border border-white/20 text-slate-200">
+                                9 Seasons Strong
+                            </span>
+                        </div>
+
+                        <!-- Middle Content inside card: Photo + Stats -->
+                        <div class="flex items-center gap-5 sm:gap-6 my-auto">
+                            <!-- Circular Photo with Glow -->
+                            <div class="relative w-20 h-20 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-sky-400 shadow-xl flex-shrink-0 bg-slate-800">
+                                <img id="preview-card-photo" src="assets/images/hero_placeholder.jpg" class="w-full h-full object-cover object-top" alt="Card Runner Photo">
+                            </div>
+                            <!-- Runner Details -->
+                            <div class="min-w-0">
+                                <span id="preview-card-club" class="text-xs font-mono font-bold uppercase tracking-wider text-sky-400 block truncate">
+                                    PARC BRYN BACH RC
+                                </span>
+                                <h3 id="preview-card-name" class="text-xl sm:text-3xl font-black uppercase tracking-tight text-white truncate">
+                                    Runner Name
+                                </h3>
+                                <p id="preview-card-cat" class="text-xs font-mono text-slate-400 uppercase mt-0.5">
+                                    V50 Category • Active Competitor
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Bottom 4 Stats Grid inside card -->
+                        <div class="grid grid-cols-4 gap-2 pt-3 border-t border-slate-800/80 text-center">
+                            <div class="bg-slate-950/60 p-2 rounded-lg border border-slate-800">
+                                <span class="text-[9px] font-mono text-slate-400 uppercase block">Races</span>
+                                <span id="preview-card-stat-races" class="text-sm sm:text-lg font-black text-white">0</span>
+                            </div>
+                            <div class="bg-slate-950/60 p-2 rounded-lg border border-slate-800">
+                                <span class="text-[9px] font-mono text-slate-400 uppercase block">Seasons</span>
+                                <span id="preview-card-stat-seasons" class="text-sm sm:text-lg font-black text-sky-400">0</span>
+                            </div>
+                            <div class="bg-slate-950/60 p-2 rounded-lg border border-slate-800">
+                                <span class="text-[9px] font-mono text-slate-400 uppercase block">Podiums</span>
+                                <span id="preview-card-stat-podiums" class="text-sm sm:text-lg font-black text-amber-400">0</span>
+                            </div>
+                            <div class="bg-slate-950/60 p-2 rounded-lg border border-slate-800">
+                                <span class="text-[9px] font-mono text-slate-400 uppercase block">Miles</span>
+                                <span id="preview-card-stat-miles" class="text-sm sm:text-lg font-black text-indigo-400">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons: Download & Social Share -->
+                <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                    <button id="btn-download-card" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono font-bold text-xs uppercase tracking-wider text-slate-950 bg-sky-400 hover:bg-sky-300 shadow-lg hover:shadow-sky-400/30 transition-all hover:scale-105">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                        </svg>
+                        <span>Download Share Card (HD PNG)</span>
+                    </button>
+
+                    <button id="btn-share-facebook" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono font-bold text-xs uppercase tracking-wider text-white bg-[#1877F2] hover:bg-[#166fe5] shadow-lg transition-all hover:scale-105">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                        <span>Share on Facebook</span>
+                    </button>
+
+                    <button id="btn-copy-story-link" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-mono font-bold text-xs uppercase tracking-wider text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                        <span id="copy-btn-label">Copy Story Link</span>
+                    </button>
+                </div>
+
+                <!-- Toast feedback container -->
+                <div id="toast-message" class="hidden text-center text-xs font-mono font-bold text-emerald-400 py-1 transition-opacity">
+                    ✓ Link copied to clipboard!
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Hidden Offscreen Canvas for Exporting High-Res 1200x630 Graphic -->
+    <canvas id="export-canvas" width="1200" height="630" class="hidden"></canvas>
+
+    <!-- Photo Selection Modal (Allows picking from all runner photos) -->
+    <div id="photo-picker-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl border border-slate-200 max-h-[85vh] flex flex-col">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                <div>
+                    <h3 class="text-lg font-black text-slate-900 uppercase">Select Featured Action Photo</h3>
+                    <p class="text-xs text-slate-500">Pick any tagged GLCL photo for your story and share card</p>
+                </div>
+                <button id="btn-close-photo-modal" class="p-2 text-slate-400 hover:text-slate-800 rounded-lg">✕</button>
+            </div>
+            
+            <div id="photo-picker-grid" class="grid grid-cols-3 sm:grid-cols-4 gap-3 overflow-y-auto flex-grow p-1">
+                <!-- Injected photo thumbnails -->
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 flex justify-end">
+                <button id="btn-dismiss-photo-modal" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-mono font-bold rounded-lg uppercase">
+                    Done
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Footer -->
+    <footer id="global-footer" class="bg-slate-950 border-t border-slate-900 text-slate-400 py-10 mt-12"></footer>
+
+    <!-- MAIN INTERACTIVE ENGINE -->
+    <script>
+    (async function initStoryPage() {
+        const urlParams = new URLSearchParams(window.location.search);
+        let targetAthlete = (urlParams.get('name') || '').trim();
+        let targetClub = (urlParams.get('club') || '').trim();
+
+        // Default test runner if none specified
+        if (!targetAthlete) {
+            targetAthlete = "Huw Evans";
+            targetClub = "Parc Bryn Bach RC";
+        }
+
+        // Setup Back to Profile Links
+        const profileUrl = `athlete.html?name=${encodeURIComponent(targetAthlete)}${targetClub ? `&club=${encodeURIComponent(targetClub)}` : ''}`;
+        const backLink = document.getElementById('back-to-profile-link');
+        const btnViewStats = document.getElementById('btn-view-stats');
+        if (backLink) backLink.href = profileUrl;
+        if (btnViewStats) btnViewStats.href = profileUrl;
+
+        // Fetch club colours, photos, and athlete headers in parallel
+        let clubColoursData = {};
+        let athletePhotos = {};
+        let athleteHeaders = {};
+        let featuredPhotos = {};
+
+        try {
+            const [clubRes, photosRes, headersRes, featRes] = await Promise.all([
+                fetch('assets/data/club_colours.json?v=1792781740069').catch(() => null),
+                fetch('assets/data/athlete_photos.json?v=1792781740069').catch(() => null),
+                fetch('assets/data/athlete_headers.json?v=1792781740069').catch(() => null),
+                fetch('assets/data/athlete_featured_photos.json?v=1792781740069').catch(() => null)
+            ]);
+            if (clubRes && clubRes.ok) clubColoursData = (await clubRes.json()).clubs || {};
+            if (photosRes && photosRes.ok) athletePhotos = await photosRes.json();
+            if (headersRes && headersRes.ok) athleteHeaders = await headersRes.json();
+            if (featRes && featRes.ok) featuredPhotos = await featRes.json();
+        } catch (e) {
+            console.warn('Non-fatal asset fetch error:', e);
+        }
+
+        // Disambiguate athlete profile using corrections.js
+        const normStr = (str) => (str || '').trim().toLowerCase();
+        const getNameKey = (str) => {
+            if (window.getAthleteNameKey) return window.getAthleteNameKey(str);
+            if (!str) return '';
+            return str.replace(/,/g, '').toLowerCase().split(/\s+/).filter(Boolean).sort().join(' ');
+        };
+
+        const targetProfile = window.resolveTargetProfile
+            ? window.resolveTargetProfile(targetAthlete, targetClub)
+            : {
+                displayName: targetAthlete,
+                nameKey: getNameKey(targetAthlete),
+                baseNameKey: getNameKey(targetAthlete),
+                targetClub: targetClub || '',
+                clubGroupKey: '',
+                profileKey: getNameKey(targetAthlete),
+                clubHistoryList: null
+            };
+
+        const finalName = targetProfile.displayName;
+        const finalMasterKey = targetProfile.nameKey;
+        const activeClubGroupKey = targetProfile.clubGroupKey;
+        const activeProfileKey = targetProfile.profileKey;
+
+        // Filter all records for this athlete
+        const allRecords = window.glclResults || [];
+        const runnerRecords = allRecords.filter(r => {
+            if (!r || !r.name) return false;
+            const rKey = getNameKey(r.name);
+            if (rKey !== finalMasterKey) return false;
+            if (activeClubGroupKey) {
+                const rClubKey = normStr(r.club);
+                if (rClubKey !== activeClubGroupKey) return false;
+            }
+            return true;
+        });
+
+        if (runnerRecords.length === 0) {
+            document.getElementById('story-athlete-name').textContent = finalName;
+            document.getElementById('story-career-tagline').textContent = "No race records found under this name in the GLCL Archive.";
+            return;
+        }
+
+        // Detect most recent or primary club
+        const clubFrequencies = {};
+        runnerRecords.forEach(r => {
+            if (r.club) {
+                clubFrequencies[r.club] = (clubFrequencies[r.club] || 0) + 1;
+            }
+        });
+        const primaryClub = Object.entries(clubFrequencies).sort((a,b) => b[1] - a[1])[0]?.[0] || targetClub || 'GLCL Competitor';
+
+        // Lookup club colours
+        let clubColourHex = '#0284c7'; // default sky
+        let clubSecHex = '#4f46e5';
+        for (const [cName, cObj] of Object.entries(clubColoursData)) {
+            if (normStr(cName) === normStr(primaryClub) || (cObj.aliases && cObj.aliases.some(a => normStr(a) === normStr(primaryClub)))) {
+                if (cObj.primary_color && cObj.primary_color.hex) clubColourHex = cObj.primary_color.hex;
+                if (cObj.secondary_color && cObj.secondary_color.hex) clubSecHex = cObj.secondary_color.hex;
+                break;
+            }
+        }
+
+        // Apply club colour bar
+        const barEl = document.getElementById('club-color-bar');
+        if (barEl) {
+            barEl.style.background = `linear-gradient(90deg, ${clubColourHex}, ${clubSecHex})`;
+        }
+
+        // Calculate macro metrics
+        const totalRaces = runnerRecords.length;
+        const seasonsSet = new Set(runnerRecords.map(r => r.season).filter(Boolean));
+        const sortedSeasons = Array.from(seasonsSet).sort();
+        const totalSeasons = sortedSeasons.length;
+        const seasonSpanStr = totalSeasons > 1 ? `${sortedSeasons[0]} – ${sortedSeasons[sortedSeasons.length - 1]}` : (sortedSeasons[0] || 'Active');
+
+        let categoryWins = 0;
+        let categoryPodiums = 0;
+        let overallWins = 0;
+        let top10Finishes = 0;
+        let bestOverallPos = Infinity;
+        let bestOverallRace = null;
+        let xcCount = 0;
+        let roadCount = 0;
+        let totalMiles = 0;
+        const venueCounts = {};
+
+        runnerRecords.forEach(r => {
+            const p = parseInt(r.pos, 10);
+            const cp = parseInt(r.cat_pos, 10);
+            if (!isNaN(p) && p > 0) {
+                if (p === 1) overallWins++;
+                if (p <= 10) top10Finishes++;
+                if (p < bestOverallPos) {
+                    bestOverallPos = p;
+                    bestOverallRace = r;
+                }
+            }
+            if (!isNaN(cp) && cp > 0) {
+                if (cp === 1) categoryWins++;
+                if (cp <= 3) categoryPodiums++;
+            }
+
+            // Discipline
+            const disc = normStr(r.discipline);
+            if (disc.includes('xc') || disc.includes('cross')) {
+                xcCount++;
+                totalMiles += 4.8;
+            } else {
+                roadCount++;
+                totalMiles += 5.2;
+            }
+
+            // Venue
+            if (r.venue) {
+                venueCounts[r.venue] = (venueCounts[r.venue] || 0) + 1;
+            }
+        });
+
+        const latestRecord = runnerRecords[0] || {};
+        const primaryCat = latestRecord.age_cat || latestRecord.category || 'Competitor';
+
+        // Populate DOM Text Elements
+        document.getElementById('story-athlete-name').textContent = finalName;
+        document.getElementById('story-club-badge').textContent = primaryClub.toUpperCase();
+        document.getElementById('story-category-badge').textContent = primaryCat.toUpperCase();
+        document.getElementById('metric-races').textContent = totalRaces;
+        document.getElementById('metric-seasons').textContent = totalSeasons;
+        document.getElementById('metric-season-span').textContent = seasonSpanStr;
+        document.getElementById('metric-podiums').textContent = categoryPodiums;
+        document.getElementById('metric-wins-detail').textContent = `${categoryWins} Category Win${categoryWins === 1 ? '' : 's'}`;
+        document.getElementById('metric-miles').textContent = `~${Math.round(totalMiles)}`;
+
+        // Dynamic Tagline
+        let storyTagline = '';
+        if (totalSeasons >= 5) {
+            storyTagline = `A bona fide GLCL League Veteran with ${totalRaces} races across ${totalSeasons} seasons (${seasonSpanStr}), representing ${primaryClub} with distinction.`;
+        } else if (totalRaces >= 15) {
+            storyTagline = `An energetic GLCL regular with ${totalRaces} races completed, dominating cross country circuits and road courses across Gwent.`;
+        } else {
+            storyTagline = `A competitive contender representing ${primaryClub} in the historic Gwent Leisure Centre League.`;
+        }
+        document.getElementById('story-career-tagline').textContent = storyTagline;
+
+        // Career Pinnacle Highlight Banner
+        const bestHighlightEl = document.getElementById('story-best-highlight-text');
+        if (bestOverallPos !== Infinity && bestOverallRace) {
+            const venueStr = bestOverallRace.venue ? ` at ${bestOverallRace.venue}` : '';
+            const seasonStr = bestOverallRace.season ? ` (${bestOverallRace.season})` : '';
+            bestHighlightEl.textContent = `Career-best ${bestOverallPos === 1 ? '🥇 1st Overall VICTORY' : `${bestOverallPos}${getOrdinal(bestOverallPos)} Overall`}${venueStr}${seasonStr} • ${categoryWins} Category Wins • ${categoryPodiums} Podiums`;
+        } else if (categoryWins > 0) {
+            bestHighlightEl.textContent = `${categoryWins} Career Category Wins • ${categoryPodiums} Category Podiums across ${totalRaces} League appearances.`;
+        } else {
+            bestHighlightEl.textContent = `${totalRaces} Completed League Fixtures across ${totalSeasons} Seasons in Gwent.`;
+        }
+
+        // -------------------------------------------------------------
+        // RESOLVE FEATURED PHOTO (Cascade: Custom -> AI Featured -> Sharpness -> Fallback)
+        // -------------------------------------------------------------
+        let chosenPhotoUrl = 'assets/images/hero_placeholder.jpg';
+        let candidatePhotoList = [];
+
+        // Check local override
+        const localOverrides = JSON.parse(localStorage.getItem('glcl_athlete_headers') || '{}');
+        const mergedHeaders = { ...athleteHeaders, ...localOverrides };
+        const savedHeader = mergedHeaders[activeProfileKey] || (!activeClubGroupKey ? mergedHeaders[finalMasterKey] : null);
+
+        // Check athletePhotos pool
+        const athletePhotoPool = athletePhotos[finalMasterKey] || athletePhotos[targetProfile.baseNameKey] || [];
+        if (Array.isArray(athletePhotoPool)) {
+            candidatePhotoList = athletePhotoPool.map(p => {
+                let url = '';
+                if (p.url) url = p.url;
+                else if (p.server && p.id && p.secret) {
+                    url = `https://live.staticflickr.com/${p.server}/${p.id}_${p.secret}_b.jpg`;
+                }
+                return { ...p, fullUrl: url };
+            }).filter(p => p.fullUrl);
+        }
+
+        if (savedHeader && savedHeader.url) {
+            chosenPhotoUrl = savedHeader.url;
+        } else if (featuredPhotos && (featuredPhotos[activeProfileKey] || featuredPhotos[finalMasterKey])) {
+            const feat = featuredPhotos[activeProfileKey] || featuredPhotos[finalMasterKey];
+            if (feat.url) chosenPhotoUrl = feat.url;
+        } else if (candidatePhotoList.length > 0) {
+            // Sort by sharpness descending
+            candidatePhotoList.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
+            chosenPhotoUrl = candidatePhotoList[0].fullUrl;
+        }
+
+        const heroPhotoImg = document.getElementById('runner-featured-photo');
+        if (heroPhotoImg) heroPhotoImg.src = chosenPhotoUrl;
+
+        // Preview card sync
+        const prevCardPhoto = document.getElementById('preview-card-photo');
+        if (prevCardPhoto) prevCardPhoto.src = chosenPhotoUrl;
+        document.getElementById('preview-card-name').textContent = finalName;
+        document.getElementById('preview-card-club').textContent = primaryClub.toUpperCase();
+        document.getElementById('preview-card-cat').textContent = `${primaryCat.toUpperCase()} CATEGORY • GLCL RUNNER`;
+        document.getElementById('preview-card-season-tag').textContent = `${totalSeasons} Season${totalSeasons > 1 ? 's' : ''} Strong`;
+        document.getElementById('preview-card-stat-races').textContent = totalRaces;
+        document.getElementById('preview-card-stat-seasons').textContent = totalSeasons;
+        document.getElementById('preview-card-stat-podiums').textContent = categoryPodiums;
+        document.getElementById('preview-card-stat-miles').textContent = `~${Math.round(totalMiles)}`;
+
+        // Dynamic OG tags for browsers that parse them
+        document.getElementById('meta-og-title').setAttribute('content', `${finalName} — GLCL Career Story & Milestones`);
+        document.getElementById('meta-og-desc').setAttribute('content', `${totalRaces} League Races • ${totalSeasons} Seasons • ${primaryClub} — View career history on the GLCL Archive.`);
+        document.getElementById('meta-og-image').setAttribute('content', chosenPhotoUrl);
+
+        // -------------------------------------------------------------
+        // RENDER MILESTONE HONOURS
+        // -------------------------------------------------------------
+        const milestones = [];
+        if (totalSeasons >= 5) {
+            milestones.push({ icon: '🛡️', title: 'League Veteran', desc: `Raced across ${totalSeasons} separate league seasons`, color: 'sky' });
+        }
+        if (totalRaces >= 50) {
+            milestones.push({ icon: '💯', title: 'Half-Century Club', desc: `${totalRaces} league finishes clocked`, color: 'amber' });
+        } else if (totalRaces >= 25) {
+            milestones.push({ icon: '🏅', title: 'Quarter-Century Club', desc: `${totalRaces} competitive finishes completed`, color: 'indigo' });
+        } else if (totalRaces >= 10) {
+            milestones.push({ icon: '🏃', title: 'Established Regular', desc: `${totalRaces} league appearances completed`, color: 'emerald' });
+        }
+
+        if (overallWins > 0) {
+            milestones.push({ icon: '👑', title: 'Race Champion', desc: `${overallWins} overall outright GLCL victory`, color: 'amber' });
+        } else if (bestOverallPos <= 10 && bestOverallPos !== Infinity) {
+            milestones.push({ icon: '⚡', title: 'Top 10 Finisher', desc: `Career-best ${bestOverallPos}${getOrdinal(bestOverallPos)} overall position`, color: 'indigo' });
+        }
+
+        if (categoryWins > 0) {
+            milestones.push({ icon: '🥇', title: 'Division Victor', desc: `${categoryWins} category division win${categoryWins > 1 ? 's' : ''}`, color: 'amber' });
+        } else if (categoryPodiums > 0) {
+            milestones.push({ icon: '🥈', title: 'Podium Contender', desc: `${categoryPodiums} division podium finishes`, color: 'slate' });
+        }
+
+        if (xcCount >= 10) {
+            milestones.push({ icon: '🌲', title: 'Mud Specialist', desc: `${xcCount} brutal cross country fixtures conquered`, color: 'emerald' });
+        }
+        if (roadCount >= 10) {
+            milestones.push({ icon: '🛣️', title: 'Tarmac Master', desc: `${roadCount} fast road fixtures completed`, color: 'indigo' });
+        }
+
+        // Season perfection check (5 fixtures in one season)
+        const seasonRaceCounts = {};
+        runnerRecords.forEach(r => {
+            if (r.season) seasonRaceCounts[r.season] = (seasonRaceCounts[r.season] || 0) + 1;
+        });
+        const perfectSeasons = Object.values(seasonRaceCounts).filter(c => c >= 5).length;
+        if (perfectSeasons > 0) {
+            milestones.push({ icon: '⭐', title: 'Perfect Attendance', desc: `Completed all 5 fixtures in a single season (${perfectSeasons}x)`, color: 'amber' });
+        }
+
+        const milestonesEl = document.getElementById('milestones-container');
+        if (milestonesEl) {
+            milestonesEl.innerHTML = milestones.map(m => `
+                <div class="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow flex items-start gap-3.5">
+                    <span class="text-3xl flex-shrink-0">${m.icon}</span>
+                    <div>
+                        <h3 class="text-sm font-black text-slate-900 uppercase tracking-tight">${m.title}</h3>
+                        <p class="text-xs text-slate-500 font-medium mt-0.5">${m.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // -------------------------------------------------------------
+        // RENDER SEASONS JOURNEY / TIMELINE
+        // -------------------------------------------------------------
+        const timelineEl = document.getElementById('seasons-timeline-container');
+        if (timelineEl) {
+            const seasonsHtml = sortedSeasons.slice().reverse().map(season => {
+                const sRaces = runnerRecords.filter(r => r.season === season);
+                const sCount = sRaces.length;
+                const bestPosInSeason = Math.min(...sRaces.map(r => parseInt(r.pos, 10)).filter(p => !isNaN(p) && p > 0));
+                const sClub = sRaces[0]?.club || primaryClub;
+
+                // 5 dots representing the 5 fixtures
+                let fixtureDots = '';
+                for (let i = 1; i <= 5; i++) {
+                    const ranFixture = sRaces.some(r => parseInt(r.race_number, 10) === i || sCount >= i);
+                    if (ranFixture) {
+                        fixtureDots += `<span class="w-3.5 h-3.5 rounded-full bg-sky-500 shadow-sm" title="Fixture ${i} Ran"></span>`;
+                    } else {
+                        fixtureDots += `<span class="w-3.5 h-3.5 rounded-full bg-slate-200" title="Fixture ${i} Missed"></span>`;
+                    }
+                }
+
+                const bestPosLabel = bestPosInSeason !== Infinity ? `Best: ${bestPosInSeason}${getOrdinal(bestPosInSeason)}` : `${sCount} races`;
+
+                return `
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 hover:bg-white hover:border-sky-200 transition-all gap-2">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-mono font-bold text-slate-900 w-24">${season}</span>
+                            <span class="text-[11px] font-mono font-semibold text-slate-500 bg-white px-2 py-0.5 rounded border border-slate-200 truncate max-w-[160px]">${sClub}</span>
+                        </div>
+                        <div class="flex items-center gap-4 justify-between sm:justify-end">
+                            <div class="flex items-center gap-1.5">${fixtureDots}</div>
+                            <span class="text-xs font-mono font-bold text-sky-700 w-24 text-right">${sCount}/5 Fixtures</span>
+                            <span class="text-xs font-mono font-bold text-slate-500 w-20 text-right">${bestPosLabel}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            timelineEl.innerHTML = seasonsHtml;
+        }
+
+        // -------------------------------------------------------------
+        // RENDER DISCIPLINE SPLIT & VENUES
+        // -------------------------------------------------------------
+        const xcPercent = totalRaces > 0 ? Math.round((xcCount / totalRaces) * 100) : 50;
+        const roadPercent = 100 - xcPercent;
+        const barXc = document.getElementById('bar-xc-split');
+        const barRoad = document.getElementById('bar-road-split');
+        if (barXc) barXc.style.width = `${xcPercent}%`;
+        if (barRoad) barRoad.style.width = `${roadPercent}%`;
+        document.getElementById('label-xc-percent').textContent = `XC: ${xcPercent}%`;
+        document.getElementById('label-road-percent').textContent = `Road: ${roadPercent}%`;
+        document.getElementById('label-xc-count').textContent = `${xcCount} Cross Country Races`;
+        document.getElementById('label-road-count').textContent = `${roadCount} Road Races`;
+
+        // Top Venues
+        const topVenues = Object.entries(venueCounts).sort((a,b) => b[1] - a[1]).slice(0, 4);
+        const topVenuesEl = document.getElementById('top-venues-list');
+        if (topVenuesEl) {
+            topVenuesEl.innerHTML = topVenues.map(([vName, vCount]) => `
+                <div class="flex items-center justify-between text-xs font-mono p-2 rounded-lg bg-slate-50 border border-slate-100">
+                    <span class="font-bold text-slate-700 truncate pr-2">${vName}</span>
+                    <span class="font-extrabold text-sky-600">${vCount} race${vCount > 1 ? 's' : ''}</span>
+                </div>
+            `).join('');
+        }
+
+        // -------------------------------------------------------------
+        // PHOTO SWITCHER MODAL
+        // -------------------------------------------------------------
+        const togglePickerBtn = document.getElementById('btn-toggle-photo-picker');
+        const pickerModal = document.getElementById('photo-picker-modal');
+        const closePickerBtn = document.getElementById('btn-close-photo-modal');
+        const dismissPickerBtn = document.getElementById('btn-dismiss-photo-modal');
+        const pickerGrid = document.getElementById('photo-picker-grid');
+
+        if (togglePickerBtn && pickerModal && pickerGrid) {
+            togglePickerBtn.addEventListener('click', () => {
+                if (candidatePhotoList.length === 0) {
+                    alert('No additional tagged photos found for this runner in the archive database.');
+                    return;
+                }
+                pickerGrid.innerHTML = candidatePhotoList.map(p => `
+                    <div class="cursor-pointer group relative aspect-square rounded-xl overflow-hidden bg-slate-900 border-2 hover:border-sky-500 transition-all" data-photourl="${p.fullUrl}">
+                        <img src="${p.fullUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" loading="lazy">
+                        <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                            <span class="text-[10px] font-mono font-bold text-white bg-sky-600 px-2 py-0.5 rounded shadow">Select</span>
+                        </div>
+                    </div>
+                `).join('');
+
+                pickerGrid.querySelectorAll('[data-photourl]').forEach(tile => {
+                    tile.addEventListener('click', () => {
+                        const newUrl = tile.dataset.photourl;
+                        chosenPhotoUrl = newUrl;
+                        if (heroPhotoImg) heroPhotoImg.src = newUrl;
+                        if (prevCardPhoto) prevCardPhoto.src = newUrl;
+
+                        // Save choice to local storage
+                        const local = JSON.parse(localStorage.getItem('glcl_athlete_headers') || '{}');
+                        local[activeProfileKey || finalMasterKey] = {
+                            url: newUrl,
+                            athlete: finalName,
+                            club: primaryClub,
+                            updatedAt: new Date().toISOString()
+                        };
+                        localStorage.setItem('glcl_athlete_headers', JSON.stringify(local));
+
+                        pickerModal.classList.add('hidden');
+                    });
+                });
+
+                pickerModal.classList.remove('hidden');
+            });
+
+            if (closePickerBtn) closePickerBtn.addEventListener('click', () => pickerModal.classList.add('hidden'));
+            if (dismissPickerBtn) dismissPickerBtn.addEventListener('click', () => pickerModal.classList.add('hidden'));
+        }
+
+        // -------------------------------------------------------------
+        // SOCIAL SHARING & HIGH-RES CANVAS EXPORTER
+        // -------------------------------------------------------------
+        const scrollBtn = document.getElementById('btn-scroll-to-share');
+        if (scrollBtn) {
+            scrollBtn.addEventListener('click', () => {
+                document.getElementById('share-card-section').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // Copy Link
+        const copyBtn = document.getElementById('btn-copy-story-link');
+        const toast = document.getElementById('toast-message');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', () => {
+                const currentUrl = window.location.href;
+                navigator.clipboard.writeText(currentUrl).then(() => {
+                    if (toast) {
+                        toast.classList.remove('hidden');
+                        setTimeout(() => toast.classList.add('hidden'), 2500);
+                    }
+                }).catch(() => {
+                    prompt('Copy this link:', currentUrl);
+                });
+            });
+        }
+
+        // Facebook Share Button
+        const fbBtn = document.getElementById('btn-share-facebook');
+        if (fbBtn) {
+            fbBtn.addEventListener('click', () => {
+                const shareUrl = encodeURIComponent(window.location.href);
+                const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+                window.open(fbUrl, '_blank', 'width=600,height=500,location=no,toolbar=no');
+            });
+        }
+
+        // Canvas 1200x630 Renderer
+        const downloadBtn = document.getElementById('btn-download-card');
+        const canvas = document.getElementById('export-canvas');
+
+        if (downloadBtn && canvas) {
+            downloadBtn.addEventListener('click', async () => {
+                downloadBtn.disabled = true;
+                const originalText = downloadBtn.innerHTML;
+                downloadBtn.innerHTML = '<span>⏳ Rendering Card...</span>';
+
+                try {
+                    const ctx = canvas.getContext('2d');
+                    const w = 1200;
+                    const h = 630;
+
+                    // 1. Background gradient
+                    const bgGrad = ctx.createLinearGradient(0, 0, w, h);
+                    bgGrad.addColorStop(0, '#030712');
+                    bgGrad.addColorStop(0.5, '#090d16');
+                    bgGrad.addColorStop(1, '#0f172a');
+                    ctx.fillStyle = bgGrad;
+                    ctx.fillRect(0, 0, w, h);
+
+                    // 2. Club accent top bar
+                    const accentGrad = ctx.createLinearGradient(0, 0, w, 0);
+                    accentGrad.addColorStop(0, clubColourHex || '#0284c7');
+                    accentGrad.addColorStop(1, clubSecHex || '#4f46e5');
+                    ctx.fillStyle = accentGrad;
+                    ctx.fillRect(0, 0, w, 14);
+
+                    // 3. Subtle ambient glow
+                    const glowGrad = ctx.createRadialGradient(200, 315, 10, 200, 315, 300);
+                    glowGrad.addColorStop(0, 'rgba(14, 165, 233, 0.25)');
+                    glowGrad.addColorStop(1, 'rgba(14, 165, 233, 0)');
+                    ctx.fillStyle = glowGrad;
+                    ctx.beginPath();
+                    ctx.arc(200, 315, 300, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // 4. Branding header
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = '900 28px Inter, sans-serif';
+                    ctx.fillText('GLCL ARCHIVE', 70, 75);
+
+                    ctx.fillStyle = '#38bdf8';
+                    ctx.font = '700 14px "JetBrains Mono", monospace';
+                    ctx.fillText('GWENT LEISURE CENTRE LEAGUE', 70, 100);
+
+                    // Right season tag
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+                    ctx.roundRect ? ctx.roundRect(w - 280, 55, 210, 42, 10) : ctx.rect(w - 280, 55, 210, 42);
+                    ctx.fill();
+                    ctx.fillStyle = '#e2e8f0';
+                    ctx.font = '800 15px "JetBrains Mono", monospace';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(`${totalSeasons} SEASONS ACTIVE`, w - 175, 82);
+                    ctx.textAlign = 'left';
+
+                    // 5. Load and draw runner portrait image (in circular frame)
+                    const runnerImg = new Image();
+                    runnerImg.crossOrigin = 'anonymous';
+
+                    await new Promise((resolve) => {
+                        runnerImg.onload = resolve;
+                        runnerImg.onerror = () => {
+                            // Fallback to placeholder if cors fails
+                            runnerImg.src = 'assets/images/hero_placeholder.jpg';
+                            runnerImg.onload = resolve;
+                            runnerImg.onerror = resolve;
+                        };
+                        runnerImg.src = chosenPhotoUrl;
+                    });
+
+                    const circleX = 200;
+                    const circleY = 300;
+                    const circleR = 120;
+
+                    // Draw circular photo clip
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.arc(circleX, circleY, circleR, 0, Math.PI * 2);
+                    ctx.closePath();
+                    ctx.clip();
+
+                    if (runnerImg.complete && runnerImg.naturalWidth > 0) {
+                        ctx.drawImage(runnerImg, circleX - circleR, circleY - circleR, circleR * 2, circleR * 2);
+                    } else {
+                        ctx.fillStyle = '#1e293b';
+                        ctx.fillRect(circleX - circleR, circleY - circleR, circleR * 2, circleR * 2);
+                    }
+                    ctx.restore();
+
+                    // Border ring around photo
+                    ctx.strokeStyle = clubColourHex || '#38bdf8';
+                    ctx.lineWidth = 6;
+                    ctx.beginPath();
+                    ctx.arc(circleX, circleY, circleR, 0, Math.PI * 2);
+                    ctx.stroke();
+
+                    // 6. Athlete Name & Club Text
+                    ctx.fillStyle = '#38bdf8';
+                    ctx.font = '800 18px "JetBrains Mono", monospace';
+                    ctx.fillText(primaryClub.toUpperCase(), 360, 240);
+
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = '900 52px Inter, sans-serif';
+                    // Truncate name if too long
+                    let displayNameToDraw = finalName.toUpperCase();
+                    if (displayNameToDraw.length > 20) displayNameToDraw = displayNameToDraw.substring(0, 19) + '…';
+                    ctx.fillText(displayNameToDraw, 360, 305);
+
+                    ctx.fillStyle = '#94a3b8';
+                    ctx.font = '600 20px "JetBrains Mono", monospace';
+                    ctx.fillText(`${primaryCat.toUpperCase()} DIVISION • GLCL RUNNER`, 360, 345);
+
+                    // 7. Stat Boxes at Bottom (4 items)
+                    const stats = [
+                        { label: 'TOTAL RACES', value: totalRaces.toString(), color: '#ffffff' },
+                        { label: 'SEASONS', value: totalSeasons.toString(), color: '#38bdf8' },
+                        { label: 'PODIUMS', value: categoryPodiums.toString(), color: '#fbbf24' },
+                        { label: 'LEAGUE MILES', value: `~${Math.round(totalMiles)}`, color: '#818cf8' }
+                    ];
+
+                    const startX = 70;
+                    const boxY = 470;
+                    const boxW = 250;
+                    const boxH = 100;
+                    const gap = 20;
+
+                    stats.forEach((st, idx) => {
+                        const bx = startX + idx * (boxW + gap);
+                        
+                        // Box background
+                        ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+                        if (ctx.roundRect) {
+                            ctx.beginPath();
+                            ctx.roundRect(bx, boxY, boxW, boxH, 12);
+                            ctx.fill();
+                        } else {
+                            ctx.fillRect(bx, boxY, boxW, boxH);
+                        }
+
+                        // Border
+                        ctx.strokeStyle = 'rgba(51, 65, 85, 0.6)';
+                        ctx.lineWidth = 1.5;
+                        if (ctx.roundRect) {
+                            ctx.beginPath();
+                            ctx.roundRect(bx, boxY, boxW, boxH, 12);
+                            ctx.stroke();
+                        }
+
+                        // Label
+                        ctx.fillStyle = '#64748b';
+                        ctx.font = '700 12px "JetBrains Mono", monospace';
+                        ctx.textAlign = 'center';
+                        ctx.fillText(st.label, bx + boxW / 2, boxY + 32);
+
+                        // Value
+                        ctx.fillStyle = st.color;
+                        ctx.font = '900 36px Inter, sans-serif';
+                        ctx.fillText(st.value, bx + boxW / 2, boxY + 76);
+                    });
+
+                    // Download trigger
+                    canvas.toBlob((blob) => {
+                        if (!blob) throw new Error('Canvas blob generation failed');
+                        const downloadUrl = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        const slug = finalName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                        a.download = `glcl-story-${slug}.png`;
+                        a.href = downloadUrl;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(downloadUrl);
+                    }, 'image/png');
+
+                } catch (err) {
+                    console.error('Share card generation error:', err);
+                    alert('Unable to generate image directly due to browser CORS security on external photos. You can take a screenshot of the preview card above!');
+                } finally {
+                    downloadBtn.disabled = false;
+                    downloadBtn.innerHTML = originalText;
+                }
+            });
+        }
+
+        // Helper: English Ordinal suffix (1st, 2nd, 3rd, 4th)
+        function getOrdinal(n) {
+            const s = ['th', 'st', 'nd', 'rd'];
+            const v = n % 100;
+            return s[(v - 20) % 10] || s[v] || s[0];
+        }
+
+    })();
+    </script>
+</body>
+</html>
