@@ -1034,19 +1034,29 @@
                     const w = 1200;
                     const h = 630;
 
-                    // 1. Load runner image first
+                    // 1. Load runner image & logo image in parallel
                     const runnerImg = new Image();
                     runnerImg.crossOrigin = 'anonymous';
 
-                    await new Promise((resolve) => {
-                        runnerImg.onload = resolve;
-                        runnerImg.onerror = () => {
-                            runnerImg.src = 'assets/images/hero_placeholder.jpg';
+                    const logoImg = new Image();
+                    logoImg.crossOrigin = 'anonymous';
+
+                    await Promise.all([
+                        new Promise((resolve) => {
                             runnerImg.onload = resolve;
-                            runnerImg.onerror = resolve;
-                        };
-                        runnerImg.src = chosenPhotoUrl;
-                    });
+                            runnerImg.onerror = () => {
+                                runnerImg.src = 'assets/images/hero_placeholder.jpg';
+                                runnerImg.onload = resolve;
+                                runnerImg.onerror = resolve;
+                            };
+                            runnerImg.src = chosenPhotoUrl;
+                        }),
+                        new Promise((resolve) => {
+                            logoImg.onload = resolve;
+                            logoImg.onerror = resolve;
+                            logoImg.src = 'assets/images/logo.jpg';
+                        })
+                    ]);
 
                     // 2. Draw full-bleed background runner photo (cover fit)
                     if (runnerImg.complete && runnerImg.naturalWidth > 0) {
@@ -1082,14 +1092,27 @@
                     ctx.fillStyle = clubColourHex || '#0284c7';
                     ctx.fillRect(0, 0, w, 8);
 
-                    // 6. Top Branding
+                    // 6. Top Branding: GLCL Logo + Archive Text
+                    let brandTextX = 50;
+                    if (logoImg.complete && logoImg.naturalWidth > 0) {
+                        ctx.save();
+                        if (ctx.roundRect) {
+                            ctx.beginPath();
+                            ctx.roundRect(50, 36, 42, 42, 6);
+                            ctx.clip();
+                        }
+                        ctx.drawImage(logoImg, 50, 36, 42, 42);
+                        ctx.restore();
+                        brandTextX = 104;
+                    }
+
                     ctx.fillStyle = '#ffffff';
                     ctx.font = '900 24px Inter, system-ui, sans-serif';
-                    ctx.fillText('GLCL ARCHIVE', 60, 48);
+                    ctx.fillText('GLCL ARCHIVE', brandTextX, 58);
 
                     ctx.fillStyle = '#38bdf8';
                     ctx.font = '700 13px "JetBrains Mono", monospace';
-                    ctx.fillText('GWENT LEISURE CENTRE LEAGUE', 60, 72);
+                    ctx.fillText('GWENT LEISURE CENTRE LEAGUE', brandTextX, 78);
 
                     // Top Right Season Pill
                     ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';

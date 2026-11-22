@@ -132,9 +132,24 @@ def render_strava_card(runner_data, photo_url, club_color_rgb=(2, 132, 199), out
     # Top accent line in club color
     draw.rectangle([(0, 0), (target_w, 8)], fill=club_color_rgb)
 
-    # Top Branding: GLCL Archive
-    draw.text((50, 42), "GLCL ARCHIVE", font=font_brand, fill=(255, 255, 255))
-    draw.text((50, 72), "GWENT LEISURE CENTRE LEAGUE", font=font_brand_sub, fill=(56, 189, 248))
+    # Top Branding: GLCL Logo + Archive Text
+    logo_path = BASE_DIR / "assets" / "images" / "logo.jpg"
+    text_x = 50
+    if logo_path.exists():
+        try:
+            logo_img = Image.open(logo_path).convert("RGBA")
+            logo_w, logo_h = 42, 42
+            logo_img = logo_img.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
+            mask = Image.new("L", (logo_w, logo_h), 0)
+            mask_draw = ImageDraw.Draw(mask)
+            mask_draw.rounded_rectangle([(0, 0), (logo_w, logo_h)], radius=6, fill=255)
+            card.paste(logo_img, (50, 36), mask)
+            text_x = 104
+        except Exception:
+            text_x = 50
+
+    draw.text((text_x, 38), "GLCL ARCHIVE", font=font_brand, fill=(255, 255, 255))
+    draw.text((text_x, 66), "GWENT LEISURE CENTRE LEAGUE", font=font_brand_sub, fill=(56, 189, 248))
 
     # Top Right Season Pill (Exact centering with anchor="mm")
     total_seasons = runner_data.get("totalSeasons", 1)
