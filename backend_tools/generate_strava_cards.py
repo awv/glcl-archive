@@ -218,14 +218,18 @@ def render_strava_card(runner_data, photo_url, club_color_rgb=(2, 132, 199), out
         final_rgb.save(output_path, "JPEG", quality=92)
     return final_rgb
 
+DISAMBIGUATED_PATH = BASE_DIR / "assets" / "data" / "disambiguated_runners.json"
+
 def generate_all_cards(limit=None, runner_filter=None):
     CARDS_DIR.mkdir(parents=True, exist_ok=True)
 
+    if not DISAMBIGUATED_PATH.exists():
+        print("Disambiguated runners JSON not found. Running export_disambiguated_runners.js...")
+        os.system(f"node {BASE_DIR}/backend_tools/export_disambiguated_runners.js")
+
     print("Loading datasets...")
-    with open(DATA_JS_PATH, "r", encoding="utf-8") as f:
-        content = f.read()
-    json_str = content.split("window.glclResults =")[1].strip().rstrip(";")
-    records = json.loads(json_str)
+    with open(DISAMBIGUATED_PATH, "r", encoding="utf-8") as f:
+        runners = json.load(f)
 
     club_colours = {}
     if CLUB_COLOURS_PATH.exists():
@@ -242,41 +246,24 @@ def generate_all_cards(limit=None, runner_filter=None):
         with open(FEATURED_PHOTOS_PATH, "r", encoding="utf-8") as f:
             featured_photos = json.load(f)
 
-    # Group runner stats
-    runners = {}
-    for r in records:
-        name = (r.get("name") or "").strip()
-        if not name:
-            continue
-        key = get_name_key(name)
-        if key not in runners:
-            runners[key] = {
-                "displayName": name,
-                "records": [],
-                "clubs": {}
-            }
-        runners[key]["records"].append(r)
-        c = r.get("club")
-        if c:
-            runners[key]["clubs"][c] = runners[key]["clubs"].get(c, 0) + 1
+    photos_db = {}
+    if ATHLETE_PHOTOS_PATH.exists():
+        with open(ATHLETE_PHOTOS_PATH, "r", encoding="utf-8") as f:
+            photos_db = json.load(f)
 
-    # Filter runners
-    runner_keys = list(runners.keys())
     if runner_filter:
-        runner_keys = [k for k in runner_keys if runner_filter.lower() in runners[k]["displayName"].lower()]
+        runners = [r for r in runners if runner_filter.lower() in r["displayName"].lower()]
 
-    print(f"Processing cards for {len(runner_keys)} runners...")
+    print(f"Processing cards for {len(runners)} runners...")
 
     count = 0
-    for key in runner_keys:
-        data = runners[key]
-        display_name = data["displayName"]
-        recs = data["records"]
+    for runner_data in runners:
+        display_name = runner_data["displayName"]
+        primary_club = runner_data["primaryClub"]
+        name_slug = runner_data["nameSlug"]
+        club_slug = runner_data["clubSlug"]
 
-        sorted_clubs = sorted(data["clubs"].items(), key=lambda x: x[1], reverse=True)
-        primary_club = sorted_clubs[0][0] if sorted_clubs else "GLCL Competitor"
-
-        # Find photo
+        # Find photo across cascade
         n_low = display_name.lower().strip()
         c_low = primary_club.lower().strip()
         n_sorted = " ".join(sorted(re.sub(r"[,\.]", "", n_low).split()))
@@ -297,6 +284,24 @@ def generate_all_cards(limit=None, runner_filter=None):
                 photo_url = featured_photos[c]["url"]
                 break
 
+        # Check local athlete image archive
+        if not photo_url:
+            local_club_img = BASE_DIR / "assets" / "images" / "athletes" / f"{name_slug}-{club_slug}.jpg"
+            local_img = BASE_DIR / "assets" / "images" / "athletes" / f"{name_slug}.jpg"
+            if local_club_img.exists():
+                photo_url = f"assets/images/athletes/{name_slug}-{club_slug}.jpg"
+            elif local_img.exists():
+                photo_url = f"assets/images/athletes/{name_slug}.jpg"
+
+        # Check Flickr photo database
+        if not photo_url:
+            for c in candidates:
+                if c in photos_db and len(photos_db[c]) > 0:
+                    p = photos_db[c][0]
+                    if p.get("server") and p.get("id") and p.get("secret"):
+                        photo_url = f"https://live.staticflickr.com/{p['server']}/{p['id']}_{p['secret']}_b.jpg"
+                        break
+
         # Only generate custom cards for runners who have a photo or if specific runner filtered
         if not photo_url and not runner_filter:
             continue
@@ -313,50 +318,15 @@ def generate_all_cards(limit=None, runner_filter=None):
                     club_rgb = hex_to_rgb(hex_c)
                 break
 
-        # Compute stats
-        total_races = len(recs)
-        sorted_seasons = sorted(set(r.get("season") for r in recs if r.get("season")))
-        total_seasons = len(sorted_seasons)
-        cat_wins = sum(1 for r in recs if int(r.get("cat_pos", 999) or 999) == 1)
-        podiums = sum(1 for r in recs if int(r.get("cat_pos", 999) or 999) <= 3)
-        total_miles = sum(4.8 if "xc" in (r.get("discipline") or "").lower() else 5.2 for r in recs)
-
-        xc_recs = [r for r in recs if "xc" in (r.get("discipline") or "").lower()]
-        road_recs = [r for r in recs if "road" in (r.get("discipline") or "").lower()]
-        best_xc = min([int(r.get("pos", 999) or 999) for r in xc_recs] or [999])
-        best_road = min([int(r.get("pos", 999) or 999) for r in road_recs] or [999])
-        venues = set(r.get("venue") for r in recs if r.get("venue"))
-
-        years_text = ""
-        if len(sorted_seasons) > 0:
-            try:
-                first_y = int(sorted_seasons[0].split("/")[0])
-                last_s = sorted_seasons[-1].split("/")
-                last_y = int(last_s[1] if len(last_s) > 1 else last_s[0])
-                span_yrs = (last_y - first_y) + 1
-                years_text = f"{first_y} – {last_y} ({span_yrs} YEARS ACTIVE)"
-            except Exception:
-                years_text = f"{sorted_seasons[0]} – {sorted_seasons[-1]}"
-
-        runner_payload = {
-            "displayName": display_name,
-            "primaryClub": primary_club,
-            "primaryCat": recs[0].get("age_cat") or "Competitor",
-            "totalRaces": total_races,
-            "totalSeasons": total_seasons,
-            "catWins": cat_wins,
-            "podiums": podiums,
-            "bestXc": best_xc,
-            "bestRoad": best_road,
-            "uniqueVenues": len(venues),
-            "yearsSpanText": years_text,
-            "miles": round(total_miles)
-        }
-
-        name_slug = slugify(display_name)
         out_path = CARDS_DIR / f"{name_slug}.jpg"
-        print(f"Generating Strava card for {display_name} -> {out_path.name}")
-        render_strava_card(runner_payload, photo_url, club_color_rgb=club_rgb, output_path=out_path)
+        print(f"Generating Strava card for {display_name} ({primary_club}) -> {out_path.name}")
+        render_strava_card(runner_data, photo_url, club_color_rgb=club_rgb, output_path=out_path)
+        
+        # Also save club-specific card for namesakes
+        if club_slug:
+            club_out_path = CARDS_DIR / f"{name_slug}-{club_slug}.jpg"
+            if club_out_path != out_path:
+                render_strava_card(runner_data, photo_url, club_color_rgb=club_rgb, output_path=club_out_path)
         count += 1
 
         if limit and count >= limit:

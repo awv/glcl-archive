@@ -38,9 +38,9 @@
     </script>
     
     <!-- Site Data & Dependencies -->
-    <script src="data.js?v=1792781740069"></script>
-    <script src="assets/js/corrections.js?v=1792781740069"></script>
-    <script src="site-layout.js?v=1792781740069"></script>
+    <script src="data.js?v=1795377000000"></script>
+    <script src="assets/js/corrections.js?v=1795377000000"></script>
+    <script src="site-layout.js?v=1795377000000"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap');
@@ -480,10 +480,10 @@
 
         try {
             const [clubRes, photosRes, headersRes, featRes] = await Promise.all([
-                fetch('assets/data/club_colours.json?v=1792781740069').catch(() => null),
-                fetch('assets/data/athlete_photos.json?v=1792781740069').catch(() => null),
-                fetch('assets/data/athlete_headers.json?v=1792781740069').catch(() => null),
-                fetch('assets/data/athlete_featured_photos.json?v=1792781740069').catch(() => null)
+                fetch('assets/data/club_colours.json?v=1795377000000').catch(() => null),
+                fetch('assets/data/athlete_photos.json?v=1795377000000').catch(() => null),
+                fetch('assets/data/athlete_headers.json?v=1795377000000').catch(() => null),
+                fetch('assets/data/athlete_featured_photos.json?v=1795377000000').catch(() => null)
             ]);
             if (clubRes && clubRes.ok) clubColoursData = (await clubRes.json()).clubs || {};
             if (photosRes && photosRes.ok) athletePhotos = await photosRes.json();
@@ -518,16 +518,36 @@
         const activeClubGroupKey = targetProfile.clubGroupKey;
         const activeProfileKey = targetProfile.profileKey;
 
-        // Filter all records for this athlete
+        // Map records through corrections.js (resolves nameChanges, maiden names & cross-club disambiguation)
         const allRecords = window.glclResults || [];
-        const runnerRecords = allRecords.filter(r => {
-            if (!r || !r.name) return false;
-            const rKey = getNameKey(r.name);
-            if (rKey !== finalMasterKey) return false;
-            if (activeClubGroupKey) {
-                const rClubKey = normStr(r.club);
-                if (rClubKey !== activeClubGroupKey) return false;
+        const correctedRecords = allRecords.map(row => {
+            if (window.resolveRowAthlete && row.name) {
+                const resolved = window.resolveRowAthlete(row);
+                return {
+                    ...row,
+                    name: resolved.name,
+                    club: resolved.club,
+                    age_cat: resolved.age_cat || row.age_cat,
+                    nameKey: resolved.nameKey,
+                    baseNameKey: resolved.baseNameKey,
+                    clubGroupKey: resolved.clubGroupKey,
+                    profileKey: resolved.profileKey
+                };
             }
+            return {
+                ...row,
+                nameKey: getNameKey(row.name),
+                baseNameKey: getNameKey(row.name),
+                clubGroupKey: '',
+                profileKey: getNameKey(row.name)
+            };
+        });
+
+        // Filter all records for this athlete by resolved identity & club scope
+        const runnerRecords = correctedRecords.filter(r => {
+            if (!r || !r.name || r.pos <= 0) return false;
+            if (r.nameKey !== finalMasterKey) return false;
+            if (activeClubGroupKey && r.clubGroupKey && r.clubGroupKey !== activeClubGroupKey) return false;
             return true;
         });
 
@@ -703,6 +723,9 @@
             }).filter(p => p.fullUrl);
         }
 
+        const slugify = (text) => (text || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        const runnerSlug = slugify(finalName);
+
         if (savedHeader && savedHeader.url) {
             chosenPhotoUrl = savedHeader.url;
         } else if (featuredPhotos && (featuredPhotos[activeProfileKey] || featuredPhotos[finalMasterKey])) {
@@ -712,14 +735,23 @@
             // Sort by sharpness descending
             candidatePhotoList.sort((a, b) => (b.sharpness || 0) - (a.sharpness || 0));
             chosenPhotoUrl = candidatePhotoList[0].fullUrl;
+        } else {
+            // Check local athlete image archive
+            chosenPhotoUrl = `assets/images/athletes/${runnerSlug}.jpg`;
         }
 
         const heroPhotoImg = document.getElementById('runner-featured-photo');
-        if (heroPhotoImg) heroPhotoImg.src = chosenPhotoUrl;
+        if (heroPhotoImg) {
+            heroPhotoImg.onerror = () => { heroPhotoImg.src = 'assets/images/hero_placeholder.jpg'; };
+            heroPhotoImg.src = chosenPhotoUrl;
+        }
 
         // Preview card sync (Strava full-bleed photo with stats overlay)
         const prevCardBg = document.getElementById('preview-card-bg');
-        if (prevCardBg) prevCardBg.src = chosenPhotoUrl;
+        if (prevCardBg) {
+            prevCardBg.onerror = () => { prevCardBg.src = 'assets/images/hero_placeholder.jpg'; };
+            prevCardBg.src = chosenPhotoUrl;
+        }
         const prevStripe = document.getElementById('preview-card-stripe');
         if (prevStripe) prevStripe.style.backgroundColor = clubColourHex || '#0284c7';
         const prevClub = document.getElementById('preview-card-club');
@@ -953,11 +985,11 @@
         }
 
         // Helper to generate social share card URL
-        const slugify = (text) => (text || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-        const runnerSlug = slugify(finalName);
         const isLiveSite = window.location.hostname.includes('glcl.uk') || window.location.hostname.includes('github.io');
         const shareBaseOrigin = isLiveSite ? 'https://glcl.uk' : window.location.origin;
-        const shareCardUrl = `${shareBaseOrigin}/share/${runnerSlug}.html`;
+        const clubSlug = slugify(primaryClub);
+        const shareStubSlug = activeClubGroupKey && clubSlug ? `${runnerSlug}-${clubSlug}` : runnerSlug;
+        const shareCardUrl = `${shareBaseOrigin}/share/${shareStubSlug}.html`;
 
         // Copy Link
         const copyBtn = document.getElementById('btn-copy-story-link');

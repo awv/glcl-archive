@@ -31,38 +31,20 @@ def get_name_key(text):
     words = re.sub(r"[,\.]", "", text.lower()).split()
     return " ".join(sorted(words))
 
+DISAMBIGUATED_PATH = BASE_DIR / "assets" / "data" / "disambiguated_runners.json"
+
 def generate_stubs():
     SHARE_DIR.mkdir(parents=True, exist_ok=True)
 
-    # 1. Parse race results
-    print("Loading race results from data.js...")
-    with open(DATA_JS_PATH, "r", encoding="utf-8") as f:
-        content = f.read()
+    if not DISAMBIGUATED_PATH.exists():
+        print("Disambiguated runners JSON not found. Running export_disambiguated_runners.js...")
+        os.system(f"node {BASE_DIR}/backend_tools/export_disambiguated_runners.js")
 
-    json_str = content.split("window.glclResults =")[1].strip().rstrip(";")
-    records = json.loads(json_str)
+    print("Loading disambiguated runners...")
+    with open(DISAMBIGUATED_PATH, "r", encoding="utf-8") as f:
+        runners = json.load(f)
 
-    # Group by runner
-    runners = {}
-    for r in records:
-        name = (r.get("name") or "").strip()
-        if not name:
-            continue
-        key = get_name_key(name)
-        if key not in runners:
-            runners[key] = {
-                "displayName": name,
-                "records": [],
-                "clubs": {}
-            }
-        runners[key]["records"].append(r)
-        c = r.get("club")
-        if c:
-            runners[key]["clubs"][c] = runners[key]["clubs"].get(c, 0) + 1
-
-    print(f"Loaded {len(runners)} unique runners.")
-
-    # 2. Load photos and headers
+    # Load photos and headers
     featured_photos = {}
     if FEATURED_PHOTOS_PATH.exists():
         with open(FEATURED_PHOTOS_PATH, "r", encoding="utf-8") as f:
@@ -78,7 +60,7 @@ def generate_stubs():
         with open(ATHLETE_PHOTOS_PATH, "r", encoding="utf-8") as f:
             photos_db = json.load(f)
 
-    def resolve_runner_photo(display_name, club):
+    def resolve_runner_photo(display_name, club, name_slug, club_slug):
         n_low = display_name.lower().strip()
         c_low = (club or "").lower().strip()
         n_sorted = " ".join(sorted(re.sub(r"[,\.]", "", n_low).split()))
@@ -95,6 +77,16 @@ def generate_stubs():
                 return headers[c]["url"]
             if c in featured_photos and featured_photos[c].get("url"):
                 return featured_photos[c]["url"]
+
+        # Check local athlete archive
+        local_club_img = BASE_DIR / "assets" / "images" / "athletes" / f"{name_slug}-{club_slug}.jpg"
+        local_img = BASE_DIR / "assets" / "images" / "athletes" / f"{name_slug}.jpg"
+        if local_club_img.exists():
+            return f"assets/images/athletes/{name_slug}-{club_slug}.jpg"
+        if local_img.exists():
+            return f"assets/images/athletes/{name_slug}.jpg"
+
+        for c in candidates:
             if c in photos_db and len(photos_db[c]) > 0:
                 p = photos_db[c][0]
                 if p.get("server") and p.get("id") and p.get("secret"):
@@ -108,34 +100,28 @@ def generate_stubs():
 
     # 3. Generate stubs
     generated_count = 0
-    for key, data in runners.items():
-        recs = data["records"]
-        display_name = data["displayName"]
-        
-        # Primary club
-        sorted_clubs = sorted(data["clubs"].items(), key=lambda x: x[1], reverse=True)
-        primary_club = sorted_clubs[0][0] if sorted_clubs else "GLCL Competitor"
+    for runner in runners:
+        display_name = runner["displayName"]
+        primary_club = runner["primaryClub"]
+        name_slug = runner["nameSlug"]
+        club_slug = runner["clubSlug"]
+        total_races = runner["totalRaces"]
+        total_seasons = runner["totalSeasons"]
 
-        # Latest category
-        latest_cat = recs[0].get("age_cat") or "Competitor"
-
-        total_races = len(recs)
-        seasons = set(r.get("season") for r in recs if r.get("season"))
-        total_seasons = len(seasons)
-
-        # Photo resolution
-        raw_photo = resolve_runner_photo(display_name, primary_club)
-        if raw_photo.startswith("http"):
-            photo_url = raw_photo
-        else:
-            photo_url = f"https://glcl.uk/{raw_photo.lstrip('/')}"
-
-        name_slug = slugify(display_name)
+        # Card resolution
+        card_file_club = CARDS_DIR / f"{name_slug}-{club_slug}.jpg"
         card_file = CARDS_DIR / f"{name_slug}.jpg"
-        if card_file.exists():
+
+        if card_file_club.exists():
+            share_image_url = f"https://glcl.uk/assets/cards/{name_slug}-{club_slug}.jpg"
+        elif card_file.exists():
             share_image_url = f"https://glcl.uk/assets/cards/{name_slug}.jpg"
         else:
-            share_image_url = photo_url
+            raw_photo = resolve_runner_photo(display_name, primary_club, name_slug, club_slug)
+            if raw_photo.startswith("http"):
+                share_image_url = raw_photo
+            else:
+                share_image_url = f"https://glcl.uk/{raw_photo.lstrip('/')}"
 
         # Summary description
         desc = f"{total_races} League Races • {total_seasons} Season{'s' if total_seasons > 1 else ''} • {primary_club} — View career milestones, race history and share card on the GLCL Archive."
