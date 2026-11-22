@@ -38,9 +38,9 @@
     </script>
     
     <!-- Site Data & Dependencies -->
-    <script src="data.js?v=1795377000000"></script>
-    <script src="assets/js/corrections.js?v=1795377000000"></script>
-    <script src="site-layout.js?v=1795377000000"></script>
+    <script src="data.js?v=1795381000000"></script>
+    <script src="assets/js/corrections.js?v=1795381000000"></script>
+    <script src="site-layout.js?v=1795381000000"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap');
@@ -557,14 +557,39 @@
             return;
         }
 
-        // Detect most recent or primary club
-        const clubFrequencies = {};
-        runnerRecords.forEach(r => {
-            if (r.club) {
-                clubFrequencies[r.club] = (clubFrequencies[r.club] || 0) + 1;
+        // Detect current or primary club
+        let primaryClub = null;
+
+        // 1. Explicit targetClub from URL
+        if (targetClub && targetClub.trim() && normStr(targetClub) !== 'unattached' && normStr(targetClub) !== 'independent') {
+            primaryClub = targetClub.trim();
+        }
+
+        // 2. Club history "Present" entry from corrections.js
+        if (!primaryClub && window.glclCorrections && window.glclCorrections.clubHistory) {
+            const histKey = Object.keys(window.glclCorrections.clubHistory).find(k => getNameKey(k) === finalMasterKey);
+            if (histKey) {
+                const list = window.glclCorrections.clubHistory[histKey];
+                const presentEntry = list && list.find(h => h.seasons && normStr(h.seasons).includes('present'));
+                if (presentEntry && presentEntry.club) primaryClub = presentEntry.club;
             }
-        });
-        const primaryClub = Object.entries(clubFrequencies).sort((a,b) => b[1] - a[1])[0]?.[0] || targetClub || 'GLCL Competitor';
+        }
+
+        // 3. Most recent race record club
+        if (!primaryClub) {
+            const sortedBySeason = [...runnerRecords].sort((a, b) => (b.season || '').localeCompare(a.season || ''));
+            const latestRaceClub = sortedBySeason[0]?.club;
+            if (latestRaceClub && normStr(latestRaceClub) !== 'unattached') primaryClub = latestRaceClub;
+        }
+
+        // 4. Fallback to frequency
+        if (!primaryClub) {
+            const clubFrequencies = {};
+            runnerRecords.forEach(r => {
+                if (r.club) clubFrequencies[r.club] = (clubFrequencies[r.club] || 0) + 1;
+            });
+            primaryClub = Object.entries(clubFrequencies).sort((a,b) => b[1] - a[1])[0]?.[0] || 'GLCL Competitor';
+        }
 
         // Lookup club colours
         let clubColourHex = '#0284c7'; // default sky

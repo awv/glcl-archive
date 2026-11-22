@@ -74,8 +74,35 @@ const outputList = [];
 
 profiles.forEach((prof) => {
     const recs = prof.records;
-    const sortedClubs = Object.entries(prof.clubs).sort((a, b) => b[1] - a[1]);
-    const primaryClub = sortedClubs.length > 0 ? sortedClubs[0][0] : 'GLCL Competitor';
+    
+    // Determine Current Club (Priority: clubHistory Present entry > latest season race > frequency)
+    let primaryClub = null;
+    const clubHistory = sandbox.window.glclCorrections?.clubHistory || {};
+    const key = prof.nameKey;
+    for (const [histKey, histList] of Object.entries(clubHistory)) {
+        const [hName] = histKey.split('|');
+        const hKey = sandbox.window.getAthleteNameKey ? sandbox.window.getAthleteNameKey(hName) : hName.toLowerCase();
+        if (hKey === key && Array.isArray(histList)) {
+            const presentEntry = histList.find(h => h.seasons && h.seasons.toLowerCase().includes('present'));
+            if (presentEntry && presentEntry.club) {
+                primaryClub = presentEntry.club;
+                break;
+            }
+        }
+    }
+
+    if (!primaryClub) {
+        const sortedBySeason = [...recs].sort((a, b) => (b.season || '').localeCompare(a.season || ''));
+        const latestClub = sortedBySeason[0]?.club;
+        if (latestClub && latestClub.toLowerCase() !== 'unattached') {
+            primaryClub = latestClub;
+        }
+    }
+
+    if (!primaryClub) {
+        const sortedClubs = Object.entries(prof.clubs).sort((a, b) => b[1] - a[1]);
+        primaryClub = sortedClubs.length > 0 ? sortedClubs[0][0] : 'GLCL Competitor';
+    }
 
     const totalRaces = recs.length;
     const seasons = Array.from(new Set(recs.map(r => r.season).filter(Boolean))).sort();

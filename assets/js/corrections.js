@@ -87,6 +87,10 @@ window.glclCorrections = window.glclCorrections || {
     // 2. HISTORICAL CLUB TRANSITIONS TRACKING
     // Keys can be athlete name OR "Athlete Name|Club" when disambiguating a cross-club namesake
     clubHistory: {
+        "Carly STONE": [
+            { club: "Griffithstown Harriers", seasons: "Debut — 2023/2024" },
+            { club: "Lliswerry Runners", seasons: "2024/2025 — Present" }
+        ],
         "Lloyd COTTRELL": [
             { club: "Lliswerry Runners", seasons: "Debut — 2023/2024" },
             { club: "Parc Bryn Bach RC", seasons: "2024/2025 — Present" }
@@ -275,7 +279,11 @@ window.resolveRowAthlete = function(row) {
 
     // Check explicit nameChanges first (for exact raw string or key match)
     const nameChanges = window.glclCorrections?.nameChanges || {};
-    let workingName = rawName.replace(/^†+\s*/, '');
+    let workingName = rawName.replace(/^†+\s*/, '').trim();
+
+    // Strip accidental club name suffixes from runner name (e.g. "Carly STONE Griffithstown" or "James AVERY Griffithstown")
+    const clubSuffixRegex = /\s+(griffithstown|lliswerry|chepstow|fairwater|parc bryn bach|caerleon|caldicot|islwyn|spirit of monmouth|pont-y-pwl|pontypool)$/i;
+    workingName = workingName.replace(clubSuffixRegex, '').trim();
 
     if (nameChanges[rawName] && nameChanges[rawName].primaryName) {
         workingName = nameChanges[rawName].primaryName;

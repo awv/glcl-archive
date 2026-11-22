@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GLCL Archive — Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="data.js?v=1792780989554"></script>
-    <script src="assets/js/corrections.js?v=1792780989554"></script>
-    <script src="site-layout.js?v=1792780989554"></script>
+    <script src="data.js?v=1795381000000"></script>
+    <script src="assets/js/corrections.js?v=1795381000000"></script>
+    <script src="site-layout.js?v=1795381000000"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -345,17 +345,53 @@
         if (typeof window.glclResults !== 'undefined' && Array.isArray(window.glclResults)) {
             const runnersMap = new Map();
             window.glclResults.forEach(item => {
-                if (item && item.name) {
-                    const standardizedName = item.name.trim();
-                    const clubName = (item.club || 'Independent').trim();
-                    const uniqueKey = `${standardizedName.toLowerCase()}_${clubName.toLowerCase()}`;
+                if (item && item.name && item.pos > 0) {
+                    const resolved = window.resolveRowAthlete
+                        ? window.resolveRowAthlete(item)
+                        : {
+                            name: item.name.trim(),
+                            club: (item.club || 'Independent').trim(),
+                            profileKey: item.name.toLowerCase().trim()
+                        };
 
-                    if (!runnersMap.has(uniqueKey)) {
-                        runnersMap.set(uniqueKey, { name: standardizedName, club: clubName });
+                    const pKey = resolved.profileKey || resolved.nameKey || resolved.name.toLowerCase();
+
+                    if (!runnersMap.has(pKey)) {
+                        runnersMap.set(pKey, {
+                            name: resolved.name,
+                            club: resolved.club,
+                            latestSeason: item.season || '',
+                            races: 1
+                        });
+                    } else {
+                        const existing = runnersMap.get(pKey);
+                        existing.races++;
+                        if ((item.season || '') >= (existing.latestSeason || '')) {
+                            existing.latestSeason = item.season || '';
+                            if (resolved.club && resolved.club.toLowerCase() !== 'unattached') {
+                                existing.club = resolved.club;
+                            }
+                        }
                     }
                 }
             });
-            uniqueRunners = Array.from(runnersMap.values());
+
+            // Respect clubHistory "Present" entry for any active club transfers
+            const clubHistory = window.glclCorrections?.clubHistory || {};
+            uniqueRunners = Array.from(runnersMap.values()).map(runner => {
+                const key = window.getAthleteNameKey ? window.getAthleteNameKey(runner.name) : runner.name.toLowerCase();
+                for (const [histKey, histList] of Object.entries(clubHistory)) {
+                    const [hName] = histKey.split('|');
+                    const hKey = window.getAthleteNameKey ? window.getAthleteNameKey(hName) : hName.toLowerCase();
+                    if (hKey === key && Array.isArray(histList)) {
+                        const presentEntry = histList.find(h => h.seasons && h.seasons.toLowerCase().includes('present'));
+                        if (presentEntry && presentEntry.club) {
+                            return { ...runner, club: presentEntry.club };
+                        }
+                    }
+                }
+                return runner;
+            });
         }
 
         const routeToAthlete = (name, club) => {
