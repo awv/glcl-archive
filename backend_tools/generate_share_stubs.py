@@ -104,6 +104,8 @@ def generate_stubs():
 
         return "assets/images/hero_placeholder.jpg"
 
+    CARDS_DIR = BASE_DIR / "assets" / "cards"
+
     # 3. Generate stubs
     generated_count = 0
     for key, data in runners.items():
@@ -128,6 +130,13 @@ def generate_stubs():
         else:
             photo_url = f"https://glcl.uk/{raw_photo.lstrip('/')}"
 
+        name_slug = slugify(display_name)
+        card_file = CARDS_DIR / f"{name_slug}.jpg"
+        if card_file.exists():
+            share_image_url = f"https://glcl.uk/assets/cards/{name_slug}.jpg"
+        else:
+            share_image_url = photo_url
+
         # Summary description
         desc = f"{total_races} League Races • {total_seasons} Season{'s' if total_seasons > 1 else ''} • {primary_club} — View career milestones, race history and share card on the GLCL Archive."
         title = f"{display_name} — GLCL Career Story & Milestones"
@@ -145,14 +154,16 @@ def generate_stubs():
     <meta property="og:type" content="profile">
     <meta property="og:title" content="{title}">
     <meta property="og:description" content="{desc}">
-    <meta property="og:image" content="{photo_url}">
-    <meta property="og:image:alt" content="{display_name} racing in GLCL">
+    <meta property="og:image" content="{share_image_url}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{display_name} Strava-style stats card">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{title}">
     <meta name="twitter:description" content="{desc}">
-    <meta name="twitter:image" content="{photo_url}">
+    <meta name="twitter:image" content="{share_image_url}">
 
     <!-- Immediate Client-Side Redirect -->
     <meta http-equiv="refresh" content="0; url={target_story_url}">

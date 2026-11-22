@@ -302,60 +302,73 @@
                     </p>
                 </div>
 
-                <!-- Interactive Preview of the 1200x630 Card (Scaled for Screen) -->
+                <!-- Interactive Strava-Style Preview Card (1200x630 Scaled for Screen) -->
                 <div class="max-w-2xl mx-auto">
-                    <div id="card-preview-frame" class="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-slate-700 bg-slate-900 aspect-[1200/630] flex flex-col justify-between p-6 sm:p-8 text-white select-none">
+                    <div id="card-preview-frame" class="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-slate-700 bg-slate-950 aspect-[1200/630] flex flex-col justify-between p-5 sm:p-7 text-white select-none">
+                        
+                        <!-- Full-bleed background runner photo -->
+                        <img id="preview-card-bg" src="assets/images/hero_placeholder.jpg" class="absolute inset-0 w-full h-full object-cover object-top filter brightness-[0.95]" alt="Card Runner Photo">
+                        
+                        <!-- Top subtle vignette for branding readability -->
+                        <div class="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-slate-950/85 via-slate-950/45 to-transparent pointer-events-none"></div>
+
+                        <!-- Bottom strong vignette for athletic stats overlay readability -->
+                        <div class="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-slate-950/95 via-slate-950/80 to-transparent pointer-events-none"></div>
+
+                        <!-- Club accent stripe at top -->
+                        <div id="preview-card-stripe" class="absolute top-0 inset-x-0 h-1.5 bg-sky-500 z-10"></div>
+
                         <!-- Top Header inside card -->
-                        <div class="flex items-center justify-between">
+                        <div class="relative z-10 flex items-center justify-between">
                             <div class="flex items-center gap-2">
-                                <img src="assets/images/logo.jpg" class="h-8 w-auto rounded" alt="GLCL">
+                                <img src="assets/images/logo.jpg" class="h-7 sm:h-8 w-auto rounded shadow" alt="GLCL">
                                 <div>
-                                    <span class="text-xs font-black tracking-wider uppercase block text-white">GLCL ARCHIVE</span>
-                                    <span class="text-[9px] font-mono text-sky-400 uppercase tracking-widest block">Gwent Leisure Centre League</span>
+                                    <span class="text-xs sm:text-sm font-black tracking-wider uppercase block text-white drop-shadow">GLCL ARCHIVE</span>
+                                    <span class="text-[8px] sm:text-[9px] font-mono text-sky-400 uppercase tracking-widest block drop-shadow">Gwent Leisure Centre League</span>
                                 </div>
                             </div>
-                            <span id="preview-card-season-tag" class="px-2.5 py-1 rounded text-[10px] font-mono font-extrabold uppercase tracking-wider bg-white/10 border border-white/20 text-slate-200">
+                            <span id="preview-card-season-tag" class="px-2.5 py-1 rounded-md text-[10px] font-mono font-extrabold uppercase tracking-wider bg-slate-900/80 backdrop-blur-md border border-slate-700/80 text-slate-200 shadow">
                                 9 Seasons Strong
                             </span>
                         </div>
 
-                        <!-- Middle Content inside card: Photo + Stats -->
-                        <div class="flex items-center gap-5 sm:gap-6 my-auto">
-                            <!-- Circular Photo with Glow -->
-                            <div class="relative w-20 h-20 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-sky-400 shadow-xl flex-shrink-0 bg-slate-800">
-                                <img id="preview-card-photo" src="assets/images/hero_placeholder.jpg" class="w-full h-full object-cover object-top" alt="Card Runner Photo">
-                            </div>
-                            <!-- Runner Details -->
-                            <div class="min-w-0">
-                                <span id="preview-card-club" class="text-xs font-mono font-bold uppercase tracking-wider text-sky-400 block truncate">
+                        <!-- Bottom Strava-Style Stats Overlay directly on photo -->
+                        <div class="relative z-10 space-y-2 mt-auto">
+                            <!-- Club Pill -->
+                            <div>
+                                <span id="preview-card-club" class="inline-block px-2.5 py-0.5 rounded text-[10px] font-mono font-black uppercase tracking-wider text-white bg-sky-600 shadow-md">
                                     PARC BRYN BACH RC
                                 </span>
-                                <h3 id="preview-card-name" class="text-xl sm:text-3xl font-black uppercase tracking-tight text-white truncate">
+                            </div>
+
+                            <!-- Runner Name -->
+                            <div class="space-y-0.5">
+                                <h3 id="preview-card-name" class="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-tight">
                                     Runner Name
                                 </h3>
-                                <p id="preview-card-cat" class="text-xs font-mono text-slate-400 uppercase mt-0.5">
-                                    V50 Category • Active Competitor
+                                <p id="preview-card-cat" class="text-[11px] sm:text-xs font-mono font-bold text-slate-300 uppercase drop-shadow">
+                                    V50 Category • GLCL Runner
                                 </p>
                             </div>
-                        </div>
 
-                        <!-- Bottom 4 Stats Grid inside card -->
-                        <div class="grid grid-cols-4 gap-2 pt-3 border-t border-slate-800/80 text-center">
-                            <div class="bg-slate-950/60 p-2 rounded-lg border border-slate-800">
-                                <span class="text-[9px] font-mono text-slate-400 uppercase block">Races</span>
-                                <span id="preview-card-stat-races" class="text-sm sm:text-lg font-black text-white">0</span>
-                            </div>
-                            <div class="bg-slate-950/60 p-2 rounded-lg border border-slate-800">
-                                <span class="text-[9px] font-mono text-slate-400 uppercase block">Seasons</span>
-                                <span id="preview-card-stat-seasons" class="text-sm sm:text-lg font-black text-sky-400">0</span>
-                            </div>
-                            <div class="bg-slate-950/60 p-2 rounded-lg border border-slate-800">
-                                <span class="text-[9px] font-mono text-slate-400 uppercase block">Podiums</span>
-                                <span id="preview-card-stat-podiums" class="text-sm sm:text-lg font-black text-amber-400">0</span>
-                            </div>
-                            <div class="bg-slate-950/60 p-2 rounded-lg border border-slate-800">
-                                <span class="text-[9px] font-mono text-slate-400 uppercase block">Miles</span>
-                                <span id="preview-card-stat-miles" class="text-sm sm:text-lg font-black text-indigo-400">0</span>
+                            <!-- 4 Strava Stat Capsules -->
+                            <div class="grid grid-cols-4 gap-2 pt-1">
+                                <div class="bg-slate-950/85 backdrop-blur-md p-2 rounded-xl border border-slate-700/80 text-center shadow-lg">
+                                    <span id="preview-card-stat-races" class="text-sm sm:text-xl font-black text-white block">0</span>
+                                    <span class="text-[8px] sm:text-[9px] font-mono font-bold text-sky-400 uppercase tracking-wider block">Races</span>
+                                </div>
+                                <div class="bg-slate-950/85 backdrop-blur-md p-2 rounded-xl border border-slate-700/80 text-center shadow-lg">
+                                    <span id="preview-card-stat-seasons" class="text-sm sm:text-xl font-black text-white block">0</span>
+                                    <span class="text-[8px] sm:text-[9px] font-mono font-bold text-sky-400 uppercase tracking-wider block">Seasons</span>
+                                </div>
+                                <div class="bg-slate-950/85 backdrop-blur-md p-2 rounded-xl border border-slate-700/80 text-center shadow-lg">
+                                    <span id="preview-card-stat-podiums" class="text-sm sm:text-xl font-black text-white block">0</span>
+                                    <span class="text-[8px] sm:text-[9px] font-mono font-bold text-sky-400 uppercase tracking-wider block">Podiums</span>
+                                </div>
+                                <div class="bg-slate-950/85 backdrop-blur-md p-2 rounded-xl border border-slate-700/80 text-center shadow-lg">
+                                    <span id="preview-card-stat-miles" class="text-sm sm:text-xl font-black text-white block">0</span>
+                                    <span class="text-[8px] sm:text-[9px] font-mono font-bold text-sky-400 uppercase tracking-wider block">Miles</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -659,12 +672,18 @@
         const heroPhotoImg = document.getElementById('runner-featured-photo');
         if (heroPhotoImg) heroPhotoImg.src = chosenPhotoUrl;
 
-        // Preview card sync
-        const prevCardPhoto = document.getElementById('preview-card-photo');
-        if (prevCardPhoto) prevCardPhoto.src = chosenPhotoUrl;
+        // Preview card sync (Strava full-bleed photo with stats overlay)
+        const prevCardBg = document.getElementById('preview-card-bg');
+        if (prevCardBg) prevCardBg.src = chosenPhotoUrl;
+        const prevStripe = document.getElementById('preview-card-stripe');
+        if (prevStripe) prevStripe.style.backgroundColor = clubColourHex || '#0284c7';
+        const prevClub = document.getElementById('preview-card-club');
+        if (prevClub) {
+            prevClub.textContent = primaryClub.toUpperCase();
+            prevClub.style.backgroundColor = clubColourHex || '#0284c7';
+        }
         document.getElementById('preview-card-name').textContent = finalName;
-        document.getElementById('preview-card-club').textContent = primaryClub.toUpperCase();
-        document.getElementById('preview-card-cat').textContent = `${primaryCat.toUpperCase()} CATEGORY • GLCL RUNNER`;
+        document.getElementById('preview-card-cat').textContent = `${primaryCat.toUpperCase()} DIVISION • GLCL RUNNER`;
         document.getElementById('preview-card-season-tag').textContent = `${totalSeasons} Season${totalSeasons > 1 ? 's' : ''} Strong`;
         document.getElementById('preview-card-stat-races').textContent = totalRaces;
         document.getElementById('preview-card-stat-seasons').textContent = totalSeasons;
@@ -830,7 +849,8 @@
                         const newUrl = tile.dataset.photourl;
                         chosenPhotoUrl = newUrl;
                         if (heroPhotoImg) heroPhotoImg.src = newUrl;
-                        if (prevCardPhoto) prevCardPhoto.src = newUrl;
+                        const pBg = document.getElementById('preview-card-bg');
+                        if (pBg) pBg.src = newUrl;
 
                         // Save choice to local storage
                         const local = JSON.parse(localStorage.getItem('glcl_athlete_headers') || '{}');
@@ -913,57 +933,13 @@
                     const w = 1200;
                     const h = 630;
 
-                    // 1. Background gradient
-                    const bgGrad = ctx.createLinearGradient(0, 0, w, h);
-                    bgGrad.addColorStop(0, '#030712');
-                    bgGrad.addColorStop(0.5, '#090d16');
-                    bgGrad.addColorStop(1, '#0f172a');
-                    ctx.fillStyle = bgGrad;
-                    ctx.fillRect(0, 0, w, h);
-
-                    // 2. Club accent top bar
-                    const accentGrad = ctx.createLinearGradient(0, 0, w, 0);
-                    accentGrad.addColorStop(0, clubColourHex || '#0284c7');
-                    accentGrad.addColorStop(1, clubSecHex || '#4f46e5');
-                    ctx.fillStyle = accentGrad;
-                    ctx.fillRect(0, 0, w, 14);
-
-                    // 3. Subtle ambient glow
-                    const glowGrad = ctx.createRadialGradient(200, 315, 10, 200, 315, 300);
-                    glowGrad.addColorStop(0, 'rgba(14, 165, 233, 0.25)');
-                    glowGrad.addColorStop(1, 'rgba(14, 165, 233, 0)');
-                    ctx.fillStyle = glowGrad;
-                    ctx.beginPath();
-                    ctx.arc(200, 315, 300, 0, Math.PI * 2);
-                    ctx.fill();
-
-                    // 4. Branding header
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = '900 28px Inter, sans-serif';
-                    ctx.fillText('GLCL ARCHIVE', 70, 75);
-
-                    ctx.fillStyle = '#38bdf8';
-                    ctx.font = '700 14px "JetBrains Mono", monospace';
-                    ctx.fillText('GWENT LEISURE CENTRE LEAGUE', 70, 100);
-
-                    // Right season tag
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-                    ctx.roundRect ? ctx.roundRect(w - 280, 55, 210, 42, 10) : ctx.rect(w - 280, 55, 210, 42);
-                    ctx.fill();
-                    ctx.fillStyle = '#e2e8f0';
-                    ctx.font = '800 15px "JetBrains Mono", monospace';
-                    ctx.textAlign = 'center';
-                    ctx.fillText(`${totalSeasons} SEASONS ACTIVE`, w - 175, 82);
-                    ctx.textAlign = 'left';
-
-                    // 5. Load and draw runner portrait image (in circular frame)
+                    // 1. Load runner image first
                     const runnerImg = new Image();
                     runnerImg.crossOrigin = 'anonymous';
 
                     await new Promise((resolve) => {
                         runnerImg.onload = resolve;
                         runnerImg.onerror = () => {
-                            // Fallback to placeholder if cors fails
                             runnerImg.src = 'assets/images/hero_placeholder.jpg';
                             runnerImg.onload = resolve;
                             runnerImg.onerror = resolve;
@@ -971,93 +947,144 @@
                         runnerImg.src = chosenPhotoUrl;
                     });
 
-                    const circleX = 200;
-                    const circleY = 300;
-                    const circleR = 120;
-
-                    // Draw circular photo clip
-                    ctx.save();
-                    ctx.beginPath();
-                    ctx.arc(circleX, circleY, circleR, 0, Math.PI * 2);
-                    ctx.closePath();
-                    ctx.clip();
-
+                    // 2. Draw full-bleed background runner photo (cover fit)
                     if (runnerImg.complete && runnerImg.naturalWidth > 0) {
-                        ctx.drawImage(runnerImg, circleX - circleR, circleY - circleR, circleR * 2, circleR * 2);
+                        const imgW = runnerImg.naturalWidth;
+                        const imgH = runnerImg.naturalHeight;
+                        const scale = Math.max(w / imgW, h / imgH);
+                        const drawW = imgW * scale;
+                        const drawH = imgH * scale;
+                        const drawX = (w - drawW) / 2;
+                        const drawY = Math.min(0, (h - drawH) * 0.15); // bias upper body
+                        ctx.drawImage(runnerImg, drawX, drawY, drawW, drawH);
                     } else {
-                        ctx.fillStyle = '#1e293b';
-                        ctx.fillRect(circleX - circleR, circleY - circleR, circleR * 2, circleR * 2);
+                        ctx.fillStyle = '#0f172a';
+                        ctx.fillRect(0, 0, w, h);
                     }
+
+                    // 3. Top subtle vignette for branding readability
+                    const topGrad = ctx.createLinearGradient(0, 0, 0, 150);
+                    topGrad.addColorStop(0, 'rgba(3, 7, 18, 0.85)');
+                    topGrad.addColorStop(1, 'rgba(3, 7, 18, 0)');
+                    ctx.fillStyle = topGrad;
+                    ctx.fillRect(0, 0, w, 150);
+
+                    // 4. Bottom strong vignette for athletic stats overlay readability
+                    const botGrad = ctx.createLinearGradient(0, 210, 0, h);
+                    botGrad.addColorStop(0, 'rgba(3, 7, 18, 0)');
+                    botGrad.addColorStop(0.4, 'rgba(3, 7, 18, 0.6)');
+                    botGrad.addColorStop(1, 'rgba(3, 7, 18, 0.96)');
+                    ctx.fillStyle = botGrad;
+                    ctx.fillRect(0, 210, w, h - 210);
+
+                    // 5. Top club accent stripe
+                    ctx.fillStyle = clubColourHex || '#0284c7';
+                    ctx.fillRect(0, 0, w, 8);
+
+                    // 6. Top Branding
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = '900 24px Inter, system-ui, sans-serif';
+                    ctx.fillText('GLCL ARCHIVE', 60, 48);
+
+                    ctx.fillStyle = '#38bdf8';
+                    ctx.font = '700 13px "JetBrains Mono", monospace';
+                    ctx.fillText('GWENT LEISURE CENTRE LEAGUE', 60, 72);
+
+                    // Top Right Season Pill
+                    ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+                    if (ctx.roundRect) {
+                        ctx.beginPath();
+                        ctx.roundRect(w - 280, 36, 220, 42, 8);
+                        ctx.fill();
+                        ctx.strokeStyle = 'rgba(56, 189, 248, 0.5)';
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    } else {
+                        ctx.fillRect(w - 280, 36, 220, 42);
+                    }
+                    ctx.fillStyle = '#f1f5f9';
+                    ctx.font = '800 14px "JetBrains Mono", monospace';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(`${totalSeasons} SEASONS ACTIVE`, w - 170, 62);
+                    ctx.textAlign = 'left';
+
+                    // 7. Club Pill Overlay
+                    const clubNameStr = primaryClub.toUpperCase();
+                    ctx.font = '800 13px "JetBrains Mono", monospace';
+                    const clubTextWidth = ctx.measureText(clubNameStr).width;
+                    const pillW = clubTextWidth + 28;
+                    const pillH = 30;
+                    ctx.fillStyle = clubColourHex || '#0284c7';
+                    if (ctx.roundRect) {
+                        ctx.beginPath();
+                        ctx.roundRect(60, 340, pillW, pillH, 6);
+                        ctx.fill();
+                    } else {
+                        ctx.fillRect(60, 340, pillW, pillH);
+                    }
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillText(clubNameStr, 74, 360);
+
+                    // 8. Runner Full Name (Bold White with shadow)
+                    ctx.save();
+                    ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+                    ctx.shadowBlur = 10;
+                    ctx.shadowOffsetX = 0;
+                    ctx.shadowOffsetY = 3;
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = '900 50px Inter, system-ui, sans-serif';
+                    let displayNameToDraw = finalName.toUpperCase();
+                    if (displayNameToDraw.length > 22) displayNameToDraw = displayNameToDraw.substring(0, 21) + '…';
+                    ctx.fillText(displayNameToDraw, 60, 425);
                     ctx.restore();
 
-                    // Border ring around photo
-                    ctx.strokeStyle = clubColourHex || '#38bdf8';
-                    ctx.lineWidth = 6;
-                    ctx.beginPath();
-                    ctx.arc(circleX, circleY, circleR, 0, Math.PI * 2);
-                    ctx.stroke();
+                    // 9. Category line
+                    ctx.fillStyle = '#cbd5e1';
+                    ctx.font = '700 16px "JetBrains Mono", monospace';
+                    ctx.fillText(`${primaryCat.toUpperCase()} DIVISION • GLCL RUNNER`, 60, 458);
 
-                    // 6. Athlete Name & Club Text
-                    ctx.fillStyle = '#38bdf8';
-                    ctx.font = '800 18px "JetBrains Mono", monospace';
-                    ctx.fillText(primaryClub.toUpperCase(), 360, 240);
-
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = '900 52px Inter, sans-serif';
-                    // Truncate name if too long
-                    let displayNameToDraw = finalName.toUpperCase();
-                    if (displayNameToDraw.length > 20) displayNameToDraw = displayNameToDraw.substring(0, 19) + '…';
-                    ctx.fillText(displayNameToDraw, 360, 305);
-
-                    ctx.fillStyle = '#94a3b8';
-                    ctx.font = '600 20px "JetBrains Mono", monospace';
-                    ctx.fillText(`${primaryCat.toUpperCase()} DIVISION • GLCL RUNNER`, 360, 345);
-
-                    // 7. Stat Boxes at Bottom (4 items)
+                    // 10. Strava 4-Stat Grid Across Bottom
                     const stats = [
-                        { label: 'TOTAL RACES', value: totalRaces.toString(), color: '#ffffff' },
-                        { label: 'SEASONS', value: totalSeasons.toString(), color: '#38bdf8' },
-                        { label: 'PODIUMS', value: categoryPodiums.toString(), color: '#fbbf24' },
-                        { label: 'LEAGUE MILES', value: `~${Math.round(totalMiles)}`, color: '#818cf8' }
+                        { label: 'RACES', value: totalRaces.toString() },
+                        { label: 'SEASONS', value: totalSeasons.toString() },
+                        { label: 'PODIUMS', value: categoryPodiums.toString() },
+                        { label: 'MILES', value: `~${Math.round(totalMiles)}` }
                     ];
 
-                    const startX = 70;
-                    const boxY = 470;
+                    const startX = 60;
+                    const boxY = 485;
                     const boxW = 250;
-                    const boxH = 100;
-                    const gap = 20;
+                    const boxH = 95;
+                    const gap = 26;
 
                     stats.forEach((st, idx) => {
                         const bx = startX + idx * (boxW + gap);
-                        
-                        // Box background
-                        ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+
+                        // Capsule background
+                        ctx.fillStyle = 'rgba(15, 23, 42, 0.88)';
                         if (ctx.roundRect) {
                             ctx.beginPath();
                             ctx.roundRect(bx, boxY, boxW, boxH, 12);
                             ctx.fill();
+                            ctx.strokeStyle = 'rgba(71, 85, 105, 0.7)';
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
                         } else {
                             ctx.fillRect(bx, boxY, boxW, boxH);
                         }
 
-                        // Border
-                        ctx.strokeStyle = 'rgba(51, 65, 85, 0.6)';
-                        ctx.lineWidth = 1.5;
-                        if (ctx.roundRect) {
-                            ctx.beginPath();
-                            ctx.roundRect(bx, boxY, boxW, boxH, 12);
-                            ctx.stroke();
-                        }
-
-                        // Label
-                        ctx.fillStyle = '#64748b';
-                        ctx.font = '700 12px "JetBrains Mono", monospace';
+                        // Stat Value
+                        ctx.fillStyle = '#ffffff';
+                        ctx.font = '900 40px Inter, system-ui, sans-serif';
                         ctx.textAlign = 'center';
-                        ctx.fillText(st.label, bx + boxW / 2, boxY + 32);
+                        ctx.fillText(st.value, bx + boxW / 2, boxY + 48);
 
-                        // Value
-                        ctx.fillStyle = st.color;
-                        ctx.font = '900 36px Inter, sans-serif';
+                        // Stat Label
+                        ctx.fillStyle = '#38bdf8';
+                        ctx.font = '800 12px "JetBrains Mono", monospace';
+                        ctx.fillText(st.label, bx + boxW / 2, boxY + 76);
+                    });
+                    ctx.textAlign = 'left';
                         ctx.fillText(st.value, bx + boxW / 2, boxY + 76);
                     });
 
