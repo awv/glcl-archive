@@ -199,6 +199,38 @@ To protect public users from seeing or tampering with editor controls, all editi
 
 ---
 
+## 📲 Playbook F: Social Share Cards & Athlete Career Stories
+
+The GLCL Archive generates Strava-style 1200×630 share cards featuring athletic milestones, career longevity, and action photos.
+
+### Automated GitHub Action Workflow
+An automated workflow (`.github/workflows/update_cards.yml`) runs automatically on push to `main` whenever any of the following change:
+- `data.js` (race results)
+- `assets/js/corrections.js` (name merges, disambiguation)
+- `assets/data/athlete_photos.json` (photo tags)
+- `assets/data/athlete_headers.json` / `athlete_featured_photos.json`
+- `assets/images/athletes/**` (custom portraits)
+
+It executes:
+1. `node backend_tools/export_disambiguated_runners.js`
+2. `python3 backend_tools/generate_strava_cards.py`
+3. `python3 backend_tools/generate_share_stubs.py`
+4. Automatically commits updated `.jpg` cards and `/share/` stubs back to GitHub with `[skip ci]`.
+
+### Manual CLI Generation
+```bash
+# Regenerate cards for all runners with photos (~40s)
+python3 backend_tools/generate_strava_cards.py
+
+# Regenerate a single runner's card
+python3 backend_tools/generate_strava_cards.py --runner "Martin Thomas"
+
+# Regenerate social share redirect stubs
+python3 backend_tools/generate_share_stubs.py
+```
+
+---
+
 ## ⚡ Quick Reference CLI Cheat Sheet
 
 ```bash
@@ -216,4 +248,9 @@ git diff --stat data.js
 
 # 5. Tag photo album using native Swift OCR
 ./backend_tools/glcl-tagger /path/to/photos/ --output assets/data/photos/race_1.json
+
+# 6. Update Strava share cards & social stubs
+node backend_tools/export_disambiguated_runners.js
+python3 backend_tools/generate_strava_cards.py
+python3 backend_tools/generate_share_stubs.py
 ```

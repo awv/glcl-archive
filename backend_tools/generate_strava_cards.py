@@ -220,6 +220,8 @@ def render_strava_card(runner_data, photo_url, club_color_rgb=(2, 132, 199), out
 
 DISAMBIGUATED_PATH = BASE_DIR / "assets" / "data" / "disambiguated_runners.json"
 
+from concurrent.futures import ThreadPoolExecutor
+
 def generate_all_cards(limit=None, runner_filter=None):
     CARDS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -254,9 +256,7 @@ def generate_all_cards(limit=None, runner_filter=None):
     if runner_filter:
         runners = [r for r in runners if runner_filter.lower() in r["displayName"].lower()]
 
-    print(f"Processing cards for {len(runners)} runners...")
-
-    count = 0
+    tasks = []
     for runner_data in runners:
         display_name = runner_data["displayName"]
         primary_club = runner_data["primaryClub"]
@@ -318,21 +318,26 @@ def generate_all_cards(limit=None, runner_filter=None):
                     club_rgb = hex_to_rgb(hex_c)
                 break
 
-        out_path = CARDS_DIR / f"{name_slug}.jpg"
-        print(f"Generating Strava card for {display_name} ({primary_club}) -> {out_path.name}")
-        render_strava_card(runner_data, photo_url, club_color_rgb=club_rgb, output_path=out_path)
-        
-        # Also save club-specific card for namesakes
-        if club_slug:
-            club_out_path = CARDS_DIR / f"{name_slug}-{club_slug}.jpg"
-            if club_out_path != out_path:
-                render_strava_card(runner_data, photo_url, club_color_rgb=club_rgb, output_path=club_out_path)
-        count += 1
-
-        if limit and count >= limit:
+        tasks.append((runner_data, photo_url, club_rgb, name_slug, club_slug))
+        if limit and len(tasks) >= limit:
             break
 
-    print(f"Done! Generated {count} custom Strava share cards in {CARDS_DIR}")
+    print(f"Generating Strava cards for {len(tasks)} runners (using ThreadPoolExecutor)...")
+
+    def process_task(task):
+        r_data, p_url, c_rgb, n_slug, cl_slug = task
+        out_p = CARDS_DIR / f"{n_slug}.jpg"
+        render_strava_card(r_data, p_url, club_color_rgb=c_rgb, output_path=out_p)
+        if cl_slug:
+            cl_out_p = CARDS_DIR / f"{n_slug}-{cl_slug}.jpg"
+            if cl_out_p != out_p:
+                render_strava_card(r_data, p_url, club_color_rgb=c_rgb, output_path=cl_out_p)
+
+    workers = 12 if len(tasks) > 5 else 1
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        list(executor.map(process_task, tasks))
+
+    print(f"Done! Generated {len(tasks)} custom Strava share cards in {CARDS_DIR}")
 
 if __name__ == "__main__":
     import argparse
