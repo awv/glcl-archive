@@ -159,31 +159,43 @@
                             A cornerstone of the Gwent Leisure Centre League, pushing the limits on cross country mud and road tarmac across the years.
                         </p>
 
-                        <!-- High Impact Metric Grid (Light themed, celebratory) -->
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-4">
+                        <!-- High Impact Metric Grid (6-Stat Comprehensive Overview) -->
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-4">
                             
-                            <div class="bg-white/90 border border-slate-200/90 rounded-2xl p-4 shadow-sm text-center lg:text-left hover:border-sky-300 transition-colors">
-                                <span class="block text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest">Total League Races</span>
-                                <span id="metric-races" class="text-3xl sm:text-4xl font-black text-slate-900 block mt-1">0</span>
-                                <span class="text-[11px] font-mono font-semibold text-slate-500 block mt-0.5">Fixtures Finished</span>
+                            <div class="bg-white/90 border border-slate-200/90 rounded-2xl p-3.5 shadow-sm text-center lg:text-left hover:border-sky-300 transition-colors">
+                                <span class="block text-[9px] font-mono font-bold text-slate-500 uppercase tracking-widest">Total Races</span>
+                                <span id="metric-races" class="text-2xl sm:text-3xl font-black text-slate-900 block mt-1">0</span>
+                                <span class="text-[10px] font-mono font-semibold text-slate-500 block mt-0.5">Fixtures Run</span>
                             </div>
 
-                            <div class="bg-white/90 border border-slate-200/90 rounded-2xl p-4 shadow-sm text-center lg:text-left hover:border-sky-300 transition-colors">
-                                <span class="block text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest">Seasons Active</span>
-                                <span id="metric-seasons" class="text-3xl sm:text-4xl font-black text-sky-600 block mt-1">0</span>
-                                <span id="metric-season-span" class="text-[11px] font-mono font-semibold text-slate-500 block mt-0.5">—</span>
+                            <div class="bg-white/90 border border-slate-200/90 rounded-2xl p-3.5 shadow-sm text-center lg:text-left hover:border-sky-300 transition-colors">
+                                <span class="block text-[9px] font-mono font-bold text-slate-500 uppercase tracking-widest">Seasons Active</span>
+                                <span id="metric-seasons" class="text-2xl sm:text-3xl font-black text-sky-600 block mt-1">0</span>
+                                <span id="metric-season-span" class="text-[10px] font-mono font-semibold text-slate-500 block mt-0.5">—</span>
                             </div>
 
-                            <div class="bg-white/90 border border-slate-200/90 rounded-2xl p-4 shadow-sm text-center lg:text-left hover:border-amber-300 transition-colors">
-                                <span class="block text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest">Category Podiums</span>
-                                <span id="metric-podiums" class="text-3xl sm:text-4xl font-black text-amber-500 block mt-1">0</span>
-                                <span id="metric-wins-detail" class="text-[11px] font-mono font-semibold text-slate-500 block mt-0.5">0 Category Wins</span>
+                            <div class="bg-white/90 border border-slate-200/90 rounded-2xl p-3.5 shadow-sm text-center lg:text-left hover:border-amber-300 transition-colors">
+                                <span class="block text-[9px] font-mono font-bold text-slate-500 uppercase tracking-widest">Category Wins</span>
+                                <span id="metric-cat-wins" class="text-2xl sm:text-3xl font-black text-amber-500 block mt-1">0</span>
+                                <span id="metric-podiums-detail" class="text-[10px] font-mono font-semibold text-slate-500 block mt-0.5">0 Podiums</span>
                             </div>
 
-                            <div class="bg-white/90 border border-slate-200/90 rounded-2xl p-4 shadow-sm text-center lg:text-left hover:border-indigo-300 transition-colors">
-                                <span class="block text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest">League Miles</span>
-                                <span id="metric-miles" class="text-3xl sm:text-4xl font-black text-indigo-600 block mt-1">0</span>
-                                <span class="text-[11px] font-mono font-semibold text-slate-500 block mt-0.5">Competitive Miles</span>
+                            <div class="bg-white/90 border border-slate-200/90 rounded-2xl p-3.5 shadow-sm text-center lg:text-left hover:border-emerald-300 transition-colors">
+                                <span class="block text-[9px] font-mono font-bold text-slate-500 uppercase tracking-widest">Best XC Finish</span>
+                                <span id="metric-best-xc" class="text-2xl sm:text-3xl font-black text-emerald-600 block mt-1">—</span>
+                                <span id="metric-xc-races-count" class="text-[10px] font-mono font-semibold text-slate-500 block mt-0.5">0 XC Races</span>
+                            </div>
+
+                            <div class="bg-white/90 border border-slate-200/90 rounded-2xl p-3.5 shadow-sm text-center lg:text-left hover:border-indigo-300 transition-colors">
+                                <span class="block text-[9px] font-mono font-bold text-slate-500 uppercase tracking-widest">Best Road Finish</span>
+                                <span id="metric-best-road" class="text-2xl sm:text-3xl font-black text-indigo-600 block mt-1">—</span>
+                                <span id="metric-road-races-count" class="text-[10px] font-mono font-semibold text-slate-500 block mt-0.5">0 Road Races</span>
+                            </div>
+
+                            <div class="bg-white/90 border border-slate-200/90 rounded-2xl p-3.5 shadow-sm text-center lg:text-left hover:border-purple-300 transition-colors">
+                                <span class="block text-[9px] font-mono font-bold text-slate-500 uppercase tracking-widest">Unique Venues</span>
+                                <span id="metric-venues" class="text-2xl sm:text-3xl font-black text-purple-600 block mt-1">0</span>
+                                <span id="metric-miles-detail" class="text-[10px] font-mono font-semibold text-slate-500 block mt-0.5">~0 Miles</span>
                             </div>
 
                         </div>
@@ -327,16 +339,16 @@
                                     <span class="text-[8px] sm:text-[9px] font-mono text-sky-400 uppercase tracking-widest block drop-shadow">Gwent Leisure Centre League</span>
                                 </div>
                             </div>
-                            <span id="preview-card-season-tag" class="px-2.5 py-1 rounded-md text-[10px] font-mono font-extrabold uppercase tracking-wider bg-slate-900/80 backdrop-blur-md border border-slate-700/80 text-slate-200 shadow">
+                            <span id="preview-card-season-tag" class="inline-flex items-center justify-center px-3 py-1.5 rounded-lg text-[10px] font-mono font-extrabold uppercase tracking-wider leading-none bg-slate-900/85 backdrop-blur-md border border-slate-700/80 text-slate-200 shadow">
                                 9 Seasons Strong
                             </span>
                         </div>
 
                         <!-- Bottom Strava-Style Stats Overlay directly on photo -->
                         <div class="relative z-10 space-y-2 mt-auto">
-                            <!-- Club Pill -->
+                            <!-- Club Pill (Vertically Centered) -->
                             <div>
-                                <span id="preview-card-club" class="inline-block px-2.5 py-0.5 rounded text-[10px] font-mono font-black uppercase tracking-wider text-white bg-sky-600 shadow-md">
+                                <span id="preview-card-club" class="inline-flex items-center justify-center px-3 py-1.5 rounded text-[10px] font-mono font-black uppercase tracking-wider leading-none text-white bg-sky-600 shadow-md">
                                     PARC BRYN BACH RC
                                 </span>
                             </div>
@@ -346,28 +358,32 @@
                                 <h3 id="preview-card-name" class="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-tight">
                                     Runner Name
                                 </h3>
-                                <p id="preview-card-cat" class="text-[11px] sm:text-xs font-mono font-bold text-slate-300 uppercase drop-shadow">
-                                    V50 Category • GLCL Runner
+                                <p id="preview-card-cat" class="text-[10px] sm:text-xs font-mono font-bold text-slate-300 uppercase drop-shadow">
+                                    V50 Division • 2017 – 2027 (10 Yrs) • ~215 Miles
                                 </p>
                             </div>
 
-                            <!-- 4 Strava Stat Capsules -->
-                            <div class="grid grid-cols-4 gap-2 pt-1">
-                                <div class="bg-slate-950/85 backdrop-blur-md p-2 rounded-xl border border-slate-700/80 text-center shadow-lg">
+                            <!-- 5 Strava Stat Capsules -->
+                            <div class="grid grid-cols-5 gap-1.5 sm:gap-2 pt-1">
+                                <div class="bg-slate-950/85 backdrop-blur-md p-1.5 sm:p-2 rounded-xl border border-slate-700/80 text-center shadow-lg">
                                     <span id="preview-card-stat-races" class="text-sm sm:text-xl font-black text-white block">0</span>
-                                    <span class="text-[8px] sm:text-[9px] font-mono font-bold text-sky-400 uppercase tracking-wider block">Races</span>
+                                    <span class="text-[7px] sm:text-[9px] font-mono font-bold text-sky-400 uppercase tracking-wider block">Races</span>
                                 </div>
-                                <div class="bg-slate-950/85 backdrop-blur-md p-2 rounded-xl border border-slate-700/80 text-center shadow-lg">
+                                <div class="bg-slate-950/85 backdrop-blur-md p-1.5 sm:p-2 rounded-xl border border-slate-700/80 text-center shadow-lg">
                                     <span id="preview-card-stat-seasons" class="text-sm sm:text-xl font-black text-white block">0</span>
-                                    <span class="text-[8px] sm:text-[9px] font-mono font-bold text-sky-400 uppercase tracking-wider block">Seasons</span>
+                                    <span class="text-[7px] sm:text-[9px] font-mono font-bold text-sky-400 uppercase tracking-wider block">Seasons</span>
                                 </div>
-                                <div class="bg-slate-950/85 backdrop-blur-md p-2 rounded-xl border border-slate-700/80 text-center shadow-lg">
-                                    <span id="preview-card-stat-podiums" class="text-sm sm:text-xl font-black text-white block">0</span>
-                                    <span class="text-[8px] sm:text-[9px] font-mono font-bold text-sky-400 uppercase tracking-wider block">Podiums</span>
+                                <div class="bg-slate-950/85 backdrop-blur-md p-1.5 sm:p-2 rounded-xl border border-slate-700/80 text-center shadow-lg">
+                                    <span id="preview-card-stat-catwins" class="text-sm sm:text-xl font-black text-white block">0</span>
+                                    <span id="preview-card-stat-catwins-lbl" class="text-[7px] sm:text-[9px] font-mono font-bold text-sky-400 uppercase tracking-wider block">Cat Wins</span>
                                 </div>
-                                <div class="bg-slate-950/85 backdrop-blur-md p-2 rounded-xl border border-slate-700/80 text-center shadow-lg">
-                                    <span id="preview-card-stat-miles" class="text-sm sm:text-xl font-black text-white block">0</span>
-                                    <span class="text-[8px] sm:text-[9px] font-mono font-bold text-sky-400 uppercase tracking-wider block">Miles</span>
+                                <div class="bg-slate-950/85 backdrop-blur-md p-1.5 sm:p-2 rounded-xl border border-slate-700/80 text-center shadow-lg">
+                                    <span id="preview-card-stat-bestpos" class="text-sm sm:text-xl font-black text-white block">—</span>
+                                    <span id="preview-card-stat-bestpos-lbl" class="text-[7px] sm:text-[9px] font-mono font-bold text-sky-400 uppercase tracking-wider block">Best XC</span>
+                                </div>
+                                <div class="bg-slate-950/85 backdrop-blur-md p-1.5 sm:p-2 rounded-xl border border-slate-700/80 text-center shadow-lg">
+                                    <span id="preview-card-stat-venues" class="text-sm sm:text-xl font-black text-white block">0</span>
+                                    <span class="text-[7px] sm:text-[9px] font-mono font-bold text-sky-400 uppercase tracking-wider block">Venues</span>
                                 </div>
                             </div>
                         </div>
@@ -560,6 +576,8 @@
         let top10Finishes = 0;
         let bestOverallPos = Infinity;
         let bestOverallRace = null;
+        let bestXcPos = Infinity;
+        let bestRoadPos = Infinity;
         let xcCount = 0;
         let roadCount = 0;
         let totalMiles = 0;
@@ -581,14 +599,16 @@
                 if (cp <= 3) categoryPodiums++;
             }
 
-            // Discipline
+            // Discipline & best discipline finishes
             const disc = normStr(r.discipline);
             if (disc.includes('xc') || disc.includes('cross')) {
                 xcCount++;
                 totalMiles += 4.8;
+                if (!isNaN(p) && p > 0 && p < bestXcPos) bestXcPos = p;
             } else {
                 roadCount++;
                 totalMiles += 5.2;
+                if (!isNaN(p) && p > 0 && p < bestRoadPos) bestRoadPos = p;
             }
 
             // Venue
@@ -597,6 +617,21 @@
             }
         });
 
+        const uniqueVenuesCount = Object.keys(venueCounts).length;
+
+        // Longevity / Years span calculation
+        let spanYears = 1;
+        let yearsSpanText = seasonSpanStr;
+        if (sortedSeasons.length > 0) {
+            try {
+                const firstY = parseInt(sortedSeasons[0].split('/')[0], 10);
+                const lastSplit = sortedSeasons[sortedSeasons.length - 1].split('/');
+                const lastY = parseInt(lastSplit[1] || lastSplit[0], 10);
+                spanYears = (lastY - firstY) + 1;
+                yearsSpanText = `${firstY} – ${lastY} (${spanYears} Yrs Active)`;
+            } catch (e) {}
+        }
+
         const latestRecord = runnerRecords[0] || {};
         const primaryCat = latestRecord.age_cat || latestRecord.category || 'Competitor';
 
@@ -604,12 +639,22 @@
         document.getElementById('story-athlete-name').textContent = finalName;
         document.getElementById('story-club-badge').textContent = primaryClub.toUpperCase();
         document.getElementById('story-category-badge').textContent = primaryCat.toUpperCase();
+        
+        // 6 Overview Metrics
         document.getElementById('metric-races').textContent = totalRaces;
         document.getElementById('metric-seasons').textContent = totalSeasons;
-        document.getElementById('metric-season-span').textContent = seasonSpanStr;
-        document.getElementById('metric-podiums').textContent = categoryPodiums;
-        document.getElementById('metric-wins-detail').textContent = `${categoryWins} Category Win${categoryWins === 1 ? '' : 's'}`;
-        document.getElementById('metric-miles').textContent = `~${Math.round(totalMiles)}`;
+        document.getElementById('metric-season-span').textContent = yearsSpanText;
+        document.getElementById('metric-cat-wins').textContent = categoryWins;
+        document.getElementById('metric-podiums-detail').textContent = `${categoryPodiums} Category Podium${categoryPodiums === 1 ? '' : 's'}`;
+        
+        document.getElementById('metric-best-xc').textContent = bestXcPos !== Infinity ? `${bestXcPos}${getOrdinal(bestXcPos)}` : '—';
+        document.getElementById('metric-xc-races-count').textContent = `${xcCount} XC Races`;
+        
+        document.getElementById('metric-best-road').textContent = bestRoadPos !== Infinity ? `${bestRoadPos}${getOrdinal(bestRoadPos)}` : '—';
+        document.getElementById('metric-road-races-count').textContent = `${roadCount} Road Races`;
+
+        document.getElementById('metric-venues').textContent = uniqueVenuesCount;
+        document.getElementById('metric-miles-detail').textContent = `~${Math.round(totalMiles)} Competitive Miles`;
 
         // Dynamic Tagline
         let storyTagline = '';
@@ -683,12 +728,36 @@
             prevClub.style.backgroundColor = clubColourHex || '#0284c7';
         }
         document.getElementById('preview-card-name').textContent = finalName;
-        document.getElementById('preview-card-cat').textContent = `${primaryCat.toUpperCase()} DIVISION • GLCL RUNNER`;
-        document.getElementById('preview-card-season-tag').textContent = `${totalSeasons} Season${totalSeasons > 1 ? 's' : ''} Strong`;
+        document.getElementById('preview-card-cat').textContent = `${primaryCat.toUpperCase()} DIVISION • ${yearsSpanText.toUpperCase()} • ~${Math.round(totalMiles)} MILES`;
+        document.getElementById('preview-card-season-tag').textContent = `${totalSeasons} Seasons Strong`;
         document.getElementById('preview-card-stat-races').textContent = totalRaces;
         document.getElementById('preview-card-stat-seasons').textContent = totalSeasons;
-        document.getElementById('preview-card-stat-podiums').textContent = categoryPodiums;
-        document.getElementById('preview-card-stat-miles').textContent = `~${Math.round(totalMiles)}`;
+        
+        // 5 Preview capsules
+        const prevCatWins = document.getElementById('preview-card-stat-catwins');
+        const prevCatWinsLbl = document.getElementById('preview-card-stat-catwins-lbl');
+        if (prevCatWins && prevCatWinsLbl) {
+            prevCatWins.textContent = categoryWins > 0 ? categoryWins : categoryPodiums;
+            prevCatWinsLbl.textContent = categoryWins > 0 ? 'Cat Wins' : 'Podiums';
+        }
+
+        const prevBestPos = document.getElementById('preview-card-stat-bestpos');
+        const prevBestPosLbl = document.getElementById('preview-card-stat-bestpos-lbl');
+        if (prevBestPos && prevBestPosLbl) {
+            if (bestXcPos !== Infinity) {
+                prevBestPos.textContent = `${bestXcPos}${getOrdinal(bestXcPos)}`;
+                prevBestPosLbl.textContent = 'Best XC';
+            } else if (bestRoadPos !== Infinity) {
+                prevBestPos.textContent = `${bestRoadPos}${getOrdinal(bestRoadPos)}`;
+                prevBestPosLbl.textContent = 'Best Road';
+            } else {
+                prevBestPos.textContent = `~${Math.round(totalMiles)}`;
+                prevBestPosLbl.textContent = 'Miles';
+            }
+        }
+
+        const prevVenues = document.getElementById('preview-card-stat-venues');
+        if (prevVenues) prevVenues.textContent = uniqueVenuesCount;
 
         // Dynamic OG tags for browsers that parse them
         document.getElementById('meta-og-title').setAttribute('content', `${finalName} — GLCL Career Story & Milestones`);
@@ -1005,7 +1074,9 @@
                     ctx.fillStyle = '#f1f5f9';
                     ctx.font = '800 14px "JetBrains Mono", monospace';
                     ctx.textAlign = 'center';
-                    ctx.fillText(`${totalSeasons} SEASONS ACTIVE`, w - 170, 62);
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(`${totalSeasons} SEASONS ACTIVE`, w - 170, 57);
+                    ctx.textBaseline = 'alphabetic';
                     ctx.textAlign = 'left';
 
                     // 7. Club Pill Overlay
@@ -1017,13 +1088,17 @@
                     ctx.fillStyle = clubColourHex || '#0284c7';
                     if (ctx.roundRect) {
                         ctx.beginPath();
-                        ctx.roundRect(60, 340, pillW, pillH, 6);
+                        ctx.roundRect(50, 335, pillW, pillH, 6);
                         ctx.fill();
                     } else {
-                        ctx.fillRect(60, 340, pillW, pillH);
+                        ctx.fillRect(50, 335, pillW, pillH);
                     }
                     ctx.fillStyle = '#ffffff';
-                    ctx.fillText(clubNameStr, 74, 360);
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(clubNameStr, 50 + pillW / 2, 350);
+                    ctx.textBaseline = 'alphabetic';
+                    ctx.textAlign = 'left';
 
                     // 8. Runner Full Name (Bold White with shadow)
                     ctx.save();
@@ -1035,27 +1110,47 @@
                     ctx.font = '900 50px Inter, system-ui, sans-serif';
                     let displayNameToDraw = finalName.toUpperCase();
                     if (displayNameToDraw.length > 22) displayNameToDraw = displayNameToDraw.substring(0, 21) + '…';
-                    ctx.fillText(displayNameToDraw, 60, 425);
+                    ctx.fillText(displayNameToDraw, 50, 415);
                     ctx.restore();
 
-                    // 9. Category line
-                    ctx.fillStyle = '#cbd5e1';
-                    ctx.font = '700 16px "JetBrains Mono", monospace';
-                    ctx.fillText(`${primaryCat.toUpperCase()} DIVISION • GLCL RUNNER`, 60, 458);
+                    // 9. Subtitle line: Category + Years span + Miles
+                    ctx.fillStyle = '#94a3b8';
+                    ctx.font = '700 14px "JetBrains Mono", monospace';
+                    const subParts = [`${primaryCat.toUpperCase()} DIVISION`];
+                    if (yearsSpanText) subParts.push(yearsSpanText.toUpperCase());
+                    subParts.push(`~${Math.round(totalMiles)} LEAGUE MILES`);
+                    ctx.fillText(subParts.join(' • '), 50, 445);
 
-                    // 10. Strava 4-Stat Grid Across Bottom
+                    // 10. Strava 5-Stat Grid Across Bottom
+                    let stat3Val = categoryWins > 0 ? categoryWins.toString() : categoryPodiums.toString();
+                    let stat3Lbl = categoryWins > 0 ? 'CAT WINS' : 'PODIUMS';
+
+                    let stat4Val = '';
+                    let stat4Lbl = '';
+                    if (bestXcPos !== Infinity) {
+                        stat4Val = `${bestXcPos}${getOrdinal(bestXcPos)}`;
+                        stat4Lbl = 'BEST XC';
+                    } else if (bestRoadPos !== Infinity) {
+                        stat4Val = `${bestRoadPos}${getOrdinal(bestRoadPos)}`;
+                        stat4Lbl = 'BEST ROAD';
+                    } else {
+                        stat4Val = `~${Math.round(totalMiles)}`;
+                        stat4Lbl = 'MILES';
+                    }
+
                     const stats = [
                         { label: 'RACES', value: totalRaces.toString() },
                         { label: 'SEASONS', value: totalSeasons.toString() },
-                        { label: 'PODIUMS', value: categoryPodiums.toString() },
-                        { label: 'MILES', value: `~${Math.round(totalMiles)}` }
+                        { label: stat3Lbl, value: stat3Val },
+                        { label: stat4Lbl, value: stat4Val },
+                        { label: 'VENUES', value: uniqueVenuesCount.toString() }
                     ];
 
-                    const startX = 60;
+                    const startX = 50;
                     const boxY = 485;
-                    const boxW = 250;
-                    const boxH = 95;
-                    const gap = 26;
+                    const boxW = 208;
+                    const boxH = 92;
+                    const gap = 15;
 
                     stats.forEach((st, idx) => {
                         const bx = startX + idx * (boxW + gap);
@@ -1075,14 +1170,16 @@
 
                         // Stat Value
                         ctx.fillStyle = '#ffffff';
-                        ctx.font = '900 40px Inter, system-ui, sans-serif';
+                        ctx.font = '900 36px Inter, system-ui, sans-serif';
                         ctx.textAlign = 'center';
-                        ctx.fillText(st.value, bx + boxW / 2, boxY + 48);
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(st.value, bx + boxW / 2, boxY + 34);
 
                         // Stat Label
                         ctx.fillStyle = '#38bdf8';
                         ctx.font = '800 12px "JetBrains Mono", monospace';
-                        ctx.fillText(st.label, bx + boxW / 2, boxY + 76);
+                        ctx.fillText(st.label, bx + boxW / 2, boxY + 70);
+                        ctx.textBaseline = 'alphabetic';
                     });
                     ctx.textAlign = 'left';
 

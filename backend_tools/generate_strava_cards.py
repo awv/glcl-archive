@@ -24,6 +24,16 @@ ATHLETE_PHOTOS_PATH = BASE_DIR / "assets" / "data" / "athlete_photos.json"
 CLUB_COLOURS_PATH = BASE_DIR / "assets" / "data" / "club_colours.json"
 CARDS_DIR = BASE_DIR / "assets" / "cards"
 
+def get_ordinal(n):
+    if not n or n >= 999:
+        return ""
+    n = int(n)
+    s = ["th", "st", "nd", "rd"]
+    v = n % 100
+    if 11 <= v <= 13:
+        return "th"
+    return s[v % 10] if (v % 10) < len(s) else "th"
+
 def slugify(text):
     text = (text or "").lower().strip()
     text = re.sub(r"[^a-z0-9]+", "-", text)
@@ -123,57 +133,84 @@ def render_strava_card(runner_data, photo_url, club_color_rgb=(2, 132, 199), out
     draw.rectangle([(0, 0), (target_w, 8)], fill=club_color_rgb)
 
     # Top Branding: GLCL Archive
-    draw.text((60, 42), "GLCL ARCHIVE", font=font_brand, fill=(255, 255, 255))
-    draw.text((60, 74), "GWENT LEISURE CENTRE LEAGUE", font=font_brand_sub, fill=(56, 189, 248))
+    draw.text((50, 42), "GLCL ARCHIVE", font=font_brand, fill=(255, 255, 255))
+    draw.text((50, 72), "GWENT LEISURE CENTRE LEAGUE", font=font_brand_sub, fill=(56, 189, 248))
 
-    # Top Right Season Pill
+    # Top Right Season Pill (Exact centering with anchor="mm")
     total_seasons = runner_data.get("totalSeasons", 1)
-    season_text = f"{total_seasons} SEASON{'S' if total_seasons > 1 else ''} ACTIVE"
-    draw.rounded_rectangle([(target_w - 280, 42), (target_w - 60, 84)], radius=8, fill=(15, 23, 42, 210), outline=(56, 189, 248, 140), width=1)
-    draw.text((target_w - 170, 53), season_text, font=font_brand_sub, fill=(241, 245, 249), anchor="mt")
+    season_text = f"{total_seasons} SEASONS STRONG"
+    pill_rx1, pill_ry1, pill_rx2, pill_ry2 = target_w - 270, 42, target_w - 50, 80
+    draw.rounded_rectangle([(pill_rx1, pill_ry1), (pill_rx2, pill_ry2)], radius=8, fill=(15, 23, 42, 210), outline=(56, 189, 248, 140), width=1)
+    draw.text(((pill_rx1 + pill_rx2) / 2, (pill_ry1 + pill_ry2) / 2), season_text, font=font_pill, fill=(241, 245, 249), anchor="mm")
 
-    # Bottom Overlay: Club Pill
+    # Bottom Overlay: Club Pill (Exact centering with anchor="mm")
     primary_club = runner_data.get("primaryClub", "GLCL COMPETITOR").upper()
-    pill_w = min(400, int(len(primary_club) * 9.5) + 30)
-    draw.rounded_rectangle([(60, 335), (60 + pill_w, 368)], radius=6, fill=club_color_rgb)
-    draw.text((60 + pill_w // 2, 343), primary_club, font=font_pill, fill=(255, 255, 255), anchor="mt")
+    pill_w = min(420, int(len(primary_club) * 9.5) + 32)
+    c_x1, c_y1, c_x2, c_y2 = 50, 335, 50 + pill_w, 367
+    draw.rounded_rectangle([(c_x1, c_y1), (c_x2, c_y2)], radius=6, fill=club_color_rgb)
+    draw.text(((c_x1 + c_x2) / 2, (c_y1 + c_y2) / 2), primary_club, font=font_pill, fill=(255, 255, 255), anchor="mm")
 
     # Runner Name (Bold White with shadow)
     display_name = runner_data.get("displayName", "ATHLETE").upper()
     if len(display_name) > 22:
         display_name = display_name[:21] + "…"
     # Subtle drop shadow for name
-    draw.text((62, 382), display_name, font=font_name, fill=(0, 0, 0, 180))
-    draw.text((60, 380), display_name, font=font_name, fill=(255, 255, 255))
+    draw.text((52, 382), display_name, font=font_name, fill=(0, 0, 0, 180))
+    draw.text((50, 380), display_name, font=font_name, fill=(255, 255, 255))
 
-    # Category Line
+    # Subtitle line: Category + Years competing + Miles
     primary_cat = runner_data.get("primaryCat", "COMPETITOR").upper()
-    draw.text((62, 444), f"{primary_cat} DIVISION • GLCL RUNNER", font=font_sub, fill=(148, 163, 184))
-
-    # 4 Strava Stat Capsules
-    total_races = runner_data.get("totalRaces", 0)
-    podiums = runner_data.get("podiums", 0)
+    years_text = runner_data.get("yearsSpanText", "")
     miles = runner_data.get("miles", 0)
+    sub_parts = [f"{primary_cat} DIVISION"]
+    if years_text:
+        sub_parts.append(years_text)
+    sub_parts.append(f"~{miles} LEAGUE MILES")
+    sub_line = " • ".join(sub_parts)
+    draw.text((52, 442), sub_line, font=font_sub, fill=(148, 163, 184))
+
+    # 5 Strava Stat Capsules
+    total_races = runner_data.get("totalRaces", 0)
+    cat_wins = runner_data.get("catWins", 0)
+    podiums = runner_data.get("podiums", 0)
+    best_xc = runner_data.get("bestXc")
+    best_road = runner_data.get("bestRoad")
+    venues_count = runner_data.get("uniqueVenues", 0)
+
+    # Pick most impressive stats
+    stat_3_val = str(cat_wins) if cat_wins > 0 else str(podiums)
+    stat_3_lbl = "CAT WINS" if cat_wins > 0 else "PODIUMS"
+
+    if best_xc and best_xc < 999:
+        stat_4_val = f"{best_xc}{get_ordinal(best_xc)}"
+        stat_4_lbl = "BEST XC"
+    elif best_road and best_road < 999:
+        stat_4_val = f"{best_road}{get_ordinal(best_road)}"
+        stat_4_lbl = "BEST ROAD"
+    else:
+        stat_4_val = f"~{miles}"
+        stat_4_lbl = "MILES"
 
     stats = [
         (str(total_races), "RACES"),
         (str(total_seasons), "SEASONS"),
-        (str(podiums), "PODIUMS" if podiums > 0 else "FINISHES"),
-        (f"~{miles}", "MILES")
+        (stat_3_val, stat_3_lbl),
+        (stat_4_val, stat_4_lbl),
+        (str(venues_count), "VENUES")
     ]
 
-    stat_box_w = 250
-    stat_box_h = 96
-    gap = 26
-    start_x = 60
-    start_y = 482
+    stat_box_w = 208
+    stat_box_h = 92
+    gap = 15
+    start_x = 50
+    start_y = 485
 
     for i, (val, lbl) in enumerate(stats):
         bx = start_x + i * (stat_box_w + gap)
         by = start_y
         draw.rounded_rectangle([(bx, by), (bx + stat_box_w, by + stat_box_h)], radius=12, fill=(15, 23, 42, 220), outline=(71, 85, 105, 170), width=1)
-        draw.text((bx + stat_box_w // 2, by + 16), val, font=font_stat_val, fill=(255, 255, 255), anchor="mt")
-        draw.text((bx + stat_box_w // 2, by + 66), lbl, font=font_stat_lbl, fill=(56, 189, 248), anchor="mt")
+        draw.text((bx + stat_box_w / 2, by + 32), val, font=font_stat_val, fill=(255, 255, 255), anchor="mm")
+        draw.text((bx + stat_box_w / 2, by + 68), lbl, font=font_stat_lbl, fill=(56, 189, 248), anchor="mm")
 
     final_rgb = card.convert("RGB")
     if output_path:
@@ -278,10 +315,28 @@ def generate_all_cards(limit=None, runner_filter=None):
 
         # Compute stats
         total_races = len(recs)
-        seasons = set(r.get("season") for r in recs if r.get("season"))
-        total_seasons = len(seasons)
+        sorted_seasons = sorted(set(r.get("season") for r in recs if r.get("season")))
+        total_seasons = len(sorted_seasons)
+        cat_wins = sum(1 for r in recs if int(r.get("cat_pos", 999) or 999) == 1)
         podiums = sum(1 for r in recs if int(r.get("cat_pos", 999) or 999) <= 3)
         total_miles = sum(4.8 if "xc" in (r.get("discipline") or "").lower() else 5.2 for r in recs)
+
+        xc_recs = [r for r in recs if "xc" in (r.get("discipline") or "").lower()]
+        road_recs = [r for r in recs if "road" in (r.get("discipline") or "").lower()]
+        best_xc = min([int(r.get("pos", 999) or 999) for r in xc_recs] or [999])
+        best_road = min([int(r.get("pos", 999) or 999) for r in road_recs] or [999])
+        venues = set(r.get("venue") for r in recs if r.get("venue"))
+
+        years_text = ""
+        if len(sorted_seasons) > 0:
+            try:
+                first_y = int(sorted_seasons[0].split("/")[0])
+                last_s = sorted_seasons[-1].split("/")
+                last_y = int(last_s[1] if len(last_s) > 1 else last_s[0])
+                span_yrs = (last_y - first_y) + 1
+                years_text = f"{first_y} – {last_y} ({span_yrs} YEARS ACTIVE)"
+            except Exception:
+                years_text = f"{sorted_seasons[0]} – {sorted_seasons[-1]}"
 
         runner_payload = {
             "displayName": display_name,
@@ -289,7 +344,12 @@ def generate_all_cards(limit=None, runner_filter=None):
             "primaryCat": recs[0].get("age_cat") or "Competitor",
             "totalRaces": total_races,
             "totalSeasons": total_seasons,
+            "catWins": cat_wins,
             "podiums": podiums,
+            "bestXc": best_xc,
+            "bestRoad": best_road,
+            "uniqueVenues": len(venues),
+            "yearsSpanText": years_text,
             "miles": round(total_miles)
         }
 
