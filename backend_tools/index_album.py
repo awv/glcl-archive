@@ -84,16 +84,31 @@ def infer_album_details(title):
 
     # Race Number
     m_race = re.search(r'(?:race|fixture)\s*#?\s*(\d+)', title_lower)
-    race_number = int(m_race.group(1)) if m_race else 1
+    if m_race:
+        race_number = int(m_race.group(1))
+    elif venue.lower() == "glebelands" and discipline == "xc":
+        race_number = 1
+    elif venue.lower() == "rogerstone" and discipline == "xc":
+        race_number = 2
+    elif venue.lower() in ["monmouth", "oldfield farm"] and discipline == "xc":
+        race_number = 3
+    elif venue.lower() == "blaenavon" and discipline == "road":
+        race_number = 2
+    elif venue.lower() == "cwmbran" and discipline == "road":
+        race_number = 4
+    elif venue.lower() == "parc bryn bach" and discipline == "road":
+        race_number = 5
+    else:
+        race_number = 1
 
     return {
         "discipline": discipline,
-        "season": season or "2025/2026",
+        "season": season or "2026/2027",
         "venue": venue or "GLCL Fixture",
         "race_number": race_number
     }
 
-def register_album_if_needed(album_id, album_info, override_season=None):
+def register_album_if_needed(album_id, album_info, override_season=None, override_race=None, override_discipline=None):
     """Ensure album is recorded in assets/data/fixture_photo_albums.json."""
     if not FIXTURE_ALBUMS_FILE.exists():
         FIXTURE_ALBUMS_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -111,14 +126,16 @@ def register_album_if_needed(album_id, album_info, override_season=None):
 
     inferred = infer_album_details(title)
     final_season = override_season or inferred["season"]
+    final_race = override_race or inferred["race_number"]
+    final_discipline = override_discipline or inferred["discipline"]
 
     entry = {
         "album_id": album_id,
         "title": title,
         "photos": photos_count,
         "season": final_season,
-        "discipline": inferred["discipline"],
-        "race_number": inferred["race_number"],
+        "discipline": final_discipline,
+        "race_number": final_race,
         "venue": inferred["venue"],
         "date": date_str
     }
@@ -127,9 +144,8 @@ def register_album_if_needed(album_id, album_info, override_season=None):
     fixtures[album_id] = entry
 
     # Also store under fixture key if not already defined
-    fixture_key = f"{final_season.replace('/', '_')}_{inferred['discipline']}_{inferred['race_number']}"
-    if fixture_key not in fixtures:
-        fixtures[fixture_key] = entry
+    fixture_key = f"{final_season.replace('/', '_')}_{final_discipline}_{final_race}"
+    fixtures[fixture_key] = entry
 
     with open(FIXTURE_ALBUMS_FILE, "w") as f:
         json.dump(fixtures, f, indent=2)
@@ -139,8 +155,10 @@ def register_album_if_needed(album_id, album_info, override_season=None):
 def main():
     parser = argparse.ArgumentParser(description="Index single GLCL Flickr album and register in archive")
     parser.add_argument("target", help="Flickr Album URL or ID (e.g. 72177720330513551)")
-    parser.add_argument("--season", help="Override season (e.g. 2025/2026)")
-    parser.add_argument("--limit", type=int, default=200, help="Max photos to analyze (default: 200)")
+    parser.add_argument("--season", help="Override season (e.g. 2026/2027)")
+    parser.add_argument("--race", type=int, help="Override race number (e.g. 2)")
+    parser.add_argument("--discipline", choices=["xc", "road"], help="Override discipline (xc or road)")
+    parser.add_argument("--limit", type=int, default=200, help="Max photos to analyze (default: 200, set 0 for all)")
     parser.add_argument("--min-sharpness", type=float, default=250.0, help="Minimum subject sharpness score (default: 250, set 0 to disable)")
     args = parser.parse_args()
 
@@ -151,7 +169,13 @@ def main():
 
     print(f"Fetching metadata for album {album_id} from Flickr...")
     info = get_album_info(album_id)
-    album_meta = register_album_if_needed(album_id, info, override_season=args.season)
+    album_meta = register_album_if_needed(
+        album_id,
+        info,
+        override_season=args.season,
+        override_race=args.race,
+        override_discipline=args.discipline
+    )
 
     print(f"\n📋 Registered Album Metadata:")
     print(f"  Title:       {album_meta['title']}")

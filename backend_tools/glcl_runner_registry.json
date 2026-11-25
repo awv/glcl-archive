@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-10-20T16:19:13.944160",
+  "updated_at": "2026-11-25T16:53:40.899685",
   "source": "https://sites.google.com/view/glclrunning-results-and-reg/home/entry-registration",
-  "total_registered": 1200,
+  "total_registered": 1209,
   "runners": [
     {
       "bib": "1001",
@@ -1154,6 +1154,17 @@
       "changes": []
     },
     {
+      "bib": "1107",
+      "urn": "7043830",
+      "barcode": "A1611272",
+      "first_name": "Alyssa",
+      "last_name": "BAKER",
+      "name": "Alyssa BAKER",
+      "club": "Caerleon Running Club",
+      "gender": "F",
+      "changes": []
+    },
+    {
       "bib": "3501",
       "urn": "7050036",
       "barcode": "A4170841",
@@ -1358,6 +1369,94 @@
       "first_name": "Julian",
       "last_name": "GUY",
       "name": "Julian GUY",
+      "club": "Caldicot Rc",
+      "gender": "M",
+      "changes": []
+    },
+    {
+      "bib": "3520",
+      "urn": "3920491",
+      "barcode": "A2488092",
+      "first_name": "Angela",
+      "last_name": "PHILLIPS",
+      "name": "Angela PHILLIPS",
+      "club": "Caldicot Rc",
+      "gender": "F",
+      "changes": []
+    },
+    {
+      "bib": "3521",
+      "urn": "3986873",
+      "barcode": "A2950143",
+      "first_name": "Jessica",
+      "last_name": "LEE",
+      "name": "Jessica LEE",
+      "club": "Caldicot Rc",
+      "gender": "F",
+      "changes": []
+    },
+    {
+      "bib": "3522",
+      "urn": "4125330",
+      "barcode": "A3948589",
+      "first_name": "Ben",
+      "last_name": "VAUGHAN",
+      "name": "Ben VAUGHAN",
+      "club": "Caldicot Rc",
+      "gender": "M",
+      "changes": []
+    },
+    {
+      "bib": "3523",
+      "urn": "2970577",
+      "barcode": "A4512367",
+      "first_name": "Chloe",
+      "last_name": "BUTTERY",
+      "name": "Chloe BUTTERY",
+      "club": "Caldicot Rc",
+      "gender": "F",
+      "changes": []
+    },
+    {
+      "bib": "3524",
+      "urn": "4122547",
+      "barcode": "A3077444",
+      "first_name": "Katie",
+      "last_name": "FISHPOOL",
+      "name": "Katie FISHPOOL",
+      "club": "Caldicot Rc",
+      "gender": "F",
+      "changes": []
+    },
+    {
+      "bib": "3525",
+      "urn": "4157306",
+      "barcode": "A6537412",
+      "first_name": "Alex",
+      "last_name": "BARNSTON",
+      "name": "Alex BARNSTON",
+      "club": "Caldicot Rc",
+      "gender": "M",
+      "changes": []
+    },
+    {
+      "bib": "3526",
+      "urn": "4217736",
+      "barcode": "A4974299",
+      "first_name": "Ben",
+      "last_name": "TYRRELL",
+      "name": "Ben TYRRELL",
+      "club": "Caldicot Rc",
+      "gender": "M",
+      "changes": []
+    },
+    {
+      "bib": "3527",
+      "urn": "3847498",
+      "barcode": "A2488099",
+      "first_name": "Alex",
+      "last_name": "PHILLIPS",
+      "name": "Alex PHILLIPS",
       "club": "Caldicot Rc",
       "gender": "M",
       "changes": []
@@ -3068,6 +3167,17 @@
       "changes": [
         "was 2148"
       ]
+    },
+    {
+      "bib": "2157",
+      "urn": "7018207",
+      "barcode": "A234985",
+      "first_name": "Peter",
+      "last_name": "WARD",
+      "name": "Peter WARD",
+      "club": "Chepstow Harriers",
+      "gender": "M",
+      "changes": []
     },
     {
       "bib": "3001",
@@ -12104,17 +12214,6 @@
       "changes": [
         "was 9100"
       ]
-    },
-    {
-      "bib": "9004",
-      "urn": "7043830",
-      "barcode": "A1611272",
-      "first_name": "Alyssa",
-      "last_name": "BAKER",
-      "name": "Alyssa BAKER",
-      "club": "Pont-Y-Pwl & District Runners",
-      "gender": "F",
-      "changes": []
     },
     {
       "bib": "9005",

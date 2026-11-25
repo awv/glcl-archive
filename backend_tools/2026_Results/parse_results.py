@@ -84,6 +84,7 @@ for pdf_path in pdf_files:
     date = "Unknown Date"
     distance = "5 Miles"
     status = "Confirmed"
+    album = ""
 
     if os.path.exists(output_txt_path):
         with open(output_txt_path, 'r', encoding='utf-8') as ef:
@@ -97,6 +98,7 @@ for pdf_path in pdf_files:
                         if k == 'DATE' and v and 'xx' not in v: date = v
                         if k == 'DISTANCE' and v and 'x.x' not in v: distance = v
                         if k == 'STATUS' and v: status = v
+                        if k == 'ALBUM' and v: album = v
 
     parsed_lines = []
 
@@ -117,6 +119,8 @@ for pdf_path in pdf_files:
             f"# DISTANCE: {distance}",
             f"# STATUS: {status}"
         ])
+        if album:
+            parsed_lines.append(f"# ALBUM: {album}")
 
         for page in pdf.pages:
             text = page.extract_text()

@@ -128,6 +128,38 @@ func loadBibDatabase(from dataPath: String, targetSeason: String?, targetRace: I
     var inheritedCount = 0
     let cleanTargetSeason = targetSeason?.lowercased().trimmingCharacters(in: .whitespaces)
     let cleanTargetDiscipline = targetDiscipline?.lowercased().trimmingCharacters(in: .whitespaces)
+
+    // Pre-populate with official 2026/2027 registered runners if targeting current season
+    if cleanTargetSeason == nil || cleanTargetSeason?.contains("2026") == true || cleanTargetSeason?.contains("26") == true {
+        let registryCandidates = [
+            "backend_tools/glcl_runner_registry.json",
+            "./backend_tools/glcl_runner_registry.json",
+            "glcl_runner_registry.json",
+            "../backend_tools/glcl_runner_registry.json"
+        ]
+        for regPath in registryCandidates {
+            if let regData = try? Data(contentsOf: URL(fileURLWithPath: regPath)),
+               let regJson = try? JSONSerialization.jsonObject(with: regData, options: []) as? [String: Any],
+               let runners = regJson["runners"] as? [[String: Any]] {
+                for r in runners {
+                    let bibStr = (r["bib"] as? String ?? "").trimmingCharacters(in: .whitespaces)
+                    guard !bibStr.isEmpty, bibStr != "0" else { continue }
+                    let name = r["name"] as? String ?? ""
+                    let club = r["club"] as? String ?? ""
+                    activeBibMap[bibStr] = RunnerRecord(
+                        name: name,
+                        bib: bibStr,
+                        club: club,
+                        season: targetSeason ?? "2026/2027",
+                        raceNumber: targetRace,
+                        isInherited: false,
+                        isLifetimeFallback: false
+                    )
+                }
+                break
+            }
+        }
+    }
     
     for r in sortedRecords {
         let seasonStr = r["season"] as? String ?? ""
@@ -714,6 +746,9 @@ func main() {
         if !jsonOutput {
             let parseTime = Date().timeIntervalSince(t0)
             print("Database:     \(dp) (\(lifetimeBibMap.count) lifetime GLCL bibs indexed in \(String(format: "%.2f", parseTime))s)")
+            if !activeBibMap.isEmpty {
+                print("Active Roster: \(Color.green)\(Color.bold)\(activeBibMap.count)\(Color.reset) registered runners active for Season \(season ?? "current")")
+            }
             if inheritedCount > 0 {
                 print("Intelligence: \(Color.green)\(Color.bold)\(inheritedCount)\(Color.reset) persistent runner bibs carried over for Season \(season ?? "current")")
             }
