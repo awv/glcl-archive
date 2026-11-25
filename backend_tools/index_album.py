@@ -21,22 +21,19 @@ from pathlib import Path
 
 # Add backend_tools directory to sys.path
 sys.path.insert(0, str(Path(__file__).parent))
-from scan_flickr_album import scan_album, FLICKR_API_KEY, extract_album_id
+from scan_flickr_album import scan_album, FLICKR_API_KEY, extract_album_id, call_flickr_api
 
 FIXTURE_ALBUMS_FILE = Path("assets/data/fixture_photo_albums.json")
 PHOTO_TAGS_FILE = Path("assets/data/photo_tags.json")
 
 def get_album_info(album_id):
     """Fetch photoset info from Flickr API."""
-    url = (
-        f"https://api.flickr.com/services/rest/?method=flickr.photosets.getInfo"
-        f"&api_key={FLICKR_API_KEY}&photoset_id={album_id}&format=json&nojsoncallback=1"
-    )
     try:
-        req = urllib.request.urlopen(url)
-        data = json.loads(req.read().decode('utf-8'))
+        data = call_flickr_api("flickr.photosets.getInfo", {"photoset_id": album_id})
         if data.get("stat") == "ok":
             return data.get("photoset", {})
+        else:
+            print(f"Flickr API warning: {data.get('message', 'Failed to fetch photoset info')}")
     except Exception as e:
         print(f"Warning: Could not fetch Flickr album metadata: {e}")
     return {}

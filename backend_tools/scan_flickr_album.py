@@ -18,14 +18,22 @@ import shutil
 from PIL import Image, ImageFilter, ImageStat
 
 FLICKR_API_KEY = os.environ.get("FLICKR_API_KEY", "")
-if not FLICKR_API_KEY:
-    cfg = Path(__file__).parent / "config.json"
-    if cfg.exists():
-        try:
-            with open(cfg) as f:
-                FLICKR_API_KEY = json.load(f).get("FLICKR_API_KEY", "")
-        except Exception:
-            pass
+FLICKR_API_SECRET = os.environ.get("FLICKR_API_SECRET", "")
+FLICKR_OAUTH_TOKEN = os.environ.get("FLICKR_OAUTH_TOKEN", "")
+FLICKR_OAUTH_TOKEN_SECRET = os.environ.get("FLICKR_OAUTH_TOKEN_SECRET", "")
+
+cfg = Path(__file__).parent / "config.json"
+if cfg.exists():
+    try:
+        with open(cfg) as f:
+            cdata = json.load(f)
+            FLICKR_API_KEY = FLICKR_API_KEY or cdata.get("FLICKR_API_KEY", "")
+            FLICKR_API_SECRET = FLICKR_API_SECRET or cdata.get("FLICKR_API_SECRET", "")
+            FLICKR_OAUTH_TOKEN = FLICKR_OAUTH_TOKEN or cdata.get("FLICKR_OAUTH_TOKEN", "")
+            FLICKR_OAUTH_TOKEN_SECRET = FLICKR_OAUTH_TOKEN_SECRET or cdata.get("FLICKR_OAUTH_TOKEN_SECRET", "")
+    except Exception:
+        pass
+
 if not FLICKR_API_KEY:
     raise RuntimeError("FLICKR_API_KEY not set. Please set FLICKR_API_KEY environment variable or populate backend_tools/config.json.")
 
@@ -37,6 +45,49 @@ ssl._create_default_https_context = ssl._create_unverified_context
 opener = urllib.request.build_opener(urllib.request.HTTPSHandler(context=ssl_ctx))
 opener.addheaders = [("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")]
 urllib.request.install_opener(opener)
+
+def call_flickr_api(method, extra_params=None, timeout=15):
+    """
+    Unified Flickr REST caller supporting both public unauthenticated requests
+    and signed OAuth 1.0a requests (for private/unlisted albums).
+    """
+    endpoint = "https://api.flickr.com/services/rest/"
+    params = {
+        "method": method,
+        "api_key": FLICKR_API_KEY,
+        "format": "json",
+        "nojsoncallback": "1"
+    }
+    if extra_params:
+        params.update(extra_params)
+
+    if FLICKR_OAUTH_TOKEN and FLICKR_API_SECRET and FLICKR_OAUTH_TOKEN_SECRET:
+        import time, uuid, hmac, hashlib, base64, urllib.parse
+        oauth_params = dict(params)
+        oauth_params["oauth_nonce"] = uuid.uuid4().hex
+        oauth_params["oauth_timestamp"] = str(int(time.time()))
+        oauth_params["oauth_consumer_key"] = FLICKR_API_KEY
+        oauth_params["oauth_signature_method"] = "HMAC-SHA1"
+        oauth_params["oauth_version"] = "1.0"
+        oauth_params["oauth_token"] = FLICKR_OAUTH_TOKEN
+
+        def pe(s): return urllib.parse.quote(str(s), safe='~-._')
+        sorted_p = sorted(oauth_params.items(), key=lambda x: (pe(x[0]), pe(x[1])))
+        p_str = "&".join(f"{pe(k)}={pe(v)}" for k, v in sorted_p)
+        base_s = f"GET&{pe(endpoint)}&{pe(p_str)}"
+        sign_key = f"{pe(FLICKR_API_SECRET)}&{pe(FLICKR_OAUTH_TOKEN_SECRET)}"
+        sig = hmac.new(sign_key.encode('utf-8'), base_s.encode('utf-8'), hashlib.sha1).digest()
+        oauth_params["oauth_signature"] = base64.b64encode(sig).decode('utf-8')
+
+        q_str = "&".join(f"{pe(k)}={pe(v)}" for k, v in oauth_params.items())
+        url = f"{endpoint}?{q_str}"
+    else:
+        import urllib.parse
+        url = f"{endpoint}?{urllib.parse.urlencode(params)}"
+
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (GLCL Flickr Client)"})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return json.loads(resp.read().decode('utf-8'))
 
 def calculate_subject_sharpness(img_path):
     """
@@ -66,29 +117,32 @@ def calculate_subject_sharpness(img_path):
 def fetch_album_photos(photoset_id, max_photos=50):
     photos = []
     page = 1
-    # Maximize page size (Flickr allows up to 500 per call) to minimize API query quota
     per_page = min(max_photos, 500) if (max_photos and max_photos > 0) else 500
-    
+
     while True:
         if max_photos and max_photos > 0 and len(photos) >= max_photos:
             break
-        url = (
-            f"https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos"
-            f"&api_key={FLICKR_API_KEY}&photoset_id={photoset_id}"
-            f"&extras=url_m,url_l,url_h,url_k,url_3k,url_4k,tags&per_page={per_page}&page={page}&format=json&nojsoncallback=1"
-        )
         try:
-            req = urllib.request.urlopen(url, timeout=15)
-            data = json.loads(req.read().decode('utf-8'))
+            data = call_flickr_api(
+                "flickr.photosets.getPhotos",
+                {
+                    "photoset_id": photoset_id,
+                    "extras": "url_m,url_l,url_h,url_k,url_3k,url_4k,tags",
+                    "per_page": per_page,
+                    "page": page
+                }
+            )
         except Exception as e:
             print(f"Error fetching album metadata: {e}")
             break
-        
+
         photoset = data.get("photoset", {})
         batch = photoset.get("photo", [])
         if not batch:
+            if data.get("stat") != "ok":
+                print(f"Flickr API warning: {data.get('message', 'Failed to fetch photoset')}")
             break
-            
+
         photos.extend(batch)
         total_pages = int(photoset.get("pages", 1))
         if page >= total_pages:
